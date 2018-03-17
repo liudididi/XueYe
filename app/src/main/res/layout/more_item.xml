@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="510px"
+    android:layout_height="400px"
+    >
+    <View
+        android:id="@+id/view"
+        android:layout_width="30px"
+        android:layout_height="match_parent">
+    </View>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:background="@drawable/back_square"
+        android:layout_toRightOf="@+id/view"
+        android:layout_width="450px"
+        android:layout_height="400px"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/more_icon"
+            android:src="@drawable/see_more"
+            android:layout_width="170px"
+            android:layout_height="170px" />
+       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看更多"
+            android:textSize="50px"
+           android:textColor="#666666"
+            android:layout_marginTop="30px"
+            android:layout_below="@+id/item_school_icon"
+            />
+
+    </LinearLayout>
+
+    <View
+
+        android:layout_width="30px"
+        android:layout_toRightOf="@id/ll"
+        android:layout_height="match_parent">
+    </View>
+</RelativeLayout>

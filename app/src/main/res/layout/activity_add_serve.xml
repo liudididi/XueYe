@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.login_demo.AddServeActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_add"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="#fff"
+        >
+        <ImageView
+            android:padding="10px"
+            android:id="@+id/addserve_iv_back"
+            android:layout_width="150px"
+            android:layout_height="90px"
+            android:layout_gravity="center"
+            android:src="@mipmap/left"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:text="购买增值服务"
+            android:textColor="#2c2c2c"
+            android:textSize="50px"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:background="#ccc"
+        android:layout_below="@id/rl_add">
+    </View>
+
+     <android.support.v7.widget.RecyclerView
+         android:id="@+id/add_rv"
+         android:layout_below="@id/view2"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+     </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
