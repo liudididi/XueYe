@@ -30,6 +30,11 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     ListViewForScrollView xyghList;
     @BindView(R.id.sv)
     ScrollView sv;
+    @BindView(R.id.guihua_ivyiwen)
+    ImageView guihuaIvyiwen;
+    @BindView(R.id.rl_wenti)
+    RelativeLayout rlWenti;
+    private  boolean yiwen=false;
 
     @Override
     public int getId() {
@@ -61,7 +66,18 @@ public class XueYeGuiHuaActivity extends BaseActivity {
                 intent(this, XGcsActivity.class);
                 break;
             case R.id.guihua_ivyiwen:
-                intent(this, ChangQuessonActivity.class);
+
+                if(yiwen){
+                    rlWenti.setVisibility(View.GONE);
+                    sv.setVisibility(View.VISIBLE);
+                    guihuaIvyiwen.setImageResource(R.drawable.cjwt);
+                    yiwen=false;
+                }else {
+                    rlWenti.setVisibility(View.VISIBLE);
+                    sv.setVisibility(View.GONE);
+                    guihuaIvyiwen.setImageResource(R.drawable.cha);
+                    yiwen=true;
+                }
                 break;
         }
     }

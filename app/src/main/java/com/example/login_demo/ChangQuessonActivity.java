@@ -11,8 +11,7 @@ import butterknife.OnClick;
 public class ChangQuessonActivity extends BaseActivity {
 
 
-    @BindView(R.id.quesson_iv_back)
-    ImageView quessonIvBack;
+
 
     @Override
     public int getId() {
@@ -27,9 +26,6 @@ public class ChangQuessonActivity extends BaseActivity {
 
 
 
-    @OnClick(R.id.quesson_iv_back)
-    public void onViewClicked() {
 
-    finish();
-    }
+
 }

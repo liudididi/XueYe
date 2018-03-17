@@ -64,11 +64,12 @@ public class ComlitEFCActivity extends BaseActivity {
                 if (time > 0) {
                     handler.postDelayed(this, 1000);
                 }else {
+                    butChakan.setEnabled(true);
                     rlWancheng.setVisibility(View.VISIBLE);
                     llWeiwancheng.setVisibility(View.GONE);
                     handler.removeCallbacks(this);
                     butChakan.setBackground(getResources().getDrawable(R.drawable.back_capacityyi));
-                    butChakan.setEnabled(true);
+
                 }
             }
         };

@@ -71,6 +71,7 @@
             android:layout_width="150px"
             android:layout_height="match_parent" />
 <TextView
+    android:layout_marginTop="10px"
     android:id="@+id/tv_text1"
     android:layout_toRightOf="@+id/img_wancheng"
     android:layout_width="wrap_content"

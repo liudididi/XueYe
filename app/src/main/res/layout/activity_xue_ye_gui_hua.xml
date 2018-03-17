@@ -46,6 +46,14 @@
             android:layout_alignParentBottom="true"
             ></View>
     </RelativeLayout>
+
+    <include
+        android:visibility="gone"
+        android:layout_below="@id/guihua_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/activity_chang_quesson"
+        ></include>
         <ScrollView
             android:id="@+id/sv"
             android:scrollbars="none"
