@@ -8,6 +8,7 @@ import base.BaseBean;
 import bean.Advanced_YX_Bean;
 import bean.AnswerBean;
 import bean.AreaBean;
+import bean.CXEFCBean;
 import bean.CampusBean;
 import bean.CanSchoolBean;
 import bean.CheckSchoolBean;
@@ -78,15 +79,32 @@ import retrofit2.http.Query;
  */
 
 public interface QuestInterface {
- //学生来源
- @GET(" /app/stufrom/from")
- Flowable<BaseBean<List<StudentFromBean>>> studentfrom(@Query("name") String name);
+      //学生来源
+     @GET(" /app/stufrom/from")
+     Flowable<BaseBean<List<StudentFromBean>>> studentfrom(@Query("name") String name);
 
     //倒计时
     @GET(" /app/wishfilling/gettime")
     Flowable<BaseBean<String>> gettime(@Header("token") String token);
 
+    //判断有没有使用EFC使用资格
+    @GET(" /app/wishfilling/jzjudge")
+    Flowable<BaseBean<String>> jzjudge(@Header("token") String token);
 
+
+
+    //判断有无使用次数
+    @GET(" /app/wishfilling/jznumber")
+    Flowable<BaseBean> jznumber(@Header("token") String token);
+
+    //历史报告
+    @GET("/app/wishfilling/getHistoryInfo")
+    Flowable<BaseBean<List<CXEFCBean>>>  getHistoryInfo(@Header("token") String token);
+
+
+    //查询当前EFC精准结果
+    @GET("/app/wishfilling/getEFCResult")
+    Flowable<BaseBean<CXEFCBean>> getEFCResult(@Query("token") String token);
 
     //一份一段表详情
     @GET("/app/onetoone/getonetoone")
@@ -106,7 +124,6 @@ public interface QuestInterface {
 
 
     //星空专业详情
-
     @GET("/app/efc/jobStarInfo")
     Flowable<BaseBean<List<MajorstatXQBean>>> zyxq(@Query("major_id") String major_id);
 
@@ -114,7 +131,6 @@ public interface QuestInterface {
     //心理测试题
     @GET("/app/psychologicalevaluation/query ")
     Flowable<BaseBean<List<AnswerBean>>> answer(@Query("pe_type") String pe_type);
-
 
  //版本更新
  @GET("app/version/getversion")
@@ -134,7 +150,6 @@ public interface QuestInterface {
  //查询帮助和购买
  @GET("/app/help/helping")
  Flowable<BaseBean<List<HelpBean>>> helping(@Query("type") String type, @Query("pid") String pid);
-
 
     //招生简章
     @GET("/app/admissionplanmobile/adInfoMobil")
@@ -232,8 +247,8 @@ public interface QuestInterface {
     Flowable<BaseBean<List<SerchZYBean>>> SerchZY(@Query("name") String name);
 
     //获取星空测评结合专业
-    @POST("/app/efc/jobsStarMajorMobil")
-    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld, @Query("mbti") String mbti, @Query("gender") String gender,  @Query("type") String type,@Body RequestBody requestBody);
+    @POST("/app/efc/jobsStarMajorNew")
+    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld, @Query("mbti") String mbti, @Query("gender") String gender,  @Query("type") String type,@Query("jobs") String job);
 
 
     //微信支付

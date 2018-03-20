@@ -48,24 +48,64 @@
                 />
         </RelativeLayout>
     </ScrollView>
+    <LinearLayout
+        android:gravity="center"
+        android:weightSum="1"
+        android:id="@+id/re_buydi1"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="184px"
+        android:background="#fff">
 
+        <Button
+            android:layout_marginRight="50px"
+            android:layout_marginLeft="50px"
+            android:id="@+id/xlcs_bt1"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:background="@drawable/back_capacity"
+            android:text="开始测试"
+            android:layout_centerVertical="true"
+            android:layout_width="0px"
+            android:layout_height="100px"
+            android:gravity="center"
+            />
+    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/re_buydi"
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="center"
+        android:weightSum="2"
+        android:id="@+id/re_buydi2"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="184px"
         android:background="#fff">
         <Button
-            android:id="@+id/xlcs_bt"
+            android:id="@+id/lsbg_bt"
+            android:layout_marginRight="20px"
+            android:layout_marginLeft="20px"
             android:textColor="#fff"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/back_capacity"
-            android:text="开始测试"
+            android:background="@drawable/back_capacityyi"
+            android:text="历史报告"
             android:layout_centerVertical="true"
-            android:layout_width="985px"
+            android:layout_width="0px"
+            android:layout_weight="1"
             android:layout_height="100px"
             android:gravity="center"
             />
-    </RelativeLayout>
+        <Button
+            android:layout_marginRight="20px"
+            android:layout_marginLeft="20px"
+            android:id="@+id/xlcs_b2"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:background="@drawable/back_capacity"
+            android:text="开始测试"
+            android:layout_centerVertical="true"
+            android:layout_width="0px"
+            android:layout_height="100px"
+            android:gravity="center"
+            />
+    </LinearLayout>
 </RelativeLayout>

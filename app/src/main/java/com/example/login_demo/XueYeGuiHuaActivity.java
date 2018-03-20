@@ -68,67 +68,11 @@ public class XueYeGuiHuaActivity extends BaseActivity {
 
     @Override
     public void InIt() {
-        //专业
-        initzhuanye();
+
 
     }
 
-    private void initzhuanye() {
-        Map<String, String> map = new HashMap<>();
-        if(startfenleiActivity.fenlieanswerlist!=null&&startfenleiActivity.fenlieanswerlist.size()>0){
-            for (int i = 0; i < startfenleiActivity.fenlieanswerlist.size(); i++) {
-                map.put(startfenleiActivity.fenlieanswerlist.get(i), "");
-            }
-        }else {
-            map.put("机电工程师", "");
-            map.put("建筑技术家", "");
-        }
-        Gson gson = new Gson();
-        String route = gson.toJson(map);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(NetInterceptor.REWRITE_RESPONSE_INTERCEPTOR_LOG)
-                .addInterceptor(NetInterceptor.REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
-                .addNetworkInterceptor(NetInterceptor.REWRITE_RESPONSE_INTERCEPTOR)
-                .addInterceptor(NetInterceptor.REWRITE_RESPONSE_MYINTERCEPTOR)
-                .connectTimeout(MyQusetUtils.TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(MyQusetUtils.TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(MyQusetUtils.TIMEOUT, TimeUnit.SECONDS)
-                .retryOnConnectionFailure(false)
-                .build();
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BaseApi.Api)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        QuestInterface questInterface = retrofit.create(QuestInterface.class);
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), route);
-        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil("CAS", "INFP", "1","1" ,body);
-        baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
-            @Override
-            public void onResponse(Call<BaseBean<List<jobStarBean>>> call, Response<BaseBean<List<jobStarBean>>> response) {
-                final BaseBean<List<jobStarBean>> body = response.body();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(body.code == 0) {
-                            XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(body.data,XueYeGuiHuaActivity.this );
-                            xyghList.setAdapter(xueYeGuiHua_adapter);
-                            sv.smoothScrollTo(0, 0);
 
-                        }else {
-                            Toast(body.msg);
-
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(Call<BaseBean<List<jobStarBean>>> call, Throwable t) {
-
-            }
-        });
-    }
 
     @OnClick({R.id.guihua_iv_back, R.id.rl_xqcebg, R.id.rl_xgcebg, R.id.guihua_ivyiwen,R.id.xlcs_bt})
     public void onViewClicked(View view) {

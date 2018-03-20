@@ -37,12 +37,14 @@ import base.BaseApi;
 import base.BaseBean;
 import base.Basefragment;
 import bean.Advanced_YX_Bean;
+import bean.CXEFCBean;
 import bean.HotBean;
 import bean.SearchBean;
 import bean.SerchZYBean;
 import bean.jobStarBean;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import presenter.CXEFCPresenter;
 import presenter.SearchPresent;
 import presenter.SerchZYPresent;
 import retrofit2.Call;
@@ -52,6 +54,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import untils.QuestInterface;
 import untils.SPUtils;
+import view.CXEFCView;
 import view.SearchView;
 import view.SerchZYView;
 
@@ -137,6 +140,8 @@ public class Zhuanye_Fragment extends Basefragment {
     private ListView lv_ss_zy;
     private EditText et_zy;
     private String major;
+    private String token;
+    private CXEFCPresenter cxefcPresenter;
 
     @Override
     public int getLayoutid() {
@@ -148,39 +153,35 @@ public class Zhuanye_Fragment extends Basefragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         init();
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
+        token = (String) SPUtils.get(MyApp.context, "token", "");
+
         tv_tj.setTextColor(getContext().getResources().getColor(R.color.delete_dialog_text_color));
         initData();
         initOnClick();
         zhuanye();
-
-
     }
 
     private void zhuanye() {
-        //TODO 目前是死数据
-        HashMap<String,String> map=new HashMap<>();
-        map.put("新闻工作者,电气工程师,药学家","职业");
-        map.put("通信工程,伦理学,小学教育","专业");
-        Gson gson=new Gson();
-        String route= gson.toJson(map);
-        Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl(BaseApi.Api)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        QuestInterface questInterface = retrofit.create(QuestInterface.class);
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
-        //TODO 目前参数是死数据
-        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil("SIE", "ENFJ", "1","1",body);
-        baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
+
+        final ArrayList<String> list=new ArrayList<>();
+        cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
             @Override
-            public void onResponse(Call<BaseBean<List<jobStarBean>>> call, Response<BaseBean<List<jobStarBean>>> response) {
+            public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+                String majorGai = cxefcBeanBaseBean.data.getMajorGai();
+                for (int i = 0; i < 20; i++) {
+                    String[] split = majorGai.split(",");
+                    String s = split[i];
+                    String[] split1 = s.split(":");
+                    //专业名
+                    String name = split1[0];
+                    list.add(name);
+                }
 
                 pb.setVisibility(View.GONE);
                 lv_zy_zhuanye.setVisibility(View.VISIBLE);
-                final List<jobStarBean> data = response.body().data;
-                if(data.size()>0&&data!=null)
+                 if(list.size()>0&&list!=null)
                 {
-                    ZY_ZY_Adapter zy_zy_adapter=new ZY_ZY_Adapter(data,getActivity());
+                    ZY_ZY_Adapter zy_zy_adapter=new ZY_ZY_Adapter(list,getActivity());
                     lv_zy_zhuanye.setAdapter(zy_zy_adapter);
                 }
 
@@ -189,20 +190,21 @@ public class Zhuanye_Fragment extends Basefragment {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         pb2.setVisibility(View.VISIBLE);
                         //专业名
-                        major = data.get(i).getMajor();
-                      /*  lv_zy_zhuanye.setVisibility(View.GONE);
-                        rv_zy_zhuanye.setVisibility(View.VISIBLE);*/
+                        major = list.get(i).toString();
 
                         zhuanye_yuanxiao(major,s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
-                     }
+                    }
                 });
+
             }
 
             @Override
-            public void onFailure(Call<BaseBean<List<jobStarBean>>> call, Throwable t) {
+            public void GetEFCResultfail(Throwable t) {
 
             }
         });
+        cxefcPresenter.CXEFCPresenter(token);
+
     }
 
     private void zhuanye_yuanxiao(final String zy_name, String s1, String s3, String s4, String s5, String city, String s6, String tuition, String s2, String tbsubtype, String fen, String cwb) {
@@ -211,8 +213,9 @@ public class Zhuanye_Fragment extends Basefragment {
         if(zy_name==null)
         {
             Toast.makeText(getContext(), "请选择专业", Toast.LENGTH_SHORT).show();
+            return;
         }
-        //TODO 死数据 （待完善）
+
         HashMap<String,String> map=new HashMap<>();
         map.put(zy_name,"0.7");
 
@@ -762,5 +765,11 @@ public class Zhuanye_Fragment extends Basefragment {
 //获取当前控件的布局对象
         params2.width=width/3;
         ll5.setLayoutParams(params2);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cxefcPresenter.onDestory();
     }
 }

@@ -332,9 +332,11 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
 
         NewsBean data = listBaseBean.data;
         List<NewsBean.ListBean> list = data.getList();
-        for (int i = 0; i <list.size(); i++) {
-            HotTopList.add(new HotTopBean(BaseApi.ImgApi+ list.get(i).getPicture(),list.get(i).getTitle(),list.get(i).getNewsId()));
-         }
+        if(list!=null&&list.size()>0){
+            for (int i = 0; i <list.size(); i++) {
+                HotTopList.add(new HotTopBean(BaseApi.ImgApi+ list.get(i).getPicture(),list.get(i).getTitle(),list.get(i).getNewsId()));
+            }
+        }
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_hot.setLayoutManager(linearLayoutManager);

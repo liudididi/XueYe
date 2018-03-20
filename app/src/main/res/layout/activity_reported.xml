@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.login_demo.ReportedActivity">
 
+
     <RelativeLayout
         android:id="@+id/rl_reported"
         android:layout_width="match_parent"
@@ -124,4 +125,13 @@
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px"
         android:layout_marginTop="395px"/>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/re_pb"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
 </RelativeLayout>

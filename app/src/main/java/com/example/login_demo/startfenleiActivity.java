@@ -17,6 +17,7 @@ import java.util.List;
 
 import base.BaseActivity;
 import base.BaseBean;
+import bean.CXEFCBean;
 import bean.StartFl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,13 +25,15 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
+import presenter.CXEFCPresenter;
 import presenter.StartFlPresent;
 import untils.MyQusetUtils;
 import untils.SPUtils;
+import view.CXEFCView;
 import view.StartFView;
 
 
-public class startfenleiActivity extends BaseActivity  implements StartFView{
+public class startfenleiActivity extends BaseActivity  implements StartFView, CXEFCView{
     @BindView(R.id.pro_iv_back)
     ImageView proIvBack;
     @BindView(R.id.start_imgfl)
@@ -114,6 +117,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
     private StartFlPresent startFlPresent;
     private String token;
     private  String result="";
+    private CXEFCPresenter xcpresent;
+    private int i1;
+    private String data;
 
     @Override
     public int getId() {
@@ -126,12 +132,14 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
         int widthtPixels = dm.widthPixels;
         min = widthtPixels / 27;
         max = (int) (min * 1.5);
+        data = getIntent().getStringExtra("data");
+        i1 = Integer.parseInt(data);
         inittvlist();
         type = getIntent().getStringExtra("type");
         classify = getIntent().getStringExtra("classify");
         startFlPresent = new StartFlPresent(this);
         startFlPresent.getStartfl(classify,type,fenlei);
-
+        xcpresent = new CXEFCPresenter(this);
         newlist = new ArrayList<>();
         fenlieanswerlist = new ArrayList<>();
         for (int i = 0; i < tvlist.size(); i++) {
@@ -197,9 +205,13 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
                 break;
             case R.id.start_imgfl:
               intent(this,ProfessionStarActivity.class);
-              finish();
+                  finish();
                 break;
             case R.id.pro_yes:
+                if(i1>=2){
+                    xcpresent.CXEFCPresenter(token);
+                    return;
+                }
                 if(fenlieanswerlist.size()>0){
                     tijiao();
                 }else {
@@ -266,8 +278,11 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
         token = (String) SPUtils.get(MyApp.context, "token", "");
     }
 
-    private void tijiao() {
 
+
+
+
+    private void tijiao() {
         for (int i = 0; i < fenlieanswerlist.size(); i++) {
             if(i==fenlieanswerlist.size()-1){
                 result+=fenlieanswerlist.get(i);
@@ -275,8 +290,6 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
                 result+=fenlieanswerlist.get(i)+",";
             }
         }
-
-
         DisposableSubscriber<BaseBean> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().tjzy(result, token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -284,6 +297,8 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
                     @Override
                     public void onNext(BaseBean baseBean) {
                      if(baseBean.code==0){
+
+
                          Intent intent=new Intent(startfenleiActivity.this,MajorStarActivity.class);
                          intent.putExtra("result", result);
                          startActivity(intent);
@@ -335,5 +350,40 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
     @Override
     public void Stratjobfail(String msg) {
         Toast(msg);
+    }
+
+    @Override
+    public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+
+       String  majorresult=cxefcBeanBaseBean.data.getJob();
+
+        String testCode = cxefcBeanBaseBean.data.getTestCode();
+        String[] split = testCode.split(",");
+        String s = split[0];
+
+        String[] split1 = s.split(":");
+        String  mbti = split1[0];
+
+
+        String s1 = split[1];
+        String[] split2 = s.split(":");
+        String  hld = split2[0];
+
+
+
+        Intent intent2=new Intent(this,MajorStarActivity.class);
+        intent2.putExtra("data",data);
+        intent2.putExtra("result",majorresult);
+        intent2.putExtra("Hld",hld);
+        intent2.putExtra("mbti",mbti);
+        startActivity(intent2);
+
+
+
+    }
+
+    @Override
+    public void GetEFCResultfail(Throwable t) {
+
     }
 }

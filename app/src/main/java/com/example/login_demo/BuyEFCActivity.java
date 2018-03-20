@@ -26,6 +26,7 @@ public class BuyEFCActivity extends BaseActivity implements CountdownView {
     @BindView(R.id.tv_goumai3)
     TextView tvGoumai3;
     private CountdownPresent countdownPresent;
+    public static String efcdjs=null;
     @Override
     public int getId() {
         return R.layout.activity_buy_efc;
@@ -33,11 +34,11 @@ public class BuyEFCActivity extends BaseActivity implements CountdownView {
 
     @Override
     public void InIt() {
-
         String price = getIntent().getStringExtra("price");
         if(price!=null){
             tvMoney1.setText(price);
         }
+
         countdownPresent = new CountdownPresent(this);
     }
 
@@ -73,7 +74,8 @@ public class BuyEFCActivity extends BaseActivity implements CountdownView {
 
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
-        WishFragMent. djs = baseBean.data.toString();
+        WishFragMent.djs = baseBean.data.toString();
+        efcdjs=baseBean.data.toString();
         buyefcTvdjs.setText(WishFragMent.djs);
     }
 

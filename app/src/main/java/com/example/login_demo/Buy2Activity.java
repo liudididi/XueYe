@@ -112,6 +112,8 @@ public class Buy2Activity extends BaseActivity implements PayView {
     @Override
     public void InIt() {
         payPresent = new PayPresent(this);
+
+
     }
 
     @Override
@@ -257,8 +259,8 @@ public class Buy2Activity extends BaseActivity implements PayView {
     @Override
     protected void onResume() {
         super.onResume();
-        if (WishFragMent.djs != null) {
-            buy2Tvdjs.setText(WishFragMent.djs);
+        if (BuyEFCActivity.efcdjs != null) {
+            buy2Tvdjs.setText(BuyEFCActivity.efcdjs);
         }
         token = (String) SPUtils.get(MyApp.context, "token", "");
         int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);

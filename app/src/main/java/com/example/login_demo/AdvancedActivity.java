@@ -28,7 +28,6 @@ import view.WishView;
 
 public class AdvancedActivity extends BaseActivity implements WishView {
 
-
     @BindView(R.id.advanced_iv_back)
     ImageView advancedIvBack;
     @BindView(R.id.advanced_minute)
@@ -155,8 +154,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 view_sprint.setVisibility(View.GONE);
                 view_reliable.setVisibility(View.VISIBLE);
                 view_minimum.setVisibility(View.GONE);
-
-
                 if(isMS !=null&& isMS !=""){
                     String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
@@ -167,7 +164,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 }else {
 
                         wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
-
                 }
 
                 break;
@@ -253,17 +249,15 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             adTishi.setVisibility(View.VISIBLE);
             advancedRl.setVisibility(View.GONE);
         }
-
     }
 
     @Override
     public void CanSchoolfail(Throwable t) {
+
         if (tbarea != null && tbarea != "" && tbmaxfen != "" && tbmaxfen != null && tbsubtype != null && tbsubtype != "") {
             wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", tbmaxfen, "1", "5");
         } else {
             wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
         }
     }
-
-
 }

@@ -39,9 +39,12 @@ import base.BaseApi;
 import base.BaseBean;
 import base.Basefragment;
 import bean.Advanced_YX_Bean;
+import bean.CXEFCBean;
 import butterknife.BindView;
+import moudle.CXEFCMoudle;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import presenter.CXEFCPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,12 +54,13 @@ import retrofit2.http.Body;
 import retrofit2.http.Query;
 import untils.QuestInterface;
 import untils.SPUtils;
+import view.CXEFCView;
 
 /**
  * Created by 祝文 on 2018/3/8.
  */
 
-public class Academy_Fragment extends Basefragment {
+public class Academy_Fragment extends Basefragment{
 
     private boolean flag1=true;
     private boolean flag2=true;
@@ -128,6 +132,10 @@ public class Academy_Fragment extends Basefragment {
     private String fen=AccurateActivity.fen;
     //院校区域
     private String city="";
+    private String token;
+    private CXEFCPresenter cxefcPresenter;
+
+
     @Override
     public int getLayoutid() {
         return R.layout.academy;
@@ -136,6 +144,9 @@ public class Academy_Fragment extends Basefragment {
     @Override
     public void initView() {
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
+        token = (String) SPUtils.get(MyApp.context, "token", "");
+
+
 
         init();
         initData();
@@ -497,7 +508,8 @@ public class Academy_Fragment extends Basefragment {
                 tv_xk.setText("学科范围");
                 pb.setVisibility(View.VISIBLE);
                 qingqiu(s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
-              }
+                System.out.println("选项+++"+s1+s2+tbsubtype+fen+cwb);
+             }
         });
 
         rl_cc.setOnClickListener(new View.OnClickListener() {
@@ -554,56 +566,71 @@ public class Academy_Fragment extends Basefragment {
     }
 
     //cwb 冲稳保  city 院校区域  s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
-    private void qingqiu(String s1,String s3,String s4,String s5,String city,String s6,String tuition,String s2,String tbsubtype,String fen,String cwb) {
-        //TODO 死数据 （待完善）
-        HashMap<String,String> map=new HashMap<>();
-        map.put("软件工程","0.8");
-        map.put("经济学","0.7");
-        map.put("会计","0.6");
-        map.put("英语","0.59");
-        Gson gson=new Gson();
-        String route= gson.toJson(map);
-         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl(BaseApi.Api)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        QuestInterface questInterface = retrofit.create(QuestInterface.class);
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
-        //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
-        Call<BaseBean<List<Advanced_YX_Bean>>> call = questInterface.shaixuan(s1,s3,s4,
-               s5, city, s6, "", s2, tbsubtype,fen,
-                cwb, body);
-
-
-        call.enqueue(new Callback<BaseBean<List<Advanced_YX_Bean>>>() {
+    private void qingqiu(final String s1, final String s3, final String s4, final String s5, final String city, final String s6, String tuition, final String s2, final String tbsubtype, final String fen, final String cwb) {
+         final HashMap<String,String> map=new HashMap<>();
+        cxefcPresenter= new CXEFCPresenter(new CXEFCView() {
             @Override
-            public void onResponse(Call<BaseBean<List<Advanced_YX_Bean>>> call, Response<BaseBean<List<Advanced_YX_Bean>>> response) {
-
-                pb.setVisibility(View.GONE);
-                rv_yx.setVisibility(View.VISIBLE);
-                List<Advanced_YX_Bean> data = response.body().data;
-                 if(data.size()>0&&data!=null)
-                {
-                    iv.setVisibility(View.GONE);
-                    rv_yx.setVisibility(View.VISIBLE);
-                    Accurate_Yx_Adapter accurate_yx_adapter=new Accurate_Yx_Adapter(getContext(),data);
-                    rv_yx.setLayoutManager(new LinearLayoutManager(getContext()));
-                    rv_yx.setAdapter(accurate_yx_adapter);
-                 }
-                else
-                {
-                    iv.setVisibility(View.VISIBLE);
-                    rv_yx.setVisibility(View.GONE);
+            public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+                String majorGai = cxefcBeanBaseBean.data.getMajorGai();
+                for (int i = 0; i < 20; i++) {
+                    String[] split = majorGai.split(",");
+                    String s = split[i];
+                    String[] split1 = s.split(":");
+                    //专业名
+                    String name = split1[0];
+                    //专业概率
+                    String gailv = split1[2];
+                    String substring = gailv.substring(0, 3);
+                     map.put(name,substring+"");
                 }
+                Gson gson=new Gson();
+                String route= gson.toJson(map);
+                 Retrofit retrofit=new Retrofit.Builder()
+                        .baseUrl(BaseApi.Api)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                QuestInterface questInterface = retrofit.create(QuestInterface.class);
+                RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
+                //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
+                Call<BaseBean<List<Advanced_YX_Bean>>> call = questInterface.shaixuan(s1,s3,s4,
+                        s5, city, s6, "", s2, tbsubtype,fen,
+                        cwb, body);
 
+                call.enqueue(new Callback<BaseBean<List<Advanced_YX_Bean>>>() {
+                    @Override
+                    public void onResponse(Call<BaseBean<List<Advanced_YX_Bean>>> call, Response<BaseBean<List<Advanced_YX_Bean>>> response) {
 
+                        pb.setVisibility(View.GONE);
+                        rv_yx.setVisibility(View.VISIBLE);
+                        List<Advanced_YX_Bean> data = response.body().data;
+                        if(data.size()>0&&data!=null)
+                        {
+                            iv.setVisibility(View.GONE);
+                            rv_yx.setVisibility(View.VISIBLE);
+                            Accurate_Yx_Adapter accurate_yx_adapter=new Accurate_Yx_Adapter(getContext(),data);
+                            rv_yx.setLayoutManager(new LinearLayoutManager(getContext()));
+                            rv_yx.setAdapter(accurate_yx_adapter);
+                        }
+                        else
+                        {
+                            iv.setVisibility(View.VISIBLE);
+                            rv_yx.setVisibility(View.GONE);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseBean<List<Advanced_YX_Bean>>> call, Throwable t) {
+
+                    }
+                });
             }
-
             @Override
-            public void onFailure(Call<BaseBean<List<Advanced_YX_Bean>>> call, Throwable t) {
+            public void GetEFCResultfail(Throwable t) {
 
             }
         });
+        cxefcPresenter.CXEFCPresenter(token);
+
     }
 
     private void init() {
@@ -664,4 +691,12 @@ public class Academy_Fragment extends Basefragment {
         params2.width=width/3;
         ll5.setLayoutParams(params2);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cxefcPresenter.onDestory();
+    }
+
+
 }

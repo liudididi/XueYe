@@ -19,10 +19,10 @@ import bean.jobStarBean;
  */
 
 public class ZY_ZY_Adapter extends BaseAdapter {
-    private List<jobStarBean> list;
+    private List<String> list;
     private Context context;
 
-    public ZY_ZY_Adapter(List<jobStarBean> list, Context context) {
+    public ZY_ZY_Adapter(List<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -49,7 +49,7 @@ public class ZY_ZY_Adapter extends BaseAdapter {
 
         TextView tv_shu=inflate.findViewById(R.id.tv_shu);
         TextView tv_zy=inflate.findViewById(R.id.tv_zy);
-        tv_zy.setText(list.get(i).getMajor());
+        tv_zy.setText(list.get(i).toString());
         if(i<=2)
         {
             tv_shu.setText(i+1+"");
@@ -62,8 +62,6 @@ public class ZY_ZY_Adapter extends BaseAdapter {
             tv_shu.setTextColor(context.getResources().getColor(R.color.delete_dialog_text_color));
             tv_shu.setBackgroundResource(R.drawable.bg_num3);
         }
-
-
         return inflate;
     }
 }

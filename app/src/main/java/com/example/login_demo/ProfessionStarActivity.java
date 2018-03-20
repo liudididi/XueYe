@@ -45,6 +45,7 @@ public class ProfessionStarActivity extends BaseActivity {
     LinearLayout llZhuan;
     @BindView(R.id.pro_tvyes)
     TextView proTvyes;
+    private String data;
 
     @Override
     public int getId() {
@@ -54,7 +55,7 @@ public class ProfessionStarActivity extends BaseActivity {
     @Override
     public void InIt() {
         classify = "wen";
-
+        data = getIntent().getStringExtra("data");
     }
 
     @OnClick({R.id.pro_iv_back, R.id.ll_wen, R.id.ll_li, R.id.ll_ben, R.id.ll_zhuan, R.id.pro_tvyes, R.id.ll_nan, R.id.ll_nv})
@@ -95,6 +96,7 @@ public class ProfessionStarActivity extends BaseActivity {
                 break;
             case R.id.pro_tvyes:
                 Intent intent = new Intent(this, startfenleiActivity.class);
+                intent.putExtra("data",data);
                 intent.putExtra("classify", classify);
                 intent.putExtra("type", type);
                 startActivity(intent);

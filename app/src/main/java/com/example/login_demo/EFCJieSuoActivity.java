@@ -8,16 +8,19 @@ import android.widget.RelativeLayout;
 
 import base.BaseActivity;
 import base.BaseBean;
+import bean.CXEFCBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
+import presenter.CXEFCPresenter;
 import untils.MyQusetUtils;
 import untils.SPUtils;
+import view.CXEFCView;
 
-public class EFCJieSuoActivity extends BaseActivity {
+public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
 
     @BindView(R.id.jiesuo_iv_back)
@@ -46,6 +49,9 @@ public class EFCJieSuoActivity extends BaseActivity {
     RelativeLayout rlZntb;
     private String token;
     private String data;
+    private CXEFCPresenter cxefcPresenter;
+    private  String majorresult;
+
     @Override
     public int getId() {
         return R.layout.activity_efcjie_suo;
@@ -53,20 +59,27 @@ public class EFCJieSuoActivity extends BaseActivity {
 
     @Override
     public void InIt() {
+        cxefcPresenter = new CXEFCPresenter(this);
+        rlZhiyxk.setEnabled(false);
+        rlZhuanyxk.setEnabled(false);
+        rlZntb.setEnabled(false);
+    }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cxefcPresenter.onDestory();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
+
         MyQusetUtils.getInstance().getQuestInterface().hqjd(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
-
                     @Override
                     public void onNext(BaseBean<String> integerBaseBean) {
                         data = integerBaseBean.data;
@@ -82,7 +95,6 @@ public class EFCJieSuoActivity extends BaseActivity {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.VISIBLE);
                             imgZntbwjs.setVisibility(View.VISIBLE);
-
 
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(false);
@@ -131,20 +143,64 @@ public class EFCJieSuoActivity extends BaseActivity {
                 break;
             case R.id.rl_xlcs:
 
-                Intent intent=new Intent(this,XlcsActivity.class);
-                intent.putExtra("data",data);
+               // Intent intent=new Intent(this,XlcsActivity.class);
 
+
+               Intent intent=new Intent(this,XlcsActivity.class);
+               intent.putExtra("data",data);
+               startActivity(intent);
 
                 break;
             case R.id.rl_zhiyxk:
-                intent(this,ProfessionStarActivity.class);
+                Intent intent1=new Intent(this,ProfessionStarActivity.class);
+                intent1.putExtra("data",data);
+                startActivity(intent1);
                 break;
             case R.id.rl_zhuanyxk:
-                intent(this,MajorStarActivity.class);
+
+                cxefcPresenter.CXEFCPresenter(token);
+
                 break;
             case R.id.rl_zntb:
-                intent(this,Volunteer_ScreenActivity.class);
+                Intent intent3=new Intent(this,MajorStarActivity.class);
+                intent3.putExtra("data",data);
+                startActivity(intent3);
                 break;
         }
+    }
+
+    @Override
+    public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+if(cxefcBeanBaseBean.code==0){
+    majorresult=cxefcBeanBaseBean.data.getJob();
+
+
+    String testCode = cxefcBeanBaseBean.data.getTestCode();
+    String[] split = testCode.split(",");
+    String s = split[0];
+
+    String[] split1 = s.split(":");
+    String  mbti = split1[0];
+
+
+    String s1 = split[1];
+    String[] split2 = s.split(":");
+    String  hld = split2[0];
+
+
+
+    Intent intent2=new Intent(this,MajorStarActivity.class);
+    intent2.putExtra("data",data);
+    intent2.putExtra("result",majorresult);
+    intent2.putExtra("Hld",hld);
+    intent2.putExtra("mbti",mbti);
+    startActivity(intent2);
+}
+
+    }
+
+    @Override
+    public void GetEFCResultfail(Throwable t) {
+
     }
 }
