@@ -1,0 +1,90 @@
+package adapter;
+
+
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.example.login_demo.MajorDetailActivity;
+import com.example.login_demo.R;
+
+import java.util.List;
+
+import bean.Advanced_YX_Bean;
+
+/**
+ * Created by 祝文 on 2018/3/15.
+ */
+
+public class YX_ZhuanYe_Adapter extends RecyclerView.Adapter<YX_ZhuanYe_Adapter.MyViewHolder> {
+
+
+    private List<Advanced_YX_Bean.MajorBean> list;
+    private Context context;
+
+    public YX_ZhuanYe_Adapter(List list, Context context) {
+        this.list = list;
+        this.context = context;
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.yx_zhuanye_item, null);
+        return new MyViewHolder(inflate);
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
+
+        String zyGai = list.get(position+1).getZyGai();
+        String substring1=null;
+        if(zyGai.length()>=4)
+        {
+            substring1 = zyGai.substring(2, 4);
+        }
+        if(zyGai.length()<4)
+        {
+            substring1 = zyGai.substring(2, 3);
+        }
+        //专业概率
+        holder.tv_yx_zhuanye.setText(substring1+"%");
+        //专业名称
+        holder.tv_yx_zy_name.setText(list.get(position+1).getMajor());
+        holder.rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, MajorDetailActivity.class);
+                intent.putExtra("majorid",list.get(position + 1).getMajor_id());
+                intent.putExtra("major",list.get(position + 1).getMajor());
+                context.startActivity(intent);
+
+
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size()-1;
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        private final TextView tv_yx_zhuanye;
+        private final TextView tv_yx_zy_name;
+        private final RelativeLayout rl;
+        public MyViewHolder(View itemView) {
+            super(itemView);
+
+            tv_yx_zhuanye = itemView.findViewById(R.id.tv_yx_zhuanye);
+            tv_yx_zy_name = itemView.findViewById(R.id.tv_yx_zy_name);
+            rl = itemView.findViewById(R.id.rl);
+
+        }
+    }
+}

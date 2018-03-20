@@ -139,12 +139,23 @@
         <activity android:name=".ProfessionStarActivity" />
         <!-- 微信 -->
         <activity
-            android:name="wxapi.WXPayEntryActivity"
+            android:name="com.example.login_demo.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@android:style/Theme.Translucent" />
+            android:theme="@android:style/Theme.Translucent">
+            　<intent-filter>
+            　　<action android:name="android.intent.action.VIEW"/>
+            　　<category android:name="android.intent.category.DEFAULT"/>
+            　　<data android:scheme="wx1152aee306087394"/>
+            　　</intent-filter>
+        </activity>
+
+        <activity android:name=".AccurateActivity" />
+        <activity android:name=".Volunteer_ScreenActivity"></activity>
         <activity android:name=".startfenleiActivity" />
 
+        　
+        　
         <meta-data
             android:name="baiduren"
             android:value="1" />

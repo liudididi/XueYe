@@ -16,11 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseActivity;
+import base.BaseBean;
 import bean.StartFl;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.StartFlPresent;
+import untils.MyQusetUtils;
+import untils.SPUtils;
 import view.StartFView;
 
 
@@ -100,12 +106,14 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
     private int min;
     private int max;
     private List<TextView> tvlist;
-    public   static  List<String> fenlieanswerlist;
+    public   static  List<String> fenlieanswerlist=new ArrayList<>();
     private List<String> newlist;
     private String type;
     private String classify;
     private String fenlei="hot";
     private StartFlPresent startFlPresent;
+    private String token;
+    private  String result="";
 
     @Override
     public int getId() {
@@ -192,9 +200,12 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
               finish();
                 break;
             case R.id.pro_yes:
-                Intent intent=new Intent(this,MajorStarActivity.class);
-                startActivity(intent);
-                finish();
+                if(fenlieanswerlist.size()>0){
+                    tijiao();
+                }else {
+                    Toast("试试左右滑动,选择你喜欢的职业吧！");
+                }
+
                 break;
             case R.id.pro_rmzy:
                 fenlei="hot";
@@ -249,6 +260,50 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        token = (String) SPUtils.get(MyApp.context, "token", "");
+    }
+
+    private void tijiao() {
+
+        for (int i = 0; i < fenlieanswerlist.size(); i++) {
+            if(i==fenlieanswerlist.size()-1){
+                result+=fenlieanswerlist.get(i);
+            }else {
+                result+=fenlieanswerlist.get(i)+",";
+            }
+        }
+
+
+        DisposableSubscriber<BaseBean> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().tjzy(result, token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                    @Override
+                    public void onNext(BaseBean baseBean) {
+                     if(baseBean.code==0){
+                         Intent intent=new Intent(startfenleiActivity.this,MajorStarActivity.class);
+                         intent.putExtra("result", result);
+                         startActivity(intent);
+                         finish();
+                     }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
 
     @Override
     public void Stratjobsuccess(List<StartFl> list) {
@@ -279,6 +334,6 @@ public class startfenleiActivity extends BaseActivity  implements StartFView{
 
     @Override
     public void Stratjobfail(String msg) {
-Toast(msg);
+        Toast(msg);
     }
 }

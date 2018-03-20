@@ -45,7 +45,6 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
         list.add("自主招生");
         list.add("保送生招生");
         list.add("特长生招生");
-        System.out.println("集合长度+"+ list.size());
         School_Brochures_Adapter school_brochures_adapter=new School_Brochures_Adapter(list,getContext());
         school_brochures_lv.setAdapter(school_brochures_adapter);
 

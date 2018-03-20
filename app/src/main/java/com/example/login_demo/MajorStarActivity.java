@@ -159,6 +159,9 @@ public class MajorStarActivity extends BaseActivity {
     public static List<jobStarBean> answerllist = new ArrayList<>();
     private List<TextView> xzlist;
     private int a;
+    private String majorresult;
+    private  String jobresult="";
+    private String token;
 
 
     @Override
@@ -168,6 +171,10 @@ public class MajorStarActivity extends BaseActivity {
 
     @Override
     public void InIt() {
+
+        majorresult = getIntent().getStringExtra("result");
+
+
         Boolean majorindex = (Boolean) SPUtils.get(MyApp.context, "majorindex", false);
         if (majorindex == false) {
             majorTvtishi.setVisibility(View.GONE);
@@ -187,7 +194,7 @@ public class MajorStarActivity extends BaseActivity {
                     } else {
                         rlyindao.setVisibility(View.GONE);
                         majorstarbyes.setVisibility(View.VISIBLE);
-                        majorTvtishi.setVisibility(View.VISIBLE);
+                        majorTvtishi.setVisibility(View.GONE);
                         SPUtils.put(MyApp.context, "majorindex", true);
                     }
                 }
@@ -196,7 +203,6 @@ public class MajorStarActivity extends BaseActivity {
         } else {
             rlyindao.setVisibility(View.GONE);
             majorstarbyes.setVisibility(View.VISIBLE);
-            majorTvtishi.setVisibility(View.VISIBLE);
         }
 
         //卡片
@@ -222,9 +228,13 @@ public class MajorStarActivity extends BaseActivity {
         scnum = findViewById(R.id.scnum);
         //请求专业
         Map<String, String> map = new HashMap<>();
-        for (int i = 0; i < startfenleiActivity.fenlieanswerlist.size(); i++) {
-            System.out.println("data==" + startfenleiActivity.fenlieanswerlist.get(i));
-            map.put(startfenleiActivity.fenlieanswerlist.get(i), "");
+        if(startfenleiActivity.fenlieanswerlist!=null&&startfenleiActivity.fenlieanswerlist.size()>0){
+            for (int i = 0; i < startfenleiActivity.fenlieanswerlist.size(); i++) {
+                map.put(startfenleiActivity.fenlieanswerlist.get(i), "");
+            }
+        }else {
+            map.put("机电工程师", "");
+            map.put("建筑技术家", "");
         }
         Gson gson = new Gson();
         String route = gson.toJson(map);
@@ -245,7 +255,7 @@ public class MajorStarActivity extends BaseActivity {
                 .build();
         QuestInterface questInterface = retrofit.create(QuestInterface.class);
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), route);
-        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil("CAS", "INFP", "1", body);
+        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil("CAS", "INFP", "1","1" ,body);
         baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
             @Override
             public void onResponse(Call<BaseBean<List<jobStarBean>>> call, Response<BaseBean<List<jobStarBean>>> response) {
@@ -321,8 +331,6 @@ public class MajorStarActivity extends BaseActivity {
                         } else {
                             Toast(body.msg);
                         }
-
-
                     }
                 });
 
@@ -337,8 +345,77 @@ public class MajorStarActivity extends BaseActivity {
         majorstarbyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              intent(MajorStarActivity.this,ComlitEFCActivity.class);
-               finish();
+                if(answerllist.size()>0){
+                    for (int i = 0; i < answerllist.size(); i++) {
+                        if(i==answerllist.size()-1){
+                            jobresult+=answerllist.get(i);
+                        }else {
+                            jobresult+=answerllist.get(i)+",";
+                        }
+                    }
+
+                    MyQusetUtils.getInstance().getQuestInterface().tjzhuany("SIE","INFP",ProfessionStarActivity.gender,ProfessionStarActivity.type,majorresult,jobresult)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeWith(new DisposableSubscriber<BaseBean<List<jobStarBean>>>() {
+                                @Override
+                                public void onNext(BaseBean<List<jobStarBean>> listBaseBean) {
+                                    if(listBaseBean.code==0){
+                                        String areuslt="";
+                                        List<jobStarBean> data = listBaseBean.data;
+                                        for (int i = 0; i < data.size(); i++) {
+
+                                            if(i==data.size()-1){
+                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai();
+                                            }else {
+                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+",";
+                                            }
+                                        }
+                                        System.out.println("data===="+areuslt );
+                                        MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
+                                                .subscribeOn(Schedulers.io())
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                                                    @Override
+                                                    public void onNext(BaseBean baseBean) {
+                                                        if(baseBean.code==0){
+                                                                 intent(MajorStarActivity.this,ComlitEFCActivity.class);
+                                                                  finish();
+                                                        }
+                                                    }
+                                                    @Override
+                                                    public void onError(Throwable t) {
+                                                     Toast("网络较差，请稍后重试");
+                                                    }
+
+                                                    @Override
+                                                    public void onComplete() {
+
+                                                    }
+                                                });
+
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable t) {
+                                    Toast("网络较差，请稍后重试");
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
+
+
+
+
+                }else {
+                    Toast("试试左右滑动，选择你喜欢的专业吧！");
+                }
+
             }
         });
 
@@ -350,7 +427,12 @@ public class MajorStarActivity extends BaseActivity {
         super.onDestroy();
         answerllist.clear();
         startfenleiActivity.fenlieanswerlist.clear();
-        startfenleiActivity.fenlieanswerlist = null;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        token = (String) SPUtils.get(this, "token", "");
     }
 
     private void initlist() {

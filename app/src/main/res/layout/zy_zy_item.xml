@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110px"
+        android:background="#fff">
+        <TextView
+            android:id="@+id/tv_shu"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="26px"
+            android:gravity="center"
+            android:text="1"/>
+        <TextView
+            android:id="@+id/tv_zy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tv_shu"
+            android:textSize="38px"
+            android:layout_marginLeft="26px"
+            android:textColor="#666666"
+            android:text="国民经济管理"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="26px"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</RelativeLayout>

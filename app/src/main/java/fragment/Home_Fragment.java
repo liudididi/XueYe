@@ -142,9 +142,9 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
     public void onResume() {
         super.onResume();
 
-        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "");
-        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "");
-        tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "");
+        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
+        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
+        tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
 
         if(tbmaxfen!=null&&tbmaxfen!=""){
             homegrade.setText(tbmaxfen);

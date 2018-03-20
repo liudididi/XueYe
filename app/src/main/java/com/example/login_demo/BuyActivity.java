@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.example.login_demo.wxapi.WXPayEntryActivity;
 import com.example.login_demo.wxapi.WXPayUtils;
 
 import java.util.Map;
@@ -154,8 +155,8 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
         switch (view.getId()) {
             case R.id.tv_goumai:
                 if(token.length()>4){
-                    payPresent.XiaDan(token,bh, pay + "");
-                   /* Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                   payPresent.XiaDan(token,bh, pay + "");
+                  /*  Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
                     startActivity(intent);*/
                     break;
@@ -175,7 +176,17 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
             countdownPresent.CountdownPresent();
         }
         token = (String) SPUtils.get(MyApp.context, "token", "");
+        int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);
+        if(PAYCODE==0){
+            SPUtils.put(MyApp.context,"PAYCODE",-1);
+            Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
+
+
 
     @Override
     protected void onDestroy() {
@@ -226,15 +237,15 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
     @Override
     public void WXPaysuccess(WeiXinBean weiXinBean) {
         if (weiXinBean != null) {
-            WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
-            builder.setAppId(weiXinBean.getAppId())
-                    .setPartnerId(weiXinBean.getPartnerId())
-                    .setPrepayId(weiXinBean.getPrepayId())
+             WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
+            builder.setAppId(weiXinBean.getAppid())
+                    .setPartnerId(weiXinBean.getPartnerid())
+                    .setPrepayId(weiXinBean.getPrepayid())
                     .setPackageValue(weiXinBean.getPackageX())
-                    .setNonceStr(weiXinBean.getNonceStr())
-                    .setTimeStamp(weiXinBean.getTimeStamp())
+                    .setNonceStr(weiXinBean.getNoncestr())
+                    .setTimeStamp(weiXinBean.getTimestamp())
                     .setSign(weiXinBean.getSign())
-                    .build().toWXPayNotSign(this, weiXinBean.getAppId());
+                    .build().toWXPayNotSign(this, weiXinBean.getAppid());
         }
     }
 

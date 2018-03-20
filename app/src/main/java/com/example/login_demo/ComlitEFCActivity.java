@@ -12,9 +12,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import base.BaseActivity;
+import base.BaseBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
+import untils.MyQusetUtils;
+import untils.SPUtils;
 
 public class ComlitEFCActivity extends BaseActivity {
     @BindView(R.id.comlitefc_rl_iv)
@@ -43,6 +49,45 @@ public class ComlitEFCActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void InIt() {
+        String  token = (String) SPUtils.get(MyApp.context, "token", "");
+        MyQusetUtils.getInstance().getQuestInterface().gettime(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                    @Override
+                    public void onNext(BaseBean<String> stringBaseBean) {
+                        if(stringBaseBean.code==0){
+                            String data = stringBaseBean.data;
+                            int i = Integer.parseInt(data);
+                            if(i>0){
+                                time=i;
+                                handler.postDelayed(runnable, 1000);
+                            }else {
+                                butChakan.setEnabled(true);
+                                rlWancheng.setVisibility(View.VISIBLE);
+                                llWeiwancheng.setVisibility(View.GONE);
+                                if(runnable!=null){
+                                    handler.removeCallbacks(runnable);
+                                }
+                                butChakan.setBackground(getResources().getDrawable(R.drawable.back_capacityyi));
+                            }
+                        }else {
+                            Toast(stringBaseBean.msg);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -73,9 +118,10 @@ public class ComlitEFCActivity extends BaseActivity {
                 }
             }
         };
-        handler.postDelayed(runnable, 1000);
+
         butChakan.setEnabled(false);
-        butChakan.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
+
+
     }
     public String formatLongToTimeStr(Long l) {
         int hour = 0;
@@ -86,7 +132,7 @@ public class ComlitEFCActivity extends BaseActivity {
             minute = second / 60;         //取整
             second = second % 60;         //取余
         }
-
+//199415
         if (minute > 60) {
             hour = minute / 60;
             minute = minute % 60;
@@ -100,6 +146,7 @@ public class ComlitEFCActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.comlitefc_rl_iv:
+                finish();
                 break;
             case R.id.but_chakan:
                 intent(this, XueYeGuiHuaActivity.class);

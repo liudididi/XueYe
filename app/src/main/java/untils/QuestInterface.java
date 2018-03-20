@@ -5,6 +5,7 @@ import java.util.Observable;
 
 
 import base.BaseBean;
+import bean.Advanced_YX_Bean;
 import bean.AnswerBean;
 import bean.AreaBean;
 import bean.CampusBean;
@@ -42,6 +43,7 @@ import bean.ScoreBean2;
 import bean.SearchBean;
 import bean.SelectMajorBean;
 import bean.SelectSchoolBean;
+import bean.SerchZYBean;
 import bean.SlideshowBean;
 import bean.StartFl;
 import bean.StudentFromBean;
@@ -49,6 +51,7 @@ import bean.StudentsinBean;
 import bean.StudentsinNewsBean;
 import bean.StudyBean;
 import bean.TeachBean;
+import bean.TijiaoBean;
 import bean.TitleBean;
 import bean.UserBean;
 import bean.VisionBean;
@@ -79,6 +82,12 @@ public interface QuestInterface {
  @GET(" /app/stufrom/from")
  Flowable<BaseBean<List<StudentFromBean>>> studentfrom(@Query("name") String name);
 
+    //倒计时
+    @GET(" /app/wishfilling/gettime")
+    Flowable<BaseBean<String>> gettime(@Header("token") String token);
+
+
+
     //一份一段表详情
     @GET("/app/onetoone/getonetoone")
     Flowable<BaseBean<List<OneTableXQBean>>> onetableXQ(@Query("type") String type, @Query("province") String province, @Query("year") String year);
@@ -88,14 +97,12 @@ public interface QuestInterface {
     //职业星空
     @POST("/app/efc/jobsStarMobil")
     Flowable<BaseBean<List<StartFl>>> jobsStarMobil(@Query("classify") String classify,@Query("type") String type,@Query("fenlei") String fenlei);
+
+
     //提交心理测试答案
     @POST("/app/psychologicalevaluation/commit")
-    Call<ResponseBody> tijiao(@Query("pe_type") String pe_type, @Body RequestBody requestBody);
+    Call<BaseBean<TijiaoBean>> tijiao(@Query("pe_type") String pe_type, @Body RequestBody requestBody);
 
-
-    //获取星空测评结合专业
-    @POST("/app/efc/jobsStarMajorMobil")
-   Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld,@Query("mbti") String mbti,@Query("gender") String gender, @Body RequestBody requestBody);
 
 
     //星空专业详情
@@ -162,6 +169,72 @@ public interface QuestInterface {
     //支付宝支付
     @POST("/alipay/appPay")
     Flowable<BaseBean<String>> ZFBpay(@Query("outTradeNo")String outTradeNo);
+
+
+    //提交职业
+    @POST("/app/wishfilling/updateJobs")
+    Flowable<BaseBean> tjzy(@Query("job")String job,@Query("token")String token);
+
+
+    //获取EFC进度
+    @GET("/app/wishfilling/getprocess")
+    Flowable<BaseBean<String>> hqjd(@Header("token") String token);
+
+    //保存专业
+    @POST("/app/wishfilling/updateMajors")
+    Flowable<BaseBean> bczy(@Query("majorGai")String majorGai,@Query("token")String token);
+
+
+    // 保存精准筛选信息
+    @POST("/app/wishfilling/update")
+    Flowable<BaseBean> update(@Query("stuType") String stuType,
+                              @Query("sourceArea") String sourceArea,
+                              @Query("ceeScore") String ceeScore,
+                              @Query("proRank") String proRank,
+                              @Query("credit") String credit,
+                              @Query("wishCity") String wishCity,
+                              @Query("first") String first,
+                              @Query("budget") String budget,
+                              @Query("poorFlag") String poorFlag,
+                              @Query("collegeClass") String collegeClass,
+                              @Query("batch") String batch,
+                              @Query("collegeArrangement")String collegeArrangement,
+                              @Query("graduationDirection") String graduationDirection,
+                              @Query("cwb") String cwb,
+                              @Query("token")String token);
+
+    //保存EFC心理测评结果
+    @POST("/app/wishfilling/save")
+    Flowable<BaseBean> save(@Query("wishType") String wishType,@Query("testCode") String testCode,@Query("token") String token);
+
+
+    //提交专业
+    @POST("/app/efc/StarMajorSDNew")
+    Flowable<BaseBean<List<jobStarBean>>> tjzhuany(@Query("hld")String hld,@Query("mbti")String mbti,@Query("gender")String gender,@Query("type")String type,@Query("jobs")String jobs,@Query("major")String major);
+
+    //高级志愿表筛选
+    @POST("/app/efc/getUnivs")
+    Call<BaseBean<List<Advanced_YX_Bean>>> shaixuan(@Query("priority") String priority,
+                                                    @Query("time") String time,
+                                                    @Query("tags") String tags,
+                                                    @Query("type") String type,
+                                                    @Query("city") String city,
+                                                    @Query("direction") String direction,
+                                                    @Query("tuition") String tuition,
+                                                    @Query("t_stuprovince") String t_stuprovince,
+                                                    @Query("t_classify") String t_classify,
+                                                    @Query("t_score") String t_score,
+                                                    @Query("cwb") String cwb,
+                                                    @Body RequestBody requestBody);
+
+    //搜索专业
+    @GET("/app/search/major")
+    Flowable<BaseBean<List<SerchZYBean>>> SerchZY(@Query("name") String name);
+
+    //获取星空测评结合专业
+    @POST("/app/efc/jobsStarMajorMobil")
+    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld, @Query("mbti") String mbti, @Query("gender") String gender,  @Query("type") String type,@Body RequestBody requestBody);
+
 
     //微信支付
     @POST("/weixinMobile/appdopay")

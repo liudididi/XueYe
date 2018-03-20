@@ -10,6 +10,17 @@ public class Question {
     String question;
     List<Answer> mAnswer;
     int num;
+    String peId;
+
+    public void setPeId(String peid) {
+        this.peId = peid;
+    }
+
+    public String getPeId() {
+
+        return peId;
+    }
+
     public String getQuestion() {
         return question;
     }

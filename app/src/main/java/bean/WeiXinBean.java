@@ -11,38 +11,38 @@ public class WeiXinBean {
 
 
     /**
-     * appId : wx6a6810597dadc392
-     * nonceStr : 1554591700
+     * appid : wx1152aee306087394
+     * noncestr : 1411028658
      * package : Sign=WXPay
-     * partnerId : 1496598622
-     * prepayId : wx20180312155458207208
-     * sign : AB71D9B28331A27F848D7CCD78996E08
-     * timeStamp : 1520841302
+     * partnerid : 1500307402
+     * prepayid : wx201803171411004e924c79720793939314
+     * sign : 9FDFFB0770A39E07288340CFFDC54C43
+     * timestamp : 1521267062
      */
 
-    private String appId;
-    private String nonceStr;
+    private String appid;
+    private String noncestr;
     @SerializedName("package")
     private String packageX;
-    private String partnerId;
-    private String prepayId;
+    private String partnerid;
+    private String prepayid;
     private String sign;
-    private String timeStamp;
+    private String timestamp;
 
-    public String getAppId() {
-        return appId;
+    public String getAppid() {
+        return appid;
     }
 
-    public void setAppId(String appId) {
-        this.appId = appId;
+    public void setAppid(String appid) {
+        this.appid = appid;
     }
 
-    public String getNonceStr() {
-        return nonceStr;
+    public String getNoncestr() {
+        return noncestr;
     }
 
-    public void setNonceStr(String nonceStr) {
-        this.nonceStr = nonceStr;
+    public void setNoncestr(String noncestr) {
+        this.noncestr = noncestr;
     }
 
     public String getPackageX() {
@@ -53,20 +53,20 @@ public class WeiXinBean {
         this.packageX = packageX;
     }
 
-    public String getPartnerId() {
-        return partnerId;
+    public String getPartnerid() {
+        return partnerid;
     }
 
-    public void setPartnerId(String partnerId) {
-        this.partnerId = partnerId;
+    public void setPartnerid(String partnerid) {
+        this.partnerid = partnerid;
     }
 
-    public String getPrepayId() {
-        return prepayId;
+    public String getPrepayid() {
+        return prepayid;
     }
 
-    public void setPrepayId(String prepayId) {
-        this.prepayId = prepayId;
+    public void setPrepayid(String prepayid) {
+        this.prepayid = prepayid;
     }
 
     public String getSign() {
@@ -77,11 +77,11 @@ public class WeiXinBean {
         this.sign = sign;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

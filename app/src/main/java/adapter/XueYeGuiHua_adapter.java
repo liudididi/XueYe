@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.example.login_demo.R;
 
@@ -47,6 +48,30 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
         if(convertView==null){
             convertView=View.inflate(context, R.layout.xygh_item,null);
         }
+
+        TextView ghitem_title= convertView.findViewById(R.id.ghitem_title);
+        ghitem_title.setText(list.get(position).getMajor());
+
+        TextView ghitem_xinzi= convertView.findViewById(R.id.ghitem_xinzi);
+        List<jobStarBean.MajorinfoBean> majorinfo = list.get(position).getMajorinfo();
+        if(majorinfo!=null&&majorinfo.size()>0){
+            ghitem_xinzi.setText(majorinfo.get(0).getAveragesalary());
+        }
+
+
+
+        TextView ghitem_gailv= convertView.findViewById(R.id.ghitem_gailv);
+        double gai = list.get(position).getGai();
+        String zyGai=gai+"";
+        if(zyGai.length()>=4)
+        {
+            zyGai = zyGai.substring(2, 4);
+        }
+        if(zyGai.length()<4)
+        {
+            zyGai = zyGai.substring(0,2);
+        }
+        ghitem_gailv.setText(zyGai+"%");
         return convertView;
     }
 }

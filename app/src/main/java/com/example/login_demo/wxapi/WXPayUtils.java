@@ -34,7 +34,6 @@ public class WXPayUtils {
     public void toWXPayNotSign(Context context, String appid) {
         iwxapi = WXAPIFactory.createWXAPI(context, null); //初始化微信api
         iwxapi.registerApp(appid); //注册appid  appid可以在开发平台获取
-
         Runnable payRunnable = new Runnable() {  //这里注意要放在子线程
             @Override
             public void run() {

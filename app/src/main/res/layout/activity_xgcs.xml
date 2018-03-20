@@ -143,7 +143,7 @@
         android:layout_width="270px"
         android:layout_height="20px"
         android:max="100"
-        android:progress="35"
+        android:progress="0"
         android:layout_marginLeft="30px"
         android:progressDrawable="@drawable/progressbg1"/>
 
@@ -189,7 +189,7 @@
                             android:layout_width="270px"
                             android:layout_height="20px"
                             android:max="100"
-                            android:progress="45"
+                            android:progress="0"
                             android:layout_marginLeft="30px"
                             android:progressDrawable="@drawable/progressbg3"/>
 
@@ -236,7 +236,7 @@
                             android:layout_width="270px"
                             android:layout_height="20px"
                             android:max="100"
-                            android:progress="55"
+                            android:progress="0"
                             android:layout_marginLeft="30px"
                             android:progressDrawable="@drawable/progressbg5"/>
 
@@ -283,7 +283,7 @@
                             android:layout_width="270px"
                             android:layout_height="20px"
                             android:max="100"
-                            android:progress="65"
+                            android:progress="0"
                             android:layout_marginLeft="30px"
                             android:progressDrawable="@drawable/progressbg7"/>
 

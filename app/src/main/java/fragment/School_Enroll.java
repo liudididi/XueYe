@@ -240,25 +240,21 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
             String scoreAvg = listBaseBean.get(0).getScoreAvg();
             int selffen = Integer.parseInt(tbmaxfen);
             int fenshuxian = Integer.parseInt(scoreAvg);
-            if(selffen<fenshuxian){
-                int i = 40-(fenshuxian - selffen)*2;
-                if(i<10){
-                    school_enroll_tv.setText("10%");
+
+            if(selffen>fenshuxian){
+                if((selffen-fenshuxian)*0.5+80<98){
+                    school_enroll_tv.setText((selffen-fenshuxian)*0.5+80+"%");
                 }else {
-                    school_enroll_tv.setText(i+"%");
+                    school_enroll_tv.setText(98+"%");
                 }
-            }else if(selffen>fenshuxian){
-                int i = 40+(selffen - fenshuxian)*2;
-                if(i>=100){
-                    school_enroll_tv.setText("100%");
+            }else {
+                if((80-(fenshuxian-selffen)*2)>0){
+                    school_enroll_tv.setText((80-(fenshuxian-selffen)*2)+"%");
                 }else {
-                    school_enroll_tv.setText(i+"%");
+                    school_enroll_tv.setText(0.1+"%");
                 }
-            }else if(selffen==fenshuxian){
-                school_enroll_tv.setText("40%");
             }
         }
-
 
     }
 

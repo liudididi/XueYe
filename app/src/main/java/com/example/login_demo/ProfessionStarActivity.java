@@ -23,7 +23,7 @@ public class ProfessionStarActivity extends BaseActivity {
     @BindView(R.id.ll_nv)
     LinearLayout llNv;
     private String classify;
-    private String type;
+    public static String type="1";
     public static String gender="1";
     @BindView(R.id.pro_iv_back)
     ImageView proIvBack;
@@ -54,7 +54,7 @@ public class ProfessionStarActivity extends BaseActivity {
     @Override
     public void InIt() {
         classify = "wen";
-        type = "1";
+
     }
 
     @OnClick({R.id.pro_iv_back, R.id.ll_wen, R.id.ll_li, R.id.ll_ben, R.id.ll_zhuan, R.id.pro_tvyes, R.id.ll_nan, R.id.ll_nv})

@@ -23,7 +23,7 @@
                 android:id="@+id/school_enroll_tv"
                 android:layout_width="300px"
                 android:layout_height="300px"
-                android:text="60%"
+                android:text="0%"
                 android:textSize="70px"
                 android:gravity="center"
                 android:background="@drawable/circle"

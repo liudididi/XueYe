@@ -62,6 +62,15 @@ public class CeShiShuoMingActivity extends BaseActivity {
                 }
                 break;
             case R.id.bt_kscs:
+                if (MentalityActivity.xlcp.equals("MBTI")) {
+                    Intent intent=new Intent(CeShiShuoMingActivity.this,AnswerActivity.class);
+                    intent.putExtra("ceshi","MBTI_E");
+                    startActivity(intent);
+                } else {
+                    Intent intent=new Intent(CeShiShuoMingActivity.this,AnswerActivity.class);
+                    intent.putExtra("ceshi","SDS_E");
+                    startActivity(intent);
+                }
 
                 break;
         }

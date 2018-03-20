@@ -8,12 +8,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.login_demo.BuyActivity;
+import com.example.login_demo.CeShiShuoMingActivity;
+import com.example.login_demo.MyApp;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import untils.SPUtils;
 
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
@@ -26,8 +31,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.pay_result);
-
-        api = WXAPIFactory.createWXAPI(this, "wxe2968cf994de5a67");
+        api = WXAPIFactory.createWXAPI(this, "wx1152aee306087394");
         api.handleIntent(getIntent(), this);
     }
 
@@ -56,18 +60,13 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             //builder.setTitle("微信支付提示");
             switch (resp.errCode) {
                 case 0://支付成功h
-                    Toast.makeText(getApplicationContext(), "支付成功", Toast.LENGTH_SHORT).show();//builder.setMessage("支付成功.");
-
-                    Intent it=new Intent();
-                    it.setAction("paySuccess");
-                    sendBroadcast(it);
+                     SPUtils.put(MyApp.context,"PAYCODE",0);
+                    this.finish();
                     break;
-
                 case -1://支付失败，一般是后端签名失败等问题
                     Toast.makeText(getApplicationContext(), "支付失败", Toast.LENGTH_SHORT).show();
                     // builder.setMessage("支付失败，请清理微信缓存或重新安装.");
                     break;
-
                 case -2://用户取消了支付
 
                     Toast.makeText(getApplicationContext(), "支付已取消.", Toast.LENGTH_SHORT).show();
@@ -77,8 +76,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
             //  builder.show();
         }
-
-
         finish();
     }
 }

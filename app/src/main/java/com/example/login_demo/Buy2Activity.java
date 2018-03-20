@@ -182,7 +182,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 if (pay == 1) {
                     payPresent.ZFBpay(outTradeNo);
                 } else {
-                    payPresent.WXpay("2018031214532415355763");
+                    payPresent.WXpay(outTradeNo);
                 }
 
  /*     {
@@ -211,8 +211,8 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 break;
             case R.id.tv_goumai2:
                 if(token.length()>4){
-                  //  payPresent.XiaDan(token,"3",pay+"");
-                   Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                 //  payPresent.XiaDan(token,"3",pay+"");
+                Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
                    Intent intent3 = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
                    startActivity(intent3);
                    finish();
@@ -261,19 +261,27 @@ public class Buy2Activity extends BaseActivity implements PayView {
             buy2Tvdjs.setText(WishFragMent.djs);
         }
         token = (String) SPUtils.get(MyApp.context, "token", "");
+        int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);
+        if(PAYCODE==0){
+            SPUtils.put(MyApp.context,"PAYCODE",-1);
+            Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
     @Override
     public void WXPaysuccess(WeiXinBean weiXinBean) {
         if (weiXinBean != null) {
             WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
-            builder.setAppId(weiXinBean.getAppId())
-                    .setPartnerId(weiXinBean.getPartnerId())
-                    .setPrepayId(weiXinBean.getPrepayId())
+            builder.setAppId(weiXinBean.getAppid())
+                    .setPartnerId(weiXinBean.getPartnerid())
+                    .setPrepayId(weiXinBean.getPrepayid())
                     .setPackageValue(weiXinBean.getPackageX())
-                    .setNonceStr(weiXinBean.getNonceStr())
-                    .setTimeStamp(weiXinBean.getTimeStamp())
+                    .setNonceStr(weiXinBean.getNoncestr())
+                    .setTimeStamp(weiXinBean.getTimestamp())
                     .setSign(weiXinBean.getSign())
-                    .build().toWXPayNotSign(this, weiXinBean.getAppId());
+                    .build().toWXPayNotSign(this, weiXinBean.getAppid());
         }
     }
 

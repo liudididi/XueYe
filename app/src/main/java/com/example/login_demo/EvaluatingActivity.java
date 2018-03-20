@@ -35,7 +35,7 @@ public class EvaluatingActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.evaluating_tv:
-                intent(this,ComlitEFCActivity.class);
+                intent(this,ProfessionStarActivity.class);
                 break;
         }
     }
