@@ -146,19 +146,35 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40px"
                     >
                     <ImageView
                         android:layout_marginRight="50px"
                         android:layout_marginLeft="50px"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/zybg"
                         />
+                    <ProgressBar
+                        android:id="@+id/pb"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="50px"/>
+                    <View
+                        android:id="@+id/zw"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="1500px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"
+                        android:layout_marginTop="30px"></View>
                     <untils.ListViewForScrollView
+                        android:visibility="gone"
                         android:background="#fff"
-                        android:layout_marginLeft="60px"
-                        android:layout_marginRight="60px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"
                         android:layout_marginTop="30px"
                         android:id="@+id/xygh_list"
                         android:layout_width="match_parent"
@@ -170,6 +186,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="500px"
                         android:src="@drawable/qadtx"
+                        android:scaleType="centerCrop"
+                        android:layout_marginRight="50px"
+                        android:layout_marginLeft="50px"
                         />
                     <View
                         android:layout_width="match_parent"

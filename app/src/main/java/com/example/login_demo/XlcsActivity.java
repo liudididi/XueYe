@@ -53,8 +53,8 @@ public class XlcsActivity extends BaseActivity {
             reBuydi2.setVisibility(View.VISIBLE);
             reBuydi1.setVisibility(View.GONE);
         }
-
-
+        xlcsBt1.setEnabled(false);
+        xlcsB2.setEnabled(false);
         String token = (String) SPUtils.get(MyApp.context, "token", "");
         MyQusetUtils.getInstance().getQuestInterface().jznumber(token)
                 .subscribeOn(Schedulers.io())

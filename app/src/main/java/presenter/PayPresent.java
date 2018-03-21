@@ -30,6 +30,7 @@ public class PayPresent extends Basepresent {
         payMoudle.productorder(token,productId,payType, new PayMoudle.OrderBack() {
             @Override
             public void Ordersuccess(BaseBean<XDingdanBean> BaseBean) {
+
                 if(BaseBean.code==0){
                     payView.XDsuccess(BaseBean.data);
                 }else {

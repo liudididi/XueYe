@@ -57,14 +57,7 @@ public class EstimateGradeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "");
-        if(tbmaxfen!=null&&tbmaxfen!=""){
-
-        }else
-        {
-            tbmaxfen="500";
-        }
-
+        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
         estimateEdgradefen.setText(tbmaxfen);
     }
 
@@ -178,9 +171,6 @@ public class EstimateGradeActivity extends BaseActivity {
              SPUtils.put(MyApp.context,"tbmaxfen",tbmaxfen);
              SPUtils.put(MyApp.context,"tbsubtype",tbsubtype);
              Intent intent=new Intent(EstimateGradeActivity.this,PrimaryActivity.class);
-             intent.putExtra("inarea",tbarea);
-             intent.putExtra("inmaxfen",tbmaxfen);
-             intent.putExtra("insubtype",tbsubtype);
              startActivity(intent);
              finish();
              break;

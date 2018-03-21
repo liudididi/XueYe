@@ -31,6 +31,7 @@ import adapter.MarjorViewpageradpter;
 import base.BaseActivity;
 import base.BaseApi;
 import base.BaseBean;
+import bean.CXEFCBean;
 import bean.MajorstatXQBean;
 import bean.jobStarBean;
 import butterknife.BindView;
@@ -42,6 +43,7 @@ import io.reactivex.subscribers.DisposableSubscriber;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
+import presenter.CXEFCPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,8 +54,9 @@ import untils.NetInterceptor;
 import untils.QuestInterface;
 import untils.Rotatable;
 import untils.SPUtils;
+import view.CXEFCView;
 
-public class MajorStarActivity extends BaseActivity {
+public class MajorStarActivity extends BaseActivity  {
 
 
     @BindView(R.id.majorstar_iv_back)
@@ -149,7 +152,6 @@ public class MajorStarActivity extends BaseActivity {
 
     public static TextView scnum;
 
-
     private RelativeLayout rlCardRoot;
     private RelativeLayout imageViewBack;
     private RelativeLayout imageViewFront;
@@ -163,9 +165,10 @@ public class MajorStarActivity extends BaseActivity {
     private String majorresult;
     private  String jobresult="";
     private String token;
-    private String data;
+    private  String data;
     private String mbti;
     private String hld;
+
 
 
     @Override
@@ -179,34 +182,42 @@ public class MajorStarActivity extends BaseActivity {
         data = getIntent().getStringExtra("data");
         hld = getIntent().getStringExtra("Hld");
         mbti = getIntent().getStringExtra("mbti");
-        Boolean majorindex = (Boolean) SPUtils.get(MyApp.context, "majorindex", false);
-        if (majorindex == false) {
-            majorTvtishi.setVisibility(View.GONE);
-            rlyindao.setVisibility(View.VISIBLE);
-            majorstarbyes.setVisibility(View.GONE);
-            rlyindao.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (a == 0) {
-                        maindexYi.setVisibility(View.GONE);
-                        maindexEr.setVisibility(View.VISIBLE);
-                        a += 1;
-                    } else if (a == 1) {
-                        maindexEr.setVisibility(View.GONE);
-                        maindexSan.setVisibility(View.VISIBLE);
-                        a += 1;
-                    } else {
-                        rlyindao.setVisibility(View.GONE);
-                        majorstarbyes.setVisibility(View.VISIBLE);
-                        majorTvtishi.setVisibility(View.GONE);
-                        SPUtils.put(MyApp.context, "majorindex", true);
-                    }
-                }
-            });
-        } else {
+        if(Integer.parseInt(data)>=3){
             rlyindao.setVisibility(View.GONE);
             majorstarbyes.setVisibility(View.VISIBLE);
+        }else {
+            Boolean majorindex = (Boolean) SPUtils.get(MyApp.context, "majorindex", false);
+            if (majorindex == false) {
+                majorTvtishi.setVisibility(View.GONE);
+                rlyindao.setVisibility(View.VISIBLE);
+                majorstarbyes.setVisibility(View.GONE);
+                rlyindao.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (a == 0) {
+                            maindexYi.setVisibility(View.GONE);
+                            maindexEr.setVisibility(View.VISIBLE);
+                            a += 1;
+                        } else if (a == 1) {
+                            maindexEr.setVisibility(View.GONE);
+                            maindexSan.setVisibility(View.VISIBLE);
+                            a += 1;
+                        } else {
+                            rlyindao.setVisibility(View.GONE);
+                            majorstarbyes.setVisibility(View.VISIBLE);
+                            majorTvtishi.setVisibility(View.GONE);
+                            SPUtils.put(MyApp.context, "majorindex", true);
+                        }
+                    }
+                });
+            } else {
+                rlyindao.setVisibility(View.GONE);
+                majorstarbyes.setVisibility(View.VISIBLE);
+            }
+
         }
+
+
 
         //卡片
         rlCardRoot = findViewById(R.id.rl_card_root);
@@ -324,25 +335,20 @@ public class MajorStarActivity extends BaseActivity {
                         }
                     }
                 });
-
             }
-
             @Override
             public void onFailure(Call<BaseBean<List<jobStarBean>>> call, Throwable t) {
                 Toast(t.toString());
-
             }
         });
         majorstarbyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int da = Integer.parseInt(data);
-                if(da>=3){
+                if(da==3||da>3){
                     intent(MajorStarActivity.this,ComlitEFCActivity.class);
                     finish();
-
                 }else {
-
                     if(answerllist.size()>0){
                         for (int i = 0; i < answerllist.size(); i++) {
                             if(i==answerllist.size()-1){
@@ -351,7 +357,7 @@ public class MajorStarActivity extends BaseActivity {
                                 jobresult+=answerllist.get(i)+",";
                             }
                         }
-                        MyQusetUtils.getInstance().getQuestInterface().tjzhuany("SIE","INFP",ProfessionStarActivity.gender,ProfessionStarActivity.type,majorresult,jobresult)
+                        MyQusetUtils.getInstance().getQuestInterface().tjzhuany(hld,mbti,ProfessionStarActivity.gender,ProfessionStarActivity.type,majorresult,jobresult)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeWith(new DisposableSubscriber<BaseBean<List<jobStarBean>>>() {
@@ -361,14 +367,12 @@ public class MajorStarActivity extends BaseActivity {
                                             String areuslt="";
                                             List<jobStarBean> data = listBaseBean.data;
                                             for (int i = 0; i < data.size(); i++) {
-
                                                 if(i==data.size()-1){
                                                     areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai();
                                                 }else {
                                                     areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+",";
                                                 }
                                             }
-
                                             MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
                                                     .subscribeOn(Schedulers.io())
                                                     .observeOn(AndroidSchedulers.mainThread())
@@ -408,8 +412,6 @@ public class MajorStarActivity extends BaseActivity {
                         Toast("试试左右滑动，选择你喜欢的专业吧！");
                     }
 
-
-
                 }
 
 
@@ -426,12 +428,14 @@ public class MajorStarActivity extends BaseActivity {
         super.onDestroy();
         answerllist.clear();
         startfenleiActivity.fenlieanswerlist.clear();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         token = (String) SPUtils.get(this, "token", "");
+
     }
 
     private void initlist() {
@@ -449,36 +453,41 @@ public class MajorStarActivity extends BaseActivity {
         xhlist.add(mstartxhsi);
         xhlist.add(mstartxhwu);
         xhlist.add(mstartxhliu);
-        for (int i = 0; i < xhlist.size(); i++) {
-            final int finalI = i;
-            xhlist.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    answerllist.get(finalI).xh = false;
-                    answerllist.remove(finalI);
-                    scnum.setText(answerllist.size() + "");
-                    for (int i1 = 0; i1 < fraglist.size(); i1++) {
-                        fraglist.get(i1).onResume();
-                    }
-                    for (int j = 0; j < rllist.size(); j++) {
-                        xhlist.get(j).setImageResource(R.drawable.bgxq);
-                        rllist.get(j).setVisibility(View.INVISIBLE);
-                    }
-                    if (answerllist.size() != 0) {
-                        for (int i = 0; i < answerllist.size(); i++) {
-                            titlelist.get(i).setText(answerllist.get(i).getMajor());
-                            rllist.get(i).setVisibility(View.VISIBLE);
-                            List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                            if (majorinfo != null && majorinfo.size() > 0) {
-                                xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
-                            }
 
+        int i1 = Integer.parseInt(data);
+        if(i1<3){
+            for (int i = 0; i < xhlist.size(); i++) {
+                final int finalI = i;
+                xhlist.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        answerllist.get(finalI).xh = false;
+                        answerllist.remove(finalI);
+                        scnum.setText(answerllist.size() + "");
+                        for (int i1 = 0; i1 < fraglist.size(); i1++) {
+                            fraglist.get(i1).onResume();
                         }
-                    }
+                        for (int j = 0; j < rllist.size(); j++) {
+                            xhlist.get(j).setImageResource(R.drawable.bgxq);
+                            rllist.get(j).setVisibility(View.INVISIBLE);
+                        }
+                        if (answerllist.size() != 0) {
+                            for (int i = 0; i < answerllist.size(); i++) {
+                                titlelist.get(i).setText(answerllist.get(i).getMajor());
+                                rllist.get(i).setVisibility(View.VISIBLE);
+                                List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
+                                if (majorinfo != null && majorinfo.size() > 0) {
+                                    xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
+                                }
 
-                }
-            });
+                            }
+                        }
+
+                    }
+                });
+            }
         }
+
         ywlist = new ArrayList<>();
         ywlist.add(mstartywone);
         ywlist.add(mstartywtwo);
@@ -621,11 +630,8 @@ public class MajorStarActivity extends BaseActivity {
         if (View.VISIBLE == imageViewBack.getVisibility()) {
             //  ViewHelper.setRotationY(imageViewFront, 180f);//先翻转180，转回来时就不是反转的了
             for (int i = 0; i < rllist.size(); i++) {
-
                 rllist.get(i).setVisibility(View.INVISIBLE);
-
             }
-
             for (int i = 0; i < answerllist.size(); i++) {
                 titlelist.get(i).setText(answerllist.get(i).getMajor());
                 rllist.get(i).setVisibility(View.VISIBLE);

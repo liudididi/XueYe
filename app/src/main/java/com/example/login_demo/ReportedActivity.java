@@ -109,7 +109,7 @@ public class ReportedActivity extends BaseActivity {
                                                     public void onError(Throwable t) {
                                                         reportedAccurate.setEnabled(true);
                                                         rePb.setVisibility(View.GONE);
-                                                        Toast("网络不给力哦~");
+                                                        Toast("网络较差,请重试~");
                                                     }
 
                                                     @Override
@@ -125,7 +125,7 @@ public class ReportedActivity extends BaseActivity {
                             public void onError(Throwable t) {
                                 reportedAccurate.setEnabled(true);
                                 rePb.setVisibility(View.GONE);
-                                Toast("网络不给力哦~");
+                                Toast("网络较差,请重试~");
                             }
 
                             @Override

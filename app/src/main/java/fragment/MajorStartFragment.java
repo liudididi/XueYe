@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.login_demo.EFCJieSuoActivity;
 import com.example.login_demo.MajorStarActivity;
 import com.example.login_demo.R;
 
@@ -48,24 +49,26 @@ public class MajorStartFragment extends Basefragment {
         for (int i = 0; i < list.size(); i++) {
             titlelist.get(i).setText(list.get(i).getMajor());
             List<jobStarBean.MajorinfoBean> majorinfo = list.get(i).getMajorinfo();
-
             if(majorinfo!=null&&majorinfo.size()>0){
                     mblist.get(i).setText(majorinfo.get(0).getTraining_target());
                     xinzilist.get(i).setText("￥"+majorinfo.get(0).getAveragesalary());
             }
             relativeLayouts.get(i).setVisibility(View.VISIBLE);
             final int finalI = i;
-            imageViews.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    List<jobStarBean.MajorinfoBean> majorinfo = list.get(finalI).getMajorinfo();
-                    if(majorinfo!=null&&majorinfo.size()>0){
-                        MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),majorinfo.get(0).getAveragesalary()+"",getActivity());
-                    }else {
-                        Toast.makeText(getActivity(), "暂无信息", Toast.LENGTH_SHORT).show();
+
+
+                imageViews.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        List<jobStarBean.MajorinfoBean> majorinfo = list.get(finalI).getMajorinfo();
+                        if(majorinfo!=null&&majorinfo.size()>0){
+                            MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),majorinfo.get(0).getAveragesalary()+"",getActivity());
+                        }else {
+                            Toast.makeText(getActivity(), "暂无信息", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+
         }
     }
 
@@ -73,7 +76,6 @@ public class MajorStartFragment extends Basefragment {
     public void onResume() {
         super.onResume();
         for (int i = 0; i < list.size(); i++) {
-
             if(list.get(i).xh==true){
                 xhimageViews.get(i).setImageResource(R.drawable.bgxq);
             }else {
@@ -113,6 +115,8 @@ public class MajorStartFragment extends Basefragment {
         xhimageViews.add(img_xihuanone);
         xhimageViews.add(img_xihuantwo);
         xhimageViews.add(img_xihuansan);
+
+
         img_xihuanone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

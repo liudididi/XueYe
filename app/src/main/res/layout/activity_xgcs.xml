@@ -46,12 +46,10 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <RelativeLayout
                     android:id="@+id/xqrl_yi"
                     android:background="#fff"
@@ -89,6 +87,7 @@
                         android:layout_marginTop="160px"
                         />
                     <TextView
+                        android:id="@+id/tv_daima"
                         android:layout_marginLeft="100px"
                         android:textColor="#F00"
                         android:text="INTP"
@@ -103,8 +102,6 @@
                         android:layout_marginTop="240px"
                         android:layout_height="20px"></View>
                 </RelativeLayout>
-
-
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_marginLeft="40px"
@@ -112,7 +109,7 @@
                     android:background="#fff"
                     android:layout_width="match_parent"
                     android:layout_height="500px">
-<LinearLayout
+                    <LinearLayout
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:layout_marginTop="50px"
@@ -158,7 +155,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
-
                     <LinearLayout
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -204,8 +200,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-
-
                     <LinearLayout
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -251,8 +245,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-
-
                     <LinearLayout
                         android:orientation="horizontal"
                         android:gravity="center_vertical"
@@ -298,21 +290,375 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-
-
                 </LinearLayout>
- <ImageView
-     android:src="@drawable/xgcsbg"
-     android:layout_marginTop="30px"
-     android:layout_marginLeft="40px"
-     android:layout_marginRight="40px"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content">
- </ImageView>
+                <ImageView
+                 android:src="@drawable/xgcsbg"
+                 android:layout_marginTop="30px"
+                 android:layout_marginLeft="40px"
+                    android:scaleType="fitXY"
+                 android:layout_marginRight="40px"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                </ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
 
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="个性特征描述"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+                    >
+                    <TextView
+                        android:id="@+id/tv_gexing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="可能存在的盲点"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_mangdian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="工作中的优势"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_youshi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="工作中的劣势"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_lieshi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="适合的岗位特质"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_tezhi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="在团队的贡献"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_gongxian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+               <!-- <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="领导力"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_lingdaoli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="潜在缺陷"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_quexian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="适合的工作环境"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:id="@+id/tv_huanjing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="30px"
+                    android:background="#fff"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="50px"
+                        android:textColor="#666"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="50px"
+                        android:text="个人发展建议"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="3px"
+                    android:background="#fff"
+                    >
+                    <TextView
+                        android:id="@+id/tv_jianyi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30px"
+                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"/>
+                </LinearLayout>
             </LinearLayout>
-
-
         </ScrollView>
     </RelativeLayout>
 </RelativeLayout>

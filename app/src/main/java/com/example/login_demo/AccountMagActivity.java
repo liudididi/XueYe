@@ -36,17 +36,19 @@ public class AccountMagActivity extends BaseActivity {
     @Override
     public void InIt() {
         MyUserBean.checkLogin();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
         if(userBeanInstans!=null){
             String mobile = userBeanInstans.getMobile();
             mobile=mobile.substring(0,3)+"****"+mobile.substring(7,11);
             accountTvPhone.setText(mobile);
         }
-
-
     }
-
-
 
     @OnClick({R.id.account_iv_back, R.id.account_setingpass, R.id.account_settingphone})
     public void onViewClicked(View view) {

@@ -58,6 +58,7 @@ import bean.UserBean;
 import bean.VisionBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
+import bean.XGcsBean;
 import bean.jobStarBean;
 import io.reactivex.Flowable;
 
@@ -178,7 +179,7 @@ public interface QuestInterface {
     Flowable<BaseBean<List<CollerSchoolBean>>> getchoolisscollet(@Query("name") String name, @Header("token") String token);
 
     //获取订单号
-    @POST("/app/productorder/appDownOrder")
+    @POST("/app/productorder/getOutTradeInfo")
     Flowable<BaseBean<XDingdanBean>> productorder(@Query("token")String token,@Query("productId")String productId,@Query("payWay")String payWay,@Query("payType")String payType);
 
     //支付宝支付
@@ -245,6 +246,10 @@ public interface QuestInterface {
     //搜索专业
     @GET("/app/search/major")
     Flowable<BaseBean<List<SerchZYBean>>> SerchZY(@Query("name") String name);
+
+    // 获取MBTI复杂分析报告
+    @GET("/app/sdsmbti/getmbti")
+    Flowable<BaseBean<List<XGcsBean>>> getmbti(@Query("testCode") String testCode);
 
     //获取星空测评结合专业
     @POST("/app/efc/jobsStarMajorNew")
@@ -436,6 +441,11 @@ public interface QuestInterface {
     //查询成绩表
     @GET("/app/result/getResult")
     Flowable<BaseBean<InquireBean>>  inquiregrade(@Query("testType")Integer testType, @Query("testTime")Integer testTime, @Header("token") String token);
+
+    //保存职业筛选条件
+    @POST("/app/wishfilling/updateStuInfo")
+    Flowable<BaseBean> updateStuInfo(@Query("stuType") String stuType,@Query("collegeType") String collegeType,@Query("gender") String gender,@Query("token") String token);
+
 
     //能上的学校
     @GET("/app/universitytimescore/timescoreMobil")

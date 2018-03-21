@@ -81,6 +81,6 @@ public class BuyEFCActivity extends BaseActivity implements CountdownView {
 
     @Override
     public void Countdownfail(Throwable t) {
-
+        countdownPresent.CountdownPresent();
     }
 }

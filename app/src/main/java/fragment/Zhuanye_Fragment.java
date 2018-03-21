@@ -213,7 +213,7 @@ public class Zhuanye_Fragment extends Basefragment {
         if(zy_name==null)
         {
             Toast.makeText(getContext(), "请选择专业", Toast.LENGTH_SHORT).show();
-            return;
+
         }
 
         HashMap<String,String> map=new HashMap<>();

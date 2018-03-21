@@ -6,63 +6,78 @@ package bean;
 
 public class CXEFCBean {
 
+
     /**
      * wishId : 45
      * userId : 217
      * wishType : 精准
-     * stutype : null
-     * sourceArea : null
-     * ceeScore : null
-     * proRank : null
-     * credit : null
-     * wishCity : null
-     * first : null
-     * budget : null
-     * poorFlag : null
-     * collegeClass : null
-     * batch : null
-     * standby1 : null
-     * standby2 : null
-     * creattime : 2018-03-19 17:06:49
+     * stutype : 文科
+     * sourceArea : 四川
+     * ceeScore : 500
+     * proRank :
+     * credit :
+     * wishCity :
+     * first : 0
+     * budget :
+     * poorFlag :
+     * collegeClass : 艺术类,民族类,语言类,农林类,军事类,政法类,综合类,理工类,林业类,医药类,师范类,体育类
+     * batch : 本科二批,本科三批
+     * collegetype : 本科
+     * gender : 男
+     * creattime : 2018-03-21 09:57:05
      * outTradeNo : null
-     * collegeArrangement : null
-     * graduationDirection : null
-     * cwb : null
+     * collegeArrangement : 国防生,卓越计划
+     * graduationDirection : 考研
+     * cwb :
      * outTradeNum : null
      * efcWilling : null
-     * majorGai : 心理咨询:0.9160000050067901:0.800000011920929,资源综合利用与管理技术:0.9066666784882544:0.7777778059244156,环境规划与管理:0.9066666784882544:0.7777778059244156,环境评价与咨询服务:0.9066666784882544:0.7777778059244156,护理:0.8823999932408333:0.7199999839067459,电子电路设计与工艺:0.8600000020861625:0.6666666716337204,社区康复:0.7983999919891357:0.5199999809265137,假肢与矫形器技术:0.7983999919891357:0.5199999809265137,康复工程技术:0.7983999919891357:0.5199999809265137,中医康复技术:0.7983999919891357:0.5199999809265137,康复治疗技术:0.7983999919891357:0.5199999809265137,康复辅助器具技术:0.7983999919891357:0.5199999809265137,言语听觉康复技术:0.7983999919891357:0.5199999809265137,供用电技术:0.776000000834465:0.46666666865348816,船舶通信与导航:0.776000000834465:0.46666666865348816,移动通信技术:0.776000000834465:0.46666666865348816,分布式发电与微电网技术:0.776000000834465:0.46666666865348816,工程安全评价与监理:0.776000000834465:0.46666666865348816,智能控制技术:0.776000000834465:0.46666666865348816,光电显示技术:0.776000000834465:0.46666666865348816
+     * favourMajor : null
+     * majorGai : 心理咨询:0.916:0.800000011920929,环境评价与咨询服务:0.9066:0.7777778059244156,环境规划与管理:0.9066:0.7777778059244156,资源综合利用与管理技术:0.9066:0.7777778059244156,护理:0.8823:0.7199999839067459,电子电路设计与工艺:0.86:0.6666666716337204,言语听觉康复技术:0.7983:0.5199999809265137,康复辅助器具技术:0.7983:0.5199999809265137,康复治疗技术:0.7983:0.5199999809265137,中医康复技术:0.7983:0.5199999809265137,康复工程技术:0.7983:0.5199999809265137,假肢与矫形器技术:0.7983:0.5199999809265137,社区康复:0.7983:0.5199999809265137,矿井通风与安全:0.776:0.46666666865348816,安全技术与管理:0.776:0.46666666865348816,发电厂及电力系统:0.776:0.46666666865348816,电力系统自动化技术:0.776:0.46666666865348816,电力系统继电保护与自动化技术:0.776:0.46666666865348816,电力客户服务与管理:0.776:0.46666666865348816,分布式发电与微电网技术:0.776:0.46666666865348816
      * testCode : ENTP:E2:N4:T8:P7,ASC:C6:A3:T5
-     * job : 机电工程师
+     * sdsCode : null
+     * mbtiCode : null
+     * job : 工程管理师,机电工程师
      * process : 3
+     * standby1 : null
+     * standby2 : null
+     * standby3 : null
+     * standby4 : null
      */
 
     private int wishId;
-    private int userId;
+    private String userId;
     private String wishType;
-    private Object stutype;
-    private Object sourceArea;
-    private Object ceeScore;
-    private Object proRank;
-    private Object credit;
-    private Object wishCity;
-    private Object first;
-    private Object budget;
-    private Object poorFlag;
-    private Object collegeClass;
-    private Object batch;
-    private Object standby1;
-    private Object standby2;
+    private String stutype;
+    private String sourceArea;
+    private String ceeScore;
+    private String proRank;
+    private String credit;
+    private String wishCity;
+    private String first;
+    private String budget;
+    private String poorFlag;
+    private String collegeClass;
+    private String batch;
+    private String collegetype;
+    private String gender;
     private String creattime;
     private Object outTradeNo;
-    private Object collegeArrangement;
-    private Object graduationDirection;
-    private Object cwb;
+    private String collegeArrangement;
+    private String graduationDirection;
+    private String cwb;
     private Object outTradeNum;
     private Object efcWilling;
+    private Object favourMajor;
     private String majorGai;
     private String testCode;
+    private Object sdsCode;
+    private Object mbtiCode;
     private String job;
     private int process;
+    private Object standby1;
+    private Object standby2;
+    private Object standby3;
+    private Object standby4;
 
     public int getWishId() {
         return wishId;
@@ -72,11 +87,11 @@ public class CXEFCBean {
         this.wishId = wishId;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -88,108 +103,108 @@ public class CXEFCBean {
         this.wishType = wishType;
     }
 
-    public Object getStutype() {
+    public String getStutype() {
         return stutype;
     }
 
-    public void setStutype(Object stutype) {
+    public void setStutype(String stutype) {
         this.stutype = stutype;
     }
 
-    public Object getSourceArea() {
+    public String getSourceArea() {
         return sourceArea;
     }
 
-    public void setSourceArea(Object sourceArea) {
+    public void setSourceArea(String sourceArea) {
         this.sourceArea = sourceArea;
     }
 
-    public Object getCeeScore() {
+    public String getCeeScore() {
         return ceeScore;
     }
 
-    public void setCeeScore(Object ceeScore) {
+    public void setCeeScore(String ceeScore) {
         this.ceeScore = ceeScore;
     }
 
-    public Object getProRank() {
+    public String getProRank() {
         return proRank;
     }
 
-    public void setProRank(Object proRank) {
+    public void setProRank(String proRank) {
         this.proRank = proRank;
     }
 
-    public Object getCredit() {
+    public String getCredit() {
         return credit;
     }
 
-    public void setCredit(Object credit) {
+    public void setCredit(String credit) {
         this.credit = credit;
     }
 
-    public Object getWishCity() {
+    public String getWishCity() {
         return wishCity;
     }
 
-    public void setWishCity(Object wishCity) {
+    public void setWishCity(String wishCity) {
         this.wishCity = wishCity;
     }
 
-    public Object getFirst() {
+    public String getFirst() {
         return first;
     }
 
-    public void setFirst(Object first) {
+    public void setFirst(String first) {
         this.first = first;
     }
 
-    public Object getBudget() {
+    public String getBudget() {
         return budget;
     }
 
-    public void setBudget(Object budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 
-    public Object getPoorFlag() {
+    public String getPoorFlag() {
         return poorFlag;
     }
 
-    public void setPoorFlag(Object poorFlag) {
+    public void setPoorFlag(String poorFlag) {
         this.poorFlag = poorFlag;
     }
 
-    public Object getCollegeClass() {
+    public String getCollegeClass() {
         return collegeClass;
     }
 
-    public void setCollegeClass(Object collegeClass) {
+    public void setCollegeClass(String collegeClass) {
         this.collegeClass = collegeClass;
     }
 
-    public Object getBatch() {
+    public String getBatch() {
         return batch;
     }
 
-    public void setBatch(Object batch) {
+    public void setBatch(String batch) {
         this.batch = batch;
     }
 
-    public Object getStandby1() {
-        return standby1;
+    public String getCollegetype() {
+        return collegetype;
     }
 
-    public void setStandby1(Object standby1) {
-        this.standby1 = standby1;
+    public void setCollegetype(String collegetype) {
+        this.collegetype = collegetype;
     }
 
-    public Object getStandby2() {
-        return standby2;
+    public String getGender() {
+        return gender;
     }
 
-    public void setStandby2(Object standby2) {
-        this.standby2 = standby2;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getCreattime() {
@@ -208,27 +223,27 @@ public class CXEFCBean {
         this.outTradeNo = outTradeNo;
     }
 
-    public Object getCollegeArrangement() {
+    public String getCollegeArrangement() {
         return collegeArrangement;
     }
 
-    public void setCollegeArrangement(Object collegeArrangement) {
+    public void setCollegeArrangement(String collegeArrangement) {
         this.collegeArrangement = collegeArrangement;
     }
 
-    public Object getGraduationDirection() {
+    public String getGraduationDirection() {
         return graduationDirection;
     }
 
-    public void setGraduationDirection(Object graduationDirection) {
+    public void setGraduationDirection(String graduationDirection) {
         this.graduationDirection = graduationDirection;
     }
 
-    public Object getCwb() {
+    public String getCwb() {
         return cwb;
     }
 
-    public void setCwb(Object cwb) {
+    public void setCwb(String cwb) {
         this.cwb = cwb;
     }
 
@@ -248,6 +263,14 @@ public class CXEFCBean {
         this.efcWilling = efcWilling;
     }
 
+    public Object getFavourMajor() {
+        return favourMajor;
+    }
+
+    public void setFavourMajor(Object favourMajor) {
+        this.favourMajor = favourMajor;
+    }
+
     public String getMajorGai() {
         return majorGai;
     }
@@ -264,6 +287,22 @@ public class CXEFCBean {
         this.testCode = testCode;
     }
 
+    public Object getSdsCode() {
+        return sdsCode;
+    }
+
+    public void setSdsCode(Object sdsCode) {
+        this.sdsCode = sdsCode;
+    }
+
+    public Object getMbtiCode() {
+        return mbtiCode;
+    }
+
+    public void setMbtiCode(Object mbtiCode) {
+        this.mbtiCode = mbtiCode;
+    }
+
     public String getJob() {
         return job;
     }
@@ -278,5 +317,37 @@ public class CXEFCBean {
 
     public void setProcess(int process) {
         this.process = process;
+    }
+
+    public Object getStandby1() {
+        return standby1;
+    }
+
+    public void setStandby1(Object standby1) {
+        this.standby1 = standby1;
+    }
+
+    public Object getStandby2() {
+        return standby2;
+    }
+
+    public void setStandby2(Object standby2) {
+        this.standby2 = standby2;
+    }
+
+    public Object getStandby3() {
+        return standby3;
+    }
+
+    public void setStandby3(Object standby3) {
+        this.standby3 = standby3;
+    }
+
+    public Object getStandby4() {
+        return standby4;
+    }
+
+    public void setStandby4(Object standby4) {
+        this.standby4 = standby4;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import base.BaseActivity;
@@ -47,10 +48,12 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     ImageView imgZntbwjs;
     @BindView(R.id.rl_zntb)
     RelativeLayout rlZntb;
+    @BindView(R.id.jiesuo_pb)
+    ProgressBar jiesuoPb;
     private String token;
     private String data;
     private CXEFCPresenter cxefcPresenter;
-    private  String majorresult;
+    private String majorresult;
 
     @Override
     public int getId() {
@@ -75,7 +78,6 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     protected void onResume() {
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
-
         MyQusetUtils.getInstance().getQuestInterface().hqjd(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -83,7 +85,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                     @Override
                     public void onNext(BaseBean<String> integerBaseBean) {
                         data = integerBaseBean.data;
-                        if(data.equals("0")){
+                        jiesuoPb.setVisibility(View.GONE);
+                        if (data.equals("0")) {
                             imgZhiyxkwjs.setVisibility(View.VISIBLE);
                             imgZhuanyxkwjs.setVisibility(View.VISIBLE);
                             imgZntbwjs.setVisibility(View.VISIBLE);
@@ -91,7 +94,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             rlZhuanyxk.setEnabled(false);
                             rlZntb.setEnabled(false);
                         }
-                        if(data.equals("1")){
+                        if (data.equals("1")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.VISIBLE);
                             imgZntbwjs.setVisibility(View.VISIBLE);
@@ -100,7 +103,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             rlZhuanyxk.setEnabled(false);
                             rlZntb.setEnabled(false);
                         }
-                        if(data.equals("2")){
+                        if (data.equals("2")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.VISIBLE);
@@ -109,7 +112,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             rlZhuanyxk.setEnabled(true);
                             rlZntb.setEnabled(false);
                         }
-                        if (data.equals("3")){
+                        if (data.equals("3")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.GONE);
@@ -118,16 +121,79 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             rlZhuanyxk.setEnabled(true);
                             rlZntb.setEnabled(true);
                         }
-                        if(data.equals("4")){
+                        if (data.equals("4")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.GONE);
                         }
                     }
+
                     @Override
                     public void onError(Throwable t) {
 
+                        MyQusetUtils.getInstance().getQuestInterface().hqjd(token)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                                    @Override
+                                    public void onNext(BaseBean<String> integerBaseBean) {
+                                        data = integerBaseBean.data;
+                                        jiesuoPb.setVisibility(View.GONE);
+                                        if (data.equals("0")) {
+                                            imgZhiyxkwjs.setVisibility(View.VISIBLE);
+                                            imgZhuanyxkwjs.setVisibility(View.VISIBLE);
+                                            imgZntbwjs.setVisibility(View.VISIBLE);
+                                            rlZhiyxk.setEnabled(false);
+                                            rlZhuanyxk.setEnabled(false);
+                                            rlZntb.setEnabled(false);
+                                        }
+                                        if (data.equals("1")) {
+                                            imgZhiyxkwjs.setVisibility(View.GONE);
+                                            imgZhuanyxkwjs.setVisibility(View.VISIBLE);
+                                            imgZntbwjs.setVisibility(View.VISIBLE);
+
+                                            rlZhiyxk.setEnabled(true);
+                                            rlZhuanyxk.setEnabled(false);
+                                            rlZntb.setEnabled(false);
+                                        }
+                                        if (data.equals("2")) {
+                                            imgZhiyxkwjs.setVisibility(View.GONE);
+                                            imgZhuanyxkwjs.setVisibility(View.GONE);
+                                            imgZntbwjs.setVisibility(View.VISIBLE);
+
+                                            rlZhiyxk.setEnabled(true);
+                                            rlZhuanyxk.setEnabled(true);
+                                            rlZntb.setEnabled(false);
+                                        }
+                                        if (data.equals("3")) {
+                                            imgZhiyxkwjs.setVisibility(View.GONE);
+                                            imgZhuanyxkwjs.setVisibility(View.GONE);
+                                            imgZntbwjs.setVisibility(View.GONE);
+
+                                            rlZhiyxk.setEnabled(true);
+                                            rlZhuanyxk.setEnabled(true);
+                                            rlZntb.setEnabled(true);
+                                        }
+                                        if (data.equals("4")) {
+                                            imgZhiyxkwjs.setVisibility(View.GONE);
+                                            imgZhuanyxkwjs.setVisibility(View.GONE);
+                                            imgZntbwjs.setVisibility(View.GONE);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable t) {
+
+                                    }
+
+                                    @Override
+                                    public void onComplete() {
+
+                                    }
+                                });
+
                     }
+
                     @Override
                     public void onComplete() {
 
@@ -143,18 +209,22 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 break;
             case R.id.rl_xlcs:
 
-               // Intent intent=new Intent(this,XlcsActivity.class);
+                // Intent intent=new Intent(this,XlcsActivity.class);
+                if (data != null) {
+                    Intent intent = new Intent(this, XlcsActivity.class);
+                    intent.putExtra("data", data);
+                    startActivity(intent);
+                } else {
+                    Toast("网络较差，请稍后重试");
+                }
 
-
-               Intent intent=new Intent(this,XlcsActivity.class);
-               intent.putExtra("data",data);
-               startActivity(intent);
 
                 break;
             case R.id.rl_zhiyxk:
-                Intent intent1=new Intent(this,ProfessionStarActivity.class);
-                intent1.putExtra("data",data);
+                Intent intent1 = new Intent(this, ProfessionStarActivity.class);
+                intent1.putExtra("data", data);
                 startActivity(intent1);
+
                 break;
             case R.id.rl_zhuanyxk:
 
@@ -162,8 +232,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
                 break;
             case R.id.rl_zntb:
-                Intent intent3=new Intent(this,MajorStarActivity.class);
-                intent3.putExtra("data",data);
+                Intent intent3 = new Intent(this, Volunteer_ScreenActivity.class);
                 startActivity(intent3);
                 break;
         }
@@ -171,36 +240,36 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
     @Override
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
-if(cxefcBeanBaseBean.code==0){
-    majorresult=cxefcBeanBaseBean.data.getJob();
+        if (cxefcBeanBaseBean.code == 0) {
+            majorresult = cxefcBeanBaseBean.data.getJob();
 
-
-    String testCode = cxefcBeanBaseBean.data.getTestCode();
-    String[] split = testCode.split(",");
-    String s = split[0];
-
-    String[] split1 = s.split(":");
-    String  mbti = split1[0];
-
-
-    String s1 = split[1];
-    String[] split2 = s.split(":");
-    String  hld = split2[0];
-
-
-
-    Intent intent2=new Intent(this,MajorStarActivity.class);
-    intent2.putExtra("data",data);
-    intent2.putExtra("result",majorresult);
-    intent2.putExtra("Hld",hld);
-    intent2.putExtra("mbti",mbti);
-    startActivity(intent2);
-}
+            String testCode = cxefcBeanBaseBean.data.getTestCode();
+            String[] split = testCode.split(",");
+            String s = split[0];
+            String[] split1 = s.split(":");
+            String mbti = split1[0];
+            String s1 = split[1];
+            String[] split2 = s.split(":");
+            String hld = split2[0];
+            Intent intent2 = new Intent(this, MajorStarActivity.class);
+            intent2.putExtra("data", data);
+            intent2.putExtra("result", majorresult);
+            intent2.putExtra("Hld", hld);
+            intent2.putExtra("mbti", mbti);
+            startActivity(intent2);
+        }
 
     }
 
     @Override
     public void GetEFCResultfail(Throwable t) {
+        cxefcPresenter.CXEFCPresenter(token);
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

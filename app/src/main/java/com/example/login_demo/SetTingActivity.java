@@ -86,11 +86,17 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
 
     @Override
     public void InIt() {
-
         token = (String) SPUtils.get(MyApp.context, "token", "");
-
         verSionPresent = new VerSionPresent(this);
         verSionPresent.versioninfo("Android");
+
+      /*  String result="专业,年后,你是";
+        String[] split = result.split(",");
+        for (String n:split) {
+            System.out.println("nnnnn==="+n);
+        }*/
+
+
     }
 
     private Boolean checLogin() {
@@ -405,7 +411,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             try {
                 Common = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
                 int verCode = Common.versionCode;
-                System.out.println("verCode==="+verCode+"ss"+visionBean.getVersionCode());
+
                 if (verCode < visionBean.getVersionCode()) {
                     settingVerinfo.setText("发现新版本");
                     imgHong.setVisibility(View.VISIBLE);

@@ -60,6 +60,7 @@ public class PrimaryActivity extends BaseActivity implements WishView {
     private String tbmaxfen;
     private String tbarea;
     private String tbsubtype;
+    private  String biaoshi;
 
     @Override
     public int getId() {
@@ -71,34 +72,6 @@ public class PrimaryActivity extends BaseActivity implements WishView {
         primary_sprint.setTextColor(Color.BLACK);
         list = new ArrayList<>();
         wishPresent = new WishPresent(this);
-
-
-
-        String inarea = getIntent().getStringExtra("inarea");
-
-        if(inarea!=null){
-            tbarea=inarea;
-           tbmaxfen= getIntent().getStringExtra("inmaxfen");
-           tbsubtype= getIntent().getStringExtra("insubtype");
-            wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", tbmaxfen, "1", "5");
-        }else {
-
-            tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "");
-            tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "");
-            tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "");
-            if (tbarea != null && tbarea !=""&& tbmaxfen !=""&&tbmaxfen != null && tbsubtype != null && tbsubtype != "") {
-                wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", tbmaxfen, "1", "5");
-            } else {
-                wishPresent.CanSchoolPresente("北京", "文科", "0", "500", "1", "5");
-                primaryMinute.setText("北京" + "文科" + "500" + "分");
-            }
-
-        }
-
-
-
-
-
     }
 
     @Override
@@ -111,22 +84,23 @@ public class PrimaryActivity extends BaseActivity implements WishView {
     @Override
     protected void onResume() {
         super.onResume();
+        primary_sprint.setTextColor(Color.BLACK);
+        primary_reliable.setTextColor(Color.GRAY);
+        primary_minimum.setTextColor(Color.GRAY);
+        view_sprint.setVisibility(View.VISIBLE);
+        view_reliable.setVisibility(View.GONE);
+        view_minimum.setVisibility(View.GONE);
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
-
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-
-        if(tbmaxfen==null&&tbmaxfen.equals("")){
-            tbmaxfen="500";
-        }
-
-        if(tbarea==null&&tbarea.equals("")){
-            tbarea="北京市";
-        }
-        if(tbsubtype==null&&tbsubtype.equals("")){
-            tbsubtype="文科";
-        }
         primaryMinute.setText(tbarea + tbsubtype + tbmaxfen + "分");
+        biaoshi="冲刺";
+            if (tbarea != null && tbarea !=""&& tbmaxfen !=""&&tbmaxfen != null && tbsubtype != null && tbsubtype != "") {
+                wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", (Integer.parseInt(tbmaxfen) + 100) + "", "1", "5");
+            } else {
+                wishPresent.CanSchoolPresente("北京", "文科", "0", "600", "1", "5");
+                primaryMinute.setText("北京" + "文科" + "500" + "分");
+            }
 
     }
 
@@ -139,9 +113,11 @@ public class PrimaryActivity extends BaseActivity implements WishView {
             case R.id.primary_minute:
                 // TODO: 2018/1/26 地址文理科分数
                 intent(PrimaryActivity.this, EstimateGradeActivity.class);
+                finish();
                 break;
             //冲刺推荐
             case R.id.rl_sprint:
+                biaoshi="冲刺";
                 primary_sprint.setTextColor(Color.BLACK);
                 primary_reliable.setTextColor(Color.GRAY);
                 primary_minimum.setTextColor(Color.GRAY);
@@ -158,6 +134,7 @@ public class PrimaryActivity extends BaseActivity implements WishView {
                 break;
             //稳妥推荐
             case R.id.rl_reliable:
+                biaoshi="稳妥";
                 primary_sprint.setTextColor(Color.GRAY);
                 primary_reliable.setTextColor(Color.BLACK);
                 primary_minimum.setTextColor(Color.GRAY);
@@ -174,6 +151,7 @@ public class PrimaryActivity extends BaseActivity implements WishView {
                 break;
             //保底推荐
             case R.id.rl_minimum:
+                biaoshi="保底";
                 primary_sprint.setTextColor(Color.GRAY);
                 primary_reliable.setTextColor(Color.GRAY);
                 primary_minimum.setTextColor(Color.BLACK);
@@ -230,6 +208,13 @@ public class PrimaryActivity extends BaseActivity implements WishView {
 
     @Override
     public void CanSchoolfail(Throwable t) {
+        if(biaoshi.equals("冲刺")){
+            wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", (Integer.parseInt(tbmaxfen) + 100) + "", "1", "5");
+        }else  if(biaoshi.equals("稳妥")){
+            wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", (Integer.parseInt(tbmaxfen)) + "", "1", "5");
+        }else {
+            wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", (Integer.parseInt(tbmaxfen) - 100) + "", "1", "5");
+        }
 
     }
 

@@ -120,6 +120,8 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
     private CXEFCPresenter xcpresent;
     private int i1;
     private String data;
+    private String hld;
+    private String mbti;
 
     @Override
     public int getId() {
@@ -142,24 +144,33 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
         xcpresent = new CXEFCPresenter(this);
         newlist = new ArrayList<>();
         fenlieanswerlist = new ArrayList<>();
-        for (int i = 0; i < tvlist.size(); i++) {
-            tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
-            tvlist.get(i).setText("");
-            final int finalI = i;
-            tvlist.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int textSize = (int) tvlist.get(finalI).getTextSize();
-                    if (textSize == min) {
-                        tvlist.get(finalI).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
-                        fenlieanswerlist.add(tvlist.get(finalI).getText().toString());
-                    } else {
-                        tvlist.get(finalI).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
-                        fenlieanswerlist.remove(tvlist.get(finalI).getText().toString());
+        if(i1>=2){
+            for (int i = 0; i < tvlist.size(); i++) {
+                tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                tvlist.get(i).setText("");
+            }
+        }else {
+
+            for (int i = 0; i < tvlist.size(); i++) {
+                tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                tvlist.get(i).setText("");
+                final int finalI = i;
+                tvlist.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int textSize = (int) tvlist.get(finalI).getTextSize();
+                        if (textSize == min) {
+                            tvlist.get(finalI).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                            fenlieanswerlist.add(tvlist.get(finalI).getText().toString());
+                        } else {
+                            tvlist.get(finalI).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                            fenlieanswerlist.remove(tvlist.get(finalI).getText().toString());
+                        }
                     }
-                }
-            });
+                });
+            }
         }
+
     }
 
     private void inittvlist() {
@@ -209,13 +220,19 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 break;
             case R.id.pro_yes:
                 if(i1>=2){
-                    xcpresent.CXEFCPresenter(token);
-                    return;
-                }
-                if(fenlieanswerlist.size()>0){
-                    tijiao();
+                    Intent intent=new Intent(startfenleiActivity.this,MajorStarActivity.class);
+                    intent.putExtra("data",data);
+                    intent.putExtra("result", result);
+                    intent.putExtra("Hld",hld);
+                    intent.putExtra("mbti",mbti);
+                    startActivity(intent);
+                    finish();
                 }else {
-                    Toast("试试左右滑动,选择你喜欢的职业吧！");
+                    if(fenlieanswerlist.size()>0){
+                        tijiao();
+                    }else {
+                        Toast("试试左右滑动,选择你喜欢的职业吧！");
+                    }
                 }
 
                 break;
@@ -280,9 +297,8 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
 
 
 
-
-
     private void tijiao() {
+
         for (int i = 0; i < fenlieanswerlist.size(); i++) {
             if(i==fenlieanswerlist.size()-1){
                 result+=fenlieanswerlist.get(i);
@@ -290,17 +306,19 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 result+=fenlieanswerlist.get(i)+",";
             }
         }
-        DisposableSubscriber<BaseBean> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().tjzy(result, token)
+        DisposableSubscriber<BaseBean> disposableSubscriber =
+                MyQusetUtils.getInstance().getQuestInterface().tjzy(result, token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean>() {
                     @Override
                     public void onNext(BaseBean baseBean) {
                      if(baseBean.code==0){
-
-
                          Intent intent=new Intent(startfenleiActivity.this,MajorStarActivity.class);
+                         intent.putExtra("data","2");
                          intent.putExtra("result", result);
+                         intent.putExtra("Hld",hld);
+                         intent.putExtra("mbti",mbti);
                          startActivity(intent);
                          finish();
                      }
@@ -333,16 +351,21 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                  newlist.add(list.get(i).getJob());
              }
          }
-         for (int i = 0; i < newlist.size(); i++) {
-             if (newlist.get(i) != null) {
-                 tvlist.get(i).setText(newlist.get(i));
-             }
-             if (fenlieanswerlist.contains(newlist.get(i))) {
-                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
-             } else {
-                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+         if(i1>=2){
+             xcpresent.CXEFCPresenter(token);
+         }else {
+             for (int i = 0; i < newlist.size(); i++) {
+                 if (newlist.get(i) != null) {
+                     tvlist.get(i).setText(newlist.get(i));
+                 }
+                 if (fenlieanswerlist.contains(newlist.get(i))) {
+                     tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                 } else {
+                     tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                 }
              }
          }
+
      }
 
     }
@@ -354,36 +377,41 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
 
     @Override
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+       if(cxefcBeanBaseBean.data!=null){
 
-       String  majorresult=cxefcBeanBaseBean.data.getJob();
+           result=cxefcBeanBaseBean.data.getJob();
+           String testCode = cxefcBeanBaseBean.data.getTestCode();
+           String[] split = testCode.split(",");
+           String s = split[0];
+           String[] split1 = s.split(":");
+           mbti = split1[0];
+           String s1 = split[1];
+           String[] split2 = s.split(":");
+           hld = split2[0];
 
-        String testCode = cxefcBeanBaseBean.data.getTestCode();
-        String[] split = testCode.split(",");
-        String s = split[0];
+           String[] split3 = result.split(",");
 
-        String[] split1 = s.split(":");
-        String  mbti = split1[0];
-
-
-        String s1 = split[1];
-        String[] split2 = s.split(":");
-        String  hld = split2[0];
-
-
-
-        Intent intent2=new Intent(this,MajorStarActivity.class);
-        intent2.putExtra("data",data);
-        intent2.putExtra("result",majorresult);
-        intent2.putExtra("Hld",hld);
-        intent2.putExtra("mbti",mbti);
-        startActivity(intent2);
+           for (String n:split3) {
+               fenlieanswerlist.add(n);
+           }
+           for (int i = 0; i < newlist.size(); i++) {
+               if (newlist.get(i) != null) {
+                   tvlist.get(i).setText(newlist.get(i));
+               }
+               if (fenlieanswerlist.contains(newlist.get(i))) {
+                   tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+               } else {
+                   tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+               }
+           }
 
 
+       }
 
     }
 
     @Override
     public void GetEFCResultfail(Throwable t) {
-
+        xcpresent.CXEFCPresenter(token);
     }
 }

@@ -71,7 +71,12 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
         if(list!=null&list.size()>0){
             majorschool_none.setVisibility(View.GONE);
             majorshool_pb.setVisibility(View.GONE);
-            marjorschool_tvnum.setText(list.size()+"所");
+            if(list.size()>=200){
+                marjorschool_tvnum.setText(200+"所");
+            }else {
+                marjorschool_tvnum.setText(list.size()+"所");
+            }
+
             MajorSchoolRecycle adpter=new MajorSchoolRecycle(getActivity(),list);
             majorschool_xrecycle.setAdapter(adpter);
             majorschool_xrecycle.setNestedScrollingEnabled(false);

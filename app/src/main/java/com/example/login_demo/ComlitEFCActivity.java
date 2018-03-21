@@ -62,6 +62,7 @@ public class ComlitEFCActivity extends BaseActivity {
                             int i = Integer.parseInt(data);
                             if(i>0){
                                 time=i;
+
                                 handler.postDelayed(runnable, 1000);
                             }else {
                                 butChakan.setEnabled(true);
@@ -108,6 +109,7 @@ public class ComlitEFCActivity extends BaseActivity {
                     }
                 }
                 if (time > 0) {
+
                     handler.postDelayed(this, 1000);
                 }else {
                     butChakan.setEnabled(true);
@@ -115,7 +117,6 @@ public class ComlitEFCActivity extends BaseActivity {
                     llWeiwancheng.setVisibility(View.GONE);
                     handler.removeCallbacks(this);
                     butChakan.setBackground(getResources().getDrawable(R.drawable.back_capacityyi));
-
                 }
             }
         };

@@ -31,6 +31,7 @@ public class CXEFCPresenter extends Basepresent {
 
             @Override
             public void GetEFCResultfail(Throwable t) {
+
                 cxefcView.GetEFCResultfail(t);
             }
         });

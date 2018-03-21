@@ -86,8 +86,8 @@
                         android:layout_marginTop="160px"
                         />
                     <TextView
+                        android:id="@+id/tv_daima"
                         android:textColor="#F00"
-                        android:text="ARS"
                         android:textSize="50px"
                         android:gravity="center"
                         android:layout_alignParentRight="true"
@@ -162,18 +162,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/xqcs2"
+                    android:scaleType="centerCrop"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
                     />
                 <ImageView
                     android:layout_marginTop="30px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/xqcs3"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:scaleType="centerCrop"
+
                     />
                 <ImageView
                     android:layout_marginTop="30px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/xqcs4"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:scaleType="centerCrop"
+
                     />
                 <View
                     android:layout_width="match_parent"

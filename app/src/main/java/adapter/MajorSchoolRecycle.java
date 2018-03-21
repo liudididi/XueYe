@@ -44,7 +44,6 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
         View view = View.inflate(context, R.layout.majorschool_listitem, null);
         MySchoolViewHolder mySchoolViewHolder=new MySchoolViewHolder(view);
         return mySchoolViewHolder;
-
     }
 
     @Override
@@ -52,7 +51,6 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
         String  fujia="";
         MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getMajor_school());
-
         mySchoolViewHolder.schoolitem_address.setText(list.get(position).getAddress());
         String url = list.get(position).getUrl();
         String two = list.get(position).getTwo();
@@ -87,7 +85,11 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if(list.size()>200){
+            return 200;
+        }else {
+            return list.size();
+        }
     }
 
     class  MySchoolViewHolder extends  RecyclerView.ViewHolder {

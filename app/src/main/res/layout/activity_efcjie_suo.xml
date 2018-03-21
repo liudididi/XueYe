@@ -141,5 +141,11 @@
         </LinearLayout>
 
     </ScrollView>
-
+<ProgressBar
+    android:layout_width="100px"
+    android:layout_height="100px"
+    android:id="@+id/jiesuo_pb"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    />
 </RelativeLayout>

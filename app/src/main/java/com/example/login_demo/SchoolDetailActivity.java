@@ -286,7 +286,7 @@ public class SchoolDetailActivity extends BaseActivity {
                                 if (address != null && address.length() > 1) {
                                     schooldAddress.setText(address);
                                 } else {
-                                    schooldAddress.setText("");
+                                    schooldAddress.setText("地址暂无数据");
                                 }
 
                                 String graduate = data.get(0).getGraduate();

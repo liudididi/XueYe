@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
-import com.example.login_demo.wxapi.WXPayEntryActivity;
 import com.example.login_demo.wxapi.WXPayUtils;
 
 import java.util.Map;
@@ -52,9 +52,11 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
     ImageView ivXlce;
     @BindView(R.id.but_title)
     TextView butTitle;
+    @BindView(R.id.buy_pb)
+    ProgressBar buyPb;
     private CountdownPresent countdownPresent;
     private String bh = "1";
-    private  String title;
+    private String title;
     private int pay = 2;
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
@@ -138,12 +140,12 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
         if (MentalityActivity.xlcp.equals("MBTI")) {
             bh = "1";
             ivXlce.setImageResource(R.drawable.goumai);
-            title="MBTI特质测试";
+            title = "MBTI特质测试";
 
         } else {
             bh = "2";
             ivXlce.setImageResource(R.drawable.huolande);
-            title="霍兰德兴趣特质测试";
+            title = "霍兰德兴趣特质测试";
         }
         butTitle.setText(title);
         payPresent = new PayPresent(this);
@@ -154,13 +156,15 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_goumai:
-                if(token.length()>4){
-                   payPresent.XiaDan(token,bh, pay + "");
+                if (token.length() > 4) {
+                    buyPb.setVisibility(View.VISIBLE);
+                    tvGoumai.setEnabled(false);
+                    payPresent.XiaDan(token, bh, pay + "");
                   /*  Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
                     startActivity(intent);*/
                     break;
-                }else {
+                } else {
                     Toast("用户未登录");
                 }
 
@@ -177,15 +181,14 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
         }
         token = (String) SPUtils.get(MyApp.context, "token", "");
         int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);
-        if(PAYCODE==0){
-            SPUtils.put(MyApp.context,"PAYCODE",-1);
+        if (PAYCODE == 0) {
+            SPUtils.put(MyApp.context, "PAYCODE", -1);
             Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
             startActivity(intent);
             finish();
         }
     }
-
 
 
     @Override
@@ -202,12 +205,14 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
 
     @Override
     public void Countdownfail(Throwable t) {
-
+        countdownPresent.CountdownPresent();
     }
 
 
     @Override
     public void XDsuccess(XDingdanBean xDingdanBean) {
+        buyPb.setVisibility(View.GONE);
+        tvGoumai.setEnabled(true);
         if (xDingdanBean != null) {
             String outTradeNo = xDingdanBean.getOutTradeNo();
             tanchuang(BuyActivity.this, outTradeNo);
@@ -237,7 +242,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
     @Override
     public void WXPaysuccess(WeiXinBean weiXinBean) {
         if (weiXinBean != null) {
-             WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
+            WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
             builder.setAppId(weiXinBean.getAppid())
                     .setPartnerId(weiXinBean.getPartnerid())
                     .setPrepayId(weiXinBean.getPrepayid())
@@ -251,7 +256,8 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
 
     @Override
     public void XDFail(String s) {
-        Toast(s);
+        buyPb.setVisibility(View.GONE);
+        tvGoumai.setEnabled(true);
     }
 
 
@@ -319,7 +325,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
                 if (pay == 1) {
                     payPresent.ZFBpay(outTradeNo);
                 } else {
-                    payPresent.WXpay(outTradeNo );
+                    payPresent.WXpay(outTradeNo);
                 }
 
  /*     {
@@ -339,6 +345,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
             }
         });
     }
+
 
 
 }
