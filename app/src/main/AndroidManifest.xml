@@ -101,6 +101,8 @@
         <activity android:name=".CollegeTitleActivity" />
         <activity android:name=".OneTableXQActivity" />
         <activity android:name=".JJParticularsActivity" />
+        <activity android:name=".Baogao1Activity" />
+        <activity android:name=".HuoLanDeEsayActivity"></activity>
 
         <service
             android:name=".DownApkServer"

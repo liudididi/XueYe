@@ -38,7 +38,6 @@ public class BuyEFCActivity extends BaseActivity implements CountdownView {
         if(price!=null){
             tvMoney1.setText(price);
         }
-
         countdownPresent = new CountdownPresent(this);
     }
 
@@ -60,6 +59,7 @@ public class BuyEFCActivity extends BaseActivity implements CountdownView {
     protected void onResume() {
         super.onResume();
         if (WishFragMent.djs != null) {
+           efcdjs= WishFragMent.djs;
             buyefcTvdjs.setText(WishFragMent.djs);
         }else {
             countdownPresent.CountdownPresent();

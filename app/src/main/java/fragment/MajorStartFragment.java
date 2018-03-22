@@ -55,8 +55,6 @@ public class MajorStartFragment extends Basefragment {
             }
             relativeLayouts.get(i).setVisibility(View.VISIBLE);
             final int finalI = i;
-
-
                 imageViews.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -172,11 +170,9 @@ public class MajorStartFragment extends Basefragment {
                     MajorStarActivity.answerllist.remove(list.get(2));
                     list.get(2).xh=false;
                 }
-
                 MajorStarActivity.scnum.setText(MajorStarActivity.answerllist.size()+"");
             }
         });
-
         ImageView imgyiwenone = view.findViewById(R.id.imgyiwenone);
         ImageView imgyiwentwo = view.findViewById(R.id.imgyiwentwo);
         ImageView imgyiwensan = view.findViewById(R.id.imgyiwensan);

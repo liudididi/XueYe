@@ -15,6 +15,8 @@ import bean.CheckSchoolBean;
 import bean.CityBean;
 import bean.CollerMajorBean;
 import bean.CollerSchoolBean;
+import bean.EsayBaoGaoBean;
+import bean.EsaySdsBean;
 import bean.FingerpostBean;
 import bean.ForecastBean;
 import bean.GailvBean;
@@ -84,6 +86,14 @@ public interface QuestInterface {
      @GET(" /app/stufrom/from")
      Flowable<BaseBean<List<StudentFromBean>>> studentfrom(@Query("name") String name);
 
+
+    //获取MBTI简单分析报告
+    @GET("/app/sdsmbti/getsdsE")
+    Flowable<BaseBean<List<EsaySdsBean>>> getsdsE(@Query("testCode") String testCode);
+
+    //获取MBTI简单分析报告
+    @GET("/app/sdsmbti/getmbtiE")
+    Flowable<BaseBean<List<EsayBaoGaoBean>>> getmbtiE(@Query("testCode") String testCode);
     //倒计时
     @GET(" /app/wishfilling/gettime")
     Flowable<BaseBean<String>> gettime(@Header("token") String token);
@@ -102,7 +112,9 @@ public interface QuestInterface {
     @GET("/app/wishfilling/getHistoryInfo")
     Flowable<BaseBean<List<CXEFCBean>>>  getHistoryInfo(@Header("token") String token);
 
-
+    //查看简单的历史报告
+    @GET("/app/wishfilling/getHistoryInfo")
+    Flowable<BaseBean<List<CXEFCBean>>> getHistoryInfonew(@Query("wishType") String wishType,@Query("token") String token);
     //查询当前EFC精准结果
     @GET("/app/wishfilling/getEFCResult")
     Flowable<BaseBean<CXEFCBean>> getEFCResult(@Query("token") String token);

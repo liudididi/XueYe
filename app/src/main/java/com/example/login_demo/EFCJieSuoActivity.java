@@ -125,6 +125,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.GONE);
+                            rlZhiyxk.setEnabled(true);
+                            rlZhuanyxk.setEnabled(true);
+                            rlZntb.setEnabled(true);
                         }
                     }
 
@@ -178,7 +181,11 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                             imgZhiyxkwjs.setVisibility(View.GONE);
                                             imgZhuanyxkwjs.setVisibility(View.GONE);
                                             imgZntbwjs.setVisibility(View.GONE);
+                                            rlZhiyxk.setEnabled(true);
+                                            rlZhuanyxk.setEnabled(true);
+                                            rlZntb.setEnabled(true);
                                         }
+
                                     }
 
                                     @Override

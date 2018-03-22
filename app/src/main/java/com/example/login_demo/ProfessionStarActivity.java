@@ -97,7 +97,7 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
     protected void onResume() {
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
-        System.out.println("token==="+token);
+
     }
 
     @Override

@@ -63,7 +63,7 @@
             android:id="@+id/xlcs_bt1"
             android:textColor="#fff"
             android:layout_weight="1"
-            android:background="@drawable/back_capacity"
+            android:background="@drawable/back_capacityhui"
             android:text="开始测试"
             android:layout_centerVertical="true"
             android:layout_width="0px"

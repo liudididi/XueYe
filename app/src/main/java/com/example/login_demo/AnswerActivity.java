@@ -74,7 +74,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
     private List<AnswerBean> data;
     private String XX=null;
     private HashMap<String, String> map;
-    //TODO 这是个变量
+
     private static String type="MBTI";
     private EFCJGBaoCunPresenter efcjgBaoCunPresenter;
     private String token;
@@ -228,8 +228,6 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                                 mA.add(a2);
                                 q.setAnswer(mA);
                                 questions.add(q);
-
-
                         }
                     }
 
@@ -406,6 +404,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("MBTI_E",mbtiString,token);
                     Intent intent=new Intent(AnswerActivity.this,MBI_CSActivity.class);
                     startActivity(intent);
+                    finish();
                      return;
                 }
                 if(type.equals("SDS_E"))
@@ -421,7 +420,9 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     String mbtiString =resultStr+":"+"A"+a +":"+"C"+c+":"+"E"+e+":"+"I"+i+":"+"S"+s+":"+"R"+r;
                     System.out.println("SDS_E++"+mbtiString);
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("SDS_E",mbtiString,token);
-                    //TODO 跳转到霍兰德报告界面
+                     Intent intent=new Intent(AnswerActivity.this,HuoLanDeEsayActivity.class);
+                    startActivity(intent);
+                    finish();
                     return;
                 }
                 if(type.equals("MBTI"))
@@ -460,6 +461,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     String mbtiString =mb+","+resultStr+":"+"A"+a +":"+"C"+c+":"+"E"+e+":"+"I"+i+":"+"S"+s+":"+"R"+r;
                     System.out.println("SDS++"+mbtiString);
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("精准",mbtiString,token);
+                    finish();
                     return;
                 }
 

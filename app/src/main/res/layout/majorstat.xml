@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <RelativeLayout
-
     android:id="@+id/majorstarone"
     android:paddingLeft="50px"
     android:paddingTop="50px"
@@ -84,20 +83,20 @@
         android:ellipsize="end"
         android:textColor="#fff"
         />
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/white"
+        ></View>
 </RelativeLayout>
     <RelativeLayout
-        android:visibility="invisible"
         android:id="@+id/majorstartwo"
         android:paddingLeft="50px"
         android:paddingTop="50px"
         android:paddingRight="50px"
         android:layout_width="match_parent"
         android:layout_height="450px">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/white"
-            ></View>
         <TextView
             android:id="@+id/tvmajor7"
             android:layout_width="wrap_content"
@@ -178,7 +177,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:visibility="invisible"
         android:id="@+id/majorstarsan"
         android:paddingLeft="50px"
         android:paddingTop="50px"

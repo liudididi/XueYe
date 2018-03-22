@@ -69,6 +69,11 @@
         android:layout_width="match_parent"
         android:layout_height="184px"
         android:background="#fff">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ccc"
+            ></View>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="500px"
@@ -85,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:text="￥"
                     android:textColor="#FF6700"
-                    android:textSize="50px"
+                    android:textSize="60px"
                     />
                 <TextView
                     android:id="@+id/tv_money"
@@ -93,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:text="698"
                     android:textColor="#FF6700"
-                    android:textSize="50px"
+                    android:textSize="60px"
                     android:layout_marginLeft="10px"
                     />
             </LinearLayout>
@@ -114,7 +119,7 @@
                     android:text="91"
                     android:layout_marginLeft="10px"
                     android:textColor="#FF6700"
-                    android:textSize="56px"/>
+                    android:textSize="50px"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

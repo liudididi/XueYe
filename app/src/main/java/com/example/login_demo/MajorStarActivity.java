@@ -479,7 +479,6 @@ public class MajorStarActivity extends BaseActivity  {
                                 if (majorinfo != null && majorinfo.size() > 0) {
                                     xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
                                 }
-
                             }
                         }
 
@@ -537,7 +536,6 @@ public class MajorStarActivity extends BaseActivity  {
                     public void onNext(BaseBean<List<MajorstatXQBean>> listBaseBean) {
                         if (listBaseBean.code == 0) {
                             if (listBaseBean.data != null && listBaseBean.data.size() > 0) {
-
                                 MajorstatXQBean majorstatXQBean = listBaseBean.data.get(0);
                                 final Dialog dialog = new Dialog(context, R.style.Theme_Light_Dialog);
                                 View dialogView = LayoutInflater.from(context).inflate(R.layout.dialoglayout, null);

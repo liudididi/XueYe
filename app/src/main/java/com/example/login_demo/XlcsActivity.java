@@ -23,7 +23,8 @@ import io.reactivex.subscribers.DisposableSubscriber;
 import untils.MyQusetUtils;
 import untils.SPUtils;
 
-public class XlcsActivity extends BaseActivity {
+public class
+XlcsActivity extends BaseActivity {
 
 
     @BindView(R.id.xlcs_iv_back)

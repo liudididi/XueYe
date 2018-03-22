@@ -73,6 +73,7 @@
             />
         <View
            android:layout_below="@+id/dlog_pymb"
+            android:layout_marginTop="20px"
             android:layout_width="match_parent"
             android:layout_height="10px"
             android:background="#ccc"
@@ -88,7 +89,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50px"
+            android:layout_marginTop="30px"
             android:layout_marginLeft="50px"
             android:text="就业状况:"
             android:textColor="#333"
@@ -98,7 +99,7 @@
             android:id="@+id/tv_ranking"
             android:layout_width="200px"
             android:layout_height="wrap_content"
-            android:layout_marginTop="160px"
+            android:layout_marginTop="120px"
             android:layout_marginLeft="50px"
             android:text="第 3 名 (教育学)"
 
@@ -117,7 +118,7 @@
             />
 
         <TextView
-            android:layout_marginTop="90px"
+            android:layout_marginTop="100px"
             android:layout_below="@+id/tv_ranking"
             android:id="@+id/tv_nearjob"
             android:layout_width="200px"
@@ -134,13 +135,13 @@
             android:layout_width="1px"
             android:layout_height="220px"
              android:layout_marginLeft="300px"
-            android:layout_marginTop="160px"
+            android:layout_marginTop="120px"
             ></View>
         <TextView
             android:id="@+id/tv_rank"
             android:layout_marginLeft="10px"
             android:layout_marginRight="30px"
-            android:layout_marginTop="160px"
+            android:layout_marginTop="120px"
             android:layout_toRightOf="@+id/view_hx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,7 +154,7 @@
             android:layout_alignLeft="@+id/tv_rank"
             android:layout_alignStart="@+id/tv_rank"
             android:layout_below="@+id/tv_rank"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="50px" />
 
 
         <TextView
@@ -161,7 +162,7 @@
             android:id="@+id/tv_pro_job"
             android:layout_marginLeft="10px"
             android:layout_marginRight="30px"
-            android:layout_marginTop="30px"
+            android:layout_marginTop="50px"
             android:layout_toRightOf="@+id/view_hx"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -198,13 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="120px"
             />
-        <View
-            android:layout_marginTop="10px"
-            android:layout_below="@+id/tv_direction_employment"
-            android:layout_width="match_parent"
-            android:layout_height="10px"
-            android:background="#ccc"
-            ></View>
+
     </RelativeLayout>
 
     <RelativeLayout

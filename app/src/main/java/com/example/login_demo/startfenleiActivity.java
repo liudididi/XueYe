@@ -144,13 +144,13 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
         xcpresent = new CXEFCPresenter(this);
         newlist = new ArrayList<>();
         fenlieanswerlist = new ArrayList<>();
+        
         if(i1>=2){
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
                 tvlist.get(i).setText("");
             }
         }else {
-
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
                 tvlist.get(i).setText("");
@@ -215,7 +215,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 finish();
                 break;
             case R.id.start_imgfl:
-              intent(this,ProfessionStarActivity.class);
+              Intent intent1=new Intent(this,ProfessionStarActivity.class);
+              intent1.putExtra("data",data);
+              startActivity(intent1);
                   finish();
                 break;
             case R.id.pro_yes:
@@ -351,7 +353,10 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                  newlist.add(list.get(i).getJob());
              }
          }
+
          if(i1>=2){
+             xcpresent.CXEFCPresenter(token);
+         }else if(i1==1){
              xcpresent.CXEFCPresenter(token);
          }else {
              for (int i = 0; i < newlist.size(); i++) {
@@ -378,33 +383,33 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
     @Override
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
        if(cxefcBeanBaseBean.data!=null){
-
-           result=cxefcBeanBaseBean.data.getJob();
            String testCode = cxefcBeanBaseBean.data.getTestCode();
            String[] split = testCode.split(",");
            String s = split[0];
            String[] split1 = s.split(":");
            mbti = split1[0];
            String s1 = split[1];
-           String[] split2 = s.split(":");
+           String[] split2 = s1.split(":");
            hld = split2[0];
+             if(i1>=2){
+                 result=cxefcBeanBaseBean.data.getJob();
+                 String[] split3 = result.split(",");
 
-           String[] split3 = result.split(",");
+                 for (String n:split3) {
+                     fenlieanswerlist.add(n);
+                 }
+                 for (int i = 0; i < newlist.size(); i++) {
+                     if (newlist.get(i) != null) {
+                         tvlist.get(i).setText(newlist.get(i));
+                     }
+                     if (fenlieanswerlist.contains(newlist.get(i))) {
+                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                     } else {
+                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                     }
+                 }
 
-           for (String n:split3) {
-               fenlieanswerlist.add(n);
-           }
-           for (int i = 0; i < newlist.size(); i++) {
-               if (newlist.get(i) != null) {
-                   tvlist.get(i).setText(newlist.get(i));
-               }
-               if (fenlieanswerlist.contains(newlist.get(i))) {
-                   tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
-               } else {
-                   tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
-               }
-           }
-
+             }
 
        }
 

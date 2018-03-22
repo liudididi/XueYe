@@ -159,10 +159,10 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
                 if (token.length() > 4) {
                     buyPb.setVisibility(View.VISIBLE);
                     tvGoumai.setEnabled(false);
-                    payPresent.XiaDan(token, bh, pay + "");
-                  /*  Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    //payPresent.XiaDan(token, bh, pay + "");
+                  Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
-                    startActivity(intent);*/
+                    startActivity(intent);
                     break;
                 } else {
                     Toast("用户未登录");
@@ -173,6 +173,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
 
     @Override
     protected void onResume() {
+        buyPb.setVisibility(View.GONE);
         super.onResume();
         if (WishFragMent.djs != null) {
             buyTvdjs.setText(WishFragMent.djs);

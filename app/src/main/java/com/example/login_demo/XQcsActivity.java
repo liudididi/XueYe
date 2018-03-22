@@ -98,11 +98,11 @@ public class XQcsActivity extends BaseActivity {
         circularLayout.removeAllViews();
         List<String> list = new ArrayList<>();
         list.add("A艺术类");
-        list.add("S社会");
-        list.add("E企业");
         list.add("C常规");
-        list.add("R实际");
+        list.add("E企业");
         list.add("I研究");
+        list.add("S社会");
+        list.add("R实际");
         for (int i = 0; i < list.size(); i++) {
             TextView scoreTextView = new TextView(this);
             scoreTextView.setTextColor(Color.BLACK);

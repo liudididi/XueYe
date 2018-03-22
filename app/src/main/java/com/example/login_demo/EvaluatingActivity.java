@@ -1,5 +1,6 @@
 package com.example.login_demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +36,9 @@ public class EvaluatingActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.evaluating_tv:
-                intent(this,ProfessionStarActivity.class);
+                Intent intent=new Intent(this,ProfessionStarActivity.class);
+                intent.putExtra("data","1");
+                startActivity(intent);
                 break;
         }
     }

@@ -46,41 +46,68 @@
                 <ImageView
                     android:src="@drawable/mbtibg"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"/>
 
                 <LinearLayout
                     android:layout_marginTop="120px"
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="100px">
+                    android:layout_width="wrap_content"
+                    android:layout_height="100px"
+                    android:layout_centerHorizontal="true"
+                    >
                     <TextView
-                        android:text="I"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="70px"
+                        android:textColor="#fff"
+                        android:text="您是"
+                        android:layout_marginRight="20px"/>
+                    <TextView
+                        android:id="@+id/tv_dm1"
                         android:textSize="70px"
                         android:textColor="#f00"
-                        android:layout_marginLeft="310px"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_width="100px"
+                        android:layout_height="100px"
+                        android:gravity="center"
+                        android:background="@drawable/bai1"/>
                     <TextView
-                        android:text="N"
+                        android:id="@+id/tv_dm2"
+
                         android:textSize="70px"
                         android:textColor="#f00"
-                        android:layout_marginLeft="110px"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_marginLeft="20px"
+                        android:layout_width="100px"
+                        android:layout_height="100px"
+                        android:gravity="center"
+                        android:background="@drawable/bai1"/>
                     <TextView
-                        android:text="T"
+                        android:id="@+id/tv_dm3"
+
                         android:textSize="70px"
                         android:textColor="#f00"
-                        android:layout_marginLeft="110px"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_marginLeft="20px"
+                        android:layout_width="100px"
+                        android:layout_height="100px"
+                        android:gravity="center"
+                        android:background="@drawable/bai1" />
                     <TextView
-                        android:text="J"
+                        android:id="@+id/tv_dm4"
+
                         android:textSize="70px"
                         android:textColor="#f00"
-                        android:layout_marginLeft="110px"
+                        android:layout_marginLeft="20px"
+                        android:layout_width="100px"
+                        android:layout_height="100px"
+                        android:gravity="center"
+                        android:background="@drawable/bai1" />
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content"
+                        android:text="型人"
+                        android:textSize="70px"
+                        android:textColor="#fff"
+                        android:layout_marginLeft="20px"/>
                 </LinearLayout>
             </RelativeLayout>
 
@@ -93,8 +120,8 @@
                 android:layout_marginTop="390px"
                 android:layout_width="match_parent"
                 android:layout_height="150px">
-
                 <TextView
+                    android:id="@+id/tv_dm"
                     android:textColor="#000"
                     android:layout_marginLeft="200px"
                     android:gravity="center_vertical"
@@ -102,7 +129,15 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:textSize="50px"
-                    android:text="INTJ型人"
+                    />
+                <TextView
+                    android:textColor="#000"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="50px"
+                    android:text="型人"
                     />
                 <TextView
                     android:layout_marginLeft="50px"
@@ -145,8 +180,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="100"
+                        android:max="30"
+                        android:progress="30"
                         android:layout_marginLeft="10px"
                         android:progressDrawable="@drawable/progressbg"/>
                     <ProgressBar
@@ -154,8 +189,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="35"
+                        android:max="30"
+                        android:progress="0"
                         android:layout_marginLeft="30px"
                         android:progressDrawable="@drawable/progressbg1"/>
 
@@ -191,8 +226,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="100"
+                        android:max="30"
+                        android:progress="30"
                         android:layout_marginLeft="10px"
                         android:progressDrawable="@drawable/progressbg2"/>
                     <ProgressBar
@@ -200,8 +235,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="45"
+                        android:max="30"
+                        android:progress="0"
                         android:layout_marginLeft="30px"
                         android:progressDrawable="@drawable/progressbg3"/>
 
@@ -238,8 +273,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="100"
+                        android:max="30"
+                        android:progress="30"
                         android:layout_marginLeft="10px"
                         android:progressDrawable="@drawable/progressbg4"/>
                     <ProgressBar
@@ -247,8 +282,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="55"
+                        android:max="30"
+                        android:progress="0"
                         android:layout_marginLeft="30px"
                         android:progressDrawable="@drawable/progressbg5"/>
 
@@ -285,8 +320,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="100"
+                        android:max="30"
+                        android:progress="30"
                         android:layout_marginLeft="10px"
                         android:progressDrawable="@drawable/progressbg6"/>
                     <ProgressBar
@@ -294,8 +329,8 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="270px"
                         android:layout_height="20px"
-                        android:max="100"
-                        android:progress="65"
+                        android:max="30"
+                        android:progress="0"
                         android:layout_marginLeft="30px"
                         android:progressDrawable="@drawable/progressbg7"/>
 
@@ -337,9 +372,10 @@
                         android:layout_centerVertical="true"
                         android:layout_width="60px"
                         android:layout_height="60px"
-                        android:src="@drawable/shangjt"
+                        android:src="@drawable/right"
                         />
                     <TextView
+                        android:id="@+id/tv_yi"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="100px"
                         android:layout_width="wrap_content"
@@ -368,9 +404,10 @@
                         android:layout_centerVertical="true"
                         android:layout_width="60px"
                         android:layout_height="60px"
-                        android:src="@drawable/shangjt"
+                        android:src="@drawable/right"
                         />
                     <TextView
+                        android:id="@+id/tv_er"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="100px"
                         android:layout_width="wrap_content"
@@ -399,9 +436,10 @@
                         android:layout_centerVertical="true"
                         android:layout_width="60px"
                         android:layout_height="60px"
-                        android:src="@drawable/shangjt"
+                        android:src="@drawable/right"
                         />
                     <TextView
+                        android:id="@+id/tv_san"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="100px"
                         android:layout_width="wrap_content"
@@ -436,14 +474,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/iv_cc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:src="@drawable/cxcp"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="10px"
             />
-
-
     </RelativeLayout>
 
 

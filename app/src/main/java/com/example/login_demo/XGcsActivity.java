@@ -106,25 +106,25 @@ public class XGcsActivity extends BaseActivity implements XGcsView{
             if (index1.equals("I")) {
                 pb2.setProgress(i5);
             } else {
-                pb1.setProgress(100 - i1);
+                pb1.setProgress(30 - i1);
             }
             String index2 = result.substring(1, 2);
             if (index2.equals("N")) {
                 pb4.setProgress(i6);
             } else {
-                pb3.setProgress(100 - i2);
+                pb3.setProgress(30 - i2);
             }
             String index3 = result.substring(2, 3);
             if (index3.equals("F")) {
                 pb6.setProgress(i7);
             } else {
-                pb5.setProgress(100 - i3);
+                pb5.setProgress(30 - i3);
             }
             String index4 = result.substring(3, 4);
             if (index4.equals("P")) {
                 pb8.setProgress(i8);
             } else {
-                pb7.setProgress(100 - i4);
+                pb7.setProgress(30 - i4);
             }
             xGcsPresenter = new XGcsPresenter(this);
             xGcsPresenter.XGcsPresenter(result);

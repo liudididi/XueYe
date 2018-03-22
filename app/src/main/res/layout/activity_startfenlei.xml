@@ -147,10 +147,11 @@
         android:background="@drawable/back_capacityer"
         android:textColor="#fff"
         android:layout_alignParentBottom="true"
-        android:layout_width="600px"
+        android:layout_width="650px"
         android:layout_centerHorizontal="true"
-        android:layout_height="100px"
-        android:layout_marginBottom="250px"
+        android:layout_height="120px"
+        android:layout_marginBottom="200px"
+        android:textSize="45px"
         />
     <LinearLayout
          android:clickable="true"
