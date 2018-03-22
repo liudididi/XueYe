@@ -52,19 +52,23 @@ public class Baogao1Activity extends BaseActivity {
         esayBaoGaoPresenter = new EsayBaoGaoPresenter(new EsayBaoGaoView() {
             @Override
             public void EsayBaoGaosuccess(BaseBean<List<EsayBaoGaoBean>> listBaseBean) {
-                String basic = listBaseBean.data.get(0).getBasic();
-                String job_development = listBaseBean.data.get(0).getJob_development();
-                String work_environment = listBaseBean.data.get(0).getWork_environment();
+                if(listBaseBean!=null){
+                    String basic = listBaseBean.data.get(0).getBasic();
+                    String job_development = listBaseBean.data.get(0).getJob_development();
+                    String work_environment = listBaseBean.data.get(0).getWork_environment();
 
-                if (basic != null&&s.equals("基本分析报告")) {
-                    tv1.setText(basic);
+                    if (basic != null&&s.equals("基本分析报告")) {
+                        tv1.setText(basic);
+                    }
+                    if (job_development != null&&s.equals("职业发展分析报告")) {
+                        tv1.setText(job_development);
+                    }
+                    if (work_environment != null&&s.equals("工作环境分析报告")) {
+                        tv1.setText(work_environment);
+                    }
+
                 }
-                if (job_development != null&&s.equals("职业发展分析报告")) {
-                    tv1.setText(job_development);
-                }
-                if (work_environment != null&&s.equals("工作环境分析报告")) {
-                    tv1.setText(work_environment);
-                }
+
             }
 
             @Override

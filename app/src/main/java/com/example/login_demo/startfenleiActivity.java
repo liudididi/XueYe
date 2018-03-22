@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
@@ -33,7 +34,7 @@ import view.CXEFCView;
 import view.StartFView;
 
 
-public class startfenleiActivity extends BaseActivity  implements StartFView, CXEFCView{
+public class startfenleiActivity extends BaseActivity implements StartFView, CXEFCView {
     @BindView(R.id.pro_iv_back)
     ImageView proIvBack;
     @BindView(R.id.start_imgfl)
@@ -106,22 +107,25 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
     TextView proZrl;
     @BindView(R.id.horizontalscroll)
     HorizontalScrollView horizontalscroll;
+    @BindView(R.id.img_zjt)
+    ImageView imgZjt;
     private int min;
     private int max;
     private List<TextView> tvlist;
-    public   static  List<String> fenlieanswerlist=new ArrayList<>();
+    public static List<String> fenlieanswerlist = new ArrayList<>();
     private List<String> newlist;
     private String type;
     private String classify;
-    private String fenlei="hot";
+    private String fenlei = "hot";
     private StartFlPresent startFlPresent;
     private String token;
-    private  String result="";
+    private String result = "";
     private CXEFCPresenter xcpresent;
     private int i1;
     private String data;
     private String hld;
     private String mbti;
+    private AlphaAnimation anim01;
 
     @Override
     public int getId() {
@@ -137,20 +141,38 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
         data = getIntent().getStringExtra("data");
         i1 = Integer.parseInt(data);
         inittvlist();
+        //动画
+        anim01 = new AlphaAnimation(2.f, 0.1f);
+
+        //动画持续的时间
+
+        anim01.setDuration(1500);
+
+        //设置动画持续的次数
+
+        anim01.setRepeatCount(AlphaAnimation.INFINITE);
+
+//应该做什么当它到达尽头。应用此设置只在重复计数大于0或无限。默认为重启。
+
+        anim01.setRepeatMode(AlphaAnimation.REVERSE);
+
+        //开启动画
+
+        imgZjt.startAnimation(anim01);
         type = getIntent().getStringExtra("type");
         classify = getIntent().getStringExtra("classify");
         startFlPresent = new StartFlPresent(this);
-        startFlPresent.getStartfl(classify,type,fenlei);
+        startFlPresent.getStartfl(classify, type, fenlei);
         xcpresent = new CXEFCPresenter(this);
         newlist = new ArrayList<>();
         fenlieanswerlist = new ArrayList<>();
-        
-        if(i1>=2){
+
+        if (i1 >= 2) {
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
                 tvlist.get(i).setText("");
             }
-        }else {
+        } else {
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
                 tvlist.get(i).setText("");
@@ -172,6 +194,7 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
         }
 
     }
+
 
     private void inittvlist() {
         tvlist = new ArrayList<>();
@@ -206,6 +229,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
     protected void onDestroy() {
         super.onDestroy();
         startFlPresent.onDestory();
+        if(anim01!=null){
+            anim01.cancel();
+        }
     }
 
     @OnClick({R.id.pro_iv_back, R.id.start_imgfl, R.id.pro_yes, R.id.pro_rmzy, R.id.pro_shl, R.id.pro_lxgc, R.id.pro_ysrw, R.id.pro_zrl})
@@ -215,33 +241,33 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 finish();
                 break;
             case R.id.start_imgfl:
-              Intent intent1=new Intent(this,ProfessionStarActivity.class);
-              intent1.putExtra("data",data);
-              startActivity(intent1);
-                  finish();
+                Intent intent1 = new Intent(this, ProfessionStarActivity.class);
+                intent1.putExtra("data", data);
+                startActivity(intent1);
+                finish();
                 break;
             case R.id.pro_yes:
-                if(i1>=2){
-                    Intent intent=new Intent(startfenleiActivity.this,MajorStarActivity.class);
-                    intent.putExtra("data",data);
+                if (i1 >= 2) {
+                    Intent intent = new Intent(startfenleiActivity.this, MajorStarActivity.class);
+                    intent.putExtra("data", data);
                     intent.putExtra("result", result);
-                    intent.putExtra("Hld",hld);
-                    intent.putExtra("mbti",mbti);
+                    intent.putExtra("Hld", hld);
+                    intent.putExtra("mbti", mbti);
                     startActivity(intent);
                     finish();
-                }else {
-                    if(fenlieanswerlist.size()>0){
+                } else {
+                    if (fenlieanswerlist.size() > 0) {
                         tijiao();
-                    }else {
+                    } else {
                         Toast("试试左右滑动,选择你喜欢的职业吧！");
                     }
                 }
 
                 break;
             case R.id.pro_rmzy:
-                fenlei="hot";
-                startFlPresent.getStartfl(classify,type,fenlei);
-                horizontalscroll.scrollTo(0,0);
+                fenlei = "hot";
+                startFlPresent.getStartfl(classify, type, fenlei);
+                horizontalscroll.scrollTo(0, 0);
                 proRmzy.setTextColor(getResources().getColor(R.color.dialog_attention_explain_title));
                 proShl.setTextColor(Color.WHITE);
                 proLxgc.setTextColor(Color.WHITE);
@@ -249,9 +275,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 proZrl.setTextColor(Color.WHITE);
                 break;
             case R.id.pro_shl:
-                fenlei="society";
-                startFlPresent.getStartfl(classify,type,fenlei);
-                horizontalscroll.scrollTo(0,0);
+                fenlei = "society";
+                startFlPresent.getStartfl(classify, type, fenlei);
+                horizontalscroll.scrollTo(0, 0);
                 proShl.setTextColor(getResources().getColor(R.color.dialog_attention_explain_title));
                 proRmzy.setTextColor(Color.WHITE);
                 proLxgc.setTextColor(Color.WHITE);
@@ -259,9 +285,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 proZrl.setTextColor(Color.WHITE);
                 break;
             case R.id.pro_lxgc:
-                fenlei="engineer";
-                startFlPresent.getStartfl(classify,type,fenlei);
-                horizontalscroll.scrollTo(0,0);
+                fenlei = "engineer";
+                startFlPresent.getStartfl(classify, type, fenlei);
+                horizontalscroll.scrollTo(0, 0);
                 proLxgc.setTextColor(getResources().getColor(R.color.dialog_attention_explain_title));
                 proShl.setTextColor(Color.WHITE);
                 proRmzy.setTextColor(Color.WHITE);
@@ -269,9 +295,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 proZrl.setTextColor(Color.WHITE);
                 break;
             case R.id.pro_ysrw:
-                fenlei="art";
-                startFlPresent.getStartfl(classify,type,fenlei);
-                horizontalscroll.scrollTo(0,0);
+                fenlei = "art";
+                startFlPresent.getStartfl(classify, type, fenlei);
+                horizontalscroll.scrollTo(0, 0);
                 proYsrw.setTextColor(getResources().getColor(R.color.dialog_attention_explain_title));
                 proLxgc.setTextColor(Color.WHITE);
                 proShl.setTextColor(Color.WHITE);
@@ -279,9 +305,9 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
                 proZrl.setTextColor(Color.WHITE);
                 break;
             case R.id.pro_zrl:
-                fenlei="nature";
-                startFlPresent.getStartfl(classify,type,fenlei);
-                horizontalscroll.scrollTo(0,0);
+                fenlei = "nature";
+                startFlPresent.getStartfl(classify, type, fenlei);
+                horizontalscroll.scrollTo(0, 0);
                 proZrl.setTextColor(getResources().getColor(R.color.dialog_attention_explain_title));
                 proYsrw.setTextColor(Color.WHITE);
                 proLxgc.setTextColor(Color.WHITE);
@@ -298,120 +324,125 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
     }
 
 
-
     private void tijiao() {
 
         for (int i = 0; i < fenlieanswerlist.size(); i++) {
-            if(i==fenlieanswerlist.size()-1){
-                result+=fenlieanswerlist.get(i);
-            }else {
-                result+=fenlieanswerlist.get(i)+",";
+            if (i == fenlieanswerlist.size() - 1) {
+                result += fenlieanswerlist.get(i);
+            } else {
+                result += fenlieanswerlist.get(i) + ",";
             }
         }
         DisposableSubscriber<BaseBean> disposableSubscriber =
                 MyQusetUtils.getInstance().getQuestInterface().tjzy(result, token)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSubscriber<BaseBean>() {
-                    @Override
-                    public void onNext(BaseBean baseBean) {
-                     if(baseBean.code==0){
-                         Intent intent=new Intent(startfenleiActivity.this,MajorStarActivity.class);
-                         intent.putExtra("data","2");
-                         intent.putExtra("result", result);
-                         intent.putExtra("Hld",hld);
-                         intent.putExtra("mbti",mbti);
-                         startActivity(intent);
-                         finish();
-                     }
-                    }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                            @Override
+                            public void onNext(BaseBean baseBean) {
+                                if (baseBean.code == 0) {
+                                    Intent intent = new Intent(startfenleiActivity.this, MajorStarActivity.class);
+                                    intent.putExtra("data", "2");
+                                    intent.putExtra("result", result);
+                                    intent.putExtra("Hld", hld);
+                                    intent.putExtra("mbti", mbti);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
 
-                    @Override
-                    public void onError(Throwable t) {
+                            @Override
+                            public void onError(Throwable t) {
 
-                    }
+                            }
 
-                    @Override
-                    public void onComplete() {
+                            @Override
+                            public void onComplete() {
 
-                    }
-                });
+                            }
+                        });
 
     }
 
 
     @Override
     public void Stratjobsuccess(List<StartFl> list) {
-     if(list!=null&&list.size()>0){
-           newlist.clear();
-         if(list.size()>25){
-             for (int i = 0; i <25 ; i++) {
-                 newlist.add(list.get(i).getJob());
-             }
-         }else {
-             for (int i = 0; i <list.size() ; i++) {
-                 newlist.add(list.get(i).getJob());
-             }
-         }
+        if (list != null && list.size() > 0) {
+            newlist.clear();
+            if (list.size() > 25) {
+                for (int i = 0; i < 25; i++) {
+                    newlist.add(list.get(i).getJob());
+                }
+            } else {
+                for (int i = 0; i < list.size(); i++) {
+                    newlist.add(list.get(i).getJob());
+                }
+            }
+            if (i1 >= 2) {
+                xcpresent.CXEFCPresenter(token);
+            } else if (i1 == 1) {
+                xcpresent.CXEFCPresenter(token);
+            } else {
+                for (int i = 0; i < newlist.size(); i++) {
+                    if (newlist.get(i) != null) {
+                        tvlist.get(i).setText(newlist.get(i));
+                    }
+                    if (fenlieanswerlist.contains(newlist.get(i))) {
+                        tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                    } else {
+                        tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                    }
+                }
+            }
 
-         if(i1>=2){
-             xcpresent.CXEFCPresenter(token);
-         }else if(i1==1){
-             xcpresent.CXEFCPresenter(token);
-         }else {
-             for (int i = 0; i < newlist.size(); i++) {
-                 if (newlist.get(i) != null) {
-                     tvlist.get(i).setText(newlist.get(i));
-                 }
-                 if (fenlieanswerlist.contains(newlist.get(i))) {
-                     tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
-                 } else {
-                     tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
-                 }
-             }
-         }
-
-     }
+        }
 
     }
 
     @Override
     public void Stratjobfail(String msg) {
-        Toast(msg);
+
+        startFlPresent.getStartfl(classify, type, fenlei);
     }
 
     @Override
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
-       if(cxefcBeanBaseBean.data!=null){
-           String testCode = cxefcBeanBaseBean.data.getTestCode();
-           String[] split = testCode.split(",");
-           String s = split[0];
-           String[] split1 = s.split(":");
-           mbti = split1[0];
-           String s1 = split[1];
-           String[] split2 = s1.split(":");
-           hld = split2[0];
-             if(i1>=2){
-                 result=cxefcBeanBaseBean.data.getJob();
-                 String[] split3 = result.split(",");
+        if (cxefcBeanBaseBean.data != null) {
+            String testCode = cxefcBeanBaseBean.data.getTestCode();
+            String[] split = testCode.split(",");
+            String s = split[0];
+            String[] split1 = s.split(":");
+            mbti = split1[0];
+            String s1 = split[1];
+            String[] split2 = s1.split(":");
+            hld = split2[0];
+            if (i1 >= 2) {
+                result = cxefcBeanBaseBean.data.getJob();
+                String[] split3 = result.split(",");
 
-                 for (String n:split3) {
-                     fenlieanswerlist.add(n);
-                 }
-                 for (int i = 0; i < newlist.size(); i++) {
-                     if (newlist.get(i) != null) {
-                         tvlist.get(i).setText(newlist.get(i));
-                     }
-                     if (fenlieanswerlist.contains(newlist.get(i))) {
-                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
-                     } else {
-                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
-                     }
-                 }
+                for (String n : split3) {
+                    fenlieanswerlist.add(n);
+                }
+                for (int i = 0; i < newlist.size(); i++) {
+                    if (newlist.get(i) != null) {
+                        tvlist.get(i).setText(newlist.get(i));
+                    }
+                    if (fenlieanswerlist.contains(newlist.get(i))) {
+                        tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                    } else {
+                        tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                    }
+                }
 
-             }
+            }else {
+                for (int i = 0; i < newlist.size(); i++) {
+                    if (newlist.get(i) != null) {
+                        tvlist.get(i).setText(newlist.get(i));
+                    }
+                }
+            }
 
-       }
+        }
 
     }
 
@@ -419,4 +450,6 @@ public class startfenleiActivity extends BaseActivity  implements StartFView, CX
     public void GetEFCResultfail(Throwable t) {
         xcpresent.CXEFCPresenter(token);
     }
+
+
 }

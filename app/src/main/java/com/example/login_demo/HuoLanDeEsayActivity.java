@@ -84,9 +84,16 @@ public class HuoLanDeEsayActivity extends BaseActivity implements EsayMbtiLSView
     public void InIt() {
 
         token = (String) SPUtils.get(MyApp.context, "token", "");
-
         esayMbtiLSPresenter = new EsayMbtiLSPresenter(this);
-        esayMbtiLSPresenter.EsayMbtiLSPresenter("SDS_E", token);
+        String scode = getIntent().getStringExtra("Scode");
+        if(scode!=null)
+        {
+            fx(scode);
+        }
+        else
+        {
+            esayMbtiLSPresenter.EsayMbtiLSPresenter("SDS_E", token);
+        }
 
 
     }
@@ -94,7 +101,11 @@ public class HuoLanDeEsayActivity extends BaseActivity implements EsayMbtiLSView
     @Override
     public void EsayMbtiLSsuccess(BaseBean<List<CXEFCBean>> listBaseBean) {
         String testCode = listBaseBean.data.get(0).getTestCode();
-        String[] split1 = testCode.split(":");
+        fx(testCode);
+    }
+
+    private void fx(String textcode) {
+        String[] split1 = textcode.split(":");
         result = split1[0];
         String index1 = result.substring(0, 1);
         String index2 = result.substring(1, 2);
@@ -178,6 +189,7 @@ public class HuoLanDeEsayActivity extends BaseActivity implements EsayMbtiLSView
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         esayMbtiLSPresenter.onDestory();
         esayHuanLanDePresenter.onDestory();
     }

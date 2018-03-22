@@ -43,8 +43,9 @@ public class PayMoudle {
 
 
     public  void  ZFBpay(String outTradeNo,final ZFBpayBack zfBpayBack){
-        DisposableSubscriber<BaseBean<String>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface()
-                .ZFBpay(outTradeNo)
+        DisposableSubscriber<BaseBean<String>> disposableSubscriber =
+                MyQusetUtils.getInstance().getQuestInterface()
+                .ZFBpay(outTradeNo,"1")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
@@ -69,7 +70,7 @@ public class PayMoudle {
     public  void  WXBpay(String outTradeNo,final WXpayBack wXpayBack){
         DisposableSubscriber<BaseBean<WeiXinBean>> disposableSubscriber = MyQusetUtils.getInstance()
                 .getQuestInterface()
-                .WXpay(outTradeNo)
+                .WXpay(outTradeNo,"2")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<WeiXinBean>>() {

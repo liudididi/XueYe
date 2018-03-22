@@ -236,6 +236,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
             case R.id.rl_zhuanyxk:
 
                 cxefcPresenter.CXEFCPresenter(token);
+                rlZhuanyxk.setEnabled(false);
 
                 break;
             case R.id.rl_zntb:
@@ -247,9 +248,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
     @Override
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+        rlZhuanyxk.setEnabled(true);
         if (cxefcBeanBaseBean.code == 0) {
             majorresult = cxefcBeanBaseBean.data.getJob();
-
             String testCode = cxefcBeanBaseBean.data.getTestCode();
             String[] split = testCode.split(",");
             String s = split[0];
@@ -271,12 +272,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     @Override
     public void GetEFCResultfail(Throwable t) {
         cxefcPresenter.CXEFCPresenter(token);
+        rlZhuanyxk.setEnabled(true);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
+
 }

@@ -295,7 +295,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         adapter.setItemOnClick(new ChineseMedicineReportAdapter.ItemOnClick() {
             @Override
             public void SX(View view, final int position) {
-                TextView tv_answer=view.findViewById(R.id.tv_answer);
+                final TextView tv_answer=view.findViewById(R.id.tv_answer);
                 tv_answer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -315,15 +315,16 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                         if (viewFlipper.getDisplayedChild() == mQuestion.size() - 1) {
                             //Toast.makeText(AnswerActivity.this, "最后一个题", Toast.LENGTH_SHORT).show();
                             //得到MBTI测试得到的结果
+                            tv_answer.setEnabled(false);
                             if(type.equals("MBTI"))
                             {
-                                jiexi();
+                                jiexi(tv_answer);
                                  return;
                             }
                             //得到SDS测试得到的结果
                             if(type.equals("SDS"))
                             {
-                                jiexi();
+                                jiexi(tv_answer);
                                 startActivity(new Intent(AnswerActivity.this,EvaluatingActivity.class));
                                 finish();
                                 return;
@@ -331,13 +332,13 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                             //得到MBTI_E测试得到的结果
                             if(type.equals("MBTI_E"))
                             {
-                                 jiexi();
+                                 jiexi(tv_answer);
                                 return;
                             }
                             //得到MBTI_E测试得到的结果
                             if(type.equals("SDS_E"))
                             {
-                                jiexi();
+                                jiexi(tv_answer);
                                 return;
                             }
 
@@ -371,7 +372,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         return view;
     }
     //解析数据
-    public void jiexi() {
+    public void jiexi(final TextView tv_answer) {
         viewFlipper.stopFlipping();
         Gson gson=new Gson();
         String route= gson.toJson(map);
@@ -385,6 +386,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         tijiao.enqueue(new Callback<BaseBean<TijiaoBean>>() {
             @Override
             public void onResponse(Call<BaseBean<TijiaoBean>> call, Response<BaseBean<TijiaoBean>> response) {
+                tv_answer.setEnabled(true);
                 TijiaoBean shuju = response.body().data;
                 if(type.equals("MBTI_E"))
                 {
@@ -469,6 +471,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
 
             @Override
             public void onFailure(Call<BaseBean<TijiaoBean>> call, Throwable t) {
+                tv_answer.setEnabled(true);
 
             }
         });

@@ -91,14 +91,27 @@ public class MBI_CSActivity extends BaseActivity implements EsayMbtiLSView {
         token = (String) SPUtils.get(MyApp.context, "token", "");
 
         esayMbtiLSPresenter = new EsayMbtiLSPresenter(this);
-        esayMbtiLSPresenter.EsayMbtiLSPresenter("MBTI_E", token);
+        Intent intent = getIntent();
+        String mcode = intent.getStringExtra("Mcode");
+        if(mcode!=null)
+        {
+            fx(mcode);
+        }
+        else
+        {
+            esayMbtiLSPresenter.EsayMbtiLSPresenter("MBTI_E", token);
+        }
+
     }
 
     @Override
     public void EsayMbtiLSsuccess(BaseBean<List<CXEFCBean>> listBaseBean) {
         String testCode = listBaseBean.data.get(0).getTestCode();
-        String[] split1 = testCode.split(":");
+        fx(testCode);
+    }
 
+    private void fx(String textcode) {
+        String[] split1 = textcode.split(":");
         result = split1[0];
         tv_dm.setText(result);
         String index1 = result.substring(0, 1);
@@ -141,17 +154,17 @@ public class MBI_CSActivity extends BaseActivity implements EsayMbtiLSView {
         } else {
             pb1.setProgress(30 - i1);
         }
-         if (index2.equals("N")) {
+        if (index2.equals("N")) {
             pb4.setProgress(i6);
         } else {
             pb3.setProgress(30 - i2);
         }
-         if (index3.equals("F")) {
+        if (index3.equals("F")) {
             pb6.setProgress(i7);
         } else {
             pb5.setProgress(30 - i3);
         }
-         if (index4.equals("P")) {
+        if (index4.equals("P")) {
             pb8.setProgress(i8);
         } else {
             pb7.setProgress(30 - i4);
@@ -162,6 +175,7 @@ public class MBI_CSActivity extends BaseActivity implements EsayMbtiLSView {
     public void EsayMbtiLSfail(Throwable t) {
 
     }
+
 
 
 
@@ -211,7 +225,6 @@ public class MBI_CSActivity extends BaseActivity implements EsayMbtiLSView {
     protected void onDestroy() {
         super.onDestroy();
         esayMbtiLSPresenter.onDestory();
-
     }
 
 }

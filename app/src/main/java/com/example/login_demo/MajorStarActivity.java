@@ -338,7 +338,7 @@ public class MajorStarActivity extends BaseActivity  {
             }
             @Override
             public void onFailure(Call<BaseBean<List<jobStarBean>>> call, Throwable t) {
-                Toast(t.toString());
+
             }
         });
         majorstarbyes.setOnClickListener(new View.OnClickListener() {
@@ -414,9 +414,6 @@ public class MajorStarActivity extends BaseActivity  {
 
                 }
 
-
-
-
             }
         });
 
@@ -481,7 +478,6 @@ public class MajorStarActivity extends BaseActivity  {
                                 }
                             }
                         }
-
                     }
                 });
             }
@@ -659,7 +655,6 @@ public class MajorStarActivity extends BaseActivity  {
                     .build();
             rotatable.setTouchEnable(false);
             rotatable.rotate(Rotatable.ROTATE_Y, 0, 1000);
-
         }
     }
 

@@ -149,6 +149,9 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
         }
         butTitle.setText(title);
         payPresent = new PayPresent(this);
+
+        buyPb.setVisibility(View.GONE);
+        tvGoumai.setEnabled(true);
     }
 
 
@@ -160,7 +163,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
                     buyPb.setVisibility(View.VISIBLE);
                     tvGoumai.setEnabled(false);
                     //payPresent.XiaDan(token, bh, pay + "");
-                  Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
                     startActivity(intent);
                     break;
@@ -173,8 +176,9 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
 
     @Override
     protected void onResume() {
-        buyPb.setVisibility(View.GONE);
         super.onResume();
+        buyPb.setVisibility(View.GONE);
+        tvGoumai.setEnabled(true);
         if (WishFragMent.djs != null) {
             buyTvdjs.setText(WishFragMent.djs);
         } else {

@@ -14,18 +14,19 @@ public class Advanced_YX_Bean {
 
     private boolean selecked=true;
     /**
-     * major : [{"yxGai":"0.915","major":"经济学类","zyscore":678,"name":"北京大学","yxscore":677,"time":"本科一批","major_id":"020101","zyGai":"0.91"},{"yxGai":"0.915","major":"英语","zyscore":675,"name":"北京大学","yxscore":677,"time":"本科一批","major_id":"050201","zyGai":"0.925"}]
-     * num : 2
-     * name : 北京大学
-     * recommendIndex : 0.8095
-     * info : {"name":"北京大学","ranking":"全国1","type_rank":null,"address":"北京市","father":"教育部","univ_type":null,"two":"211","nine":"985","graduate":"研究生院","recruit":"自主招生","defense_student":null,"preeminent_plan":null}
+     * name : 清华大学
+     * recommendIndex : 0.7685
+     * num : 1
+     * info : {"name":"清华大学","ranking":"全国2","typeRank":"理工1","address":"北京市","father":"教育部","univType":"大学","two":"211","nine":"985","graduate":"研究生院","recruit":"自主招生","defenseStudent":"国防生","preeminentPlan":"卓越计划"}
+     * major : [{"name":"清华大学","major":"英语","majorId":"050201","yxscore":"665","zyscore":"679","yxGai":"0.975","zyGai":"0.905","time":"本科一批"}]
      */
 
-    private int num;
     private String name;
-    private double recommendIndex;
+    private String recommendIndex;
+    private String num;
     private InfoBean info;
     private List<MajorBean> major;
+
 
     public void setSelecked(boolean selecked) {
         this.selecked = selecked;
@@ -33,14 +34,6 @@ public class Advanced_YX_Bean {
 
     public boolean isSelecked() {
         return selecked;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
     }
 
     public String getName() {
@@ -51,12 +44,20 @@ public class Advanced_YX_Bean {
         this.name = name;
     }
 
-    public double getRecommendIndex() {
+    public String getRecommendIndex() {
         return recommendIndex;
     }
 
-    public void setRecommendIndex(double recommendIndex) {
+    public void setRecommendIndex(String recommendIndex) {
         this.recommendIndex = recommendIndex;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 
     public InfoBean getInfo() {
@@ -78,32 +79,32 @@ public class Advanced_YX_Bean {
 
     public static class InfoBean {
         /**
-         * name : 北京大学
-         * ranking : 全国1
-         * type_rank : null
+         * name : 清华大学
+         * ranking : 全国2
+         * typeRank : 理工1
          * address : 北京市
          * father : 教育部
-         * univ_type : null
+         * univType : 大学
          * two : 211
          * nine : 985
          * graduate : 研究生院
          * recruit : 自主招生
-         * defense_student : null
-         * preeminent_plan : null
+         * defenseStudent : 国防生
+         * preeminentPlan : 卓越计划
          */
 
         private String name;
         private String ranking;
-        private Object type_rank;
+        private String typeRank;
         private String address;
         private String father;
-        private Object univ_type;
+        private String univType;
         private String two;
         private String nine;
         private String graduate;
         private String recruit;
-        private Object defense_student;
-        private Object preeminent_plan;
+        private String defenseStudent;
+        private String preeminentPlan;
 
         public String getName() {
             return name;
@@ -121,12 +122,12 @@ public class Advanced_YX_Bean {
             this.ranking = ranking;
         }
 
-        public Object getType_rank() {
-            return type_rank;
+        public String getTypeRank() {
+            return typeRank;
         }
 
-        public void setType_rank(Object type_rank) {
-            this.type_rank = type_rank;
+        public void setTypeRank(String typeRank) {
+            this.typeRank = typeRank;
         }
 
         public String getAddress() {
@@ -145,12 +146,12 @@ public class Advanced_YX_Bean {
             this.father = father;
         }
 
-        public Object getUniv_type() {
-            return univ_type;
+        public String getUnivType() {
+            return univType;
         }
 
-        public void setUniv_type(Object univ_type) {
-            this.univ_type = univ_type;
+        public void setUnivType(String univType) {
+            this.univType = univType;
         }
 
         public String getTwo() {
@@ -185,50 +186,50 @@ public class Advanced_YX_Bean {
             this.recruit = recruit;
         }
 
-        public Object getDefense_student() {
-            return defense_student;
+        public String getDefenseStudent() {
+            return defenseStudent;
         }
 
-        public void setDefense_student(Object defense_student) {
-            this.defense_student = defense_student;
+        public void setDefenseStudent(String defenseStudent) {
+            this.defenseStudent = defenseStudent;
         }
 
-        public Object getPreeminent_plan() {
-            return preeminent_plan;
+        public String getPreeminentPlan() {
+            return preeminentPlan;
         }
 
-        public void setPreeminent_plan(Object preeminent_plan) {
-            this.preeminent_plan = preeminent_plan;
+        public void setPreeminentPlan(String preeminentPlan) {
+            this.preeminentPlan = preeminentPlan;
         }
     }
 
     public static class MajorBean {
         /**
-         * yxGai : 0.915
-         * major : 经济学类
-         * zyscore : 678
-         * name : 北京大学
-         * yxscore : 677
+         * name : 清华大学
+         * major : 英语
+         * majorId : 050201
+         * yxscore : 665
+         * zyscore : 679
+         * yxGai : 0.975
+         * zyGai : 0.905
          * time : 本科一批
-         * major_id : 020101
-         * zyGai : 0.91
          */
 
-        private String yxGai;
-        private String major;
-        private int zyscore;
         private String name;
-        private int yxscore;
-        private String time;
-        private String major_id;
+        private String major;
+        private String majorId;
+        private String yxscore;
+        private String zyscore;
+        private String yxGai;
         private String zyGai;
+        private String time;
 
-        public String getYxGai() {
-            return yxGai;
+        public String getName() {
+            return name;
         }
 
-        public void setYxGai(String yxGai) {
-            this.yxGai = yxGai;
+        public void setName(String name) {
+            this.name = name;
         }
 
         public String getMajor() {
@@ -239,44 +240,36 @@ public class Advanced_YX_Bean {
             this.major = major;
         }
 
-        public int getZyscore() {
-            return zyscore;
+        public String getMajorId() {
+            return majorId;
         }
 
-        public void setZyscore(int zyscore) {
-            this.zyscore = zyscore;
+        public void setMajorId(String majorId) {
+            this.majorId = majorId;
         }
 
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getYxscore() {
+        public String getYxscore() {
             return yxscore;
         }
 
-        public void setYxscore(int yxscore) {
+        public void setYxscore(String yxscore) {
             this.yxscore = yxscore;
         }
 
-        public String getTime() {
-            return time;
+        public String getZyscore() {
+            return zyscore;
         }
 
-        public void setTime(String time) {
-            this.time = time;
+        public void setZyscore(String zyscore) {
+            this.zyscore = zyscore;
         }
 
-        public String getMajor_id() {
-            return major_id;
+        public String getYxGai() {
+            return yxGai;
         }
 
-        public void setMajor_id(String major_id) {
-            this.major_id = major_id;
+        public void setYxGai(String yxGai) {
+            this.yxGai = yxGai;
         }
 
         public String getZyGai() {
@@ -285,6 +278,14 @@ public class Advanced_YX_Bean {
 
         public void setZyGai(String zyGai) {
             this.zyGai = zyGai;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
         }
     }
 }

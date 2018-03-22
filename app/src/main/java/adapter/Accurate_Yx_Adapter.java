@@ -101,7 +101,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
 
                 });
             //专业个数
-            int  num = list.get(position).getNum();
+            String num = list.get(position).getNum();
             //大学名称
             String name = list.get(position).getName();
         Advanced_YX_Bean.InfoBean info = list.get(position).getInfo();
@@ -196,9 +196,17 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 @Override
                 public void onClick(View view) {
                     Intent intent=new Intent(context, MajorDetailActivity.class);
-                    intent.putExtra("majorid",major.get(0).getMajor_id());
+                    if(major.get(0).getMajorId()!=null)
+                    {
+                        intent.putExtra("majorid",major.get(0).getMajorId());
+                    }
+                    else
+                    {
+                        return;
+                    }
                     intent.putExtra("major",major.get(0).getMajor());
                     context.startActivity(intent);
+
                 }
             });
         }

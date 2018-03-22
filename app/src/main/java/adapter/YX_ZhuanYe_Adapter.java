@@ -59,7 +59,7 @@ public class YX_ZhuanYe_Adapter extends RecyclerView.Adapter<YX_ZhuanYe_Adapter.
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, MajorDetailActivity.class);
-                intent.putExtra("majorid",list.get(position + 1).getMajor_id());
+                intent.putExtra("majorid",list.get(position + 1).getMajorId());
                 intent.putExtra("major",list.get(position + 1).getMajor());
                 context.startActivity(intent);
 

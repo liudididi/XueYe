@@ -47,7 +47,13 @@ public class MajorStartFragment extends Basefragment {
     public void initView() {
         initid();
         for (int i = 0; i < list.size(); i++) {
-            titlelist.get(i).setText(list.get(i).getMajor());
+            if(list.get(i).getMajor().length()>6){
+                String major = list.get(i).getMajor();
+                String substring = major.substring(0, 6);
+                titlelist.get(i).setText(substring);
+            }else {
+                titlelist.get(i).setText(list.get(i).getMajor());
+            }
             List<jobStarBean.MajorinfoBean> majorinfo = list.get(i).getMajorinfo();
             if(majorinfo!=null&&majorinfo.size()>0){
                     mblist.get(i).setText(majorinfo.get(0).getTraining_target());

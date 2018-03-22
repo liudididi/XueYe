@@ -196,7 +196,7 @@ public interface QuestInterface {
 
     //支付宝支付
     @POST("/alipay/appPay")
-    Flowable<BaseBean<String>> ZFBpay(@Query("outTradeNo")String outTradeNo);
+    Flowable<BaseBean<String>> ZFBpay(@Query("outTradeNo")String outTradeNo,@Query("payType")String payType);
 
 
     //提交职业
@@ -270,7 +270,7 @@ public interface QuestInterface {
 
     //微信支付
     @POST("/weixinMobile/appdopay")
-    Flowable<BaseBean<WeiXinBean>> WXpay(@Query("outTradeNo")String outTradeNo);
+    Flowable<BaseBean<WeiXinBean>> WXpay(@Query("outTradeNo")String outTradeNo,@Query("payType")String payType);
 
     //创建订单
     @POST("/app/productorder/createNewOrder ")

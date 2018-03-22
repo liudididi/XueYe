@@ -61,8 +61,7 @@ public class ComlitEFCActivity extends BaseActivity {
                             String data = stringBaseBean.data;
                             int i = Integer.parseInt(data);
                             if(i>0){
-                                time=i;
-
+                                time=3;
                                 handler.postDelayed(runnable, 1000);
                             }else {
                                 butChakan.setEnabled(true);

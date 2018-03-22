@@ -66,17 +66,7 @@
                         android:textSize="60px"
                         />
 
-                    <ImageView
-                        android:src="@drawable/next"
-                        android:layout_marginTop="30px"
-                        android:padding="30px"
-                        android:scaleType="centerCrop"
-                        android:layout_marginRight="30px"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="90px"
-                        android:layout_height="90px"
 
-                        />
                     <TextView
                         android:layout_marginLeft="30px"
                         android:textSize="50px"

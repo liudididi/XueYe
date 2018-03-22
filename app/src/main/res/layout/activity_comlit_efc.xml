@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -71,27 +70,35 @@
             android:src="@drawable/wancheng"
             android:layout_width="150px"
             android:layout_height="match_parent" />
-<TextView
-    android:layout_marginTop="10px"
-    android:id="@+id/tv_text1"
-    android:layout_toRightOf="@+id/img_wancheng"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="50px"
-    android:text="已生成EFC学业规划报告"
-    />
-        <TextView
-            android:layout_marginTop="10px"
-            android:layout_below="@+id/tv_text1"
-            android:layout_toRightOf="@+id/img_wancheng"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="35px"
-            android:text="点击下方按钮可查学业规划报告"
-            />
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/img_wancheng">
+            <TextView
+                android:layout_marginTop="10px"
+                android:id="@+id/tv_text1"
+                android:layout_toRightOf="@+id/img_wancheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50px"
+                android:text="已生成EFC学业规划报告"
+                />
+            <TextView
+                android:layout_marginTop="10px"
+                android:layout_below="@+id/tv_text1"
+                android:layout_toRightOf="@+id/img_wancheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="35px"
+                android:text="点击下方按钮可查学业规划报告"
+                />
+        </LinearLayout>
+
     </RelativeLayout>
     <LinearLayout
-        android:id="@+id/ll_weiwancheng"
+         android:id="@+id/ll_weiwancheng"
         android:orientation="vertical"
         android:layout_marginTop="50px"
         android:layout_below="@+id/re_tvdjs"
@@ -116,6 +123,7 @@
                 android:background="#000"
                 android:gravity="center"
                 android:padding="15px"
+
                 android:textColor="#fff"
                 android:textSize="70px" />
             <TextView
@@ -123,8 +131,9 @@
                 android:gravity="bottom"
                 android:text="时"
                 android:textSize="50px"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_marginLeft="10px"
                 android:id="@+id/tv_minute"
@@ -132,6 +141,7 @@
                 android:gravity="center"
                 android:textSize="70px"
                 android:background="#000"
+
                 android:textColor="#fff"
                 android:layout_width="130px"
                 android:layout_height="match_parent" />
@@ -140,8 +150,9 @@
                 android:gravity="bottom"
                 android:text="分"
                 android:textSize="50px"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_marginLeft="10px"
@@ -159,14 +170,17 @@
                 android:text="秒"
                 android:textSize="50px"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
         <TextView
+            android:layout_marginLeft="110px"
             android:gravity="center"
             android:textSize="35px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
              android:text="该过程预计需要12小时，请您耐心等待"
+            android:layout_marginTop="20px"
             />
 
     </LinearLayout>

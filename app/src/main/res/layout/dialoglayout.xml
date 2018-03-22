@@ -106,7 +106,7 @@
             />
 
         <TextView
-            android:layout_marginTop="20px"
+            android:layout_marginTop="50px"
             android:layout_below="@+id/tv_ranking"
             android:id="@+id/tv_address"
             android:layout_width="200px"
@@ -118,7 +118,7 @@
             />
 
         <TextView
-            android:layout_marginTop="100px"
+            android:layout_marginTop="200px"
             android:layout_below="@+id/tv_ranking"
             android:id="@+id/tv_nearjob"
             android:layout_width="200px"
@@ -133,11 +133,12 @@
             android:id="@+id/view_hx"
             android:background="#ccc"
             android:layout_width="1px"
-            android:layout_height="220px"
+            android:layout_height="300px"
              android:layout_marginLeft="300px"
-            android:layout_marginTop="120px"
+            android:layout_marginTop="180px"
             ></View>
         <TextView
+
             android:id="@+id/tv_rank"
             android:layout_marginLeft="10px"
             android:layout_marginRight="30px"
@@ -148,6 +149,7 @@
             />
 
         <TextView
+
             android:id="@+id/tv_pro_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -80,7 +80,7 @@
                         android:src="@drawable/xinli"
                         />
                     <ImageView
-                        android:padding="20px"
+                        android:padding="25px"
                         android:layout_marginRight="50px"
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="50px"
@@ -88,7 +88,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="70px"
                         android:layout_height="70px"
-                        android:src="@drawable/shangjt"
+                        android:src="@drawable/right_arrow"
                         />
                     <TextView
                         android:layout_centerVertical="true"
@@ -118,7 +118,7 @@
                         android:src="@drawable/xingge"
                         />
                     <ImageView
-                        android:padding="20px"
+                        android:padding="25px"
                         android:scaleType="centerCrop"
                         android:layout_marginRight="50px"
                         android:layout_alignParentRight="true"
@@ -126,7 +126,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="70px"
                         android:layout_height="70px"
-                        android:src="@drawable/shangjt"
+                        android:src="@drawable/right_arrow"
                         />
                     <TextView
                         android:layout_centerVertical="true"

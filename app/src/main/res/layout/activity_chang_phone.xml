@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="80px" />
         <TextView
-            android:text="123456789"
+            android:text="**********"
             android:textSize="50px"
             android:id="@+id/changephone_tv_phone"
             android:layout_marginLeft="350px"

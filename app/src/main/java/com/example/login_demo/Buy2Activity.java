@@ -213,11 +213,11 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 break;
             case R.id.tv_goumai2:
                 if(token.length()>4){
-               // payPresent.XiaDan(token,"3",pay+"");
-              Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
+               payPresent.XiaDan(token,"3",pay+"");
+             /* Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
                    Intent intent3 = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
                    startActivity(intent3);
-                   finish();
+                   finish();*/
                 }else {
                    Toast("用户未登录");
                 }

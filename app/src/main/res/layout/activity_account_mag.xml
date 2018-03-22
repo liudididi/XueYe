@@ -51,7 +51,7 @@
             android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/account_tv_phone"
-            android:text="151003654"
+            android:text="***********"
             android:textSize="50px"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"

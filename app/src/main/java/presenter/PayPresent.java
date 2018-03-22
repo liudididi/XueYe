@@ -71,6 +71,7 @@ public class PayPresent extends Basepresent {
             public void WXpaysuccess(BaseBean<WeiXinBean> BaseBean) {
                 if(BaseBean.code==0){
                     payView.WXPaysuccess(BaseBean.data);
+
                 }else {
                     payView.XDFail(BaseBean.msg);
                 }
