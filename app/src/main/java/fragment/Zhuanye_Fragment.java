@@ -403,15 +403,17 @@ public class Zhuanye_Fragment extends Basefragment {
                     @Override
                     public void SerchZYsuccess(final BaseBean<List<SerchZYBean>> listBaseBean) {
                         List<SerchZYBean> data = listBaseBean.data;
-                        Zy_Sousuo_Adapter zy_sousuo_adapter=new Zy_Sousuo_Adapter(data,getContext());
-                        lv_ss_zy.setAdapter(zy_sousuo_adapter);
-                        lv_ss_zy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                pb3.setVisibility(View.VISIBLE);
-                                zhuanye_yuanxiao(listBaseBean.data.get(i).getName(),s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
-                            }
-                        });
+                        if( data!=null&&data.size()>0){
+                            Zy_Sousuo_Adapter zy_sousuo_adapter=new Zy_Sousuo_Adapter(data,getContext());
+                            lv_ss_zy.setAdapter(zy_sousuo_adapter);
+                            lv_ss_zy.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    pb3.setVisibility(View.VISIBLE);
+                                    zhuanye_yuanxiao(listBaseBean.data.get(i).getName(),s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                                }
+                            });
+                        }
                     }
 
                     @Override
