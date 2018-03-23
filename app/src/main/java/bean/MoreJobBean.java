@@ -55,6 +55,7 @@ public class MoreJobBean {
         private int id_two;
         private String classifytwoName;
         private int id_one;
+        public  boolean zt;
         private List<JobListThreeBean> jobListThree;
 
         public int getId_two() {

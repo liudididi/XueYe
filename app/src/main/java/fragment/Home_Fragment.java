@@ -106,13 +106,11 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         //首页九宫格
         slideshowPresenter.SudokuPresenter(3);
         //热门专题
-        slideshowPresenter.HotTopPresenter("热门专题","全国","1","6");
+       // slideshowPresenter.HotTopPresenter("热门专题","全国","1","6");
         //精选推荐
         slideshowPresenter.RecommenPresenter("精选推荐","全国","1","6");
         //高考头条
         slideshowPresenter.CollegePresenter("1","4");
-
-
         inin();
         //加点
         initPunctuate();
@@ -146,23 +144,10 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
 
-        if(tbmaxfen!=null&&tbmaxfen!=""){
-            homegrade.setText(tbmaxfen);
-          }else
-        {
-            homegrade.setText("500");
-        }
-        if(tbarea!=null&&tbmaxfen!=""){
-         homearea.setText(tbarea);
-        }else {
-            homearea.setText("北京市");
-        }
-        if(tbsubtype!=null&&tbmaxfen!=""){
-         homesubtype.setText(tbsubtype);
-        }else
-        {
-            homesubtype.setText("文科");
-        }
+        homegrade.setText(tbmaxfen);
+        homearea.setText("北京市");
+        homesubtype.setText(tbsubtype);
+
     }
 
     private void inin() {

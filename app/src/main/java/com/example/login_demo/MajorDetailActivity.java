@@ -207,9 +207,12 @@ public class MajorDetailActivity extends BaseActivity {
                             if (data != null && data.size() > 0) {
                                 String collectionTime = data.get(0).getCollectionTime();
                                 if (collectionTime != null && collectionTime.length() > 2) {
-                                    Glide.with(MajorDetailActivity.this).load(R.drawable.collect_yes).into(imgCollect);
-                                } else {
-                                    Glide.with(MajorDetailActivity.this).load(R.drawable.collect_none).into(imgCollect);
+
+                                    imgCollect.setImageResource(R.drawable.collect_yes);
+
+                                 } else {
+                                    imgCollect.setImageResource(R.drawable.collect_none);
+                                  //  Glide.with(MajorDetailActivity.this).load(R.drawable.collect_none).into(imgCollect);
                                 }
                             }
 

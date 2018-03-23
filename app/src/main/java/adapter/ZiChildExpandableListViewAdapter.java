@@ -99,7 +99,6 @@ public class ZiChildExpandableListViewAdapter extends BaseExpandableListAdapter 
                 intent.putExtra("majorid",classes.get(groupPosition).getChild().get(childPosition).getMajorId());
                 intent.putExtra("major",classes.get(groupPosition).getChild().get(childPosition).getMajorName());
                 activity.startActivity(intent);
-
             }
         });
         return genericView;

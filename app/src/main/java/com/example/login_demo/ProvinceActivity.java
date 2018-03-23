@@ -155,14 +155,44 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
                 iv_right.setVisibility(View.VISIBLE);
                 iv_next.setVisibility(View.GONE);
                 tv_address.setText( list.get(i).toString());
-                list1.clear();
-                list2.clear();
-                list3.clear();
-                list4.clear();
-                list5.clear();
-                list6.clear();
-                list7.clear();
-                list8.clear();
+                if(list1!=null)
+                {
+                    list1.clear();
+                }
+                if(list2!=null)
+                {
+                    list2.clear();
+                }
+                if(list3!=null)
+                {
+                    list3.clear();
+
+                }
+                if(list4!=null)
+                {
+                    list4.clear();
+
+                }
+                if(list5!=null)
+                {
+                    list5.clear();
+
+                }
+                if(list6!=null)
+                {
+                    list6.clear();
+
+                }
+                if(list7!=null)
+                {
+                    list7.clear();
+
+                }
+                if(list8!=null)
+                {
+                    list8.clear();
+
+                }
                 provincePresent.ProvincePresent(s);
             }
         });

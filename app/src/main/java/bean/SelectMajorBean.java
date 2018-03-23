@@ -24,6 +24,7 @@ public class SelectMajorBean {
     private String majorName;
     private int majorType;
     private Object introduce;
+
     private List<ChildBeanX> child;
 
     public Object getCollectionTime() {
@@ -90,6 +91,7 @@ public class SelectMajorBean {
         private int majorType;
         private Object introduce;
         private List<ChildBean> child;
+        public boolean  zt;
 
         public Object getCollectionTime() {
             return collectionTime;

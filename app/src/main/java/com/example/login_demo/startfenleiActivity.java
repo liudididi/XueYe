@@ -419,7 +419,6 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
             if (i1 >= 2) {
                 result = cxefcBeanBaseBean.data.getJob();
                 String[] split3 = result.split(",");
-
                 for (String n : split3) {
                     fenlieanswerlist.add(n);
                 }

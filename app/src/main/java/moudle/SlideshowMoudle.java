@@ -47,7 +47,8 @@ public class SlideshowMoudle {
     //首页九宫格模块
     public void Sudoku(int board_id, final SudokuBack sudokuBack)
     {
-        DisposableSubscriber<BaseBean<List<SlideshowBean>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().Slideshow(board_id)
+        DisposableSubscriber<BaseBean<List<SlideshowBean>>> disposableSubscriber =
+                MyQusetUtils.getInstance().getQuestInterface().Slideshow(board_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<SlideshowBean>>>() {

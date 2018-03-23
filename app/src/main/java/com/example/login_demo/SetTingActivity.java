@@ -90,11 +90,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         verSionPresent = new VerSionPresent(this);
         verSionPresent.versioninfo("Android");
 
-      /*  String result="专业,年后,你是";
-        String[] split = result.split(",");
-        for (String n:split) {
-            System.out.println("nnnnn==="+n);
-        }*/
+
 
 
     }
@@ -127,12 +123,14 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             String sex = userBeanInstans.getSex();
             if (sex != null) {
                 if (sex.equals("女")) {
-                    Glide.with(this).load(R.drawable.gril).into(setting_icon);
+                    setting_icon.setImageResource(R.drawable.gril);
+
                 } else {
-                    Glide.with(this).load(R.drawable.boy).into(setting_icon);
+                    setting_icon.setImageResource(R.drawable.boy);
+
                 }
             } else {
-                Glide.with(this).load(R.drawable.boy).into(setting_icon);
+                setting_icon.setImageResource(R.drawable.boy);
             }
             String name = userBeanInstans.getName();
             if (name != null) {
@@ -429,6 +427,13 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
 
     @Override
     public void VersionFail(String s) {
+
+        try {
+            PackageInfo packageInfo = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+            settingVerinfo.setText("当前版本"+packageInfo.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 

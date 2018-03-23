@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    >
+
+        <ImageView
+            android:padding="50px"
+            android:id="@+id/xiaojt_img"
+            android:src="@drawable/right_arrow"
+            android:layout_width="160px"
+            android:layout_height="130px" />
+        <TextView
+            android:paddingLeft="170px"
+            android:id="@+id/xiao_tv"
+            android:textSize="40px"
+            android:text="hello"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="130px"
+            />
+        <View
+            android:layout_below="@+id/xiao_tv"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:id="@+id/vv"
+            android:background="#ccc"
+            ></View>
+    <untils.ListViewForScrollView
+        android:visibility="gone"
+         android:layout_below="@+id/vv"
+        android:id="@+id/list_san"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </untils.ListViewForScrollView>
+</RelativeLayout>

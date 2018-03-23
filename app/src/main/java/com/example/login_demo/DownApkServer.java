@@ -40,7 +40,7 @@ public class DownApkServer extends Service {
     private BroadcastReceiver receiver;
     private DownloadManager dm;
     private long enqueue;
-    private  Context con;
+
 
     @Nullable
     @Override
@@ -53,7 +53,6 @@ public class DownApkServer extends Service {
         receiver=new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-              con=context;
                 checkStatus();
                 stopSelf();
             }
@@ -79,7 +78,7 @@ public class DownApkServer extends Service {
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "baiduren.apk");
         /**设置下载时或者下载完成时，通知栏是否显示*/
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setTitle("摆渡人");
+        request.setTitle("学业摆渡人");
 
         /**执行下载，并返回任务唯一id*/
         enqueue = dm.enqueue(request);

@@ -54,27 +54,20 @@ public class More_SchoolActivity extends BaseActivity implements WishView {
     protected void onResume() {
         super.onResume();
 
-        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "");
-        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "");
-        tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "");
+        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
+        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京");
+        tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
 
-        if(tbmaxfen!=null&&tbmaxfen!=""){
+
             moreScore.setText(tbmaxfen+"分");
-        }else
-        {
-            moreScore.setText(500+"分");
-        }
-        if(tbarea!=null&&tbmaxfen!=""){
+
+
             moreAddress.setText(tbarea);
-        }else {
-            moreAddress.setText("北京市");
-        }
-        if(tbsubtype!=null&&tbmaxfen!=""){
+
+
             moreClassify.setText(tbsubtype);
-        }else
-        {
-            moreClassify.setText("文科");
-        }
+
+
 
 
 

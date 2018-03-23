@@ -98,7 +98,6 @@
                 android:layout_height="80px" />
             <TextView
                 android:id="@+id/setting_verinfo"
-                android:text="当前版本1.0"
                 android:textSize="50px"
                 android:gravity="center"
                 android:layout_marginRight="80px"
