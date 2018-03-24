@@ -19,21 +19,21 @@ import java.util.Random;
  * 邮箱：461211527@qq.com.
  */
 
-public class FlowLayout extends ViewGroup {
+public class FlowLayoutzy extends ViewGroup {
 
 
     private LayoutInflater mInflater;
     private boolean isColorful;
 
-    public FlowLayout(Context context) {
+    public FlowLayoutzy(Context context) {
         this(context, null);
     }
 
-    public FlowLayout(Context context, AttributeSet attrs) {
+    public FlowLayoutzy(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
+    public FlowLayoutzy(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mInflater = LayoutInflater.from(getContext());
     }
@@ -216,7 +216,7 @@ public class FlowLayout extends ViewGroup {
 
         int count = strings.length;
         for (int i = 0; i < count; i++) {
-            final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_textview, this,
+            final TextView tv = (TextView) mInflater.inflate(R.layout.zy_textview, this,
                     false);
             tv.setText(strings[i]);
             tv.setOnClickListener(new OnClickListener() {
@@ -245,29 +245,7 @@ public class FlowLayout extends ViewGroup {
 
         int count = list.size();
         for (int i = 0; i < count; i++) {
-            final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_textview, this,
-                    false);
-            tv.setText(list.get(i));
-            tv.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onTagClickListener != null)
-                        onTagClickListener.TagClick(tv.getText().toString());
-                }
-            });
-
-            this.addView(tv);
-        }
-    }
-
-
-
-  //专业学校
-    public void setZyListData(List<String> list) {
-
-        int count = list.size();
-        for (int i = 0; i < count; i++) {
-            final TextView tv = (TextView) mInflater.inflate(R.layout.zyschool_textview, this,
+            final TextView tv = (TextView) mInflater.inflate(R.layout.zy_textview, this,
                     false);
             tv.setText(list.get(i));
             tv.setOnClickListener(new OnClickListener() {

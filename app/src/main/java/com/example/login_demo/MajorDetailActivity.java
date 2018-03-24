@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,8 @@ public class MajorDetailActivity extends BaseActivity {
     LinearLayout mmajorll;
     @BindView(R.id.lodiing)
     LoadingLayout lodiing;
+    @BindView(R.id.sv_zy)
+    ScrollView svZy;
     private String major;
     public static String majorid;
     private Majorgk_Fragment majorgk_fragment;
@@ -76,7 +79,7 @@ public class MajorDetailActivity extends BaseActivity {
 
     @Override
     public void InIt() {
-        loadingLayout=lodiing;
+        loadingLayout = lodiing;
         registerReceiver();
         major = getIntent().getStringExtra("major");
         majorid = getIntent().getStringExtra("majorid");
@@ -85,6 +88,7 @@ public class MajorDetailActivity extends BaseActivity {
         switchFragment(majorgk_fragment).commitAllowingStateLoss();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         iscollect();
+        svZy.smoothScrollTo(0,0);
     }
 
     private void initfragment() {
@@ -210,9 +214,8 @@ public class MajorDetailActivity extends BaseActivity {
 
                                     imgCollect.setImageResource(R.drawable.collect_yes);
 
-                                 } else {
+                                } else {
                                     imgCollect.setImageResource(R.drawable.collect_none);
-                                  //  Glide.with(MajorDetailActivity.this).load(R.drawable.collect_none).into(imgCollect);
                                 }
                             }
 
@@ -266,6 +269,7 @@ public class MajorDetailActivity extends BaseActivity {
             this.unregisterReceiver(myReceiver);
         }
     }
+
 
 
 }

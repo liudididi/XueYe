@@ -6,7 +6,7 @@
     <TextView
         android:background="#fff"
         android:gravity="center"
-        android:textSize="45px"
+        android:textSize="40px"
         android:id="@+id/san_tv"
         android:text="45px"
         android:layout_width="match_parent"

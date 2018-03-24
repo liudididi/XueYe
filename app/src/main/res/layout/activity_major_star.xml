@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
        android:layout_marginLeft="60px"
         android:layout_marginTop="240px"
-        android:text="请查看并点击您心动的专业(可多洗，最多选取6个专业)"
+        android:text="请查看并点击您心动的专业(可多选，最多选取6个专业)"
         android:textColor="@color/white"
         android:textSize="33px" />
     <TextView

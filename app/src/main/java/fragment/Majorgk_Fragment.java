@@ -1,13 +1,22 @@
 package fragment;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
+import com.google.gson.annotations.Until;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.ZhuanYgk_zhishiAdapter;
 import base.Basefragment;
 import bean.MajorgkBean;
 import presenter.MajorgkPresent;
+import untils.FlowLayout;
+import untils.FlowLayoutzy;
+import untils.ListViewForScrollView;
 import view.MajorgkView;
 
 /**
@@ -26,12 +35,19 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
     private TextView fmgk_tvxw;
     private TextView fmgk_tvzykc;
     private TextView fmgk_tvpyxq;
-    private TextView fmgk_nearzy;
+
 
 
 
     public  static  String jyqj=null;
     public  static  String jyfx=null;
+    private TextView fmgk_zyjs;
+    private TextView fmgk_tvpymb;
+    private ListViewForScrollView fmgk_zsnl;
+    private TextView fmgk_snxz;
+    private FlowLayoutzy fmgk_flow;
+    private TextView fmgk_tvzsnl;
+
     @Override
     public int getLayoutid() {
         return R.layout.majorgk;
@@ -65,9 +81,13 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
         fmgk_tvxw = view.findViewById(R.id.fmgk_tvxw);
         fmgk_tvzykc = view.findViewById(R.id.fmgk_tvzykc);
         fmgk_tvpyxq = view.findViewById(R.id.fmgk_tvpyxq);
-        fmgk_nearzy = view.findViewById(R.id.fmgk_nearzy);
 
-
+        fmgk_zyjs = view.findViewById(R.id.fmgk_zyjs);
+        fmgk_tvpymb = view.findViewById(R.id.fmgk_tvpymb);
+        fmgk_zsnl = view.findViewById(R.id.fmgk_zsnl);
+        fmgk_snxz = view.findViewById(R.id.fmgk_snxz);
+        fmgk_flow = view.findViewById(R.id.fmgk_flow);
+        fmgk_tvzsnl = view.findViewById(R.id.fmgk_tvzsnl);
     }
 
     @Override
@@ -81,47 +101,64 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
     public void MajorgkSusccess(MajorgkBean majorgkBean) {
         if(majorgkBean!=null){
 
+            if(majorgkBean.getTraining_target()!=null){
+                fmgk_tvpymb.setText(majorgkBean.getTraining_target());
+            }
 
             if(majorgkBean.getBigType()!=null){
                 fmgk_tvssdl.setText(majorgkBean.getBigType());
 
             }
-            if(majorgkBean.getYearSchool()!=null){
-                fmgk_ccyear.setText(majorgkBean.getYearSchool());
+            if(majorgkBean.getYear_school()!=null){
+                fmgk_ccyear.setText(majorgkBean.getYear_school());
 
             }
-            if(majorgkBean.getAwardDegree()!=null){
+            if(majorgkBean.getAward_degree()!=null){
 
-                fmgk_tvxw.setText(majorgkBean.getAwardDegree());
+                fmgk_tvxw.setText(majorgkBean.getAward_degree());
             }
             if(majorgkBean.getCourse()!=null){
 
                 fmgk_tvzykc.setText(majorgkBean.getCourse());
             }
-            if(majorgkBean.getTrainingRequirements()!=null){
-                fmgk_tvpyxq.setText(majorgkBean.getTrainingRequirements());
+            if(majorgkBean.getTraining_requirements()!=null){
+                fmgk_tvpyxq.setText(majorgkBean.getTraining_requirements());
 
             }
-
-            if(majorgkBean.getNearMajor()!=null){
-                fmgk_nearzy.setText(majorgkBean.getNearMajor());
+            if(majorgkBean.getAveragesalary()!=0){
+                fmgk_snxz.setText("￥"+majorgkBean.getAveragesalary());
             }
 
-
-               if(majorgkBean.getEmploymentProspects()!=null){
+               if(majorgkBean.getEmployment_prospects()!=null){
                 //就业前景
-                jyqj=majorgkBean.getEmploymentProspects();
+                jyqj=majorgkBean.getEmployment_prospects();
                }
 
-         if(majorgkBean.getDirectionEmployment()!=null){
-                   jyfx=majorgkBean.getDirectionEmployment();
+         if(majorgkBean.getDirection_employment()!=null){
+                   jyfx=majorgkBean.getDirection_employment();
+         }
+
+         if(majorgkBean.getPractice_teaching()!=null){
+             fmgk_zyjs.setText(majorgkBean.getPractice_teaching());
+         }
+         //知识能力
+         if(majorgkBean.getAbility()!=null&&majorgkBean.getAbility().size()>0){
+             fmgk_tvzsnl.setVisibility(View.GONE);
+             List<MajorgkBean.AbilityBean> ability = majorgkBean.getAbility();
+             ZhuanYgk_zhishiAdapter zhuanYgk_zhishiAdapter=new ZhuanYgk_zhishiAdapter(ability,getActivity());
+             fmgk_zsnl.setAdapter(zhuanYgk_zhishiAdapter);
+         }
+         if(majorgkBean.getJob()!=null&&majorgkBean.getJob().size()>0){
+             List<String> list=new ArrayList<>();
+             List<MajorgkBean.JobBean> job = majorgkBean.getJob();
+             for (int i = 0; i < job.size(); i++) {
+                 list.add(job.get(i).getJobname());
+             }
+             fmgk_flow.setListData(list);
          }
 
 
         }
-
-
-
 
     }
 

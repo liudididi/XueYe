@@ -12,11 +12,13 @@ import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
 import com.meg7.widget.CustomShapeImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseApi;
 import bean.CheckSchoolBean;
 import bean.MajorSchoolBean;
+import untils.FlowLayout;
 
 /**
  * Created by 地地 on 2018/1/26.
@@ -48,30 +50,47 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        String  fujia="";
         MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getMajor_school());
-        mySchoolViewHolder.schoolitem_address.setText(list.get(position).getAddress());
+
         String url = list.get(position).getUrl();
         String two = list.get(position).getTwo();
         String school_type = list.get(position).getSchool_type();
         String nine = list.get(position).getNine();
-       if(school_type!=null){
+        String graduate = list.get(position).getGraduate();
+        String recruit = list.get(position).getRecruit();
+        String defense_student = list.get(position).getDefense_student();
+        List<String> fujialist=new ArrayList<>();
 
+       if(school_type!=null){
            mySchoolViewHolder.schoolitem_typerank.setText(school_type);
        }
-        if(two!=null){
-            fujia+="    "+two;
+        if(two!=null&&two.length()>2){
+            fujialist.add(two);
         }
-
-        if(nine!=null){
-            fujia+="    "+nine;
+        if(nine!=null&&nine.length()>2){
+            fujialist.add(nine);
+        }
+        if(graduate!=null&&graduate.length()>2){
+            fujialist.add(graduate);
+        }
+        if(recruit!=null&&recruit.length()>2){
+            fujialist.add(recruit);
+        }
+        if(defense_student!=null&&defense_student.length()>2){
+            fujialist.add(defense_student);
         }
       if(url!=null){
             Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
       }
 
-        mySchoolViewHolder.schoolitem_fujia.setText(fujia);
+       if(fujialist.size()>0&&fujialist!=null){
+             mySchoolViewHolder.majoritem_flow.setZyListData(fujialist);
+        }else {
+           fujialist.add("暂无信息");
+           mySchoolViewHolder.majoritem_flow.setZyListData(fujialist);
+       }
+
 
       mySchoolViewHolder.view.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -94,10 +113,11 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
 
     class  MySchoolViewHolder extends  RecyclerView.ViewHolder {
         private TextView    schoolitem_name;
-        private TextView    schoolitem_address;
+
         private TextView    schoolitem_typerank;
-        private TextView    schoolitem_fujia;
+
         private CustomShapeImageView schoolitem_url;
+        private FlowLayout majoritem_flow;
         private  View view;
 
 
@@ -106,10 +126,11 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
             super(itemView);
             view=itemView;
             schoolitem_name=itemView.findViewById(R.id.schoolitem_name);
-            schoolitem_address=itemView.findViewById(R.id.schoolitem_address);
+
             schoolitem_typerank=itemView.findViewById(R.id.schoolitem_typerank);
-            schoolitem_fujia=itemView.findViewById(R.id.schoolitem_fujia);
+
             schoolitem_url=itemView.findViewById(R.id.schoolitem_url);
+            majoritem_flow=itemView.findViewById(R.id.majoritem_flow);
         }
     }
 }

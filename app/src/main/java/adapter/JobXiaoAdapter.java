@@ -61,13 +61,11 @@ public class JobXiaoAdapter extends BaseAdapter {
         list_san.setAdapter(benSanAdapter);
         if(list.get(position).zt){
             list_san.setVisibility(View.VISIBLE);
-            xiaojt_img.setPadding(80,80,80,80);
-
-            xiaojt_img.setImageResource(R.mipmap.xia);
+            xiaojt_img.setImageResource(R.drawable.xia);
 
         }else {
             list_san.setVisibility(View.GONE);
-            xiaojt_img.setImageResource(R.drawable.right);
+            xiaojt_img.setImageResource(R.drawable.you);
         }
         xiao_tv.setOnClickListener(new View.OnClickListener() {
             @Override

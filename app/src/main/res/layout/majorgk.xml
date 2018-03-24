@@ -3,120 +3,245 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<RelativeLayout
-    android:id="@+id/fmgk_rl"
-    android:layout_width="match_parent"
-    android:layout_height="370px">
-
-
     <LinearLayout
-        android:id="@+id/fmgk_ll"
-        android:layout_marginLeft="50px"
-        android:layout_marginTop="50px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="专业代码 :  "
-            />
-        <TextView
-            android:id="@+id/fmgk_tvdaima"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="null"
-            />
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="50px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="学历层次 :  "
-            />
-        <TextView
-            android:id="@+id/fmgk_tvcckemu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="null"
-            />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/fmgk_l2"
-        android:layout_below="@id/fmgk_ll"
-        android:layout_marginLeft="50px"
-        android:layout_marginTop="50px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="授予学位 :  "
-            />
-        <TextView
-            android:id="@+id/fmgk_tvxw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="null"
-            />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_marginLeft="50px"
-        android:layout_below="@id/fmgk_l2"
-        android:layout_marginTop="50px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="修学年限 :  "
-            />
-        <TextView
-            android:id="@+id/fmgk_ccyear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="null"
-            />
-    </LinearLayout>
-    <View
-
+        android:id="@+id/fmgk_rl"
         android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_alignParentBottom="true"
-        ></View>
-</RelativeLayout>
-    
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/fmgk_ll"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="150px"
+                    android:layout_height="match_parent"
+                    android:padding="35px"
+                    android:src="@drawable/bq" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="专业代码 :  "
+                    android:textSize="32px" />
+
+                <TextView
+                    android:id="@+id/fmgk_tvdaima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+
+                    android:textSize="32px" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="#ccc"></View>
+
+                <ImageView
+                    android:layout_width="150px"
+                    android:layout_height="match_parent"
+                    android:padding="35px"
+                    android:src="@drawable/xsm" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="学历层次 :  "
+                    android:textSize="32px" />
+
+                <TextView
+                    android:id="@+id/fmgk_tvcckemu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+
+                    android:textSize="32px" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ccc"></View>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="150px"
+                    android:layout_height="match_parent"
+                    android:padding="35px"
+                    android:src="@drawable/zs" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="授予学位 :  "
+                    android:textSize="32px" />
+
+                <TextView
+                    android:id="@+id/fmgk_tvxw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+
+                    android:textSize="32px" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="#ccc"></View>
+
+                <ImageView
+                    android:layout_width="150px"
+                    android:layout_height="match_parent"
+                    android:padding="35px"
+                    android:src="@drawable/shu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="修学年限 :  "
+                    android:textSize="32px" />
+
+                <TextView
+                    android:id="@+id/fmgk_ccyear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="32px" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ccc"></View>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="150px"
+                    android:layout_height="match_parent"
+                    android:padding="35px"
+                    android:src="@drawable/shuqian" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="所属大类 :  "
+                    android:textSize="32px" />
+
+                <TextView
+                    android:id="@+id/fmgk_tvssdl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+
+                    android:textSize="32px" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="#ccc"></View>
+
+                <ImageView
+                    android:layout_width="150px"
+                    android:layout_height="match_parent"
+                    android:padding="35px"
+                    android:src="@drawable/qianbao" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="毕业三年薪酬:  "
+                    android:textSize="32px" />
+
+                <TextView
+                    android:textColor="#ff6700"
+                    android:id="@+id/fmgk_snxz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="暂无信息"
+                    android:textSize="32px" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ccc"></View>
+    </LinearLayout>
+
     <View
         android:id="@+id/fmgk_v"
         android:layout_below="@+id/fmgk_rl"
@@ -165,12 +290,21 @@
           ></View>
   </RelativeLayout>
 
+    <TextView
+        android:textSize="45px"
+        android:layout_marginLeft="120px"
+       android:layout_marginRight="70px"
+        android:layout_below="@+id/fmgk_r2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fmgk_zyjs"
+        />
     <RelativeLayout
         android:id="@+id/fmgk_r3"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:layout_marginTop="50px"
-        android:layout_below="@+id/fmgk_r2"
+        android:layout_below="@+id/fmgk_zyjs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 <ImageView
@@ -179,25 +313,27 @@
     android:layout_width="30px"
     android:layout_height="30px"
     android:src="@drawable/back_circleblcak"
-    />
+    android:id="@+id/imageView3" />
         <TextView
             android:id="@+id/fmgk_v2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="所属大类"
+            android:text="培养目标"
             android:textSize="50px"
             android:textColor="@color/black"
             android:layout_marginLeft="70px"
             />
         <TextView
+            android:id="@+id/fmgk_tvpymb"
             android:layout_marginTop="40px"
-            android:id="@+id/fmgk_tvssdl"
             android:textSize="45px"
             android:layout_marginLeft="70px"
             android:layout_below="@+id/fmgk_v2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
+
+
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/fmgk_r5"
@@ -268,9 +404,55 @@
             android:textSize="45px"
             />
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/fmgk_r10"
+        android:layout_marginRight="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginTop="50px"
+        android:layout_below="@+id/fmgk_r6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="16px"
+            android:layout_width="30px"
+            android:layout_height="30px"
+            android:src="@drawable/back_circleblcak"
+            />
+        <TextView
+            android:id="@+id/fmgk_v20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="知识能力"
+            android:textSize="50px"
+            android:textColor="@color/black"
+            android:layout_marginLeft="70px"
+            />
+        <TextView
+            android:layout_marginLeft="70px"
+            android:textSize="45px"
+            android:layout_marginTop="20px"
+            android:layout_below="@+id/fmgk_v20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fmgk_tvzsnl"
+            android:text="暂无数据"
+            ></TextView>
+    <untils.ListViewForScrollView
+        android:divider="@null"
+        android:layout_marginTop="20px"
+        android:layout_below="@+id/fmgk_v20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fmgk_zsnl"
+        ></untils.ListViewForScrollView>
+    </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/fmgk_r7"
-        android:layout_below="@+id/fmgk_r6"
+        android:layout_below="@+id/fmgk_r10"
         android:layout_width="match_parent"
         android:layout_height="150px">
         <View
@@ -290,9 +472,8 @@
             android:layout_marginTop="50px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="相近专业"
+            android:text="可从事岗位"
             />
-
 
         <TextView
             android:layout_toRightOf="@+id/fmgk_tv6"
@@ -301,28 +482,23 @@
             android:layout_marginTop="55px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SMIMLAR  SPECIALTIES"
+            android:text="  POST"
             />
+
         <View
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="2px"
-            android:layout_alignParentBottom="true"
+            android:background="#ccc"
             ></View>
     </RelativeLayout>
-    <TextView
 
+    <untils.FlowLayoutzy
+        android:id="@+id/fmgk_flow"
+        android:layout_marginLeft="100px"
+        android:layout_marginRight="50px"
         android:layout_below="@+id/fmgk_r7"
-        android:id="@+id/fmgk_nearzy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="110px"
-        android:textSize="45px"
-        />
-
-    <View
-        android:layout_below="@+id/fmgk_nearzy"
-        android:layout_width="match_parent"
-        android:layout_height="70px"
-        />
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

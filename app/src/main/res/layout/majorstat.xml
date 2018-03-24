@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <RelativeLayout
+    android:visibility="gone"
     android:id="@+id/majorstarone"
     android:paddingLeft="50px"
     android:paddingTop="50px"
@@ -91,6 +92,7 @@
         ></View>
 </RelativeLayout>
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/majorstartwo"
         android:paddingLeft="50px"
         android:paddingTop="50px"
@@ -177,6 +179,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/majorstarsan"
         android:paddingLeft="50px"
         android:paddingTop="50px"

@@ -94,7 +94,7 @@
         android:layout_below="@+id/mmajorll"
         android:id="@+id/mmajor_vben"
         android:layout_width="80px"
-        android:layout_height="15px"
+        android:layout_height="10px"
         android:background="#3B9EFF"
         android:visibility="visible"/>
     <View
@@ -104,7 +104,7 @@
         android:layout_below="@+id/mmajorll"
         android:id="@+id/mmajor_vzhuan"
         android:layout_width="80px"
-        android:layout_height="15px"
+        android:layout_height="10px"
         android:background="#3B9EFF"
         android:visibility="gone"/>
     <RelativeLayout
@@ -143,14 +143,13 @@
 
 
 <ListView
-
     android:layout_width="300px"
     android:layout_height="match_parent"
     android:id="@+id/benda_list"
     ></ListView>
 
         <ListView
-
+            android:scrollbars="none"
             android:layout_toRightOf="@id/benda_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -174,6 +173,7 @@
             android:id="@+id/zhuanda_list"
             ></ListView>
         <ListView
+            android:scrollbars="none"
             android:layout_toRightOf="@id/zhuanda_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

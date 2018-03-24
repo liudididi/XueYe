@@ -7,9 +7,9 @@
     >
 
         <ImageView
-            android:padding="50px"
+            android:padding="30px"
             android:id="@+id/xiaojt_img"
-            android:src="@drawable/right_arrow"
+            android:src="@drawable/you"
             android:layout_width="160px"
             android:layout_height="130px" />
         <TextView
@@ -29,6 +29,8 @@
             android:background="#ccc"
             ></View>
     <untils.ListViewForScrollView
+        android:scrollbars="none"
+        android:overScrollMode="never"
         android:visibility="gone"
          android:layout_below="@+id/vv"
         android:id="@+id/list_san"
