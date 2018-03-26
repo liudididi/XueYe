@@ -35,132 +35,211 @@
         android:layout_height="1px"
         android:background="#ccc"
         android:layout_below="@id/rl_score"></View>
+
     <LinearLayout
         android:background="#fff"
-        android:id="@+id/score_ll"
+        android:id="@+id/ll_tishi"
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:layout_below="@id/view1"
         >
         <RelativeLayout
-            android:layout_width="0dp"
+
+            android:layout_width="0px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="120px"
             >
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="考生所在地"
-                android:textSize="50px"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                />
+
+                />
             <View
-                android:layout_width="1px"
-                android:layout_height="50px"
+                android:layout_width="2px"
+                android:layout_height="80px"
+                android:background="#ccc"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="#ccc"
                 ></View>
-
         </RelativeLayout>
         <RelativeLayout
-            android:layout_width="0dp"
+
+            android:layout_width="0px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="120px"
             >
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="院校所在地"
-                android:textSize="50px"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                />
+
             <View
-                android:layout_width="1px"
-                android:layout_height="50px"
+                android:layout_width="2px"
+                android:layout_height="80px"
+                android:background="#ccc"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="#ccc"
                 ></View>
         </RelativeLayout>
         <RelativeLayout
-            android:layout_width="0dp"
+
+            android:layout_width="0px"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="120px"
             >
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="院校名称"
-                android:textSize="50px"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                />
+
         </RelativeLayout>
     </LinearLayout>
     <View
-        android:id="@+id/view2"
+        android:id="@+id/view_tishi"
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#ccc"
-        android:layout_below="@id/score_ll"></View>
+        android:layout_below="@+id/ll_tishi"
+        ></View>
     <LinearLayout
-        android:id="@+id/score_ll1"
-        android:layout_width="match_parent"
-        android:layout_below="@id/view2"
-        android:layout_height="120px"
         android:background="#fff"
+        android:id="@+id/score_ll"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_below="@id/view_tishi"
         >
-
         <RelativeLayout
-            android:layout_weight="1"
+            android:id="@+id/rl_kaosheng"
             android:layout_width="0px"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tv_kaosheng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            <Spinner
-                android:id="@+id/score_spinner1"
-                android:layout_width="280px"
-                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                ></Spinner>
+                />
+            <ImageView
+                android:id="@+id/iv_right1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                android:layout_toRightOf="@+id/tv_kaosheng"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="visible"
+
+                />
+            <ImageView
+                android:id="@+id/iv_next1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next"
+                android:layout_toRightOf="@+id/tv_kaosheng"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="gone"
+                />
             <View
-                android:layout_width="1px"
-                android:layout_height="50px"
+                android:layout_width="2px"
+                android:layout_height="80px"
+                android:background="#ccc"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="#ccc"
-                android:layout_gravity="center_vertical"
                 ></View>
         </RelativeLayout>
         <RelativeLayout
-            android:layout_weight="1"
+            android:id="@+id/rl_yuanxiao"
             android:layout_width="0px"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tv_yuanxiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                />
+            <ImageView
+                android:id="@+id/iv_right2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                android:layout_toRightOf="@+id/tv_yuanxiao"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="visible"
 
-            <Spinner
-                android:id="@+id/score_spinner2"
-                android:layout_width="280px"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                ></Spinner>
+                />
+            <ImageView
+                android:id="@+id/iv_next2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next"
+                android:layout_toRightOf="@+id/tv_yuanxiao"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="gone"
+                />
             <View
-                android:layout_width="1px"
-                android:layout_height="50px"
+                android:layout_width="2px"
+                android:layout_height="80px"
+                android:background="#ccc"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="#ccc"
-                android:layout_gravity="center_vertical"
                 ></View>
         </RelativeLayout>
         <RelativeLayout
-            android:layout_weight="1"
+            android:id="@+id/rl_name"
             android:layout_width="0px"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:id="@+id/iv_right3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                android:layout_toRightOf="@+id/tv_name"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="visible"
 
-            <Spinner
-                android:layout_centerInParent="true"
-                android:id="@+id/score_spinner3"
-                android:layout_width="280px"
-                android:layout_height="match_parent"
-                ></Spinner>
+                />
+            <ImageView
+                android:id="@+id/iv_next3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next"
+                android:layout_toRightOf="@+id/tv_name"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="gone"
+                />
+
         </RelativeLayout>
     </LinearLayout>
+
 
 
 
@@ -168,7 +247,7 @@
         android:id="@+id/score_science"
         android:layout_width="wrap_content"
         android:layout_height="100px"
-        android:layout_below="@id/score_ll1"
+        android:layout_below="@id/score_ll"
         android:gravity="center_vertical"
         android:text="理科"
         android:layout_marginLeft="20px"
@@ -289,4 +368,59 @@
             >
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/kaosheng_list"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/score_ll"
+        android:layout_height="847px"
+        android:background="#fff"
+        android:visibility="gone"
+        >
+    </ListView>
+    <View
+        android:id="@+id/view_kaosheng"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/kaosheng_list"
+        android:background="#cc222222"
+        android:visibility="gone"
+        >
+    </View>
+    <ListView
+        android:id="@+id/yuanxiao_list"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/score_ll"
+        android:layout_height="847px"
+        android:background="#fff"
+        android:visibility="gone"
+        >
+    </ListView>
+    <View
+        android:id="@+id/view_yuanxiao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/yuanxiao_list"
+        android:background="#cc222222"
+        android:visibility="gone"
+        >
+    </View>
+    <ListView
+        android:id="@+id/name_list"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/score_ll"
+        android:layout_height="847px"
+        android:background="#fff"
+        android:visibility="gone"
+        >
+    </ListView>
+    <View
+        android:id="@+id/view_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/name_list"
+        android:background="#cc222222"
+        android:visibility="gone"
+        >
+    </View>
 </RelativeLayout>

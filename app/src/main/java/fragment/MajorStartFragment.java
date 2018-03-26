@@ -47,9 +47,9 @@ public class MajorStartFragment extends Basefragment {
     public void initView() {
         initid();
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getMajor().length()>6){
+            if(list.get(i).getMajor().length()>9){
                 String major = list.get(i).getMajor();
-                String substring = major.substring(0, 6);
+                String substring = major.substring(0,9);
                 titlelist.get(i).setText(substring);
             }else {
                 titlelist.get(i).setText(list.get(i).getMajor());
@@ -65,11 +65,9 @@ public class MajorStartFragment extends Basefragment {
                     @Override
                     public void onClick(View v) {
                         List<jobStarBean.MajorinfoBean> majorinfo = list.get(finalI).getMajorinfo();
-                        if(majorinfo!=null&&majorinfo.size()>0){
-                            MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),majorinfo.get(0).getAveragesalary()+"",getActivity());
-                        }else {
-                            Toast.makeText(getActivity(), "暂无信息", Toast.LENGTH_SHORT).show();
-                        }
+
+                        MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),getActivity());
+
                     }
                 });
 

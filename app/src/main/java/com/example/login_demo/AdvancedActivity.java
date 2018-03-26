@@ -115,16 +115,17 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         isMS = (String) SPUtils.get(MyApp.context, "isMS", "");
     }
 
-    @OnClick({R.id.advanced_iv_back, R.id.advanced_minute, R.id.advanced_rl_sprint, R.id.advanced_rl_reliable, R.id.advanced_rl_minimum})
+    @OnClick({R.id.advanced_iv_back,R.id.rl_estimate, R.id.advanced_rl_sprint, R.id.advanced_rl_reliable, R.id.advanced_rl_minimum})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.advanced_iv_back:
                 finish();
                 break;
-            case R.id.advanced_minute:
+            case R.id.rl_estimate:
                 Intent intent=new Intent(this,CompleteWishActivity.class);
                 startActivityForResult(intent, 1);
                 break;
+
             case R.id.advanced_rl_sprint:
                 advancedSprint.setTextColor(Color.BLACK);
                 advancedReliable.setTextColor(Color.GRAY);

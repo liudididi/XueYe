@@ -50,6 +50,12 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     RelativeLayout rlZntb;
     @BindView(R.id.jiesuo_pb)
     ProgressBar jiesuoPb;
+    @BindView(R.id.img_xlcsbq)
+    ImageView imgXlcsbq;
+    @BindView(R.id.img_zhiyxkbq)
+    ImageView imgZhiyxkbq;
+    @BindView(R.id.img_zhuanyxkbq)
+    ImageView imgZhuanyxkbq;
     private String token;
     private String data;
     private CXEFCPresenter cxefcPresenter;
@@ -98,7 +104,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.VISIBLE);
                             imgZntbwjs.setVisibility(View.VISIBLE);
-
+                            imgXlcsbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(false);
                             rlZntb.setEnabled(false);
@@ -107,7 +113,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.VISIBLE);
-
+                            imgXlcsbq.setImageResource(R.drawable.biaoywc);
+                            imgZhiyxkbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
                             rlZntb.setEnabled(false);
@@ -116,7 +123,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.GONE);
-
+                            imgXlcsbq.setImageResource(R.drawable.biaoywc);
+                            imgZhiyxkbq.setImageResource(R.drawable.biaoywc);
+                            imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
                             rlZntb.setEnabled(true);
@@ -125,6 +134,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
                             imgZntbwjs.setVisibility(View.GONE);
+                            imgXlcsbq.setImageResource(R.drawable.biaoywc);
+                            imgZhiyxkbq.setImageResource(R.drawable.biaoywc);
+                            imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
                             rlZntb.setEnabled(true);
@@ -276,5 +288,10 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     }
 
 
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

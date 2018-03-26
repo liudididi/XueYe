@@ -495,12 +495,8 @@ public class MajorStarActivity extends BaseActivity  {
             ywlist.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(finalI).getMajorinfo();
-                    if (majorinfo != null && majorinfo.size() > 0) {
-                        tanchuang(answerllist.get(finalI).getMajor_id(), titlelist.get(finalI).getText().toString(), majorinfo.get(0).getAveragesalary() + "", MajorStarActivity.this);
-                    } else {
-                        Toast("暂无信息");
-                    }
+            tanchuang(answerllist.get(finalI).getMajor_id(), titlelist.get(finalI).getText().toString(), MajorStarActivity.this);
+
                 }
             });
         }
@@ -523,7 +519,8 @@ public class MajorStarActivity extends BaseActivity  {
     }
 
 
-    public static void tanchuang(String id, final String zhuan, final String xz, final Context context) {
+    public static void tanchuang(String id, final String zhuan, final Context context) {
+
         MyQusetUtils.getInstance().getQuestInterface().zyxq(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -557,7 +554,9 @@ public class MajorStarActivity extends BaseActivity  {
                                 TextView dlog_title = dialogView.findViewById(R.id.dlog_title);
                                 dlog_title.setText(zhuan);
                                 TextView dlog_xz = dialogView.findViewById(R.id.dlog_xz);
-                                dlog_xz.setText("￥" + xz);
+                                if(majorstatXQBean.getAveragesalary()!=0){
+                                    dlog_xz.setText("￥" + majorstatXQBean.getAveragesalary());
+                                }
 
                                 TextView tv_ranking = dialogView.findViewById(R.id.tv_ranking);
                                 tv_ranking.setText(majorstatXQBean.getRanking());

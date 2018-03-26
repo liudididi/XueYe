@@ -53,11 +53,13 @@ public class BendaAdapter extends BaseAdapter {
             convertView=View.inflate(context, R.layout.dalistitem,null);
         }
         final TextView benda_tv=convertView.findViewById(R.id.benda_tv);
-          if(position==zt){
-              benda_tv.setBackgroundColor(Color.parseColor("#3B9EFF"));
-          }else {
-              benda_tv.setBackgroundColor(Color.parseColor("#F3F3F3"));
-          }
+        if(position==zt){
+            benda_tv.setBackgroundColor(Color.parseColor("#3B9EFF"));
+            benda_tv.setTextColor(Color.parseColor("#FFFFFF"));
+        }else {
+            benda_tv.setBackgroundColor(Color.parseColor("#F3F3F3"));
+            benda_tv.setTextColor(Color.parseColor("#666666"));
+        }
         benda_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

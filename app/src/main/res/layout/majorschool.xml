@@ -8,7 +8,7 @@
         android:layout_height="150px">
         <View
             android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
+            android:layout_marginTop="55px"
             android:background="#3B9EFF"
             android:id="@+id/fmgk_v3"
             android:layout_width="10px"
@@ -19,7 +19,7 @@
             android:layout_toRightOf="@+id/fmgk_v3"
             android:textSize="50px"
             android:textColor="@color/black"
-            android:layout_marginLeft="50px"
+            android:layout_marginLeft="30px"
             android:layout_marginTop="50px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

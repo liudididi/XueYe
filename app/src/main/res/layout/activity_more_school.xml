@@ -44,47 +44,111 @@
             android:layout_alignParentBottom="true"
             ></View>
     </RelativeLayout>
-    <RelativeLayout
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        android:layout_below="@+id/mschool_title"
+        ></View>
+    <LinearLayout
         android:id="@+id/mschool_tiaojian"
         android:layout_width="match_parent"
         android:layout_height="120px"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/mschool_title">
-        <View
-            android:layout_centerVertical="true"
-            android:layout_width="2px"
-            android:layout_height="80px"
-            android:layout_centerHorizontal="true"
-             android:background="#ccc"
-            ></View>
+        android:orientation="horizontal"
+         android:layout_below="@+id/view">
 
-        <Spinner
-            android:id="@+id/mschool_area"
-            android:layout_width="280px"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130px"
-            android:layout_marginTop="20px"
-            android:textSize="50px" />
-        <Spinner
-            android:id="@+id/mschool_sort"
-            android:layout_width="250px"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20px"
-           android:layout_marginRight="150px"
-            android:textSize="50px"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"></View>
-    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_diqu"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tv_diqu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择地区"
+                android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:id="@+id/iv_right1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                android:layout_toRightOf="@+id/tv_diqu"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="visible"
 
+                />
+            <ImageView
+                android:id="@+id/iv_next1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next"
+                android:layout_toRightOf="@+id/tv_diqu"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="gone"
+                />
+            <View
+                android:layout_width="2px"
+                android:layout_height="80px"
+                android:background="#ccc"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                ></View>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_yuanxiao"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tv_yuanxiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="院校类型"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                />
+            <ImageView
+                android:id="@+id/iv_right2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                android:layout_toRightOf="@+id/tv_yuanxiao"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="visible"
+
+                />
+            <ImageView
+                android:id="@+id/iv_next2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/next"
+                android:layout_toRightOf="@+id/tv_yuanxiao"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20px"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        android:layout_below="@+id/mschool_tiaojian"
+      ></View>
 
     <com.weavey.loading.lib.LoadingLayout
     android:id="@+id/lodiing"
-    android:layout_below="@+id/mschool_tiaojian"
+    android:layout_below="@+id/view1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:isFirstVisible="false">
@@ -98,8 +162,9 @@
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/mschool_tiaojian"
+        android:layout_below="@+id/view1"
         android:id="@+id/mschool_xlist"
+        android:visibility="visible"
         ></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
     <ImageView
@@ -111,4 +176,45 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
+    <ListView
+        android:id="@+id/diqu_list"
+        android:layout_width="match_parent"
+        android:layout_height="847px"
+        android:layout_below="@id/view1"
+        android:visibility="gone"
+        android:background="#fafafa"
+        />
+
+    <ListView
+        android:id="@+id/yuanxiao_list"
+        android:layout_width="match_parent"
+        android:layout_height="847px"
+        android:layout_below="@id/view1"
+        android:visibility="gone"
+        android:background="#fafafa"
+        >
+    </ListView>
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/yuanxiao_list"
+        android:background="#cc222222"
+        android:visibility="gone"
+        android:clickable="true"
+        ></View>
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/diqu_list"
+        android:background="#cc222222"
+        android:clickable="true"
+
+        android:visibility="gone"></View>
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

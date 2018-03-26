@@ -9,14 +9,14 @@
         android:layout_height="270px">
 
         <com.meg7.widget.CustomShapeImageView
-            android:layout_marginLeft="5px"
+            android:layout_marginLeft="30px"
             android:id="@+id/schoolitem_url"
             android:layout_centerVertical="true"
             android:layout_width="200px"
             android:layout_height="200px"
             />
         <RelativeLayout
-            android:layout_marginLeft="50px"
+            android:layout_marginLeft="30px"
             android:id="@+id/more_school_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -59,6 +59,7 @@
         </untils.FlowLayout>
 
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"

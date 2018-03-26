@@ -9,7 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.weavey.loading.lib.LoadingLayout;
@@ -18,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.MoreSchoolRecycle;
+import adapter.Spinner_Adapter;
 import base.BaseActivity;
 import bean.CheckSchoolBean;
 import butterknife.BindView;
@@ -32,28 +37,56 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
     ImageView mschoolIvBack;
     @BindView(R.id.mschool_search)
     ImageView mschoolSearch;
-    @BindView(R.id.mschool_area)
-    Spinner mschoolArea;
 
     @BindView(R.id.mschool_none)
     ImageView img_none;
-    @BindView(R.id.mschool_sort)
-    Spinner mschoolSort;
+
     @BindView(R.id.mschool_xlist)
     XRecyclerView mschoolXlist;
 
-    private List<String> arealist;
-    private List<String> sortlist;
-    private ArrayAdapter<String> area_adapter;
-    private ArrayAdapter<String> sort_adapter;
-    private String area;
-    private String sort;
+    @BindView(R.id.diqu_list)
+    ListView diqu_list;
+    @BindView(R.id.yuanxiao_list)
+    ListView yuanxiao_list;
+
+    @BindView(R.id.rl_diqu)
+    RelativeLayout rl_diqu;
+    @BindView(R.id.rl_yuanxiao)
+    RelativeLayout rl_yuanxiao;
+
+    @BindView(R.id.iv_right1)
+    ImageView iv_right1;
+    @BindView(R.id.iv_next1)
+    ImageView iv_next1;
+    @BindView(R.id.iv_right2)
+    ImageView iv_right2;
+    @BindView(R.id.iv_next2)
+    ImageView iv_next2;
+
+    @BindView(R.id.tv_diqu)
+    TextView tv_diqu;
+    @BindView(R.id.tv_yuanxiao)
+    TextView tv_yuanxiao;
+
+
+    @BindView(R.id.pb)
+    ProgressBar pb;
+    @BindView(R.id.view3)
+    View view3;
+    @BindView(R.id.view4)
+    View view4;
+
+    private ArrayList<String> arealist;
+    private ArrayList<String> sortlist;
+
+    private String area="北京市";
+    private String sort="综合类";
     private MoreSchoolPresent moreSchoolPresent;
     private MoreSchoolRecycle adpter;
     private String token;
     private ConnectionChangeReceiver myReceiver;
-
-
+    private boolean flag=true;
+    private boolean flag2=true;
 
     @Override
     public int getId() {
@@ -63,71 +96,134 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void InIt() {
-        initList();
+
+           initList();
         this.loadingLayout=findViewById(R.id.lodiing);
         registerReceiver();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         mschoolXlist.setPullRefreshEnabled(false);
         mschoolXlist.setLayoutManager(new LinearLayoutManager(this));
         moreSchoolPresent = new MoreSchoolPresent(this);
-        moreSchoolPresent.checkschool(area, sort + "类");
-        //地区Spinner
-        area_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arealist);
-        area_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mschoolArea.setAdapter(area_adapter);
-        mschoolArea.setDropDownVerticalOffset(80);
-        mschoolArea.setSelection(0, false);
+
+        //地区适配器
+
+        Spinner_Adapter arealist_adapter=new Spinner_Adapter(arealist,MoreSchoolActivity.this);
+        diqu_list.setAdapter(arealist_adapter);
         //改变值
-        mschoolArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+        diqu_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                //拿到被选择项的值
-                String str = (String) mschoolArea.getSelectedItem();
-                area = str;
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                moreSchoolPresent.checkschool(area, sort + "类");
-
+                 pb.setVisibility(View.VISIBLE);
+                diqu_list.setVisibility(View.GONE);
+                iv_right1.setVisibility(View.VISIBLE);
+                iv_next1.setVisibility(View.GONE);
+                view4.setVisibility(View.GONE);
+                flag=true;
+                String s = arealist.get(i).toString();
+                tv_diqu.setText(s);
+                if(arealist.get(i).toString().equals("全国"))
+                {
+                    area="";
+                    moreSchoolPresent.checkschool(area, sort);
+                }
+                else
+                {
+                    area = s;
+                    moreSchoolPresent.checkschool(area, sort);
+                }
             }
+        });
+        //院校适配器
+        Spinner_Adapter yuanxiao_Adapter=new Spinner_Adapter(sortlist,MoreSchoolActivity.this);
+        yuanxiao_list.setAdapter(yuanxiao_Adapter);
 
+        yuanxiao_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                 pb.setVisibility(View.VISIBLE);
+                view3.setVisibility(View.GONE);
 
+                yuanxiao_list.setVisibility(View.GONE);
+                iv_right2.setVisibility(View.VISIBLE);
+                iv_next2.setVisibility(View.GONE);
+                flag2=true;
+                String s = sortlist.get(i).toString();
+                tv_yuanxiao.setText(s);
+                if(sortlist.get(i).toString().equals("不限"))
+                {
+                    sort ="";
+                    moreSchoolPresent.checkschool(area, sort);
+                }
+                else
+                {
+                    sort = s;
+                    moreSchoolPresent.checkschool(area, sort);
+                }
 
             }
         });
-        //类别spinner
-        sort_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sortlist);
-        sort_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mschoolSort.setAdapter(sort_adapter);
-        mschoolSort.setDropDownVerticalOffset(80);
-        mschoolSort.setSelection(0, false);
-        //改变值
-        mschoolSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+        rl_diqu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                //拿到被选择项的值
-                String str = (String) mschoolSort.getSelectedItem();
-                sort = str;
-                moreSchoolPresent.checkschool(area, sort + "类");
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View view) {
+                view3.setVisibility(View.GONE);
+                flag2=true;
+                yuanxiao_list.setVisibility(View.GONE);
+                iv_right2.setVisibility(View.VISIBLE);
+                iv_next2.setVisibility(View.GONE);
+                if(flag)
+                {
+                    iv_right1.setVisibility(View.GONE);
+                    iv_next1.setVisibility(View.VISIBLE);
+                    diqu_list.setVisibility(View.VISIBLE);
+                    view4.setVisibility(View.VISIBLE);
+                    flag=false;
+                }
+                else
+                {
+                    iv_right1.setVisibility(View.VISIBLE);
+                    iv_next1.setVisibility(View.GONE);
+                    diqu_list.setVisibility(View.GONE);
+                    view4.setVisibility(View.GONE);
+                    flag=true;
+                }
 
             }
         });
+        rl_yuanxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag=true;
+                view4.setVisibility(View.GONE);
+                diqu_list.setVisibility(View.GONE);
+                iv_right1.setVisibility(View.VISIBLE);
+                iv_next1.setVisibility(View.GONE);
+                if(flag2)
+                {
+                    iv_right2.setVisibility(View.GONE);
+                    iv_next2.setVisibility(View.VISIBLE);
+                    yuanxiao_list.setVisibility(View.VISIBLE);
+                    view3.setVisibility(View.VISIBLE);
+                    flag2=false;
+                }
+                else
+                {
+                    iv_right2.setVisibility(View.VISIBLE);
+                    iv_next2.setVisibility(View.GONE);
+                    yuanxiao_list.setVisibility(View.GONE);
+                    view3.setVisibility(View.GONE);
+                    flag2=true;
+                }
 
+            }
+        });
     }
 
     private void initList() {
         arealist = new ArrayList<>();
+        arealist.add("全国");
         arealist.add("北京市");
         arealist.add("天津市");
         arealist.add("河北省");
@@ -162,21 +258,21 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
         arealist.add("台湾");
         arealist.add("澳门");
         sortlist = new ArrayList<>();
-        sortlist.add("综合");
-        sortlist.add("理工");
-        sortlist.add("师范");
-        sortlist.add("农林");
-        sortlist.add("医药");
-        sortlist.add("民族");
-        sortlist.add("财经");
-        sortlist.add("政法");
-        sortlist.add("语言");
-        sortlist.add("军事");
-        sortlist.add("艺术");
-        sortlist.add("林业");
-        sortlist.add("体育");
-        area = "北京市";
-        sort = "综合";
+        sortlist.add("不限");
+        sortlist.add("综合类");
+        sortlist.add("理工类");
+        sortlist.add("师范类");
+        sortlist.add("农林类");
+        sortlist.add("医药类");
+        sortlist.add("民族类");
+        sortlist.add("财经类");
+        sortlist.add("政法类");
+        sortlist.add("语言类");
+        sortlist.add("军事类");
+        sortlist.add("艺术类");
+        sortlist.add("林业类");
+        sortlist.add("体育类");
+
     }
 
     @OnClick({R.id.mschool_iv_back, R.id.mschool_search})
@@ -204,19 +300,18 @@ unregisterReceiver();
 
     @Override
     public void CheckSuccess(List<CheckSchoolBean> list) {
-        if (list != null & list.size() > 0) {
+         pb.setVisibility(View.GONE);
+         if (list != null && list.size() > 0) {
             img_none.setVisibility(View.GONE);
             mschoolXlist.setVisibility(View.VISIBLE);
             loadingLayout.setStatus(LoadingLayout.Success);
             if (adpter == null) {
                 adpter = new MoreSchoolRecycle(this, list);
-
                 mschoolXlist.setAdapter(adpter);
             } else {
                 adpter.Refsh(list);
             }
         } else {
-
             img_none.setVisibility(View.VISIBLE);
             mschoolXlist.setVisibility(View.GONE);
         }
@@ -224,7 +319,7 @@ unregisterReceiver();
 
     @Override
     public void CheckFail(String msg) {
-
+        moreSchoolPresent.checkschool(area, sort);
 
     }
 
@@ -249,8 +344,7 @@ unregisterReceiver();
                     mschoolXlist.setVisibility(View.GONE);
                 } else {
                     //有网
-                    moreSchoolPresent.checkschool(area, sort + "类");
-
+                     moreSchoolPresent.checkschool(area, sort);
                 }
             }
         };

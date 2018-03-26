@@ -39,7 +39,7 @@
         android:background="#F3F3F3"
         android:id="@+id/vv"
         android:layout_width="match_parent"
-        android:layout_height="15px"></View>
+        android:layout_height="26px"></View>
     <RelativeLayout
         android:visibility="gone"
         android:id="@+id/job_rl"

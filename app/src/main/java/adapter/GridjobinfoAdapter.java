@@ -28,8 +28,8 @@ public class GridjobinfoAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(list.size()>9){
-            return  9;
+        if(list.size()>6){
+            return  6;
         }
         return list.size();
     }
@@ -51,10 +51,6 @@ public class GridjobinfoAdapter extends BaseAdapter {
         }
         TextView jobinfo_tv = convertView.findViewById(R.id.jobinfo_tv);
         String jobname = list.get(position).getJobname();
-        if(jobname.length()>=7)
-        {
-            jobname = jobname.substring(0,6)+"...";
-        }
         jobinfo_tv.setText(jobname);
         return convertView;
     }

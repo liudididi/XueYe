@@ -13,16 +13,28 @@
             android:layout_centerInParent="true"
             android:background="@drawable/back_bai"
              >
-            <TextView
-                android:id="@+id/tv_wenben"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#666666"
-                android:textSize="40px"
-                android:layout_marginLeft="20px"
-                android:layout_marginRight="20px"
-                android:layout_marginTop="10px"
-                 />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_wenben"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:textSize="40px"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginRight="20px"
+                    android:layout_marginTop="10px"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50px"
+                    ></View>
+
+            </LinearLayout>
+
         </ScrollView>
 
 

@@ -5,7 +5,7 @@
     >
 
     <solid
-        android:color="#cccccc"
+        android:color="#FAFAFA"
         ></solid>
     <size
         android:width="50px"

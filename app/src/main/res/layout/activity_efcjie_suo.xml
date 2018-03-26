@@ -60,6 +60,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
+                <ImageView
+                    android:layout_marginRight="20px"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/img_xlcsbq"
+                    android:src="@drawable/biaowwc"
+                    android:scaleType="centerCrop"
+                    android:padding="20px"
+                    android:layout_width="180px"
+                    android:layout_height="180px"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -84,6 +94,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
+                <ImageView
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/img_zhiyxkbq"
+                    android:src="@drawable/biaowwc"
+                    android:scaleType="centerCrop"
+                    android:padding="20px"
+                    android:layout_width="180px"
+                    android:layout_height="180px"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
@@ -107,6 +128,17 @@
                     android:padding="20px"
                     android:layout_width="match_parent"
                     android:layout_height="500px"
+                    />
+                <ImageView
+                    android:layout_marginTop="10px"
+                    android:layout_marginRight="20px"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/img_zhuanyxkbq"
+                    android:src="@drawable/biaowwc"
+                    android:scaleType="centerCrop"
+                    android:padding="20px"
+                    android:layout_width="180px"
+                    android:layout_height="180px"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -133,6 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
+
             </RelativeLayout>
 <View
     android:layout_width="match_parent"

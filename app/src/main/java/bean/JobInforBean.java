@@ -9,15 +9,36 @@ public class JobInforBean {
 
 
     /**
-     * id : 1
-     * jobName : 楼盘销售代表
-     * jobInfo : 楼盘销售代表是指在售楼处通过现场服务引导客户购买、促进楼盘销售，为客户提供投资置业专业化顾问式服务的综合性人才。
-     * jobEducation : ① 按计划完成销售计划； ② 负责购房合同的谈判与签定； ③ 协助客户办理贷款事宜，同时参与广告的宣传与策划； ④ 负责为客户办理入住手续，协助客户办理房屋产权； ⑤ 协助公司制定季度与年度计划。
-     * jobRequirement : ① 国家正规院校大专以上学历； ② 一年以上房地产销售从业经验（经验要求）； ③ 形象气质好，语言表达能力强、综合素质高；能吃苦耐劳，爱岗敬业； ④ 热情大方，善于沟通，有良好的团队合作精神和敬业精神； ⑤ 勇于开拓进取，并能接受压力和挑战。
+     * id : 108
+     * jobName : 美工
+     * jobInfo : 【是什么】美工师是指从事影视片等造型设计的艺术创作人员。【做什么】①进行影视片等的场景设计、人物造型设计、陈设道具设计以及镜头画面设计； ②组织指导服装、化妆、道具、置景、绘景、特技美术、字幕等部门的工作。 【怎么样】目前，市场需求很大，待遇较好。薪水待遇最低为1000-1500。工作环境舒适。好的3000多。 【谁能做】①美术设计、艺术专业，大专以上学历； ②热爱设计工作，具较好的审美能力和相当美术基础； ③有一年以上相关工作经验优先； ④具有优秀的创意才能 、创造力。 【小贴士】就业前景很好。见各大招聘信息。
+     * jobEducation : 美工一般是指对平面，色彩 ，基调，创意等进行堆砌的技术人才，分为平面美工、网页美工和三维美工。一般需要精通Photoshop等设计软件。
+     * jobRequirement : 1、具有良好的美术功底与创意能力；
+
+
+     2、网页设计/平面设计相关工作；
+
+
+     3、熟悉Photoshop，CorelDRAW,Illustrator,flash,CAD,3Dmax等设计软件；
      * jobContent :
-     * zeroMonery : null
-     * twoMonery : null
-     * threefiveMonery : null
+     * zeroMonery : ¥  3000-10000/月
+     * twoMonery :
+     * threefiveMonery : 1、负责公司所需的各类三维设计、平面设计、POP设计、VIP应用设计等；
+
+
+     2、负责各类活动的现场布置、背景布置和道具制作；
+
+
+     3、负责商场各类模型、道具的制作和绘制POP等；
+
+
+     4、协助美术师对商场店堂内、外广告的管理；
+
+
+     5、协助美术师对商场环境的规划、形象的规划、美陈布置等；
+
+
+     6、配合公司各类社会活动、促销活动的现场布置、道具的制作及美术陈列。
      * fiveupMonery : null
      * standby1 : null
      * standby2 : null
@@ -30,9 +51,9 @@ public class JobInforBean {
     private String jobEducation;
     private String jobRequirement;
     private String jobContent;
-    private Object zeroMonery;
-    private Object twoMonery;
-    private Object threefiveMonery;
+    private String zeroMonery;
+    private String twoMonery;
+    private String threefiveMonery;
     private Object fiveupMonery;
     private Object standby1;
     private Object standby2;
@@ -86,27 +107,27 @@ public class JobInforBean {
         this.jobContent = jobContent;
     }
 
-    public Object getZeroMonery() {
+    public String getZeroMonery() {
         return zeroMonery;
     }
 
-    public void setZeroMonery(Object zeroMonery) {
+    public void setZeroMonery(String zeroMonery) {
         this.zeroMonery = zeroMonery;
     }
 
-    public Object getTwoMonery() {
+    public String getTwoMonery() {
         return twoMonery;
     }
 
-    public void setTwoMonery(Object twoMonery) {
+    public void setTwoMonery(String twoMonery) {
         this.twoMonery = twoMonery;
     }
 
-    public Object getThreefiveMonery() {
+    public String getThreefiveMonery() {
         return threefiveMonery;
     }
 
-    public void setThreefiveMonery(Object threefiveMonery) {
+    public void setThreefiveMonery(String threefiveMonery) {
         this.threefiveMonery = threefiveMonery;
     }
 

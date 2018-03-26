@@ -10,8 +10,6 @@ import bean.CheckSchoolBean;
  */
 
 public interface MoreSchoolView  {
-
-
     void  CheckSuccess(List<CheckSchoolBean> list);
     void  CheckFail(String msg);
 }

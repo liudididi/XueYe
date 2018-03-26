@@ -143,6 +143,16 @@
                 android:background="#3B9DFE"
                 android:visibility="visible">
             </View>
+            <TextView
+                android:textSize="35px"
+                android:id="@+id/cc_tvnum"
+                android:layout_marginRight="10px"
+                android:layout_marginBottom="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_reliable"
@@ -172,6 +182,19 @@
                 android:layout_centerHorizontal="true"
                 android:background="#3B9DFE"
                 android:visibility="gone"/>
+
+            <TextView
+                android:textSize="35px"
+                android:visibility="gone"
+                android:id="@+id/wt_tvnum"
+                android:layout_marginRight="10px"
+                android:layout_marginBottom="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                />
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_minimum"
@@ -195,7 +218,20 @@
                 android:layout_centerHorizontal="true"
                 android:background="#3B9DFE"
                 android:visibility="gone"/>
+            <TextView
+                android:visibility="gone"
+                android:textSize="35px"
+                android:id="@+id/bd_tvnum"
+                android:layout_marginRight="10px"
+                android:layout_marginBottom="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                />
         </RelativeLayout>
+
     </LinearLayout>
     <View
         android:id="@+id/view5"

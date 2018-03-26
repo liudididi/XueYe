@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="46px"
-            android:text="￥5203"
+            android:text="暂无数据"
             android:textColor="#ff6700"
             />
 
@@ -106,7 +106,7 @@
             />
 
         <TextView
-            android:layout_marginTop="50px"
+            android:layout_marginTop="30px"
             android:layout_below="@+id/tv_ranking"
             android:id="@+id/tv_address"
             android:layout_width="200px"
@@ -118,7 +118,7 @@
             />
 
         <TextView
-            android:layout_marginTop="200px"
+            android:layout_marginTop="130px"
             android:layout_below="@+id/tv_ranking"
             android:id="@+id/tv_nearjob"
             android:layout_width="200px"
@@ -222,7 +222,7 @@
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px"
         android:layout_marginTop="120px"
-        android:numColumns="3"
+        android:numColumns="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </GridView>

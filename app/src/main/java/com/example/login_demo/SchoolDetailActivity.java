@@ -92,7 +92,7 @@ public class SchoolDetailActivity extends BaseActivity {
     private School_Brochures school_brochures;
 
     private ConnectionChangeReceiver myReceiver;
-    private static  RelativeLayout rl_wenben;
+    private static RelativeLayout rl_wenben;
     private static TextView tv_wenben;
 
     @Override
@@ -110,7 +110,7 @@ public class SchoolDetailActivity extends BaseActivity {
                 rl_wenben.setVisibility(View.GONE);
             }
         });
-        loadingLayout=lodiing;
+        loadingLayout = lodiing;
         registerReceiver();
         initfragment();
         token = (String) SPUtils.get(MyApp.context, "token", "");
@@ -125,15 +125,11 @@ public class SchoolDetailActivity extends BaseActivity {
 
     }
 
-    public static void ff(String s)
-    {
+    public static void ff(String s) {
         rl_wenben.setVisibility(View.VISIBLE);
-        if(s!=null)
-        {
+        if (s != null) {
             tv_wenben.setText(s);
-        }
-        else
-        {
+        } else {
             tv_wenben.setText("暂无数据");
         }
     }
@@ -400,4 +396,10 @@ public class SchoolDetailActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

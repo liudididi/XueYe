@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="130px">
+    android:layout_height="94px">
 <TextView
     android:id="@+id/benda_tv"
-    android:textSize="45px"
+    android:textColor="#666666"
+    android:textSize="38px"
     android:gravity="center"
     android:background="#FAFAFA"
     android:layout_width="match_parent"
-    android:layout_height="130px"
+    android:layout_height="94px"
     />
     <View
         android:layout_alignParentBottom="true"
