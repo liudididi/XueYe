@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,8 +15,7 @@
             android:layout_height="match_parent">
             <com.stx.xhb.xbanner.XBanner
             android:id="@+id/xbanner"
-                app:pointSelect="@color/red"
-
+             app:pointSelect="@color/red"
             android:layout_width="match_parent"
             android:layout_height="500px"
             app:AutoPlayTime="2000">
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/view6"
                 android:orientation="vertical"
-                android:layout_marginTop="20sp">
+                 >
                 <RelativeLayout
                     android:id="@+id/ll"
                     android:layout_width="wrap_content"
@@ -256,7 +256,6 @@
                 android:background="#F3F3F3"
                 android:layout_height="26px"
                 android:layout_width="match_parent"
-
                 android:layout_marginTop="70px"></View>
             <TextView
                 android:id="@+id/tv_can2"
@@ -276,7 +275,6 @@
                 android:layout_height="2px"
                 android:layout_marginBottom="30px"></View>
             <android.support.v7.widget.RecyclerView
-                android:overScrollMode="never"
                 android:id="@+id/rv_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

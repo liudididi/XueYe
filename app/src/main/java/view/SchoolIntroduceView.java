@@ -6,6 +6,7 @@ import base.BaseBean;
 import bean.CampusBean;
 import bean.FingerpostBean;
 import bean.SchoolIntroduceBean;
+import bean.ZDXKBean;
 
 /**
  * Created by 祝文 on 2018/2/25.
@@ -21,4 +22,9 @@ public interface SchoolIntroduceView {
     //校园生活
     void Campussuccess(BaseBean<List<CampusBean>> listBaseBean);
     void Campusfail(Throwable t);
+
+
+    //获取重点专业或重点实验室
+    void UnivImportantssuccess(BaseBean<ZDXKBean> zdxkBeanBaseBean);
+    void UnivImportantfail(Throwable t);
 }

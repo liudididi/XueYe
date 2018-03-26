@@ -17,95 +17,91 @@
         android:id="@+id/ss_r1"
         android:layout_below="@+id/fmgk_v"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="130px">
         <View
             android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
-            android:background="#3B9EFF"
+             android:background="#3B9EFF"
             android:id="@+id/fmgk_v1"
+            android:layout_centerVertical="true"
             android:layout_width="10px"
             android:layout_height="60px">
         </View>
         <TextView
             android:id="@+id/fmgk_tv"
             android:layout_toRightOf="@+id/fmgk_v1"
-            android:textSize="50px"
+            android:textSize="45px"
             android:textColor="@color/black"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="校园介绍"
             />
-
         <TextView
             android:id="@+id/qj_tv"
             android:layout_toRightOf="@+id/fmgk_tv"
-            android:textSize="50px"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="55px"
-            android:layout_width="wrap_content"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+            android:layout_centerVertical="true"
+              android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="INTRODUCE"
             />
-
-        <TextView
-            android:id="@+id/school_tv_xq"
-            android:text="详情"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textSize="50px"
-            android:textColor="#3B9EFF"
-            android:layout_marginTop="50px"
-            android:layout_marginRight="90px"/>
-
-        <ImageView
-            android:src="@drawable/right_lan"
-            android:layout_marginTop="55px"
-            android:layout_marginRight="40px"
-            android:layout_width="45px"
-            android:layout_height="45px"
-            android:layout_alignParentRight="true"
-            />
-        <ImageView
-            android:src="@drawable/right_lan"
-            android:layout_marginTop="55px"
-            android:layout_marginRight="30px"
-            android:layout_width="45px"
-            android:layout_height="45px"
-            android:layout_alignParentRight="true"
-            />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ss_r1"
+        android:orientation="vertical"
+        android:layout_marginTop="3px"
+        android:background="#fff">
         <TextView
             android:id="@+id/ss_tvjs"
             android:layout_marginTop="50px"
             android:layout_marginLeft="50px"
             android:layout_marginRight="50px"
+            android:layout_marginBottom="30px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/qj_tv"
-            android:textSize="45px"
-            android:maxLines="5"
+             android:textSize="34px"
+            android:textColor="#666666"
+            android:maxLines="7"
             android:ellipsize="end"
             />
+        <LinearLayout
+            android:id="@+id/ll_xiangqing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="26px"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部详情"
+                android:textColor="#3B9EFF"
+                android:layout_marginRight="10px"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/xia_lan"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
 
-    </RelativeLayout>
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="40px"
-        android:background="#fff"
-        android:layout_below="@+id/ss_r1"></View>
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_marginTop="30px"
         android:background="@color/white"
         android:id="@+id/ss_r2"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="150px">
+        android:layout_height="130px">
         <View
             android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
+           android:layout_centerVertical="true"
             android:background="#3B9EFF"
             android:id="@+id/ss_v1"
             android:layout_width="10px"
@@ -114,10 +110,10 @@
         <TextView
             android:id="@+id/ss_tv1"
             android:layout_toRightOf="@+id/ss_v1"
-            android:textSize="50px"
+            android:textSize="45px"
             android:textColor="@color/black"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
+            android:layout_marginLeft="20px"
+           android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="报考指南"
@@ -126,9 +122,9 @@
         <TextView
             android:id="@+id/ss_tv"
             android:layout_toRightOf="@+id/ss_tv1"
-            android:textSize="50px"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="55px"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="GUIDE"
@@ -145,31 +141,33 @@
         android:id="@+id/ss_sfbz"
         android:layout_below="@+id/ss_r2"
         android:layout_width="match_parent"
-        android:layout_height="120px"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
         >
         <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_marginTop="30px"
+            android:id="@+id/iv_yi"
+            android:layout_marginLeft="80px"
+             android:layout_centerVertical="true"
             android:layout_width="60px"
             android:layout_height="60px"
            android:src="@drawable/money"
             />
 
         <TextView
-            android:textColor="@color/black"
+            android:textColor="#666666"
             android:text="收费标准"
-            android:textSize="50px"
-            android:gravity="center"
-            android:layout_marginLeft="120px"
-            android:layout_marginTop="20px"
+            android:textSize="42px"
+            android:layout_marginLeft="18px"
+          android:layout_toRightOf="@id/iv_yi"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="80px" />
+            android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/right_lan"
-            android:layout_marginTop="35px"
-            android:layout_marginRight="30px"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+             android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
@@ -178,34 +176,35 @@
     <RelativeLayout
         android:background="@color/white"
         android:id="@+id/ss_jjzz"
-
         android:layout_below="@+id/ss_sfbz"
         android:layout_width="match_parent"
-        android:layout_height="120px"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
         >
         <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_marginTop="30px"
-            android:layout_width="60px"
+            android:id="@+id/iv_er"
+            android:layout_marginLeft="80px"
+             android:layout_width="60px"
             android:layout_height="60px"
+            android:layout_centerVertical="true"
             android:src="@drawable/jiangbei"
             />
 
         <TextView
-            android:textColor="@color/black"
+            android:textColor="#666666"
             android:text="奖金资助"
-            android:textSize="50px"
-            android:gravity="center"
-            android:layout_marginLeft="120px"
-            android:layout_marginTop="20px"
+            android:textSize="42px"
+           android:layout_toRightOf="@id/iv_er"
+            android:layout_marginLeft="18px"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="80px" />
+            android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/right_lan"
-            android:layout_marginTop="35px"
-            android:layout_marginRight="30px"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
@@ -216,10 +215,10 @@
         android:id="@+id/ss_r3"
         android:layout_below="@+id/ss_jjzz"
         android:layout_width="match_parent"
-        android:layout_height="150px">
+        android:layout_height="130px">
         <View
             android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
+           android:layout_centerVertical="true"
             android:background="#3B9EFF"
             android:id="@+id/ss_v3"
             android:layout_width="10px"
@@ -228,24 +227,24 @@
         <TextView
             android:id="@+id/ss_tv3"
             android:layout_toRightOf="@+id/ss_v3"
-            android:textSize="50px"
+            android:textSize="45px"
             android:textColor="@color/black"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
+            android:layout_marginLeft="20px"
+             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="校园生活"
+            android:text="校园百科"
             />
 
         <TextView
             android:id="@+id/ss_tv4"
             android:layout_toRightOf="@+id/ss_tv3"
-            android:textSize="50px"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="55px"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CAMPUS LIFE"
+            android:text="ENCYCLOPEDIAS"
             />
         <View
             android:id="@+id/ss_v4"
@@ -256,108 +255,294 @@
     </RelativeLayout>
     <RelativeLayout
         android:background="@color/white"
-        android:id="@+id/ss_stys"
+        android:id="@+id/ss_szll"
         android:layout_below="@+id/ss_r3"
         android:layout_width="match_parent"
-        android:layout_height="120px"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
         >
         <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_marginTop="30px"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:src="@drawable/yinshi"
+            android:id="@+id/iv_san"
+            android:layout_marginLeft="80px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/szll"
+            android:layout_centerVertical="true"
             />
 
         <TextView
-            android:textColor="@color/black"
-            android:text="食宿情况"
-            android:textSize="50px"
-            android:gravity="center"
-            android:layout_marginLeft="120px"
-            android:layout_marginTop="20px"
+            android:textColor="#666666"
+            android:text="师资力量"
+            android:textSize="42px"
+            android:layout_toRightOf="@id/iv_san"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18px"
             android:layout_width="wrap_content"
-            android:layout_height="80px" />
+            android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/right_lan"
-            android:layout_marginTop="35px"
-            android:layout_marginRight="30px"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
-   <!-- <RelativeLayout
+    <RelativeLayout
         android:background="@color/white"
-        android:id="@+id/ss_sshj"
-        android:layout_below="@+id/ss_stys"
+        android:id="@+id/ss_zxsxx"
+        android:layout_below="@+id/ss_szll"
         android:layout_width="match_parent"
-        android:layout_height="120px"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
         >
         <ImageView
-            android:layout_marginLeft="40px"
-            android:layout_marginTop="30px"
-            android:layout_width="60px"
-            android:layout_height="60px"
-            android:src="@drawable/sushe"
+            android:id="@+id/iv_si"
+            android:layout_marginLeft="80px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zxxx"
+            android:layout_centerVertical="true"
             />
 
         <TextView
-            android:layout_marginTop="20px"
-            android:textColor="@color/black"
-            android:text="宿舍环境"
-            android:textSize="50px"
-            android:gravity="center"
-            android:layout_marginLeft="120px"
-            android:layout_width="wrap_content"
-            android:layout_height="80px" />
+            android:textColor="#666666"
+            android:text="在校生信息"
+            android:textSize="42px"
+            android:layout_toRightOf="@id/iv_si"
+            android:layout_marginLeft="18px"
+            android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <ImageView
-            android:src="@drawable/right_lan"
-            android:layout_marginTop="35px"
-            android:layout_marginRight="30px"
-            android:layout_width="45px"
-            android:layout_height="45px"
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             />
-    </RelativeLayout>-->
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/ss_stys"
+        android:layout_below="@+id/ss_zxsxx"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_wu"
+            android:layout_marginLeft="80px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/sshj"
+            />
 
+        <TextView
+            android:layout_toRightOf="@id/iv_wu"
+            android:textColor="#666666"
+            android:text="食宿情况"
+            android:textSize="42px"
+            android:layout_centerVertical="true"
+             android:layout_marginLeft="18px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/ss_jyqk"
+        android:layout_below="@+id/ss_stys"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_liu"
+            android:layout_marginLeft="80px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/jyqk"
+            android:layout_centerVertical="true"
+            />
 
+        <TextView
+            android:textColor="#666666"
+            android:text="就业情况"
+            android:textSize="42px"
+             android:layout_marginLeft="18px"
+            android:layout_toRightOf="@id/iv_liu"
+             android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_marginTop="30px"
+        android:background="@color/white"
+        android:id="@+id/ss_r_xm"
+        android:layout_below="@+id/ss_jyqk"
+        android:layout_width="match_parent"
+        android:layout_height="130px">
+        <View
+            android:layout_marginLeft="50px"
+             android:layout_centerVertical="true"
+            android:background="#3B9EFF"
+            android:id="@+id/ss_v_xm"
+            android:layout_width="10px"
+            android:layout_height="60px">
+        </View>
+        <TextView
+            android:id="@+id/ss_tv3_xm"
+            android:layout_toRightOf="@+id/ss_v_xm"
+            android:textSize="45px"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重点项目"
+            />
+
+        <TextView
+            android:id="@+id/ss_tv4_xm"
+            android:layout_toRightOf="@+id/ss_tv3_xm"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="ENCYCLOPEDIAS"
+            />
+        <View
+            android:id="@+id/ss_v4_xm"
+            android:layout_marginTop="20px"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            ></View>
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl_zdsys"
+        android:layout_below="@+id/ss_r_xm"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_qi"
+            android:layout_marginLeft="80px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zdsys"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:textColor="#666666"
+            android:text="重点实验室"
+            android:textSize="42px"
+             android:layout_marginLeft="18px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_qi"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl_zdxk"
+        android:layout_below="@+id/rl_zdsys"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_ba"
+            android:layout_marginLeft="80px"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zdxk"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:textColor="#666666"
+            android:text="重点学科"
+            android:textSize="42px"
+             android:layout_marginLeft="18px"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_ba"
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/right"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_marginTop="30px"
         android:background="@color/white"
         android:id="@+id/ss_r4"
-        android:layout_below="@+id/ss_stys"
+        android:layout_below="@+id/rl_zdxk"
         android:layout_width="match_parent"
-        android:layout_height="150px">
+        android:layout_height="130px">
         <View
             android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
-            android:background="#3B9EFF"
+             android:background="#3B9EFF"
             android:id="@+id/ss_v5"
+            android:layout_centerVertical="true"
             android:layout_width="10px"
             android:layout_height="60px">
         </View>
         <TextView
             android:id="@+id/ss_tv5"
             android:layout_toRightOf="@+id/ss_v5"
-            android:textSize="50px"
+            android:textSize="45px"
             android:textColor="@color/black"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="50px"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="20px"
+             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="科研教学"
             />
 
         <TextView
             android:id="@+id/ss_tv6"
             android:layout_toRightOf="@+id/ss_tv5"
-            android:textSize="50px"
-            android:layout_marginLeft="50px"
-            android:layout_marginTop="55px"
-            android:layout_width="wrap_content"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+            android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SCIENTIFIC RESEARCH"
             />
@@ -392,7 +577,7 @@
             android:layout_marginStart="26dp"
             android:gravity="center"
             android:text="271"
-            android:textColor="#3B9EFF"
+            android:textColor="#F29806"
             android:textSize="40px" />
         <TextView
             android:id="@+id/ss_tv7"
@@ -431,83 +616,57 @@
             android:layout_toLeftOf="@id/ss_tv8"
             android:gravity="center"
             android:text="253"
-            android:textColor="#3B9EFF"
+            android:textColor="#F29806"
             android:textSize="40px" />
     </RelativeLayout>
-
-
     <RelativeLayout
-        android:layout_marginTop="5px"
-        android:id="@+id/ss_r6"
-        android:layout_width="match_parent"
-        android:layout_height="130px"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="30px"
+        android:background="@color/white"
+        android:id="@+id/rl_xsly"
         android:layout_below="@+id/ss_r5"
-        android:background="@color/white">
-
+        android:layout_width="match_parent"
+        android:layout_height="130px">
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"></View>
-
-        <TextView
-            android:id="@+id/ss_zdsys"
-            android:layout_width="200px"
-            android:layout_height="60px"
-            android:layout_marginLeft="80px"
+            android:layout_marginLeft="50px"
             android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="11"
-            android:textColor="#FF6700"
-            android:textSize="40px" />
-
+             android:background="#3B9EFF"
+            android:id="@+id/ss_xsly"
+            android:layout_width="10px"
+            android:layout_height="60px">
+        </View>
         <TextView
-            android:id="@+id/ss_tv9"
-            android:layout_width="230px"
-            android:layout_height="60px"
-           android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/ss_zdsys"
-            android:gravity="center"
-            android:text="重点实验室"
-            android:textSize="40px" />
-
-        <View
-            android:background="@color/trans_color"
-            android:layout_width="3px"
-            android:layout_height="100px"
-            android:layout_centerInParent="true"
-            ></View>
-
-        <TextView
-            android:id="@+id/ss_tv10"
-            android:layout_width="200px"
-            android:layout_height="60px"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30px"
-             android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="重点学科"
-            android:textSize="40px" />
-
-        <TextView
-            android:id="@+id/ss_zdxk"
-            android:layout_width="200px"
-            android:layout_height="60px"
-            android:layout_marginRight="50px"
+            android:id="@+id/ss_tv5_xsly"
+            android:layout_toRightOf="@+id/ss_xsly"
+            android:textSize="45px"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20px"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/ss_tv10"
-            android:gravity="center"
-            android:text="13"
-            android:textColor="#FF6700"
-            android:textSize="40px" />
+             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学生来源"
+            />
+
+        <TextView
+            android:id="@+id/ss_tv_ss_xsly"
+            android:layout_toRightOf="@+id/ss_tv5_xsly"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STUDENT SOURCE"
+            />
+
     </RelativeLayout>
+
+
 
     <RelativeLayout
         android:id="@+id/ss_r7"
-        android:layout_marginTop="10px"
+        android:layout_marginTop="3px"
         android:layout_width="match_parent"
         android:layout_height="200px"
-        android:layout_below="@id/ss_r6"
+        android:layout_below="@id/rl_xsly"
         android:background="@color/white">
 
         <com.meg7.widget.CustomShapeImageView
@@ -715,11 +874,159 @@
 
 
     </RelativeLayout>
-<View
-    android:background="#fff"
-    android:layout_below="@+id/ss_r9"
-    android:layout_width="match_parent"
-    android:layout_height="50px"></View>
+    <RelativeLayout
+        android:layout_marginTop="30px"
+        android:background="@color/white"
+        android:id="@+id/rl_lxfs"
+        android:layout_below="@+id/ss_r9"
+        android:layout_width="match_parent"
+        android:layout_height="130px">
+        <View
+            android:layout_marginLeft="50px"
+            android:layout_centerVertical="true"
+            android:background="#3B9EFF"
+            android:id="@+id/ss_lxfs"
+            android:layout_width="10px"
+            android:layout_height="60px">
+        </View>
+        <TextView
+            android:id="@+id/ss_tv5_lxfs"
+            android:layout_toRightOf="@+id/ss_lxfs"
+            android:textSize="45px"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式"
+            />
+
+        <TextView
+            android:id="@+id/ss_tv_ss_lxfs"
+            android:layout_toRightOf="@+id/ss_tv5_lxfs"
+            android:textSize="34px"
+            android:layout_marginLeft="24px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STUDENT SOURCE"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/ss_wfwz"
+        android:layout_below="@+id/rl_lxfs"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_wfwz"
+            android:layout_marginLeft="80px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wangzhi"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_gw"
+            android:textColor="#666666"
+            android:text="官方网址"
+            android:textSize="42px"
+            android:layout_toRightOf="@id/iv_wfwz"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/tv_gw"
+             android:text="HTTPS://123.SOGOU.COM/"
+            android:textSize="34px"
+            android:textColor="#3986f3"
+            android:layout_marginTop="35px"
+            android:layout_marginLeft="144px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/ss_dzyx"
+        android:layout_below="@+id/ss_wfwz"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_dzyx"
+            android:layout_marginLeft="80px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/youxiang"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_yx"
+            android:textColor="#666666"
+            android:text="电子邮箱"
+            android:textSize="42px"
+            android:layout_toRightOf="@id/iv_dzyx"
+            android:layout_marginLeft="18px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/tv_yx"
+            android:text="BDZSB@PKU.EDN.CN"
+            android:textSize="34px"
+            android:textColor="#3986f3"
+            android:layout_marginTop="35px"
+            android:layout_marginLeft="144px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/ss_dianhua"
+        android:layout_below="@+id/ss_dzyx"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:layout_marginTop="3px"
+        >
+        <ImageView
+            android:id="@+id/iv_dianhua"
+            android:layout_marginLeft="80px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/dianhua"
+            />
+
+        <TextView
+            android:id="@+id/tv_dh"
+            android:layout_toRightOf="@id/iv_dianhua"
+            android:textColor="#666666"
+            android:text="招生办电话"
+            android:textSize="42px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/tv_dh"
+            android:text="010-62770334;010-62770335"
+            android:textSize="34px"
+            android:textColor="#3986f3"
+            android:layout_marginTop="35px"
+            android:layout_marginLeft="110px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>
 </ScrollView>

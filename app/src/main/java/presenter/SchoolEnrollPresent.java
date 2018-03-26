@@ -7,6 +7,7 @@ import base.Basepresent;
 import bean.GailvBean;
 import bean.LuquXianBean;
 import bean.SchoolEnrollBean;
+import bean.ZYTJBean;
 import moudle.SchoolEnrollMoudle;
 import view.SchoolEnrollView;
 
@@ -75,6 +76,22 @@ public class SchoolEnrollPresent extends Basepresent {
             @Override
             public void LuquXianBeanfail(Throwable t) {
                 schoolEnrollView.LuquXianBeanfail(t.toString());
+            }
+        });
+
+    }
+
+    public  void  TZmajor(String name, int type ){
+
+        schoolEnrollMoudle.getTZmajor(name, type, new SchoolEnrollMoudle.TZmajorBack() {
+            @Override
+            public void TZmajorsuccess(BaseBean<List<ZYTJBean>> listBaseBean) {
+                schoolEnrollView.TZmajorsuccess(listBaseBean);
+            }
+
+            @Override
+            public void TZmajorfail(Throwable t) {
+                schoolEnrollView.TZmajorfail(t);
             }
         });
 

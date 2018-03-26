@@ -7,6 +7,7 @@ import base.Basepresent;
 import bean.CampusBean;
 import bean.FingerpostBean;
 import bean.SchoolIntroduceBean;
+import bean.ZDXKBean;
 import moudle.SchoolIntroduceMoudle;
 import view.SchoolIntroduceView;
 import view.School_SummaryView;
@@ -57,7 +58,8 @@ public class SchoolIntroducePresent extends Basepresent {
             }
         });
     }
-    //校园生活
+
+    //获取院校概况
     public void CampusPresent(String name)
     {
         schoolIntroduceMoudle.Campus(name, new SchoolIntroduceMoudle.CampusBack() {
@@ -69,6 +71,22 @@ public class SchoolIntroducePresent extends Basepresent {
             @Override
             public void Campusfail(Throwable t) {
                 schoolIntroduceView.Campusfail(t);
+            }
+        });
+    }
+
+    //获取重点专业或重点实验室
+    public void ZDXKPresent(String flag,String name)
+    {
+        schoolIntroduceMoudle.getUnivImportant(flag, name, new SchoolIntroduceMoudle.UnivImportantBack() {
+            @Override
+            public void UnivImportantssuccess(BaseBean<ZDXKBean> zdxkBeanBaseBean) {
+                schoolIntroduceView.UnivImportantssuccess(zdxkBeanBaseBean);
+            }
+
+            @Override
+            public void UnivImportantfail(Throwable t) {
+                schoolIntroduceView.UnivImportantfail(t);
             }
         });
     }

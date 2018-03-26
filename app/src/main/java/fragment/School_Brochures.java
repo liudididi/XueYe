@@ -1,9 +1,16 @@
 package fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.login_demo.R;
@@ -26,8 +33,12 @@ import view.SchoolBrochuresView;
 
 public class School_Brochures extends Basefragment implements SchoolBrochuresView{
 
-    private ListView school_brochures_lv;
-    private ArrayList<String> list;
+
+    private RelativeLayout rl_zsjz;
+    private RelativeLayout rl_zzzs;
+    private RelativeLayout rl_bsszs;
+    private RelativeLayout rl_tcszs;
+
 
     @Override
     public int getLayoutid() {
@@ -36,17 +47,14 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
 
     @Override
     public void initView() {
+
+        rl_zsjz = view.findViewById(R.id.rl_zsjz);
+        rl_zzzs = view.findViewById(R.id.rl_zzzs);
+        rl_bsszs = view.findViewById(R.id.rl_bsszs);
+        rl_tcszs = view.findViewById(R.id.rl_tcszs);
+
         SchoolBrochuresPresent schoolBrochuresPresent=new SchoolBrochuresPresent(this);
         schoolBrochuresPresent.SchoolBrochuresPresent(SchoolDetailActivity.schoolname);
-        school_brochures_lv = view.findViewById(R.id.school_brochures_lv);
-        list = new ArrayList<>();
-        list.add("招生简章");
-        list.add("招生计划");
-        list.add("自主招生");
-        list.add("保送生招生");
-        list.add("特长生招生");
-        School_Brochures_Adapter school_brochures_adapter=new School_Brochures_Adapter(list,getContext());
-        school_brochures_lv.setAdapter(school_brochures_adapter);
 
 
     }
@@ -56,47 +64,43 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
         List<SchoolBrochuresBean> data = listBaseBean.data;
         if(data.size()>0&&data!=null)
         {
-            for (int i = 0; i < data.size(); i++) {
-                //招生简章
-                final String admissionRules = data.get(i).getAdmissionRules();
-                final String admissionPlan = data.get(i).getAdmissionPlan();
-                final String independent = data.get(i).getIndependent();
-                final String baosongstr = data.get(i).getBaosongstr();
-                final String specialtystr = data.get(i).getSpecialtystr();
-                school_brochures_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Intent intent=new Intent(getContext(), SchoolBrouesDetailsActivity.class);
-                        if(i==0)
-                        {
-                            intent.putExtra("count",admissionRules);
-                            intent.putExtra("tltle1",list.get(i).toString());
-                         }
-                        if(i==1)
-                        {
-                            intent.putExtra("count",admissionPlan);
-                            intent.putExtra("tltle1",list.get(i).toString());
-                         }
-                        if(i==2)
-                        {
-                            intent.putExtra("count",independent);
-                            intent.putExtra("tltle1",list.get(i).toString());
-                         }
-                        if(i==3)
-                        {
-                            intent.putExtra("count",baosongstr);
-                            intent.putExtra("tltle1",list.get(i).toString());
-                         }
-                        if(i==4)
-                        {
-                            intent.putExtra("count",specialtystr);
-                            intent.putExtra("tltle1",list.get(i).toString());
-                         }
 
-                        startActivity(intent);
-                    }
-                });
-            }
+                //招生简章
+                final String  admissionRules = data.get(0).getAdmissionRules();
+
+                //自主招生
+                 final String independent = data.get(0).getIndependent();
+                 //b报送招生
+                final String baosongstr = data.get(0).getBaosongstr();
+                //特长生招生
+                final String specialtystr = data.get(0).getSpecialtystr();
+
+            rl_zsjz.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff(admissionRules);
+                }
+            });
+            rl_zzzs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff(independent);
+                }
+            });
+            rl_bsszs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff(baosongstr);
+                }
+            });
+            rl_tcszs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff(specialtystr);
+                }
+            });
+
+
         }
 
 

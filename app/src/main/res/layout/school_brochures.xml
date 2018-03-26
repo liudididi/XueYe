@@ -1,13 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <ListView
-        android:id="@+id/school_brochures_lv"
+    <RelativeLayout
+        android:id="@+id/rl_zsjz"
         android:layout_width="match_parent"
-        android:layout_height="770px"
-        android:layout_marginTop="20px"></ListView>
-</LinearLayout>
+        android:layout_height="130px"
+        android:background="#fff"
+        android:layout_marginTop="14px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="招生简章"
+            android:textSize="46px"
+            android:textColor="#666666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="54px"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_zzzs"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:background="#fff"
+        android:layout_below="@+id/rl_zsjz"
+        android:layout_marginTop="14px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自主招生"
+            android:textSize="46px"
+            android:textColor="#666666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="54px"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_bsszs"
+        android:layout_below="@+id/rl_zzzs"
+
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:background="#fff"
+        android:layout_marginTop="14px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保送生招生"
+            android:textSize="46px"
+            android:textColor="#666666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="54px"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_tcszs"
+        android:layout_below="@+id/rl_bsszs"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:background="#fff"
+        android:layout_marginTop="14px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="特长生招生"
+            android:textSize="46px"
+            android:textColor="#666666"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="54px"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1200px"
+        android:layout_below="@+id/rl_tcszs"
+        ></View>
+</RelativeLayout>

@@ -106,8 +106,10 @@ public class MBI_CSActivity extends BaseActivity implements EsayMbtiLSView {
 
     @Override
     public void EsayMbtiLSsuccess(BaseBean<List<CXEFCBean>> listBaseBean) {
-        String testCode = listBaseBean.data.get(0).getTestCode();
-        fx(testCode);
+        if(listBaseBean.data.size()>0&&listBaseBean.data!=null){
+            String testCode = listBaseBean.data.get(0).getTestCode();
+            fx(testCode);
+        }
     }
 
     private void fx(String textcode) {

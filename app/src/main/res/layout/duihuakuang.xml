@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_wenben"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cc222222"
+    android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="768px"
+            android:layout_height="1066px"
+            android:layout_centerInParent="true"
+            android:background="@drawable/back_bai"
+             >
+            <TextView
+                android:id="@+id/tv_wenben"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#666666"
+                android:textSize="40px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="10px"
+                 />
+        </ScrollView>
+
+
+</RelativeLayout>

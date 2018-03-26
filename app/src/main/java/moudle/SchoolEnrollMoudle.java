@@ -6,6 +6,7 @@ import base.BaseBean;
 import bean.GailvBean;
 import bean.LuquXianBean;
 import bean.SchoolEnrollBean;
+import bean.ZYTJBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -102,6 +103,42 @@ public  void  getskx(String province, String university, String classify, String
 
 }
 
+    //获取重点专业或特色专业
+    public  void  getTZmajor(String name, int type, final TZmajorBack tZmajorBack ){
+
+        DisposableSubscriber<BaseBean<List<ZYTJBean>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface()
+                .getTZmajor(name, type)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean<List<ZYTJBean>>>() {
+                    @Override
+                    public void onNext(BaseBean<List<ZYTJBean>> listBaseBean) {
+                        tZmajorBack.TZmajorsuccess(listBaseBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        tZmajorBack.TZmajorfail(t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+         compositeDisposable.add(disposableSubscriber);
+
+    }
+
+
+    //获取重点专业或特色专业
+    public interface TZmajorBack
+    {
+        void TZmajorsuccess(BaseBean<List<ZYTJBean>> listBaseBean);
+        void TZmajorfail(Throwable t);
+    }
+
     //大学录取的专业招生计划的接口
     public interface SchoolEnrollBack
     {
@@ -112,7 +149,7 @@ public  void  getskx(String province, String university, String classify, String
 
     public interface SLuquXianBeanBack
     {
-        void LuquXianBeansuccess(BaseBean<List<LuquXianBean>>  BaseBean);
+        void LuquXianBeansuccess(BaseBean<List<LuquXianBean>> BaseBean);
         void LuquXianBeanfail(Throwable t);
     }
 

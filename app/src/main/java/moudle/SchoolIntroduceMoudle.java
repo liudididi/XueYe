@@ -6,6 +6,7 @@ import base.BaseBean;
 import bean.CampusBean;
 import bean.FingerpostBean;
 import bean.SchoolIntroduceBean;
+import bean.ZDXKBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -67,10 +68,11 @@ public class SchoolIntroduceMoudle {
 
         compositeDisposable.add(disposableSubscriber);
     }
-    //校园生活
+
+    //获取院校概况
     public void Campus(String name, final CampusBack campusBack)
     {
-        DisposableSubscriber<BaseBean<List<CampusBean>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().campus(name)
+        DisposableSubscriber<BaseBean<List<CampusBean>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().UnInfoMobil(name)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<CampusBean>>>() {
@@ -92,7 +94,42 @@ public class SchoolIntroduceMoudle {
 
         compositeDisposable.add(disposableSubscriber);
     }
-    //校园生活
+
+    //获取重点专业或重点实验室
+    public void  getUnivImportant (String flag,String name, final UnivImportantBack univImportantBack)
+    {
+        DisposableSubscriber<BaseBean<ZDXKBean>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().getUnivImportant(flag, name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableSubscriber<BaseBean<ZDXKBean>>() {
+                    @Override
+                    public void onNext(BaseBean<ZDXKBean> zdxkBeanBaseBean) {
+                        univImportantBack.UnivImportantssuccess(zdxkBeanBaseBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        univImportantBack.UnivImportantfail(t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
+        compositeDisposable.add(disposableSubscriber);
+    }
+
+
+
+    //获取重点专业或重点实验室
+    public interface UnivImportantBack
+    {
+        void UnivImportantssuccess(BaseBean<ZDXKBean> zdxkBeanBaseBean);
+        void UnivImportantfail(Throwable t);
+    }
+    //获取院校概况
     public interface CampusBack
     {
         void Campussuccess(BaseBean<List<CampusBean>> listBaseBean);

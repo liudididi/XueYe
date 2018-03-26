@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,12 +22,14 @@ import java.util.List;
 import adapter.SchoolEnrollAdapter;
 import adapter.Spinner_Adapter;
 import adapter.Spinner_Adapter2;
+import adapter.ZYTJRecycleAdapter;
 import base.BaseBean;
 import base.Basefragment;
 import bean.ForecastBean;
 import bean.GailvBean;
 import bean.LuquXianBean;
 import bean.SchoolEnrollBean;
+import bean.ZYTJBean;
 import presenter.ForecastPresent;
 import presenter.SchoolEnrollPresent;
 import untils.Histogram;
@@ -66,6 +69,17 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private TextView school_enroll_tvtime;
     private String schoolname;
     private ForecastPresent forecastPresent;
+    private RelativeLayout rl_tszy;
+    private ImageView iv_lq_right;
+    private ImageView iv_lq_xia;
+    private boolean flag=true;
+    private boolean flag1=true;
+
+    private RecyclerView lv_tszy;
+    private RelativeLayout rl_zdzy;
+    private ImageView iv_zdzy_right;
+    private ImageView iv_zdzy_xia;
+    private RecyclerView rv_zdzy;
 
     @Override
     public int getLayoutid() {
@@ -83,7 +97,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         schoolEnrollPresent = new SchoolEnrollPresent(this);
         schoolEnrollPresent.SchoolEnrollPresent(schoolname,tbarea,tbsubtype);
         schoolEnrollPresent.getscoreCompareMobil(tbarea,tbsubtype, schoolname);
-
 
         Histogram column_two =  view.findViewById(R.id.column_two);
         column_two.setData(Integer.parseInt(tbmaxfen), 750);
@@ -185,10 +198,50 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
             }
         });
+        rl_tszy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 schoolEnrollPresent.TZmajor(schoolname,1);
 
+                if(flag)
+                {
+                    iv_lq_right.setVisibility(View.GONE);
+                    iv_lq_xia.setVisibility(View.VISIBLE);
+                    lv_tszy.setVisibility(View.VISIBLE);
+                    flag=false;
+                }
+               else
+                {
+                    iv_lq_right.setVisibility(View.VISIBLE);
+                    iv_lq_xia.setVisibility(View.GONE);
+                    lv_tszy.setVisibility(View.GONE);
+                    flag=true;
+                }
 
+            }
+        });
 
+        rl_zdzy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                schoolEnrollPresent.TZmajor(schoolname,0);
 
+                if(flag1)
+                {
+                    iv_zdzy_right.setVisibility(View.GONE);
+                    iv_zdzy_xia.setVisibility(View.VISIBLE);
+                    rv_zdzy.setVisibility(View.VISIBLE);
+                    flag1=false;
+                }
+                else
+                {
+                    iv_zdzy_right.setVisibility(View.VISIBLE);
+                    iv_zdzy_xia.setVisibility(View.GONE);
+                    rv_zdzy.setVisibility(View.GONE);
+                    flag1=true;
+                }
+            }
+        });
 
 
     }
@@ -215,6 +268,14 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         school_enroll_tvtime = view.findViewById(R.id.school_enroll_tvtime);
         se_tvmaxfen = view.findViewById(R.id.se_tvmaxfen);
         zhexian_ll = view.findViewById(R.id.zhexian_ll);
+        rl_tszy = view.findViewById(R.id.rl_tszy);
+        iv_lq_right = view.findViewById(R.id.iv_lq_right);
+        iv_lq_xia = view.findViewById(R.id.iv_lq_xia);
+        lv_tszy = view.findViewById(R.id.lv_tszy);
+        rl_zdzy = view.findViewById(R.id.rl_zdzy);
+        iv_zdzy_right = view.findViewById(R.id.iv_zdzy_right);
+        iv_zdzy_xia = view.findViewById(R.id.iv_zdzy_xia);
+        rv_zdzy = view.findViewById(R.id.rv_zdzy);
 
     }
 
@@ -260,6 +321,25 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void GetlvBeanfail(String msg) {
+
+    }
+
+    @Override
+    public void TZmajorsuccess(BaseBean<List<ZYTJBean>> listBaseBean) {
+        List<ZYTJBean> data = listBaseBean.data;
+        for (int i = 0; i < data.size(); i++) {
+            List<ZYTJBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
+            ZYTJRecycleAdapter zytjRecycleAdapter=new ZYTJRecycleAdapter(majorinfo,getContext());
+                lv_tszy.setLayoutManager(new LinearLayoutManager(getContext()));
+                lv_tszy.setAdapter(zytjRecycleAdapter);
+
+                rv_zdzy.setLayoutManager(new LinearLayoutManager(getContext()));
+                rv_zdzy.setAdapter(zytjRecycleAdapter);
+        }
+    }
+
+    @Override
+    public void TZmajorfail(Throwable t) {
 
     }
 

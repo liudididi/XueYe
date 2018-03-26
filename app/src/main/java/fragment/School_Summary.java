@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import bean.CampusBean;
 import bean.FingerpostBean;
 import bean.SchoolIntroduceBean;
 import bean.StudentFromBean;
+import bean.ZDXKBean;
 import presenter.SchoolIntroducePresent;
 import presenter.School_SummaryPresent;
 import view.PieChatView;
@@ -42,20 +44,28 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
     private School_SummaryPresent school_summaryPresent;
     private TextView tvwomen_bfb;
     private TextView tvman_bfb;
-    private TextView school_tv_xq;
+    private LinearLayout ll_xiangqing;
     private TextView ss_tvjs;
     private SchoolIntroducePresent schoolIntroducePresent;
     private TextView fmgk_tv;
     private String history;
     private RelativeLayout ss_sfbz;
     private RelativeLayout ss_jjzz;
+    private RelativeLayout rl_zdsys;
     private String feescale;
     private String award;
     private RelativeLayout ss_stys;
-    private RelativeLayout ss_sshj;
-    private String eat;
-    private String sleep;
+    private RelativeLayout ss_szll;
+    private RelativeLayout ss_zxsxx;
+    private RelativeLayout ss_jyqk;
+    private RelativeLayout rl_zdxk;
     private ImageView ss_back;
+    private String teacherpower;
+    private String inschoolstu;
+    private String eatandsleep;
+    private String employment;
+    private String laboratory;
+    private String major;
 
     @Override
     public int getLayoutid() {
@@ -120,8 +130,16 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                 List<CampusBean> data = listBaseBean.data;
                 if(data.size()>0&&data!=null)
                 {
-                    eat = data.get(0).getEat();
-                     //sleep = data.get(0).getSleep();
+                    //师资力量
+                    teacherpower = data.get(0).getTeacherpower();
+                    //在校生信息
+                    inschoolstu = data.get(0).getInschoolstu();
+                    //食宿情况
+                    eatandsleep = data.get(0).getEatandsleep();
+                    //就业情况
+                    employment = data.get(0).getEmployment();
+                    //重点实验室
+                    laboratory = data.get(0).getLaboratory();
                 }
             }
 
@@ -129,58 +147,82 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void Campusfail(Throwable t) {
 
             }
+
+            @Override
+            public void UnivImportantssuccess(BaseBean<ZDXKBean> zdxkBeanBaseBean) {
+                //重点学科
+                major = zdxkBeanBaseBean.data.getMajor();
+
+            }
+
+            @Override
+            public void UnivImportantfail(Throwable t) {
+
+            }
         });
         schoolIntroducePresent.SchoolIntroducePresent(SchoolDetailActivity.schoolname);
         schoolIntroducePresent.FingerpostPresent(SchoolDetailActivity.schoolname);
         schoolIntroducePresent.CampusPresent(SchoolDetailActivity.schoolname);
+        schoolIntroducePresent.ZDXKPresent("major",SchoolDetailActivity.schoolname);
     }
 
     private void onClick() {
-        school_tv_xq.setOnClickListener(new View.OnClickListener() {
+        ll_xiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), JJParticularsActivity.class);
-                intent.putExtra("school_title",fmgk_tv.getText().toString());
-                intent.putExtra("history",history);
-                startActivity(intent);
+               SchoolDetailActivity.ff(history);
             }
         });
         ss_sfbz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), JJParticularsActivity.class);
-                intent.putExtra("school_title","收费标准");
-                intent.putExtra("history",feescale);
-                startActivity(intent);
+                SchoolDetailActivity.ff(feescale);
             }
         });
         ss_jjzz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), JJParticularsActivity.class);
-                intent.putExtra("school_title","奖金资助");
-                intent.putExtra("history",award);
-                startActivity(intent);
+                SchoolDetailActivity.ff(award);
             }
         });
         ss_stys.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), JJParticularsActivity.class);
-                intent.putExtra("school_title","宿食情况");
-                intent.putExtra("history",eat);
-                startActivity(intent);
+                SchoolDetailActivity.ff(eatandsleep);
             }
         });
-       /* ss_sshj.setOnClickListener(new View.OnClickListener() {
+
+        ss_szll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getContext(), JJParticularsActivity.class);
-                intent.putExtra("school_title","宿舍环境");
-                intent.putExtra("history",sleep);
-                startActivity(intent);
+                SchoolDetailActivity.ff(teacherpower);
             }
-        });*/
+        });
+        ss_zxsxx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SchoolDetailActivity.ff(inschoolstu);
+            }
+        });
+        ss_jyqk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SchoolDetailActivity.ff(employment);
+            }
+        });
+        rl_zdsys.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SchoolDetailActivity.ff(laboratory);
+            }
+        });
+        rl_zdxk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SchoolDetailActivity.ff(major);
+            }
+        });
+
     }
 
     private void initid() {
@@ -189,14 +231,18 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         ss_rlbin = view.findViewById(R.id.ss_rlbin);
         tvwomen_bfb = view.findViewById(R.id.tvwomen_bfb);
         tvman_bfb = view.findViewById(R.id.tvman_bfb);
-        school_tv_xq = view.findViewById(R.id.school_tv_xq);
+        ll_xiangqing = view.findViewById(R.id.ll_xiangqing);
         ss_tvjs = view.findViewById(R.id.ss_tvjs);
         fmgk_tv = view.findViewById(R.id.fmgk_tv);
         ss_sfbz = view.findViewById(R.id.ss_sfbz);
         ss_jjzz = view.findViewById(R.id.ss_jjzz);
         ss_stys = view.findViewById(R.id.ss_stys);
-        //ss_sshj = view.findViewById(R.id.ss_sshj);
+        ss_szll = view.findViewById(R.id.ss_szll);
         ss_back = view.findViewById(R.id.ss_back);
+        ss_zxsxx = view.findViewById(R.id.ss_zxsxx);
+        ss_jyqk = view.findViewById(R.id.ss_jyqk);
+        rl_zdsys = view.findViewById(R.id.rl_zdsys);
+        rl_zdxk = view.findViewById(R.id.rl_zdxk);
     }
 
     @Override

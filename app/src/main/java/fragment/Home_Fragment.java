@@ -91,6 +91,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
     private LinearLayout home_table;
     private TextView home_tv_title;
     private LinearLayout home_ll;
+    private LinearLayout ll_college;
 
 
     @Override
@@ -173,6 +174,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         home_enter = view.findViewById(R.id.home_enter);
 
         home_table = view.findViewById(R.id.home_table);
+        ll_college = view.findViewById(R.id.ll_college);
         home_ll = view.findViewById(R.id.home_ll);
          home_table.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,7 +247,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
             }
         });
 
-        home_ll.setOnClickListener(new View.OnClickListener() {
+        ll_college.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), CollegeTitleActivity. class));

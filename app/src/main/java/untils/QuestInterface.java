@@ -61,6 +61,8 @@ import bean.VisionBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import bean.XGcsBean;
+import bean.ZDXKBean;
+import bean.ZYTJBean;
 import bean.jobStarBean;
 import io.reactivex.Flowable;
 
@@ -334,7 +336,19 @@ public interface QuestInterface {
     //学习资料
     @GET("/app/studymaterials/querymaterials")
     Flowable<BaseBean<StudyBean>> study(@Query("category") String category, @Query("province") String province, @Query("subject") String subject, @Query("grade") String grade, @Query("page") String page, @Query("limit") String limit);
+    //获取重点专业或特色专业
+    @GET("/app/scientificteach/getTZmajor")
+    Flowable<BaseBean<List<ZYTJBean>>> getTZmajor(@Query("name") String name, @Query("type") int type);
 
+
+
+    //获取重点专业或重点实验室
+    @GET("/app/scientificteach/getUnivImportant")
+    Flowable<BaseBean<ZDXKBean>> getUnivImportant(@Query("flag") String flag, @Query("name") String name);
+
+    //获取院校概况
+    @GET("/app/universityinfo/UnInfoMobil")
+    Flowable<BaseBean<List<CampusBean>>> UnInfoMobil(@Query("name") String name);
 
     //大学排序
     @GET("/app/hotlist/queryHot")
