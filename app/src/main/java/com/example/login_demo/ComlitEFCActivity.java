@@ -71,6 +71,8 @@ public class ComlitEFCActivity extends BaseActivity {
                                     handler.removeCallbacks(runnable);
                                 }
                                 butChakan.setBackground(getResources().getDrawable(R.drawable.back_capacityyi));
+                                intent(ComlitEFCActivity.this, XueYeGuiHuaActivity.class);
+                                finish();
                             }
                         }else {
                             Toast(stringBaseBean.msg);

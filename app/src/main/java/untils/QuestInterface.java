@@ -89,6 +89,13 @@ public interface QuestInterface {
      Flowable<BaseBean<List<StudentFromBean>>> studentfrom(@Query("name") String name);
 
 
+    //查询一分钱资格
+    @GET(" /app/wishfilling/yfJudge")
+    Flowable<BaseBean> yfJudge(@Query("wishType") String wishType,@Header("token") String token);
+
+
+
+
     //获取MBTI简单分析报告
     @GET("/app/sdsmbti/getsdsE")
     Flowable<BaseBean<List<EsaySdsBean>>> getsdsE(@Query("testCode") String testCode);

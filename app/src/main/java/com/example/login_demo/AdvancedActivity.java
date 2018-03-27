@@ -144,8 +144,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
 
                 }
 
-
-
                 break;
 
             case R.id.advanced_rl_reliable:
@@ -163,7 +161,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                     wishPresent.CompleCanSchoolPresente(100 + "",tbmaxfen,cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
 
                 }else {
-
                         wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
                 }
 
@@ -182,10 +179,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                     String schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
                     wishPresent.CompleCanSchoolPresente(100 + "",(Integer.parseInt(tbmaxfen) - 100) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
                 }else {
-
                         wishPresent.CanSchoolPresente("北京市", "文科", "0", "400", "1", "5");
-
-
                 }
 
                 break;
@@ -202,11 +196,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
     public void Wishfail(Throwable t) {
 
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == 1 && resultCode == 4) {
             isMS=data.getStringExtra("isMS");
             String cityType=data.getStringExtra("cityType");
@@ -216,14 +208,13 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             SPUtils.put(MyApp.context,"cityType",cityType);
             SPUtils.put(MyApp.context,"isAccept",isAccept);
             SPUtils.put(MyApp.context,"schoolType",schoolType);
-            wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) - 100) + "",(Integer.parseInt(tbmaxfen) + 100) + "",cityType,isAccept,schoolType,isMS,tbarea,tbsubtype);
+            wishPresent.CompleCanSchoolPresente(100+ "",(Integer.parseInt(tbmaxfen) + 100) + "",cityType,isAccept,schoolType,isMS,tbarea,tbsubtype);
             advancedSprint.setTextColor(Color.BLACK);
             advancedReliable.setTextColor(Color.GRAY);
             advancedMinimum.setTextColor(Color.GRAY);
             view_sprint.setVisibility(View.VISIBLE);
             view_reliable.setVisibility(View.GONE);
             view_minimum.setVisibility(View.GONE);
-
         }
     }
 
