@@ -21,7 +21,8 @@ public class StartFlMoudle {
     private CompositeDisposable compositeDisposable=new CompositeDisposable();
    public  void   getStartfl(String classify, String type, String fenlei, final StratjobBack stratjobBack){
 
-       DisposableSubscriber<BaseBean<List<StartFl>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().jobsStarMobil(classify, type, fenlei)
+       DisposableSubscriber<BaseBean<List<StartFl>>> disposableSubscriber =
+               MyQusetUtils.getInstance().getQuestInterface().jobsStarMobil(classify, type, fenlei)
                .subscribeOn(Schedulers.io())
                .observeOn(AndroidSchedulers.mainThread())
                .subscribeWith(new DisposableSubscriber<BaseBean<List<StartFl>>>() {

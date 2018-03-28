@@ -79,8 +79,8 @@ public class ReportedActivity extends BaseActivity {
                             public void onNext(BaseBean<String> stringBaseBean) {
                                 if (stringBaseBean.code == 0) {
                                     reportedAccurate.setEnabled(true);
+                                    rePb.setVisibility(View.GONE);
                                     if (stringBaseBean.data.equals("0")) {
-                                        rePb.setVisibility(View.GONE);
                                         Intent intent = new Intent(ReportedActivity.this, BuyEFCActivity.class);
                                         intent.putExtra("price", "698");
                                         startActivity(intent);
@@ -91,9 +91,9 @@ public class ReportedActivity extends BaseActivity {
                                                 .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
                                                     @Override
                                                     public void onNext(BaseBean<String> stringBaseBean) {
+                                                        rePb.setVisibility(View.GONE);
                                                         if (stringBaseBean.code == 0) {
                                                             reportedAccurate.setEnabled(true);
-                                                            rePb.setVisibility(View.GONE);
                                                             Intent intent = new Intent(ReportedActivity.this, ComlitEFCActivity.class);
                                                             startActivity(intent);
                                                         } else {

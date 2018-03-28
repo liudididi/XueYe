@@ -65,6 +65,10 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                if(yxGai.length()<4)
                {
                    substring = yxGai.substring(2, 3);
+                   if(substring.length()==1)
+                   {
+                       substring+="0";
+                   }
                }
                 if(zyGai.length()>=4)
                 {
@@ -73,6 +77,10 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 if(zyGai.length()<4)
                 {
                      substring1 = zyGai.substring(2, 3);
+                    if(substring1.length()==1)
+                    {
+                        substring1+="0";
+                    }
                 }
                 //专业概率
                 holder.tv_zhuanye.setText(substring1+"%");

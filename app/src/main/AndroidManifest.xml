@@ -164,7 +164,10 @@
 
         <activity android:name=".MajorStarActivity" />
         <activity android:name=".Buy2Activity" />
-        <activity android:name=".EFCJieSuoActivity" />
+        <activity
+            android:name=".EFCJieSuoActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".XlcsActivity" />
         <activity android:name=".XueYeGuiHuaActivity" />
         <activity android:name=".ComlitEFCActivity" />

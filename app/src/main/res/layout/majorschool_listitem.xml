@@ -50,8 +50,8 @@
             android:layout_marginRight="20px"
             />
         <untils.FlowLayout
-            android:layout_marginLeft="220px"
-            android:layout_marginTop="90px"
+            android:layout_marginLeft="210px"
+            android:layout_marginTop="80px"
             android:id="@+id/majoritem_flow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -39,6 +39,7 @@ public class EvaluatingActivity extends BaseActivity {
                 Intent intent=new Intent(this,ProfessionStarActivity.class);
                 intent.putExtra("data","1");
                 startActivity(intent);
+                finish();
                 break;
         }
     }

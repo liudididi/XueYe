@@ -247,7 +247,7 @@ public interface QuestInterface {
 
     //提交专业
     @POST("/app/efc/StarMajorSDNew")
-    Flowable<BaseBean<List<jobStarBean>>> tjzhuany(@Query("hld")String hld,@Query("mbti")String mbti,@Query("gender")String gender,@Query("type")String type,@Query("jobs")String jobs,@Query("major")String major);
+    Flowable<BaseBean<List<jobStarBean>>> tjzhuany(@Query("hld")String hld,@Query("mbti")String mbti,@Query("gender")String gender,@Query("type")String type,@Query("classify")String classify,@Query("jobs")String jobs,@Query("major")String major);
 
     //高级志愿表筛选
     @POST("/app/efc/getUnivs")
@@ -274,7 +274,7 @@ public interface QuestInterface {
 
     //获取星空测评结合专业
     @POST("/app/efc/jobsStarMajorNew")
-    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld, @Query("mbti") String mbti, @Query("gender") String gender,  @Query("type") String type,@Query("jobs") String job);
+    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld, @Query("mbti") String mbti, @Query("gender") String gender,  @Query("type") String type,@Query("classify") String classify,@Query("jobs") String job);
 
 
     //微信支付
@@ -539,6 +539,14 @@ public interface QuestInterface {
     //获取用户信息
     @POST("/app/userinfo/getUserinfo")
     Flowable<BaseBean<UserBean>> getUserinfo(@Header("token") String token);
+
+
+
+
+
+    //验证token超时
+    @POST("/app/checkToken")
+    Flowable<BaseBean > checkToken(@Header("token") String token);
 
     @POST("/app/updateMobileVerifyOld")
     Flowable<BaseBean> updateMobileVerifyOld(@Query("mobile")String mobile,@Query("captcha")String captcha,@Header("token") String token);

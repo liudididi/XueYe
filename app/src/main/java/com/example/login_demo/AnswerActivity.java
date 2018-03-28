@@ -401,7 +401,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     int f = result.getF();
                     int p = result.getP();
                     String mbtiString = resultStr+":"+"E"+e+":"+"S"+s+":"+"T"+t+":"+"J"+j+":"+"I"+i+":"+"N"+n+":"+"F"+f+":"+"P"+p;
-                    System.out.println("MBTI_E++"+mbtiString);
+
 
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("MBTI_E",mbtiString,token);
                     Intent intent=new Intent(AnswerActivity.this,MBI_CSActivity.class);
@@ -446,6 +446,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     edit.putString("mb",mbtiString);
                     edit.commit();
                     intent(AnswerActivity.this,AnswerActivity.class);
+                    finish();
                     return;
                 }
                 if(type.equals("SDS"))
@@ -461,7 +462,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     SharedPreferences mbti = getSharedPreferences("mbti", MODE_PRIVATE);
                     String mb = mbti.getString("mb", "");
                     String mbtiString =mb+","+resultStr+":"+"A"+a +":"+"C"+c+":"+"E"+e+":"+"I"+i+":"+"S"+s+":"+"R"+r;
-                    System.out.println("SDS++"+mbtiString);
+
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("精准",mbtiString,token);
                     finish();
                     return;
@@ -472,7 +473,6 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             @Override
             public void onFailure(Call<BaseBean<TijiaoBean>> call, Throwable t) {
                 tv_answer.setEnabled(true);
-
             }
         });
      }
@@ -495,13 +495,12 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
 
     @Override
     public void Savesuccess(BaseBean baseBean) {
-        String msg = baseBean.msg;
-        System.out.println("成功++"+msg);
+
     }
 
     @Override
     public void Savefail(Throwable t) {
-        System.out.println("失败++"+t);
+
 
     }
 }

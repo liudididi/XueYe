@@ -183,8 +183,8 @@
             android:layout_marginLeft="20px"/>
         <EditText
             android:id="@+id/et_zy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:hint="请输入专业名称"
             android:textSize="40px"
             android:background="@null"
@@ -266,6 +266,14 @@
         android:visibility="gone"
         android:background="#fff">
     </ListView>
+    <View
+        android:id="@+id/lv1_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cc222222"
+        android:visibility="gone"
+        android:clickable="true"
+        android:layout_below="@+id/lv1"></View>
     <ListView
         android:id="@+id/lv2"
         android:layout_width="match_parent"
@@ -274,6 +282,15 @@
         android:visibility="gone"
         android:background="#fff">
     </ListView>
+    <View
+        android:id="@+id/lv2_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cc222222"
+        android:visibility="gone"
+        android:clickable="true"
+
+        android:layout_below="@+id/lv2"></View>
     <RelativeLayout
         android:id="@+id/lv3"
         android:layout_width="match_parent"
@@ -385,4 +402,12 @@
         </LinearLayout>
 
     </RelativeLayout>
+    <View
+        android:id="@+id/lv3_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cc222222"
+        android:visibility="gone"
+        android:clickable="true"
+        android:layout_below="@+id/lv3"></View>
 </RelativeLayout>

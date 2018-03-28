@@ -31,9 +31,10 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
     ImageView imgNv;
     @BindView(R.id.ll_nv)
     LinearLayout llNv;
-    private String classify;
+    public String classify;
     public static String type="1";
     public static String gender="1";
+    public static String wenli="1";
     private String km;
     private String leixing;
     private String xingbie;
@@ -68,12 +69,19 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
 
     @Override
     public void InIt() {
-        classify = "wen";
         leixing="本科";
         km="文科";
         xingbie="男";
         data = getIntent().getStringExtra("data");
         cxefcPresenter = new CXEFCPresenter(this);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        token = (String) SPUtils.get(MyApp.context, "token", "");
         int i2 = Integer.parseInt(data);
         if(i2>=2){
             llZhuan.setEnabled(false);
@@ -83,6 +91,7 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
             llWen.setEnabled(false);
             llLi.setEnabled(false);
             cxefcPresenter.CXEFCPresenter(token);
+
         }else {
             llZhuan.setEnabled(true);
             llBen.setEnabled(true);
@@ -91,13 +100,6 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
             llWen.setEnabled(true);
             llLi.setEnabled(true);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        token = (String) SPUtils.get(MyApp.context, "token", "");
-
     }
 
     @Override
@@ -115,25 +117,27 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
             case R.id.ll_wen:
                 imgWen.setImageResource(R.drawable.hong);
                 imgLi.setImageResource(R.drawable.bai);
-                classify = "wen";
+
                 km="文科";
+                wenli="wen";
                 break;
             case R.id.ll_li:
                 imgLi.setImageResource(R.drawable.hong);
                 imgWen.setImageResource(R.drawable.bai);
-                classify = "li";
+
                 km="理科";
+                wenli="li";
                 break;
             case R.id.ll_ben:
                 imgBen.setImageResource(R.drawable.hong);
                 imgZhuan.setImageResource(R.drawable.bai);
-                type = "1";
+                type = "0";
                 leixing="本科";
                 break;
             case R.id.ll_zhuan:
                 imgZhuan.setImageResource(R.drawable.hong);
                 imgBen.setImageResource(R.drawable.bai);
-                type = "0";
+                type = "1";
                 leixing="专科";
                 break;
             case R.id.ll_nan:
@@ -153,8 +157,9 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
                 if(i>=2){
                     Intent intent = new Intent(ProfessionStarActivity.this, startfenleiActivity.class);
                     intent.putExtra("data",data);
-                    intent.putExtra("classify", classify);
+                    intent.putExtra("classify", wenli);
                     intent.putExtra("type", type);
+                    intent.putExtra("gender",gender);
                     startActivity(intent);
                     finish();
                 }else {
@@ -169,12 +174,12 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
                                 public void onNext(BaseBean baseBean) {
                                     Intent intent = new Intent(ProfessionStarActivity.this, startfenleiActivity.class);
                                     intent.putExtra("data",data);
-                                    intent.putExtra("classify", classify);
+                                    intent.putExtra("classify", wenli);
                                     intent.putExtra("type", type);
+                                    intent.putExtra("gender",gender);
                                     startActivity(intent);
                                     finish();
                                 }
-
                                 @Override
                                 public void onError(Throwable t) {
                                 }
@@ -185,7 +190,6 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
                             });
                 }
 
-
                 break;
         }
     }
@@ -195,18 +199,20 @@ public class ProfessionStarActivity extends BaseActivity  implements CXEFCView{
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
 
 if(cxefcBeanBaseBean.data!=null){
-    String gender = cxefcBeanBaseBean.data.getGender();
-    if(gender.equals("男"))
+    String agender = cxefcBeanBaseBean.data.getGender();
+    if(agender.equals("男"))
     {
         xingbie="男";
         imgNan.setImageResource(R.drawable.hong);
         imgNv.setImageResource(R.drawable.bai);
+        gender="1";
     }
-    if(gender.equals("女"))
+    if(agender.equals("女"))
     {
         imgNan.setImageResource(R.drawable.bai);
         imgNv.setImageResource(R.drawable.hong);
         xingbie="女";
+        gender="0";
     }
 
 
@@ -215,30 +221,30 @@ if(cxefcBeanBaseBean.data!=null){
     {
         imgWen.setImageResource(R.drawable.hong);
         imgLi.setImageResource(R.drawable.bai);
-        classify = "wen";
+        wenli = "wen";
     }
     if(stutype.equals("理科"))
     {
         imgLi.setImageResource(R.drawable.hong);
         imgWen.setImageResource(R.drawable.bai);
-        classify = "li";
+        wenli = "li";
     }
 
     //专科本科
     String collegetype = cxefcBeanBaseBean.data.getCollegetype();
+
     if(collegetype.equals("本科"))
     {
         imgBen.setImageResource(R.drawable.hong);
         imgZhuan.setImageResource(R.drawable.bai);
-        type = "1";
+        type = "0";
     }
     if(collegetype.equals("专科"))
     {
         imgZhuan.setImageResource(R.drawable.hong);
         imgBen.setImageResource(R.drawable.bai);
-        type = "0";
+        type = "1";
     }
-
 
 }
 

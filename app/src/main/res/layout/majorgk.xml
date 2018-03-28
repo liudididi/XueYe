@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -495,7 +496,7 @@
 
     <untils.FlowLayoutzy
         android:id="@+id/fmgk_flow"
-        android:layout_marginLeft="100px"
+        android:layout_marginLeft="30px"
         android:layout_marginRight="50px"
         android:layout_below="@+id/fmgk_r7"
         android:layout_width="match_parent"

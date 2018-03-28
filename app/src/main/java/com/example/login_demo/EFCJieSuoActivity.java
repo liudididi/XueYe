@@ -60,6 +60,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     private String data;
     private CXEFCPresenter cxefcPresenter;
     private String majorresult;
+    private String gender;
+    private String classify;
+    private String type;
 
     @Override
     public int getId() {
@@ -236,14 +239,11 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 } else {
                     Toast("网络较差，请稍后重试");
                 }
-
-
                 break;
             case R.id.rl_zhiyxk:
                 Intent intent1 = new Intent(this, ProfessionStarActivity.class);
                 intent1.putExtra("data", data);
                 startActivity(intent1);
-
                 break;
             case R.id.rl_zhuanyxk:
 
@@ -263,19 +263,43 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
         rlZhuanyxk.setEnabled(true);
         if (cxefcBeanBaseBean.code == 0) {
             majorresult = cxefcBeanBaseBean.data.getJob();
+
+
+
+
+
             String testCode = cxefcBeanBaseBean.data.getTestCode();
             String[] split = testCode.split(",");
             String s = split[0];
             String[] split1 = s.split(":");
-            String mbti = split1[0];
+            String  mbti = split1[0];
             String s1 = split[1];
-            String[] split2 = s.split(":");
-            String hld = split2[0];
+            String[] split2 = s1.split(":");
+            String  hld = split2[0];
+
+
+
+            gender = cxefcBeanBaseBean.data.getGender();
+            String stutype = cxefcBeanBaseBean.data.getStutype();
+            if(stutype.equals("文科")){
+                classify ="wen";
+            }else {
+                classify ="li";
+            }
+            String collegetype = cxefcBeanBaseBean.data.getCollegetype();
+            if(collegetype.equals("本科")){
+                type ="0";
+            }else {
+                type ="1";
+            }
             Intent intent2 = new Intent(this, MajorStarActivity.class);
             intent2.putExtra("data", data);
             intent2.putExtra("result", majorresult);
             intent2.putExtra("Hld", hld);
             intent2.putExtra("mbti", mbti);
+            intent2.putExtra("gender", gender);
+            intent2.putExtra("type", type);
+            intent2.putExtra("classify", classify);
             startActivity(intent2);
         }
 
@@ -287,11 +311,4 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
         rlZhuanyxk.setEnabled(true);
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

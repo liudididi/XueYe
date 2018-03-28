@@ -134,6 +134,9 @@ public class Academy_Fragment extends Basefragment{
     private String city="";
     private String token;
     private CXEFCPresenter cxefcPresenter;
+    private View lv1_view;
+    private View lv2_view;
+    private View lv3_view;
 
 
     @Override
@@ -268,6 +271,10 @@ public class Academy_Fragment extends Basefragment{
         rl_yx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv1_view.setVisibility(View.VISIBLE);
+                lv2_view.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.GONE);
+
 
                 lv2.setVisibility(View.GONE);
                 iv_right2.setVisibility(View.VISIBLE);
@@ -285,6 +292,9 @@ public class Academy_Fragment extends Basefragment{
                     flag1=false;
                     lv1.setVisibility(View.VISIBLE);
                     lv1.setAdapter(spinner_adapter);
+
+                    lv1_view.setVisibility(View.VISIBLE);
+
                 }
               else
                 {
@@ -292,6 +302,9 @@ public class Academy_Fragment extends Basefragment{
                     iv_next1.setVisibility(View.GONE);
                     flag1=true;
                     lv1.setVisibility(View.GONE);
+
+                    lv1_view.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -305,6 +318,7 @@ public class Academy_Fragment extends Basefragment{
                 iv_next1.setVisibility(View.GONE);
                 flag1=true;
 
+                lv1_view.setVisibility(View.GONE);
 
                 pb.setVisibility(View.VISIBLE);
                 city=yx;
@@ -316,6 +330,12 @@ public class Academy_Fragment extends Basefragment{
         rl_xk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv1_view.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.VISIBLE);
+                lv3_view.setVisibility(View.GONE);
+
+
+
                 lv1.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
@@ -332,6 +352,9 @@ public class Academy_Fragment extends Basefragment{
                     flag2=false;
                     lv2.setVisibility(View.VISIBLE);
                     lv2.setAdapter(spinner_adapter1);
+
+                    lv2_view.setVisibility(View.VISIBLE);
+
                 }
                 else
                 {
@@ -339,6 +362,9 @@ public class Academy_Fragment extends Basefragment{
                     iv_next2.setVisibility(View.GONE);
                     flag2=true;
                     lv2.setVisibility(View.GONE);
+
+                    lv2_view.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -352,6 +378,7 @@ public class Academy_Fragment extends Basefragment{
                 iv_next2.setVisibility(View.GONE);
                 flag2=true;
 
+                lv2_view.setVisibility(View.GONE);
 
                 pb.setVisibility(View.VISIBLE);
                 s5=fw;
@@ -364,6 +391,10 @@ public class Academy_Fragment extends Basefragment{
         rl_gj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv1_view.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.VISIBLE);
+
                 lv1.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
@@ -382,6 +413,9 @@ public class Academy_Fragment extends Basefragment{
                     flag3=false;
                     lv3.setVisibility(View.VISIBLE);
                     lv_left.setAdapter(spinner_adapter3);
+
+                    lv3_view.setVisibility(View.VISIBLE);
+
                 }
                 else
                 {
@@ -389,12 +423,17 @@ public class Academy_Fragment extends Basefragment{
                     iv_next3.setVisibility(View.GONE);
                     flag3=true;
                     lv3.setVisibility(View.GONE);
+
+                    lv3_view.setVisibility(View.GONE);
+
                 }
             }
         });
         lv_left.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
 
                 if(list2.get(i).toString().equals("预估分数"))
                 {
@@ -476,6 +515,7 @@ public class Academy_Fragment extends Basefragment{
         tv_queding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv3_view.setVisibility(View.GONE);
 
                 lv3.setVisibility(View.GONE);
                 iv_right3.setVisibility(View.VISIBLE);
@@ -492,6 +532,7 @@ public class Academy_Fragment extends Basefragment{
         tv_chongzhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv3_view.setVisibility(View.GONE);
 
                 lv3.setVisibility(View.GONE);
                 iv_right3.setVisibility(View.VISIBLE);
@@ -585,7 +626,8 @@ public class Academy_Fragment extends Basefragment{
                 }
                 Gson gson=new Gson();
                 String route= gson.toJson(map);
-                 Retrofit retrofit=new Retrofit.Builder()
+
+                Retrofit retrofit=new Retrofit.Builder()
                         .baseUrl(BaseApi.Api)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
@@ -673,6 +715,11 @@ public class Academy_Fragment extends Basefragment{
         rv_yx = view.findViewById(R.id.rv_yx);
         iv = view.findViewById(R.id.iv);
         pb = view.findViewById(R.id.pb);
+
+        lv1_view = view.findViewById(R.id.lv1_view);
+        lv2_view = view.findViewById(R.id.lv2_view);
+        lv3_view = view.findViewById(R.id.lv3_view);
+
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;
 

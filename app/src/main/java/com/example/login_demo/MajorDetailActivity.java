@@ -59,8 +59,7 @@ public class MajorDetailActivity extends BaseActivity {
     LinearLayout mmajorll;
     @BindView(R.id.lodiing)
     LoadingLayout lodiing;
-    @BindView(R.id.sv_zy)
-    ScrollView svZy;
+
     private String major;
     public static String majorid;
     private Majorgk_Fragment majorgk_fragment;
@@ -71,6 +70,7 @@ public class MajorDetailActivity extends BaseActivity {
     private DisposableSubscriber<BaseBean> disposableSubscriber;
     private DisposableSubscriber<BaseBean<List<CollerMajorBean>>> disposableSubscriber2;
     private ConnectionChangeReceiver myReceiver;
+    public static ScrollView svZy;
 
     @Override
     public int getId() {
@@ -81,6 +81,7 @@ public class MajorDetailActivity extends BaseActivity {
     public void InIt() {
         loadingLayout = lodiing;
         registerReceiver();
+        svZy = findViewById(R.id.sv_zy);
         major = getIntent().getStringExtra("major");
         majorid = getIntent().getStringExtra("majorid");
         mdTvtitle.setText(major);

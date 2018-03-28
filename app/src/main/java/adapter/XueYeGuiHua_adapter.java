@@ -18,10 +18,10 @@ import bean.jobStarBean;
  */
 
 public class XueYeGuiHua_adapter extends BaseAdapter {
-    private List<jobStarBean>  list;
+    private List<String>  list;
     private Context context;
 
-    public XueYeGuiHua_adapter(List<jobStarBean> list, Context context) {
+    public XueYeGuiHua_adapter(List<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -48,21 +48,13 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
         if(convertView==null){
             convertView=View.inflate(context, R.layout.xygh_item,null);
         }
-
         TextView ghitem_title= convertView.findViewById(R.id.ghitem_title);
-        ghitem_title.setText(list.get(position).getMajor());
-
+        String[] split = list.get(position).split(":");
+        ghitem_title.setText(split[0]);
         TextView ghitem_xinzi= convertView.findViewById(R.id.ghitem_xinzi);
-        List<jobStarBean.MajorinfoBean> majorinfo = list.get(position).getMajorinfo();
-        if(majorinfo!=null&&majorinfo.size()>0){
-            ghitem_xinzi.setText(majorinfo.get(0).getAveragesalary());
-        }
-
-
-
+        ghitem_xinzi.setText(split[3]);
         TextView ghitem_gailv= convertView.findViewById(R.id.ghitem_gailv);
-        double gai = list.get(position).getGai();
-        String zyGai=gai+"";
+        String zyGai=split[2];
         if(zyGai.length()>=4)
         {
             zyGai = zyGai.substring(2, 4);

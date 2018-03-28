@@ -15,12 +15,18 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import base.BaseActivity;
+import base.BaseBean;
 import bean.MyUserBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import fragment.Home_Fragment;
 import fragment.My_Fragment;
 import fragment.WishFragMent;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
+import untils.MyQusetUtils;
+import untils.SPUtils;
 
 public class HomeActivity extends BaseActivity {
 
@@ -45,7 +51,6 @@ public class HomeActivity extends BaseActivity {
     public void InIt() {
         //初始化Fragment
         inItFragment();
-
         MyUserBean.checkLogin();
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int heightPixels = dm.heightPixels;
@@ -53,6 +58,9 @@ public class HomeActivity extends BaseActivity {
         layoutParams.width = dm.widthPixels;
         layoutParams.height = heightPixels / 12;
         bottomBar.setLayoutParams(layoutParams);
+
+
+
 
         /**
          * 底部点击事件
@@ -123,6 +131,37 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        String token = (String) SPUtils.get(MyApp.context, "token", "");
+        if(token.length()>4){
+            MyQusetUtils.getInstance()
+                    .getQuestInterface().checkToken(token)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                        @Override
+                        public void onNext(BaseBean baseBean) {
+                            if(baseBean.code!=0){
+                                SPUtils.remove(MyApp.context, "token");
+                                SPUtils.remove(MyApp.context, "tbmaxfen");
+                                SPUtils.remove(MyApp.context, "tbarea");
+                                SPUtils.remove(MyApp.context, "tbsubtype");
+                                SPUtils.remove(MyApp.context, "majorindex");
+                                MyUserBean.setUserBean(null);
+                                Toast("用户信息失效，请重新登录");
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
 
     }
 

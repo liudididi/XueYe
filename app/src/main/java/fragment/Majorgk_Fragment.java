@@ -35,12 +35,6 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
     private TextView fmgk_tvxw;
     private TextView fmgk_tvzykc;
     private TextView fmgk_tvpyxq;
-
-
-
-
-    public  static  String jyqj=null;
-    public  static  String jyfx=null;
     private TextView fmgk_zyjs;
     private TextView fmgk_tvpymb;
     private ListViewForScrollView fmgk_zsnl;
@@ -129,14 +123,7 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
                 fmgk_snxz.setText("￥"+majorgkBean.getAveragesalary());
             }
 
-               if(majorgkBean.getEmployment_prospects()!=null){
-                //就业前景
-                jyqj=majorgkBean.getEmployment_prospects();
-               }
 
-         if(majorgkBean.getDirection_employment()!=null){
-                   jyfx=majorgkBean.getDirection_employment();
-         }
 
          if(majorgkBean.getPractice_teaching()!=null){
              fmgk_zyjs.setText(majorgkBean.getPractice_teaching());

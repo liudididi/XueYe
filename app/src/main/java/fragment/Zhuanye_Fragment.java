@@ -70,11 +70,7 @@ public class Zhuanye_Fragment extends Basefragment {
 
     private TextView tv_yx;
     private TextView tv_xk;
-    private TextView tv_gj;
 
-    private View view_cc;
-    private View view_wt;
-    private View view_bd;
     private RelativeLayout rl_yx;
     private RelativeLayout rl_xk;
     private RelativeLayout rl_gj;
@@ -142,6 +138,9 @@ public class Zhuanye_Fragment extends Basefragment {
     private String major;
     private String token;
     private CXEFCPresenter cxefcPresenter;
+    private View lv1_view;
+    private View lv2_view;
+    private View lv3_view;
 
     @Override
     public int getLayoutid() {
@@ -459,6 +458,11 @@ public class Zhuanye_Fragment extends Basefragment {
         rl_yx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv1_view.setVisibility(View.VISIBLE);
+                lv2_view.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.GONE);
+
+
 
                 lv2.setVisibility(View.GONE);
                 iv_right2.setVisibility(View.VISIBLE);
@@ -476,6 +480,9 @@ public class Zhuanye_Fragment extends Basefragment {
                     flag1=false;
                     lv1.setVisibility(View.VISIBLE);
                     lv1.setAdapter(spinner_adapter);
+
+                    lv1_view.setVisibility(View.VISIBLE);
+
                 }
                 else
                 {
@@ -483,6 +490,9 @@ public class Zhuanye_Fragment extends Basefragment {
                     iv_next1.setVisibility(View.GONE);
                     flag1=true;
                     lv1.setVisibility(View.GONE);
+
+                    lv1_view.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -495,6 +505,7 @@ public class Zhuanye_Fragment extends Basefragment {
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
                 flag1=true;
+                lv1_view.setVisibility(View.GONE);
 
                 pb3.setVisibility(View.VISIBLE);
                 city=s;
@@ -505,6 +516,11 @@ public class Zhuanye_Fragment extends Basefragment {
         rl_xk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                lv1_view.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.VISIBLE);
+                lv3_view.setVisibility(View.GONE);
+
                 lv1.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
@@ -521,6 +537,9 @@ public class Zhuanye_Fragment extends Basefragment {
                     flag2=false;
                     lv2.setVisibility(View.VISIBLE);
                     lv2.setAdapter(spinner_adapter1);
+
+                    lv2_view.setVisibility(View.VISIBLE);
+
                 }
                 else
                 {
@@ -528,6 +547,9 @@ public class Zhuanye_Fragment extends Basefragment {
                     iv_next2.setVisibility(View.GONE);
                     flag2=true;
                     lv2.setVisibility(View.GONE);
+
+                    lv2_view.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -540,6 +562,7 @@ public class Zhuanye_Fragment extends Basefragment {
                 iv_right2.setVisibility(View.VISIBLE);
                 iv_next2.setVisibility(View.GONE);
                 flag2=true;
+                lv2_view.setVisibility(View.GONE);
 
                 pb3.setVisibility(View.VISIBLE);
                 s5=s;
@@ -550,6 +573,10 @@ public class Zhuanye_Fragment extends Basefragment {
         rl_gj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv1_view.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.VISIBLE);
+
                 lv1.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
@@ -568,6 +595,8 @@ public class Zhuanye_Fragment extends Basefragment {
                     flag3=false;
                     lv3.setVisibility(View.VISIBLE);
                     lv_left.setAdapter(spinner_adapter3);
+                    lv3_view.setVisibility(View.VISIBLE);
+
                 }
                 else
                 {
@@ -575,6 +604,9 @@ public class Zhuanye_Fragment extends Basefragment {
                     iv_next3.setVisibility(View.GONE);
                     flag3=true;
                     lv3.setVisibility(View.GONE);
+
+                    lv3_view.setVisibility(View.GONE);
+
                 }
             }
         });
@@ -663,6 +695,7 @@ public class Zhuanye_Fragment extends Basefragment {
         tv_queding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv3_view.setVisibility(View.GONE);
 
                 lv3.setVisibility(View.GONE);
                 iv_right3.setVisibility(View.VISIBLE);
@@ -680,6 +713,8 @@ public class Zhuanye_Fragment extends Basefragment {
         tv_chongzhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv3_view.setVisibility(View.GONE);
+
                 lv3.setVisibility(View.GONE);
                 iv_right3.setVisibility(View.VISIBLE);
                 iv_next3.setVisibility(View.GONE);
@@ -704,12 +739,7 @@ public class Zhuanye_Fragment extends Basefragment {
     private void init() {
         tv_yx = view.findViewById(R.id.tv_yx);
         tv_xk = view.findViewById(R.id.tv_xk);
-        tv_gj = view.findViewById(R.id.tv_gj);
 
-
-        view_cc = view.findViewById(R.id.view_cc);
-        view_wt = view.findViewById(R.id.view_wt);
-        view_bd = view.findViewById(R.id.view_bd);
         rl_yx = view.findViewById(R.id.rl_yx);
         rl_xk = view.findViewById(R.id.rl_xk);
         rl_gj = view.findViewById(R.id.rl_gj);
@@ -749,6 +779,9 @@ public class Zhuanye_Fragment extends Basefragment {
         et_zy = view.findViewById(R.id.et_zy);
         pb3 = view.findViewById(R.id.pb3);
 
+        lv1_view = view.findViewById(R.id.lv1_view);
+        lv2_view = view.findViewById(R.id.lv2_view);
+        lv3_view = view.findViewById(R.id.lv3_view);
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;

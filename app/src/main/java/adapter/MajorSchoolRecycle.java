@@ -126,9 +126,7 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
             super(itemView);
             view=itemView;
             schoolitem_name=itemView.findViewById(R.id.schoolitem_name);
-
             schoolitem_typerank=itemView.findViewById(R.id.schoolitem_typerank);
-
             schoolitem_url=itemView.findViewById(R.id.schoolitem_url);
             majoritem_flow=itemView.findViewById(R.id.majoritem_flow);
         }

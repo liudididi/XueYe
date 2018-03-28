@@ -6,7 +6,7 @@
     android:id="@+id/hot_name"
     android:text="北京大学"
     android:textSize="35px"
-    android:background="@drawable/back_capacityhui"
+    android:background="@drawable/back_capacityshenhui"
     android:gravity="center"
     android:layout_height="78px"
     android:paddingLeft="40px"

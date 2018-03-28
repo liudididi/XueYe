@@ -101,7 +101,7 @@ public class FlowLayout extends ViewGroup {
                         : width + getPaddingLeft() + getPaddingRight(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height
                         + getPaddingTop() + getPaddingBottom());
-        setPadding(dp2px(20), dp2px(10), dp2px(20), dp2px(10));
+        setPadding(dp2px(20), dp2px(5), dp2px(20), dp2px(10));
     }
 
     // 储存所有的View

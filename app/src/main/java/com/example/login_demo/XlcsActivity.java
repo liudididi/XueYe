@@ -108,11 +108,13 @@ XlcsActivity extends BaseActivity {
                 Intent intent = new Intent(XlcsActivity.this, AnswerActivity.class);
                 intent.putExtra("ceshi", "MBTI");
                 startActivity(intent);
+                finish();
                 break;
             case R.id.xlcs_b2:
                 Intent inten2 = new Intent(XlcsActivity.this, AnswerActivity.class);
                 inten2.putExtra("ceshi", "MBTI");
                 startActivity(inten2);
+                finish();
                 break;
         }
     }

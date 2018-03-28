@@ -47,9 +47,9 @@ public class MajorStartFragment extends Basefragment {
     public void initView() {
         initid();
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getMajor().length()>9){
+            if(list.get(i).getMajor().length()>11){
                 String major = list.get(i).getMajor();
-                String substring = major.substring(0,9);
+                String substring = major.substring(0,11);
                 titlelist.get(i).setText(substring);
             }else {
                 titlelist.get(i).setText(list.get(i).getMajor());

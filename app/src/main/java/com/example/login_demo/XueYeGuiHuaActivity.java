@@ -72,8 +72,7 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     private CXEFCPresenter cxefcPresenter;
     private String token;
     private String testCode;
-    private String xb;
-    private String km;
+
     @Override
     public int getId() {
         return R.layout.activity_xue_ye_gui_hua;
@@ -85,8 +84,7 @@ public class XueYeGuiHuaActivity extends BaseActivity {
         pb.setVisibility(View.VISIBLE);
         zw.setVisibility(View.VISIBLE);
         token = (String) SPUtils.get(MyApp.context, "token", "");
-        xb="1";
-        km="0";
+
         //专业
         initzhuanye();
 
@@ -97,83 +95,22 @@ public class XueYeGuiHuaActivity extends BaseActivity {
             cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
                 @Override
                 public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
-                    String job = cxefcBeanBaseBean.data.getJob();
+
                     testCode = cxefcBeanBaseBean.data.getTestCode();
-                    String[] split = testCode.split(",");
-                    String s = split[0];
-                    String s1 = split[1];
-                    String[] split1 = s.split(":");
-                    //MBTI
-                    String s2 = split1[0];
-                     String[] split2 = s1.split(":");
-                    // 霍兰德
-                    String s3 = split2[0];
-                     //男女
-                    String gender = cxefcBeanBaseBean.data.getGender();
-                    if(gender.equals("男"))
-                    {
-                        xb="1";
-                    }
-                    if(gender.equals("女"))
-                    {
-                        xb="0";
-                    }
-                     //专科本科
-                    String collegetype = cxefcBeanBaseBean.data.getCollegetype();
-                    if(collegetype.equals("本科"))
-                    {
-                        km="0";
-                    }
-                    if(collegetype.equals("专科"))
-                    {
-                        km="1";
-                    }
-
-                    OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                            .addInterceptor(NetInterceptor.REWRITE_RESPONSE_INTERCEPTOR_LOG)
-                            .addInterceptor(NetInterceptor.REWRITE_RESPONSE_INTERCEPTOR_OFFLINE)
-                            .addNetworkInterceptor(NetInterceptor.REWRITE_RESPONSE_INTERCEPTOR)
-                            .addInterceptor(NetInterceptor.REWRITE_RESPONSE_MYINTERCEPTOR)
-                            .connectTimeout(MyQusetUtils.TIMEOUT, TimeUnit.SECONDS)
-                            .readTimeout(MyQusetUtils.TIMEOUT, TimeUnit.SECONDS)
-                            .writeTimeout(MyQusetUtils.TIMEOUT, TimeUnit.SECONDS)
-                            .retryOnConnectionFailure(false)
-                            .build();
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl(BaseApi.Api)
-                            .client(okHttpClient)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    QuestInterface questInterface = retrofit.create(QuestInterface.class);
-                     Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil(s3, s2, xb,km ,job);
-                    baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
-                        @Override
-                        public void onResponse(Call<BaseBean<List<jobStarBean>>> call, Response<BaseBean<List<jobStarBean>>> response) {
-                            xyghList.setVisibility(View.VISIBLE);
-                            pb.setVisibility(View.GONE);
-                            zw.setVisibility(View.GONE);
-                            final BaseBean<List<jobStarBean>> body = response.body();
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if(body.code == 0) {
-                                        XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(body.data,XueYeGuiHuaActivity.this );
-                                        xyghList.setAdapter(xueYeGuiHua_adapter);
-                                        sv.smoothScrollTo(0, 0);
-
-                                    }else {
-                                        Toast(body.msg);
-
-                                    }
-                                }
-                            });
+                    if(cxefcBeanBaseBean.data.getMajorGai()!=null){
+                        String[] split = cxefcBeanBaseBean.data.getMajorGai().split(",");
+                        List<String> Stringlist=new ArrayList<>();
+                        for (int i = 0; i < split.length; i++) {
+                            Stringlist.add(split[i]);
                         }
+                        zw.setVisibility(View.GONE);
+                        pb.setVisibility(View.GONE);
+                        xyghList.setVisibility(View.VISIBLE);
+                        XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(Stringlist,XueYeGuiHuaActivity.this );
+                        xyghList.setAdapter(xueYeGuiHua_adapter);
+                        sv.smoothScrollTo(0, 0);
+                    }
 
-                        @Override
-                        public void onFailure(Call<BaseBean<List<jobStarBean>>> call, Throwable t) {
-
-                        }
-                    });
                 }
                 @Override
                 public void GetEFCResultfail(Throwable t) {

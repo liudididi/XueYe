@@ -47,8 +47,7 @@ public class MyUserBean  {
                            if(baseBean.code==0){
                                userBean=baseBean.data;
                            }else {
-                               Toast.makeText(MyApp.context,"token超时，请重新登录",Toast.LENGTH_SHORT);
-                           }
+                            }
                        }
                        @Override
                        public void onError(Throwable t) {

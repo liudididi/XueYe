@@ -126,6 +126,7 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
     private String hld;
     private String mbti;
     private AlphaAnimation anim01;
+    private String gender;
 
     @Override
     public int getId() {
@@ -161,12 +162,14 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
         imgZjt.startAnimation(anim01);
         type = getIntent().getStringExtra("type");
         classify = getIntent().getStringExtra("classify");
+        gender = getIntent().getStringExtra("gender");
         startFlPresent = new StartFlPresent(this);
+
+        System.out.println("classify==="+classify+type+fenlei);
         startFlPresent.getStartfl(classify, type, fenlei);
         xcpresent = new CXEFCPresenter(this);
         newlist = new ArrayList<>();
         fenlieanswerlist = new ArrayList<>();
-
         if (i1 >= 2) {
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
@@ -253,6 +256,9 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                     intent.putExtra("result", result);
                     intent.putExtra("Hld", hld);
                     intent.putExtra("mbti", mbti);
+                    intent.putExtra("gender", gender);
+                    intent.putExtra("type", type);
+                    intent.putExtra("classify", classify);
                     startActivity(intent);
                     finish();
                 } else {
@@ -346,6 +352,9 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                                     intent.putExtra("result", result);
                                     intent.putExtra("Hld", hld);
                                     intent.putExtra("mbti", mbti);
+                                    intent.putExtra("gender", gender);
+                                    intent.putExtra("type", type);
+                                    intent.putExtra("classify", classify);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -416,7 +425,21 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
             String s1 = split[1];
             String[] split2 = s1.split(":");
             hld = split2[0];
+
             if (i1 >= 2) {
+                gender = cxefcBeanBaseBean.data.getGender();
+                String stutype = cxefcBeanBaseBean.data.getStutype();
+                if(stutype.equals("文科")){
+                    classify="wen";
+                }else {
+                    classify="li";
+                }
+                String collegetype = cxefcBeanBaseBean.data.getCollegetype();
+                if(collegetype.equals("本科")){
+                    type="0";
+                }else {
+                    type="1";
+                }
                 result = cxefcBeanBaseBean.data.getJob();
                 String[] split3 = result.split(",");
                 for (String n : split3) {
@@ -438,7 +461,14 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                     if (newlist.get(i) != null) {
                         tvlist.get(i).setText(newlist.get(i));
                     }
+                    if (fenlieanswerlist.contains(newlist.get(i))) {
+                        tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                    } else {
+                        tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                    }
+
                 }
+
             }
 
         }

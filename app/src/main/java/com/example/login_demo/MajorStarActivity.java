@@ -168,7 +168,9 @@ public class MajorStarActivity extends BaseActivity  {
     private  String data;
     private String mbti;
     private String hld;
-
+    private String gender;
+    private String type;
+    private String classify;
 
 
     @Override
@@ -179,9 +181,12 @@ public class MajorStarActivity extends BaseActivity  {
     @Override
     public void InIt() {
         majorresult = getIntent().getStringExtra("result");
-        data = getIntent().getStringExtra("data");
+        data =  getIntent().getStringExtra("data");
         hld = getIntent().getStringExtra("Hld");
         mbti = getIntent().getStringExtra("mbti");
+        gender = getIntent().getStringExtra("gender");
+        type = getIntent().getStringExtra("type");
+        classify = getIntent().getStringExtra("classify");
         if(Integer.parseInt(data)>=3){
             rlyindao.setVisibility(View.GONE);
             majorstarbyes.setVisibility(View.VISIBLE);
@@ -257,7 +262,8 @@ public class MajorStarActivity extends BaseActivity  {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         QuestInterface questInterface = retrofit.create(QuestInterface.class);
-        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil(hld, mbti, "1","1" ,majorresult);
+        System.out.println("hld==="+hld+mbti+gender+type+classify+majorresult);
+        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil(hld, mbti, gender,type,classify,majorresult);
         baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
             @Override
             public void onResponse(Call<BaseBean<List<jobStarBean>>> call, Response<BaseBean<List<jobStarBean>>> response) {
@@ -357,7 +363,7 @@ public class MajorStarActivity extends BaseActivity  {
                                 jobresult+=answerllist.get(i)+",";
                             }
                         }
-                        MyQusetUtils.getInstance().getQuestInterface().tjzhuany(hld,mbti,ProfessionStarActivity.gender,ProfessionStarActivity.type,majorresult,jobresult)
+                        MyQusetUtils.getInstance().getQuestInterface().tjzhuany(hld,mbti,ProfessionStarActivity.gender,ProfessionStarActivity.type,ProfessionStarActivity.wenli,majorresult,jobresult)
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeWith(new DisposableSubscriber<BaseBean<List<jobStarBean>>>() {
@@ -368,9 +374,23 @@ public class MajorStarActivity extends BaseActivity  {
                                             List<jobStarBean> data = listBaseBean.data;
                                             for (int i = 0; i < data.size(); i++) {
                                                 if(i==data.size()-1){
-                                                    areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai();
+                                                    String xinzi=null;
+                                                    List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
+                                                    if(majorinfo.size()>0&&majorinfo!=null){
+                                                        xinzi=majorinfo.get(0).getAveragesalary();
+                                                    }else {
+                                                        xinzi="暂无数据";
+                                                    }
+                                                    areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+xinzi+":"+data.get(i).getMajor_id();
                                                 }else {
-                                                    areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+",";
+                                                    String xinzi=null;
+                                                    List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
+                                                    if(majorinfo.size()>0&&majorinfo!=null){
+                                                        xinzi=majorinfo.get(0).getAveragesalary();
+                                                    }else {
+                                                        xinzi="暂无数据";
+                                                    }
+                                                    areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+xinzi+":"+data.get(i).getMajor_id()+",";
                                                 }
                                             }
                                             MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
