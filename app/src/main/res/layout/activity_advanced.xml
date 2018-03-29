@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,9 +8,6 @@
     tools:context="com.example.login_demo.AdvancedActivity">
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -113,6 +110,21 @@
             android:layout_weight="1"
             android:layout_height="120px"
             >
+            <ImageView
+                android:id="@+id/iv_cc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/cc_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/advanced_sprint"
                 android:layout_width="wrap_content"
@@ -143,6 +155,24 @@
             android:layout_weight="1"
             android:layout_height="120px"
             >
+            <ImageView
+                android:id="@+id/iv_wt"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/wt_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:visibility="gone"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/advanced_reliable"
                 android:layout_width="wrap_content"
@@ -172,6 +202,24 @@
             android:layout_weight="1"
             android:layout_height="120px"
             >
+            <ImageView
+                android:id="@+id/iv_bd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/bd_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:visibility="gone"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/advanced_minimum"
                 android:layout_width="wrap_content"
@@ -208,62 +256,62 @@
             android:id="@+id/ad_tishi"
             android:layout_below="@id/view5"
             />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/advanced_rl"
-        android:layout_width="match_parent"
-        android:layout_height="1200px"
-        android:layout_below="@id/view5"
-        android:layout_marginLeft="40px"
-        android:layout_marginRight="40px"
-        android:layout_marginTop="10px"
-        android:background="#fff"
-        >
-    </android.support.v7.widget.RecyclerView>
-
-    <RelativeLayout
-        android:id="@+id/advanced_rl2"
-        android:layout_width="match_parent"
-        android:layout_height="350px"
-        android:layout_below="@id/view5"
-        android:orientation="vertical"
-        android:background="@drawable/bg_advanced"
-        android:padding="40px"
-        android:layout_marginTop="1200px"
-        android:layout_marginBottom="10px"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="根据个人职业特质、兴趣、力多维度分析,建立志愿填报计划,更科学,更准确,同时建立大学学生规划,让大学不再虚度光阴,完美过渡到职场人士,提升就业竞争力！"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="点击进入>>"
-            android:layout_marginTop="10px"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-    <!--<Button
-        android:id="@+id/advanced_creat"
-        android:layout_below="@id/advanced_rl2"
-        android:layout_width="match_parent"
-        android:layout_height="130px"
-        android:background="#3B9DFE"
-        android:layout_marginLeft="40px"
-        android:layout_marginRight="40px"
-        android:layout_marginTop="10px"
-        android:text="生成志愿表"
-        android:textColor="#fff"
-        android:textSize="50px"
-
-        />-->
-        <View
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="20px"
-            android:layout_below="@id/advanced_rl2">
-        </View>
-    </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@id/view5"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/advanced_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="10px"
+                    android:background="#fff"
+                    >
+                </android.support.v7.widget.RecyclerView>
+             <!--   <RelativeLayout
+                    android:id="@+id/advanced_rl2"
+                    android:layout_width="match_parent"
+                    android:layout_height="350px"
+                     android:orientation="vertical"
+                    android:background="@drawable/bg_advanced"
+                    android:padding="40px"
+                    android:layout_marginTop="1200px"
+                    android:layout_marginBottom="10px"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="根据个人职业特质、兴趣、力多维度分析,建立志愿填报计划,更科学,更准确,同时建立大学学生规划,让大学不再虚度光阴,完美过渡到职场人士,提升就业竞争力！"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="点击进入>>"
+                        android:layout_marginTop="10px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20px"
+                    android:layout_below="@id/advanced_rl">
+                </View>
+            </RelativeLayout>
+        </ScrollView>
 
-</ScrollView>
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            />
+</RelativeLayout>

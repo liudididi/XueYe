@@ -26,9 +26,9 @@ public class MajorSchoolPresent  extends Basepresent{
     }
 
 
-    public void  getMajorschool(String majorid){
+    public void  getMajorschool(String majorid,int page){
 
-      majorSchoolMoudle.getMajorSchool(majorid, new MajorSchoolMoudle.MajorSchoolBack() {
+      majorSchoolMoudle.getMajorSchool(majorid,page, new MajorSchoolMoudle.MajorSchoolBack() {
           @Override
           public void MajorSchoolsuccess(BaseBean<List<MajorSchoolBean>> listBasebean) {
               if(listBasebean.code==0){

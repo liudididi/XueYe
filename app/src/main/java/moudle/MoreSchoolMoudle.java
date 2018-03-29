@@ -19,10 +19,10 @@ import untils.MyQusetUtils;
 public class MoreSchoolMoudle  {
     private CompositeDisposable compositeDisposable=new CompositeDisposable();
 
-      public  void  checkschool(String address, String schooltype, final CheckBeanBack checkBeanBack){
+      public  void  checkschool(String address, String schooltype,String page,String limit, final CheckBeanBack checkBeanBack){
 
           DisposableSubscriber<BaseBean<List<CheckSchoolBean>>> disposableSubscriber = MyQusetUtils.getInstance()
-                  .getQuestInterface().checkschool(address, schooltype, "", "", "", "", "")
+                  .getQuestInterface().checkschool(address, schooltype, "", "", "", "", "",page,limit)
                   .observeOn(AndroidSchedulers.mainThread())
                   .subscribeOn(Schedulers.io())
                   .subscribeWith(new DisposableSubscriber<BaseBean<List<CheckSchoolBean>>>() {

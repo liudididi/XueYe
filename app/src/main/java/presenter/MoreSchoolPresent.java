@@ -25,9 +25,9 @@ public class MoreSchoolPresent  extends Basepresent {
       moreSchoolView= (MoreSchoolView) view;
     }
 
-    public  void  checkschool(String address,String type){
+    public  void  checkschool(String address,String type,String page,String limit){
 
-        moreSchoolMoudle.checkschool(address, type, new MoreSchoolMoudle.CheckBeanBack() {
+        moreSchoolMoudle.checkschool(address, type,page,limit, new MoreSchoolMoudle.CheckBeanBack() {
             @Override
             public void CheckBeansuccess(BaseBean<List<CheckSchoolBean>> Basebean) {
 

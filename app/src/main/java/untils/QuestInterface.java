@@ -338,7 +338,7 @@ public interface QuestInterface {
 
     //专业详情学院
     @GET("/app/major/getMajorSchoolByMajorId")
-    Flowable<BaseBean<List<MajorSchoolBean>>> getmajorschool(@Query("majorId") String majorId,@Query("year") String year);
+    Flowable<BaseBean<List<MajorSchoolBean>>> getmajorschool(@Query("majorId") String majorId,@Query("year") String year,@Query("page") int  page);
 
     //学习资料
     @GET("/app/studymaterials/querymaterials")
@@ -363,8 +363,8 @@ public interface QuestInterface {
     @POST("/app/hotlist/save")
     Flowable<BaseBean> hotsave(@Query("hot_name") String name);
     //院校库
-    @GET("/app/school/check")
-    Flowable<BaseBean<List<CheckSchoolBean>>> checkschool(@Query("address") String address, @Query("schooltype") String schooltype, @Query("two") String two, @Query("nine") String nine, @Query("plan") String plan, @Query("student") String student, @Query("recruit") String recruit);
+    @GET("/app/school/searchCollege")
+    Flowable<BaseBean<List<CheckSchoolBean>>> checkschool(@Query("address") String address, @Query("schooltype") String schooltype, @Query("two") String two, @Query("nine") String nine, @Query("plan") String plan, @Query("student") String student, @Query("recruit") String recruit, @Query("page") String page, @Query("limit") String limit);
 
     //大学排序
     @GET("/app/university/selUnivMobil")

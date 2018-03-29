@@ -3,16 +3,15 @@ package com.example.login_demo;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -26,9 +25,9 @@ import adapter.Spinner_Adapter;
 import base.BaseActivity;
 import bean.CheckSchoolBean;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.MoreSchoolPresent;
-import untils.NetCheck;
 import untils.SPUtils;
 import view.MoreSchoolView;
 
@@ -41,8 +40,6 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
     @BindView(R.id.mschool_none)
     ImageView img_none;
 
-    @BindView(R.id.mschool_xlist)
-    XRecyclerView mschoolXlist;
 
     @BindView(R.id.diqu_list)
     ListView diqu_list;
@@ -75,18 +72,25 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
     View view3;
     @BindView(R.id.view4)
     View view4;
+    @BindView(R.id.rl_list)
+    RelativeLayout rlList;
 
     private ArrayList<String> arealist;
     private ArrayList<String> sortlist;
 
-    private String area="北京市";
-    private String sort="综合类";
+
+    private String area = "";
+    private String sort = "";
     private MoreSchoolPresent moreSchoolPresent;
-    private MoreSchoolRecycle adpter;
     private String token;
     private ConnectionChangeReceiver myReceiver;
-    private boolean flag=true;
-    private boolean flag2=true;
+    private boolean flag = true;
+    private boolean flag2 = true;
+    private String page = "1";
+    private MoreSchoolRecycle adpter;
+
+    private  XRecyclerView mschoolXlist;
+
 
     @Override
     public int getId() {
@@ -97,17 +101,16 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
     @Override
     public void InIt() {
 
-           initList();
-        this.loadingLayout=findViewById(R.id.lodiing);
+        initList();
+        this.loadingLayout = findViewById(R.id.lodiing);
         registerReceiver();
+
         token = (String) SPUtils.get(MyApp.context, "token", "");
-        mschoolXlist.setPullRefreshEnabled(false);
-        mschoolXlist.setLayoutManager(new LinearLayoutManager(this));
         moreSchoolPresent = new MoreSchoolPresent(this);
 
         //地区适配器
 
-        Spinner_Adapter arealist_adapter=new Spinner_Adapter(arealist,MoreSchoolActivity.this);
+        Spinner_Adapter arealist_adapter = new Spinner_Adapter(arealist, MoreSchoolActivity.this);
         diqu_list.setAdapter(arealist_adapter);
         //改变值
 
@@ -115,52 +118,100 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                 pb.setVisibility(View.VISIBLE);
+                rlList.removeAllViews();
+                mschoolXlist=new XRecyclerView(MoreSchoolActivity.this);
+                mschoolXlist.setPullRefreshEnabled(false);
+                mschoolXlist.setLayoutManager(new LinearLayoutManager(MoreSchoolActivity.this));
+                rlList.addView(mschoolXlist);
+                mschoolXlist.setLoadingListener(new XRecyclerView.LoadingListener() {
+                    @Override
+                    public void onRefresh() {
+
+                    }
+
+                    @Override
+                    public void onLoadMore() {
+
+                        int i = Integer.parseInt(page);
+                        i++;
+                        page = i + "";
+                        moreSchoolPresent.checkschool(area, sort, page, "20");
+
+                    }
+                });
+                adpter = null;
+                mschoolXlist.setLoadingMoreEnabled(true);
+                pb.setVisibility(View.VISIBLE);
                 diqu_list.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
                 view4.setVisibility(View.GONE);
-                flag=true;
+                flag = true;
                 String s = arealist.get(i).toString();
                 tv_diqu.setText(s);
-                if(arealist.get(i).toString().equals("全国"))
-                {
-                    area="";
-                    moreSchoolPresent.checkschool(area, sort);
-                }
-                else
-                {
+
+                if (arealist.get(i).toString().equals("全国")) {
+                    area = "";
+                    page = "1";
+
+                    moreSchoolPresent.checkschool(area, sort, page, "20");
+                } else {
                     area = s;
-                    moreSchoolPresent.checkschool(area, sort);
+                    page = "1";
+                    moreSchoolPresent.checkschool(area, sort, page, "20");
                 }
+
             }
         });
         //院校适配器
-        Spinner_Adapter yuanxiao_Adapter=new Spinner_Adapter(sortlist,MoreSchoolActivity.this);
+        Spinner_Adapter yuanxiao_Adapter = new Spinner_Adapter(sortlist, MoreSchoolActivity.this);
         yuanxiao_list.setAdapter(yuanxiao_Adapter);
 
         yuanxiao_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                 pb.setVisibility(View.VISIBLE);
-                view3.setVisibility(View.GONE);
+                rlList.removeAllViews();
+                mschoolXlist=new XRecyclerView(MoreSchoolActivity.this);
+                mschoolXlist.setPullRefreshEnabled(false);
+                mschoolXlist.setLayoutManager(new LinearLayoutManager(MoreSchoolActivity.this));
+                rlList.addView(mschoolXlist);
+                mschoolXlist.setLoadingListener(new XRecyclerView.LoadingListener() {
+                    @Override
+                    public void onRefresh() {
 
+                    }
+
+                    @Override
+                    public void onLoadMore() {
+
+                        int i = Integer.parseInt(page);
+                        i++;
+                        page = i + "";
+                        moreSchoolPresent.checkschool(area, sort, page, "20");
+
+                    }
+                });
+
+                pb.setVisibility(View.VISIBLE);
+                view3.setVisibility(View.GONE);
+                mschoolXlist.setLoadingMoreEnabled(true);
+                adpter = null;
                 yuanxiao_list.setVisibility(View.GONE);
                 iv_right2.setVisibility(View.VISIBLE);
                 iv_next2.setVisibility(View.GONE);
-                flag2=true;
+                flag2 = true;
                 String s = sortlist.get(i).toString();
                 tv_yuanxiao.setText(s);
-                if(sortlist.get(i).toString().equals("不限"))
-                {
-                    sort ="";
-                    moreSchoolPresent.checkschool(area, sort);
-                }
-                else
-                {
+                if (sortlist.get(i).toString().equals("不限")) {
+                    sort = "";
+                    page = "1";
+                    moreSchoolPresent.checkschool(area, sort, page, "20");
+                } else {
                     sort = s;
-                    moreSchoolPresent.checkschool(area, sort);
+                    page = "1";
+                    moreSchoolPresent.checkschool(area, sort, page, "20");
                 }
+
 
             }
         });
@@ -169,25 +220,22 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
             @Override
             public void onClick(View view) {
                 view3.setVisibility(View.GONE);
-                flag2=true;
+                flag2 = true;
                 yuanxiao_list.setVisibility(View.GONE);
                 iv_right2.setVisibility(View.VISIBLE);
                 iv_next2.setVisibility(View.GONE);
-                if(flag)
-                {
+                if (flag) {
                     iv_right1.setVisibility(View.GONE);
                     iv_next1.setVisibility(View.VISIBLE);
                     diqu_list.setVisibility(View.VISIBLE);
                     view4.setVisibility(View.VISIBLE);
-                    flag=false;
-                }
-                else
-                {
+                    flag = false;
+                } else {
                     iv_right1.setVisibility(View.VISIBLE);
                     iv_next1.setVisibility(View.GONE);
                     diqu_list.setVisibility(View.GONE);
                     view4.setVisibility(View.GONE);
-                    flag=true;
+                    flag = true;
                 }
 
             }
@@ -195,28 +243,24 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
         rl_yuanxiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                flag=true;
+                flag = true;
                 view4.setVisibility(View.GONE);
                 diqu_list.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_next1.setVisibility(View.GONE);
-                if(flag2)
-                {
+                if (flag2) {
                     iv_right2.setVisibility(View.GONE);
                     iv_next2.setVisibility(View.VISIBLE);
                     yuanxiao_list.setVisibility(View.VISIBLE);
                     view3.setVisibility(View.VISIBLE);
-                    flag2=false;
-                }
-                else
-                {
+                    flag2 = false;
+                } else {
                     iv_right2.setVisibility(View.VISIBLE);
                     iv_next2.setVisibility(View.GONE);
                     yuanxiao_list.setVisibility(View.GONE);
                     view3.setVisibility(View.GONE);
-                    flag2=true;
+                    flag2 = true;
                 }
-
             }
         });
     }
@@ -273,6 +317,10 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
         sortlist.add("林业类");
         sortlist.add("体育类");
 
+
+
+
+
     }
 
     @OnClick({R.id.mschool_iv_back, R.id.mschool_search})
@@ -295,31 +343,36 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
         arealist = null;
         sortlist = null;
         moreSchoolPresent.onDestory();
-unregisterReceiver();
+        unregisterReceiver();
     }
 
     @Override
-    public void CheckSuccess(List<CheckSchoolBean> list) {
-         pb.setVisibility(View.GONE);
-         if (list != null && list.size() > 0) {
+    public void CheckSuccess(final List<CheckSchoolBean> list) {
+
+        pb.setVisibility(View.GONE);
+        if (list != null && list.size() > 0) {
             img_none.setVisibility(View.GONE);
             mschoolXlist.setVisibility(View.VISIBLE);
             loadingLayout.setStatus(LoadingLayout.Success);
             if (adpter == null) {
                 adpter = new MoreSchoolRecycle(this, list);
                 mschoolXlist.setAdapter(adpter);
+
             } else {
-                adpter.Refsh(list);
+                adpter.loading(list);
+                mschoolXlist.loadMoreComplete();
             }
-        } else {
+
+
+        } /*else {
             img_none.setVisibility(View.VISIBLE);
             mschoolXlist.setVisibility(View.GONE);
-        }
+        }*/
     }
 
     @Override
     public void CheckFail(String msg) {
-        moreSchoolPresent.checkschool(area, sort);
+        moreSchoolPresent.checkschool(area, sort, page, "20");
 
     }
 
@@ -340,11 +393,33 @@ unregisterReceiver();
             public void changeNetStatus(boolean flag) {
                 //设置网络状态提示布局的状态
                 if (flag) {
-             loadingLayout.setStatus(LoadingLayout.No_Network);
+                    loadingLayout.setStatus(LoadingLayout.No_Network);
                     mschoolXlist.setVisibility(View.GONE);
                 } else {
                     //有网
-                     moreSchoolPresent.checkschool(area, sort);
+                    mschoolXlist=new XRecyclerView(MoreSchoolActivity.this);
+                    rlList.removeAllViews();
+                    mschoolXlist.setPullRefreshEnabled(false);
+                    mschoolXlist.setLayoutManager(new LinearLayoutManager(MoreSchoolActivity.this));
+                    rlList.addView(mschoolXlist);
+                    mschoolXlist.setLoadingListener(new XRecyclerView.LoadingListener() {
+                        @Override
+                        public void onRefresh() {
+
+                        }
+
+                        @Override
+                        public void onLoadMore() {
+                            int i = Integer.parseInt(page);
+                            i++;
+                            page = i + "";
+                            moreSchoolPresent.checkschool(area, sort, page, "20");
+
+                        }
+                    });
+                    moreSchoolPresent.checkschool(area, sort, page, "20");
+
+
                 }
             }
         };
@@ -356,4 +431,6 @@ unregisterReceiver();
             this.unregisterReceiver(myReceiver);
         }
     }
+
+
 }

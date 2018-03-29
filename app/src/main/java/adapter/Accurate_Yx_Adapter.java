@@ -85,7 +85,10 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 //专业概率
                 holder.tv_zhuanye.setText(substring1+"%");
                 //专业名称
-                holder.tv_zy_name.setText(major1);
+
+                    holder.tv_zy_name.setText(major1);
+
+
                 //进度条从0到100
                 final ValueAnimator animator = ValueAnimator.ofFloat(0, Integer.parseInt(substring));
                 animator.setDuration(100);
@@ -160,7 +163,17 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                     }
                 }
             holder.tv_num.setText("("+num+"个推荐专业)");
-            holder.tv_name.setText(name);
+                if(name.length()>=9)
+                {
+                    String substring2 = name.substring(0, 9);
+                    holder.tv_name.setText(substring2);
+
+                }
+                else
+                {
+                    holder.tv_name.setText(name);
+
+                }
              holder.ll_zhankai.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -39,10 +39,10 @@
         <ImageView
             android:padding="20px"
             android:id="@+id/schoold_iv_back"
-            android:layout_width="150px"
-            android:layout_height="90px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/while_arrow"
+            android:src="@drawable/left_fh"
             android:layout_centerVertical="true"/>
         <ImageView
             android:id="@+id/schoold_collect"

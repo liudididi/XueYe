@@ -158,6 +158,21 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             >
+            <ImageView
+                android:id="@+id/iv_cc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/cc_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/tv_cc"
                 android:layout_width="wrap_content"
@@ -181,6 +196,24 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             >
+            <ImageView
+                android:id="@+id/iv_wt"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/wt_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:visibility="gone"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/tv_wt"
                 android:layout_width="wrap_content"
@@ -204,6 +237,24 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             >
+            <ImageView
+                android:id="@+id/iv_bd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/bd_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:visibility="gone"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/tv_bd"
                 android:layout_width="wrap_content"

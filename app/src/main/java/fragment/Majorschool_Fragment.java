@@ -27,10 +27,12 @@ import view.MajorSchoolView;
 public class Majorschool_Fragment extends Basefragment implements MajorSchoolView {
 
     private XRecyclerView majorschool_xrecycle;
-    private TextView marjorschool_tvnum;
+    public static TextView marjorschool_tvnum;
     private MajorSchoolPresent majorSchoolPresent;
     private ProgressBar majorshool_pb;
     private ImageView majorschool_none;
+    private MajorSchoolRecycle adpter;
+    private  int page=1;
 
 
     @Override
@@ -43,23 +45,24 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
      initid();
      majorSchoolPresent = new MajorSchoolPresent(this);
 
-     majorSchoolPresent.getMajorschool(MajorDetailActivity.majorid);
+     majorSchoolPresent.getMajorschool(MajorDetailActivity.majorid,page);
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     private void initid() {
         majorschool_xrecycle = view.findViewById(R.id.majorschool_xrecycle);
         majorschool_xrecycle.setPullRefreshEnabled(false);
+        majorschool_xrecycle.setLoadingMoreEnabled(true);
         majorschool_xrecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         marjorschool_tvnum = view.findViewById(R.id.marjorschool_tvnum);
         majorshool_pb = view.findViewById(R.id.majorshool_pb);
         majorschool_none = view.findViewById(R.id.majorschool_none);
+        majorschool_xrecycle.setNestedScrollingEnabled(false);
 
     }
 
@@ -67,22 +70,30 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
 
 
     @Override
-    public void MarjorSchoolSuccess(List<MajorSchoolBean> list) {
+    public void MarjorSchoolSuccess(final List<MajorSchoolBean> list) {
         if(list!=null&list.size()>0){
+
             majorschool_none.setVisibility(View.GONE);
             majorshool_pb.setVisibility(View.GONE);
-            if(list.size()>=200){
-                marjorschool_tvnum.setText(200+"所");
+            if(adpter==null){
+                adpter = new MajorSchoolRecycle(getActivity(),list);
+                majorschool_xrecycle.setAdapter(adpter);
             }else {
-                marjorschool_tvnum.setText(list.size()+"所");
+                adpter.LodingMore(list);
             }
+            majorschool_xrecycle.setLoadingListener(new XRecyclerView.LoadingListener() {
+                @Override
+                public void onRefresh() {
 
-            MajorSchoolRecycle adpter=new MajorSchoolRecycle(getActivity(),list);
-            majorschool_xrecycle.setAdapter(adpter);
-            majorschool_xrecycle.setNestedScrollingEnabled(false);
-        }else {
-            majorschool_none.setVisibility(View.VISIBLE);
-            majorshool_pb.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onLoadMore() {
+                    page++;
+                    majorSchoolPresent.getMajorschool(MajorDetailActivity.majorid,page);
+                    majorschool_xrecycle.loadMoreComplete();
+                }
+            });
         }
     }
 

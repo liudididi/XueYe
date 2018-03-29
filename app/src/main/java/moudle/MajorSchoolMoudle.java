@@ -18,10 +18,10 @@ import untils.MyQusetUtils;
 
 public class MajorSchoolMoudle {
     private CompositeDisposable compositeDisposable=new CompositeDisposable();
-    public void  getMajorSchool(String marjorid, final MajorSchoolBack majorSchoolBack){
+    public void  getMajorSchool(String marjorid,int page, final MajorSchoolBack majorSchoolBack){
         DisposableSubscriber<BaseBean<List<MajorSchoolBean>>> disposableSubscriber =
                 MyQusetUtils.getInstance()
-                .getQuestInterface().getmajorschool(marjorid, "2017")
+                .getQuestInterface().getmajorschool(marjorid, "2017",page)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<MajorSchoolBean>>>() {

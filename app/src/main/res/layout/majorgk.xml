@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
+    android:scrollbars="none"
     android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
 
     <LinearLayout
         android:id="@+id/fmgk_rl"
@@ -503,3 +511,4 @@
         android:layout_height="wrap_content"/>
 
 </RelativeLayout>
+</ScrollView>

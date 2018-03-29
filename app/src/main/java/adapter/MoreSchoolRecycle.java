@@ -41,7 +41,10 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
         list=newlist;
         this.notifyDataSetChanged();
     }
-
+    public  void loading(List<CheckSchoolBean> newlist){
+        list.addAll(newlist);
+        this.notifyDataSetChanged();
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.moreschool_listitem, null);
@@ -53,6 +56,7 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         String  fujia="";
+        holder.setIsRecyclable(false);
         final MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getName());
         mySchoolViewHolder.schoolitem_typerank.setText(list.get(position).getRanking());

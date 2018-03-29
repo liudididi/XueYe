@@ -137,6 +137,13 @@ public class Academy_Fragment extends Basefragment{
     private View lv1_view;
     private View lv2_view;
     private View lv3_view;
+    private TextView cc_tvnum;
+    private TextView wt_tvnum;
+    private TextView bd_tvnum;
+    private ImageView iv_cc;
+    private ImageView iv_wt;
+    private ImageView iv_bd;
+    private String biaoshi;
 
 
     @Override
@@ -155,6 +162,7 @@ public class Academy_Fragment extends Basefragment{
         initData();
         tv_cc.setTextColor(Color.BLACK);
         initOnClick();
+        biaoshi="冲刺";
 
         //走接口进行请求数据
         qingqiu(s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
@@ -556,6 +564,8 @@ public class Academy_Fragment extends Basefragment{
         rl_cc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                biaoshi="冲刺";
+
                 tv_cc.setTextColor(Color.BLACK);
                 tv_wt.setTextColor(Color.GRAY);
                 tv_bd.setTextColor(Color.GRAY);
@@ -572,6 +582,8 @@ public class Academy_Fragment extends Basefragment{
         rl_wt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                biaoshi="稳妥";
+
                 tv_cc.setTextColor(Color.GRAY);
                 tv_wt.setTextColor(Color.BLACK);
                 tv_bd.setTextColor(Color.GRAY);
@@ -590,6 +602,8 @@ public class Academy_Fragment extends Basefragment{
         rl_bd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                biaoshi="保底";
+
                 tv_cc.setTextColor(Color.GRAY);
                 tv_wt.setTextColor(Color.GRAY);
                 tv_bd.setTextColor(Color.BLACK);
@@ -626,7 +640,7 @@ public class Academy_Fragment extends Basefragment{
                 }
                 Gson gson=new Gson();
                 String route= gson.toJson(map);
-
+                System.out.println("参数++++"+route);
                 Retrofit retrofit=new Retrofit.Builder()
                         .baseUrl(BaseApi.Api)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -649,6 +663,37 @@ public class Academy_Fragment extends Basefragment{
                         {
                             iv.setVisibility(View.GONE);
                             rv_yx.setVisibility(View.VISIBLE);
+                            if (biaoshi.equals("冲刺")) {
+
+                                cc_tvnum.setText(data.size()+"所");
+                                cc_tvnum.setVisibility(View.VISIBLE);
+                                bd_tvnum.setVisibility(View.GONE);
+                                wt_tvnum.setVisibility(View.GONE);
+
+                                iv_cc.setVisibility(View.VISIBLE);
+                                iv_wt.setVisibility(View.GONE);
+                                iv_bd.setVisibility(View.GONE);
+                            } else if (biaoshi.equals("稳妥")) {
+
+                                wt_tvnum.setText(data.size()+"所");
+                                cc_tvnum.setVisibility(View.GONE);
+                                bd_tvnum.setVisibility(View.GONE);
+                                wt_tvnum.setVisibility(View.VISIBLE);
+
+                                iv_cc.setVisibility(View.GONE);
+                                iv_wt.setVisibility(View.VISIBLE);
+                                iv_bd.setVisibility(View.GONE);
+                            } else {
+
+                                bd_tvnum.setText(data.size()+"所");
+                                cc_tvnum.setVisibility(View.GONE);
+                                bd_tvnum.setVisibility(View.VISIBLE);
+                                wt_tvnum.setVisibility(View.GONE);
+
+                                iv_cc.setVisibility(View.GONE);
+                                iv_wt.setVisibility(View.GONE);
+                                iv_bd.setVisibility(View.VISIBLE);
+                            }
                             Accurate_Yx_Adapter accurate_yx_adapter=new Accurate_Yx_Adapter(getContext(),data);
                             rv_yx.setLayoutManager(new LinearLayoutManager(getContext()));
                             rv_yx.setAdapter(accurate_yx_adapter);
@@ -657,6 +702,50 @@ public class Academy_Fragment extends Basefragment{
                         {
                             iv.setVisibility(View.VISIBLE);
                             rv_yx.setVisibility(View.GONE);
+
+                            if (biaoshi.equals("冲刺")) {
+                                if(list.size()==0)
+                                {
+                                    cc_tvnum.setText(0+"所");
+                                }
+                                cc_tvnum.setText(data.size()+"所");
+                                cc_tvnum.setVisibility(View.VISIBLE);
+                                bd_tvnum.setVisibility(View.GONE);
+                                wt_tvnum.setVisibility(View.GONE);
+
+
+                                iv_cc.setVisibility(View.VISIBLE);
+                                iv_wt.setVisibility(View.GONE);
+                                iv_bd.setVisibility(View.GONE);
+                            } else if (biaoshi.equals("稳妥")) {
+                                if(list.size()==0)
+                                {
+                                    wt_tvnum.setText(0+"所");
+                                }
+                                wt_tvnum.setText(data.size()+"所");
+                                cc_tvnum.setVisibility(View.GONE);
+                                bd_tvnum.setVisibility(View.GONE);
+                                wt_tvnum.setVisibility(View.VISIBLE);
+
+
+                                iv_cc.setVisibility(View.GONE);
+                                iv_wt.setVisibility(View.VISIBLE);
+                                iv_bd.setVisibility(View.GONE);
+                            } else  {
+                                if(list.size()==0 )
+                                {
+                                    bd_tvnum.setText(0+"所");
+                                }
+                                bd_tvnum.setText(data.size()+"所");
+                                cc_tvnum.setVisibility(View.GONE);
+                                bd_tvnum.setVisibility(View.VISIBLE);
+                                wt_tvnum.setVisibility(View.GONE);
+
+
+                                iv_cc.setVisibility(View.GONE);
+                                iv_wt.setVisibility(View.GONE);
+                                iv_bd.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
 
@@ -719,6 +808,13 @@ public class Academy_Fragment extends Basefragment{
         lv1_view = view.findViewById(R.id.lv1_view);
         lv2_view = view.findViewById(R.id.lv2_view);
         lv3_view = view.findViewById(R.id.lv3_view);
+
+        cc_tvnum = view.findViewById(R.id.cc_tvnum);
+        wt_tvnum = view.findViewById(R.id.wt_tvnum);
+        bd_tvnum = view.findViewById(R.id.bd_tvnum);
+        iv_cc = view.findViewById(R.id.iv_cc);
+        iv_wt = view.findViewById(R.id.iv_wt);
+        iv_bd = view.findViewById(R.id.iv_bd);
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;

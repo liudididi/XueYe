@@ -23,13 +23,14 @@
                 />
             <LinearLayout
                 android:id="@+id/ll"
-                android:layout_width="830px"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                android:layout_marginLeft="190px"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:layout_toLeftOf="@+id/iv"
+                android:gravity="center_vertical">
                 <LinearLayout
-                    android:layout_width="800px"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
@@ -39,8 +40,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="48px"
                         android:layout_marginLeft="5px"
-                        android:maxLines="1"
-                        android:ellipsize="end"
+                        android:lines="1"
                         android:textColor="#333333"
                         android:text="北京工业大学"/>
                     <TextView
@@ -128,6 +128,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/iv"
                 android:layout_width="50px"
                 android:layout_height="50px"
                 android:src="@drawable/right"

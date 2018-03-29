@@ -146,6 +146,7 @@
         android:layout_below="@+id/mschool_tiaojian"
       ></View>
 
+
     <com.weavey.loading.lib.LoadingLayout
     android:id="@+id/lodiing"
     android:layout_below="@+id/view1"
@@ -159,13 +160,17 @@
         android:layout_height="match_parent"
         />
 </com.weavey.loading.lib.LoadingLayout>
-    <com.jcodecraeer.xrecyclerview.XRecyclerView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/rl_list"
         android:layout_below="@+id/view1"
-        android:id="@+id/mschool_xlist"
-        android:visibility="visible"
-        ></com.jcodecraeer.xrecyclerview.XRecyclerView>
+        >
+
+
+    </RelativeLayout>
+
 
     <ImageView
         android:visibility="gone"

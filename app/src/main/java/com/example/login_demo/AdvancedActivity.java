@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -57,14 +58,31 @@ public class AdvancedActivity extends BaseActivity implements WishView {
     @BindView(R.id.ad_tishi)
    ImageView adTishi;
 
+    @BindView(R.id.cc_tvnum)
+    TextView ccTvnum;
+    @BindView(R.id.wt_tvnum)
+    TextView wtTvnum;
+    @BindView(R.id.bd_tvnum)
+    TextView bdTvnum;
+
+
+    @BindView(R.id.iv_cc)
+    ImageView iv_cc;
+    @BindView(R.id.iv_wt)
+    ImageView iv_wt;
+    @BindView(R.id.iv_bd)
+    ImageView iv_bd;
+
+    @BindView(R.id.pb)
+    ProgressBar pb;
     private String tbmaxfen;
     private String tbarea;
     private String tbsubtype;
 
     private WishPresent wishPresent;
-    private ArrayList<CanSchoolBean3> list;
-    private String isMS;
+     private String isMS;
     private MoreSchool_Adapter moreSchool_adapter;
+    private String biaoshi;
 
     @Override
     public int getId() {
@@ -81,20 +99,18 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
         isMS = (String) SPUtils.get(MyApp.context, "isMS", "");
-
+        biaoshi="冲刺";
         if(isMS !=null&& isMS !=""){
             String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
             String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
             String schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
-            wishPresent.CompleCanSchoolPresente(100 + "",(Integer.parseInt(tbmaxfen) + 100) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
-        }else {
-
-                wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
-
+            wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
+        }
+        else {
+            wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
         }
 
         advancedSprint.setTextColor(Color.BLACK);
-        list = new ArrayList<>();
 
 
     }
@@ -127,6 +143,8 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 break;
 
             case R.id.advanced_rl_sprint:
+                biaoshi = "冲刺";
+                pb.setVisibility(View.VISIBLE);
                 advancedSprint.setTextColor(Color.BLACK);
                 advancedReliable.setTextColor(Color.GRAY);
                 advancedMinimum.setTextColor(Color.GRAY);
@@ -138,15 +156,17 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                     String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
                     String schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
-                    wishPresent.CompleCanSchoolPresente(100 + "",(Integer.parseInt(tbmaxfen) + 100) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
-                }else {
-                    wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
-
+                    wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
                 }
-
+                else {
+                    wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
+                }
                 break;
 
             case R.id.advanced_rl_reliable:
+                biaoshi = "稳妥";
+                pb.setVisibility(View.VISIBLE);
+
                 advancedSprint.setTextColor(Color.GRAY);
                 advancedReliable.setTextColor(Color.BLACK);
                 advancedMinimum.setTextColor(Color.GRAY);
@@ -158,15 +178,17 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
                     String schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
 
-                    wishPresent.CompleCanSchoolPresente(100 + "",tbmaxfen,cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
-
-                }else {
-                        wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
+                    wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -20)+ "",(Integer.parseInt(tbmaxfen) -6) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
+                } else {
+                    wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -20)+ "", (Integer.parseInt(tbmaxfen) -6) + "", "1", "30");
                 }
 
                 break;
 
             case R.id.advanced_rl_minimum:
+                biaoshi = "保底";
+                pb.setVisibility(View.VISIBLE);
+
                 advancedSprint.setTextColor(Color.GRAY);
                 advancedReliable.setTextColor(Color.GRAY);
                 advancedMinimum.setTextColor(Color.BLACK);
@@ -177,9 +199,10 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                     String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
                     String schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
-                    wishPresent.CompleCanSchoolPresente(100 + "",(Integer.parseInt(tbmaxfen) - 100) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
-                }else {
-                        wishPresent.CanSchoolPresente("北京市", "文科", "0", "400", "1", "5");
+                    wishPresent.CompleCanSchoolPresente(0+ "",(Integer.parseInt(tbmaxfen)-21) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
+                }
+                else {
+                    wishPresent.CanSchoolPresente(tbarea, tbsubtype, 0+ "", (Integer.parseInt(tbmaxfen)-21) + "", "1", "30");
                 }
 
                 break;
@@ -200,6 +223,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 4) {
+            pb.setVisibility(View.VISIBLE);
+
+             biaoshi="冲刺";
             isMS=data.getStringExtra("isMS");
             String cityType=data.getStringExtra("cityType");
             String isAccept=data.getStringExtra("isAccept");
@@ -208,7 +234,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             SPUtils.put(MyApp.context,"cityType",cityType);
             SPUtils.put(MyApp.context,"isAccept",isAccept);
             SPUtils.put(MyApp.context,"schoolType",schoolType);
-            wishPresent.CompleCanSchoolPresente(100+ "",(Integer.parseInt(tbmaxfen) + 100) + "",cityType,isAccept,schoolType,isMS,tbarea,tbsubtype);
+            wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept,schoolType, isMS,tbarea,tbsubtype);
             advancedSprint.setTextColor(Color.BLACK);
             advancedReliable.setTextColor(Color.GRAY);
             advancedMinimum.setTextColor(Color.GRAY);
@@ -222,10 +248,13 @@ public class AdvancedActivity extends BaseActivity implements WishView {
     public void CanSchoolsuccess(BaseBean<CanSchoolBean> canSchoolBeanBaseBean) {
 
         List<CanSchoolBean.ListBean> list1 = canSchoolBeanBaseBean.data.getList();
+        ArrayList<CanSchoolBean3> list = new ArrayList<>();
+
         if(list1.size()>0&&list1!=null){
+            pb.setVisibility(View.GONE);
+
             adTishi.setVisibility(View.GONE);
             advancedRl.setVisibility(View.VISIBLE);
-            list=new ArrayList<>();
             for (int i = 0; i < list1.size(); i++) {
                 String url = list1.get(i).getUrl();
                 String name = list1.get(i).getName();
@@ -234,12 +263,89 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 String typeRank = list1.get(i).getTypeRank();
                 list.add(new CanSchoolBean3(url, name, address, father, typeRank));
             }
-                moreSchool_adapter = new MoreSchool_Adapter(list, AdvancedActivity.this);
-                advancedRl.setAdapter(moreSchool_adapter);
+            if (biaoshi.equals("冲刺")) {
+
+                ccTvnum.setText(list.size()+"所");
+                ccTvnum.setVisibility(View.VISIBLE);
+                bdTvnum.setVisibility(View.GONE);
+                wtTvnum.setVisibility(View.GONE);
+
+                iv_cc.setVisibility(View.VISIBLE);
+                iv_wt.setVisibility(View.GONE);
+                iv_bd.setVisibility(View.GONE);
+            } else if (biaoshi.equals("稳妥")) {
+
+                wtTvnum.setText(list.size()+"所");
+                ccTvnum.setVisibility(View.GONE);
+                bdTvnum.setVisibility(View.GONE);
+                wtTvnum.setVisibility(View.VISIBLE);
+
+                iv_cc.setVisibility(View.GONE);
+                iv_wt.setVisibility(View.VISIBLE);
+                iv_bd.setVisibility(View.GONE);
+            } else {
+
+                bdTvnum.setText(list.size()+"所");
+                ccTvnum.setVisibility(View.GONE);
+                bdTvnum.setVisibility(View.VISIBLE);
+                wtTvnum.setVisibility(View.GONE);
+
+                iv_cc.setVisibility(View.GONE);
+                iv_wt.setVisibility(View.GONE);
+                iv_bd.setVisibility(View.VISIBLE);
+            }
+
+            moreSchool_adapter = new MoreSchool_Adapter(list, AdvancedActivity.this);
+            advancedRl.setLayoutManager(new LinearLayoutManager(AdvancedActivity.this));
+            advancedRl.setAdapter(moreSchool_adapter);
 
         }else {
+            pb.setVisibility(View.GONE);
+
             adTishi.setVisibility(View.VISIBLE);
             advancedRl.setVisibility(View.GONE);
+
+            if (biaoshi.equals("冲刺")) {
+                if(list.size()==0)
+                {
+                    ccTvnum.setText(0+"所");
+                }
+                ccTvnum.setText(list.size()+"所");
+                ccTvnum.setVisibility(View.VISIBLE);
+                bdTvnum.setVisibility(View.GONE);
+                wtTvnum.setVisibility(View.GONE);
+
+                iv_cc.setVisibility(View.VISIBLE);
+                iv_wt.setVisibility(View.GONE);
+                iv_bd.setVisibility(View.GONE);
+            } else if (biaoshi.equals("稳妥")) {
+                if(list.size()==0)
+                {
+                    wtTvnum.setText(0+"所");
+                }
+                wtTvnum.setText(list.size()+"所");
+                ccTvnum.setVisibility(View.GONE);
+                bdTvnum.setVisibility(View.GONE);
+                wtTvnum.setVisibility(View.VISIBLE);
+
+                iv_cc.setVisibility(View.GONE);
+                iv_wt.setVisibility(View.VISIBLE);
+                iv_bd.setVisibility(View.GONE);
+            } else  {
+                if(list.size()==0 )
+                {
+                    bdTvnum.setText(0+"所");
+                }
+                bdTvnum.setText(list.size()+"所");
+                ccTvnum.setVisibility(View.GONE);
+                bdTvnum.setVisibility(View.VISIBLE);
+                wtTvnum.setVisibility(View.GONE);
+
+                iv_cc.setVisibility(View.GONE);
+                iv_wt.setVisibility(View.GONE);
+                iv_bd.setVisibility(View.VISIBLE);
+            }
+
         }
     }
 
@@ -249,7 +355,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         if (tbarea != null && tbarea != "" && tbmaxfen != "" && tbmaxfen != null && tbsubtype != null && tbsubtype != "") {
             wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", tbmaxfen, "1", "5");
         } else {
-            wishPresent.CanSchoolPresente("北京市", "文科", "0", "500", "1", "5");
+            wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
         }
     }
 }

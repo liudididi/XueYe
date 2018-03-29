@@ -262,7 +262,7 @@ public class MajorStarActivity extends BaseActivity  {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         QuestInterface questInterface = retrofit.create(QuestInterface.class);
-        System.out.println("hld==="+hld+mbti+gender+type+classify+majorresult);
+
         Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil(hld, mbti, gender,type,classify,majorresult);
         baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
             @Override

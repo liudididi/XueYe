@@ -18,6 +18,7 @@ import java.util.List;
 import base.BaseApi;
 import bean.CheckSchoolBean;
 import bean.MajorSchoolBean;
+import fragment.Majorschool_Fragment;
 import untils.FlowLayout;
 
 /**
@@ -35,10 +36,14 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
         this.list = list;
     }
 
-    public  void  Refsh(List<MajorSchoolBean> newlist){
-        list.clear();
-        list=newlist;
+    public  void  LodingMore(List<MajorSchoolBean> newlist){
+        list.addAll(newlist);
         this.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -50,9 +55,10 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        Majorschool_Fragment.marjorschool_tvnum.setText(list.size()+"所");
+        holder.setIsRecyclable(false);
         MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getMajor_school());
-
         String url = list.get(position).getUrl();
         String two = list.get(position).getTwo();
         String school_type = list.get(position).getSchool_type();

@@ -120,6 +120,22 @@
             android:layout_weight="1"
             android:layout_height="120px"
              >
+
+            <ImageView
+                android:id="@+id/iv_cc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/cc_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:textSize="22px"
+                android:textColor="#fff"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                  android:layout_alignParentRight="true"/>
             <TextView
                 android:id="@+id/primary_sprint"
                 android:layout_width="wrap_content"
@@ -143,16 +159,7 @@
                 android:background="#3B9DFE"
                 android:visibility="visible">
             </View>
-            <TextView
-                android:textSize="35px"
-                android:id="@+id/cc_tvnum"
-                android:layout_marginRight="10px"
-                android:layout_marginBottom="10px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                />
+
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_reliable"
@@ -183,18 +190,24 @@
                 android:background="#3B9DFE"
                 android:visibility="gone"/>
 
-            <TextView
-                android:textSize="35px"
+            <ImageView
+                android:id="@+id/iv_wt"
                 android:visibility="gone"
-                android:id="@+id/wt_tvnum"
-                android:layout_marginRight="10px"
-                android:layout_marginBottom="10px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                />
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/wt_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:visibility="gone"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_minimum"
@@ -218,18 +231,24 @@
                 android:layout_centerHorizontal="true"
                 android:background="#3B9DFE"
                 android:visibility="gone"/>
-            <TextView
-                android:visibility="gone"
-                android:textSize="35px"
-                android:id="@+id/bd_tvnum"
-                android:layout_marginRight="10px"
-                android:layout_marginBottom="10px"
+            <ImageView
+                android:id="@+id/iv_bd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="20"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                />
+                android:visibility="gone"
+                android:src="@drawable/sanjiao"/>
+            <TextView
+                android:id="@+id/bd_tvnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30"
+                android:visibility="gone"
+                android:textSize="22px"
+                android:textColor="#fff"
+                android:layout_marginRight="5px"
+                android:layout_marginTop="10px"
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -250,7 +269,7 @@
         android:id="@+id/prima_tishi"
         android:layout_below="@id/view5"
         />
-    <android.support.v7.widget.RecyclerView
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/primary_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -260,6 +279,12 @@
         android:layout_marginTop="10px"
         android:background="#fff"
         >
-    </android.support.v7.widget.RecyclerView>
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
 
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
 </RelativeLayout>

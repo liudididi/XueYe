@@ -432,6 +432,9 @@ public class Zhuanye_Fragment extends Basefragment {
         rl_tj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                lv1_view.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.GONE);
                 iv_right1.setVisibility(View.VISIBLE);
                 iv_right2.setVisibility(View.VISIBLE);
                 iv_right3.setVisibility(View.VISIBLE);
