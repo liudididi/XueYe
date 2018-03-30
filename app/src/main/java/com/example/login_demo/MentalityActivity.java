@@ -107,7 +107,7 @@ public class MentalityActivity extends BaseActivity implements YfenQView {
         if(baseBean.code==0){
             Intent intent = new Intent(MentalityActivity.this, CeShiShuoMingActivity.class);
             startActivity(intent);
-            finish();
+
         }else {
             if(xlcp.equals("MBTI")){
                 Intent intent=new Intent(this,BuyActivity.class);

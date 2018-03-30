@@ -43,15 +43,17 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="专业代码 :  "
-                    android:textSize="32px" />
+                    android:textSize="35px"
+                    android:textColor="#333333"/>
 
                 <TextView
                     android:id="@+id/fmgk_tvdaima"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-
-                    android:textSize="32px" />
+                    android:textColor="#666666"
+                    android:textSize="35px"
+                    />
             </LinearLayout>
 
 
@@ -77,15 +79,18 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="学历层次 :  "
-                    android:textSize="32px" />
+                    android:textColor="#333333"
+                    android:textSize="35px"
+                    />
 
                 <TextView
                     android:id="@+id/fmgk_tvcckemu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-
-                    android:textSize="32px" />
+                    android:textColor="#666666"
+                    android:textSize="35px"
+                    />
             </LinearLayout>
 
         </LinearLayout>
@@ -120,15 +125,18 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="授予学位 :  "
-                    android:textSize="32px" />
+                    android:textColor="#333333"
+                    android:textSize="35px"
+                    />
 
                 <TextView
                     android:id="@+id/fmgk_tvxw"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-
-                    android:textSize="32px" />
+                    android:textColor="#666666"
+                    android:textSize="35px"
+                    />
             </LinearLayout>
 
 
@@ -153,15 +161,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:textColor="#333333"
                     android:text="修学年限 :  "
-                    android:textSize="32px" />
+                    android:textSize="35px"
+                    />
 
                 <TextView
                     android:id="@+id/fmgk_ccyear"
+                    android:textColor="#666666"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="32px" />
+                    android:textSize="35px"
+                    />
             </LinearLayout>
 
         </LinearLayout>
@@ -195,16 +207,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:textColor="#333333"
                     android:text="所属大类 :  "
-                    android:textSize="32px" />
+                    android:textSize="35px"
+                    />
 
                 <TextView
                     android:id="@+id/fmgk_tvssdl"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-
-                    android:textSize="32px" />
+                    android:textColor="#666666"
+                    android:textSize="35px"
+                    />
             </LinearLayout>
 
 
@@ -226,12 +241,12 @@
                     android:src="@drawable/qianbao" />
 
                 <TextView
-
+                    android:textColor="#333333"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="毕业三年薪酬:  "
-                    android:textSize="32px" />
+                    android:textSize="35px" />
 
                 <TextView
                     android:textColor="#ff6700"
@@ -240,7 +255,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="暂无信息"
-                    android:textSize="32px" />
+                    android:textSize="35px" />
             </LinearLayout>
 
         </LinearLayout>
@@ -264,7 +279,7 @@
       android:layout_height="150px">
       <View
           android:layout_marginLeft="50px"
-          android:layout_marginTop="50px"
+          android:layout_centerVertical="true"
           android:background="#3B9EFF"
           android:id="@+id/fmgk_v1"
           android:layout_width="10px"
@@ -275,8 +290,8 @@
           android:layout_toRightOf="@+id/fmgk_v1"
           android:textSize="55px"
           android:textColor="@color/black"
-           android:layout_marginLeft="50px"
-          android:layout_marginTop="50px"
+           android:layout_marginLeft="25px"
+          android:layout_centerVertical="true"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="专业介绍"
@@ -286,70 +301,132 @@
       <TextView
           android:layout_toRightOf="@+id/fmgk_tv"
           android:textSize="50px"
-          android:layout_marginLeft="50px"
-          android:layout_marginTop="55px"
+          android:layout_marginLeft="35px"
+          android:layout_centerVertical="true"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="SPECALTY INTRODUCTION"
+          android:text="INTRODUCTION"
           />
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="2px"
-          android:layout_alignParentBottom="true"
-          ></View>
-  </RelativeLayout>
 
-    <TextView
-        android:textSize="45px"
-        android:layout_marginLeft="120px"
-       android:layout_marginRight="70px"
+  </RelativeLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
         android:layout_below="@+id/fmgk_r2"
+        android:background="#ccc"></View>
+    <TextView
+        android:textSize="40px"
+        android:layout_marginLeft="85px"
+       android:layout_marginRight="70px"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="40px"
+        android:layout_marginBottom="40px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fmgk_zyjs"
         />
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#F2f2F2"
+        android:layout_below="@+id/fmgk_zyjs"></View>
+    <RelativeLayout
+        android:id="@+id/zyjj_r2"
+        android:layout_below="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="150px">
+        <View
+            android:layout_marginLeft="50px"
+            android:layout_centerVertical="true"
+            android:background="#3B9EFF"
+            android:id="@+id/zyjj_v1"
+            android:layout_width="10px"
+            android:layout_height="60px">
+        </View>
+        <TextView
+            android:id="@+id/zyjj_tv"
+            android:layout_toRightOf="@+id/zyjj_v1"
+            android:textSize="55px"
+            android:textColor="@color/black"
+            android:layout_marginLeft="25px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="专业简介"
+            />
+
+
+        <TextView
+            android:layout_toRightOf="@+id/zyjj_tv"
+            android:textSize="50px"
+            android:layout_marginLeft="35px"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SYNOPSIS"
+            />
+
+    </RelativeLayout>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        android:layout_below="@+id/zyjj_r2"></View>
     <RelativeLayout
         android:id="@+id/fmgk_r3"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:layout_marginTop="50px"
-        android:layout_below="@+id/fmgk_zyjs"
+        android:layout_below="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<ImageView
-    android:layout_marginLeft="10px"
-    android:layout_marginTop="16px"
-    android:layout_width="30px"
-    android:layout_height="30px"
-    android:src="@drawable/back_circleblcak"
-    android:id="@+id/imageView3" />
+        <ImageView
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="16px"
+            android:layout_width="30px"
+            android:layout_height="30px"
+            android:src="@drawable/back_circleblcak"
+            android:id="@+id/imageView3" />
         <TextView
             android:id="@+id/fmgk_v2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="培养目标"
             android:textSize="50px"
-            android:textColor="@color/black"
+            android:layout_marginTop="5px"
+            android:textColor="#555555"
             android:layout_marginLeft="70px"
             />
         <TextView
             android:id="@+id/fmgk_tvpymb"
             android:layout_marginTop="40px"
-            android:textSize="45px"
+            android:textSize="40px"
+            android:textColor="#777777"
             android:layout_marginLeft="70px"
             android:layout_below="@+id/fmgk_v2"
             android:layout_width="match_parent"
+            android:layout_marginBottom="40px"
             android:layout_height="wrap_content"
             />
 
 
     </RelativeLayout>
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        android:layout_marginLeft="60px"
+        android:layout_below="@+id/fmgk_r3"></View>
     <RelativeLayout
         android:id="@+id/fmgk_r5"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:layout_marginTop="50px"
-        android:layout_below="@+id/fmgk_r3"
+        android:layout_below="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -365,26 +442,35 @@
             android:layout_height="wrap_content"
             android:text="主要课程"
             android:textSize="50px"
-            android:textColor="@color/black"
+            android:textColor="#555555"
             android:layout_marginLeft="70px"
             />
         <TextView
+            android:layout_marginBottom="40px"
             android:layout_marginTop="40px"
             android:id="@+id/fmgk_tvzykc"
             android:layout_marginLeft="70px"
             android:layout_below="@+id/fmgk_v4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="45px"
+            android:textColor="#777777"
+            android:textSize="40px"
             />
     </RelativeLayout>
+    <View
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        android:layout_marginLeft="60px"
 
+        android:layout_below="@+id/fmgk_r5"></View>
     <RelativeLayout
         android:id="@+id/fmgk_r6"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:layout_marginTop="50px"
-        android:layout_below="@+id/fmgk_r5"
+        android:layout_below="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -400,7 +486,8 @@
             android:layout_height="wrap_content"
             android:text="培养需求"
             android:textSize="50px"
-            android:textColor="@color/black"
+            android:textColor="#555555"
+            android:layout_marginTop="5px"
             android:layout_marginLeft="70px"
             />
         <TextView
@@ -410,17 +497,25 @@
             android:layout_below="@+id/fmgk_v5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="45px"
+            android:textColor="#777777"
+            android:layout_marginBottom="40px"
+            android:textSize="40px"
             />
     </RelativeLayout>
 
-
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        android:layout_marginLeft="60px"
+        android:layout_below="@+id/fmgk_r6"></View>
     <RelativeLayout
         android:id="@+id/fmgk_r10"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:layout_marginTop="50px"
-        android:layout_below="@+id/fmgk_r6"
+        android:layout_below="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -436,22 +531,26 @@
             android:layout_height="wrap_content"
             android:text="知识能力"
             android:textSize="50px"
-            android:textColor="@color/black"
+            android:layout_marginTop="5px"
+            android:textColor="#555555"
             android:layout_marginLeft="70px"
             />
         <TextView
             android:layout_marginLeft="70px"
-            android:textSize="45px"
-            android:layout_marginTop="20px"
+            android:textSize="40px"
+            android:layout_marginTop="40px"
+            android:layout_marginBottom="40px"
             android:layout_below="@+id/fmgk_v20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#777777"
             android:id="@+id/fmgk_tvzsnl"
             android:text="暂无数据"
             ></TextView>
     <untils.ListViewForScrollView
         android:divider="@null"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="40px"
+        android:layout_marginBottom="40px"
         android:layout_below="@+id/fmgk_v20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -459,9 +558,15 @@
         ></untils.ListViewForScrollView>
     </RelativeLayout>
 
+    <View
+        android:id="@+id/view6"
+        android:layout_width="match_parent"
+        android:layout_height="30px"
+        android:background="#fafafa"
+        android:layout_below="@+id/fmgk_r10"></View>
     <RelativeLayout
         android:id="@+id/fmgk_r7"
-        android:layout_below="@+id/fmgk_r10"
+        android:layout_below="@+id/view6"
         android:layout_width="match_parent"
         android:layout_height="150px">
         <View
@@ -477,7 +582,7 @@
             android:layout_toRightOf="@+id/fmgk_v8"
             android:textSize="55px"
             android:textColor="@color/black"
-            android:layout_marginLeft="50px"
+            android:layout_marginLeft="25px"
             android:layout_marginTop="50px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -487,11 +592,11 @@
         <TextView
             android:layout_toRightOf="@+id/fmgk_tv6"
             android:textSize="50px"
-            android:layout_marginLeft="50px"
+            android:layout_marginLeft="35px"
             android:layout_marginTop="55px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="  POST"
+            android:text="POST"
             />
 
         <View
@@ -504,7 +609,7 @@
 
     <untils.FlowLayoutzy
         android:id="@+id/fmgk_flow"
-        android:layout_marginLeft="30px"
+        android:layout_marginLeft="25px"
         android:layout_marginRight="50px"
         android:layout_below="@+id/fmgk_r7"
         android:layout_width="match_parent"

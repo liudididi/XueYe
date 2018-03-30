@@ -129,7 +129,8 @@
             />
 
 
-        <View
+       <View
+           android:visibility="visible"
             android:id="@+id/view_hx"
             android:background="#ccc"
             android:layout_width="1px"

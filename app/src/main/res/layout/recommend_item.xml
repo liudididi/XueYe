@@ -10,7 +10,7 @@
         android:layout_width="250px"
         android:layout_height="250px"
         android:layout_margin="54px"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
     />
     <RelativeLayout
         android:layout_marginRight="50px"

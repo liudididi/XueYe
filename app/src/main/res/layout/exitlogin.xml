@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:visibility="gone"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_exitlogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#cc222222"
+     >
+    <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:background="#fff"
+                android:layout_marginRight="100px"
+                android:layout_marginLeft="100px"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50px"></View>
+        <ImageView
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:src="@drawable/exitlogin"
+             android:layout_gravity="center_horizontal"
+            />
+        <TextView
+            android:layout_marginTop="50px"
+            android:gravity="center"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确定要退出登录吗？退出登录后，您将无法"
+            />
+        <TextView
+            android:gravity="center"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用部分高级功能"
+            />
+
+        <LinearLayout
+            android:layout_marginTop="50px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_quxiao"
+                android:layout_marginLeft="100px"
+                android:background="#ccc"
+                android:text="取消"
+                android:gravity="center"
+                android:textSize="50px"
+                android:textColor="#fff"
+                android:layout_width="300px"
+                android:layout_height="100px" />
+            <TextView
+                android:id="@+id/tv_exitlogin"
+                android:layout_marginLeft="100px"
+                android:background="#FF6801"
+                android:text="确定"
+                android:gravity="center"
+                android:textSize="50px"
+                android:textColor="#fff"
+                android:layout_width="300px"
+                android:layout_height="100px" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50px"></View>
+
+            </LinearLayout>
+
+</RelativeLayout>

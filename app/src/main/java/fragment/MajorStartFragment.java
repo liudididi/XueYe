@@ -66,7 +66,7 @@ public class MajorStartFragment extends Basefragment {
                     public void onClick(View v) {
                         List<jobStarBean.MajorinfoBean> majorinfo = list.get(finalI).getMajorinfo();
 
-                        MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),getActivity());
+                        MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),getActivity(), imageViews.get(finalI));
 
                     }
                 });
@@ -117,6 +117,12 @@ public class MajorStartFragment extends Basefragment {
         xhimageViews.add(img_xihuanone);
         xhimageViews.add(img_xihuantwo);
         xhimageViews.add(img_xihuansan);
+        if(MajorStarActivity.ztdata>=3){
+            for (int i = 0; i < xhimageViews.size(); i++) {
+                xhimageViews.get(i).setVisibility(View.INVISIBLE);
+                xhimageViews.get(i).setEnabled(false);
+            }
+        }
 
 
         img_xihuanone.setOnClickListener(new View.OnClickListener() {

@@ -234,4 +234,8 @@
             android:textColor="@color/white"
             android:textSize="48px" />
     </RelativeLayout>
+
+    <include
+        layout="@layout/exitlogin"
+        ></include>
 </RelativeLayout>

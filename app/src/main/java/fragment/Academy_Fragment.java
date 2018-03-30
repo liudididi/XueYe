@@ -620,6 +620,7 @@ public class Academy_Fragment extends Basefragment{
         });
     }
 
+
     //cwb 冲稳保  city 院校区域  s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
     private void qingqiu(final String s1, final String s3, final String s4, final String s5, final String city, final String s6, String tuition, final String s2, final String tbsubtype, final String fen, final String cwb) {
          final HashMap<String,String> map=new HashMap<>();

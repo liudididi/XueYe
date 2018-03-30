@@ -262,6 +262,8 @@
         android:id="@+id/lv1"
         android:layout_width="match_parent"
         android:layout_height="600px"
+        android:listSelector="#ccc"
+
         android:layout_marginTop="125px"
         android:visibility="gone"
         android:background="#fff">
@@ -280,6 +282,8 @@
         android:layout_height="600px"
         android:layout_marginTop="125px"
         android:visibility="gone"
+        android:listSelector="#ccc"
+
         android:background="#fff">
     </ListView>
     <View
@@ -313,6 +317,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="none"
+                    android:listSelector="#ccc"
+
                     >
                 </ListView>
             </LinearLayout>
@@ -331,6 +337,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="visible"
+                    android:listSelector="#ccc"
+
                     android:layout_marginTop="105px"
                     >
                 </ListView>

@@ -24,13 +24,15 @@
             android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/zc"
-            android:text="注册"
+            android:text="快速登录"
             android:textColor="#2c2c2c"
-            android:textSize="18sp"
-           android:layout_centerInParent="true"
+            android:textSize="50px"
+           android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            />
     </RelativeLayout>
 
     <View

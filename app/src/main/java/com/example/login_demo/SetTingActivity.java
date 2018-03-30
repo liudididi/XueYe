@@ -2,10 +2,7 @@ package com.example.login_demo;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,16 +12,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.meg7.widget.CustomShapeImageView;
 
 import java.io.File;
@@ -73,6 +69,14 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
     ImageView imgHong;
     @BindView(R.id.setting_verinfo)
     TextView settingVerinfo;
+    @BindView(R.id.setting_ll)
+    LinearLayout settingLl;
+    @BindView(R.id.tv_quxiao)
+    TextView tvQuxiao;
+    @BindView(R.id.tv_exitlogin)
+    TextView tvExitlogin;
+    @BindView(R.id.rl_exitlogin)
+    RelativeLayout rlExitlogin;
     private String token;
     private Intent intent;
     private VisionBean visionBean;
@@ -89,8 +93,6 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         token = (String) SPUtils.get(MyApp.context, "token", "");
         verSionPresent = new VerSionPresent(this);
         verSionPresent.versioninfo("Android");
-
-
 
 
     }
@@ -148,7 +150,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         }
     }
 
-    @OnClick({R.id.setting_iv_back, R.id.setting_account, R.id.setting_baiduren, R.id.setting_verson, R.id.setting_useragreen, R.id.setting_back})
+    @OnClick({R.id.setting_iv_back, R.id.setting_account,R.id.tv_quxiao, R.id.tv_exitlogin, R.id.rl_exitlogin, R.id.setting_baiduren, R.id.setting_verson, R.id.setting_useragreen, R.id.setting_back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.setting_iv_back:
@@ -184,7 +186,6 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                                     new DialogInterface.OnClickListener() {
 
 
-
                                         @Override
                                         public void onClick(DialogInterface dialog,
                                                             int which) {
@@ -209,7 +210,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                                                         .setAutoCancel(true)
                                                         .build();
                                                 manager.notify(123, build);*/
-                                                final Thread thread=new Thread(new Runnable() {
+                                                final Thread thread = new Thread(new Runnable() {
                                                     @Override
                                                     public void run() {
                                                         downfile();
@@ -226,7 +227,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                                                         new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
-                                                          thread.interrupt();
+                                                                thread.interrupt();
                                                             }
                                                         });
                                                 pd6.show();
@@ -251,7 +252,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
 
                                             } else {
                                                 Intent intent = new Intent(SetTingActivity.this, DownApkServer.class);
-                                                intent.putExtra("downUrl",visionBean.getDownloadPath());
+                                                intent.putExtra("downUrl", visionBean.getDownloadPath());
                                                 startService(intent);
                                             }
                                         }
@@ -278,23 +279,29 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 break;
             //退出登录
             case R.id.setting_back:
-                new AlertDialog.Builder(this)
-                        .setTitle("提示")
-                        .setMessage("您确定要退出登录吗？退出登录后，您将无法使用部分高级功能")
-                        .setPositiveButton("确认退出", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SPUtils.remove(MyApp.context, "token");
-                                SPUtils.remove(MyApp.context, "tbmaxfen");
-                                SPUtils.remove(MyApp.context, "tbarea");
-                                SPUtils.remove(MyApp.context, "tbsubtype");
-                                SPUtils.remove(MyApp.context, "majorindex");
-                                MyUserBean.setUserBean(null);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("取消", null)
-                        .show();
+                if(token.length()>4){
+                    rlExitlogin.setVisibility(View.VISIBLE);
+                }else {
+                    Toast("用户未登录");
+                }
+
+                break;
+
+
+            case R.id.tv_quxiao:
+                rlExitlogin.setVisibility(View.GONE);
+                break;
+            case R.id.tv_exitlogin:
+                SPUtils.remove(MyApp.context, "token");
+                SPUtils.remove(MyApp.context, "tbmaxfen");
+                SPUtils.remove(MyApp.context, "tbarea");
+                SPUtils.remove(MyApp.context, "tbsubtype");
+                SPUtils.remove(MyApp.context, "majorindex");
+                MyUserBean.setUserBean(null);
+                finish();
+                break;
+            case R.id.rl_exitlogin:
+                rlExitlogin.setVisibility(View.GONE);
                 break;
         }
 
@@ -334,7 +341,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                     float percent = sum * 100.0f / contentLength;
                     System.out.print("\r[");
                     int p = (int) percent;
-                    System.out.println("pp==="+p);
+                    System.out.println("pp===" + p);
                     pd6.setProgress(p);
 
                     /*
@@ -368,10 +375,6 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
 
 
     }
@@ -415,7 +418,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                     imgHong.setVisibility(View.VISIBLE);
                     settingVerson.setEnabled(true);
                 } else {
-                    settingVerinfo.setText("当前版本"+visionBean.getVersionName());
+                    settingVerinfo.setText("当前版本" + visionBean.getVersionName());
                     imgHong.setVisibility(View.INVISIBLE);
                     settingVerson.setEnabled(false);
                 }
@@ -430,7 +433,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
 
         try {
             PackageInfo packageInfo = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
-            settingVerinfo.setText("当前版本"+packageInfo.versionName);
+            settingVerinfo.setText("当前版本" + packageInfo.versionName);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -442,4 +445,9 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         super.onDestroy();
         verSionPresent.onDestory();
     }
+
+
+
+
+
 }

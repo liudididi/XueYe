@@ -363,7 +363,8 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
                 mschoolXlist.loadMoreComplete();
             }
 
-
+        }else {
+            mschoolXlist.loadMoreComplete();
         } /*else {
             img_none.setVisibility(View.VISIBLE);
             mschoolXlist.setVisibility(View.GONE);

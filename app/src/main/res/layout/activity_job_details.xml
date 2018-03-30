@@ -118,19 +118,17 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/rl_zygwdyxq"
-                android:layout_width="400px"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="50px"
                 android:text="全部详情"
                 android:textColor="#3B9EFF"
                 />
             <ImageView
-                android:layout_marginRight="360px"
-                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/rl_zygwdyxq"
+                android:layout_marginLeft="20px"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="80px"
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/nextlan"
                 />
         </RelativeLayout>
@@ -271,19 +269,21 @@
               android:layout_centerVertical="true"
               android:layout_centerHorizontal="true"
               android:id="@+id/rl_zyjsxq"
-              android:layout_width="400px"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:textSize="50px"
               android:text="全部详情"
               android:textColor="#3B9EFF"
               />
           <ImageView
-              android:layout_marginRight="360px"
-              android:layout_alignParentRight="true"
+
+              android:layout_toRightOf="@+id/rl_zyjsxq"
+              android:layout_marginLeft="20px"
+
+
               android:layout_centerVertical="true"
-              android:layout_marginLeft="80px"
-              android:layout_width="50px"
-              android:layout_height="50px"
+
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
               android:src="@drawable/nextlan"
               />
       </RelativeLayout>
@@ -350,19 +350,18 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/rl_rztjxq"
-                android:layout_width="400px"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="50px"
+
                 android:text="全部详情"
                 android:textColor="#3B9EFF"
                 />
             <ImageView
-                android:layout_marginRight="360px"
-                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/rl_rztjxq"
+                android:layout_marginLeft="20px"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="80px"
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/nextlan"
                 />
         </RelativeLayout>
@@ -424,19 +423,20 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/rl_fzkjxq"
-                android:layout_width="400px"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="50px"
+
                 android:text="全部详情"
                 android:textColor="#3B9EFF"
                 />
             <ImageView
-                android:layout_marginRight="360px"
-                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/rl_fzkjxq"
+                android:layout_marginLeft="20px"
+
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="80px"
-                android:layout_width="50px"
-                android:layout_height="50px"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/nextlan"
                 />
         </RelativeLayout>

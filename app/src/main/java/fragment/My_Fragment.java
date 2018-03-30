@@ -61,6 +61,13 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
         initOnClick();
     }
 
+ /*   @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden) {   // 不在最前端显示 相当于调用了onPause();
+            Toast.makeText(getActivity(), "展示了", Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
     private void initOnClick() {
         my_login.setOnClickListener(this);
         my_icon.setOnClickListener(this);

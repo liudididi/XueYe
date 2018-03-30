@@ -59,7 +59,11 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
         {
             zyGai = zyGai.substring(2, 4);
         }
+        if(zyGai.equals("00"))
+        {
+            zyGai="100";
+        }
         ghitem_gailv.setText(zyGai+"%");
-        return convertView;
+         return convertView;
     }
 }

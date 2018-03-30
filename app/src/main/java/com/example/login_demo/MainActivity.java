@@ -227,7 +227,7 @@ public class MainActivity extends BaseActivity implements LoginView {
                 pass.setVisibility(View.VISIBLE);
                 phone.setVisibility(View.GONE);
                 register.setVisibility(View.GONE);
-                zc.setVisibility(View.GONE);
+                zc.setText("密码登录");
                 break;
             case R.id.phone:
                 break;
@@ -270,6 +270,7 @@ public class MainActivity extends BaseActivity implements LoginView {
                 this.phone.setVisibility(View.GONE);
                 register.setVisibility(View.VISIBLE);
                 zc.setVisibility(View.VISIBLE);
+                zc.setText("注册");
                 break;
         }
     }
