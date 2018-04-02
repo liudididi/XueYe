@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.login_demo.TuiJianSchoolActivity">
+    <RelativeLayout
+        android:id="@+id/rl_tuijian"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:background="#fff"
+        >
+        <ImageView
+            android:padding="10px"
+            android:id="@+id/tuijian_iv_back"
+            android:layout_width="150px"
+            android:layout_height="90px"
+            android:layout_gravity="center"
+            android:src="@mipmap/left"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:text="推荐理由"
+            android:textColor="#2c2c2c"
+            android:textSize="50px"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#333"
+            ></View>
+    </RelativeLayout>
+
+
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_tjschool"
+                android:layout_width="match_parent"
+                android:layout_height="200px">
+
+
+                <com.meg7.widget.CustomShapeImageView
+                    android:id="@+id/tuijian_iv"
+                    android:layout_width="146px"
+                    android:layout_height="146px"
+                    android:layout_margin="30px"
+                    android:layout_centerVertical="true"/>
+                <LinearLayout
+                    android:id="@+id/more_school_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/tuijian_iv">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="30px"
+                        android:layout_marginRight="70px">
+                        <TextView
+                            android:textSize="46px"
+                            android:textColor="#333"
+                            android:id="@+id/tuijian_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="北京工业大学"/>
+
+                    </LinearLayout>
+                    <TextView
+                        android:textSize="38px"
+                        android:textColor="#999"
+                        android:id="@+id/tuijian_zh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="45px"
+                    android:layout_height="45px"
+                    android:src="@drawable/right_arrow"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20px"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15px"
+                android:background="#FAFAFA"
+                ></View>
+
+            <RelativeLayout
+
+                android:layout_below="@+id/qj_v3"
+                android:layout_width="match_parent"
+                android:layout_height="150px">
+                <View
+                    android:layout_marginLeft="50px"
+                    android:layout_centerVertical="true"
+                    android:background="#3B9EFF"
+                    android:id="@+id/fmgk_v3"
+                    android:layout_width="10px"
+                    android:layout_height="60px">
+                </View>
+                <TextView
+                    android:id="@+id/fmgk_tv3"
+                    android:layout_toRightOf="@+id/fmgk_v3"
+                    android:textSize="55px"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25px"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="推荐理由"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#333"
+                    android:layout_alignParentBottom="true"
+                    ></View>
+            </RelativeLayout>
+            <untils.FlowLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fl_tjly"
+                ></untils.FlowLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="15px"
+                android:background="#FAFAFA"
+                ></View>
+
+            <RelativeLayout
+                android:layout_below="@+id/qj_v3"
+                android:layout_width="match_parent"
+                android:layout_height="150px">
+                <View
+                    android:layout_marginLeft="50px"
+                    android:layout_centerVertical="true"
+                    android:background="#3B9EFF"
+                    android:id="@+id/fmgk_v4"
+                    android:layout_width="10px"
+                    android:layout_height="60px">
+                </View>
+                <TextView
+                    android:layout_toRightOf="@+id/fmgk_v4"
+                    android:textSize="55px"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="25px"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="各专业录取概率"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#333"
+                    android:layout_alignParentBottom="true"
+                    ></View>
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8px"
+                android:background="#ccc"
+                ></View>
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:background="#FAFAFA"
+                android:id="@+id/ll_ling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:src="@drawable/yangli"
+                    android:layout_width="match_parent"
+                    android:layout_height="820px" />
+<TextView
+    android:layout_marginTop="30px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="94px"
+    android:layout_marginRight="94px"
+    android:gravity="center"
+    android:textColor="#666"
+    android:textSize="32px"
+    android:text="因考生意愿和主观因素，EFC无法进行精准推测,需开通EFC精准志愿辅助系统。"
+    />
+       <TextView
+           android:id="@+id/tv_ktefc"
+           android:textSize="38px"
+           android:layout_gravity="center_horizontal"
+           android:layout_width="wrap_content"
+           android:layout_height="138px"
+           android:layout_marginTop="18px"
+           android:textColor="#fff"
+           android:gravity="center"
+           android:background="@drawable/bg_profession"
+           android:text="开通EFC精准志愿辅助系统"
+           />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80px">
+
+                </View>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:id="@+id/ll_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+          <TextView
+              android:layout_marginTop="242px"
+              android:layout_marginLeft="49px"
+              android:layout_marginRight="49px"
+              android:textSize="50px"
+              android:textColor="#333333"
+              android:gravity="center"
+              android:text="您EFC学业测评没有完成，无法为您进行精准推测"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+<ImageView
+    android:layout_marginTop="120px"
+    android:src="@drawable/tj_logo"
+    android:layout_width="match_parent"
+    android:layout_height="200px" />
+<TextView
+    android:id="@+id/tv_jixu"
+   android:textSize="38px"
+    android:background="@drawable/back_capacityyi"
+    android:gravity="center"
+    android:textColor="#fff"
+    android:layout_marginTop="172px"
+    android:layout_gravity="center"
+    android:layout_width="500px"
+    android:layout_height="104px"
+    android:text="继续EFC学业精准测评"
+    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="80px">
+
+                </View>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:id="@+id/ll_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <untils.ListViewForScrollView
+                    android:id="@+id/list_zy"
+                    android:layout_width="match_parent"
+                    android:layout_height="300px">
+                </untils.ListViewForScrollView>
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:id="@+id/ll_san"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+<TextView
+    android:textColor="#ff6700"
+    android:layout_marginTop="132px"
+    android:gravity="center"
+    android:textSize="54px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="测评已完成"
+    />
+                <TextView
+                    android:layout_marginTop="54px"
+                    android:id="@+id/re_tvdjs"
+                    android:layout_below="@+id/comlit_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="----  等待倒计时   ----"
+                    android:gravity="center"
+                    android:textSize="50px"
+                    />
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/rl_wancheng"
+                    android:layout_marginTop="50px"
+                    android:layout_below="@+id/re_tvdjs"
+                    android:layout_width="match_parent"
+                    android:layout_height="150px">
+                    <ImageView
+                        android:id="@+id/img_wancheng"
+                        android:padding="10px"
+                        android:layout_marginRight="30px"
+                        android:layout_marginLeft="150px"
+                        android:src="@drawable/wancheng"
+                        android:layout_width="150px"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/img_wancheng">
+                        <TextView
+                            android:layout_marginTop="10px"
+                            android:id="@+id/tv_text1"
+                            android:layout_toRightOf="@+id/img_wancheng"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="50px"
+                            android:text="已生成EFC学业规划报告"
+                            />
+                        <TextView
+                            android:layout_marginTop="10px"
+                            android:layout_below="@+id/tv_text1"
+                            android:layout_toRightOf="@+id/img_wancheng"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="35px"
+                            android:text="点击下方按钮可查学业规划报告"
+                            />
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/ll_weiwancheng"
+                    android:orientation="vertical"
+                    android:layout_marginTop="50px"
+                    android:layout_below="@+id/re_tvdjs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="130px">
+                        <ImageView
+                            android:padding="10px"
+                            android:layout_marginRight="30px"
+                            android:layout_marginLeft="130px"
+                            android:src="@drawable/time"
+                            android:layout_width="150px"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/tj_hour"
+                            android:layout_width="130px"
+                            android:layout_height="match_parent"
+                            android:background="#000"
+                            android:gravity="center"
+                            android:padding="15px"
+                            android:textColor="#fff"
+                            android:textSize="70px" />
+                        <TextView
+                            android:layout_marginLeft="10px"
+                            android:gravity="bottom"
+                            android:text="时"
+                            android:textSize="50px"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:layout_marginLeft="10px"
+                            android:id="@+id/tj_minute"
+                            android:padding="15px"
+                            android:gravity="center"
+                            android:textSize="70px"
+                            android:background="#000"
+
+                            android:textColor="#fff"
+                            android:layout_width="130px"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_marginLeft="10px"
+                            android:gravity="bottom"
+                            android:text="分"
+                            android:textSize="50px"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_marginLeft="10px"
+                            android:id="@+id/tj_miao"
+                            android:padding="15px"
+                            android:gravity="center"
+                            android:textSize="70px"
+                            android:background="#000"
+                            android:textColor="#fff"
+                            android:layout_width="130px"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:layout_marginLeft="10px"
+                            android:gravity="bottom"
+                            android:text="秒"
+                            android:textSize="50px"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_marginLeft="110px"
+                        android:gravity="center"
+                        android:textSize="35px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="该过程预计需要12小时，请您耐心等待"
+                        android:layout_marginTop="20px"
+                        />
+
+                </LinearLayout>
+<ImageView
+    android:layout_marginTop="100px"
+    android:layout_width="match_parent"
+    android:layout_height="240px"
+    android:src="@drawable/tj_logo"
+    />
+<View
+    android:layout_width="match_parent"
+    android:layout_height="160px">
+
+</View>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+
+</LinearLayout>

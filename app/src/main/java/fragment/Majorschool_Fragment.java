@@ -72,7 +72,6 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
     @Override
     public void MarjorSchoolSuccess(final List<MajorSchoolBean> list) {
         if(list!=null&list.size()>0){
-
             majorschool_none.setVisibility(View.GONE);
             majorshool_pb.setVisibility(View.GONE);
             if(adpter==null){
@@ -94,6 +93,9 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
                     majorschool_xrecycle.loadMoreComplete();
                 }
             });
+        }else {
+            Toast.makeText(getActivity(), "暂无数据！！", Toast.LENGTH_LONG).show();
+            majorshool_pb.setVisibility(View.GONE);
         }
     }
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
+import com.example.login_demo.TuiJianSchoolActivity;
 import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
@@ -47,9 +48,15 @@ public class MoreSchool_Adapter extends RecyclerView.Adapter<MoreSchool_Adapter.
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, SchoolDetailActivity.class);
+              /*  Intent intent=new Intent(context, SchoolDetailActivity.class);
                 intent.putExtra("schoolname",list.get(position).getName());
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+
+                Intent intent=new Intent(context, TuiJianSchoolActivity.class);
+                intent.putExtra("schoolname",list.get(position).getName());
+                 intent.putExtra("schoolurl",BaseApi.ImgApi+list.get(position).getImgurl());
+                 context.startActivity(intent);
+
             }
         });
 

@@ -1,6 +1,7 @@
 package untils;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -21,6 +22,10 @@ import java.util.Random;
 
 public class FlowLayout extends ViewGroup {
 
+
+
+     private   List<TextView> listtext=new ArrayList<>();
+    private   List<TextView> listxb=new ArrayList<>();
 
     private LayoutInflater mInflater;
     private boolean isColorful;
@@ -101,7 +106,7 @@ public class FlowLayout extends ViewGroup {
                         : width + getPaddingLeft() + getPaddingRight(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height
                         + getPaddingTop() + getPaddingBottom());
-        setPadding(dp2px(20), dp2px(5), dp2px(20), dp2px(10));
+        setPadding(dp2px(15), dp2px(5), dp2px(5), dp2px(10));
     }
 
     // 储存所有的View
@@ -224,8 +229,11 @@ public class FlowLayout extends ViewGroup {
                 public void onClick(View v) {
                     if (onTagClickListener != null)
                         onTagClickListener.TagClick(tv.getText().toString());
+
                 }
             });
+
+
 
             if(isColorful){
                 Random random = new Random();
@@ -262,7 +270,51 @@ public class FlowLayout extends ViewGroup {
 
 
 
-  //专业学校
+    public void settuijianListData(List<String> list) {
+
+        int count = list.size();
+        for (int i = 0; i < count; i++) {
+            final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_tuijian, this,
+                    false);
+            tv.setText(list.get(i));
+            tv.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onTagClickListener != null)
+                        onTagClickListener.TagClick(tv.getText().toString());
+                }
+            });
+
+            this.addView(tv);
+        }
+    }
+
+    //专业
+    public void setListZY(final List<String> list) {
+
+        int count = list.size();
+        for (int i = 0; i < count; i++) {
+            final TextView tv = (TextView) mInflater.inflate(R.layout.zhuanye_textview, this,
+                    false);
+              listtext.add(tv);
+
+             tv.setText(list.get(i).toString());
+            final int finalI = i;
+            tv.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onClick != null)
+                        onClick.TagClick(tv.getText().toString(), finalI);
+                }
+            });
+            this.addView(tv);
+        }
+    }
+
+
+
+
+    //专业学校
     public void setZyListData(List<String> list) {
 
         int count = list.size();
@@ -328,13 +380,36 @@ public class FlowLayout extends ViewGroup {
 
 
     private OnTagClickListener onTagClickListener;
-
     public void setOnTagClickListener(OnTagClickListener onTagClickListener) {
         this.onTagClickListener = onTagClickListener;
     }
-
-
     public interface OnTagClickListener {
         void TagClick(String text);
     }
+
+    private OnClick onClick;
+    public void setOnClick(OnClick onClick) {
+        this.onClick = onClick;
+    }
+    public interface OnClick {
+        void TagClick(String text, int postion);
+    }
+
+
+    public  void  setbianli(int post){
+       if(listtext!=null&&listtext.size()>0){
+           for (int i = 0; i < listtext.size(); i++) {
+
+               if(post==i){
+                   listtext.get(i).setTextColor(Color.WHITE);
+                   listtext.get(i).setBackgroundResource(R.drawable.back_zhuanye_lan);
+               }else {
+                   listtext.get(i).setTextColor(getResources().getColor(R.color.zhu3));
+                   listtext.get(i).setBackgroundResource(R.drawable.back_zhuanye);
+               }
+           }
+       }
+    }
+
+
 }

@@ -1,11 +1,17 @@
 package com.example.login_demo;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.weavey.loading.lib.LoadingLayout;
 
 import base.BaseActivity;
 import base.BaseBean;
@@ -63,7 +69,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     private String gender;
     private String classify;
     private String type;
-
+    private ConnectionChangeReceiver myReceiver;
+    private  boolean   net=true;
     @Override
     public int getId() {
         return R.layout.activity_efcjie_suo;
@@ -75,12 +82,14 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
         rlZhiyxk.setEnabled(false);
         rlZhuanyxk.setEnabled(false);
         rlZntb.setEnabled(false);
+        registerReceiver();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         cxefcPresenter.onDestory();
+        unregisterReceiver();
     }
 
     @Override
@@ -125,13 +134,40 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                         if (data.equals("3")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
-                            imgZntbwjs.setVisibility(View.GONE);
                             imgXlcsbq.setImageResource(R.drawable.biaoywc);
                             imgZhiyxkbq.setImageResource(R.drawable.biaoywc);
                             imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
-                            rlZntb.setEnabled(true);
+
+                            MyQusetUtils.getInstance().getQuestInterface().gettime(token)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                                        @Override
+                                        public void onNext(BaseBean<String> stringBaseBean) {
+                                            if (stringBaseBean.code == 0) {
+                                                String data = stringBaseBean.data;
+                                                int i =Integer.parseInt(data);
+
+                                                if(i <0){
+                                                    imgZntbwjs.setVisibility(View.GONE);
+                                                    rlZntb.setEnabled(true);
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable t) {
+
+                                        }
+
+                                        @Override
+                                        public void onComplete() {
+
+                                        }
+                                    });
+
                         }
                         if (data.equals("4")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
@@ -169,7 +205,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                             imgZhiyxkwjs.setVisibility(View.GONE);
                                             imgZhuanyxkwjs.setVisibility(View.VISIBLE);
                                             imgZntbwjs.setVisibility(View.VISIBLE);
-
+                                            rlXlcs.setEnabled(true);
                                             rlZhiyxk.setEnabled(true);
                                             rlZhuanyxk.setEnabled(false);
                                             rlZntb.setEnabled(false);
@@ -178,7 +214,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                             imgZhiyxkwjs.setVisibility(View.GONE);
                                             imgZhuanyxkwjs.setVisibility(View.GONE);
                                             imgZntbwjs.setVisibility(View.VISIBLE);
-
+                                            rlXlcs.setEnabled(true);
                                             rlZhiyxk.setEnabled(true);
                                             rlZhuanyxk.setEnabled(true);
                                             rlZntb.setEnabled(false);
@@ -186,11 +222,36 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                         if (data.equals("3")) {
                                             imgZhiyxkwjs.setVisibility(View.GONE);
                                             imgZhuanyxkwjs.setVisibility(View.GONE);
-                                            imgZntbwjs.setVisibility(View.GONE);
+                                             rlZhiyxk.setEnabled(true);
+                                             rlZhuanyxk.setEnabled(true);
+                                            rlXlcs.setEnabled(true);
 
-                                            rlZhiyxk.setEnabled(true);
-                                            rlZhuanyxk.setEnabled(true);
-                                            rlZntb.setEnabled(true);
+                                            MyQusetUtils.getInstance().getQuestInterface().gettime(token)
+                                                    .subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                    .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                                                        @Override
+                                                        public void onNext(BaseBean<String> stringBaseBean) {
+                                                            if (stringBaseBean.code == 0) {
+                                                                String data = stringBaseBean.data;
+                                                                int i =Integer.parseInt(data);
+                                                                if(i <0){
+                                                                    imgZntbwjs.setVisibility(View.GONE);
+                                                                    rlZntb.setEnabled(true);
+                                                                }
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onError(Throwable t) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onComplete() {
+
+                                                        }
+                                                    });
                                         }
                                         if (data.equals("4")) {
                                             imgZhiyxkwjs.setVisibility(View.GONE);
@@ -199,13 +260,19 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                             rlZhiyxk.setEnabled(true);
                                             rlZhuanyxk.setEnabled(true);
                                             rlZntb.setEnabled(true);
+                                            rlXlcs.setEnabled(true);
                                         }
 
                                     }
-
                                     @Override
                                     public void onError(Throwable t) {
-
+                                        Toast("请检查你的网络~~");
+                                        imgZhiyxkwjs.setVisibility(View.VISIBLE);
+                                        imgZhuanyxkwjs.setVisibility(View.VISIBLE);
+                                        imgZntbwjs.setVisibility(View.VISIBLE);
+                                        rlZhiyxk.setEnabled(false);
+                                        rlZhuanyxk.setEnabled(false);
+                                        rlZntb.setEnabled(false);
                                     }
 
                                     @Override
@@ -213,7 +280,6 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
                                     }
                                 });
-
                     }
 
                     @Override
@@ -232,7 +298,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
             case R.id.rl_xlcs:
 
                 // Intent intent=new Intent(this,XlcsActivity.class);
-                if (data != null) {
+                if (data != null&&net==true) {
                     Intent intent = new Intent(this, XlcsActivity.class);
                     intent.putExtra("data", data);
                     startActivity(intent);
@@ -241,19 +307,32 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 }
                 break;
             case R.id.rl_zhiyxk:
-                Intent intent1 = new Intent(this, ProfessionStarActivity.class);
-                intent1.putExtra("data", data);
-                startActivity(intent1);
+                if (data != null&&net==true) {
+                    Intent intent1 = new Intent(this, ProfessionStarActivity.class);
+                    intent1.putExtra("data", data);
+                    startActivity(intent1);
+                }else {
+                    Toast("网络较差，请稍后重试");
+                }
+
                 break;
             case R.id.rl_zhuanyxk:
 
-                cxefcPresenter.CXEFCPresenter(token);
-                rlZhuanyxk.setEnabled(false);
+                if (data != null&&net==true) {
+                    cxefcPresenter.CXEFCPresenter(token);
+                    rlZhuanyxk.setEnabled(false);
+                }else {
+                    Toast("网络较差，请稍后重试");
+                }
 
                 break;
             case R.id.rl_zntb:
-                Intent intent3 = new Intent(this, Volunteer_ScreenActivity.class);
-                startActivity(intent3);
+                if (data != null&&net==true) {
+                    Intent intent3 = new Intent(this, Volunteer_ScreenActivity.class);
+                    startActivity(intent3);
+                }else {
+                    Toast("网络较差，请稍后重试");
+                }
                 break;
         }
     }
@@ -263,11 +342,6 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
         rlZhuanyxk.setEnabled(true);
         if (cxefcBeanBaseBean.code == 0) {
             majorresult = cxefcBeanBaseBean.data.getJob();
-
-
-
-
-
             String testCode = cxefcBeanBaseBean.data.getTestCode();
             String[] split = testCode.split(",");
             String s = split[0];
@@ -276,9 +350,6 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
             String s1 = split[1];
             String[] split2 = s1.split(":");
             String  hld = split2[0];
-
-
-
             gender = cxefcBeanBaseBean.data.getGender();
             String stutype = cxefcBeanBaseBean.data.getStutype();
             if(stutype.equals("文科")){
@@ -311,4 +382,35 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
         rlZhuanyxk.setEnabled(true);
     }
 
+    public void registerReceiver() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        //设置网络状态提示布局的状态
+//无网的时候，无网提示的展示View展示出来
+//重新联接上网络时，自动加载数据
+//这个是onresume中实现了数据的刷新，即是，网络连接后，重新拉取数据
+        myReceiver = new ConnectionChangeReceiver() {
+            @Override
+            public void changeNetStatus(boolean flag) {
+                //设置网络状态提示布局的状态
+                if (flag) {
+                     Toast("当前无网络");
+                     net=false;
+                     rlXlcs.setEnabled(false);
+                     rlZhiyxk.setEnabled(false);
+                     rlZhuanyxk.setEnabled(false);
+                     rlZntb.setEnabled(false);
+                } else {
+                    net=true;
+                    onResume();
+                }
+            }
+        };
+        this.registerReceiver(myReceiver, filter);
+    }
+
+    public void unregisterReceiver() {
+        if (myReceiver != null) {
+            this.unregisterReceiver(myReceiver);
+        }
+    }
 }

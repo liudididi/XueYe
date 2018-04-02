@@ -4,8 +4,11 @@ import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +52,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import untils.MyGridView;
 import untils.MyQusetUtils;
 import untils.NetInterceptor;
 import untils.QuestInterface;
@@ -56,7 +60,7 @@ import untils.Rotatable;
 import untils.SPUtils;
 import view.CXEFCView;
 
-public class MajorStarActivity extends BaseActivity  {
+public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
 
 
     @BindView(R.id.majorstar_iv_back)
@@ -172,6 +176,8 @@ public class MajorStarActivity extends BaseActivity  {
     private String type;
     private String classify;
     public  static  int   ztdata;
+    private CXEFCPresenter cxefcPresenter;
+    private static int heightPixels;
 
 
     @Override
@@ -181,8 +187,11 @@ public class MajorStarActivity extends BaseActivity  {
 
     @Override
     public void InIt() {
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        heightPixels = dm.heightPixels;
         majorresult = getIntent().getStringExtra("result");
-        data = getIntent().getStringExtra("data");
+        data =  getIntent().getStringExtra("data");
         ztdata=Integer.parseInt(data);
         hld = getIntent().getStringExtra("Hld");
         mbti = getIntent().getStringExtra("mbti");
@@ -223,8 +232,6 @@ public class MajorStarActivity extends BaseActivity  {
             }
 
         }
-
-
 
         //卡片
         rlCardRoot = findViewById(R.id.rl_card_root);
@@ -356,12 +363,6 @@ public class MajorStarActivity extends BaseActivity  {
                     intent(MajorStarActivity.this,ComlitEFCActivity.class);
                     finish();
                 }else {
-
-
-
-
-
-
                     if(answerllist.size()>0){
                          String  xhjob="";
                         for (int i = 0; i < answerllist.size(); i++) {
@@ -392,8 +393,6 @@ public class MajorStarActivity extends BaseActivity  {
                                     @Override
                                     public void onNext(BaseBean baseBean) {
                                         if(baseBean.code==0){
-
-
                                             for (int i = 0; i < answerllist.size(); i++) {
                                                 if(i==answerllist.size()-1){
                                                     jobresult+=answerllist.get(i).getMajor();
@@ -419,7 +418,7 @@ public class MajorStarActivity extends BaseActivity  {
                                                                         }else {
                                                                             xinzi="暂无数据";
                                                                         }
-                                                                        areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+xinzi+":"+data.get(i).getMajor_id();
+                                                                        areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi;
                                                                     }else {
                                                                         String xinzi=null;
                                                                         List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
@@ -428,7 +427,7 @@ public class MajorStarActivity extends BaseActivity  {
                                                                         }else {
                                                                             xinzi="暂无数据";
                                                                         }
-                                                                        areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+xinzi+":"+data.get(i).getMajor_id()+",";
+                                                                        areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi+",";
                                                                     }
                                                                 }
                                                                 MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
@@ -578,32 +577,9 @@ public class MajorStarActivity extends BaseActivity  {
             }
 
         }else {
-         /*   for (int i = 0; i <5 ; i++) {
-                jobStarBean jobStarBean=new jobStarBean();
-                jobStarBean.setMajor("你好"+i);
-                jobStarBean.setMajor_id("010101");
-                List<bean.jobStarBean.MajorinfoBean> list=new ArrayList<>();
-                bean.jobStarBean.MajorinfoBean majorinfoBean=new jobStarBean.MajorinfoBean();
-                majorinfoBean.setAveragesalary("5000");
-                list.add(majorinfoBean);
-                jobStarBean.setMajorinfo(list);
-                answerllist.add(jobStarBean);
-            }
-
-            if (answerllist.size() != 0) {
-                scnum.setText(answerllist.size()+"");
-                for (int i = 0; i < answerllist.size(); i++) {
-                    titlelist.get(i).setText(answerllist.get(i).getMajor());
-                    rllist.get(i).setVisibility(View.VISIBLE);
-                    List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                    if (majorinfo != null && majorinfo.size() > 0) {
-                        xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
-                    }
-                }
-            }
-            imtwjj.setEnabled(false);
-            imageViewBack.setVisibility(View.GONE);
-            imageViewFront.setVisibility(View.VISIBLE);*/
+            token = (String) SPUtils.get(this, "token", "");
+            cxefcPresenter = new CXEFCPresenter(this);
+            cxefcPresenter.CXEFCPresenter(token);
 
         }
 
@@ -648,25 +624,22 @@ public class MajorStarActivity extends BaseActivity  {
                                 //设置窗口宽度为充满全屏
                                 lp.width = WindowManager.LayoutParams.MATCH_PARENT;
                                 //设置窗口高度为包裹内容
-                                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                                lp.height = heightPixels/7*5;
                                 //将设置好的属性set回去
                                 window.setAttributes(lp);
                                 //将自定义布局加载到dialog上
                                 dialog.setContentView(dialogView);
                                 dialog.show();
-
                                 TextView dlog_title = dialogView.findViewById(R.id.dlog_title);
                                 dlog_title.setText(zhuan);
                                 TextView dlog_xz = dialogView.findViewById(R.id.dlog_xz);
                                 if(majorstatXQBean.getAveragesalary()!=0){
                                     dlog_xz.setText("￥" + majorstatXQBean.getAveragesalary());
                                 }
-
                                 TextView tv_ranking = dialogView.findViewById(R.id.tv_ranking);
                                 tv_ranking.setText(majorstatXQBean.getRanking());
                                 TextView tv_address = dialogView.findViewById(R.id.tv_address);
                                 tv_address.setText(majorstatXQBean.getNeed_address());
-
                                 TextView tv_nearjob = dialogView.findViewById(R.id.tv_nearjob);
                                 tv_nearjob.setText(majorstatXQBean.getNeed_major());
                                 TextView tv_rank = dialogView.findViewById(R.id.tv_rank);
@@ -680,7 +653,7 @@ public class MajorStarActivity extends BaseActivity  {
                                 TextView dlog_pymb = dialogView.findViewById(R.id.dlog_pymb);
                                 dlog_pymb.setText(majorstatXQBean.getTraining_target());
                                 List<MajorstatXQBean.JobinfoBean> jobinfo = majorstatXQBean.getJobinfo();
-                                GridView grid_jobinfo = dialogView.findViewById(R.id.grid_jobinfo);
+                                MyGridView grid_jobinfo = dialogView.findViewById(R.id.grid_jobinfo);
                                 ImageView dilog_chahao = dialogView.findViewById(R.id.dilog_chahao);
                                 dilog_chahao.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -748,8 +721,6 @@ public class MajorStarActivity extends BaseActivity  {
                     .build();
             rotatable.setTouchEnable(false);
             rotatable.rotate(Rotatable.ROTATE_Y, -180, 1000);
-
-
         } else if (View.VISIBLE == imageViewFront.getVisibility()) {
             Rotatable rotatable = new Rotatable.Builder(rlCardRoot)
                     .sides(R.id.imageView_back, R.id.imageView_front)
@@ -762,5 +733,41 @@ public class MajorStarActivity extends BaseActivity  {
     }
 
 
+    @Override
+    public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+        if(cxefcBeanBaseBean.data!=null){
+            String favourMajor = cxefcBeanBaseBean.data.getFavourMajor();
+            String[] split = favourMajor.split(",");
+            for (int i = 0; i < split.length; i++) {
+                String str = split[i];
+                String[] split1 = str.split(":");
+                jobStarBean jobStarBean=new jobStarBean();
+                jobStarBean.setMajor(split1[0]);
+                jobStarBean.setMajor_id(split1[1]);
+                List<bean.jobStarBean.MajorinfoBean> list=new ArrayList<>();
+                bean.jobStarBean.MajorinfoBean majorinfoBean=new jobStarBean.MajorinfoBean();
+                majorinfoBean.setAveragesalary(split1[2]);
+                list.add(majorinfoBean);
+                jobStarBean.setMajorinfo(list);
+                answerllist.add(jobStarBean);
+            }
+        }
+            if (answerllist.size() != 0) {
+                scnum.setText(answerllist.size()+"");
+                for (int i = 0; i < answerllist.size(); i++) {
+                    titlelist.get(i).setText(answerllist.get(i).getMajor());
+                    rllist.get(i).setVisibility(View.VISIBLE);
+                    List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
+                    if (majorinfo != null && majorinfo.size() > 0) {
+                        xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
+                    }
+                }
+            }
 
+    }
+
+    @Override
+    public void GetEFCResultfail(Throwable t) {
+
+    }
 }

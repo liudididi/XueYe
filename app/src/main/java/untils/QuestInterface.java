@@ -32,6 +32,7 @@ import bean.MajorgkBean;
 import bean.MajorstatXQBean;
 import bean.MoreJobBean;
 import bean.NewsBean;
+import bean.NumBean;
 import bean.OneTableBean;
 import bean.OneTableXQBean;
 import bean.ProviceBean;
@@ -56,12 +57,14 @@ import bean.StudyBean;
 import bean.TeachBean;
 import bean.TijiaoBean;
 import bean.TitleBean;
+import bean.TuiJianBean;
 import bean.UserBean;
 import bean.VisionBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import bean.XGcsBean;
 import bean.ZDXKBean;
+import bean.ZYNumBean;
 import bean.ZYTJBean;
 import bean.jobStarBean;
 import io.reactivex.Flowable;
@@ -90,16 +93,26 @@ public interface QuestInterface {
 
 
     //保存收藏的专业
-    @GET("app/wishfilling/updateFavourMajors")
+    @POST("app/wishfilling/updateFavourMajors")
     Flowable<BaseBean> updateFavourMajors(@Query("major") String major,@Header("token") String token);
 
+    //往年专业录取分数
+    @GET("/app/universityinfo/Universityinfo")
+    Flowable<BaseBean<List<NumBean>>> Universityinfo(@Query("name") String name, @Query("classify") String classify, @Query("stuProvince") String stuProvince);
 
     //查询一分钱资格
     @GET(" /app/wishfilling/yfJudge")
     Flowable<BaseBean> yfJudge(@Query("wishType") String wishType,@Header("token") String token);
 
 
+    //推荐学校
 
+    @POST("app/efc/getRecommendCollege")
+    Flowable<BaseBean<TuiJianBean>> getRecommendCollege(@Query("college") String college,@Query("t_stuprovince") String t_stuprovince,@Query("t_classify") String t_classify,@Query("t_score") String t_score,@Header("token") String token);
+
+    //获取院校专业录取分数
+    @GET("/app/universityinfo/UniversityinfoScores")
+    Flowable<BaseBean<List<ZYNumBean>>> UniversityinfoScores(@Query("name") String name, @Query("classify") String classify, @Query("stuProvince") String stuProvince, @Query("major") String major);
 
     //获取MBTI简单分析报告
     @GET("/app/sdsmbti/getsdsE")

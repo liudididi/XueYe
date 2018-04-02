@@ -126,7 +126,7 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
 
     @Override
     public void SearchFail(String msg) {
-        Toast(msg);
+        Toast("网络较差！请重试~");
     }
 
     @Override

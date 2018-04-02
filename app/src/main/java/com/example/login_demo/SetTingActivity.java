@@ -274,7 +274,9 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 break;
             //用户协议
             case R.id.setting_useragreen:
-                intent = new Intent(this, UserAgreenActivity.class);
+               Intent intent = new Intent(this, ParticularsActivity.class);
+                intent.putExtra("particulars_title","用户协议");
+                intent.putExtra("url","http://m.bdrvip.com/#/agreement");
                 startActivity(intent);
                 break;
             //退出登录
@@ -304,13 +306,9 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 rlExitlogin.setVisibility(View.GONE);
                 break;
         }
-
-
     }
-
     private void downfile() {
         try {
-
             File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "摆渡人.apk");
             HttpURLConnection connection = (HttpURLConnection) new URL(visionBean.getDownloadPath()).openConnection();
             connection.setRequestMethod("GET");
@@ -318,7 +316,6 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             int code = connection.getResponseCode();
             System.out.println("code = " + code);
             if (code == 200 || code == 206) {
-
                 int contentLength = connection.getContentLength();
                 System.out.println("contentLength = " + contentLength);
                 contentLength += sum;

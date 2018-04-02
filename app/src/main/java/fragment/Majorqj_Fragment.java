@@ -2,6 +2,7 @@ package fragment;
 
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.login_demo.MajorDetailActivity;
@@ -32,6 +33,7 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
     private TextView qj_rank;
     private ListViewForScrollView xzzk_list;
     private RelativeLayout rl_pjxz;
+    private ScrollView qj_sv;
 
 
     @Override
@@ -42,13 +44,11 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
     @Override
     public void initView() {
         qj_tvqj = view.findViewById(R.id.qj_tvqj);
-
-
+        qj_sv = view.findViewById(R.id.qj_sv);
         qj_pro_address = view.findViewById(R.id.qj_pro_address);
         qj_rank = view.findViewById(R.id.qj_rank);
         xzzk_list = view.findViewById(R.id.xzzk_list);
         rl_pjxz = view.findViewById(R.id.rl_pjxz);
-
         majorgkPresent = new MajorgkPresent(this);
         majorgkPresent.getMajorgk(MajorDetailActivity.majorid);
 
@@ -70,7 +70,7 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
 if(majorgkBean.getSalaryScale()!=null&&majorgkBean.getSalaryScale().size()>0){
     XinziZhuangKAdapter xinziZhuangKAdapter=new XinziZhuangKAdapter(majorgkBean.getSalaryScale(),getContext());
     xzzk_list.setAdapter(xinziZhuangKAdapter);
-    MajorDetailActivity.svZy.smoothScrollTo(0,0);
+    qj_sv.smoothScrollTo(0,0);
             }
             if(majorgkBean.getAverageSalary()!=null&&majorgkBean.getAverageSalary().size()>0){
                 ZhiMaScoreViewXinzi zhiMaScoreView=new ZhiMaScoreViewXinzi(getActivity());

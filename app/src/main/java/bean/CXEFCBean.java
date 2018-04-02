@@ -8,35 +8,35 @@ public class CXEFCBean {
 
 
     /**
-     * wishId : 45
+     * wishId : 352
      * userId : 217
      * wishType : 精准
      * stutype : 文科
-     * sourceArea : 四川
-     * ceeScore : 500
-     * proRank :
-     * credit :
-     * wishCity :
-     * first : 0
-     * budget :
-     * poorFlag :
-     * collegeClass : 艺术类,民族类,语言类,农林类,军事类,政法类,综合类,理工类,林业类,医药类,师范类,体育类
-     * batch : 本科二批,本科三批
-     * collegetype : 本科
-     * gender : 男
-     * creattime : 2018-03-21 09:57:05
+     * sourceArea : null
+     * ceeScore : null
+     * proRank : null
+     * credit : null
+     * wishCity : null
+     * first : null
+     * budget : null
+     * poorFlag : null
+     * collegeClass : null
+     * batch : null
+     * collegetype : 专科
+     * gender : 女
+     * creattime : 2018-03-31 10:30:32
      * outTradeNo : null
-     * collegeArrangement : 国防生,卓越计划
-     * graduationDirection : 考研
-     * cwb :
+     * collegeArrangement : null
+     * graduationDirection : null
+     * cwb : null
      * outTradeNum : null
      * efcWilling : null
-     * favourMajor : null
-     * majorGai : 心理咨询:0.916:0.800000011920929,环境评价与咨询服务:0.9066:0.7777778059244156,环境规划与管理:0.9066:0.7777778059244156,资源综合利用与管理技术:0.9066:0.7777778059244156,护理:0.8823:0.7199999839067459,电子电路设计与工艺:0.86:0.6666666716337204,言语听觉康复技术:0.7983:0.5199999809265137,康复辅助器具技术:0.7983:0.5199999809265137,康复治疗技术:0.7983:0.5199999809265137,中医康复技术:0.7983:0.5199999809265137,康复工程技术:0.7983:0.5199999809265137,假肢与矫形器技术:0.7983:0.5199999809265137,社区康复:0.7983:0.5199999809265137,矿井通风与安全:0.776:0.46666666865348816,安全技术与管理:0.776:0.46666666865348816,发电厂及电力系统:0.776:0.46666666865348816,电力系统自动化技术:0.776:0.46666666865348816,电力系统继电保护与自动化技术:0.776:0.46666666865348816,电力客户服务与管理:0.776:0.46666666865348816,分布式发电与微电网技术:0.776:0.46666666865348816
-     * testCode : ENTP:E2:N4:T8:P7,ASC:C6:A3:T5
+     * favourMajor : 数字出版:660107:暂无数据,土木工程检测技术:540303:暂无数据
+     * majorGai : 数字出版:0.9033:0.7699999809265137:暂无数据:660107,体育保健与康复:0.8635:0.675000011920929:暂无数据:670409,国际标准舞:0.8635:0.675000011920929:暂无数据:650208,休闲体育:0.8635:0.675000011920929:暂无数据:670404,健身指导与管理:0.8635:0.675000011920929:暂无数据:670410,舞蹈表演:0.8635:0.675000011920929:暂无数据:650207,舞蹈编导:0.8635:0.675000011920929:暂无数据:650216,社会工作:0.7522:0.41:暂无数据:690101,心理咨询:0.7522:0.41:暂无数据:620804,环境评价与咨询服务:0.733:0.36444444449:暂无数据:520808,物业管理:0.7235:0.34166666694:暂无数据:540703,旅游管理:0.7167:0.32558823568:暂无数据:640101,旅行社经营管理:0.7167:0.32558823568:暂无数据:640103,导游:0.7167:0.32558823568:暂无数据:640102,景区开发与管理:0.7167:0.32558823568:暂无数据:640104,应用阿拉伯语:0.7091:0.3075:暂无数据:670215,中小企业创业与经营:0.7091:0.3075:暂无数据:630607,汽车营销与服务:0.7091:0.3075:暂无数据:630702,商务日语:0.7091:0.3075:暂无数据:670205,旅游日语:0.7091:0.3075:暂无数据:670207
+     * testCode : INFP:E10:S8:T12:J10:I11:N18:F12:P12,SRE:A7:C8:E8:I7:S9:R8
      * sdsCode : null
      * mbtiCode : null
-     * job : 工程管理师,机电工程师
+     * job : 能源动力工程师,新闻工作者
      * process : 3
      * standby1 : null
      * standby2 : null
@@ -48,26 +48,26 @@ public class CXEFCBean {
     private String userId;
     private String wishType;
     private String stutype;
-    private String sourceArea;
-    private String ceeScore;
-    private String proRank;
-    private String credit;
-    private String wishCity;
-    private String first;
-    private String budget;
-    private String poorFlag;
-    private String collegeClass;
-    private String batch;
+    private Object sourceArea;
+    private Object ceeScore;
+    private Object proRank;
+    private Object credit;
+    private Object wishCity;
+    private Object first;
+    private Object budget;
+    private Object poorFlag;
+    private Object collegeClass;
+    private Object batch;
     private String collegetype;
     private String gender;
     private String creattime;
     private Object outTradeNo;
-    private String collegeArrangement;
-    private String graduationDirection;
-    private String cwb;
+    private Object collegeArrangement;
+    private Object graduationDirection;
+    private Object cwb;
     private Object outTradeNum;
     private Object efcWilling;
-    private Object favourMajor;
+    private String favourMajor;
     private String majorGai;
     private String testCode;
     private Object sdsCode;
@@ -111,83 +111,83 @@ public class CXEFCBean {
         this.stutype = stutype;
     }
 
-    public String getSourceArea() {
+    public Object getSourceArea() {
         return sourceArea;
     }
 
-    public void setSourceArea(String sourceArea) {
+    public void setSourceArea(Object sourceArea) {
         this.sourceArea = sourceArea;
     }
 
-    public String getCeeScore() {
+    public Object getCeeScore() {
         return ceeScore;
     }
 
-    public void setCeeScore(String ceeScore) {
+    public void setCeeScore(Object ceeScore) {
         this.ceeScore = ceeScore;
     }
 
-    public String getProRank() {
+    public Object getProRank() {
         return proRank;
     }
 
-    public void setProRank(String proRank) {
+    public void setProRank(Object proRank) {
         this.proRank = proRank;
     }
 
-    public String getCredit() {
+    public Object getCredit() {
         return credit;
     }
 
-    public void setCredit(String credit) {
+    public void setCredit(Object credit) {
         this.credit = credit;
     }
 
-    public String getWishCity() {
+    public Object getWishCity() {
         return wishCity;
     }
 
-    public void setWishCity(String wishCity) {
+    public void setWishCity(Object wishCity) {
         this.wishCity = wishCity;
     }
 
-    public String getFirst() {
+    public Object getFirst() {
         return first;
     }
 
-    public void setFirst(String first) {
+    public void setFirst(Object first) {
         this.first = first;
     }
 
-    public String getBudget() {
+    public Object getBudget() {
         return budget;
     }
 
-    public void setBudget(String budget) {
+    public void setBudget(Object budget) {
         this.budget = budget;
     }
 
-    public String getPoorFlag() {
+    public Object getPoorFlag() {
         return poorFlag;
     }
 
-    public void setPoorFlag(String poorFlag) {
+    public void setPoorFlag(Object poorFlag) {
         this.poorFlag = poorFlag;
     }
 
-    public String getCollegeClass() {
+    public Object getCollegeClass() {
         return collegeClass;
     }
 
-    public void setCollegeClass(String collegeClass) {
+    public void setCollegeClass(Object collegeClass) {
         this.collegeClass = collegeClass;
     }
 
-    public String getBatch() {
+    public Object getBatch() {
         return batch;
     }
 
-    public void setBatch(String batch) {
+    public void setBatch(Object batch) {
         this.batch = batch;
     }
 
@@ -223,27 +223,27 @@ public class CXEFCBean {
         this.outTradeNo = outTradeNo;
     }
 
-    public String getCollegeArrangement() {
+    public Object getCollegeArrangement() {
         return collegeArrangement;
     }
 
-    public void setCollegeArrangement(String collegeArrangement) {
+    public void setCollegeArrangement(Object collegeArrangement) {
         this.collegeArrangement = collegeArrangement;
     }
 
-    public String getGraduationDirection() {
+    public Object getGraduationDirection() {
         return graduationDirection;
     }
 
-    public void setGraduationDirection(String graduationDirection) {
+    public void setGraduationDirection(Object graduationDirection) {
         this.graduationDirection = graduationDirection;
     }
 
-    public String getCwb() {
+    public Object getCwb() {
         return cwb;
     }
 
-    public void setCwb(String cwb) {
+    public void setCwb(Object cwb) {
         this.cwb = cwb;
     }
 
@@ -263,11 +263,11 @@ public class CXEFCBean {
         this.efcWilling = efcWilling;
     }
 
-    public Object getFavourMajor() {
+    public String getFavourMajor() {
         return favourMajor;
     }
 
-    public void setFavourMajor(Object favourMajor) {
+    public void setFavourMajor(String favourMajor) {
         this.favourMajor = favourMajor;
     }
 

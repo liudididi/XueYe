@@ -1,6 +1,6 @@
 package fragment;
 
-import android.app.Fragment;
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,17 +10,16 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.login_demo.MyApp;
-import com.example.login_demo.ProvinceActivity;
+import com.example.login_demo.NumActivity;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.NumAdapter;
 import adapter.SchoolEnrollAdapter;
-import adapter.Spinner_Adapter;
 import adapter.Spinner_Adapter2;
 import adapter.ZYTJRecycleAdapter;
 import base.BaseBean;
@@ -28,14 +27,18 @@ import base.Basefragment;
 import bean.ForecastBean;
 import bean.GailvBean;
 import bean.LuquXianBean;
+import bean.NumBean;
 import bean.SchoolEnrollBean;
+import bean.ZYNumBean;
 import bean.ZYTJBean;
 import presenter.ForecastPresent;
+import presenter.NumPresenter;
 import presenter.SchoolEnrollPresent;
 import untils.Histogram;
 import untils.SPUtils;
 import untils.ZhiMaScoreView;
 import view.ForecastView;
+import view.NumView;
 import view.SchoolEnrollView;
 
 /**
@@ -43,7 +46,7 @@ import view.SchoolEnrollView;
  * 邮箱：461211527@qq.com.
  */
 
-public class School_Enroll  extends Basefragment implements SchoolEnrollView, ForecastView{
+public class School_Enroll  extends Basefragment implements SchoolEnrollView, ForecastView, NumView{
 
     private RecyclerView se_rv;
     private SchoolEnrollPresent schoolEnrollPresent;
@@ -80,6 +83,13 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private ImageView iv_zdzy_right;
     private ImageView iv_zdzy_xia;
     private RecyclerView rv_zdzy;
+    private RecyclerView fs_rv;
+    private NumPresenter numPresenter;
+    private TextView tv_shuju;
+    private LinearLayout ll_xiangqing;
+    private ImageView iv_xia;
+    private TextView tv_xq;
+    private List<NumBean> data;
 
     @Override
     public int getLayoutid() {
@@ -109,8 +119,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
 
         schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
-
-
+        numPresenter = new NumPresenter(this);
+        numPresenter.NumPresenter(schoolname,tbsubtype,tbarea);
 
         final ArrayList<String> list=new ArrayList<>();
         list.add("本科一批");
@@ -243,14 +253,29 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
             }
         });
 
-
+        ll_xiangqing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = tv_xq.getText().toString();
+                if(s.equals("全部专业详情"))
+                {
+                    Intent intent=new Intent(getContext(),NumActivity.class);
+                    //学校名称
+                    String name = data.get(0).getName();
+                    List<NumBean.MajorsBean> major = data.get(0).getMajors();
+                    String major1 = major.get(0).getMajor();
+                    intent.putExtra("schoolname",name);
+                    intent.putExtra("major",major1);
+                    intent.putExtra("xiabiao",0);
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
     }
 
     private void init() {
             initid();
         school_enroll_tv = view.findViewById(R.id.school_enroll_tv);
-
-
     }
 
     private void initid() {
@@ -277,6 +302,10 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         iv_zdzy_xia = view.findViewById(R.id.iv_zdzy_xia);
         rv_zdzy = view.findViewById(R.id.rv_zdzy);
 
+        fs_rv = view.findViewById(R.id.fs_rv);
+        iv_xia = view.findViewById(R.id.iv_xia);
+        tv_xq = view.findViewById(R.id.tv_xq);
+        ll_xiangqing=view.findViewById(R.id.ll_xiangqing);
     }
 
     //大学录取的专业招生计划
@@ -406,13 +435,12 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         zhiMaScoreView.setMinScore(min);
         zhexian_ll.addView(zhiMaScoreView);
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         schoolEnrollPresent.onDestory();
         forecastPresent.onDestory();
+        numPresenter.onDestory();
     }
 
     @Override
@@ -432,6 +460,38 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void Forecastfail(Throwable t) {
+
+    }
+
+    @Override
+    public void Numsuccess(BaseBean<List<NumBean>> listBaseBean) {
+
+        data = listBaseBean.data;
+        if(data.size()>0&& data !=null)
+        {
+            List<NumBean.MajorsBean> majors = data.get(0).getMajors();
+            NumAdapter numAdapter=new NumAdapter(majors,getContext(),schoolname);
+            fs_rv.setLayoutManager(new LinearLayoutManager(getContext()));
+            fs_rv.setAdapter(numAdapter);
+        }
+        else
+        {
+            iv_xia.setVisibility(View.GONE);
+            tv_xq.setText("暂无数据");
+        }
+    }
+    @Override
+    public void Numfail(Throwable t) {
+
+    }
+
+    @Override
+    public void ZYNumsuccess(BaseBean<List<ZYNumBean>> listBaseBean) {
+
+    }
+
+    @Override
+    public void ZYNumfail(Throwable t) {
 
     }
 }

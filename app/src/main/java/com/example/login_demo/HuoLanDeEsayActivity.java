@@ -203,6 +203,7 @@ public class HuoLanDeEsayActivity extends BaseActivity implements EsayMbtiLSView
                 finish();
                 break;
             case R.id.iv_cc:
+                ivCc.setEnabled(false);
                 Intent intent3=new Intent(HuoLanDeEsayActivity.this,CeShiShuoMingActivity.class);
                 startActivity(intent3);
                 finish();

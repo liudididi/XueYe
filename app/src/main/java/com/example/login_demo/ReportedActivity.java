@@ -85,38 +85,10 @@ public class ReportedActivity extends BaseActivity {
                                         intent.putExtra("price", "698");
                                         startActivity(intent);
                                     } else {
-                                        MyQusetUtils.getInstance().getQuestInterface().gettime(token)
-                                                .subscribeOn(Schedulers.io())
-                                                .observeOn(AndroidSchedulers.mainThread())
-                                                .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
-                                                    @Override
-                                                    public void onNext(BaseBean<String> stringBaseBean) {
-                                                        rePb.setVisibility(View.GONE);
-                                                        if (stringBaseBean.code == 0) {
-                                                            reportedAccurate.setEnabled(true);
-                                                            Intent intent = new Intent(ReportedActivity.this, ComlitEFCActivity.class);
-                                                            startActivity(intent);
-                                                        } else {
-                                                            reportedAccurate.setEnabled(true);
-                                                            rePb.setVisibility(View.GONE);
-                                                            Intent intent = new Intent(ReportedActivity.this, EFCJieSuoActivity.class);
-                                                            startActivity(intent);
-                                                            finish();
-                                                        }
-                                                    }
-
-                                                    @Override
-                                                    public void onError(Throwable t) {
-                                                        reportedAccurate.setEnabled(true);
-                                                        rePb.setVisibility(View.GONE);
-                                                        Toast("网络较差,请重试~");
-                                                    }
-
-                                                    @Override
-                                                    public void onComplete() {
-
-                                                    }
-                                                });
+                                        reportedAccurate.setEnabled(true);
+                                        rePb.setVisibility(View.GONE);
+                                        Intent intent = new Intent(ReportedActivity.this, EFCJieSuoActivity.class);
+                                        startActivity(intent);
                                     }
                                 }
                             }

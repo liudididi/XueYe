@@ -31,7 +31,7 @@
     <color name="slidingMenu_view_bg">#444444</color>
 
     <!--common_title-->
-
+    <color name="zhu3">#999999</color>
     <color name="common_title_bg">#444444</color>
     <color name="common_bg">#fcfcfc</color>
     <color name="common_club">#014893</color>
