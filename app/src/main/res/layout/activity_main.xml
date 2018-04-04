@@ -77,9 +77,9 @@
              android:textSize="30px"
               />
         <TextView
+            android:id="@+id/tv_xieyi"
             android:textColor="#13227a"
             android:textSize="25px"
-            android:layout_marginTop="5px"
             android:layout_marginLeft="20px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

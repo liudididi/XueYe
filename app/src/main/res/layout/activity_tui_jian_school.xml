@@ -106,7 +106,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="15px"
+                android:layout_height="14px"
                 android:background="#FAFAFA"
                 ></View>
 
@@ -149,7 +149,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="15px"
+                android:layout_height="14px"
                 android:background="#FAFAFA"
                 ></View>
 
@@ -178,14 +178,14 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="#333"
+                    android:background="#FAFAFA"
                     android:layout_alignParentBottom="true"
                     ></View>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8px"
-                android:background="#ccc"
+                android:background="#Fafafa"
                 ></View>
             <LinearLayout
                 android:visibility="gone"
@@ -288,7 +288,7 @@
 
             </LinearLayout>
             <LinearLayout
-
+android:visibility="gone"
                 android:orientation="vertical"
                 android:id="@+id/ll_san"
                 android:layout_width="match_parent"

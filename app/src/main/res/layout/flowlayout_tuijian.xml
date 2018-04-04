@@ -7,11 +7,11 @@
     android:paddingLeft="20px"
     android:paddingRight="20px"
     android:text="北京大学"
-    android:textSize="35px"
+    android:textSize="30px"
     android:textColor="#fff"
     android:background="@drawable/back_capacityyi"
     android:gravity="center"
-    android:layout_height="80px"
+    android:layout_height="70px"
     android:layout_margin="20px"
     >
 

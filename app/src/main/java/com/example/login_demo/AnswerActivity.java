@@ -2,8 +2,10 @@ package com.example.login_demo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.util.TypedValue;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -484,7 +486,24 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
     }
     @OnClick(R.id.answer_rl_iv)
     public void onViewClicked() {
-        finish();
+        View view = LayoutInflater.from(this).inflate(R.layout.tankuang, null);
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(view).show();
+         TextView dilog_queren=  view.findViewById(R.id.dilog_queren);
+         TextView dilog_quxiao=  view.findViewById(R.id.dilog_quxiao);
+        dilog_queren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        dilog_quxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
     }
     @Override
     protected void onDestroy() {

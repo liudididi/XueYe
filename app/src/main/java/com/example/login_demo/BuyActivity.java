@@ -166,6 +166,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
                    Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
                 } else {
                     Toast("用户未登录");

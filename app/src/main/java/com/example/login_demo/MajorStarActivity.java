@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -363,128 +364,142 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
                     intent(MajorStarActivity.this,ComlitEFCActivity.class);
                     finish();
                 }else {
-                    if(answerllist.size()>0){
-                         String  xhjob="";
-                        for (int i = 0; i < answerllist.size(); i++) {
-                            if(i==answerllist.size()-1){
-                                String xinzi="";
-                                List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                                if(majorinfo.size()>0&&majorinfo!=null){
-                                    xinzi=majorinfo.get(0).getAveragesalary();
-                                }else {
-                                    xinzi="暂无数据";
+
+                    View viewe = LayoutInflater.from(MajorStarActivity.this).inflate(R.layout.tankuang_zyts, null);
+                    final AlertDialog dialog = new AlertDialog.Builder(MajorStarActivity.this)
+                            .setView(viewe).show();
+                    TextView dilog_queren=  viewe.findViewById(R.id.dilog_queren);
+                    TextView dilog_quxiao=  viewe.findViewById(R.id.dilog_quxiao);
+                    dilog_queren.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(answerllist.size()>0){
+                                String  xhjob="";
+                                for (int i = 0; i < answerllist.size(); i++) {
+                                    if(i==answerllist.size()-1){
+                                        String xinzi="";
+                                        List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
+                                        if(majorinfo.size()>0&&majorinfo!=null){
+                                            xinzi=majorinfo.get(0).getAveragesalary();
+                                        }else {
+                                            xinzi="暂无数据";
+                                        }
+                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+":"+xinzi;
+                                    }else {
+                                        String xinzi="";
+                                        List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
+                                        if(majorinfo.size()>0&&majorinfo!=null){
+                                            xinzi=majorinfo.get(0).getAveragesalary();
+                                        }else {
+                                            xinzi="暂无数据";
+                                        }
+                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+":"+xinzi+",";
+                                    }
                                 }
-                                xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+":"+xinzi;
-                            }else {
-                                String xinzi="";
-                                List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                                if(majorinfo.size()>0&&majorinfo!=null){
-                                    xinzi=majorinfo.get(0).getAveragesalary();
-                                }else {
-                                    xinzi="暂无数据";
-                                }
-                                xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+":"+xinzi+",";
-                            }
-                        }
-                        MyQusetUtils.getInstance().getQuestInterface().updateFavourMajors(xhjob,token)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribeWith(new DisposableSubscriber<BaseBean>() {
-                                    @Override
-                                    public void onNext(BaseBean baseBean) {
-                                        if(baseBean.code==0){
-                                            for (int i = 0; i < answerllist.size(); i++) {
-                                                if(i==answerllist.size()-1){
-                                                    jobresult+=answerllist.get(i).getMajor();
-                                                }else {
-                                                    jobresult+=answerllist.get(i).getMajor()+",";
-                                                }
-                                            }
-                                            MyQusetUtils.getInstance().getQuestInterface().tjzhuany(hld,mbti,ProfessionStarActivity.gender,ProfessionStarActivity.type,ProfessionStarActivity.wenli,majorresult,jobresult)
-                                                    .subscribeOn(Schedulers.io())
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribeWith(new DisposableSubscriber<BaseBean<List<jobStarBean>>>() {
-                                                        @Override
-                                                        public void onNext(BaseBean<List<jobStarBean>> listBaseBean) {
-                                                            if(listBaseBean.code==0){
-                                                                String areuslt="";
-                                                                List<jobStarBean> data = listBaseBean.data;
-                                                                for (int i = 0; i < data.size(); i++) {
-                                                                    if(i==data.size()-1){
-                                                                        String xinzi=null;
-                                                                        List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
-                                                                        if(majorinfo.size()>0&&majorinfo!=null){
-                                                                            xinzi=majorinfo.get(0).getAveragesalary();
-                                                                        }else {
-                                                                            xinzi="暂无数据";
+                                MyQusetUtils.getInstance().getQuestInterface().updateFavourMajors(xhjob,token)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                                            @Override
+                                            public void onNext(BaseBean baseBean) {
+                                                if(baseBean.code==0){
+                                                    for (int i = 0; i < answerllist.size(); i++) {
+                                                        if(i==answerllist.size()-1){
+                                                            jobresult+=answerllist.get(i).getMajor();
+                                                        }else {
+                                                            jobresult+=answerllist.get(i).getMajor()+",";
+                                                        }
+                                                    }
+                                                    MyQusetUtils.getInstance().getQuestInterface().tjzhuany(hld,mbti,ProfessionStarActivity.gender,ProfessionStarActivity.type,ProfessionStarActivity.wenli,majorresult,jobresult)
+                                                            .subscribeOn(Schedulers.io())
+                                                            .observeOn(AndroidSchedulers.mainThread())
+                                                            .subscribeWith(new DisposableSubscriber<BaseBean<List<jobStarBean>>>() {
+                                                                @Override
+                                                                public void onNext(BaseBean<List<jobStarBean>> listBaseBean) {
+                                                                    if(listBaseBean.code==0){
+                                                                        String areuslt="";
+                                                                        List<jobStarBean> data = listBaseBean.data;
+                                                                        for (int i = 0; i < data.size(); i++) {
+                                                                            if(i==data.size()-1){
+                                                                                String xinzi=null;
+                                                                                List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
+                                                                                if(majorinfo.size()>0&&majorinfo!=null){
+                                                                                    xinzi=majorinfo.get(0).getAveragesalary();
+                                                                                }else {
+                                                                                    xinzi="暂无数据";
+                                                                                }
+                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi;
+                                                                            }else {
+                                                                                String xinzi=null;
+                                                                                List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
+                                                                                if(majorinfo.size()>0&&majorinfo!=null){
+                                                                                    xinzi=majorinfo.get(0).getAveragesalary();
+                                                                                }else {
+                                                                                    xinzi="暂无数据";
+                                                                                }
+                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi+",";
+                                                                            }
                                                                         }
-                                                                        areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi;
-                                                                    }else {
-                                                                        String xinzi=null;
-                                                                        List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
-                                                                        if(majorinfo.size()>0&&majorinfo!=null){
-                                                                            xinzi=majorinfo.get(0).getAveragesalary();
-                                                                        }else {
-                                                                            xinzi="暂无数据";
-                                                                        }
-                                                                        areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi+",";
+                                                                        MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
+                                                                                .subscribeOn(Schedulers.io())
+                                                                                .observeOn(AndroidSchedulers.mainThread())
+                                                                                .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                                                                                    @Override
+                                                                                    public void onNext(BaseBean baseBean) {
+                                                                                        if(baseBean.code==0){
+                                                                                            intent(MajorStarActivity.this,ComlitEFCActivity.class);
+                                                                                            finish();
+                                                                                        }
+                                                                                    }
+                                                                                    @Override
+                                                                                    public void onError(Throwable t) {
+                                                                                        Toast("网络较差，请稍后重试");
+                                                                                    }
+
+                                                                                    @Override
+                                                                                    public void onComplete() {
+
+                                                                                    }
+                                                                                });
+
                                                                     }
                                                                 }
-                                                                MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
-                                                                        .subscribeOn(Schedulers.io())
-                                                                        .observeOn(AndroidSchedulers.mainThread())
-                                                                        .subscribeWith(new DisposableSubscriber<BaseBean>() {
-                                                                            @Override
-                                                                            public void onNext(BaseBean baseBean) {
-                                                                                if(baseBean.code==0){
-                                                                                    intent(MajorStarActivity.this,ComlitEFCActivity.class);
-                                                                                    finish();
-                                                                                }
-                                                                            }
-                                                                            @Override
-                                                                            public void onError(Throwable t) {
-                                                                                Toast("网络较差，请稍后重试");
-                                                                            }
 
-                                                                            @Override
-                                                                            public void onComplete() {
+                                                                @Override
+                                                                public void onError(Throwable t) {
+                                                                    Toast("网络较差，请稍后重试");
+                                                                }
 
-                                                                            }
-                                                                        });
+                                                                @Override
+                                                                public void onComplete() {
 
-                                                            }
-                                                        }
+                                                                }
+                                                            });
+                                                }
+                                            }
 
-                                                        @Override
-                                                        public void onError(Throwable t) {
-                                                            Toast("网络较差，请稍后重试");
-                                                        }
+                                            @Override
+                                            public void onError(Throwable t) {
 
-                                                        @Override
-                                                        public void onComplete() {
+                                            }
 
-                                                        }
-                                                    });
-                                        }
-                                    }
+                                            @Override
+                                            public void onComplete() {
 
-                                    @Override
-                                    public void onError(Throwable t) {
+                                            }
+                                        });
+                            }else {
+                                Toast("试试左右滑动，选择你喜欢的专业吧！");
+                            }
+                        }
+                    });
+                    dilog_quxiao.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
 
-                                    }
-
-                                    @Override
-                                    public void onComplete() {
-
-                                    }
-                                });
-
-
-
-
-                    }else {
-                        Toast("试试左右滑动，选择你喜欢的专业吧！");
-                    }
 
                 }
 

@@ -46,6 +46,7 @@
         android:layout_below="@+id/rl_starrl1"
         />
     <TextView
+        android:visibility="invisible"
         android:id="@+id/pro_startv1"
         android:textSize="44px"
         android:gravity="center"

@@ -15,6 +15,7 @@ import com.meg7.widget.CustomShapeImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.TuiJianAdapter;
 import base.BaseActivity;
 import bean.TuiJianBean;
 import butterknife.BindView;
@@ -180,7 +181,11 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     @Override
     public void TuijianSuccess(TuiJianBean tuiJianBean) {
         if (tuiJianBean != null) {
-            tuijianZh.setText(tuiJianBean.getYear() + "年" + tuiJianBean.getTime() + "最低分" + tuiJianBean.getMinScore());
+            if(tuiJianBean.getYear()!=null){
+                tuijianZh.setText(tuiJianBean.getYear() + "年" + tuiJianBean.getTime() + "最低分" + tuiJianBean.getMinScore());
+            }else {
+                tuijianZh.setText("暂无数据");
+            }
             List<String> list = new ArrayList<>();
             if (tjly) {
                 List<String> recommend = tuiJianBean.getRecommend();
@@ -196,12 +201,16 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
             }
             String efcState = tuiJianBean.getEfcState();
             if (efcState.equals("0")) {
-
                 llLing.setVisibility(View.VISIBLE);
                 llSan.setVisibility(View.GONE);
                 llTwo.setVisibility(View.GONE);
                 llOne.setVisibility(View.GONE);
             } else if (efcState.equals("1")) {
+                List<TuiJianBean.EfcRecommendMajorEntityBean> efcRecommendMajorEntity = tuiJianBean.getEfcRecommendMajorEntity();
+                if(efcRecommendMajorEntity.size()>0&&efcRecommendMajorEntity!=null){
+                    TuiJianAdapter  tuiJianAdapter=new TuiJianAdapter(efcRecommendMajorEntity,this);
+                    listZy.setAdapter(tuiJianAdapter);
+                }
                 llOne.setVisibility(View.VISIBLE);
                 llLing.setVisibility(View.GONE);
                 llSan.setVisibility(View.GONE);

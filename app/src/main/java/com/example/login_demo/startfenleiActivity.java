@@ -4,8 +4,10 @@ package com.example.login_demo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -173,11 +175,13 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
         if (i1 >= 2) {
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                tvlist.get(i).setTextColor(Color.WHITE);
                 tvlist.get(i).setText("");
             }
         } else {
             for (int i = 0; i < tvlist.size(); i++) {
                 tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                tvlist.get(i).setTextColor(Color.WHITE);
                 tvlist.get(i).setText("");
                 final int finalI = i;
                 tvlist.get(i).setOnClickListener(new View.OnClickListener() {
@@ -186,9 +190,11 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                         int textSize = (int) tvlist.get(finalI).getTextSize();
                         if (textSize == min) {
                             tvlist.get(finalI).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                            tvlist.get(finalI).setTextColor(Color.parseColor("#fffaa3"));
                             fenlieanswerlist.add(tvlist.get(finalI).getText().toString());
                         } else {
                             tvlist.get(finalI).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                            tvlist.get(finalI).setTextColor(Color.WHITE);
                             fenlieanswerlist.remove(tvlist.get(finalI).getText().toString());
                         }
                     }
@@ -263,7 +269,23 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                     finish();
                 } else {
                     if (fenlieanswerlist.size() > 0) {
-                        tijiao();
+                        View viewe = LayoutInflater.from(this).inflate(R.layout.tankuang_zyts, null);
+                        final AlertDialog dialog = new AlertDialog.Builder(this)
+                                .setView(viewe).show();
+                        TextView dilog_queren=  viewe.findViewById(R.id.dilog_queren);
+                        TextView dilog_quxiao=  viewe.findViewById(R.id.dilog_quxiao);
+                        dilog_queren.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                tijiao();
+                            }
+                        });
+                        dilog_quxiao.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
                     } else {
                         Toast("试试左右滑动,选择你喜欢的职业吧！");
                     }
@@ -398,8 +420,10 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                     }
                     if (fenlieanswerlist.contains(newlist.get(i))) {
                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                        tvlist.get(i).setTextColor(Color.parseColor("#fffaa3"));
                     } else {
                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                        tvlist.get(i).setTextColor(Color.WHITE);
                     }
                 }
             }
@@ -451,8 +475,10 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                     }
                     if (fenlieanswerlist.contains(newlist.get(i))) {
                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                        tvlist.get(i).setTextColor(Color.parseColor("#fffaa3"));
                     } else {
                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                        tvlist.get(i).setTextColor(Color.WHITE);
                     }
                 }
 
@@ -463,8 +489,10 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                     }
                     if (fenlieanswerlist.contains(newlist.get(i))) {
                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, max);
+                        tvlist.get(i).setTextColor(Color.parseColor("#fffaa3"));
                     } else {
                         tvlist.get(i).setTextSize(TypedValue.COMPLEX_UNIT_PX, min);
+                        tvlist.get(i).setTextColor(Color.WHITE);
                     }
 
                 }

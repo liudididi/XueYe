@@ -131,8 +131,8 @@ public class TuiJianBean {
         private int majorId;
         private double gai;
         private Object efcFlag;
-        private Object importantFlag;
-        private Object featureFlag;
+        private String importantFlag;
+        private String featureFlag;
         private String majorType;
         private int year;
         private String time;
@@ -170,19 +170,19 @@ public class TuiJianBean {
             this.efcFlag = efcFlag;
         }
 
-        public Object getImportantFlag() {
+        public String getImportantFlag() {
             return importantFlag;
         }
 
-        public void setImportantFlag(Object importantFlag) {
+        public void setImportantFlag(String importantFlag) {
             this.importantFlag = importantFlag;
         }
 
-        public Object getFeatureFlag() {
+        public String getFeatureFlag() {
             return featureFlag;
         }
 
-        public void setFeatureFlag(Object featureFlag) {
+        public void setFeatureFlag(String featureFlag) {
             this.featureFlag = featureFlag;
         }
 

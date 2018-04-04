@@ -158,7 +158,9 @@ public class MainActivity extends BaseActivity implements LoginView {
 
     @OnClick({R.id.tv_pass,
             R.id.zc_register,
-            R.id.zc_captcha, R.id.login, R.id.register_iv_close, R.id.register_iv_open, R.id.iv_close, R.id.iv_open, R.id.tv_phone_captcha, R.id.phone, R.id.tv_login, R.id.pass, R.id.iv_left, R.id.tv_register, R.id.tv_forget})
+            R.id.zc_captcha,
+            R.id.tv_xieyi,
+            R.id.login, R.id.register_iv_close, R.id.register_iv_open, R.id.iv_close, R.id.iv_open, R.id.tv_phone_captcha, R.id.phone, R.id.tv_login, R.id.pass, R.id.iv_left, R.id.tv_register, R.id.tv_forget})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.register_iv_close:
@@ -228,6 +230,12 @@ public class MainActivity extends BaseActivity implements LoginView {
                 phone.setVisibility(View.GONE);
                 register.setVisibility(View.GONE);
                 zc.setText("密码登录");
+                break;
+            case R.id.tv_xieyi:
+                Intent intent1 = new Intent(this, ParticularsActivity.class);
+                intent1.putExtra("particulars_title","用户协议");
+                intent1.putExtra("url","http://m.bdrvip.com/#/agreement");
+                startActivity(intent1);
                 break;
             case R.id.phone:
                 break;
