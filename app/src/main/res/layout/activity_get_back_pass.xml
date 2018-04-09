@@ -141,7 +141,6 @@
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:background="@null"
-
             android:layout_marginRight="30px"
             android:layout_alignLeft="@+id/tv_login"
             android:layout_alignStart="@+id/tv_login"
@@ -194,7 +193,7 @@
         android:background="@drawable/back_register"
         android:gravity="center"
         android:text="确定"
-        android:textColor="#e6e6e6"
+        android:textColor="#fff"
         android:textSize="48px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"/>

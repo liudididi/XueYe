@@ -262,8 +262,8 @@ public class SchoolDetailActivity extends BaseActivity {
                         if (listBaseBean.code == 0) {
                             List<CollerSchoolBean> data = listBaseBean.data;
                             if (data != null && data.size() > 0) {
+
                                 String collectionTime = data.get(0).getCollectionTime();
-                                System.out.println("collectionTime==="+collectionTime);
                                 if (collectionTime != null && collectionTime.length() > 2) {
                                     Glide.with(SchoolDetailActivity.this).load(R.drawable.collect_yes).into(schooldCollect);
                                 } else {
@@ -311,7 +311,7 @@ public class SchoolDetailActivity extends BaseActivity {
                                     schooldAddress.setText("地址暂无数据");
                                 }
 
-                                String graduate = data.get(0).getGraduate();
+                                String graduate = data.get(0).getDefenseStudent();
                                 if (graduate != null && graduate.length() > 1) {
                                     schooldYjs.setVisibility(View.VISIBLE);
                                 } else {

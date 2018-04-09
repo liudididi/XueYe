@@ -222,7 +222,7 @@ public interface QuestInterface {
 
     //查询学校是否收藏
     @GET("/app/university/getUnivCollection")
-    Flowable<BaseBean<List<CollerSchoolBean>>> getchoolisscollet(@Query("name") String name, @Header("token") String token);
+    Flowable<BaseBean<List<CollerSchoolBean>>> getchoolisscollet(@Query("name") String name, @Query("token") String token);
 
     //获取订单号
     @POST("/app/productorder/getOutTradeInfo")

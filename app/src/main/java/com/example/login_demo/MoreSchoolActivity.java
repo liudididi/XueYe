@@ -173,6 +173,7 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
                 rlList.removeAllViews();
                 mschoolXlist=new XRecyclerView(MoreSchoolActivity.this);
                 mschoolXlist.setPullRefreshEnabled(false);
+
                 mschoolXlist.setLayoutManager(new LinearLayoutManager(MoreSchoolActivity.this));
                 rlList.addView(mschoolXlist);
                 mschoolXlist.setLoadingListener(new XRecyclerView.LoadingListener() {
@@ -357,7 +358,6 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
             if (adpter == null) {
                 adpter = new MoreSchoolRecycle(this, list);
                 mschoolXlist.setAdapter(adpter);
-
             } else {
                 adpter.loading(list);
                 mschoolXlist.loadMoreComplete();
@@ -365,10 +365,11 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
 
         }else {
             mschoolXlist.loadMoreComplete();
-        } /*else {
-            img_none.setVisibility(View.VISIBLE);
-            mschoolXlist.setVisibility(View.GONE);
-        }*/
+            if(adpter==null){
+                img_none.setVisibility(View.VISIBLE);
+                mschoolXlist.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override

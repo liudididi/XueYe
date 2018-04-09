@@ -28,6 +28,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+        <ImageView
+            android:id="@+id/job_search"
+            android:padding="20px"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="30px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:src="@mipmap/search"
+            />
         <View
             android:layout_width="match_parent"
             android:layout_height="2px"

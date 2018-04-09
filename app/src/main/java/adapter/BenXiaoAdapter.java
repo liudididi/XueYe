@@ -30,7 +30,12 @@ public class BenXiaoAdapter extends BaseAdapter {
         this.list = list;
         this.context = context;
         for (int i = 0; i <list.size() ; i++) {
-            list.get(i).zt=false;
+            if(i==0){
+                list.get(i).zt=true;
+            }else {
+                list.get(i).zt=false;
+            }
+
         }
     }
 

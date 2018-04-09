@@ -24,10 +24,8 @@ import bean.SchoolBean;
  */
 
 public class MySchoolRecycle extends RecyclerView.Adapter {
-
     private Context context;
     private List<SchoolBean> list;
-
     public MySchoolRecycle(Context context, List<SchoolBean> list) {
         this.context = context;
         this.list = list;

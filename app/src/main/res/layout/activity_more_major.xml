@@ -30,9 +30,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+        <ImageView
+            android:id="@+id/marjor_search"
+            android:padding="20px"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="30px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="90px"
+            android:layout_height="90px"
+            android:src="@mipmap/search"
+            />
         <View
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
             android:layout_alignParentBottom="true"
             ></View>
     </RelativeLayout>
@@ -86,7 +98,7 @@
         android:background="#F3F3F3"
         android:id="@+id/vv"
         android:layout_width="match_parent"
-        android:layout_height="15px">
+        android:layout_height="10px">
     </View>
 
     <View
@@ -113,33 +125,6 @@
         android:layout_below="@+id/vv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-<!--
-        <ExpandableListView
-            android:visibility="gone"
-            android:layout_below="@+id/vv"
-            android:layout_marginRight="50px"
-            android:layout_marginLeft="50px"
-            android:scrollbars="none"
-            android:layout_marginTop="10px"
-            android:id="@+id/tree_view_simple"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        </ExpandableListView>
-
-        <ExpandableListView
-            android:visibility="gone"
-            android:layout_below="@+id/vv"
-            android:layout_marginRight="50px"
-            android:layout_marginLeft="50px"
-            android:scrollbars="none"
-            android:layout_marginTop="10px"
-            android:id="@+id/tree_view_zhuan"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-        </ExpandableListView>-->
 
 
 <ListView

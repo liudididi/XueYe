@@ -94,8 +94,11 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
                 }
             });
         }else {
-            Toast.makeText(getActivity(), "暂无数据！！", Toast.LENGTH_LONG).show();
-            majorshool_pb.setVisibility(View.GONE);
+             majorshool_pb.setVisibility(View.GONE);
+            if(adpter==null){
+                majorschool_none.setVisibility(View.VISIBLE);
+            }
+
         }
     }
 

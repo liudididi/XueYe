@@ -196,7 +196,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                 if (vipRecommend != null && vipRecommend.size() > 0) {
                     list.addAll(vipRecommend);
                 }
-                System.out.println("listsize=="+list.size());
+
                 if(list.size()==0) {
                     list.add("暂无数据");
                 }

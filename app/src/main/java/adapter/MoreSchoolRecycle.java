@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -13,11 +13,13 @@ import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
 import com.meg7.widget.CustomShapeImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseApi;
 import bean.CheckSchoolBean;
 import bean.SchoolBean;
+import untils.FlowLayout;
 
 /**
  * Created by 地地 on 2018/1/26.
@@ -28,8 +30,6 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
 
     private Context context;
     private List<CheckSchoolBean> list;
-
-
 
     public MoreSchoolRecycle(Context context, List<CheckSchoolBean> list) {
         this.context = context;
@@ -55,7 +55,7 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        String  fujia="";
+
         holder.setIsRecyclable(false);
         final MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getName());
@@ -66,23 +66,35 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
         String defenseStudent = list.get(position).getDefenseStudent();
         String nine = list.get(position).getNine();
         String recruit = list.get(position).getRecruit();
-        if(two!=null){
-            fujia+=" "+two;
+        String preeminentPlan = list.get(position).getPreeminentPlan();
+        List<String> fujialist=new ArrayList<>();
+        if(two!=null&&two.length()>2){
+            fujialist.add(two);
         }
-        if(defenseStudent!=null){
-            fujia+=" "+defenseStudent;
+        if(nine!=null&&nine.length()>2){
+            fujialist.add(nine);
         }
-        if(nine!=null){
-            fujia+=" "+nine;
+        if(defenseStudent!=null&&defenseStudent.length()>2){
+            fujialist.add(defenseStudent);
         }
-        if(recruit!=null){
-            fujia+=" "+recruit;
+
+        if(recruit!=null&&recruit.length()>2){
+            fujialist.add(recruit);
+        }
+        if(preeminentPlan!=null&&preeminentPlan.length()>2){
+            fujialist.add(preeminentPlan);
+        }
+
+        if(fujialist.size()>0&&fujialist!=null){
+            mySchoolViewHolder.majoritem_flow.setZyListData(fujialist);
+        }else {
+            fujialist.add("暂无信息");
+            mySchoolViewHolder.majoritem_flow.setZyListData(fujialist);
         }
         if(url!=null){
             Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
         }
-        mySchoolViewHolder.schoolitem_fujia.setText(fujia);
-        mySchoolViewHolder.view.setOnClickListener(new View.OnClickListener() {
+         mySchoolViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, SchoolDetailActivity.class);
@@ -101,22 +113,17 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
         private TextView    schoolitem_name;
         private TextView    schoolitem_address;
         private TextView    schoolitem_typerank;
-        private TextView    schoolitem_fujia;
         private CustomShapeImageView schoolitem_url;
-
+        private FlowLayout majoritem_flow;
         private  View view;
-
-
-
         public MySchoolViewHolder(View itemView) {
             super(itemView);
             view=itemView;
             schoolitem_name=itemView.findViewById(R.id.schoolitem_name);
             schoolitem_address=itemView.findViewById(R.id.schoolitem_address);
             schoolitem_typerank=itemView.findViewById(R.id.schoolitem_typerank);
-            schoolitem_fujia=itemView.findViewById(R.id.schoolitem_fujia);
             schoolitem_url=itemView.findViewById(R.id.schoolitem_url);
-
+            majoritem_flow=itemView.findViewById(R.id.majoritem_flow);
         }
     }
 
