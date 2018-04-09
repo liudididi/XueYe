@@ -6,11 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3F3F3"
     tools:context="com.example.login_demo.ChangPhoneActivity">
     <RelativeLayout
         android:id="@+id/changphone_top"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <ImageView
             android:padding="10px"
@@ -35,7 +37,7 @@
         android:id="@+id/changephone_view"
         android:layout_below="@+id/changphone_top"
         android:layout_width="match_parent"
-        android:layout_height="30px"
+        android:layout_height="26px"
         android:background="#F2F2F2"
         ></View>
 
@@ -46,15 +48,16 @@
         android:layout_marginTop="20px"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="1px">
+            android:background="#F3F3F3"
+            android:layout_height="3px">
         </View>
         <TextView
-            android:textColor="@color/black"
+            android:textColor="#333333"
             android:text="当前手机号"
             android:textSize="50px"
             android:gravity="center"
@@ -82,12 +85,13 @@
         android:layout_below="@+id/changephone_view"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="1px">
+            android:background="#F3F3F3"
+            android:layout_height="3px">
         </View>
         <TextView
             android:textColor="@color/black"
@@ -120,9 +124,10 @@
         android:layout_marginTop="290px"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <TextView
-            android:textColor="@color/black"
+            android:textColor="#333333"
             android:text="验证码"
             android:textSize="50px"
             android:gravity="center"
@@ -179,7 +184,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/changephone_rv_captcha"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="210px"
         android:background="@drawable/bg_setting_back"
         android:gravity="center"
         android:text="确认更换"

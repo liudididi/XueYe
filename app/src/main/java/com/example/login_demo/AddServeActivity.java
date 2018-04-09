@@ -61,7 +61,8 @@ public class AddServeActivity extends BaseActivity implements HelpView{
 
     @Override
     public void Helpfail(Throwable t) {
-
+        helpPresenter = new HelpPresenter(this);
+        helpPresenter.HelpPresenter("0","4");
     }
 
     @Override

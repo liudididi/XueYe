@@ -5,11 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3F3F3"
     tools:context="com.example.login_demo.SuggestActivity">
     <RelativeLayout
         android:id="@+id/rl_suggest"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <ImageView
             android:padding="10px"
@@ -31,29 +33,32 @@
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000"
+        android:layout_height="3px"
+        android:background="#F3F3F3"
         android:layout_below="@id/rl_suggest"></View>
     <LinearLayout
         android:id="@+id/ll"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="120px"
         android:layout_below="@id/view1"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginLeft="20px"
-        >
+        android:background="#fff"
+         >
         <View
-            android:layout_width="3px"
+            android:layout_width="8px"
             android:layout_height="match_parent"
-            android:background="#000"
-            android:layout_margin="35px"
-            ></View>
+            android:background="#3B9EFF"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:layout_marginRight="35px"
+            android:layout_marginBottom="35px"
+              ></View>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="建议内容   "
-            android:textColor="#2c2c2c"
+            android:textColor="#333333"
             android:textSize="54px"/>
         <TextView
             android:layout_width="wrap_content"
@@ -64,48 +69,61 @@
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000"
+        android:layout_height="3px"
+        android:background="#F3F3F3"
         android:layout_below="@id/ll"></View>
-
-    <EditText
-        android:id="@+id/suggest_et"
+    <RelativeLayout
+        android:id="@+id/rl2"
         android:layout_width="match_parent"
-        android:layout_height="350px"
+        android:layout_height="wrap_content"
         android:layout_below="@id/view2"
-        android:maxLines="5"
-        android:background="@drawable/back_suggest"
-        android:layout_margin="40px"
-        android:textSize="40px"
-        android:gravity="top"
-        android:hint="您的建议使我们变得更好"
-        />
+        android:background="#fff"
+        >
+        <EditText
+            android:background="@null"
+            android:id="@+id/suggest_et"
+            android:layout_width="match_parent"
+            android:layout_height="350px"
+            android:maxLines="5"
+            android:textColor="#999999"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:layout_marginRight="35px"
+            android:layout_marginBottom="35px"            android:textSize="40px"
+            android:gravity="top"
+            android:hint="您的建议使我们变得更好"
+            />
+    </RelativeLayout>
+
     <View
         android:id="@+id/view3"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000"
-        android:layout_below="@id/suggest_et"></View>
+        android:layout_height="26px"
+        android:background="#F3F3F3"
+        android:layout_below="@id/rl2"></View>
     <LinearLayout
         android:id="@+id/ll2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         android:layout_below="@id/view3"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginLeft="20px"
-        >
+         >
         <View
-            android:layout_width="3px"
+            android:layout_width="8px"
             android:layout_height="match_parent"
-            android:background="#000"
-            android:layout_margin="35px"
+            android:background="#3B9EFF"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:layout_marginRight="35px"
+            android:layout_marginBottom="35px"
             ></View>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="联系方式   "
-            android:textColor="#2c2c2c"
+            android:textColor="#333333"
             android:textSize="54px"/>
         <TextView
             android:layout_width="wrap_content"
@@ -116,31 +134,44 @@
     <View
         android:id="@+id/view4"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000"
+        android:layout_height="3px"
+        android:background="#F3F3F3"
         android:layout_below="@id/ll2"></View>
 
-    <EditText
-        android:id="@+id/suggest_way"
+    <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
-        android:layout_height="150px"
+        android:layout_height="wrap_content"
         android:layout_below="@id/view4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="40px"
-        android:background="@drawable/back_suggest"
-        android:hint="请留下您的手机号、QQ、或邮箱、方便我们联系您"
-        android:textSize="40px" />
+        android:background="#fff"
+        >
+        <EditText
+            android:id="@+id/suggest_way"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_marginTop="35px"
+            android:layout_marginRight="35px"
+            android:layout_marginBottom="35px"            android:background="@null"
+            android:textColor="#999999"
+             android:hint="请留下您的手机号、QQ、或邮箱、方便我们联系您"
+            android:textSize="40px" />
+    </RelativeLayout>
+
 
         <TextView
             android:id="@+id/suggest_tv_commit"
             android:layout_width="match_parent"
             android:layout_height="120px"
             android:background="@drawable/back_register"
-            android:layout_below="@id/suggest_way"
+            android:layout_below="@id/rl"
             android:text="提交"
             android:textColor="#fff"
-            android:layout_margin="40px"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_marginTop="106px"
             android:gravity="center"/>
 </RelativeLayout>

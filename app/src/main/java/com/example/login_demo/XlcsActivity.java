@@ -29,7 +29,6 @@ XlcsActivity extends BaseActivity {
 
     @BindView(R.id.xlcs_iv_back)
     ImageView xlcsIvBack;
-
     @BindView(R.id.lsbg_bt)
     Button lsbgBt;
     @BindView(R.id.re_buydi1)
@@ -67,13 +66,11 @@ XlcsActivity extends BaseActivity {
                         if (baseBean.code == 0) {
                             xlcsBt1.setEnabled(true);
                             xlcsBt1.setBackground(getResources().getDrawable(R.drawable.back_capacity));
-
                             xlcsB2.setEnabled(true);
                             xlcsB2.setBackground(getResources().getDrawable(R.drawable.back_capacity));
                         } else {
                             xlcsBt1.setEnabled(false);
                             xlcsBt1.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
-
                             xlcsB2.setEnabled(false);
                             xlcsB2.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
                             Toast(baseBean.msg);

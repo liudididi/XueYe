@@ -256,7 +256,6 @@ public class MainActivity extends BaseActivity implements LoginView {
                 Intent intent=new Intent(MainActivity.this, GetBackPassActivity.class);
                 intent.putExtra("getback","找回密码");
                 startActivity(intent);
-
                 finish();
                 break;
             case R.id.tv_login:
@@ -285,11 +284,16 @@ public class MainActivity extends BaseActivity implements LoginView {
 
     @Override
     public void loginsuccess(String msg, BaseBean<UserBean> baseBean) {
-        Toast(msg);
-
+            Toast(msg);
             SPUtils.put(MyApp.context,"token",baseBean.token);
-            intent(MainActivity.this, HomeActivity.class);
-            finish();
+            MyUserBean.setUserBean(baseBean.data);
+            if(baseBean.data.getName()!=null){
+                intent(MainActivity.this, HomeActivity.class);
+                finish();
+            }else {
+                intent(MainActivity.this, PresonMessageActivity.class);
+                finish();
+            }
 
 
     }

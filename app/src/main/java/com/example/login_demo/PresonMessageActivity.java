@@ -79,8 +79,6 @@ public class PresonMessageActivity extends BaseActivity {
                             if(data.getSex()!=null){
                                 presonSix.setText(data.getSex());
                             }
-
-
                             if(data.getSex()!=null){
                                 if(data.getSex().equals("女")){
                                     Glide.with(PresonMessageActivity.this).load(R.drawable.gril).into(presonIcon);
@@ -90,17 +88,15 @@ public class PresonMessageActivity extends BaseActivity {
                             }else {
                                 Glide.with(PresonMessageActivity.this).load(R.drawable.boy).into(presonIcon);
                             }
-                           if(data.getStuType()!=null){
-                               presonType.setText(data.getStuType());
+                           if(data.getStutype()!=null){
+                               presonType.setText(data.getStutype());
                            }
-                           if(data.getExamYear()!=null){
-                               presonNear.setText(data.getExamYear());
+                           if(data.getExamyear()!=null){
+                               presonNear.setText(data.getExamyear());
                            }
-                           if(data.getMidSchool()!=null){
-                               presonHighschool.setText(data.getMidSchool());
+                           if(data.getMidschool()!=null){
+                               presonHighschool.setText(data.getMidschool());
                            }
-
-
                         }else {
                             Toast.makeText(MyApp.context,"token超时，请重新登录",Toast.LENGTH_SHORT);
                         }
@@ -119,6 +115,7 @@ public class PresonMessageActivity extends BaseActivity {
     @OnClick({R.id.preson_iv_back, R.id.preson_complie, R.id.preson_icon})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+
             case R.id.preson_iv_back:
                 finish();
                 break;

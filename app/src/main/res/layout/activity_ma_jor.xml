@@ -5,11 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3F3F3"
     tools:context="com.example.login_demo.MaJorActivity">
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <ImageView
             android:padding="10px"
@@ -69,10 +71,10 @@
             android:layout_below="@+id/major_hint"
             android:layout_marginRight="30px"
             android:layout_marginLeft="30px"
-            android:background="@drawable/back_login"
+            android:background="@drawable/back_tongyong"
             android:gravity="center"
             android:text="马上去看看"
-            android:textColor="#26C6DA"
+            android:textColor="#3B9EFF"
             android:textSize="45px" />
     </RelativeLayout>
 </RelativeLayout>

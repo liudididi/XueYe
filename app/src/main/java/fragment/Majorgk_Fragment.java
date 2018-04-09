@@ -61,7 +61,7 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
         if(i<50){
             fmgk_tvcckemu.setText("本科");
         }else {
-            fmgk_tvcckemu.setText("文科");
+            fmgk_tvcckemu.setText("专科");
         }
 
     }

@@ -22,10 +22,14 @@ import base.BaseActivity;
 import base.BaseApi;
 import base.BaseBean;
 import bean.CXEFCBean;
+import bean.EFCBean;
 import bean.jobStarBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -69,7 +73,7 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     @BindView(R.id.zw)
     View zw;
     private boolean yiwen = false;
-    private CXEFCPresenter cxefcPresenter;
+
     private String token;
     private String testCode;
 
@@ -91,32 +95,68 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     }
 
     private void initzhuanye() {
-            //TODO 待完善
-            cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
-                @Override
-                public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
 
-                    testCode = cxefcBeanBaseBean.data.getTestCode();
-                    if(cxefcBeanBaseBean.data.getMajorGai()!=null){
-                        String[] split = cxefcBeanBaseBean.data.getMajorGai().split(",");
-                        List<String> Stringlist=new ArrayList<>();
-                        for (int i = 0; i < split.length; i++) {
-                            Stringlist.add(split[i]);
+        MyQusetUtils.getInstance().getQuestInterface().getEFCData(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean<EFCBean>>() {
+                    @Override
+                    public void onNext(BaseBean<EFCBean> efcBeanBaseBean) {
+                        testCode = efcBeanBaseBean.data.getTest_code();
+                        if(efcBeanBaseBean.data.getMajorGai()!=null&&efcBeanBaseBean.data.getMajorGai().size()>0){
+                            List<String> majorGai = efcBeanBaseBean.data.getMajorGai();
+                            zw.setVisibility(View.GONE);
+                            pb.setVisibility(View.GONE);
+                            xyghList.setVisibility(View.VISIBLE);
+                            XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(majorGai,XueYeGuiHuaActivity.this );
+                            xyghList.setAdapter(xueYeGuiHua_adapter);
+                            sv.smoothScrollTo(0, 0);
                         }
-                        zw.setVisibility(View.GONE);
-                        pb.setVisibility(View.GONE);
-                        xyghList.setVisibility(View.VISIBLE);
-                        XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(Stringlist,XueYeGuiHuaActivity.this );
-                        xyghList.setAdapter(xueYeGuiHua_adapter);
-                        sv.smoothScrollTo(0, 0);
                     }
 
-                }
-                @Override
-                public void GetEFCResultfail(Throwable t) {
-                }
-            });
-            cxefcPresenter.CXEFCPresenter(token);
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+
+
+
+
+
+
+            //TODO 待完善
+//            cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
+//                @Override
+//                public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+//
+//                    testCode = cxefcBeanBaseBean.data.getTestCode();
+//                    if(cxefcBeanBaseBean.data.getMajorGai()!=null){
+//                        String[] split = cxefcBeanBaseBean.data.getMajorGai().split(",");
+//                        List<String> Stringlist=new ArrayList<>();
+//                        for (int i = 0; i < split.length; i++) {
+//                            Stringlist.add(split[i]);
+//                        }
+//                        zw.setVisibility(View.GONE);
+//                        pb.setVisibility(View.GONE);
+//                        xyghList.setVisibility(View.VISIBLE);
+//                        XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(Stringlist,XueYeGuiHuaActivity.this );
+//                        xyghList.setAdapter(xueYeGuiHua_adapter);
+//                        sv.smoothScrollTo(0, 0);
+//                    }
+//
+//                }
+//                @Override
+//                public void GetEFCResultfail(Throwable t) {
+//                }
+//            });
+//            cxefcPresenter.CXEFCPresenter(token);
 
     }
     @OnClick({R.id.guihua_iv_back, R.id.rl_xqcebg, R.id.rl_xgcebg, R.id.guihua_ivyiwen,R.id.xlcs_bt})
@@ -163,6 +203,6 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        cxefcPresenter.onDestory();
+
     }
 }

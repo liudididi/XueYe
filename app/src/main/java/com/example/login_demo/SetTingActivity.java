@@ -140,7 +140,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             } else {
                 settingname.setText("");
             }
-            String midSchool = userBeanInstans.getMidSchool();
+            String midSchool = userBeanInstans.getMidschool();
             if (midSchool != null) {
                 settingschool.setText(midSchool);
             } else {
@@ -299,6 +299,8 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 SPUtils.remove(MyApp.context, "tbarea");
                 SPUtils.remove(MyApp.context, "tbsubtype");
                 SPUtils.remove(MyApp.context, "majorindex");
+                SPUtils.remove(MyApp.context, "name");
+                SPUtils.remove(MyApp.context, "school");
                 MyUserBean.setUserBean(null);
                 finish();
                 break;

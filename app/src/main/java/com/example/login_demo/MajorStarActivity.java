@@ -421,23 +421,9 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
                                                                         List<jobStarBean> data = listBaseBean.data;
                                                                         for (int i = 0; i < data.size(); i++) {
                                                                             if(i==data.size()-1){
-                                                                                String xinzi=null;
-                                                                                List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
-                                                                                if(majorinfo.size()>0&&majorinfo!=null){
-                                                                                    xinzi=majorinfo.get(0).getAveragesalary();
-                                                                                }else {
-                                                                                    xinzi="暂无数据";
-                                                                                }
-                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi;
+                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id();
                                                                             }else {
-                                                                                String xinzi=null;
-                                                                                List<jobStarBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
-                                                                                if(majorinfo.size()>0&&majorinfo!=null){
-                                                                                    xinzi=majorinfo.get(0).getAveragesalary();
-                                                                                }else {
-                                                                                    xinzi="暂无数据";
-                                                                                }
-                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+":"+xinzi+",";
+                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+",";
                                                                             }
                                                                         }
                                                                         MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)

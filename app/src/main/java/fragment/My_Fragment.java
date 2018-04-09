@@ -49,6 +49,10 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
     private Intent intent;
     private Boolean checLogin;
     private View my_view;
+    private TextView myfragment_name;
+    private TextView myfragment_school;
+    private String school;
+    private String name;
 
     @Override
     public int getLayoutid() {
@@ -97,6 +101,8 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
 
         //我的志愿表
         my_washtable = view.findViewById(R.id.my_washtable);
+        myfragment_name = view.findViewById(R.id.myfragment_name);
+        myfragment_school = view.findViewById(R.id.myfragment_school);
 
 
 
@@ -225,10 +231,23 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
+
             MyUserBean.checkLogin();
-            my_login.setText("已登录");
+             my_login.setVisibility(View.INVISIBLE);
             UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
             if(userBeanInstans!=null){
+             if(userBeanInstans.getName()!=null){
+                 name = userBeanInstans.getName();
+                 school   = userBeanInstans.getMidschool();
+             }else {
+                 school = (String) SPUtils.get(MyApp.context, "school", "学校");
+                 name = (String) SPUtils.get(MyApp.context, "name", "姓名");
+             }
+
+                myfragment_name.setVisibility(View.VISIBLE);
+                myfragment_school.setVisibility(View.VISIBLE);
+                myfragment_name.setText(name);
+                myfragment_school.setText(school);
                 if(userBeanInstans.getSex()!=null){
                     if(userBeanInstans.getSex().equals("女")){
                         Glide.with(getActivity()).load(R.drawable.gril).into(my_icon);
@@ -244,7 +263,10 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
         }else {
                  my_icon.setImageResource(R.drawable.boy);
             my_login.setText("登录");
+            my_login.setVisibility(View.VISIBLE);
             my_login.setEnabled(true);
+            myfragment_name.setVisibility(View.INVISIBLE);
+            myfragment_school.setVisibility(View.INVISIBLE);
         }
     }
 }

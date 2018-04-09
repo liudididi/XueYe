@@ -4,14 +4,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
-import com.weavey.loading.lib.LoadingLayout;
 
 import base.BaseActivity;
 import base.BaseBean;
@@ -62,6 +58,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     ImageView imgZhiyxkbq;
     @BindView(R.id.img_zhuanyxkbq)
     ImageView imgZhuanyxkbq;
+    @BindView(R.id.img_zntbbq)
+    ImageView imgZntbbq;
     private String token;
     private String data;
     private CXEFCPresenter cxefcPresenter;
@@ -70,7 +68,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     private String classify;
     private String type;
     private ConnectionChangeReceiver myReceiver;
-    private  boolean   net=true;
+    private boolean net = true;
+
     @Override
     public int getId() {
         return R.layout.activity_efcjie_suo;
@@ -148,9 +147,9 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                         public void onNext(BaseBean<String> stringBaseBean) {
                                             if (stringBaseBean.code == 0) {
                                                 String data = stringBaseBean.data;
-                                                int i =Integer.parseInt(data);
+                                                int i = Integer.parseInt(data);
 
-                                                if(i <0){
+                                                if (i < 0) {
                                                     imgZntbwjs.setVisibility(View.GONE);
                                                     rlZntb.setEnabled(true);
                                                 }
@@ -222,8 +221,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                         if (data.equals("3")) {
                                             imgZhiyxkwjs.setVisibility(View.GONE);
                                             imgZhuanyxkwjs.setVisibility(View.GONE);
-                                             rlZhiyxk.setEnabled(true);
-                                             rlZhuanyxk.setEnabled(true);
+                                            rlZhiyxk.setEnabled(true);
+                                            rlZhuanyxk.setEnabled(true);
                                             rlXlcs.setEnabled(true);
 
                                             MyQusetUtils.getInstance().getQuestInterface().gettime(token)
@@ -234,8 +233,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                                         public void onNext(BaseBean<String> stringBaseBean) {
                                                             if (stringBaseBean.code == 0) {
                                                                 String data = stringBaseBean.data;
-                                                                int i =Integer.parseInt(data);
-                                                                if(i <0){
+                                                                int i = Integer.parseInt(data);
+                                                                if (i < 0) {
                                                                     imgZntbwjs.setVisibility(View.GONE);
                                                                     rlZntb.setEnabled(true);
                                                                 }
@@ -261,9 +260,11 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                             rlZhuanyxk.setEnabled(true);
                                             rlZntb.setEnabled(true);
                                             rlXlcs.setEnabled(true);
+                                            imgZntbbq.setImageResource(R.drawable.biaoywc);
                                         }
 
                                     }
+
                                     @Override
                                     public void onError(Throwable t) {
                                         Toast("请检查你的网络~~");
@@ -296,9 +297,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 finish();
                 break;
             case R.id.rl_xlcs:
-
-                // Intent intent=new Intent(this,XlcsActivity.class);
-                if (data != null&&net==true) {
+                if (data != null && net == true) {
                     Intent intent = new Intent(this, XlcsActivity.class);
                     intent.putExtra("data", data);
                     startActivity(intent);
@@ -307,30 +306,30 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 }
                 break;
             case R.id.rl_zhiyxk:
-                if (data != null&&net==true) {
+                if (data != null && net == true) {
                     Intent intent1 = new Intent(this, ProfessionStarActivity.class);
                     intent1.putExtra("data", data);
                     startActivity(intent1);
-                }else {
+                } else {
                     Toast("网络较差，请稍后重试");
                 }
 
                 break;
             case R.id.rl_zhuanyxk:
 
-                if (data != null&&net==true) {
+                if (data != null && net == true) {
                     cxefcPresenter.CXEFCPresenter(token);
                     rlZhuanyxk.setEnabled(false);
-                }else {
+                } else {
                     Toast("网络较差，请稍后重试");
                 }
 
                 break;
             case R.id.rl_zntb:
-                if (data != null&&net==true) {
+                if (data != null && net == true) {
                     Intent intent3 = new Intent(this, Volunteer_ScreenActivity.class);
                     startActivity(intent3);
-                }else {
+                } else {
                     Toast("网络较差，请稍后重试");
                 }
                 break;
@@ -346,22 +345,22 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
             String[] split = testCode.split(",");
             String s = split[0];
             String[] split1 = s.split(":");
-            String  mbti = split1[0];
+            String mbti = split1[0];
             String s1 = split[1];
             String[] split2 = s1.split(":");
-            String  hld = split2[0];
+            String hld = split2[0];
             gender = cxefcBeanBaseBean.data.getGender();
             String stutype = cxefcBeanBaseBean.data.getStutype();
-            if(stutype.equals("文科")){
-                classify ="wen";
-            }else {
-                classify ="li";
+            if (stutype.equals("文科")) {
+                classify = "wen";
+            } else {
+                classify = "li";
             }
             String collegetype = cxefcBeanBaseBean.data.getCollegetype();
-            if(collegetype.equals("本科")){
-                type ="0";
-            }else {
-                type ="1";
+            if (collegetype.equals("本科")) {
+                type = "0";
+            } else {
+                type = "1";
             }
             Intent intent2 = new Intent(this, MajorStarActivity.class);
             intent2.putExtra("data", data);
@@ -393,14 +392,14 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
             public void changeNetStatus(boolean flag) {
                 //设置网络状态提示布局的状态
                 if (flag) {
-                     Toast("当前无网络");
-                     net=false;
-                     rlXlcs.setEnabled(false);
-                     rlZhiyxk.setEnabled(false);
-                     rlZhuanyxk.setEnabled(false);
-                     rlZntb.setEnabled(false);
+                    Toast("当前无网络");
+                    net = false;
+                    rlXlcs.setEnabled(false);
+                    rlZhiyxk.setEnabled(false);
+                    rlZhuanyxk.setEnabled(false);
+                    rlZntb.setEnabled(false);
                 } else {
-                    net=true;
+                    net = true;
                     onResume();
                 }
             }
@@ -413,4 +412,6 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
             this.unregisterReceiver(myReceiver);
         }
     }
+
+
 }

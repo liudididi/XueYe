@@ -15,6 +15,7 @@ import bean.CheckSchoolBean;
 import bean.CityBean;
 import bean.CollerMajorBean;
 import bean.CollerSchoolBean;
+import bean.EFCBean;
 import bean.EsayBaoGaoBean;
 import bean.EsaySdsBean;
 import bean.FingerpostBean;
@@ -90,6 +91,12 @@ public interface QuestInterface {
       //学生来源
      @GET(" /app/stufrom/from")
      Flowable<BaseBean<List<StudentFromBean>>> studentfrom(@Query("name") String name);
+
+
+
+     //EFC学业规划报告
+     @GET("/app/wishfilling/getEFCData")
+     Flowable<BaseBean<EFCBean>> getEFCData(@Header("token") String token);
 
 
     //保存收藏的专业

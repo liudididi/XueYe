@@ -147,19 +147,29 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent">
 
+
             　
+
             <intent-filter>
 
+
                 　　
+
                 <action android:name="android.intent.action.VIEW" />
 
+
                 　　
+
                 <category android:name="android.intent.category.DEFAULT" />
 
-                　　
-                <data android:scheme="wx1152aee306087394" />
 
                 　　
+
+                <data android:scheme="wx1152aee306087394" />
+
+
+                　　
+
             </intent-filter>
         </activity>
         <activity android:name=".AccurateActivity" />
@@ -169,6 +179,7 @@
 
         　
         　
+
 
         <meta-data
             android:name="baiduren"
@@ -188,7 +199,8 @@
         <activity android:name=".CeShiShuoMingActivity" />
         <activity android:name=".XGcsActivity" />
         <activity android:name=".MBI_CSActivity" />
-        <activity android:name=".TuiJianSchoolActivity"></activity>
+        <activity android:name=".TuiJianSchoolActivity" />
+        <activity android:name=".GuoDuActivity"></activity>
     </application>
 
 </manifest>

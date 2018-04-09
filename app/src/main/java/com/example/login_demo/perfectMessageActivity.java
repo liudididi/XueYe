@@ -223,6 +223,8 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     public void UserinfoSuccess(String msg) {
         if(msg.equals("success")){
             Toast(msg);
+            SPUtils.put(MyApp.context,"name",name);
+            SPUtils.put(MyApp.context,"school",highschool);
             finish();
         }else {
             Toast(msg);

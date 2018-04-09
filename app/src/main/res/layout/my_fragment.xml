@@ -37,6 +37,27 @@
         android:layout_height="wrap_content"
         >
         <TextView
+            android:visibility="invisible"
+            android:textSize="50px"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:id="@+id/myfragment_name"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80px"
+            android:text="李志文"
+            />
+        <TextView
+            android:visibility="invisible"
+            android:textSize="33px"
+            android:text="李志文"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:id="@+id/myfragment_school"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/myfragment_name"
+            />
+        <TextView
+            android:visibility="visible"
             android:id="@+id/my_login"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
@@ -50,9 +71,8 @@
             android:gravity="center"
             android:layout_height="150px"
             android:id="@+id/my_school"
-            android:layout_marginTop="195px"
+            android:layout_marginTop="225px"
             android:layout_width="match_parent"
-
             >
             <View
                 android:layout_width="match_parent"

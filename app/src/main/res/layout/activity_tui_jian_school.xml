@@ -288,7 +288,7 @@
 
             </LinearLayout>
             <LinearLayout
-android:visibility="gone"
+               android:visibility="gone"
                 android:orientation="vertical"
                 android:id="@+id/ll_san"
                 android:layout_width="match_parent"
@@ -376,10 +376,11 @@ android:visibility="gone"
                             android:layout_height="match_parent" />
 
                         <TextView
+                            android:background="#838497"
                             android:id="@+id/tj_hour"
                             android:layout_width="130px"
                             android:layout_height="match_parent"
-                            android:background="#000"
+
                             android:gravity="center"
                             android:padding="15px"
                             android:textColor="#fff"
@@ -393,12 +394,13 @@ android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
+                            android:background="#838497"
                             android:layout_marginLeft="10px"
                             android:id="@+id/tj_minute"
                             android:padding="15px"
                             android:gravity="center"
                             android:textSize="70px"
-                            android:background="#000"
+
 
                             android:textColor="#fff"
                             android:layout_width="130px"
@@ -413,12 +415,13 @@ android:visibility="gone"
                             android:layout_height="wrap_content" />
 
                         <TextView
+                            android:background="#838497"
                             android:layout_marginLeft="10px"
                             android:id="@+id/tj_miao"
                             android:padding="15px"
                             android:gravity="center"
                             android:textSize="70px"
-                            android:background="#000"
+
                             android:textColor="#fff"
                             android:layout_width="130px"
                             android:layout_height="match_parent" />

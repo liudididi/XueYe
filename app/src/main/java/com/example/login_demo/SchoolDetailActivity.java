@@ -263,6 +263,7 @@ public class SchoolDetailActivity extends BaseActivity {
                             List<CollerSchoolBean> data = listBaseBean.data;
                             if (data != null && data.size() > 0) {
                                 String collectionTime = data.get(0).getCollectionTime();
+                                System.out.println("collectionTime==="+collectionTime);
                                 if (collectionTime != null && collectionTime.length() > 2) {
                                     Glide.with(SchoolDetailActivity.this).load(R.drawable.collect_yes).into(schooldCollect);
                                 } else {
@@ -396,10 +397,5 @@ public class SchoolDetailActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

@@ -6,10 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3F3F3"
     tools:context="com.example.login_demo.AccountMagActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120px"
+        android:background="#fff"
         >
         <ImageView
             android:padding="10px"
@@ -30,19 +32,28 @@
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="30px"
-        android:background="#F2F2F2"
+        android:layout_height="14px"
+        android:background="#F3F3F3"
         ></View>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120px"
+        android:layout_height="135px"
+        android:background="#fff"
         >
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"/>
         <TextView
+            android:layout_toRightOf="@id/iv"
             android:text="手机号"
             android:textSize="50px"
-            android:layout_marginLeft="50px"
-            android:textColor="@color/black"
+            android:layout_marginLeft="20px"
+            android:textColor="#333333"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -53,20 +64,16 @@
             android:id="@+id/account_tv_phone"
             android:text="***********"
             android:textSize="50px"
+            android:textColor="#666666"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="#F2F2F2"
-            android:layout_alignParentBottom="true"
-            ></View>
+
     </RelativeLayout>
     <TextView
         android:id="@+id/account_setingpass"
-        android:layout_marginTop="500px"
+        android:layout_marginTop="200px"
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:layout_below="@+id/ed_mobile"
@@ -86,10 +93,10 @@
         android:layout_below="@+id/ed_mobile"
         android:layout_marginRight="30px"
         android:layout_marginLeft="30px"
-        android:background="@drawable/bg_setting_back"
+        android:background="@drawable/back_tongyong"
         android:gravity="center"
         android:text="更换手机号"
-        android:textColor="@color/white"
+        android:textColor="#3B9EFF"
         android:textSize="48px" />
 
 </LinearLayout>

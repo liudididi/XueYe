@@ -46,6 +46,13 @@ public class MyUserBean  {
                        public void onNext(BaseBean<UserBean> baseBean) {
                            if(baseBean.code==0){
                                userBean=baseBean.data;
+                               if(userBean.getName()!=null){
+                                   SPUtils.put(MyApp.context,"name",userBean.getName());
+                               }
+                               if(userBean.getMidschool()!=null){
+                                   SPUtils.put(MyApp.context,"school",userBean.getMidschool());
+                               }
+
                            }else {
                             }
                        }

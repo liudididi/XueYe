@@ -28,6 +28,7 @@ public class HelpActivity extends BaseActivity implements HelpView{
     @BindView(R.id.help_rv)
     RecyclerView help_rv;
     private HelpPresenter helpPresenter;
+    private String pid;
 
     @Override
     public int getId() {
@@ -37,9 +38,9 @@ public class HelpActivity extends BaseActivity implements HelpView{
     @Override
     public void InIt() {
         Intent intent = getIntent();
-        String pid = intent.getStringExtra("pid");
+        pid = intent.getStringExtra("pid");
         helpPresenter = new HelpPresenter(this);
-        helpPresenter.HelpPresenter("0",pid);
+        helpPresenter.HelpPresenter("0", pid);
     }
 
 
@@ -63,7 +64,8 @@ public class HelpActivity extends BaseActivity implements HelpView{
 
     @Override
     public void Helpfail(Throwable t) {
-
+        helpPresenter = new HelpPresenter(this);
+        helpPresenter.HelpPresenter("0", pid);
     }
 
     @Override

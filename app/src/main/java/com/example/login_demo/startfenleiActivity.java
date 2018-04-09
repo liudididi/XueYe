@@ -369,7 +369,7 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                             @Override
                             public void onNext(BaseBean baseBean) {
                                 if (baseBean.code == 0) {
-                                    Intent intent = new Intent(startfenleiActivity.this, MajorStarActivity.class);
+                                    Intent intent = new Intent(startfenleiActivity.this, GuoDuActivity.class);
                                     intent.putExtra("data", "2");
                                     intent.putExtra("result", result);
                                     intent.putExtra("Hld", hld);

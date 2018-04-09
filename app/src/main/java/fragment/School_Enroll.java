@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.login_demo.MyApp;
 import com.example.login_demo.NumActivity;
@@ -116,8 +117,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         tv_tvarea.setText(tbarea);
         se_tvtype.setText(tbsubtype);
         se_tvmaxfen.setText(tbmaxfen);
-
-
         schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
         numPresenter = new NumPresenter(this);
         numPresenter.NumPresenter(schoolname,tbsubtype,tbarea);
@@ -356,15 +355,27 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     @Override
     public void TZmajorsuccess(BaseBean<List<ZYTJBean>> listBaseBean) {
         List<ZYTJBean> data = listBaseBean.data;
-        for (int i = 0; i < data.size(); i++) {
-            List<ZYTJBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
-            ZYTJRecycleAdapter zytjRecycleAdapter=new ZYTJRecycleAdapter(majorinfo,getContext());
-                lv_tszy.setLayoutManager(new LinearLayoutManager(getContext()));
-                lv_tszy.setAdapter(zytjRecycleAdapter);
+        if(data.size()>0&&data!=null)
+        {
+            for (int i = 0; i < data.size(); i++) {
+                List<ZYTJBean.MajorinfoBean> majorinfo = data.get(i).getMajorinfo();
+                if(majorinfo!=null&&majorinfo.size()>0)
+                {
+                    ZYTJRecycleAdapter zytjRecycleAdapter=new ZYTJRecycleAdapter(majorinfo,getContext());
+                    lv_tszy.setLayoutManager(new LinearLayoutManager(getContext()));
+                    lv_tszy.setAdapter(zytjRecycleAdapter);
 
-                rv_zdzy.setLayoutManager(new LinearLayoutManager(getContext()));
-                rv_zdzy.setAdapter(zytjRecycleAdapter);
+                    rv_zdzy.setLayoutManager(new LinearLayoutManager(getContext()));
+                    rv_zdzy.setAdapter(zytjRecycleAdapter);
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "暂无数据", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
+
     }
 
     @Override
