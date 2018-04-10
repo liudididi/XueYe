@@ -1,309 +1,366 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView
+    android:background="#F3F3F3"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-<RelativeLayout
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.login_demo.EstimateGradeActivity">
+
     <RelativeLayout
-        android:id="@+id/estimate_title"
         android:layout_width="match_parent"
-        android:layout_height="120px"
-        >
-        <ImageView
-            android:padding="10px"
-            android:id="@+id/estimate_iv_back"
-            android:layout_width="150px"
-            android:layout_height="90px"
-            android:layout_gravity="center"
-            android:src="@mipmap/left"
-            android:layout_centerVertical="true"/>
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        tools:context="com.example.login_demo.EstimateGradeActivity">
+
+        <RelativeLayout
+            android:id="@+id/estimate_title"
+            android:layout_width="match_parent"
+            android:layout_height="120px">
+
+            <ImageView
+                android:id="@+id/estimate_iv_back"
+                android:layout_width="150px"
+                android:layout_height="90px"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:padding="10px"
+                android:src="@mipmap/left" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="高考预估成绩"
+                android:textColor="#2c2c2c"
+                android:textSize="50px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black"></View>
+        </RelativeLayout>
+
         <TextView
-            android:text="高考预估成绩"
-            android:textColor="#2c2c2c"
-            android:textSize="50px"
-            android:layout_centerInParent="true"
+            android:id="@+id/es_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:layout_alignParentBottom="true"
-            android:background="@color/black"
-            ></View>
-    </RelativeLayout>
-<TextView
-    android:id="@+id/es_tv"
-    android:layout_marginLeft="50px"
-    android:layout_marginRight="50px"
-    android:layout_marginTop="20px"
-    android:layout_below="@+id/estimate_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textSize="50px"
-    android:text="选择高考省份"
-    />
-    <LinearLayout
+            android:layout_below="@+id/estimate_title"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="20px"
+            android:text="选择高考省份"
+            android:textColor="#666666"
+            android:textSize="40px" />
 
-        android:layout_marginTop="20px"
-        android:layout_marginRight="50px"
-        android:layout_marginLeft="50px"
-        android:orientation="vertical"
-        android:id="@+id/es_ll2"
-        android:background="@drawable/bg_subject2"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/es_tv"
-        android:layout_width="match_parent"
-        android:layout_height="100px">
-
-        <Spinner
-            android:gravity="center_horizontal"
-            android:id="@+id/estimate_sparea"
+        <RelativeLayout
+            android:id="@+id/es_ll2"
             android:layout_width="match_parent"
             android:layout_height="100px"
+            android:layout_below="@+id/es_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="50px"
             android:layout_marginRight="50px"
-            android:dropDownWidth="wrap_content"
-            android:spinnerMode="dropdown"></Spinner>
+            android:layout_marginTop="20px"
+            android:background="@drawable/bg_subject2"
+            android:orientation="vertical">
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/es_tv1"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="20px"
-        android:layout_below="@+id/es_ll2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50px"
-        android:text="选择考选科目"
-        />
-
-       <TextView
-           android:padding="2px"
-           android:background="@drawable/bg_subject3"
-           android:layout_marginLeft="50px"
-           android:layout_marginRight="50px"
-           android:layout_marginTop="20px"
-           android:textSize="50px"
-           android:text="文科"
-           android:gravity="center"
-           android:id="@+id/estimate_tvwen"
-           android:layout_width="500px"
-           android:layout_height="100px"
-           android:layout_below="@+id/es_tv1"
-           />
-    <TextView
-        android:padding="2px"
-        android:textSize="50px"
-        android:text="理科"
-        android:gravity="center"
-        android:background="@drawable/bg_subject2"
-        android:layout_below="@+id/es_tv1"
-        android:layout_toRightOf="@+id/estimate_tvwen"
-        android:layout_width="500px"
-        android:layout_height="100px"
-        android:id="@+id/estimate_tvli"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="20px"
-        />
-
-    <TextView
-        android:id="@+id/es_tv2"
-        android:layout_marginTop="20px"
-        android:gravity="center"
-        android:layout_below="@+id/estimate_tvwen"
-        android:textSize="35px"
-        android:text="因录取政策调整，需注意分数波动分险"
-        android:layout_width="match_parent"
-        android:layout_height="80px" />
-
-    <TextView
-        android:id="@+id/es_tv3"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="20px"
-        android:layout_below="@+id/es_tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50px"
-        android:text="预估高考分数"
-        />
-    <LinearLayout
-        android:id="@+id/es_ll"
-        android:layout_marginRight="50px"
-        android:layout_marginLeft="50px"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20px"
-        android:layout_below="@+id/es_tv3"
-        android:layout_width="match_parent"
-        android:layout_height="150px">
-    <LinearLayout
-        android:layout_width="300px"
-        android:layout_height="120px"
-        android:gravity="center"
-        android:background="@drawable/bg_subject"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/snowflake"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="高考分数"
-            />
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="120px"
-        android:background="@drawable/bg_subject2">
-        <EditText
-            android:inputType="number"
-            android:id="@+id/estimate_edgradefen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="110px"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:textSize="45px"
-            android:hint="输入高考预估分"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="分"
-            android:layout_marginRight="50px"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-</LinearLayout>
-
-
-
-
-
-    <LinearLayout
-        android:id="@+id/es_ll1"
-        android:layout_marginRight="50px"
-        android:layout_marginLeft="50px"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20px"
-        android:layout_below="@+id/es_ll"
-        android:layout_width="match_parent"
-        android:layout_height="150px">
-        <LinearLayout
-            android:layout_width="300px"
-            android:layout_height="120px"
-            android:gravity="center"
-            android:background="@drawable/bg_subject"
-            >
+<ImageView
+    android:layout_width="100px"
+    android:layout_height="wrap_content"
+     android:id="@+id/img_dingwei"
+    />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="全省排名"
+                android:id="@+id/tv_area"
+                android:layout_toRightOf="@id/img_dingwei"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 />
+            <ImageView
+                android:src="@drawable/next"
+                android:padding="30px"
+                android:layout_width="100px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/es_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/es_ll2"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="52px"
+            android:text="选择考选科目"
+            android:textColor="#666666"
+            android:textSize="40px" />
+
+        <LinearLayout
+            android:id="@+id/ll_wenli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/es_tv1"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="25px"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/estimate_tvwen"
+                android:layout_width="0px"
+                android:layout_height="100px"
+                android:layout_weight="1"
+                android:background="@drawable/bg_subject3"
+                android:gravity="center"
+                android:padding="2px"
+                android:text="文科"
+                android:textSize="37px"
+
+                />
+
+            <TextView
+                android:id="@+id/estimate_tvli"
+                android:layout_width="0px"
+                android:layout_height="100px"
+                android:layout_below="@+id/es_tv1"
+                android:layout_toRightOf="@+id/estimate_tvwen"
+                android:layout_weight="1"
+                android:background="@drawable/bg_subject2"
+                android:gravity="center"
+                android:padding="2px"
+                android:text="理科"
+                android:textSize="37px" />
+
         </LinearLayout>
-        <RelativeLayout
+
+
+        <TextView
+            android:id="@+id/es_tv2"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_below="@+id/ll_wenli"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:text="因录取政策调整，需注意分数波动分险"
+            android:textColor="#999999"
+            android:textSize="29px" />
+
+        <TextView
+            android:id="@+id/es_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/es_tv2"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="52px"
+            android:text="预估高考分数"
+            android:textColor="#666666"
+            android:textSize="40px" />
+
+        <LinearLayout
+            android:id="@+id/es_ll"
+            android:layout_width="match_parent"
+            android:layout_height="116px"
+            android:layout_below="@+id/es_tv3"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="300px"
+                android:layout_height="116px"
+                android:background="@drawable/bg_subject3"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/snowflake" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="高考分数"
+                    android:textColor="#333333"
+                    android:textSize="37px" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+                android:background="@drawable/bg_subject2">
+
+                <EditText
+                    android:id="@+id/estimate_edgradefen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="110px"
+                    android:background="@null"
+                    android:hint="输入高考预估分"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="37px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="52px"
+                    android:text="分" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/es_ll1"
+            android:layout_width="match_parent"
+            android:layout_height="116px"
+            android:layout_below="@+id/es_ll"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="52px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="300px"
+                android:layout_height="116px"
+
+                android:layout_below="@+id/es_ll"
+                android:background="@drawable/bg_subject3"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全省排名"
+                    android:textColor="#333333"
+                    android:textSize="37px" />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+                android:background="@drawable/bg_subject2">
+
+                <EditText
+                    android:id="@+id/estimate_edgradepaiming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="110px"
+                    android:background="@null"
+                    android:hint="输入高考预全省排名"
+                    android:inputType="number"
+                    android:textColor="#999999"
+                    android:textSize="37px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="52px"
+                    android:text="名" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/es_tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/es_ll1"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="52px"
+            android:text="填报批次"
+            android:textColor="#666666"
+            android:textSize="40px" />
+        <LinearLayout
+            android:layout_marginTop="25px"
+            android:layout_marginRight="50px"
+            android:layout_marginLeft="50px"
+            android:layout_below="@+id/es_tv4"
+            android:id="@+id/zhuanben"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/estimate_tvben"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="100px"
+                android:background="@drawable/bg_subject3"
+                android:gravity="center"
+                android:padding="2px"
+                android:text="本科"
+                android:textSize="37px" />
+            <TextView
+                android:id="@+id/estimate_tvzhuan"
+                android:layout_weight="1"
+                android:layout_width="0px"
+                android:layout_height="100px"
+                android:background="@drawable/bg_subject2"
+                android:gravity="center"
+                android:padding="2px"
+                android:text="专科"
+                android:textSize="37px" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/estimate_submit"
             android:layout_width="match_parent"
             android:layout_height="120px"
-            android:background="@drawable/bg_subject2">
-            <EditText
-                android:inputType="number"
-                android:id="@+id/estimate_edgradepaiming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="110px"
-                android:layout_centerVertical="true"
-                android:background="@null"
-                android:textSize="45px"
-                android:hint="输入高考预全省排名"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="名"
-                android:layout_marginRight="50px"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
-    </LinearLayout>
-    <TextView
-        android:id="@+id/es_tv4"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="20px"
-        android:layout_below="@+id/es_ll1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50px"
-        android:text="填报批次"
-        />
+            android:layout_below="@+id/zhuanben"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="106px"
+            android:background="@drawable/back_guanzhu"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="51px" />
 
-    <TextView
-        android:padding="2px"
-        android:background="@drawable/bg_subject3"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="20px"
-        android:textSize="50px"
-        android:text="本科"
-        android:gravity="center"
-        android:id="@+id/estimate_tvben"
-        android:layout_width="500px"
-        android:layout_height="100px"
-        android:layout_below="@+id/es_tv4"
-        />
-    <TextView
-        android:padding="2px"
-        android:textSize="50px"
-        android:text="专科"
-        android:background="@drawable/bg_subject2"
-        android:gravity="center"
-        android:layout_below="@+id/es_tv4"
-        android:layout_toRightOf="@+id/estimate_tvwen"
-        android:layout_width="500px"
-        android:layout_height="100px"
-        android:id="@+id/estimate_tvzhuan"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="20px"
-        />
-    <TextView
-        android:layout_marginTop="60px"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_below="@+id/estimate_tvzhuan"
-        android:id="@+id/estimate_submit"
-        android:layout_width="match_parent"
-        android:layout_height="120px"
-        android:textSize="50px"
-        android:text="确定"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:background="@drawable/back_guanzhu"
-        />
-    <TextView
-        android:id="@+id/es_tv5"
-        android:layout_marginTop="20px"
-        android:gravity="center"
-        android:layout_below="@+id/estimate_submit"
-        android:textSize="30px"
-        android:text="请确保成绩准确，分数或排名错误无法获得精准推荐"
-        android:layout_width="match_parent"
-        android:layout_height="80px" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/es_tv5"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:layout_below="@+id/estimate_submit"
+            android:layout_marginTop="26px"
+            android:gravity="center"
+            android:textColor="#999999"
+            android:text="请确保成绩准确，分数或排名错误无法获得精准推荐"
+            android:textSize="29px" />
+        <ListView
+            android:visibility="gone"
+            android:background="@color/white"
+            android:layout_below="@+id/es_ll2"
+            android:id="@+id/list_weizhi"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_width="match_parent"
+            android:layout_height="600px">
+        </ListView>
+
+    </RelativeLayout>
 </ScrollView>

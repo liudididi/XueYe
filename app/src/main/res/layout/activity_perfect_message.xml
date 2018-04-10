@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -28,18 +29,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
+            ></View>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/perfect_name"
         android:layout_below="@+id/perfect_title"
         android:layout_width="match_parent"
         android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
         >
+
+        <ImageView
+            android:padding="15px"
+            android:layout_centerVertical="true"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/phone"
+            />
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"
             android:textColor="@color/black"
-            android:layout_marginTop="50px"
             android:gravity="center"
             android:textSize="50px"
             android:layout_width="wrap_content"
@@ -47,6 +61,7 @@
             android:text="考试姓名"
             />
         <EditText
+            android:layout_marginRight="20px"
             android:id="@+id/pf_edname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,59 +74,36 @@
 <View
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
-    android:layout_height="2px"
-    android:background="@color/black"
+    android:layout_height="3px"
+    android:background="#F3F3F3"
     ></View>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/perfect_six"
         android:layout_below="@+id/perfect_name"
         android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
+        android:layout_height="260px"
         >
-        <TextView
-        android:layout_marginTop="50px"
-        android:gravity="center"
-        android:textSize="50px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="性别"
-        android:textColor="@color/black"
-        />
-
-        <RadioGroup
-            android:layout_marginLeft="100px"
-            android:layout_marginTop="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/pf_rg_six"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <RadioButton
-                android:textSize="50px"
-                android:checked="true"
-                android:layout_marginLeft="200px"
-                android:id="@+id/rg_six_boy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="男"
-                />
-            <RadioButton
-                android:textSize="50px"
-                android:layout_marginLeft="160px"
-                android:id="@+id/rg_six_gril"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="女"/>
-        </RadioGroup>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="200px"
+            android:id="@+id/img_boy"
+            android:src="@drawable/boymr"
+            android:layout_width="200px"
+            android:layout_height="200px" />
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="200px"
+            android:id="@+id/img_gril"
+            android:src="@drawable/gril"
+            android:layout_width="200px"
+            android:layout_height="200px" />
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="@color/black"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
             ></View>
     </RelativeLayout>
     <RelativeLayout
@@ -119,10 +111,18 @@
         android:layout_below="@+id/perfect_six"
         android:layout_width="match_parent"
         android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
+
         >
+        <ImageView
+        android:padding="15px"
+        android:layout_centerVertical="true"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:src="@drawable/mima"
+        />
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"
             android:layout_marginTop="50px"
             android:gravity="center"
             android:textSize="50px"
@@ -132,6 +132,7 @@
             android:textColor="@color/black"
             />
         <TextView
+            android:layout_marginRight="20px"
             android:id="@+id/pf_tvyear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,8 +145,8 @@
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="@color/black"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
             ></View>
     </RelativeLayout>
     <RelativeLayout
@@ -153,10 +154,18 @@
         android:layout_below="@+id/perfect_year"
         android:layout_width="match_parent"
         android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
+
         >
+        <ImageView
+            android:padding="15px"
+            android:layout_centerVertical="true"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/tcs"
+            />
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"
             android:layout_marginTop="50px"
             android:gravity="center"
             android:textSize="50px"
@@ -166,6 +175,7 @@
             android:textColor="@color/black"
             />
         <Spinner
+            android:layout_marginRight="20px"
             android:id="@+id/pf_spart"
             android:layout_width="190px"
             android:layout_height="wrap_content"
@@ -176,8 +186,8 @@
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="@color/black"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
             ></View>
     </RelativeLayout>
 
@@ -186,10 +196,18 @@
         android:layout_below="@+id/perfect_art"
         android:layout_width="match_parent"
         android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
+
         >
+        <ImageView
+            android:padding="15px"
+            android:layout_centerVertical="true"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/school"
+            />
         <TextView
+            android:layout_marginLeft="100px"
+            android:layout_centerVertical="true"
             android:layout_marginTop="50px"
             android:gravity="center"
             android:textSize="50px"
@@ -199,6 +217,7 @@
             android:textColor="@color/black"
             />
         <TextView
+            android:layout_marginRight="20px"
             android:id="@+id/pf_tvhightschool"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -211,73 +230,74 @@
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="@color/black"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
             ></View>
     </RelativeLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/perfect_kemu"
         android:layout_below="@+id/perfect_heightschool"
+        android:layout_marginTop="50px"
         android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
-        >
-        <TextView
-            android:layout_marginTop="50px"
-            android:gravity="center"
-            android:textSize="50px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="考生类型"
-            android:textColor="@color/black"
-            />
-        <RadioGroup
-            android:layout_marginLeft="100px"
-            android:layout_marginTop="40px"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:id="@+id/pf_rg_kemu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-            <RadioButton
-                android:textSize="50px"
-                android:checked="true"
-                android:layout_marginLeft="200px"
-                android:id="@+id/rg_subject_wen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="文科"
-                />
-            <RadioButton
-                android:textSize="50px"
-            android:layout_marginLeft="120px"
-            android:id="@+id/rg_subject_li"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="理科"
+        <TextView
+            android:id="@+id/pro_wen"
+            android:layout_width="0px"
+            android:layout_height="116px"
+            android:layout_weight="1"
+            android:background="@drawable/bg_subject3"
+            android:gravity="center"
+            android:padding="2px"
+            android:text="文科"
+            android:textSize="37px"
+
             />
-        </RadioGroup>
-        <View
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="@color/black"
-            ></View>
-    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/pro_li"
+            android:layout_width="0px"
+            android:layout_height="116px"
+            android:layout_below="@+id/es_tv1"
+            android:layout_toRightOf="@+id/estimate_tvwen"
+            android:layout_weight="1"
+            android:background="@drawable/bg_subject2"
+            android:gravity="center"
+            android:padding="2px"
+            android:text="理科"
+            android:textSize="37px" />
+
+    </LinearLayout>
+
+
 
 
     <RelativeLayout
+        android:layout_marginTop="52px"
         android:id="@+id/perfect_grade"
         android:layout_below="@+id/perfect_kemu"
         android:layout_width="match_parent"
         android:layout_height="150px"
-        android:layout_marginLeft="100px"
-        android:layout_marginRight="100px"
         >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
+            ></View>
+        <ImageView
+            android:padding="15px"
+            android:layout_centerVertical="true"
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:src="@drawable/school"
+            />
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="100px"
             android:layout_marginTop="50px"
             android:gravity="center"
             android:textSize="50px"
@@ -287,6 +307,7 @@
             android:textColor="@color/black"
             />
         <Spinner
+            android:layout_marginRight="20px"
             android:id="@+id/pf_spgrade"
             android:layout_width="230px"
             android:layout_height="wrap_content"
@@ -297,8 +318,8 @@
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="2px"
-            android:background="@color/black"
+            android:layout_height="3px"
+            android:background="#F3F3F3"
             ></View>
     </RelativeLayout>
 

@@ -10,12 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import adapter.Complete_Adapter;
+import adapter.Complete_AdapterTwo;
 import base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +29,7 @@ public class EstimateGradeActivity extends BaseActivity {
 
     @BindView(R.id.estimate_iv_back)
     ImageView estimateIvBack;
-    @BindView(R.id.estimate_sparea)
-    Spinner estimateSparea;
+
     @BindView(R.id.estimate_tvwen)
     TextView estimateTvwen;
     @BindView(R.id.estimate_tvli)
@@ -42,12 +44,16 @@ public class EstimateGradeActivity extends BaseActivity {
     TextView estimateTvzhuan;
     @BindView(R.id.estimate_submit)
     TextView estimateSubmit;
+    @BindView(R.id.list_weizhi)
+    ListView listWeizhi;
+    @BindView(R.id.tv_area)
+    TextView tvArea;
 
     private List<String> arealist;
     private ArrayAdapter<String> area_adapter;
-    private  String tbarea;
-    private  String tbsubtype;
-    private String  tbmaxfen;
+    private String tbarea;
+    private String tbsubtype;
+    private String tbmaxfen;
 
     @Override
     public int getId() {
@@ -64,10 +70,21 @@ public class EstimateGradeActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void InIt() {
-    initsum();
+        initsum();
+        String tb = (String) SPUtils.get(MyApp.context, "tbarea", tbarea);
+        tvArea.setText(tb);
+        Complete_AdapterTwo completelv1_adapter = new Complete_AdapterTwo(arealist, EstimateGradeActivity.this);
+        listWeizhi.setAdapter(completelv1_adapter);
+        listWeizhi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                tbarea = arealist.get(position);
+                tvArea.setText(tbarea);
+                listWeizhi.setVisibility(View.GONE);
+            }
+        });
 
-
-        area_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arealist);
+        /*area_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arealist);
         area_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         estimateSparea.setAdapter(area_adapter);
         estimateSparea.setDropDownVerticalOffset(100);
@@ -78,7 +95,7 @@ public class EstimateGradeActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 //拿到被选择项的值
-                String  str = (String) estimateSparea.getSelectedItem();
+                String str = (String) estimateSparea.getSelectedItem();
                 tbarea=str;
             }
 
@@ -87,7 +104,7 @@ public class EstimateGradeActivity extends BaseActivity {
 
 
             }
-        });
+        });*/
     }
 
     private void initsum() {
@@ -125,55 +142,65 @@ public class EstimateGradeActivity extends BaseActivity {
         arealist.add("新疆");
         arealist.add("台湾");
         arealist.add("澳门");
-        tbarea="北京市";
-        tbsubtype="文科";
+        tbarea = "北京市";
+        tbsubtype = "文科";
 
     }
 
 
-    @OnClick({R.id.estimate_iv_back, R.id.estimate_tvwen, R.id.estimate_tvli, R.id.estimate_tvben, R.id.estimate_tvzhuan, R.id.estimate_submit})
+    @OnClick({R.id.estimate_iv_back,R.id.tv_area, R.id.estimate_tvwen, R.id.estimate_tvli, R.id.estimate_tvben, R.id.estimate_tvzhuan, R.id.estimate_submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.estimate_iv_back:
                 finish();
                 break;
+            case R.id.tv_area:
+                if(listWeizhi.getVisibility()==View.VISIBLE){
+                    listWeizhi.setVisibility(View.GONE);
+                }else {
+                    listWeizhi.setVisibility(View.VISIBLE);
+                }
+                break;
             case R.id.estimate_tvwen:
                 estimateTvwen.setBackgroundResource(R.drawable.bg_subject3);
                 estimateTvli.setBackgroundResource(R.drawable.bg_subject2);
-                tbsubtype="文科";
+                tbsubtype = "文科";
                 break;
             case R.id.estimate_tvli:
-                estimateTvwen.setBackgroundResource(R.drawable.bg_subject2);
-                estimateTvli.setBackgroundResource(R.drawable.bg_subject3);
-                tbsubtype="理科";
+                estimateTvwen.setBackgroundResource(R.drawable.bg_subjectbai);
+                estimateTvli.setBackgroundResource(R.drawable.bg_subjectselect);
+
+                tbsubtype = "理科";
                 break;
             case R.id.estimate_tvben:
-                 estimateTvben.setBackgroundResource(R.drawable.bg_subject3);
-                 estimateTvzhuan.setBackgroundResource(R.drawable.bg_subject2);
+                estimateTvben.setBackgroundResource(R.drawable.bg_subject3);
+                estimateTvzhuan.setBackgroundResource(R.drawable.bg_subject2);
                 break;
             case R.id.estimate_tvzhuan:
-                estimateTvben.setBackgroundResource(R.drawable.bg_subject2);
-                estimateTvzhuan.setBackgroundResource(R.drawable.bg_subject3);
+                estimateTvben.setBackgroundResource(R.drawable.bg_subjectbai);
+                estimateTvzhuan.setBackgroundResource(R.drawable.bg_subjectselect);
                 break;
             case R.id.estimate_submit:
                 String edfen = estimateEdgradefen.getText().toString();
-                if(TextUtils.isEmpty(edfen)){
+                if (TextUtils.isEmpty(edfen)) {
                     Toast("请填写预估分");
                     break;
                 }
-                if(Integer.parseInt(edfen)>750){
+                if (Integer.parseInt(edfen) > 750) {
                     Toast("分数过高，糊弄自己呢");
                     break;
                 }
 
-                tbmaxfen=edfen;
-             SPUtils.put(MyApp.context,"tbarea",tbarea);
-             SPUtils.put(MyApp.context,"tbmaxfen",tbmaxfen);
-             SPUtils.put(MyApp.context,"tbsubtype",tbsubtype);
-             Intent intent=new Intent(EstimateGradeActivity.this,PrimaryActivity.class);
-             startActivity(intent);
-             finish();
-             break;
+                tbmaxfen = edfen;
+                SPUtils.put(MyApp.context, "tbarea", tbarea);
+                SPUtils.put(MyApp.context, "tbmaxfen", tbmaxfen);
+                SPUtils.put(MyApp.context, "tbsubtype", tbsubtype);
+                Intent intent = new Intent(EstimateGradeActivity.this, PrimaryActivity.class);
+                startActivity(intent);
+                finish();
+                break;
         }
     }
+
+
 }

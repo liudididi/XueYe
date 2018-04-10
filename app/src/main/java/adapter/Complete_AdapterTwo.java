@@ -9,15 +9,14 @@ import android.widget.TextView;
 
 import com.example.login_demo.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class Complete_Adapter extends BaseAdapter {
+public class Complete_AdapterTwo extends BaseAdapter {
     private List<String> list;
     private Context context;
 
-    public Complete_Adapter( List<String> list, Context context) {
+    public Complete_AdapterTwo(List<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -39,7 +38,7 @@ public class Complete_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.complete_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.complete_itemtwo, null);
         TextView spinner_tv=inflate.findViewById(R.id.spinner_tv);
         spinner_tv.setText(list.get(i).toString());
         return inflate;

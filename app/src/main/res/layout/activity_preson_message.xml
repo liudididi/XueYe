@@ -100,7 +100,7 @@
             android:textSize="50px"
             android:gravity="center"
             android:layout_marginLeft="30px"
-            android:layout_marginTop="40px"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="80px" />
         <TextView
@@ -108,7 +108,7 @@
             android:textColor="#999999"
 
             android:src="@drawable/right_arrow"
-            android:layout_marginTop="50px"
+            android:layout_centerVertical="true"
             android:layout_marginRight="30px"
             android:layout_width="wrap_content"
             android:layout_height="80px"
@@ -131,7 +131,7 @@
             android:textSize="50px"
             android:gravity="center"
             android:layout_marginLeft="30px"
-            android:layout_marginTop="40px"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="80px" />
         <TextView
@@ -139,7 +139,7 @@
 
             android:id="@+id/preson_six"
             android:src="@drawable/right_arrow"
-            android:layout_marginTop="50px"
+            android:layout_centerVertical="true"
             android:layout_marginRight="30px"
             android:layout_width="wrap_content"
             android:layout_height="80px"
@@ -175,13 +175,13 @@
             android:textSize="50px"
             android:gravity="center"
             android:layout_marginLeft="30px"
-            android:layout_marginTop="40px"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="80px" />
         <TextView
             android:id="@+id/preson_type"
             android:src="@drawable/right_arrow"
-            android:layout_marginTop="50px"
+            android:layout_centerVertical="true"
             android:textColor="#999999"
 
             android:layout_marginRight="30px"
@@ -214,7 +214,7 @@
             android:textSize="50px"
             android:gravity="center"
             android:layout_marginLeft="30px"
-            android:layout_marginTop="40px"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="80px" />
         <TextView
@@ -222,7 +222,7 @@
 
             android:id="@+id/preson_near"
             android:src="@drawable/right_arrow"
-            android:layout_marginTop="50px"
+            android:layout_centerVertical="true"
             android:layout_marginRight="30px"
             android:layout_width="wrap_content"
             android:layout_height="80px"
@@ -252,18 +252,18 @@
             android:textSize="50px"
             android:gravity="center"
             android:layout_marginLeft="30px"
-            android:layout_marginTop="40px"
-            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
             android:layout_height="80px" />
         <TextView
             android:textColor="#999999"
 
             android:id="@+id/preson_highschool"
             android:src="@drawable/right_arrow"
-            android:layout_marginTop="50px"
+            android:layout_centerVertical="true"
             android:layout_marginRight="35px"
             android:layout_width="wrap_content"
-            android:layout_height="80px"
+            android:layout_height="wrap_content"
             android:text="请编辑修改"
             android:textSize="35px"
             android:layout_alignParentRight="true"

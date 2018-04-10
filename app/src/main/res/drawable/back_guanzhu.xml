@@ -5,14 +5,14 @@
     >
 
     <solid
-        android:color="#3B9EFF"
+        android:color="#3986f3"
         ></solid>
     <size
         android:width="300px"
         android:height="75px"></size>
     <corners
-        android:topLeftRadius="6px"
-        android:topRightRadius="6px"
-        android:bottomLeftRadius="6px"
-        android:bottomRightRadius="6px"></corners>
+        android:topLeftRadius="10px"
+        android:topRightRadius="10px"
+        android:bottomLeftRadius="10px"
+        android:bottomRightRadius="10px"></corners>
 </shape>

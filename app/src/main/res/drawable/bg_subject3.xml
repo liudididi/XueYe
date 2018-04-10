@@ -4,17 +4,17 @@
     android:shape="rectangle"
     >
     <stroke
-        android:color="#223366"
-        android:width="3px"
+        android:color="#ccc"
+        android:width="1px"
         ></stroke>
     <solid
-        android:color="#EBF4FD"
+        android:color="#f1f6fe"
         ></solid>
     <size
         android:width="300px"
         android:height="120px"></size>
     <corners
-        android:topRightRadius="5px"
-        android:bottomRightRadius="5px"
+        android:topLeftRadius="20px"
+        android:bottomLeftRadius="20px"
         ></corners>
 </shape>

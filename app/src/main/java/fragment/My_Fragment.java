@@ -43,7 +43,7 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
     private CustomShapeImageView my_icon;
     private RelativeLayout my_school,my_major,my_washtable,my_character,my_gradetable
                             ,my_help,my_addserve,my_suggest;
-    private TextView tv_myschool;
+
     private ImageView my_setting;
     private String token;
     private Intent intent;
@@ -167,7 +167,6 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
                 if(checLogin ==true){
                     intent=new Intent(getActivity(), ReportedActivity.class);
                     startActivity(intent);
-
                 }
 
                 break;

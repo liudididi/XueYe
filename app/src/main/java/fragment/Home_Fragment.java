@@ -146,7 +146,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
 
         homegrade.setText(tbmaxfen);
-        homearea.setText("北京市");
+        homearea.setText(tbarea);
         homesubtype.setText(tbsubtype);
 
     }

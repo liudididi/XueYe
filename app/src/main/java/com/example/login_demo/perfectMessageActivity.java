@@ -30,20 +30,26 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     ImageView perfectIvBack;
     @BindView(R.id.pf_edname)
     EditText pfEdname;
-    @BindView(R.id.pf_rg_six)
-    RadioGroup pfRgSix;
+
     @BindView(R.id.pf_tvyear)
     TextView pfTvyear;
     @BindView(R.id.pf_spart)
     Spinner pfSpart;
-    @BindView(R.id.pf_rg_kemu)
-    RadioGroup pfRgKemu;
+
     @BindView(R.id.pf_tvsubmit)
     TextView pfTvsubmit;
     @BindView(R.id.pf_spgrade)
     Spinner pfSpgrade;
     @BindView(R.id.pf_tvhightschool)
     TextView pfTvhightschool;
+    @BindView(R.id.pro_wen)
+    TextView proWen;
+    @BindView(R.id.pro_li)
+    TextView proLi;
+    @BindView(R.id.img_boy)
+    ImageView imgBoy;
+    @BindView(R.id.img_gril)
+    ImageView imgGril;
     private ArrayAdapter<String> art_adapter;
     private ArrayAdapter<String> grade_adapter;
     //是否为特长生
@@ -55,7 +61,7 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     private String highschool;
     private String grade;
     private String subject;
-    private  String token;
+    private String token;
     private List<String> artlist;
     private List<String> gradelist;
     private presenter.perfectMessagePresent perfectMessagePresent;
@@ -68,8 +74,8 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     @Override
     protected void onResume() {
         super.onResume();
-        highschool= (String) SPUtils.get(MyApp.context, "highschool", "");
-        if(highschool !=null&& highschool.length()>2){
+        highschool = (String) SPUtils.get(MyApp.context, "highschool", "");
+        if (highschool != null && highschool.length() > 2) {
             pfTvhightschool.setText(highschool);
         }
 
@@ -136,41 +142,13 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
             }
         });
 
-        pfRgSix.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rg_six_boy:
-                        six = "男";
-                        break;
-                    case R.id.rg_six_gril:
-                        six = "女";
-                        break;
-                }
-            }
-        });
 
-        pfRgKemu.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rg_subject_wen:
-                        subject = "文科";
-                        break;
-                    case R.id.rg_subject_li:
-                        subject = "理科";
-                        break;
-                }
-            }
-        });
 
-        /**
-         * 选择高校
-         */
+
         pfTvhightschool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent(perfectMessageActivity.this,SelectProviceActivity.class);
+                intent(perfectMessageActivity.this, SelectProviceActivity.class);
             }
         });
 
@@ -179,33 +157,58 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
 
 
     }
+
     private void initnum() {
         years = pfTvyear.getText().toString();
         six = "男";
         subject = "文科";
-        grade="高三";
+        grade = "高三";
         token = (String) SPUtils.get(MyApp.context, "token", "");
     }
-    @OnClick({R.id.perfect_iv_back, R.id.pf_tvsubmit})
+
+    @OnClick({R.id.perfect_iv_back, R.id.pro_wen, R.id.img_boy, R.id.img_gril, R.id.pro_li, R.id.pf_tvsubmit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.perfect_iv_back:
                 finish();
                 break;
+            case R.id.img_boy:
+                imgBoy.setImageResource(R.drawable.boymr);
+                imgGril.setImageResource(R.drawable.gril);
+                   six="男";
+                break;
+            case R.id.img_gril:
+                imgBoy.setImageResource(R.drawable.boy);
+                imgGril.setImageResource(R.drawable.grilmr);
+                six="女";
+                break;
+            case R.id.pro_wen:
+                proWen.setBackgroundResource(R.drawable.bg_subject3);
+                proLi.setBackgroundResource(R.drawable.bg_subject2);
+                subject = "文科";
+
+
+                break;
+            case R.id.pro_li:
+                proWen.setBackgroundResource(R.drawable.bg_subjectbai);
+                proLi.setBackgroundResource(R.drawable.bg_subjectselect);
+
+                subject = "理科";
+                break;
             case R.id.pf_tvsubmit:
-                name=pfEdname.getText().toString();
-                if(TextUtils.isEmpty(name)){
+                name = pfEdname.getText().toString();
+                if (TextUtils.isEmpty(name)) {
                     Toast("请填写名字");
                     return;
                 }
-                if(TextUtils.isEmpty(highschool)){
-                Toast("请选择学校");
-                return;
+                if (TextUtils.isEmpty(highschool)) {
+                    Toast("请选择学校");
+                    return;
                 }
                 String province = (String) SPUtils.get(MyApp.context, "province", "");
                 String city = (String) SPUtils.get(MyApp.context, "city", "");
                 String area = (String) SPUtils.get(MyApp.context, "area", "");
-                perfectMessagePresent.modifyUserinfoMoble(province,city,area,highschool,grade,name,six,years,subject,isSpecial,token);
+                perfectMessagePresent.modifyUserinfoMoble(province, city, area, highschool, grade, name, six, years, subject, isSpecial, token);
                 break;
         }
     }
@@ -213,25 +216,29 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SPUtils.remove(MyApp.context,"province");
-        SPUtils.remove(MyApp.context,"city");
-        SPUtils.remove(MyApp.context,"area");
-        SPUtils.remove(MyApp.context,"highschool");
+        SPUtils.remove(MyApp.context, "province");
+        SPUtils.remove(MyApp.context, "city");
+        SPUtils.remove(MyApp.context, "area");
+        SPUtils.remove(MyApp.context, "highschool");
     }
 
     @Override
     public void UserinfoSuccess(String msg) {
-        if(msg.equals("success")){
+        if (msg.equals("success")) {
             Toast(msg);
-            SPUtils.put(MyApp.context,"name",name);
-            SPUtils.put(MyApp.context,"school",highschool);
+            SPUtils.put(MyApp.context, "name", name);
+            SPUtils.put(MyApp.context, "school", highschool);
             finish();
-        }else {
+        } else {
             Toast(msg);
         }
     }
+
     @Override
     public void UserinfoFail(String msg) {
-Toast(msg);
+        Toast(msg);
     }
+
+
+
 }
