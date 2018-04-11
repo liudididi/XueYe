@@ -327,6 +327,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
             String time = listBaseBean.get(0).getTime();
             school_enroll_tvtime.setText(time+"录取率");
             String scoreAvg = listBaseBean.get(0).getScoreAvg();
+            if(scoreAvg.equals("-")){
+                scoreAvg="0";
+            }
             int selffen = Integer.parseInt(tbmaxfen);
             int fenshuxian = Integer.parseInt(scoreAvg);
 
@@ -392,10 +395,17 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         List<Integer> listfen=new ArrayList<>();
         listfen.add(0);
         listfen.add(0);
+        listfen.add(0);
+        listfen.add(0);
+        listfen.add(0);
         if(listBaseBean!=null&&listBaseBean.size()>0){
             for (int i = 0; i <listBaseBean.size() ; i++) {
                 if(listBaseBean.get(i).getScore()!=null){
-                    listfen.set(i,Integer.parseInt(listBaseBean.get(i).getScore()));
+                    String score = listBaseBean.get(i).getScore();
+                    if(score.equals("-")){
+                        score="0";
+                    }
+                    listfen.set(i,Integer.parseInt(score));
                 }
             }
         }
@@ -462,6 +472,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         {
             String scoreAvg = data.get(0).getScoreAvg();
             Histogram column_one =  view.findViewById(R.id.column_one);
+            if(scoreAvg.equals("-")){
+                scoreAvg="0";
+            }
             column_one.setData( Integer.parseInt(scoreAvg), 750);
             column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
 

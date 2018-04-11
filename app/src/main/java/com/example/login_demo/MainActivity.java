@@ -55,8 +55,7 @@ public class MainActivity extends BaseActivity implements LoginView {
     EditText edPass;
     @BindView(R.id.login)
     TextView login;
-    @BindView(R.id.textView)
-    TextView textView;
+
     @BindView(R.id.tv_forget)
     TextView tvForget;
     @BindView(R.id.tv_phone_captcha)

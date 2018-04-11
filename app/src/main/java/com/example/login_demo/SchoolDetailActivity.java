@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.meg7.widget.CustomShapeImageView;
 import com.weavey.loading.lib.LoadingLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseActivity;
@@ -32,6 +33,7 @@ import fragment.School_Summary;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
+import untils.FlowLayout;
 import untils.MyQusetUtils;
 import untils.SPUtils;
 
@@ -44,16 +46,7 @@ public class SchoolDetailActivity extends BaseActivity {
     ImageView schooldIvBack;
     @BindView(R.id.schoold_address)
     TextView schooldAddress;
-    @BindView(R.id.schoold_two)
-    TextView schooldTwo;
-    @BindView(R.id.schoold_nine)
-    TextView schooldNine;
-    @BindView(R.id.schoold_yjs)
-    TextView schooldYjs;
-    @BindView(R.id.schoold_gfs)
-    TextView schooldGfs;
-    @BindView(R.id.schoold_zyjh)
-    TextView schooldZyjh;
+
 
     @BindView(R.id.schoold_lq)
     TextView schooldLq;
@@ -78,7 +71,8 @@ public class SchoolDetailActivity extends BaseActivity {
     View schooldV;
     @BindView(R.id.schoold_rl2)
     RelativeLayout schooldRl2;
-
+    @BindView(R.id.school_flow)
+    FlowLayout schoolFlow;
 
 
     private School_Summary school_summary;
@@ -116,7 +110,6 @@ public class SchoolDetailActivity extends BaseActivity {
         token = (String) SPUtils.get(MyApp.context, "token", "");
         schoolname = getIntent().getStringExtra("schoolname");
         schooldName.setText(schoolname);
-        iscollect();
         info();
         switchFragment(school_enroll).commitAllowingStateLoss();
     }
@@ -262,7 +255,7 @@ public class SchoolDetailActivity extends BaseActivity {
                         if (listBaseBean.code == 0) {
                             List<CollerSchoolBean> data = listBaseBean.data;
                             if (data != null && data.size() > 0) {
-
+                                 List<String> strlist=new ArrayList<>();
                                 String collectionTime = data.get(0).getCollectionTime();
                                 if (collectionTime != null && collectionTime.length() > 2) {
                                     Glide.with(SchoolDetailActivity.this).load(R.drawable.collect_yes).into(schooldCollect);
@@ -271,15 +264,13 @@ public class SchoolDetailActivity extends BaseActivity {
                                 }
                                 String two = data.get(0).getTwo();
                                 if (two != null && two.length() > 1) {
-                                    schooldTwo.setVisibility(View.VISIBLE);
-                                } else {
-                                    schooldTwo.setVisibility(View.INVISIBLE);
+
+                                    strlist.add(two);
                                 }
                                 String nine = data.get(0).getNine();
                                 if (nine != null && nine.length() > 1) {
-                                    schooldNine.setVisibility(View.VISIBLE);
-                                } else {
-                                    schooldNine.setVisibility(View.INVISIBLE);
+
+                                    strlist.add(nine);
                                 }
 
                                 String door = data.get(0).getDoor();
@@ -294,16 +285,13 @@ public class SchoolDetailActivity extends BaseActivity {
                                 }
                                 String preeminentPlan = data.get(0).getPreeminentPlan();
                                 if (preeminentPlan != null && preeminentPlan.length() > 1) {
-                                    schooldZyjh.setVisibility(View.VISIBLE);
-                                } else {
-                                    schooldZyjh.setVisibility(View.INVISIBLE);
+                                    strlist.add(preeminentPlan);
                                 }
                                 String defenseStudent = data.get(0).getDefenseStudent();
                                 if (defenseStudent != null && defenseStudent.length() > 1) {
-                                    schooldGfs.setVisibility(View.VISIBLE);
-                                } else {
-                                    schooldGfs.setVisibility(View.INVISIBLE);
+                                    strlist.add(defenseStudent);
                                 }
+
                                 String address = data.get(0).getAddress();
                                 if (address != null && address.length() > 1) {
                                     schooldAddress.setText(address);
@@ -311,12 +299,15 @@ public class SchoolDetailActivity extends BaseActivity {
                                     schooldAddress.setText("地址暂无数据");
                                 }
 
-                                String graduate = data.get(0).getDefenseStudent();
+                                String graduate = data.get(0).getRecruit();
                                 if (graduate != null && graduate.length() > 1) {
-                                    schooldYjs.setVisibility(View.VISIBLE);
-                                } else {
-                                    schooldYjs.setVisibility(View.INVISIBLE);
+                                    strlist.add(graduate);
                                 }
+
+                                if(strlist.size()==0){
+                                    strlist.add("暂无数据");
+                                }
+                                schoolFlow.setschoolListData(strlist);
                                 String shuoshi = data.get(0).getShuoshi();
                                 if (shuoshi != null) {
                                     shsd = shuoshi;
@@ -369,7 +360,6 @@ public class SchoolDetailActivity extends BaseActivity {
                     schoolFl.setVisibility(View.VISIBLE);
                     schooldLq.setTextColor(Color.WHITE);
                     schooldLq.setBackgroundResource(R.drawable.back_schooldlan);
-
 
                     schooldJj.setTextColor(Color.BLACK);
                     schooldJj.setBackgroundResource(R.drawable.back_schoold);

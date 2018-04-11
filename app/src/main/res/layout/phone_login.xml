@@ -4,55 +4,77 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="122px"
-    android:layout_marginBottom="122px">
+    android:background="#fff"
+    >
 
-    <TextView
+    <ImageView
         android:textStyle="bold"
         android:id="@+id/tv_bt"
-        android:layout_width="match_parent"
-        android:layout_height="200px"
-        android:textSize="70px"
-        android:text="学业摆渡人"
-        android:gravity="center"
-
-        />
-
-    <TextView
+        android:layout_marginTop="100px"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_bt"
-        android:layout_marginLeft="36px"
-        android:layout_marginStart="36px"
-        android:layout_marginTop="80px"
-        android:text="手机登录"
-        android:textColor="#2c2c2c"
-        android:textSize="65px"
-        android:id="@+id/textView" />
+       android:src="@drawable/xybdr"
+        android:layout_centerHorizontal="true"
+         />
+
+
+
     <ImageView
         android:padding="30px"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="100px"
         android:src="@drawable/phone"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/tv_bt"
         android:id="@+id/img_phone"
         android:layout_width="150px"
         android:layout_height="150px"
         />
-
-    <EditText
+    <TextView
+        android:id="@+id/tv_sjh"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="145px"
+        android:textSize="50px"
+        android:textColor="#333"
         android:layout_toRightOf="@+id/img_phone"
+        android:layout_below="@+id/tv_bt"
+        android:text="手机号"/>
+    <EditText
+        android:layout_toRightOf="@+id/tv_sjh"
         android:maxLines="1"
+        android:layout_marginLeft="25px"
+        android:background="@null"
         android:layout_width="match_parent"
         android:layout_height="170px"
         android:layout_marginRight="30px"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="40px"
+        android:layout_below="@+id/tv_bt"
+        android:layout_marginTop="90px"
         android:hint="请输入手机号码"
         android:textSize="45px"
         android:inputType="number"
         android:id="@+id/ed_mobile"
         android:theme="@style/MyEditText"/>
+    <TextView
+        android:id="@+id/tv_phone_captcha"
+        android:layout_width="270px"
+        android:layout_height="90px"
+        android:layout_alignParentRight="true"
+        android:textColor="#fff"
+        android:textSize="40px"
+        android:layout_marginRight="45px"
+        android:background="@drawable/back_guanzhu"
+        android:gravity="center"
+        android:text="获取验证码"
+        android:layout_below="@+id/tv_bt"
+        android:layout_marginTop="125px"
+        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/ed_mobile"
+            android:background="#F3F3F3">
+
+        </View>
+
     <ImageView
         android:layout_marginTop="20px"
         android:padding="30px"
@@ -62,8 +84,19 @@
         android:layout_width="150px"
         android:layout_height="150px"
         />
-    <EditText
+    <TextView
+        android:id="@+id/tv_yzm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65px"
+        android:textSize="50px"
+        android:textColor="#333"
+        android:layout_marginRight="30px"
         android:layout_toRightOf="@+id/img_mima"
+        android:layout_below="@+id/ed_mobile"
+        android:text="验证码"/>
+    <EditText
+        android:layout_toRightOf="@+id/tv_yzm"
         android:maxLines="1"
         android:inputType="number"
         android:id="@+id/ed_phone_captcha"
@@ -76,29 +109,19 @@
         android:hint="请输入验证码"
         android:textSize="45px"
         android:layout_marginRight="30px"
-
+        android:background="@null"
         android:theme="@style/MyEditText" />
-    <TextView
-        android:id="@+id/tv_phone_captcha"
-        android:layout_width="270px"
-        android:layout_height="90px"
-        android:layout_alignParentRight="true"
-        android:textColor="#fff"
-        android:textSize="40px"
-        android:layout_marginRight="45px"
-        android:background="@drawable/back_guanzhu"
-        android:gravity="center"
-        android:text="获取验证码"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="75px"
-        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/ed_phone_captcha"
+            android:background="#F3F3F3"></View>
     <TextView
         android:id="@+id/tv_Countdown"
         android:layout_width="270px"
         android:layout_height="90px"
-        android:layout_alignBaseline="@+id/ed_mobile"
-        android:layout_alignBottom="@+id/ed_mobile"
-        android:layout_alignParentEnd="true"
+       android:layout_marginTop="125px"
+        android:layout_below="@+id/tv_bt"
         android:layout_alignParentRight="true"
         android:textColor="#fff"
         android:textSize="40px"
@@ -129,5 +152,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:text="密码登录"
-        android:textColor="#13227a" />
+        android:textColor="#999999" />
 </RelativeLayout>

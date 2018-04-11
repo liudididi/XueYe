@@ -4,9 +4,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="122px"
-    android:layout_marginBottom="122px"
+     android:background="#fff"
      >
 
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/xybdr"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80px"/>
+
+    <ImageView
+        android:padding="30px"
+        android:layout_marginTop="40px"
+        android:src="@drawable/phone"
+        android:layout_below="@+id/iv"
+        android:id="@+id/img_phone"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        />
+    <TextView
+        android:id="@+id/tv_sjh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85px"
+        android:textSize="50px"
+        android:textColor="#333"
+        android:layout_toRightOf="@+id/img_phone"
+        android:layout_below="@+id/iv"
+        android:text="手机号"/>
     <EditText
         android:maxLines="1"
         android:inputType="number"
@@ -14,17 +41,44 @@
         android:layout_height="170px"
         android:layout_marginRight="30px"
         android:layout_marginLeft="30px"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="40px"
+        android:layout_toRightOf="@+id/tv_sjh"
+        android:layout_below="@+id/iv"
+        android:layout_marginTop="30px"
         android:hint="请输入手机号码"
+        android:background="@null"
+
         android:textSize="45px"
         android:id="@+id/zc_ed_phone"
         android:theme="@style/MyEditText"/>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_below="@+id/zc_ed_phone"
+        android:background="#F3F3F3"></View>
+    <ImageView
+        android:layout_marginTop="20px"
+        android:padding="30px"
+        android:src="@drawable/mima"
+        android:layout_below="@+id/zc_ed_phone"
+        android:id="@+id/img_mima"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        />
+    <TextView
+        android:id="@+id/tv_yzm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65px"
+        android:textSize="50px"
+        android:textColor="#333"
+        android:layout_marginRight="30px"
+        android:layout_toRightOf="@+id/img_mima"
+        android:layout_below="@+id/zc_ed_phone"
+        android:text="验证码"/>
     <EditText
+        android:layout_toRightOf="@+id/tv_yzm"
         android:maxLines="1"
+        android:background="@null"
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="170px"
@@ -34,10 +88,13 @@
         android:layout_marginTop="10px"
         android:hint="请输入验证码"
         android:textSize="45px"
-        android:layout_marginRight="30px"
-        android:layout_marginLeft="30px"
-        android:theme="@style/MyEditText"
+         android:theme="@style/MyEditText"
         android:id="@+id/zc_ed_captcha" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_below="@+id/zc_ed_captcha"
+        android:background="#F3F3F3"></View>
     <TextView
 
         android:id="@+id/zc_captcha"
@@ -50,34 +107,63 @@
         android:background="@drawable/back_guanzhu"
         android:gravity="center"
         android:text="获取验证码"
-       android:layout_marginTop="75px"
+        android:layout_below="@+id/iv"
+       android:layout_marginTop="70px"
         />
     <TextView
         android:visibility="gone"
-        android:layout_marginTop="75px"
+        android:layout_marginTop="70px"
         android:layout_width="270px"
         android:layout_height="90px"
         android:layout_alignParentRight="true"
         android:id="@+id/zc_Countdown"
         android:textColor="#e6e6e6"
+        android:layout_below="@+id/iv"
         android:textSize="40px"
         android:layout_marginRight="45px"
         android:background="@drawable/back_countdown"
         android:gravity="center"
         android:text="" />
+
+
+    <ImageView
+        android:padding="30px"
+        android:layout_marginTop="30px"
+        android:src="@drawable/dx"
+        android:layout_below="@+id/zc_ed_captcha"
+        android:id="@+id/new_pass"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        />
+    <TextView
+        android:id="@+id/tv_new_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75px"
+        android:textSize="50px"
+        android:textColor="#333"
+        android:layout_marginRight="30px"
+        android:layout_toRightOf="@+id/new_pass"
+        android:layout_below="@+id/zc_ed_captcha"
+        android:text="新密码"/>
     <EditText
+        android:layout_toRightOf="@+id/tv_new_pass"
         android:maxLines="1"
         android:id="@+id/et_register_pass"
         android:layout_width="match_parent"
         android:layout_height="150px"
-        android:layout_marginRight="30px"
-        android:layout_marginLeft="30px"
+        android:background="@null"
         android:layout_below="@+id/zc_ed_captcha"
         android:layout_marginTop="10dp"
-        android:hint="请设置密码（6-12位字母或数字）"
+        android:hint="请设置密码(6-12位字母或数字)"
         android:textSize="45px"
         android:inputType="textPassword"
         android:theme="@style/MyEditText" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_below="@+id/et_register_pass"
+        android:background="#F3F3F3"></View>
     <ImageView
         android:id="@+id/register_iv_close"
         android:layout_width="70px"
@@ -115,4 +201,11 @@
         android:textSize="46px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dlzc_back"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20px"/>
 </RelativeLayout>

@@ -65,7 +65,7 @@
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#ccc"
+        android:layout_height="3px"
+            android:background="#F3F3F3"
         android:layout_below="@id/rl"></View>
 </RelativeLayout>

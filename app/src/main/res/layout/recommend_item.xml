@@ -50,8 +50,8 @@
         <View
             android:layout_below="@id/recommend_count"
             android:layout_marginTop="34px"
-            android:background="#cccccc"
+            android:background="#F3F3F3"
             android:layout_width="match_parent"
-            android:layout_height="1px"></View>
+            android:layout_height="3px"></View>
     </RelativeLayout>
 </LinearLayout>

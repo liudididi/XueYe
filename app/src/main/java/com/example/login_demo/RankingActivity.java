@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -29,6 +30,8 @@ public class RankingActivity extends BaseActivity implements RankingView{
     ImageView rankingIvBack;
     @BindView(R.id.ranking_rv)
     XRecyclerView rankingRv;
+    @BindView(R.id.pb)
+    ProgressBar pb;
     private RanKingPresent ranKingPresent;
     private int page=1;
     private RanKingSchool_Adapter ranKingSchool_adapter;
@@ -69,11 +72,9 @@ public class RankingActivity extends BaseActivity implements RankingView{
     //大学排序
     @Override
     public void RanKingsuccess(BaseBean<RanKingSchoolBean> ranKingSchoolBeanBaseBean) {
-        final ArrayList<RanKingSchoolBean2> list=new ArrayList<>();
-        List<RanKingSchoolBean.ListBean> list1 = ranKingSchoolBeanBaseBean.data.getList();
-        for (int i = 0; i < list1.size(); i++) {
-            list.add(new RanKingSchoolBean2(list1.get(i).getName(),list1.get(i).getAddress(),list1.get(i).getTypeRank()));
-        }
+
+        pb.setVisibility(View.GONE);
+        List<RanKingSchoolBean.ListBean> list = ranKingSchoolBeanBaseBean.data.getList();
 
         if(ranKingSchool_adapter==null)
         {
@@ -95,8 +96,7 @@ public class RankingActivity extends BaseActivity implements RankingView{
                 rankingRv.loadMoreComplete();
                 page++;
                 ranKingPresent.RanKingPresent(page,10);
-                System.out.println("page++++"+page+""+list.size());
-            }
+             }
         });
 
 

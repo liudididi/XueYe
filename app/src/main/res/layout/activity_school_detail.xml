@@ -89,81 +89,21 @@
         android:layout_toRightOf="@+id/schoold_icon"
         />
 
-
-    <TextView
-        android:visibility="invisible"
-        android:gravity="center"
-        android:layout_marginLeft="30px"
-        android:text="211"
-        android:background="@drawable/back_two"
-        android:textSize="40px"
-        android:layout_below="@+id/schoold_address"
-        android:layout_marginTop="30px"
-        android:layout_width="130px"
-        android:layout_height="wrap_content"
-        android:id="@+id/schoold_two"
-        android:layout_toRightOf="@+id/schoold_icon"
-        />
-    <TextView
-        android:visibility="invisible"
-        android:gravity="center"
-        android:layout_marginLeft="30px"
-        android:text="985"
-        android:background="@drawable/back_two"
-        android:textSize="40px"
-        android:layout_below="@+id/schoold_address"
-        android:layout_marginTop="30px"
-        android:layout_width="130px"
-        android:layout_height="wrap_content"
-        android:id="@+id/schoold_nine"
-        android:layout_toRightOf="@+id/schoold_two"
-        />
-
-    <TextView
-        android:visibility="invisible"
-        android:gravity="center"
-        android:layout_marginLeft="30px"
-        android:text="研究生院"
-        android:background="@drawable/back_two"
-        android:textSize="40px"
-        android:layout_below="@+id/schoold_address"
-        android:layout_marginTop="30px"
-        android:layout_width="190px"
-        android:layout_height="60px"
-        android:id="@+id/schoold_yjs"
-        android:layout_toRightOf="@+id/schoold_nine"
-        />
-
-    <TextView
-        android:visibility="invisible"
-        android:gravity="center"
-        android:layout_marginLeft="30px"
-        android:text="国防生"
-        android:background="@drawable/back_two"
-        android:textSize="40px"
-        android:layout_below="@+id/schoold_address"
-        android:layout_marginTop="30px"
-        android:layout_width="180px"
-        android:layout_height="60px"
-        android:id="@+id/schoold_gfs"
-        android:layout_toRightOf="@+id/schoold_yjs"
-        />
+        <untils.FlowLayout
+            android:layout_marginLeft="20px"
+            android:id="@+id/school_flow"
+            android:layout_toRightOf="@+id/schoold_icon"
+            android:layout_below="@+id/schoold_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <TextView
-        android:visibility="invisible"
-        android:layout_toRightOf="@+id/schoold_icon"
-        android:gravity="center"
-        android:layout_marginLeft="30px"
-        android:text="卓越计划"
-        android:background="@drawable/back_two"
-        android:textSize="40px"
-        android:layout_below="@+id/schoold_two"
-        android:layout_marginTop="30px"
-        android:layout_width="190px"
-        android:layout_height="60px"
-        android:id="@+id/schoold_zyjh"
-        />
+        </untils.FlowLayout>
+
+
+
+
+
 
 
     <!--<TextView

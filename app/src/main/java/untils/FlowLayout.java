@@ -106,7 +106,7 @@ public class FlowLayout extends ViewGroup {
                         : width + getPaddingLeft() + getPaddingRight(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height
                         + getPaddingTop() + getPaddingBottom());
-        setPadding(dp2px(18), dp2px(6), dp2px(5), dp2px(7));
+        setPadding(dp2px(0), dp2px(6), dp2px(5), dp2px(7));
     }
 
     // 储存所有的View
@@ -268,7 +268,24 @@ public class FlowLayout extends ViewGroup {
         }
     }
 
+    public void setschoolListData(List<String> list) {
 
+        int count = list.size();
+        for (int i = 0; i < count; i++) {
+            final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_schooltext, this,
+                    false);
+            tv.setText(list.get(i));
+            tv.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onTagClickListener != null)
+                        onTagClickListener.TagClick(tv.getText().toString());
+                }
+            });
+
+            this.addView(tv);
+        }
+    }
 
     public void settuijianListData(List<String> list) {
 

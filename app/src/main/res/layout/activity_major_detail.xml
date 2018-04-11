@@ -70,6 +70,14 @@
                 android:layout_centerVertical="true"
                 android:background="#ccc"
                 ></View>
+
+            <View
+                android:layout_marginBottom="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#ccc"
+                ></View>
             <View
                 android:id="@+id/md_vgk"
                 android:layout_width="80px"
@@ -79,13 +87,6 @@
                 android:background="#3B9EFF"
                 android:visibility="visible">
             </View>
-            <View
-                android:layout_marginBottom="2px"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#ccc"
-                ></View>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/md_rlqj"
@@ -138,15 +139,7 @@
                 android:text="开设院校"
                 android:textSize="50px"
                 android:layout_centerInParent="true"/>
-            <View
-                android:visibility="gone"
-                android:id="@+id/md_vyx"
-                android:layout_width="80px"
-                android:layout_height="5px"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:background="#3B9EFF"
-                />
+
             <View
                 android:layout_marginBottom="2px"
                 android:layout_alignParentBottom="true"
@@ -156,12 +149,15 @@
                 >
             </View>
             <View
-                android:layout_width="2px"
-                android:layout_height="50px"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="#ccc"
-                ></View>
+                android:visibility="gone"
+                android:id="@+id/md_vyx"
+                android:layout_width="80px"
+                android:layout_height="5px"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="#3B9EFF"
+                />
+
         </RelativeLayout>
     </LinearLayout>
 

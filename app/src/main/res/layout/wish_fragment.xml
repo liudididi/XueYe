@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f3f3f3"
+    android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbars="none">
  <RelativeLayout
@@ -117,9 +117,9 @@
      <View
          android:id="@+id/view2"
          android:layout_below="@+id/tv_can"
-         android:background="#666666"
+         android:background="#F3F3F3"
          android:layout_width="match_parent"
-         android:layout_height="2px"></View>
+         android:layout_height="3px"></View>
 
 
      <android.support.v7.widget.RecyclerView

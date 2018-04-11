@@ -9,11 +9,12 @@
         android:id="@+id/spinner_tv"
         android:layout_width="match_parent"
         android:layout_height="100px"
+        android:layout_marginLeft="74px"
         android:layout_centerInParent="true"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#cccc"></View>
+        android:layout_height="3px"
+        android:background="#F3F3F3"></View>
 
 </LinearLayout>

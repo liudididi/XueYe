@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#fff"
     android:layout_height="match_parent"
     tools:context="com.example.login_demo.MainActivity">
 
@@ -37,11 +38,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1.5px"
+        android:layout_height="3px"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ll_top"
-        android:background="#cdcdcd"
+        android:background="#ccc"
         android:id="@+id/view2"></View>
 
     <include
@@ -55,12 +56,7 @@
     <include
         layout="@layout/pass_register"
         android:visibility="gone"></include>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1.5px"
-        android:background="#cdcdcd"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="125px"></View>
+
     <LinearLayout
         android:orientation="horizontal"
         android:id="@+id/ll"
@@ -70,7 +66,7 @@
         android:gravity="center"
         >
          <TextView
-             android:textColor="@color/black"
+             android:textColor="#999999"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="注册或登录代表您同意"
@@ -78,8 +74,8 @@
               />
         <TextView
             android:id="@+id/tv_xieyi"
-            android:textColor="#13227a"
-            android:textSize="25px"
+            android:textColor="#3986f3"
+            android:textSize="30px"
             android:layout_marginLeft="20px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

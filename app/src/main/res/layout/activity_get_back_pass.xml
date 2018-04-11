@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F3F3"
+    android:background="#fff"
      tools:context="com.example.login_demo.GetBackPassActivity">
 
     <RelativeLayout
@@ -38,40 +38,54 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ll_top"
-        android:background="#F3F3F3"
+        android:background="#ccc"
         android:id="@+id/view2">
 
     </View>
 
-    <TextView
+    <ImageView
         android:id="@+id/tv"
-        android:layout_width="match_parent"
-        android:layout_height="135px"
-        android:textSize="40px"
-        android:background="#F3F3F3"
-        android:textColor="#999999"
-        android:layout_marginLeft="50px"
-        android:layout_marginTop="123px"
-        android:gravity="center_vertical"
-        android:text="验证信息后，请设置新密码"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/xybdr"
+         android:layout_below="@id/view2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100px"
+       />
 
     <RelativeLayout
         android:background="#fff"
         android:id="@+id/rl"
         android:layout_below="@id/tv"
+        android:layout_marginTop="80px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:padding="30px"
+             android:src="@drawable/phone"
+             android:id="@+id/img_phone"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:layout_marginTop="10px"
+            />
+        <TextView
+            android:id="@+id/tv_sjh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:textSize="50px"
+            android:textColor="#333"
+            android:layout_marginTop="55px"
+            android:layout_toRightOf="@+id/img_phone"
+             android:text="手机号"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="170px"
-            android:layout_marginRight="30px"
-            android:layout_marginLeft="50px"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
              android:hint="请输入手机号码"
-            android:textSize="45px"
+            android:textSize="43px"
             android:background="@null"
+            android:layout_marginLeft="30px"
             android:id="@+id/getback_phone"
+            android:layout_toRightOf="@+id/tv_sjh"
             android:theme="@style/MyEditText"/>
         <TextView
             android:id="@+id/getback_captcha"
@@ -80,8 +94,7 @@
             android:layout_alignParentRight="true"
             android:textSize="40px"
             android:textColor="#fff"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="40px"
+             android:layout_marginTop="40px"
             android:layout_marginRight="45px"
             android:background="@drawable/back_guanzhu"
             android:gravity="center"
@@ -117,18 +130,35 @@
             android:layout_height="3px"
             android:layout_below="@+id/getback_phone"
             android:background="#F3F3F3"></View>
+
+
+        <ImageView
+            android:layout_marginTop="190px"
+            android:padding="30px"
+            android:src="@drawable/mima"
+             android:id="@+id/img_mima"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            />
+        <TextView
+            android:id="@+id/tv_yzm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="235px"
+            android:textSize="50px"
+            android:textColor="#333"
+            android:layout_marginRight="30px"
+            android:layout_toRightOf="@+id/img_mima"
+             android:text="验证码"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="170px"
             android:background="@null"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_below="@+id/getback_phone"
             android:layout_marginTop="10px"
             android:hint="请输入短信验证码"
-            android:textSize="45px"
-            android:layout_marginRight="30px"
-            android:layout_marginLeft="50px"
+            android:textSize="43px"
+         android:layout_toRightOf="@+id/tv_yzm"
             android:theme="@style/MyEditText"
             android:id="@+id/getback_code" />
         <View
@@ -136,19 +166,36 @@
             android:layout_height="3px"
             android:layout_below="@+id/getback_code"
             android:background="#F3F3F3"></View>
+
+        <ImageView
+            android:padding="30px"
+            android:layout_marginTop="375px"
+            android:src="@drawable/dx"
+             android:id="@+id/new_pass"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            />
+        <TextView
+            android:id="@+id/tv_new_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="420px"
+            android:textSize="50px"
+            android:textColor="#333"
+            android:layout_marginRight="30px"
+            android:layout_toRightOf="@+id/new_pass"
+             android:text="新密码"/>
         <EditText
             android:id="@+id/getback_pass"
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:background="@null"
             android:layout_marginRight="30px"
-            android:layout_alignLeft="@+id/tv_login"
-            android:layout_alignStart="@+id/tv_login"
             android:layout_below="@+id/getback_code"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="50px"
-            android:hint="请重新设置密码（6-12位字母或数字）"
-            android:textSize="45px"
+            android:layout_toRightOf="@+id/tv_new_pass"
+            android:hint="请设置新密码(6-12位字母或数字)"
+            android:textSize="43px"
             android:inputType="textPassword"
             android:theme="@style/MyEditText" />
         <ImageView

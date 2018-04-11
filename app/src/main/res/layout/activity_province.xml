@@ -46,64 +46,92 @@
         android:layout_width="320px"
         android:layout_height="100px"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_subject2"
-       >
+        >
 
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textSize="50px"
             android:gravity="center"
+            android:textColor="#333"
             android:text="北京市"/>
         <ImageView
             android:id="@+id/iv_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:src="@drawable/right"
            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="50px"
+            android:layout_marginRight="45px"
             android:visibility="visible"/>
         <ImageView
             android:id="@+id/iv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40px"
+            android:layout_height="40px"
             android:src="@drawable/next"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="50px"
+            android:layout_marginRight="45px"
             android:visibility="gone"/>
     </RelativeLayout>
     </LinearLayout>
-    <TextView
-        android:id="@+id/province1_tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="100px"
+    <View
+        android:id="@+id/view0"
         android:layout_below="@id/ll"
-        android:gravity="center_vertical"
-        android:text="理科"
-        android:layout_marginLeft="20px"
-        android:textSize="50px"
-        android:textColor="#000"/>
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#F3F3F3"></View>
+    <LinearLayout
+        android:id="@+id/la"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view0"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="8px"
+            android:layout_height="50px"
+            android:background="#3986f3"
+            android:layout_marginLeft="50px"
+            android:layout_gravity="center_vertical"
+            ></View>
+        <TextView
+            android:id="@+id/province1_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="100px"
+            android:gravity="center_vertical"
+            android:text="理科"
+            android:layout_marginLeft="20px"
+            android:textSize="50px"
+            android:textColor="#000"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/li"
         android:layout_width="match_parent"
         android:layout_height="100px"
-        android:layout_below="@id/province1_tv1">
+        android:layout_below="@id/la">
         <include
             layout="@layout/public_item"
             ></include>
     </LinearLayout>
+    <View
+        android:id="@+id/view_li"
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_below="@id/li"
+        android:background="#F3F3F3"></View>
 
     <LinearLayout
         android:id="@+id/ll_science"
         android:layout_width="match_parent"
         android:layout_height="500px"
         android:orientation="horizontal"
-        android:layout_below="@id/li"
+        android:layout_below="@id/view_li"
         android:background="#fff"
         >
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/province_rv_science1"
             android:layout_width="0px"
@@ -112,6 +140,7 @@
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:background="#fff"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/province_rv_science2"
             android:layout_width="0px"
@@ -137,33 +166,59 @@
             android:layout_marginRight="20px"
             android:background="#fff"/>
     </LinearLayout>
+    <View
+        android:layout_width="3px"
+        android:layout_height="500px"
+        android:background="#F3F3F3"
+        android:layout_below="@id/view_li"
+        android:layout_marginLeft="268.5px"
+        ></View>
 
-
+    <LinearLayout
+        android:id="@+id/l"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/ll_science"
+        >
+        <View
+            android:layout_width="8px"
+            android:layout_height="50px"
+            android:background="#3986f3"
+            android:layout_marginLeft="50px"
+            android:layout_gravity="center_vertical"
+            ></View>
     <TextView
         android:id="@+id/province1_tv2"
         android:layout_width="wrap_content"
         android:layout_height="100px"
-        android:layout_below="@id/ll_science"
         android:text="文科"
         android:gravity="center_vertical"
         android:layout_marginLeft="20px"
         android:textSize="50px"
         android:textColor="#000"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/wen"
         android:layout_width="match_parent"
         android:layout_height="100px"
-        android:layout_below="@id/province1_tv2">
+        android:layout_below="@id/l">
         <include
             layout="@layout/public_item"
             ></include>
     </LinearLayout>
+    <View
+        android:id="@+id/view_wen"
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_below="@id/wen"
+        android:background="#F3F3F3"></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="500px"
         android:orientation="horizontal"
         android:background="#fff"
-        android:layout_below="@id/wen">
+        android:layout_below="@id/view_wen">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/province_rv_arts1"
             android:layout_width="0px"
@@ -173,6 +228,7 @@
             android:layout_marginRight="20px"
             >
         </android.support.v7.widget.RecyclerView>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/province_rv_arts2"
             android:layout_width="0px"
@@ -201,13 +257,30 @@
             >
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
+    <View
+        android:layout_width="3px"
+        android:layout_height="500px"
+        android:background="#F3F3F3"
+        android:layout_below="@id/view_wen"
+        android:layout_marginLeft="268.5px"
+        ></View>
     <ListView
         android:id="@+id/spiiner_lv"
         android:layout_width="match_parent"
         android:layout_height="800px"
         android:visibility="gone"
-        android:layout_below="@id/ll"
+        android:layout_below="@id/view0"
         android:background="#fff"
+        android:divider="@null"
         >
     </ListView>
+    <View
+        android:id="@+id/view_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/spiiner_lv"
+        android:background="#cc222222"
+        android:visibility="gone"
+        >
+    </View>
 </RelativeLayout>

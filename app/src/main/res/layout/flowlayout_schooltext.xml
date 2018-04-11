@@ -5,14 +5,12 @@
     android:layout_marginRight="20px"
     android:id="@+id/hot_name"
     android:text="北京大学"
-    android:textSize="40px"
-    android:textColor="#999999"
-    android:background="@drawable/back_zhuanye"
+    android:textSize="25px"
+    android:background="@drawable/back_two"
     android:gravity="center"
-    android:padding="15px"
-    android:layout_height="wrap_content"
-    android:layout_margin="10px"
-
+    android:layout_height="60px"
+    android:padding="10px"
+    android:layout_margin="20px"
     >
 
 

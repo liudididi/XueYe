@@ -8,27 +8,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
+import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import base.BaseApi;
+import bean.RanKingSchoolBean;
 import bean.RanKingSchoolBean2;
+import untils.FlowLayout;
 
 /**
  * Created by 祝文 on 2018/1/30.
  */
 
 public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Adapter.MyViewHolder> {
-   private ArrayList<RanKingSchoolBean2> list;
+   private List<RanKingSchoolBean.ListBean> list;
    private Context context;
 
-    public RanKingSchool_Adapter(ArrayList<RanKingSchoolBean2> list, Context context) {
+    public RanKingSchool_Adapter( List<RanKingSchoolBean.ListBean> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
-    public void LoadMore(ArrayList<RanKingSchoolBean2> newlist) {
+    public void LoadMore(List<RanKingSchoolBean.ListBean> newlist) {
         if(list!=null){
             list.addAll(newlist);
             this.notifyDataSetChanged();
@@ -44,12 +50,65 @@ public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Ad
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        holder.ranking_tv_num.setText(position+1+"");
-        holder.ranking_tv_name.setText(list.get(position).getName());
-        holder.ranking_tv_address.setText(list.get(position).getAddress());
-        holder.ranking_tv_typeRank.setText(list.get(position).getTypeRank());
+        holder.setIsRecyclable(false);
+        //211
+        String two = list.get(position).getTwo();
+        //985
+        String nine = list.get(position).getNine();
+        //国防生
+        String defense_student = list.get(position).getDefense_student();
+        System.out.println("数据++++"+defense_student);
+        //研究生院
+        String graduate = list.get(position).getGraduate();
+        //自主招生
+        String recruit = list.get(position).getRecruit();
+        //卓越计划
+        String preeminent_plan = list.get(position).getPreeminent_plan();
 
-        holder.view.setOnClickListener(new View.OnClickListener() {
+        String url = list.get(position).getUrl();
+        String name = list.get(position).getName();
+        String address = list.get(position).getAddress();
+        String father = list.get(position).getFather();
+        String ranking = list.get(position).getRanking();
+        System.out.println("数据++++"+url);
+
+        List<String> fujialist=new ArrayList<>();
+        if(two!=null&&two.length()>2){
+            fujialist.add(two);
+        }
+        if(nine!=null&&nine.length()>2){
+            fujialist.add(nine);
+        }
+        if(graduate!=null&&graduate.length()>2){
+            fujialist.add(graduate);
+        }
+        if(recruit!=null&&recruit.length()>2){
+            fujialist.add(recruit);
+        }
+        if(defense_student!=null&&defense_student.length()>2){
+            fujialist.add(defense_student);
+        }
+        if(preeminent_plan!=null&&preeminent_plan.length()>2){
+            fujialist.add(preeminent_plan);
+        }
+
+
+        if(fujialist.size()>0&&fujialist!=null){
+            holder.majoritem_flow.setZyListData(fujialist);
+        }else {
+            fujialist.add("暂无信息");
+            holder.majoritem_flow.setZyListData(fujialist);
+        }
+
+        if(url!=null){
+            Glide.with(context).load(BaseApi.ImgApi+url).into(holder.schoolitem_url);
+        }
+        holder.schoolitem_name.setText(name);
+        holder.schoolitem_address.setText(address);
+        holder.tv_father.setText(father);
+        holder.schoolitem_typerank.setText(ranking);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, SchoolDetailActivity.class);
@@ -66,19 +125,21 @@ public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Ad
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView ranking_tv_num;
-        private final TextView ranking_tv_name;
-        private final TextView ranking_tv_address;
-        private final TextView ranking_tv_typeRank;
-        private  View view;
+        private final CustomShapeImageView schoolitem_url;
+        private final TextView schoolitem_name;
+        private final TextView schoolitem_address;
+        private final TextView schoolitem_typerank;
+        private final TextView tv_father;
+        private final FlowLayout majoritem_flow;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            ranking_tv_num = itemView.findViewById(R.id.ranking_tv_num);
-            ranking_tv_name = itemView.findViewById(R.id.ranking_tv_name);
-            ranking_tv_address = itemView.findViewById(R.id.ranking_tv_address);
-            ranking_tv_typeRank = itemView.findViewById(R.id.ranking_tv_typeRank);
-            view=itemView;
+            schoolitem_url = itemView.findViewById(R.id.schoolitem_url);
+            schoolitem_name = itemView.findViewById(R.id.schoolitem_name);
+            schoolitem_address = itemView.findViewById(R.id.schoolitem_address);
+            schoolitem_typerank = itemView.findViewById(R.id.schoolitem_typerank);
+            majoritem_flow = itemView.findViewById(R.id.majoritem_flow);
+            tv_father = itemView.findViewById(R.id.tv_father);
 
         }
     }

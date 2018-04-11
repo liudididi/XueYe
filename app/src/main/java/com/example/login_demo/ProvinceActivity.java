@@ -62,6 +62,9 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
     ImageView iv_right;
     @BindView(R.id.iv_next)
     ImageView iv_next;
+    @BindView(R.id.view_name)
+    View view_name;
+
     private ArrayAdapter<String> area_adapter;
     private ProvincePresent provincePresent;
     private ArrayList<String> list1;
@@ -132,6 +135,7 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
                     msg=false;
                     iv_right.setVisibility(View.GONE);
                     iv_next.setVisibility(View.VISIBLE);
+                    view_name.setVisibility(View.VISIBLE);
                 }
               else
                 {
@@ -140,6 +144,8 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
 
                     iv_right.setVisibility(View.VISIBLE);
                     iv_next.setVisibility(View.GONE);
+                    view_name.setVisibility(View.GONE);
+
                 }
 
             }
@@ -149,7 +155,9 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
         spiiner_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                  s = list.get(i).toString();
+                view_name.setVisibility(View.GONE);
+
+                s = list.get(i).toString();
                 spiiner_lv.setVisibility(View.GONE);
                 msg=true;
                 iv_right.setVisibility(View.VISIBLE);

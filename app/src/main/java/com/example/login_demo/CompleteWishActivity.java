@@ -17,7 +17,82 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CompleteWishActivity extends BaseActivity {
+public class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CompleteWishActivity extends BaseActivity {
     @BindView(R.id.complete_iv_back)
     ImageView completeIvBack;
     @BindView(R.id.ivyi_right)

@@ -50,10 +50,11 @@
             android:layout_marginRight="20px"
             />
         <untils.FlowLayout
-             android:layout_marginLeft="210px"
-           android:layout_centerVertical="true"
+             android:layout_toRightOf="@id/schoolitem_url"
+        android:layout_centerVertical="true"
             android:id="@+id/majoritem_flow"
             android:layout_width="match_parent"
+            android:layout_marginLeft="30px"
             android:layout_height="wrap_content"
             >
         </untils.FlowLayout>

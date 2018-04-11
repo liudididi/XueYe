@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F3F3F3"
     tools:context="com.example.login_demo.OneTableActivity">
     <RelativeLayout
         android:id="@+id/rl_onetable"
@@ -28,18 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
-     <!--   <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/location"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="50px"/>-->
+
     </RelativeLayout>
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="3px"
         android:background="#ccc"
         android:layout_below="@id/rl_onetable"></View>
 
@@ -72,6 +67,13 @@
             android:layout_centerVertical="true"
             android:background="#ccc"
             ></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5px"
+            android:background="#F3F3F3"
+            android:layout_alignParentBottom="true"
+            ></View>
         <View
             android:id="@+id/view_arts"
             android:layout_width="100px"
@@ -94,13 +96,16 @@
                 android:text="理科"
                 android:textSize="50px"
                 android:layout_centerInParent="true"/>
+
+
             <View
-                android:layout_width="1px"
-                android:layout_height="50px"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="#ccc"
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="5px"
+                android:background="#F3F3F3"
+               android:layout_alignParentBottom="true"
                 ></View>
+
             <View
                 android:id="@+id/view_science"
                 android:layout_width="100px"
@@ -111,15 +116,10 @@
                 android:visibility="gone"/>
         </RelativeLayout>
     </LinearLayout>
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="5px"
-        android:background="#ccc"
-        android:layout_below="@id/onetable_ll"></View>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/onetable_rv"
-        android:layout_below="@id/view2"
+        android:layout_below="@id/onetable_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"

@@ -393,138 +393,142 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
         list7= new ArrayList<>();
         list8 = new ArrayList<>();
         data2 = listBaseBean.data;
+     if(data2!=null&&data2.size()>0){
 
-            for (int i = 0; i < data2.size(); i++) {
-                //文理科
-                String classify = data2.get(i).getClassify();
-                if(classify.equals("理科"))
-                {
-                    //几批
-                    String time = data2.get(i).getTime();
-                    list1.add(time);
-                    flag1=true;
-                    flag2=true;
-                    flag3=true;
-                    List<ScoreBean2.ScoresBean> scores = data2.get(i).getScores();
-                    for (int i1 = 0; i1 < scores.size(); i1++) {
-                        String year = scores.get(i1).getYear();
-                        if(year.equals("2017"))
-                        {
-                            list2.add(scores.get(i1).getScoreAvg());
-                            flag1=false;
-                        }
-                        if(year.equals("2016"))
-                        {
+         for (int i = 0; i < data2.size(); i++) {
+             //文理科
+             String classify = data2.get(i).getClassify();
+             if(classify.equals("理科"))
+             {
+                 //几批
+                 String time = data2.get(i).getTime();
+                 list1.add(time);
+                 flag1=true;
+                 flag2=true;
+                 flag3=true;
+                 List<ScoreBean2.ScoresBean> scores = data2.get(i).getScores();
+                 for (int i1 = 0; i1 < scores.size(); i1++) {
+                     String year = scores.get(i1).getYear();
+                     if(year.equals("2017"))
+                     {
+                         list2.add(scores.get(i1).getScoreAvg());
+                         flag1=false;
+                     }
+                     if(year.equals("2016"))
+                     {
 
-                            listthree.add(scores.get(i1).getScoreAvg());
-                            flag2=false;
-                        }
-                        if(year.equals("2015"))
-                        {
-                            list4.add(scores.get(i1).getScoreAvg());
-                            flag3=false;
-                        }
-                    }
-                    if(flag1==true)
-                    {
-                        list2.add("---");
-                    }
-                    if(flag2==true)
-                    {
-                        listthree.add("---");
-                    }
-                    if(flag3==true)
-                    {
-                        list4.add("---");
-                    }
-                }
-                if(classify.equals("文科"))
-                {
-                    //几批
-                    String time = data2.get(i).getTime();
-                    list5.add(time);
-                    flag1=true;
-                    flag2=true;
-                    flag3=true;
-                    List<ScoreBean2.ScoresBean> scores = data2.get(i).getScores();
-                    for (int i1 = 0; i1 < scores.size(); i1++) {
-                        String year = scores.get(i1).getYear();
-                        if(year.equals("2017"))
-                        {
-                            list6.add(scores.get(i1).getScoreAvg());
-                            flag1=false;
-                        }
-                        if(year.equals("2016"))
-                        {
+                         listthree.add(scores.get(i1).getScoreAvg());
+                         flag2=false;
+                     }
+                     if(year.equals("2015"))
+                     {
+                         list4.add(scores.get(i1).getScoreAvg());
+                         flag3=false;
+                     }
+                 }
+                 if(flag1==true)
+                 {
+                     list2.add("---");
+                 }
+                 if(flag2==true)
+                 {
+                     listthree.add("---");
+                 }
+                 if(flag3==true)
+                 {
+                     list4.add("---");
+                 }
+             }
+             if(classify.equals("文科"))
+             {
+                 //几批
+                 String time = data2.get(i).getTime();
+                 list5.add(time);
+                 flag1=true;
+                 flag2=true;
+                 flag3=true;
+                 List<ScoreBean2.ScoresBean> scores = data2.get(i).getScores();
+                 for (int i1 = 0; i1 < scores.size(); i1++) {
+                     String year = scores.get(i1).getYear();
+                     if(year.equals("2017"))
+                     {
+                         list6.add(scores.get(i1).getScoreAvg());
+                         flag1=false;
+                     }
+                     if(year.equals("2016"))
+                     {
 
-                            list7.add(scores.get(i1).getScoreAvg());
-                            flag2=false;
-                        }
-                        if(year.equals("2015"))
-                        {
-                            list8.add(scores.get(i1).getScoreAvg());
-                            flag3=false;
-                        }
-                    }
-                    if(flag1==true)
-                    {
-                        list6.add("---");
-                    }
-                    if(flag2==true)
-                    {
-                        list7.add("---");
-                    }
-                    if(flag3==true)
-                    {
-                        list8.add("---");
-                    }
-                }
-            }
+                         list7.add(scores.get(i1).getScoreAvg());
+                         flag2=false;
+                     }
+                     if(year.equals("2015"))
+                     {
+                         list8.add(scores.get(i1).getScoreAvg());
+                         flag3=false;
+                     }
+                 }
+                 if(flag1==true)
+                 {
+                     list6.add("---");
+                 }
+                 if(flag2==true)
+                 {
+                     list7.add("---");
+                 }
+                 if(flag3==true)
+                 {
+                     list8.add("---");
+                 }
+             }
+         }
 
 
-            //理科
-            ProvinceAdapter2 provinceAdapter9 = new ProvinceAdapter2(list1,ScoreActivity.this);
-            score_rv_science1.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-            score_rv_science1.setAdapter(provinceAdapter9);
+         //理科
+         ProvinceAdapter2 provinceAdapter9 = new ProvinceAdapter2(list1,ScoreActivity.this);
+         score_rv_science1.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_science1.setAdapter(provinceAdapter9);
 
-            ProvinceAdapter2 provinceAdapter10=new ProvinceAdapter2(list2,ScoreActivity.this);
-            score_rv_science2.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-            score_rv_science2.setAdapter(provinceAdapter10);
+         ProvinceAdapter2 provinceAdapter10=new ProvinceAdapter2(list2,ScoreActivity.this);
+         score_rv_science2.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_science2.setAdapter(provinceAdapter10);
 
-            ProvinceAdapter2 provinceAdapter11=new ProvinceAdapter2(listthree,ScoreActivity.this);
-            score_rv_science3.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-            score_rv_science3.setAdapter(provinceAdapter11);
+         ProvinceAdapter2 provinceAdapter11=new ProvinceAdapter2(listthree,ScoreActivity.this);
+         score_rv_science3.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_science3.setAdapter(provinceAdapter11);
 
-            ProvinceAdapter2 provinceAdapter12=new ProvinceAdapter2(list4,ScoreActivity.this);
-            score_rv_science4.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-            score_rv_science4.setAdapter(provinceAdapter12);
+         ProvinceAdapter2 provinceAdapter12=new ProvinceAdapter2(list4,ScoreActivity.this);
+         score_rv_science4.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_science4.setAdapter(provinceAdapter12);
 
-            //文科
-        ProvinceAdapter2 provinceAdapter13 = new ProvinceAdapter2(list5,ScoreActivity.this);
-        score_rv_arts1.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-        score_rv_arts1.setAdapter(provinceAdapter13);
+         //文科
+         ProvinceAdapter2 provinceAdapter13 = new ProvinceAdapter2(list5,ScoreActivity.this);
+         score_rv_arts1.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_arts1.setAdapter(provinceAdapter13);
 
-        ProvinceAdapter2 provinceAdapter14=new ProvinceAdapter2(list6,ScoreActivity.this);
-        score_rv_arts2.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-        score_rv_arts2.setAdapter(provinceAdapter14);
+         ProvinceAdapter2 provinceAdapter14=new ProvinceAdapter2(list6,ScoreActivity.this);
+         score_rv_arts2.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_arts2.setAdapter(provinceAdapter14);
 
-        ProvinceAdapter2 provinceAdapter15=new ProvinceAdapter2(list7,ScoreActivity.this);
-        score_rv_arts3.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-        score_rv_arts3.setAdapter(provinceAdapter15);
+         ProvinceAdapter2 provinceAdapter15=new ProvinceAdapter2(list7,ScoreActivity.this);
+         score_rv_arts3.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_arts3.setAdapter(provinceAdapter15);
 
-        ProvinceAdapter2 provinceAdapter16=new ProvinceAdapter2(list8,ScoreActivity.this);
-        score_rv_arts4.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
-        score_rv_arts4.setAdapter(provinceAdapter16);
+         ProvinceAdapter2 provinceAdapter16=new ProvinceAdapter2(list8,ScoreActivity.this);
+         score_rv_arts4.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));
+         score_rv_arts4.setAdapter(provinceAdapter16);
 
-        if(list1.size()==0)
-        {
-            Toast.makeText(this, "无数据", Toast.LENGTH_SHORT).show();
-        }
+         if(list1.size()==0)
+         {
+             Toast.makeText(this, "无数据", Toast.LENGTH_SHORT).show();
+         }
 
-        if(list5.size()==0)
-        {
-            Toast.makeText(this, "无数据", Toast.LENGTH_SHORT).show();
-        }
+         if(list5.size()==0)
+         {
+             Toast.makeText(this, "无数据", Toast.LENGTH_SHORT).show();
+         }
+     }
+
+
     }
 
     @Override

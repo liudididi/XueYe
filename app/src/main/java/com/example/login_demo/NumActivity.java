@@ -66,6 +66,8 @@ public class NumActivity extends BaseActivity implements NumView{
     LinearLayout zhexian_ll;
     @BindView(R.id.sv)
     ScrollView sv;
+    @BindView(R.id.view_back)
+    View view_back;
      private NumPresenter numPresenter;
     private boolean flag=true;
     private int xiabiao;
@@ -155,6 +157,8 @@ public class NumActivity extends BaseActivity implements NumView{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                view_back.setVisibility(View.GONE);
+
                 String s = arealist.get(i).toString();
                 if(s!=null)
                 {
@@ -198,6 +202,7 @@ public class NumActivity extends BaseActivity implements NumView{
                     lv.setVisibility(View.VISIBLE);
                     iv_ks.setVisibility(View.GONE);
                     iv_ks_xia.setVisibility(View.VISIBLE);
+                    view_back.setVisibility(View.VISIBLE);
                     flag=false;
                 }
                 else
@@ -205,6 +210,7 @@ public class NumActivity extends BaseActivity implements NumView{
                     lv.setVisibility(View.GONE);
                     iv_ks.setVisibility(View.VISIBLE);
                     iv_ks_xia.setVisibility(View.GONE);
+                    view_back.setVisibility(View.GONE);
                     flag=true;
                 }
                 break;
@@ -219,6 +225,11 @@ public class NumActivity extends BaseActivity implements NumView{
             for (int i = 0; i < major.size(); i++) {
                 //专业名称
                 String major1 = major.get(i).getMajor();
+                if(major1.length()>30)
+                {
+                    String substring = major1.substring(0, 30);
+                    major1=substring;
+                }
                 list.add(major1);
             }
             fl.setListZY(list);
