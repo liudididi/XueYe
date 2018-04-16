@@ -69,13 +69,13 @@
         android:textColor="#333333"/>
 
     <TextView
+        android:layout_marginBottom="120px"
         android:id="@+id/tv_kaiqi"
-        android:layout_below="@+id/tv3"
         android:layout_width="550px"
         android:layout_height="100px"
         android:textSize="50px"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="470px"
+        android:layout_alignParentBottom="true"
         android:textColor="#fff"
         android:text="开启专业星空之旅"
         android:gravity="center"

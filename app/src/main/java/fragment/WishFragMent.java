@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -33,6 +34,7 @@ import bean.CanSchoolBean2;
 import bean.SlideshowBean;
 import presenter.CountdownPresent;
 import presenter.WishPresent;
+import untils.NetUtil;
 import untils.SPUtils;
 import view.CountdownView;
 import view.WishView;
@@ -82,21 +84,14 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
 
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-
-        if(tbmaxfen==null&&tbmaxfen.equals("")){
-            tbmaxfen="500";
-        }
-
-        if(tbarea==null&&tbarea.equals("")){
-            tbarea="北京市";
-        }
-        if(tbsubtype==null&&tbsubtype.equals("")){
-            tbsubtype="文科";
-        }
-
         wish_school_none.setVisibility(View.GONE);
 
-        wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","5");
+
+        if(NetUtil.isNetworkAvailable(getActivity())){
+            wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","5");
+        }else {
+            Toast.makeText(getActivity(), "当前无网络", Toast.LENGTH_SHORT).show();
+        }
 
 
     }

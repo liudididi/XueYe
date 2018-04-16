@@ -16,6 +16,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 import untils.MyQusetUtils;
+import untils.NetUtil;
 import untils.SPUtils;
 
 //填报志愿表
@@ -57,16 +58,33 @@ public class ReportedActivity extends BaseActivity {
                 break;
             //初级志愿表
             case R.id.reported_primary:
-                intent(this, PrimaryActivity.class);
+                if(NetUtil.isNetworkAvailable(this)){
+                    intent(this, PrimaryActivity.class);
+
+                }else {
+                    Toast("当前无网络");
+                }
+
                 break;
             //高级志愿表
             case R.id.reported_advanced:
-                intent(this, AdvancedActivity.class);
+
+                if(NetUtil.isNetworkAvailable(this)){
+                    intent(this, AdvancedActivity.class);
+
+                }else {
+                    Toast("当前无网络");
+                }
+
                 break;
             //精选志愿表
             case R.id.reported_accurate:
                 if (token.length() < 4) {
                     Toast("用户未登录");
+                    return;
+                }
+                if(NetUtil.isNetworkAvailable(this)==false){
+                    Toast("当期无网络");
                     return;
                 }
                 rePb.setVisibility(View.VISIBLE);

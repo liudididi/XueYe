@@ -21,6 +21,7 @@ import com.weavey.loading.lib.LoadingLayout;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import butterknife.ButterKnife;
+import untils.NetUtil;
 
 /**
  * Created by 地地 on 2017/11/12.

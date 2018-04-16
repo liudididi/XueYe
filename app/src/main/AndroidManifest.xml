@@ -146,40 +146,17 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.Translucent">
-
-
-            　
-
             <intent-filter>
-
-
-                　　
-
                 <action android:name="android.intent.action.VIEW" />
-
-
-                　　
-
                 <category android:name="android.intent.category.DEFAULT" />
-
-
-                　　
-
                 <data android:scheme="wx1152aee306087394" />
-
-
-                　　
-
             </intent-filter>
         </activity>
+
+
         <activity android:name=".AccurateActivity" />
         <activity android:name=".Volunteer_ScreenActivity" />
         <activity android:name=".startfenleiActivity" />
-
-
-        　
-        　
-
 
         <meta-data
             android:name="baiduren"

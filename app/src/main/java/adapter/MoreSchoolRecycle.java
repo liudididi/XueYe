@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.login_demo.R;
@@ -20,6 +21,7 @@ import base.BaseApi;
 import bean.CheckSchoolBean;
 import bean.SchoolBean;
 import untils.FlowLayout;
+import untils.NetUtil;
 
 /**
  * Created by 地地 on 2018/1/26.
@@ -97,6 +99,10 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
          mySchoolViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(NetUtil.isNetworkAvailable(context)==false){
+                    Toast.makeText(context, "当前无网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent=new Intent(context, SchoolDetailActivity.class);
                 intent.putExtra("schoolname",list.get(position).getName());
                 context.startActivity(intent);

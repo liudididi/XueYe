@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +24,13 @@ import base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import untils.NetUtil;
 import untils.SPUtils;
 
 public class EstimateGradeActivity extends BaseActivity {
 
     @BindView(R.id.estimate_iv_back)
     ImageView estimateIvBack;
-
     @BindView(R.id.estimate_tvwen)
     TextView estimateTvwen;
     @BindView(R.id.estimate_tvli)
@@ -101,7 +102,6 @@ public class EstimateGradeActivity extends BaseActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
 
             }
         });*/
@@ -190,7 +190,10 @@ public class EstimateGradeActivity extends BaseActivity {
                     Toast("分数过高，糊弄自己呢");
                     break;
                 }
-
+                if(NetUtil.isNetworkAvailable(this)==false){
+                    Toast.makeText(this, "当前无网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 tbmaxfen = edfen;
                 SPUtils.put(MyApp.context, "tbarea", tbarea);
                 SPUtils.put(MyApp.context, "tbmaxfen", tbmaxfen);

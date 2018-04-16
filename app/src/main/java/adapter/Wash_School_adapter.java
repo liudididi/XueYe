@@ -21,6 +21,7 @@ import base.BaseApi;
 import base.BaseBean;
 import bean.CanSchoolBean;
 import bean.CanSchoolBean2;
+import untils.NetUtil;
 import view.WishView;
 
 /**
@@ -65,6 +66,10 @@ public class Wash_School_adapter  extends RecyclerView.Adapter{
                 school_viewHoder1.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if(NetUtil.isNetworkAvailable(context)==false){
+                            Toast.makeText(context, "当前无网络", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         context.startActivity(new Intent(context, More_SchoolActivity.class));
                      }
                 });
@@ -79,6 +84,10 @@ public class Wash_School_adapter  extends RecyclerView.Adapter{
                 school_viewHoder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if(NetUtil.isNetworkAvailable(context)==false){
+                            Toast.makeText(context, "当前无网络", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         Intent intent=new Intent(context, SchoolDetailActivity.class);
                         intent.putExtra("schoolname",list.get(position).getName());
                         context.startActivity(intent);

@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_alignParentBottom="true"
-            android:background="#333"
+            android:background="#ccc"
             ></View>
     </RelativeLayout>
 
@@ -136,8 +136,8 @@
                     />
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#333"
+                    android:layout_height="14px"
+                    android:background="#FAFAFA"
                     android:layout_alignParentBottom="true"
                     ></View>
             </RelativeLayout>
@@ -145,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/fl_tjly"
+                android:layout_marginLeft="70px"
                 ></untils.FlowLayout>
 
             <View

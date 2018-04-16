@@ -31,6 +31,7 @@ import com.meg7.widget.CustomShapeImageView;
 import base.Basefragment;
 import bean.MyUserBean;
 import bean.UserBean;
+import untils.NetUtil;
 import untils.SPUtils;
 
 /**
@@ -140,25 +141,41 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
             case R.id.my_school:
                  checLogin= checLogin();
                 if(checLogin ==true){
-                    intent=new Intent(getActivity(), MySchoolActivity.class);
-                    intent.putExtra("token",token);
-                    startActivity(intent);
-                }
+                   if(NetUtil.isNetworkAvailable(getActivity())==false){
+                       Toast.makeText(getActivity(), "检查您的网络", Toast.LENGTH_SHORT).show();
+                       return;
+                   }
 
+                        intent = new Intent(getActivity(), MySchoolActivity.class);
+                        intent.putExtra("token", token);
+                        startActivity(intent);
+                }
                 break;
             case R.id.my_icon:
                 checLogin = checLogin();
                 if(checLogin ==true){
-                    intent=new Intent(getActivity(), PresonMessageActivity.class);
-                    startActivity(intent);
+
+                    if(NetUtil.isNetworkAvailable(getActivity())==false){
+                        Toast.makeText(getActivity(), "检查您的网络", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                        intent = new Intent(getActivity(), PresonMessageActivity.class);
+                        startActivity(intent);
                 }
                 break;
             case R.id.my_major:
                 checLogin = checLogin();
                 if(checLogin ==true){
-                   intent=new Intent(getActivity(), MaJorActivity.class);
-                    intent.putExtra("token",token);
-                    startActivity(intent);
+                    boolean networkAvailable = NetUtil.isNetworkAvailable(getActivity());
+                    if(networkAvailable){
+                        intent=new Intent(getActivity(), MaJorActivity.class);
+                        intent.putExtra("token",token);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(getActivity(), "检查您的网络", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
 
                 break;
@@ -185,11 +202,19 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
                 }
                 break;
             case R.id.my_help:
+                if(NetUtil.isNetworkAvailable(getActivity())==false){
+                    Toast.makeText(getActivity(), "检查您的网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent in=new Intent(getContext(), HelpActivity.class);
                 in.putExtra("pid","2");
                 getContext().startActivity(in);
                 break;
             case R.id.my_addserve:
+                if(NetUtil.isNetworkAvailable(getActivity())==false){
+                    Toast.makeText(getActivity(), "检查您的网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 getContext().startActivity(new Intent(getContext(), AddServeActivity.class));
                 break;
             case R.id.my_suggest:

@@ -55,11 +55,8 @@ public class XQcsActivity extends BaseActivity {
             String s6 = split1[6];
             int i6 = Integer.parseInt(s6.substring(1));
             tv_daima.setText(result);
-
-
             SpiderWebScoreView spiderWebScoreView1 = (SpiderWebScoreView) findViewById(R.id.spiderWeb_mainActivity_1);
             CircularLayout circularLayout1 = (CircularLayout) findViewById(R.id.layout_mainActivity_circular1);
-
             Score[] scores = new Score[]{
                     new Score(i1),
                     new Score(i2),

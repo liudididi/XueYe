@@ -39,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.VerSionPresent;
+import untils.NetUtil;
 import untils.PermissionUtils;
 import untils.SPUtils;
 import view.VerSionView;
@@ -160,12 +161,20 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             case R.id.setting_account:
                 Boolean aBoolean = checLogin();
                 if (aBoolean == true) {
+                    if(NetUtil.isNetworkAvailable(this)==false){
+                        Toast("当前无网络");
+                        return;
+                    }
                     intent = new Intent(this, AccountMagActivity.class);
                     startActivity(intent);
                 }
                 break;
             //关于摆渡人
             case R.id.setting_baiduren:
+                if(NetUtil.isNetworkAvailable(this)==false){
+                    Toast("当前无网络");
+                    return;
+                }
                 intent = new Intent(this, AsForBaiDuRenActivity.class);
                 startActivity(intent);
 
@@ -274,7 +283,12 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 break;
             //用户协议
             case R.id.setting_useragreen:
-               Intent intent = new Intent(this, ParticularsActivity.class);
+
+                if(NetUtil.isNetworkAvailable(this)==false){
+                    Toast("当前无网络");
+                    return;
+                }
+                Intent intent = new Intent(this, ParticularsActivity.class);
                 intent.putExtra("particulars_title","用户协议");
                 intent.putExtra("url","http://m.bdrvip.com/#/agreement");
                 startActivity(intent);
@@ -338,9 +352,9 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                     fos.write(buffer, 0, length);
                     sum += length;
                     float percent = sum * 100.0f / contentLength;
-                    System.out.print("\r[");
+
                     int p = (int) percent;
-                    System.out.println("pp===" + p);
+
                     pd6.setProgress(p);
 
                     /*

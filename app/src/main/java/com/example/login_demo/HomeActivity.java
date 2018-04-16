@@ -146,6 +146,8 @@ public class HomeActivity extends BaseActivity {
                                 SPUtils.remove(MyApp.context, "tbarea");
                                 SPUtils.remove(MyApp.context, "tbsubtype");
                                 SPUtils.remove(MyApp.context, "majorindex");
+                                SPUtils.remove(MyApp.context, "name");
+                                SPUtils.remove(MyApp.context, "school");
                                 MyUserBean.setUserBean(null);
                                 Toast("用户信息失效，请重新登录");
                             }

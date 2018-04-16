@@ -318,10 +318,6 @@ public class MoreSchoolActivity extends BaseActivity implements MoreSchoolView {
         sortlist.add("林业类");
         sortlist.add("体育类");
 
-
-
-
-
     }
 
     @OnClick({R.id.mschool_iv_back, R.id.mschool_search})

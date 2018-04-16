@@ -29,6 +29,7 @@ import java.util.ArrayList;
 
 import base.BaseApi;
 import bean.SlideshowChildBean;
+import untils.NetUtil;
 
 /**
  * Created by 祝文 on 2018/1/21.
@@ -72,54 +73,59 @@ public class SudokuGlideAdapter extends BaseAdapter {
         sodoku_item_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(list.get(i).getName().equals("院校库")){
-                  Intent intent=new Intent(context, MoreSchoolActivity.class);
-                  context.startActivity(intent);
-                } else if(list.get(i).getName().equals("专业库")){
-                    Intent intent=new Intent(context, MoreMajorActivity.class);
-                    context.startActivity(intent);
-                }  else if(list.get(i).getName().equals("心理测评"))
-                {
-                    Intent intent=new Intent(context, MentalityActivity.class);
-                    context.startActivity(intent);
+                if(NetUtil.isNetworkAvailable(context)){
+                    if(list.get(i).getName().equals("院校库")){
+                        Intent intent=new Intent(context, MoreSchoolActivity.class);
+                        context.startActivity(intent);
+                    } else if(list.get(i).getName().equals("专业库")){
+                        Intent intent=new Intent(context, MoreMajorActivity.class);
+                        context.startActivity(intent);
+                    }  else if(list.get(i).getName().equals("心理测评"))
+                    {
+                        Intent intent=new Intent(context, MentalityActivity.class);
+                        context.startActivity(intent);
 
-                }
-                else if(list.get(i).getName().equals("大学排名"))
-                {
-                    Intent intent=new Intent(context, RankingActivity.class);
-                    context.startActivity(intent);
-                }
-                else if(list.get(i).getName().equals("职业库"))
-                {
-                    Intent intent=new Intent(context, MoreJorbActivity.class);
-                    context.startActivity(intent);
-                } else if(list.get(i).getName().equals("省控线"))
-                {
-                    Intent intent=new Intent(context, ProvinceActivity.class);
-                    context.startActivity(intent);
-                }
-                else if(list.get(i).getName().equals("学习资料"))
-                {
-                    Intent intent=new Intent(context, StudyActivity.class);
-                    context.startActivity(intent);
-                }
-                else if(list.get(i).getName().equals("分数线"))
-                {
-                    Intent intent=new Intent(context, ScoreActivity.class);
-                    context.startActivity(intent);
-                }
-                else if(list.get(i).getName().equals("一分一表"))
-                {
-                    Intent intent=new Intent(context, OneTableActivity.class);
-                    context.startActivity(intent);
-                }
+                    }
+                    else if(list.get(i).getName().equals("大学排名"))
+                    {
+                        Intent intent=new Intent(context, RankingActivity.class);
+                        context.startActivity(intent);
+                    }
+                    else if(list.get(i).getName().equals("职业库"))
+                    {
+                        Intent intent=new Intent(context, MoreJorbActivity.class);
+                        context.startActivity(intent);
+                    } else if(list.get(i).getName().equals("省控线"))
+                    {
+                        Intent intent=new Intent(context, ProvinceActivity.class);
+                        context.startActivity(intent);
+                    }
+                    else if(list.get(i).getName().equals("学习资料"))
+                    {
+                        Intent intent=new Intent(context, StudyActivity.class);
+                        context.startActivity(intent);
+                    }
+                    else if(list.get(i).getName().equals("分数线"))
+                    {
+                        Intent intent=new Intent(context, ScoreActivity.class);
+                        context.startActivity(intent);
+                    }
+                    else if(list.get(i).getName().equals("一分一表"))
+                    {
+                        Intent intent=new Intent(context, OneTableActivity.class);
+                        context.startActivity(intent);
+                    }
 
-                else if(list.get(i).getName().equals("特长生"))
-                {
-                    Intent intent=new Intent(context, StudentsinActivity.class);
-                    context.startActivity(intent);
-                }
+                    else if(list.get(i).getName().equals("特长生"))
+                    {
+                        Intent intent=new Intent(context, StudentsinActivity.class);
+                        context.startActivity(intent);
+                    }
 
+                }else {
+
+                    Toast.makeText(context, "无网络", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

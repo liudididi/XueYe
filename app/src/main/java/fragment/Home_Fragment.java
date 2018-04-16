@@ -52,6 +52,7 @@ import bean.SlideshowChildBean;
 import bean.TitleBean;
 import presenter.SlideshowPresenter;
 
+import untils.NetUtil;
 import untils.SPUtils;
 import view.ObservableScrollView;
 import view.SlideshowView;
@@ -243,6 +244,12 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         rl_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(NetUtil.isNetworkAvailable(getActivity())==false){
+
+                    Toast.makeText(getActivity(), "当前无网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 getContext().startActivity(new Intent(getContext(), SearchParticularsActivity.class));
             }
         });
@@ -273,6 +280,12 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         xbanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
+                if(NetUtil.isNetworkAvailable(getActivity())==false){
+
+                    Toast.makeText(getActivity(), "当前无网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(position==0){
                     Intent intent= new Intent(getContext(), MoreSchoolActivity.class);
                     getContext().startActivity(intent);

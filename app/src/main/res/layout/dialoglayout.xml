@@ -79,7 +79,7 @@
                     android:layout_marginTop="20px"
                     android:layout_width="match_parent"
                     android:layout_height="10px"
-                    android:background="#ccc"
+                    android:background="#F3F3F3"
                     ></View>
             </RelativeLayout>
 
@@ -90,6 +90,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30px"
@@ -98,89 +99,91 @@
                     android:textColor="#333"
                     android:textSize="46px" />
 
-                <TextView
-                    android:id="@+id/tv_ranking"
-                    android:layout_width="200px"
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_below="@+id/tv0"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20px"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_ranking"
+                        android:layout_width="200px"
+                        android:layout_height="wrap_content"
+                         android:layout_marginLeft="50px"
+                        android:text="第 3 名 (教育学)"
+                        />
+                    <TextView
+                        android:id="@+id/tv_rank"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginRight="30px"
+                         android:layout_toRightOf="@+id/view_hx"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_below="@id/ll1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="120px"
-                    android:layout_marginLeft="50px"
-                    android:text="第 3 名 (教育学)"
-
-                    />
-
-                <TextView
                     android:layout_marginTop="30px"
-                    android:layout_below="@+id/tv_ranking"
-                    android:id="@+id/tv_address"
-                    android:layout_width="200px"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50px"
-                    android:text="北京"
+                    android:layout_marginBottom="30px"
+                    android:orientation="horizontal">
+                    <TextView
+                         android:layout_below="@+id/tv_ranking"
+                        android:id="@+id/tv_address"
+                        android:layout_width="200px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50px"
+                        android:text="北京"
+                        />
+
+                    <TextView
+                        android:layout_marginRight="30px"
+                        android:id="@+id/tv_pro_address"
+                        android:layout_marginLeft="30px"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         />
+
+                </LinearLayout>
+
+              <LinearLayout
+                  android:id="@+id/ll3"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/ll2"
+                  android:orientation="horizontal">
+                  <TextView
+                       android:id="@+id/tv_nearjob"
+                      android:layout_width="200px"
+                      android:layout_height="wrap_content"
+                      android:layout_marginLeft="50px"
+                      android:text="北京"
+                      />
+                  <TextView
+                       android:id="@+id/tv_pro_job"
+                      android:layout_marginLeft="30px"
+                      android:layout_marginRight="30px"
+                       android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      />
+              </LinearLayout>
 
 
-                    />
-
-                <TextView
-                    android:layout_marginTop="130px"
-                    android:layout_below="@+id/tv_ranking"
-                    android:id="@+id/tv_nearjob"
-                    android:layout_width="200px"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50px"
-                    android:text="北京"
-
-                    />
-                <View
-                    android:visibility="invisible"
-                    android:id="@+id/view_hx"
-                    android:background="#ccc"
-                    android:layout_width="1px"
-                    android:layout_height="300px"
-                    android:layout_marginLeft="300px"
-                    android:layout_marginTop="180px"
-                    ></View>
-                <TextView
-
-                    android:id="@+id/tv_rank"
-                    android:layout_marginLeft="10px"
-                    android:layout_marginRight="30px"
-                    android:layout_marginTop="120px"
-                    android:layout_toRightOf="@+id/view_hx"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-
-                <TextView
-                    android:layout_marginRight="30px"
-                    android:id="@+id/tv_pro_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_rank"
-                    android:layout_alignStart="@+id/tv_rank"
-                    android:layout_below="@+id/tv_rank"
-                    android:layout_marginTop="50px" />
 
 
-                <TextView
-                    android:layout_below="@+id/tv_pro_address"
-                    android:id="@+id/tv_pro_job"
-                    android:layout_marginLeft="10px"
-                    android:layout_marginRight="30px"
-                    android:layout_marginTop="50px"
-                    android:layout_toRightOf="@+id/view_hx"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+
                 <View
                     android:layout_marginTop="30px"
-                    android:layout_below="@+id/tv_pro_job"
+                    android:layout_below="@+id/ll3"
                     android:layout_width="match_parent"
                     android:layout_height="10px"
-                    android:background="#ccc"
+                    android:background="#F3F3F3"
                     ></View>
             </RelativeLayout>
-
-
             <RelativeLayout
                 android:id="@+id/rela_jyfx"
                 android:layout_below="@+id/rela_jyzk"
@@ -192,19 +195,17 @@
                     android:layout_marginLeft="50px"
                     android:text="就业方向"
                     android:textColor="#333"
+                    android:layout_marginTop="20px"
                     android:textSize="46px" />
                 <TextView
-
                     android:id="@+id/tv_direction_employment"
                     android:layout_marginLeft="50px"
                     android:layout_marginRight="50px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="120px"
+                    android:layout_marginTop="80px"
                     />
-
             </RelativeLayout>
-
             <RelativeLayout
                 android:id="@+id/rela_kcsgw"
                 android:layout_below="@+id/rela_jyfx"
@@ -213,7 +214,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50px"
+                    android:layout_marginTop="30px"
                     android:layout_marginLeft="50px"
                     android:text="可从事岗位"
                     android:textColor="#333"

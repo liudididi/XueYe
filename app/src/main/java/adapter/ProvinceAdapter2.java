@@ -34,8 +34,14 @@ public class ProvinceAdapter2 extends RecyclerView.Adapter<ProvinceAdapter2.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-
-        holder.tv_batch.setText(list.get(position).toString());
+        if(list.get(position)==null)
+        {
+            holder.tv_batch.setText("---");
+        }
+        else
+        {
+            holder.tv_batch.setText(list.get(position).toString());
+        }
     }
 
     @Override

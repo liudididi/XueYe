@@ -384,7 +384,7 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
                                         }else {
                                             xinzi="暂无数据";
                                         }
-                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+":"+xinzi;
+                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id();
                                     }else {
                                         String xinzi="";
                                         List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
@@ -393,7 +393,7 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
                                         }else {
                                             xinzi="暂无数据";
                                         }
-                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+":"+xinzi+",";
+                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+",";
                                     }
                                 }
                                 MyQusetUtils.getInstance().getQuestInterface().updateFavourMajors(xhjob,token)

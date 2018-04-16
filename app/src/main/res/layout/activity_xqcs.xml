@@ -152,11 +152,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/xqcs2"
-                    android:scaleType="centerCrop"
                     android:layout_marginLeft="40px"
                     android:layout_marginRight="40px"
                     />
-                <ImageView
+            <!--    <ImageView
                     android:layout_marginTop="30px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -164,7 +163,6 @@
                     android:layout_marginLeft="40px"
                     android:layout_marginRight="40px"
                     android:scaleType="centerCrop"
-
                     />
                 <ImageView
                     android:layout_marginTop="30px"
@@ -174,8 +172,7 @@
                     android:layout_marginLeft="40px"
                     android:layout_marginRight="40px"
                     android:scaleType="centerCrop"
-
-                    />
+                    />-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="30px"></View>

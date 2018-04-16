@@ -360,7 +360,6 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
                     view_name.setVisibility(View.GONE);
                     iv_right3.setVisibility(View.VISIBLE);
                     iv_next3.setVisibility(View.GONE);
-
                     zt3=true;
 
                 }
@@ -416,7 +415,6 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
                      }
                      if(year.equals("2016"))
                      {
-
                          listthree.add(scores.get(i1).getScoreAvg());
                          flag2=false;
                      }
@@ -457,7 +455,6 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
                      }
                      if(year.equals("2016"))
                      {
-
                          list7.add(scores.get(i1).getScoreAvg());
                          flag2=false;
                      }
@@ -481,8 +478,6 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
                  }
              }
          }
-
-
          //理科
          ProvinceAdapter2 provinceAdapter9 = new ProvinceAdapter2(list1,ScoreActivity.this);
          score_rv_science1.setLayoutManager(new LinearLayoutManager(ScoreActivity.this));

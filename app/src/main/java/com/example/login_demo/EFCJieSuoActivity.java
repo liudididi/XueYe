@@ -152,6 +152,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                                 if (i < 0) {
                                                     imgZntbwjs.setVisibility(View.GONE);
                                                     rlZntb.setEnabled(true);
+                                                    imgZntbbq.setImageResource(R.drawable.biaoywc);
                                                 }
                                             }
                                         }
@@ -175,6 +176,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                             imgXlcsbq.setImageResource(R.drawable.biaoywc);
                             imgZhiyxkbq.setImageResource(R.drawable.biaoywc);
                             imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
+                            imgZntbbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
                             rlZntb.setEnabled(true);
@@ -237,6 +239,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                                                                 if (i < 0) {
                                                                     imgZntbwjs.setVisibility(View.GONE);
                                                                     rlZntb.setEnabled(true);
+                                                                    imgZntbbq.setImageResource(R.drawable.biaoywc);
                                                                 }
                                                             }
                                                         }
@@ -302,7 +305,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                     intent.putExtra("data", data);
                     startActivity(intent);
                 } else {
-                    Toast("网络较差，请稍后重试");
+                    Toast("请检查您的网络");
                 }
                 break;
             case R.id.rl_zhiyxk:
@@ -311,7 +314,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                     intent1.putExtra("data", data);
                     startActivity(intent1);
                 } else {
-                    Toast("网络较差，请稍后重试");
+                    Toast("请检查您的网络");
                 }
 
                 break;
@@ -321,7 +324,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                     cxefcPresenter.CXEFCPresenter(token);
                     rlZhuanyxk.setEnabled(false);
                 } else {
-                    Toast("网络较差，请稍后重试");
+                    Toast("请检查您的网络");
                 }
 
                 break;
@@ -330,7 +333,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                     Intent intent3 = new Intent(this, Volunteer_ScreenActivity.class);
                     startActivity(intent3);
                 } else {
-                    Toast("网络较差，请稍后重试");
+                    Toast("请检查您的网络");
                 }
                 break;
         }
@@ -394,10 +397,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 if (flag) {
                     Toast("当前无网络");
                     net = false;
-                    rlXlcs.setEnabled(false);
-                    rlZhiyxk.setEnabled(false);
-                    rlZhuanyxk.setEnabled(false);
-                    rlZntb.setEnabled(false);
+
                 } else {
                     net = true;
                     onResume();

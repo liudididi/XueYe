@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.login_demo.R;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import base.BaseApi;
 import bean.CanSchoolBean3;
+import untils.NetUtil;
 
 /**
  * Created by 祝文 on 2018/1/28.
@@ -51,7 +53,10 @@ public class MoreSchool_Adapter extends RecyclerView.Adapter<MoreSchool_Adapter.
               /*  Intent intent=new Intent(context, SchoolDetailActivity.class);
                 intent.putExtra("schoolname",list.get(position).getName());
                 context.startActivity(intent);*/
-
+                   if(NetUtil.isNetworkAvailable(context)==false){
+                       Toast.makeText(context, "当前无网络", Toast.LENGTH_SHORT).show();
+                       return;
+                   }
                 Intent intent=new Intent(context, TuiJianSchoolActivity.class);
                 intent.putExtra("schoolname",list.get(position).getName());
                  intent.putExtra("schoolurl",BaseApi.ImgApi+list.get(position).getImgurl());

@@ -52,7 +52,7 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
         String[] split = list.get(position).split(":");
         ghitem_title.setText(split[0]);
         TextView ghitem_xinzi= convertView.findViewById(R.id.ghitem_xinzi);
-        ghitem_xinzi.setText(split[6]);
+        ghitem_xinzi.setText(split[5]);
         TextView ghitem_gailv= convertView.findViewById(R.id.ghitem_gailv);
         String zyGai=split[2];
         if(zyGai.length()>=4)

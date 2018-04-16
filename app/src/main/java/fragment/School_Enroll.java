@@ -327,25 +327,28 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
             String time = listBaseBean.get(0).getTime();
             school_enroll_tvtime.setText(time+"录取率");
             String scoreAvg = listBaseBean.get(0).getScoreAvg();
-            if(scoreAvg.equals("-")){
-                scoreAvg="0";
-            }
-            int selffen = Integer.parseInt(tbmaxfen);
-            int fenshuxian = Integer.parseInt(scoreAvg);
 
-            if(selffen>fenshuxian){
-                if((selffen-fenshuxian)*0.5+80<98){
-                    school_enroll_tv.setText((selffen-fenshuxian)*0.5+80+"%");
+            int selffen = Integer.parseInt(tbmaxfen);
+            if(scoreAvg!=null)
+            {
+                int fenshuxian = Integer.parseInt(scoreAvg);
+                if(selffen>fenshuxian){
+                    if((selffen-fenshuxian)*0.5+80<98){
+                        school_enroll_tv.setText((selffen-fenshuxian)*0.5+80+"%");
+                    }else {
+                        school_enroll_tv.setText(98+"%");
+                    }
                 }else {
-                    school_enroll_tv.setText(98+"%");
-                }
-            }else {
-                if((80-(fenshuxian-selffen)*2)>0){
-                    school_enroll_tv.setText((80-(fenshuxian-selffen)*2)+"%");
-                }else {
-                    school_enroll_tv.setText(0.1+"%");
+                    if((80-(fenshuxian-selffen)*2)>0){
+                        school_enroll_tv.setText((80-(fenshuxian-selffen)*2)+"%");
+                    }else {
+                        school_enroll_tv.setText(0.1+"%");
+                    }
                 }
             }
+
+
+
         }
 
     }
@@ -401,11 +404,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         if(listBaseBean!=null&&listBaseBean.size()>0){
             for (int i = 0; i <listBaseBean.size() ; i++) {
                 if(listBaseBean.get(i).getScore()!=null){
-                    String score = listBaseBean.get(i).getScore();
-                    if(score.equals("-")){
-                        score="0";
-                    }
-                    listfen.set(i,Integer.parseInt(score));
+                    listfen.set(i,Integer.parseInt(listBaseBean.get(i).getScore()));
                 }
             }
         }
@@ -437,7 +436,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         List<Integer> listfen=new ArrayList<>();
         listfen.add(0);
         listfen.add(0);
-
+        listfen.add(0);
+        listfen.add(0);
+        listfen.add(0);
         if(listfen.get(0)>=listfen.get(1)){
             max=listfen.get(0)+100;
             min=listfen.get(1)-50;
@@ -472,11 +473,11 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         {
             String scoreAvg = data.get(0).getScoreAvg();
             Histogram column_one =  view.findViewById(R.id.column_one);
-            if(scoreAvg.equals("-")){
-                scoreAvg="0";
+            if(scoreAvg!=null)
+            {
+                column_one.setData( Integer.parseInt(scoreAvg), 750);
+                column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
             }
-            column_one.setData( Integer.parseInt(scoreAvg), 750);
-            column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
 
         }
 

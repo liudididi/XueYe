@@ -131,10 +131,25 @@
 
 </untils.FlowLayout>
 
+    <TextView
+        android:layout_marginLeft="50px"
+        android:id="@+id/rszy"
+        android:layout_below="@+id/grid_major"
+        android:layout_width="wrap_content"
+        android:layout_height="80px"
+        android:layout_marginTop="50px"
+        android:text="热搜职业"
+        android:textColor="@color/black"
+        android:textSize="60px" />
 
-
-
-
+    <untils.FlowLayout
+        android:layout_marginTop="50px"
+        android:id="@+id/grid_job"
+        android:numColumns="3"
+        android:layout_below="@+id/rszy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </untils.FlowLayout>
 
 
 

@@ -53,7 +53,7 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     private ArrayAdapter<String> art_adapter;
     private ArrayAdapter<String> grade_adapter;
     //是否为特长生
-    private Boolean isSpecial;
+    private Boolean isSpecial=false;
     //名字
     private String name;
     private String six;

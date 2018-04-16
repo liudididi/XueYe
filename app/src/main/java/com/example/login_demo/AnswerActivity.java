@@ -44,6 +44,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import untils.Dianji;
 import untils.QuestInterface;
 import untils.Question;
 import untils.SPUtils;
@@ -297,59 +298,66 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         adapter.setItemOnClick(new ChineseMedicineReportAdapter.ItemOnClick() {
             @Override
             public void SX(View view, final int position) {
+
                 final TextView tv_answer=view.findViewById(R.id.tv_answer);
                 tv_answer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //选项
-                        //Toast.makeText(AnswerActivity.this, position + "", Toast.LENGTH_SHORT).show();
-                        if(position==0)
+                        if(Dianji.isNotFastClick())
                         {
-                           // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
-                            XX="A";
-                        }
-                        if(position==1)
-                        {
-                            XX="B";
-                            //Toast.makeText(AnswerActivity.this,   "B", Toast.LENGTH_SHORT).show();
-                        }
-                        map.put(question.getPeId()+"",XX);
-                        if (viewFlipper.getDisplayedChild() == mQuestion.size() - 1) {
-                            //Toast.makeText(AnswerActivity.this, "最后一个题", Toast.LENGTH_SHORT).show();
-                            //得到MBTI测试得到的结果
-                            tv_answer.setEnabled(false);
-                            if(type.equals("MBTI"))
+                            //选项
+                            //Toast.makeText(AnswerActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                            if(position==0)
                             {
-                                jiexi(tv_answer);
-                                 return;
+                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                XX="A";
                             }
-                            //得到SDS测试得到的结果
-                            if(type.equals("SDS"))
+                            if(position==1)
                             {
-                                jiexi(tv_answer);
-                                startActivity(new Intent(AnswerActivity.this,EvaluatingActivity.class));
-                                finish();
-                                return;
+                                XX="B";
+                                //Toast.makeText(AnswerActivity.this,   "B", Toast.LENGTH_SHORT).show();
                             }
-                            //得到MBTI_E测试得到的结果
-                            if(type.equals("MBTI_E"))
-                            {
-                                 jiexi(tv_answer);
-                                return;
-                            }
-                            //得到MBTI_E测试得到的结果
-                            if(type.equals("SDS_E"))
-                            {
-                                jiexi(tv_answer);
-                                return;
-                            }
+                            map.put(question.getPeId()+"",XX);
+                            if (viewFlipper.getDisplayedChild() == mQuestion.size() - 1) {
+                                //Toast.makeText(AnswerActivity.this, "最后一个题", Toast.LENGTH_SHORT).show();
+                                //得到MBTI测试得到的结果
 
-                        } else {
-                            viewFlipper.setInAnimation(animations[0]);
-                            viewFlipper.setOutAnimation(animations[1]);
-                            viewFlipper.showNext();
-                            //Toast.makeText(AnswerActivity.this, "下一题", Toast.LENGTH_SHORT).show();
+                                if(type.equals("MBTI"))
+                                {
+                                    jiexi(tv_answer);
+
+                                    return;
+                                }
+                                //得到SDS测试得到的结果
+                                if(type.equals("SDS"))
+                                {
+                                    jiexi(tv_answer);
+
+                                    return;
+                                }
+                                //得到MBTI_E测试得到的结果
+                                if(type.equals("MBTI_E"))
+                                {
+                                    jiexi(tv_answer);
+
+                                    return;
+                                }
+                                //得到MBTI_E测试得到的结果
+                                if(type.equals("SDS_E"))
+                                {
+                                    jiexi(tv_answer);
+
+                                    return;
+                                }
+
+                            } else {
+                                viewFlipper.setInAnimation(animations[0]);
+                                viewFlipper.setOutAnimation(animations[1]);
+                                viewFlipper.showNext();
+                                //Toast.makeText(AnswerActivity.this, "下一题", Toast.LENGTH_SHORT).show();
+                            }
                         }
+
                     }
 
                 });
@@ -422,7 +430,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     int s = result.getS();
                     int r = result.getR();
                     String mbtiString =resultStr+":"+"A"+a +":"+"C"+c+":"+"E"+e+":"+"I"+i+":"+"S"+s+":"+"R"+r;
-                    System.out.println("SDS_E++"+mbtiString);
+
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("SDS_E",mbtiString,token);
                      Intent intent=new Intent(AnswerActivity.this,HuoLanDeEsayActivity.class);
                     startActivity(intent);
@@ -442,11 +450,12 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     int f = result.getF();
                     int p = result.getP();
                     String mbtiString = resultStr+":"+"E"+e+":"+"S"+s+":"+"T"+t+":"+"J"+j+":"+"I"+i+":"+"N"+n+":"+"F"+f+":"+"P"+p;
-                     type="SDS";
                     SharedPreferences mbti = getSharedPreferences("mbti", MODE_PRIVATE);
                     SharedPreferences.Editor edit = mbti.edit();
                     edit.putString("mb",mbtiString);
                     edit.commit();
+
+                    type="SDS";
                     intent(AnswerActivity.this,AnswerActivity.class);
                     finish();
                     return;
@@ -464,21 +473,17 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     SharedPreferences mbti = getSharedPreferences("mbti", MODE_PRIVATE);
                     String mb = mbti.getString("mb", "");
                     String mbtiString =mb+","+resultStr+":"+"A"+a +":"+"C"+c+":"+"E"+e+":"+"I"+i+":"+"S"+s+":"+"R"+r;
-
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("精准",mbtiString,token);
+                    startActivity(new Intent(AnswerActivity.this,EvaluatingActivity.class));
                     finish();
                     return;
                 }
-
             }
-
             @Override
             public void onFailure(Call<BaseBean<TijiaoBean>> call, Throwable t) {
-                tv_answer.setEnabled(true);
-            }
+             }
         });
      }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         //将Activity上的触发的事件交个GestureDetector处理

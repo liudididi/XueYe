@@ -25,6 +25,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 import untils.MyQusetUtils;
+import untils.NetUtil;
 import untils.SPUtils;
 
 public class PresonMessageActivity extends BaseActivity {
@@ -120,6 +121,10 @@ public class PresonMessageActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.preson_complie:
+                if(NetUtil.isNetworkAvailable(this)==false){
+                    Toast.makeText(this, "当前无网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 intent(this,perfectMessageActivity.class);
                 break;
             case R.id.preson_icon:

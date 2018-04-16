@@ -95,7 +95,6 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     }
 
     private void initzhuanye() {
-
         MyQusetUtils.getInstance().getQuestInterface().getEFCData(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

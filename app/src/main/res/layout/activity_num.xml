@@ -119,17 +119,18 @@
         android:layout_below="@+id/view2"
         android:layout_height="134px">
         <TextView
-            android:textColor="#fff"
+            android:textColor="@color/black"
             android:text="文科"
             android:layout_centerVertical="true"
             android:id="@+id/schoold_lq"
             android:textSize="40px"
+
             android:gravity="center"
             android:layout_marginTop="26px"
             android:layout_marginLeft="64px"
             android:layout_width="214px"
             android:layout_height="80px"
-            android:background="@drawable/back_schooldlan"
+            android:background="@drawable/back_schoold"
             />
 
         <TextView
@@ -185,20 +186,25 @@
         android:background="#F3F3F3"
         android:layout_below="@+id/rl1"
         ></View>
-    <untils.FlowLayout
-        android:id="@+id/fl"
-        android:layout_marginLeft="45px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-         android:layout_below="@+id/view3"
-        >
-    </untils.FlowLayout>
+
+            <RelativeLayout
+               android:id="@+id/rla"
+                android:layout_marginLeft="45px"
+                android:layout_below="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </RelativeLayout>
+
+
+
     <View
         android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="14px"
         android:background="#F3F3F3"
-        android:layout_below="@+id/fl"
+        android:layout_below="@+id/rla"
          ></View>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -254,4 +260,10 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/lv"
         android:background="#cc222222"></View>
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 </RelativeLayout>

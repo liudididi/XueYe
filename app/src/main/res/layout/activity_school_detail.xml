@@ -23,7 +23,7 @@
     android:background="@color/white"
     android:id="@+id/schoold_rl"
     android:layout_width="match_parent"
-    android:layout_height="750px">
+    android:layout_height="700px">
     <ImageView
         android:id="@+id/schooldIvdoor"
          android:src="@drawable/bgsetting"

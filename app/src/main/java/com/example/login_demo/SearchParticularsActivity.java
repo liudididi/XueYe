@@ -54,6 +54,8 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
     FlowLayout gridMajor;
     @BindView(R.id.lodiing)
     LoadingLayout lodiing;
+    @BindView(R.id.grid_job)
+    FlowLayout gridJob;
 
     private SearchPresent searchPresent;
     private Search_Adapter search_adapter;
@@ -71,7 +73,7 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
         schoollist = new ArrayList<>();
         majorlist = new ArrayList<>();
         searchPresent = new SearchPresent(this);
-        loadingLayout=lodiing;
+        loadingLayout = lodiing;
         searchPresent.queryHot();
         shRecycle.setLayoutManager(new LinearLayoutManager(this));
 
@@ -134,14 +136,17 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
 
         List<String> schoollist = new ArrayList<>();
         List<String> majorlist1 = new ArrayList<>();
+        List<String> majorlist2 = new ArrayList<>();
         final List<HotBean> majorlist = new ArrayList<>();
         if (list != null && list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
+                majorlist.add(list.get(i));
                 if (list.get(i).getHotType().equals("0")) {
                     schoollist.add(list.get(i).getHotName());
-                } else {
-                    majorlist.add(list.get(i));
+                } else if (list.get(i).getHotType().equals("1")) {
                     majorlist1.add(list.get(i).getHotName());
+                }else  if(list.get(i).getHotType().equals("2")){
+                    majorlist2.add(list.get(i).getHotName());
                 }
             }
         }
@@ -163,14 +168,25 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
                         String id = majorlist.get(i).getStandby1();
                         Intent intent = new Intent(SearchParticularsActivity.this, MajorDetailActivity.class);
                         intent.putExtra("majorid", id);
-                        intent.putExtra("schoolname", text);
+                        intent.putExtra("major", text);
                         startActivity(intent);
                         return;
                     }
                 }
             }
         });
+        gridJob.setListData(majorlist2);
+        gridJob.setOnTagClickListener(new FlowLayout.OnTagClickListener() {
+            @Override
+            public void TagClick(String text) {
+                        Intent intent = new Intent(SearchParticularsActivity.this, JobDetailsActivity.class);
+                        intent.putExtra("jobname", text);
+                        startActivity(intent);
 
+
+
+            }
+        });
        /* HotAdapter school = new HotAdapter(this, schoollist);
         HotAdapter major = new HotAdapter(this, majorlist);*/
 
@@ -179,7 +195,7 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
 
     @Override
     public void HotFail(String msg) {
-
+        searchPresent.queryHot();
     }
 
 

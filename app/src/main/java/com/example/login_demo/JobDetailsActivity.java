@@ -75,8 +75,6 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
                 rlWenben.setVisibility(View.GONE);
             }
         });
-
-
     }
 
     @Override
