@@ -17,6 +17,7 @@ import com.example.login_demo.NumActivity;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import adapter.NumAdapter;
@@ -32,10 +33,15 @@ import bean.NumBean;
 import bean.SchoolEnrollBean;
 import bean.ZYNumBean;
 import bean.ZYTJBean;
+import bean.univCompareBean;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.ForecastPresent;
 import presenter.NumPresenter;
 import presenter.SchoolEnrollPresent;
 import untils.Histogram;
+import untils.MyQusetUtils;
 import untils.SPUtils;
 import untils.ZhiMaScoreView;
 import view.ForecastView;
@@ -91,6 +97,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private ImageView iv_xia;
     private TextView tv_xq;
     private List<NumBean> data;
+    private ArrayList<String>   list=new ArrayList<>();;
 
     @Override
     public int getLayoutid() {
@@ -108,7 +115,63 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         schoolEnrollPresent = new SchoolEnrollPresent(this);
         schoolEnrollPresent.SchoolEnrollPresent(schoolname,tbarea,tbsubtype);
         schoolEnrollPresent.getscoreCompareMobil(tbarea,tbsubtype, schoolname);
+        MyQusetUtils.getInstance().getQuestInterface()
+                .univCompare(schoolname)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean<List<univCompareBean>>>() {
+                    @Override
+                    public void onNext(BaseBean<List<univCompareBean>> univCompareBeanBaseBean) {
+                            if(univCompareBeanBaseBean.code==0){
+                                List<univCompareBean> data = univCompareBeanBaseBean.data;
+                                if(data!=null&&data.size()>=0){
+                                    for (int i = 0; i < data.size(); i++) {
+                                        list.add(data.get(i).getTime());
+                                    }
+                                }
+                                tv_pici.setText(list.get(0));
+                                schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
 
+                                final Spinner_Adapter2 spinner_adapter=new Spinner_Adapter2(list,getContext());
+
+                                tv_pici.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                        if(msg==true)
+                                        {
+                                            school_lv1.setVisibility(View.VISIBLE);
+                                            school_lv1.setAdapter(spinner_adapter);
+                                            msg=false;
+                                            iv_right.setVisibility(View.GONE);
+                                            iv_next.setVisibility(View.VISIBLE);
+                                        }
+                                        else
+                                        {
+                                            school_lv1.setVisibility(View.GONE);
+                                            msg=true;
+                                            iv_right.setVisibility(View.VISIBLE);
+                                            iv_next.setVisibility(View.GONE);
+                                        }
+
+                                    }
+                                });
+                            }
+
+
+
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
         Histogram column_two =  view.findViewById(R.id.column_two);
         column_two.setData(Integer.parseInt(tbmaxfen), 750);
         column_two.mPaint.setColor(getResources().getColor(R.color.zhu2)); //改变柱状图的颜色
@@ -117,48 +180,14 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         tv_tvarea.setText(tbarea);
         se_tvtype.setText(tbsubtype);
         se_tvmaxfen.setText(tbmaxfen);
-        schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
         numPresenter = new NumPresenter(this);
         numPresenter.NumPresenter(schoolname,tbsubtype,tbarea);
-
-        final ArrayList<String> list=new ArrayList<>();
-        list.add("本科一批");
-        list.add("本科二批");
-        list.add("本科三批");
-        list.add("提前期");
-        list.add("专科批");
         final ArrayList<String> list2=new ArrayList<>();
         list2.add("省控线");
         list2.add("平均分");
         list2.add("最高分");
         list2.add("最低分");
-
-        final Spinner_Adapter2 spinner_adapter=new Spinner_Adapter2(list,getContext());
         final Spinner_Adapter2 spinner_adapter2=new Spinner_Adapter2(list2,getContext());
-
-        tv_pici.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(msg==true)
-                {
-                    school_lv1.setVisibility(View.VISIBLE);
-                    school_lv1.setAdapter(spinner_adapter);
-                    msg=false;
-                    iv_right.setVisibility(View.GONE);
-                    iv_next.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    school_lv1.setVisibility(View.GONE);
-                    msg=true;
-                    iv_right.setVisibility(View.VISIBLE);
-                    iv_next.setVisibility(View.GONE);
-                }
-
-            }
-        });
-
         tv_skx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -402,19 +431,18 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         listfen.add(0);
         listfen.add(0);
         if(listBaseBean!=null&&listBaseBean.size()>0){
-            for (int i = 0; i <listBaseBean.size() ; i++) {
+            for (int i = 0; i <5 ; i++) {
                 if(listBaseBean.get(i).getScore()!=null){
-                    listfen.set(i,Integer.parseInt(listBaseBean.get(i).getScore()));
+                    String score = listBaseBean.get(i).getScore();
+                    if(score.equals("")){
+                        score="0";
+                    }
+                    listfen.set(4-i,Integer.parseInt(score));
                 }
             }
         }
-        if(listfen.get(0)>=listfen.get(1)){
-            max=listfen.get(0)+100;
-            min=listfen.get(1)-50;
-        }else {
-            max=listfen.get(1)+100;
-            min=listfen.get(0)-50;
-        }
+       max= Collections.max(listfen);
+        min=Collections.min(listfen);
         if(min<0){
             min=0;
         }
@@ -439,13 +467,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         listfen.add(0);
         listfen.add(0);
         listfen.add(0);
-        if(listfen.get(0)>=listfen.get(1)){
-            max=listfen.get(0)+100;
-            min=listfen.get(1)-50;
-        }else {
-            max=listfen.get(1)+100;
-            min=listfen.get(0)-50;
-        }
         if(min<0){
             min=0;
         }

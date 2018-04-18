@@ -167,7 +167,6 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
         gender = getIntent().getStringExtra("gender");
         startFlPresent = new StartFlPresent(this);
 
-        System.out.println("classify==="+classify+type+fenlei);
         startFlPresent.getStartfl(classify, type, fenlei);
         xcpresent = new CXEFCPresenter(this);
         newlist = new ArrayList<>();

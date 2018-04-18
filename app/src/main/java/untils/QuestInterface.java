@@ -18,6 +18,7 @@ import bean.CollerSchoolBean;
 import bean.EFCBean;
 import bean.EsayBaoGaoBean;
 import bean.EsaySdsBean;
+import bean.FavourMajorBean;
 import bean.FingerpostBean;
 import bean.ForecastBean;
 import bean.GailvBean;
@@ -31,6 +32,7 @@ import bean.MajorBean;
 import bean.MajorSchoolBean;
 import bean.MajorgkBean;
 import bean.MajorstatXQBean;
+import bean.MinlineBean;
 import bean.MoreJobBean;
 import bean.NewsBean;
 import bean.NumBean;
@@ -68,6 +70,7 @@ import bean.ZDXKBean;
 import bean.ZYNumBean;
 import bean.ZYTJBean;
 import bean.jobStarBean;
+import bean.univCompareBean;
 import io.reactivex.Flowable;
 
 import okhttp3.RequestBody;
@@ -478,6 +481,19 @@ public interface QuestInterface {
     Flowable<BaseBean<List<CityBean>>> getcitys(@Query("provinceid") String provinceid);
 
 
+    //喜欢的职业
+    @GET("/app/efc/favourMajor")
+    Flowable<BaseBean<FavourMajorBean>> favourMajor(@Header("token") String token);
+
+
+    //获取最近一年的本科最低省控线
+    @GET("/app/universityprovincescore/getMinline")
+    Flowable<BaseBean<List<MinlineBean>>> getMinline(@Query("province") String province, @Query("classify") String classify);
+
+    //获取大学批次
+    @GET("/app/universitytimescore/univCompare21")
+    Flowable<BaseBean<List<univCompareBean>>> univCompare(@Query("university") String university);
+
     //修改用户信息
     @POST("/app/userinfo/modifyUserinfoMoble")
     Flowable<BaseBean> modifyUserinfoMoble(@Query("provice") String provice,@Query("city") String city,@Query("area") String area,@Query("midSchool") String midSchool,@Query("grade") String grade,@Query("schoolClass") String schoolClass,@Query("name") String name,@Query("sex") String sex,@Query("examYear") String examYear,@Query("stuType") String stuType,@Query("isSpecial") boolean isSpecial,@Header("token") String token);
@@ -502,7 +518,7 @@ public interface QuestInterface {
 
     //保存职业筛选条件
     @POST("/app/wishfilling/updateStuInfo")
-    Flowable<BaseBean> updateStuInfo(@Query("stuType") String stuType,@Query("collegeType") String collegeType,@Query("gender") String gender,@Query("token") String token);
+    Flowable<BaseBean> updateStuInfo(@Query("ceeScore") String ceeScore,@Query("name") String name,@Query("stuType") String stuType,@Query("collegeType") String collegeType,@Query("gender") String gender,@Query("sourceArea") String sourceArea,@Query("token") String token);
 
 
     //能上的学校

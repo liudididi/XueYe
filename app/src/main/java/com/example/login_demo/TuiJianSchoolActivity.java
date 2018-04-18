@@ -17,6 +17,7 @@ import java.util.List;
 
 import adapter.TuiJianAdapter;
 import base.BaseActivity;
+import base.BaseApi;
 import bean.TuiJianBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,6 +74,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     private String tbsubtype;
     private String token;
     private Boolean tjly = true;
+    private String schoolurl;
 
     @Override
     public int getId() {
@@ -84,8 +86,11 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
         schoolname = getIntent().getStringExtra("schoolname");
         tuijianName.setText(schoolname);
 
-        String schoolurl = getIntent().getStringExtra("schoolurl");
-        Glide.with(this).load(schoolurl).into(tuijianIv);
+        schoolurl = getIntent().getStringExtra("schoolurl");
+        if(schoolurl !=null){
+            Glide.with(this).load(schoolurl).into(tuijianIv);
+        }
+
 
         tuiJianPresent = new TuiJianPresent(this);
 
@@ -185,6 +190,9 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                 tuijianZh.setText(tuiJianBean.getYear() + "年" + tuiJianBean.getTime() + "最低分" + tuiJianBean.getMinScore());
             }else {
                 tuijianZh.setText("暂无数据");
+            }
+            if(schoolurl==null){
+                Glide.with(this).load(BaseApi.ImgApi+tuiJianBean.getCollegeBadge()).into(tuijianIv);
             }
             List<String> list = new ArrayList<>();
             if (tjly) {

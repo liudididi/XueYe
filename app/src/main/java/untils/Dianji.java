@@ -5,7 +5,7 @@ package untils;
  */
 
 public class Dianji {
-    public static final int DELAY = 1000;
+    public static final int DELAY = 100;
     private static long lastClickTime = 0;
     public static boolean isNotFastClick(){
         long currentTime = System.currentTimeMillis();

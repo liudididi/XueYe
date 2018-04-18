@@ -20,9 +20,11 @@ import android.widget.Toast;
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
+import com.example.login_demo.TuiJianSchoolActivity;
 
 import java.util.List;
 
+import base.BaseApi;
 import bean.Advanced_YX_Bean;
 import untils.CircleProgressView;
 
@@ -208,8 +210,9 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
             holder.rl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(context, SchoolDetailActivity.class);
+                    Intent intent=new Intent(context, TuiJianSchoolActivity.class);
                     intent.putExtra("schoolname",list.get(position).getName());
+
                     context.startActivity(intent);
                 }
             });

@@ -641,7 +641,7 @@ public class Academy_Fragment extends Basefragment{
                 }
                 Gson gson=new Gson();
                 String route= gson.toJson(map);
-                System.out.println("参数++++"+route);
+
                 Retrofit retrofit=new Retrofit.Builder()
                         .baseUrl(BaseApi.Api)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -657,97 +657,105 @@ public class Academy_Fragment extends Basefragment{
                     @Override
                     public void onResponse(Call<BaseBean<List<Advanced_YX_Bean>>> call, Response<BaseBean<List<Advanced_YX_Bean>>> response) {
 
-                        pb.setVisibility(View.GONE);
-                        rv_yx.setVisibility(View.VISIBLE);
-                        List<Advanced_YX_Bean> data = response.body().data;
-                        if(data.size()>0&&data!=null)
-                        {
-                            iv.setVisibility(View.GONE);
+                        if(response.code()==0){
+
+                            pb.setVisibility(View.GONE);
                             rv_yx.setVisibility(View.VISIBLE);
-                            if (biaoshi.equals("冲刺")) {
+                            List<Advanced_YX_Bean> data = response.body().data;
+                            if(data.size()>0&&data!=null)
+                            {
+                                iv.setVisibility(View.GONE);
+                                rv_yx.setVisibility(View.VISIBLE);
+                                if (biaoshi.equals("冲刺")) {
 
-                                cc_tvnum.setText(data.size()+"所");
-                                cc_tvnum.setVisibility(View.VISIBLE);
-                                bd_tvnum.setVisibility(View.GONE);
-                                wt_tvnum.setVisibility(View.GONE);
+                                    cc_tvnum.setText(data.size()+"所");
+                                    cc_tvnum.setVisibility(View.VISIBLE);
+                                    bd_tvnum.setVisibility(View.GONE);
+                                    wt_tvnum.setVisibility(View.GONE);
 
-                                iv_cc.setVisibility(View.VISIBLE);
-                                iv_wt.setVisibility(View.GONE);
-                                iv_bd.setVisibility(View.GONE);
-                            } else if (biaoshi.equals("稳妥")) {
+                                    iv_cc.setVisibility(View.VISIBLE);
+                                    iv_wt.setVisibility(View.GONE);
+                                    iv_bd.setVisibility(View.GONE);
+                                } else if (biaoshi.equals("稳妥")) {
 
-                                wt_tvnum.setText(data.size()+"所");
-                                cc_tvnum.setVisibility(View.GONE);
-                                bd_tvnum.setVisibility(View.GONE);
-                                wt_tvnum.setVisibility(View.VISIBLE);
+                                    wt_tvnum.setText(data.size()+"所");
+                                    cc_tvnum.setVisibility(View.GONE);
+                                    bd_tvnum.setVisibility(View.GONE);
+                                    wt_tvnum.setVisibility(View.VISIBLE);
 
-                                iv_cc.setVisibility(View.GONE);
-                                iv_wt.setVisibility(View.VISIBLE);
-                                iv_bd.setVisibility(View.GONE);
-                            } else {
+                                    iv_cc.setVisibility(View.GONE);
+                                    iv_wt.setVisibility(View.VISIBLE);
+                                    iv_bd.setVisibility(View.GONE);
+                                } else {
 
-                                bd_tvnum.setText(data.size()+"所");
-                                cc_tvnum.setVisibility(View.GONE);
-                                bd_tvnum.setVisibility(View.VISIBLE);
-                                wt_tvnum.setVisibility(View.GONE);
+                                    bd_tvnum.setText(data.size()+"所");
+                                    cc_tvnum.setVisibility(View.GONE);
+                                    bd_tvnum.setVisibility(View.VISIBLE);
+                                    wt_tvnum.setVisibility(View.GONE);
 
-                                iv_cc.setVisibility(View.GONE);
-                                iv_wt.setVisibility(View.GONE);
-                                iv_bd.setVisibility(View.VISIBLE);
+                                    iv_cc.setVisibility(View.GONE);
+                                    iv_wt.setVisibility(View.GONE);
+                                    iv_bd.setVisibility(View.VISIBLE);
+                                }
+                                Accurate_Yx_Adapter accurate_yx_adapter=new Accurate_Yx_Adapter(getContext(),data);
+                                rv_yx.setLayoutManager(new LinearLayoutManager(getContext()));
+                                rv_yx.setAdapter(accurate_yx_adapter);
                             }
-                            Accurate_Yx_Adapter accurate_yx_adapter=new Accurate_Yx_Adapter(getContext(),data);
-                            rv_yx.setLayoutManager(new LinearLayoutManager(getContext()));
-                            rv_yx.setAdapter(accurate_yx_adapter);
-                        }
-                        else
-                        {
-                            iv.setVisibility(View.VISIBLE);
-                            rv_yx.setVisibility(View.GONE);
+                            else
+                            {
+                                iv.setVisibility(View.VISIBLE);
+                                rv_yx.setVisibility(View.GONE);
 
-                            if (biaoshi.equals("冲刺")) {
-                                if(list.size()==0)
-                                {
-                                    cc_tvnum.setText(0+"所");
+                                if (biaoshi.equals("冲刺")) {
+                                    if(list.size()==0)
+                                    {
+                                        cc_tvnum.setText(0+"所");
+                                    }
+                                    cc_tvnum.setText(data.size()+"所");
+                                    cc_tvnum.setVisibility(View.VISIBLE);
+                                    bd_tvnum.setVisibility(View.GONE);
+                                    wt_tvnum.setVisibility(View.GONE);
+
+
+                                    iv_cc.setVisibility(View.VISIBLE);
+                                    iv_wt.setVisibility(View.GONE);
+                                    iv_bd.setVisibility(View.GONE);
+                                } else if (biaoshi.equals("稳妥")) {
+                                    if(list.size()==0)
+                                    {
+                                        wt_tvnum.setText(0+"所");
+                                    }
+                                    wt_tvnum.setText(data.size()+"所");
+                                    cc_tvnum.setVisibility(View.GONE);
+                                    bd_tvnum.setVisibility(View.GONE);
+                                    wt_tvnum.setVisibility(View.VISIBLE);
+
+
+                                    iv_cc.setVisibility(View.GONE);
+                                    iv_wt.setVisibility(View.VISIBLE);
+                                    iv_bd.setVisibility(View.GONE);
+                                } else  {
+                                    if(list.size()==0 )
+                                    {
+                                        bd_tvnum.setText(0+"所");
+                                    }
+                                    bd_tvnum.setText(data.size()+"所");
+                                    cc_tvnum.setVisibility(View.GONE);
+                                    bd_tvnum.setVisibility(View.VISIBLE);
+                                    wt_tvnum.setVisibility(View.GONE);
+
+
+                                    iv_cc.setVisibility(View.GONE);
+                                    iv_wt.setVisibility(View.GONE);
+                                    iv_bd.setVisibility(View.VISIBLE);
                                 }
-                                cc_tvnum.setText(data.size()+"所");
-                                cc_tvnum.setVisibility(View.VISIBLE);
-                                bd_tvnum.setVisibility(View.GONE);
-                                wt_tvnum.setVisibility(View.GONE);
-
-
-                                iv_cc.setVisibility(View.VISIBLE);
-                                iv_wt.setVisibility(View.GONE);
-                                iv_bd.setVisibility(View.GONE);
-                            } else if (biaoshi.equals("稳妥")) {
-                                if(list.size()==0)
-                                {
-                                    wt_tvnum.setText(0+"所");
-                                }
-                                wt_tvnum.setText(data.size()+"所");
-                                cc_tvnum.setVisibility(View.GONE);
-                                bd_tvnum.setVisibility(View.GONE);
-                                wt_tvnum.setVisibility(View.VISIBLE);
-
-
-                                iv_cc.setVisibility(View.GONE);
-                                iv_wt.setVisibility(View.VISIBLE);
-                                iv_bd.setVisibility(View.GONE);
-                            } else  {
-                                if(list.size()==0 )
-                                {
-                                    bd_tvnum.setText(0+"所");
-                                }
-                                bd_tvnum.setText(data.size()+"所");
-                                cc_tvnum.setVisibility(View.GONE);
-                                bd_tvnum.setVisibility(View.VISIBLE);
-                                wt_tvnum.setVisibility(View.GONE);
-
-
-                                iv_cc.setVisibility(View.GONE);
-                                iv_wt.setVisibility(View.GONE);
-                                iv_bd.setVisibility(View.VISIBLE);
                             }
+
+
+                        }else {
+                            Toast.makeText(getContext(), "请求出错", Toast.LENGTH_SHORT).show();
                         }
+
                     }
 
                     @Override

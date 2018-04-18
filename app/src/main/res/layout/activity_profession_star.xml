@@ -34,17 +34,7 @@
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/pro_startv"
-        android:textSize="52px"
-        android:gravity="center"
-        android:textColor="#ffffff"
-        android:text="请选择你感兴趣的职业"
-        android:layout_marginTop="60px"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:layout_below="@+id/rl_starrl1"
-        />
+
     <TextView
         android:visibility="invisible"
         android:id="@+id/pro_startv1"
@@ -57,61 +47,158 @@
         android:layout_below="@+id/pro_startv"
         />
 
-    
-    
+
     <RelativeLayout
-        android:background="@drawable/back_start"
-        android:layout_marginTop="160px"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/pro_startv1"
+        android:id="@+id/rl_da"
         android:layout_width="800px"
-        android:layout_height="wrap_content">
-<TextView
-    android:id="@+id/pro_startv2"
-    android:background="#99252848"
-    android:layout_width="match_parent"
-    android:layout_height="134px"
-    android:text="职业分类"
-    android:gravity="center"
-    android:textColor="#ffffff"
-    android:textSize="54px"
-    />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_starrl1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:background="@drawable/back_start">
+
         <TextView
-            android:id="@+id/pro_startv3"
-            android:layout_marginTop="40px"
-            android:layout_marginLeft="44px"
+            android:id="@+id/pro_startv2"
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="#99252848"
+            android:gravity="center"
+            android:text="信息筛选"
+            android:textColor="#ffffff"
+            android:textSize="54px" />
+
+
+        <RelativeLayout
+            android:visibility="visible"
+            android:id="@+id/rl_wai"
             android:layout_below="@+id/pro_startv2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="选择职业前先做个分类吧~"
-            android:textColor="#ffffff"
-            android:textSize="46px"
-            />
-        <RelativeLayout
-            android:id="@+id/pro_rl2"
-            android:layout_marginTop="36px"
-            android:layout_below="@+id/pro_startv3"
+            android:layout_height="950px">
+        <TextView
+            android:layout_marginTop="50px"
+            android:id="@+id/pro_startv3"
             android:layout_width="match_parent"
-            android:layout_height="60px">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44px"
+            android:text="选择职业前先做个热身吧~"
+            android:textColor="#ffffff"
+            android:textSize="46px" />
+
+
+        <RelativeLayout
+            android:id="@+id/pro_rfenshu"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/pro_startv3"
+            android:layout_marginTop="50px">
 
             <TextView
-                android:layout_centerVertical="true"
-                android:id="@+id/pro_startv4"
-                android:layout_marginLeft="44px"
+                android:id="@+id/pro_startvfenshu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="您的专业方向是:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50px"
+                android:text="预估分数:"
                 android:textColor="#ffffff"
-                android:textSize="44px"
-                />
+                android:textSize="44px" />
+
+            <EditText
+                android:textColor="#fff"
+                android:textSize="35px"
+                android:hint="请输入分数"
+                android:inputType="number|numberDecimal"
+                android:textColorHint="@color/white"
+                android:id="@+id/pro_edfenshu"
+                android:layout_width="250px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startvfenshu"
+                android:background="@null"
+                android:maxLines="1" />
+
+            <TextView
+                android:textSize="37px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/pro_edfenshu"
+                android:text="分"
+                android:textColor="#fff" />
+
+            <View
+                android:layout_width="290px"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startvfenshu"
+                android:background="#fff"></View>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/pro_rname"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/pro_rfenshu"
+            android:layout_marginTop="50px">
+            <TextView
+                android:id="@+id/pro_startvname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50px"
+                android:text="你的名字:"
+                android:textColor="#ffffff"
+                android:textSize="44px" />
+            <EditText
+                android:textColor="#fff"
+                android:hint="请输入考生姓名"
+                android:id="@+id/pro_edname"
+                android:textSize="35px"
+                android:textColorHint="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startvname"
+                android:background="@null"
+                android:maxLines="1" />
+
+            <View
+                android:layout_toRightOf="@+id/pro_startvname"
+                android:layout_width="280px"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="130px"
+                 android:background="#fff"></View>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/pro_rl2"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/pro_rname"
+            android:layout_marginTop="50px">
+
+            <TextView
+                android:id="@+id/pro_startv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50px"
+                android:text="专业方向:"
+                android:textColor="#ffffff"
+                android:textSize="44px" />
 
             <LinearLayout
                 android:id="@+id/ll_wen"
-                android:layout_marginLeft="50px"
-                android:orientation="horizontal"
-                android:layout_toRightOf="@+id/pro_startv4"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startv4"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/img_wen"
@@ -119,24 +206,24 @@
                     android:layout_height="30px"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/hong" />
-             <TextView
-                 android:layout_marginLeft="10px"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="文科"
-                 android:layout_gravity="center_vertical"
-                 android:textSize="44px"
-                 android:textColor="#ffffff"
-                 />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10px"
+                    android:text="文科"
+                    android:textColor="#ffffff"
+                    android:textSize="44px" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_li"
-                android:layout_marginLeft="30px"
-                android:orientation="horizontal"
-                android:layout_toRightOf="@+id/ll_wen"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                >
+                android:layout_marginLeft="30px"
+                android:layout_toRightOf="@+id/ll_wen"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/img_li"
@@ -144,45 +231,43 @@
                     android:layout_height="30px"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/bai1" />
+
                 <TextView
-                    android:layout_marginLeft="10px"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="44px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10px"
                     android:text="理科"
                     android:textColor="#ffffff"
-                    />
+                    android:textSize="44px" />
             </LinearLayout>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/pro_rl3"
-            android:layout_marginTop="30px"
-            android:layout_below="@+id/pro_rl2"
             android:layout_width="match_parent"
             android:layout_height="60px"
-            >
+            android:layout_below="@+id/pro_rl2"
+            android:layout_marginTop="50px">
 
             <TextView
-                android:layout_centerVertical="true"
                 android:id="@+id/pro_startv5"
-                android:layout_marginLeft="44px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="您的预测成绩是:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50px"
+                android:text="填报批次:"
                 android:textColor="#ffffff"
-                android:textSize="44px"
-                />
+                android:textSize="44px" />
 
             <LinearLayout
                 android:id="@+id/ll_ben"
-                android:layout_marginLeft="50px"
-                android:orientation="horizontal"
-                android:layout_toRightOf="@+id/pro_startv5"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startv5"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/img_ben"
@@ -190,24 +275,24 @@
                     android:layout_height="30px"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/hong" />
+
                 <TextView
-                    android:layout_marginLeft="10px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="本科"
                     android:layout_gravity="center_vertical"
-                    android:textSize="44px"
+                    android:layout_marginLeft="10px"
+                    android:text="本科"
                     android:textColor="#ffffff"
-                    />
+                    android:textSize="44px" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_zhuan"
-                android:layout_marginLeft="30px"
-                android:orientation="horizontal"
-                android:layout_toRightOf="@+id/ll_ben"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                >
+                android:layout_marginLeft="30px"
+                android:layout_toRightOf="@+id/ll_ben"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/img_zhuan"
@@ -215,47 +300,43 @@
                     android:layout_height="30px"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/bai1" />
+
                 <TextView
-                    android:layout_marginLeft="10px"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="44px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10px"
                     android:text="专科"
                     android:textColor="#ffffff"
-                    />
+                    android:textSize="44px" />
             </LinearLayout>
         </RelativeLayout>
 
 
-
-
-
         <RelativeLayout
             android:id="@+id/pro_rl4"
-            android:layout_marginTop="30px"
-            android:layout_below="@+id/pro_rl3"
             android:layout_width="match_parent"
             android:layout_height="60px"
-            >
+            android:layout_below="@+id/pro_rl3"
+            android:layout_marginTop="50px">
 
             <TextView
-                android:layout_centerVertical="true"
                 android:id="@+id/pro_startv20"
-                android:layout_marginLeft="44px"
-                android:layout_width="392px"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="您的性别是:"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50px"
+                android:text="您的性别:"
                 android:textColor="#ffffff"
-                android:textSize="44px"
-                />
+                android:textSize="44px" />
 
             <LinearLayout
                 android:id="@+id/ll_nan"
-                android:orientation="horizontal"
-                android:layout_toRightOf="@+id/pro_startv20"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startv20"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/img_nan"
@@ -263,24 +344,24 @@
                     android:layout_height="30px"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/hong" />
+
                 <TextView
-                    android:layout_marginLeft="10px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="男"
                     android:layout_gravity="center_vertical"
-                    android:textSize="44px"
+                    android:layout_marginLeft="10px"
+                    android:text="男"
                     android:textColor="#ffffff"
-                    />
+                    android:textSize="44px" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_nv"
-                android:layout_marginLeft="70px"
-                android:orientation="horizontal"
-                android:layout_toRightOf="@+id/ll_nan"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                >
+                android:layout_marginLeft="70px"
+                android:layout_toRightOf="@+id/ll_nan"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/img_nv"
@@ -288,35 +369,118 @@
                     android:layout_height="30px"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/bai1" />
+
                 <TextView
-                    android:layout_marginLeft="20px"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="44px"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20px"
                     android:text="女"
                     android:textColor="#ffffff"
-                    />
+                    android:textSize="44px" />
             </LinearLayout>
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/pro_rks"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/pro_rl4"
+            android:layout_marginTop="50px">
+            <TextView
+                android:id="@+id/pro_startvadress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50px"
+                android:text="考生所在地:"
+                android:textColor="#ffffff"
+                android:textSize="44px" />
+
+            <TextView
+                android:id="@+id/pro_tvaddress"
+                android:background="@drawable/back_address"
+                android:layout_marginLeft="80px"
+                android:textColor="#fff"
+                android:text="点击选择城市"
+                android:textSize="32px"
+                android:layout_toRightOf="@+id/pro_startvadress"
+                android:paddingLeft="30px"
+                android:gravity="center"
+                android:paddingRight="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/pro_tvyes"
-            android:background="@drawable/back_capacityer"
-            android:textColor="#ffffff"
-            android:text="确认提交"
-            android:gravity="center"
-            android:textSize="44px"
+            android:layout_width="458px"
+            android:layout_height="100px"
+            android:layout_below="@+id/pro_rks"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="130px"
-            android:layout_below="@+id/pro_rl3"
-            android:layout_width="400px"
-            android:layout_height="120px"
-            />
-        <View
-            android:layout_below="@+id/pro_tvyes"
-            android:layout_marginTop="62px"
-            android:layout_width="match_parent"
-            android:layout_height="1px"></View>
-    </RelativeLayout>
+            android:layout_marginTop="50px"
+            android:background="@drawable/back_capacityer"
+            android:gravity="center"
+            android:text="确认提交"
+            android:textColor="#ffffff"
+            android:textSize="46px" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/pro_tvyes"
+            android:layout_marginTop="32px"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="invisible"
+            android:id="@+id/rl_li"
+            android:layout_below="@+id/pro_startv2"
+            android:layout_width="match_parent"
+            android:layout_height="950px">
+            <TextView
+                android:layout_marginTop="50px"
+                android:id="@+id/pro_staraddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44px"
+                android:text="考生所在地:"
+                android:textColor="#ffffff"
+                android:textSize="46px" />
+
+
+            <GridView
+                android:id="@+id/gv_address"
+                android:numColumns="4"
+                android:layout_marginTop="46px"
+                android:layout_below="@+id/pro_staraddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </GridView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="24px"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tv_tshi"
+        android:layout_below="@+id/rl_da"
+        android:layout_width="800px"
+        android:layout_height="wrap_content"
+        android:text="温馨提示:"
+        android:textColor="@color/white"
+        android:textSize="35px"
+        />
+<TextView
+    android:layout_below="@+id/tv_tshi"
+   android:layout_centerHorizontal="true"
+    android:text="请准确填写信息，填写后不可更改;相关信息收集仅用于功能、精确合理的推荐院校，请放心如实填写。"
+    android:textColor="#f6f6f6"
+    android:layout_width="800px"
+    android:layout_height="wrap_content"
+    android:textSize="27px"
+    />
 </RelativeLayout>

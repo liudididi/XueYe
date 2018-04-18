@@ -60,7 +60,6 @@ public class ReportedActivity extends BaseActivity {
             case R.id.reported_primary:
                 if(NetUtil.isNetworkAvailable(this)){
                     intent(this, PrimaryActivity.class);
-
                 }else {
                     Toast("当前无网络");
                 }
@@ -92,6 +91,7 @@ public class ReportedActivity extends BaseActivity {
                 MyQusetUtils.getInstance().getQuestInterface().jzjudge(token)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .retry(2)
                         .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
                             @Override
                             public void onNext(BaseBean<String> stringBaseBean) {

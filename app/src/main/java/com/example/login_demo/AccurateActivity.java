@@ -58,7 +58,7 @@ public class AccurateActivity extends BaseActivity {
         s4 = intent.getStringExtra("s4");
         s5 = intent.getStringExtra("s5");
         s6 = intent.getStringExtra("s6");
-        System.out.println("参数++++"+fen+s1+s2+s3+s4+s5+s6);
+
         academy_fragment = new Academy_Fragment();
         zhuanye_fragment = new Zhuanye_Fragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fl, academy_fragment).show(academy_fragment).commit();

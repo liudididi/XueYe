@@ -8,12 +8,12 @@ public class CXEFCBean {
 
 
     /**
-     * wishId : 352
-     * userId : 217
+     * wishId : 627
+     * userId : 297
      * wishType : 精准
-     * stutype : 文科
-     * sourceArea : null
-     * ceeScore : null
+     * stutype : 理科
+     * sourceArea : 北京市
+     * ceeScore : 555
      * proRank : null
      * credit : null
      * wishCity : null
@@ -22,34 +22,35 @@ public class CXEFCBean {
      * poorFlag : null
      * collegeClass : null
      * batch : null
-     * collegetype : 专科
-     * gender : 女
-     * creattime : 2018-03-31 10:30:32
+     * collegetype : 本科
+     * gender : 男
+     * creattime : 2018-04-15 10:34:14
      * outTradeNo : null
      * collegeArrangement : null
      * graduationDirection : null
      * cwb : null
      * outTradeNum : null
      * efcWilling : null
-     * favourMajor : 数字出版:660107:暂无数据,土木工程检测技术:540303:暂无数据
-     * majorGai : 数字出版:0.9033:0.7699999809265137:暂无数据:660107,体育保健与康复:0.8635:0.675000011920929:暂无数据:670409,国际标准舞:0.8635:0.675000011920929:暂无数据:650208,休闲体育:0.8635:0.675000011920929:暂无数据:670404,健身指导与管理:0.8635:0.675000011920929:暂无数据:670410,舞蹈表演:0.8635:0.675000011920929:暂无数据:650207,舞蹈编导:0.8635:0.675000011920929:暂无数据:650216,社会工作:0.7522:0.41:暂无数据:690101,心理咨询:0.7522:0.41:暂无数据:620804,环境评价与咨询服务:0.733:0.36444444449:暂无数据:520808,物业管理:0.7235:0.34166666694:暂无数据:540703,旅游管理:0.7167:0.32558823568:暂无数据:640101,旅行社经营管理:0.7167:0.32558823568:暂无数据:640103,导游:0.7167:0.32558823568:暂无数据:640102,景区开发与管理:0.7167:0.32558823568:暂无数据:640104,应用阿拉伯语:0.7091:0.3075:暂无数据:670215,中小企业创业与经营:0.7091:0.3075:暂无数据:630607,汽车营销与服务:0.7091:0.3075:暂无数据:630702,商务日语:0.7091:0.3075:暂无数据:670205,旅游日语:0.7091:0.3075:暂无数据:670207
-     * testCode : INFP:E10:S8:T12:J10:I11:N18:F12:P12,SRE:A7:C8:E8:I7:S9:R8
-     * sdsCode : null
-     * mbtiCode : null
-     * job : 能源动力工程师,新闻工作者
+     * favourMajor : 建筑设备工程技术:540401,市政工程技术:540601
+     * majorGai : 工业分析技术:0.8031:0.9599999934434891:570207,建筑设备工程技术:0.7654:0.8700000047683716:540401,市政工程技术:0.7654:0.8700000047683716:540601,建筑电气工程技术:0.736:0.8:540403,城市燃气工程技术:0.736:0.8:540602,绿色食品生产与检验:0.7191:0.7599999904632568:510114,政府采购管理:0.715:0.75:630104,国际金融:0.708:0.7333333641290665:630202,证券与期货:0.708:0.7333333641290665:630203,铁道交通运营管理:0.6843:0.6769230961799622:600108,工商企业管理:0.6843:0.6769230961799622:630601,人力资源管理:0.6843:0.6769230961799622:690202,税务:0.6625:0.625:630102,工程造价:0.5722:0.41:540502,物业管理:0.5722:0.41:540703,卫生监督:0.5722:0.41:620603,保险:0.5722:0.41:630205,信用管理:0.5722:0.41:630207,会计:0.5722:0.41:630302,会计信息管理:0.5722:0.41:630304
+     * testCode : INFP:E9:S9:T6:J8:I12:N17:F18:P14,ECI:A10:C12:E13:I10:S9:R8
+     * sdsCode : ECI:A10:C12:E13:I10:S9:R8
+     * mbtiCode : INFP:E9:S9:T6:J8:I12:N17:F18:P14
+     * job : 水电运行与管理,建筑设备智能化,城市燃气与环境
      * process : 3
      * standby1 : null
      * standby2 : null
      * standby3 : null
      * standby4 : null
+     * name : 地地
      */
 
     private int wishId;
     private String userId;
     private String wishType;
     private String stutype;
-    private Object sourceArea;
-    private Object ceeScore;
+    private String sourceArea;
+    private String ceeScore;
     private Object proRank;
     private Object credit;
     private Object wishCity;
@@ -70,14 +71,15 @@ public class CXEFCBean {
     private String favourMajor;
     private String majorGai;
     private String testCode;
-    private Object sdsCode;
-    private Object mbtiCode;
+    private String sdsCode;
+    private String mbtiCode;
     private String job;
     private int process;
     private Object standby1;
     private Object standby2;
     private Object standby3;
     private Object standby4;
+    private String name;
 
     public int getWishId() {
         return wishId;
@@ -111,19 +113,19 @@ public class CXEFCBean {
         this.stutype = stutype;
     }
 
-    public Object getSourceArea() {
+    public String getSourceArea() {
         return sourceArea;
     }
 
-    public void setSourceArea(Object sourceArea) {
+    public void setSourceArea(String sourceArea) {
         this.sourceArea = sourceArea;
     }
 
-    public Object getCeeScore() {
+    public String getCeeScore() {
         return ceeScore;
     }
 
-    public void setCeeScore(Object ceeScore) {
+    public void setCeeScore(String ceeScore) {
         this.ceeScore = ceeScore;
     }
 
@@ -287,19 +289,19 @@ public class CXEFCBean {
         this.testCode = testCode;
     }
 
-    public Object getSdsCode() {
+    public String getSdsCode() {
         return sdsCode;
     }
 
-    public void setSdsCode(Object sdsCode) {
+    public void setSdsCode(String sdsCode) {
         this.sdsCode = sdsCode;
     }
 
-    public Object getMbtiCode() {
+    public String getMbtiCode() {
         return mbtiCode;
     }
 
-    public void setMbtiCode(Object mbtiCode) {
+    public void setMbtiCode(String mbtiCode) {
         this.mbtiCode = mbtiCode;
     }
 
@@ -349,5 +351,13 @@ public class CXEFCBean {
 
     public void setStandby4(Object standby4) {
         this.standby4 = standby4;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

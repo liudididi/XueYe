@@ -59,7 +59,7 @@ public class MoreSchool_Adapter extends RecyclerView.Adapter<MoreSchool_Adapter.
                    }
                 Intent intent=new Intent(context, TuiJianSchoolActivity.class);
                 intent.putExtra("schoolname",list.get(position).getName());
-                 intent.putExtra("schoolurl",BaseApi.ImgApi+list.get(position).getImgurl());
+                intent.putExtra("schoolurl",BaseApi.ImgApi+list.get(position).getImgurl());
                  context.startActivity(intent);
 
             }

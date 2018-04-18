@@ -125,11 +125,6 @@ public class XueYeGuiHuaActivity extends BaseActivity {
                 });
 
 
-
-
-
-
-
             //TODO 待完善
 //            cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
 //                @Override

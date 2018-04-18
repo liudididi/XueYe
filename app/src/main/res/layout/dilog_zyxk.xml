@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_marginTop="50px"
+    android:layout_marginLeft="50px"
+    android:layout_marginRight="50px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="提示"
+    android:textStyle="bold"
+    android:gravity="center"
+    android:textSize="60px"
+    />
+    <TextView
+        android:id="@+id/zyxk_tishi"
+        android:layout_marginTop="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提示"
+        android:gravity="center"
+        android:textSize="50px"
+        />
+
+    <TextView
+        android:id="@+id/zyxk_zhuan"
+        android:textColor="@color/white"
+        android:background="@drawable/back_guanzhu"
+        android:layout_marginTop="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:text="好的选择专科"
+        android:gravity="center"
+        android:textSize="50px"
+        />
+    <TextView
+        android:id="@+id/zyxk_ben"
+        android:background="@drawable/back_queding"
+        android:layout_marginTop="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:text="仍然选择本科"
+        android:gravity="center"
+        android:textSize="50px"
+        />
+    <TextView
+        android:layout_marginTop="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:gravity="center"
+        android:textSize="50px"
+        />
+</LinearLayout>

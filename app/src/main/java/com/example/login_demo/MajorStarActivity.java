@@ -48,6 +48,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import presenter.CXEFCPresenter;
+import presenter.favourMajorpresent;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,8 +61,9 @@ import untils.QuestInterface;
 import untils.Rotatable;
 import untils.SPUtils;
 import view.CXEFCView;
+import view.favourMajorView;
 
-public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
+public class MajorStarActivity extends BaseActivity implements  favourMajorView {
 
 
     @BindView(R.id.majorstar_iv_back)
@@ -70,8 +72,6 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
     ViewPager majorVp;
     @BindView(R.id.imtwjj)
     ImageView imtwjj;
-
-
     @BindView(R.id.mstartxzone)
     TextView mstartxzone;
     @BindView(R.id.mstartxhone)
@@ -80,7 +80,6 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
     ImageView mstartywone;
     @BindView(R.id.mstartrlone)
     RelativeLayout mstartrlone;
-
     @BindView(R.id.mstartxztwo)
     TextView mstartxztwo;
     @BindView(R.id.mstartxhtwo)
@@ -89,7 +88,6 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
     ImageView mstartywtwo;
     @BindView(R.id.mstartrltwo)
     RelativeLayout mstartrltwo;
-
     @BindView(R.id.mstartxzsan)
     TextView mstartxzsan;
     @BindView(R.id.mstartxhsan)
@@ -98,7 +96,6 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
     ImageView mstartywsan;
     @BindView(R.id.mstartrlsan)
     RelativeLayout mstartrlsan;
-
     @BindView(R.id.mstartxzsi)
     TextView mstartxzsi;
     @BindView(R.id.mstartxhsi)
@@ -177,8 +174,9 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
     private String type;
     private String classify;
     public  static  int   ztdata;
-    private CXEFCPresenter cxefcPresenter;
+
     private static int heightPixels;
+    private presenter.favourMajorpresent favourMajorpresent;
 
 
     @Override
@@ -500,7 +498,9 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
         super.onDestroy();
         answerllist.clear();
         startfenleiActivity.fenlieanswerlist.clear();
-
+        if(favourMajorpresent!=null){
+            favourMajorpresent.onDestory();
+        }
     }
 
     @Override
@@ -579,9 +579,8 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
 
         }else {
             token = (String) SPUtils.get(this, "token", "");
-            cxefcPresenter = new CXEFCPresenter(this);
-            cxefcPresenter.CXEFCPresenter(token);
-
+            favourMajorpresent = new favourMajorpresent(this);
+            favourMajorpresent.favourMajor(token);
         }
 
         for (int i = 0; i < ywlist.size(); i++) {
@@ -734,25 +733,26 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
     }
 
 
+
+
+
     @Override
-    public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
-        if(cxefcBeanBaseBean.data!=null){
-            String favourMajor = cxefcBeanBaseBean.data.getFavourMajor();
-            String[] split = favourMajor.split(",");
-            for (int i = 0; i < split.length; i++) {
-                String str = split[i];
+    public void favourMajorSuccess(List<String> list) {
+        if(list!=null&&list.size()>0){
+            for (int i = 0; i < list.size(); i++) {
+                String str = list.get(i);
                 String[] split1 = str.split(":");
                 jobStarBean jobStarBean=new jobStarBean();
                 jobStarBean.setMajor(split1[0]);
                 jobStarBean.setMajor_id(split1[1]);
-                List<bean.jobStarBean.MajorinfoBean> list=new ArrayList<>();
+                List<bean.jobStarBean.MajorinfoBean> lists=new ArrayList<>();
                 bean.jobStarBean.MajorinfoBean majorinfoBean=new jobStarBean.MajorinfoBean();
                 majorinfoBean.setAveragesalary(split1[2]);
-                list.add(majorinfoBean);
-                jobStarBean.setMajorinfo(list);
+                lists.add(majorinfoBean);
+                jobStarBean.setMajorinfo(lists);
                 answerllist.add(jobStarBean);
             }
-        }
+
             if (answerllist.size() != 0) {
                 scnum.setText(answerllist.size()+"");
                 for (int i = 0; i < answerllist.size(); i++) {
@@ -765,10 +765,14 @@ public class MajorStarActivity extends BaseActivity implements  CXEFCView  {
                 }
             }
 
+
+        }
+
+
     }
 
     @Override
-    public void GetEFCResultfail(Throwable t) {
-
+    public void favourMajorfail(String msg) {
+              Toast(msg);
     }
 }
