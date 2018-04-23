@@ -37,10 +37,10 @@
         android:layout_height="120px"
         >
         <ImageView
-            android:padding="20px"
+            android:padding="15px"
             android:id="@+id/schoold_iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100px"
+            android:layout_height="100px"
             android:layout_gravity="center"
             android:src="@drawable/left_fh"
             android:layout_centerVertical="true"/>

@@ -45,11 +45,9 @@ public class Spinner3_Adapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-
-
         View  inflate = LayoutInflater.from(context).inflate(R.layout.spinner3_item, null);
-          TextView spinner_tv=inflate.findViewById(R.id.spinner_tv);
-          spinner_tv.setText(list.get(i).toString());
+        TextView spinner_tv=inflate.findViewById(R.id.spinner_tv);
+        spinner_tv.setText(list.get(i).toString());
         return inflate;
     }
 

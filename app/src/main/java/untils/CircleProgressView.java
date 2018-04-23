@@ -23,8 +23,8 @@ public class CircleProgressView extends View {
     private Paint mPaintCurrent;
     private Paint mPaintText;
     private float mPaintWidth;//画笔宽度
-    private int mPaintColor = Color.RED;//画笔颜色
-    private int mTextColor =  Color.RED;//字体颜色
+    public static int mPaintColor ;//画笔颜色
+    public static int mTextColor;//字体颜色
     private float mTextSize;//字体大小
     private int location;//从哪个位置开始
     private float startAngle;//开始角度
@@ -46,8 +46,9 @@ public class CircleProgressView extends View {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView);
         location = array.getInt(R.styleable.CircleProgressView_location, 1);
         mPaintWidth = array.getDimension(R.styleable.CircleProgressView_progress_paint_width, dip2px(context, 2));//默认4dp
-        mPaintColor = array.getColor(R.styleable.CircleProgressView_progress_paint_color, mPaintColor);
         mTextSize = array.getDimension(R.styleable.CircleProgressView_progress_text_size, dip2px(context, 18));//默认18sp
+
+        mPaintColor = array.getColor(R.styleable.CircleProgressView_progress_paint_color, mPaintColor);
         mTextColor = array.getColor(R.styleable.CircleProgressView_progress_text_color, mTextColor);
         array.recycle();
 

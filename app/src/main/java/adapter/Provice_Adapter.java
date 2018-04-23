@@ -57,7 +57,6 @@ public class Provice_Adapter extends RecyclerView.Adapter {
     }
 
     class  ProvieceViewHolder extends  RecyclerView.ViewHolder {
-
         private TextView proviceitem_name;
         public ProvieceViewHolder(View itemView) {
             super(itemView);

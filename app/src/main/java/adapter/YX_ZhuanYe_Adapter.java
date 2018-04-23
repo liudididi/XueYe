@@ -26,10 +26,11 @@ public class YX_ZhuanYe_Adapter extends RecyclerView.Adapter<YX_ZhuanYe_Adapter.
 
     private List<Advanced_YX_Bean.MajorBean> list;
     private Context context;
-
-    public YX_ZhuanYe_Adapter(List list, Context context) {
+    private String biaoshi;
+    public YX_ZhuanYe_Adapter(List list, Context context,String biaoshi) {
         this.list = list;
         this.context = context;
+        this.biaoshi=biaoshi;
     }
 
     @Override
@@ -42,17 +43,37 @@ public class YX_ZhuanYe_Adapter extends RecyclerView.Adapter<YX_ZhuanYe_Adapter.
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         String zyGai = list.get(position+1).getZyGai();
-        String substring1=null;
-        if(zyGai.length()>=4)
+
+        if(zyGai!=null)
         {
-            substring1 = zyGai.substring(2, 4);
+            String substring1=null;
+            if(zyGai.length()>=4)
+            {
+                substring1 = zyGai.substring(2, 4);
+            }
+            if(zyGai.length()<4)
+            {
+                substring1 = zyGai.substring(2, 3);
+            }
+            //专业概率
+            holder.tv_yx_zhuanye.setText(substring1+"%");
+
+            if(biaoshi.equals("冲刺"))
+            {
+                holder.tv_yx_zhuanye.setText(substring1+"%");            }
+            else if(biaoshi.equals("稳妥"))
+            {
+                holder.tv_yx_zhuanye.setText(substring1+"%");
+                holder.tv_yx_zhuanye.setTextColor(context.getResources().getColor(R.color.zhu1));
+            }
+            else
+            {
+                holder.tv_yx_zhuanye.setText(substring1+"%");
+                holder.tv_yx_zhuanye.setTextColor(context.getResources().getColor(R.color.lue));
+            }
         }
-        if(zyGai.length()<4)
-        {
-            substring1 = zyGai.substring(2, 3);
-        }
-        //专业概率
-        holder.tv_yx_zhuanye.setText(substring1+"%");
+
+
         //专业名称
         holder.tv_yx_zy_name.setText(list.get(position+1).getMajor());
         holder.rl.setOnClickListener(new View.OnClickListener() {

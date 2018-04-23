@@ -8,6 +8,7 @@
 
 
         <TextView
+            android:background="#FCFCFC"
              android:textColor="#666666"
             android:paddingLeft="170px"
             android:id="@+id/xiao_tv"

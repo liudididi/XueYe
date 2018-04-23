@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
@@ -57,17 +59,12 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
     RecyclerView score_rv_arts4;
 
 
-    @BindView(R.id.rl_kaosheng)
-    RelativeLayout rl_kaosheng;
+
     @BindView(R.id.rl_yuanxiao)
     RelativeLayout rl_yuanxiao;
     @BindView(R.id.rl_name)
     RelativeLayout rl_name;
 
-    @BindView(R.id.iv_right1)
-    ImageView iv_right1;
-    @BindView(R.id.iv_next1)
-    ImageView iv_next1;
     @BindView(R.id.iv_right2)
     ImageView iv_right2;
     @BindView(R.id.iv_next2)
@@ -90,12 +87,21 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
     @BindView(R.id.view_name)
     View view_name;
 
-    @BindView(R.id.tv_kaosheng)
-    TextView tv_kaosheng;
+
     @BindView(R.id.tv_yuanxiao)
     TextView tv_yuanxiao;
     @BindView(R.id.tv_name)
     TextView tv_name;
+    @BindView(R.id.tv_diqu)
+    TextView tv_diqu;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
+    @BindView(R.id.iv)
+    ImageView iv;
+    @BindView(R.id.iv_none)
+    ImageView iv_none;
+    @BindView(R.id.pb)
+    ProgressBar pb;
     private ArrayAdapter<String> area_adapter;
     private String tbsubtype;
     private ScorePresent scorePresent;
@@ -109,8 +115,8 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
     private ArrayList<String> list7;
     private ArrayList<String> list8;
 
-    private String address="北京";
-    private String school="北京大学";
+
+    private String school;
     private List<ScoreBean2> data2;
 
     private boolean flag1=true;
@@ -121,6 +127,8 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
     private boolean zt2=true;
     private boolean zt3=true;
     private Spinner_Adapter adapter;
+    private String tbarea;
+    private String s;
 
     @Override
     public int getId() {
@@ -134,51 +142,68 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
         Dianji();
         scorePresent = new ScorePresent(this);
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-        scorePresent.ScorePresent("北京",tbsubtype);
-        scorePresent.Score2Present("北京","北京大学");
+        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
+        tv_diqu.setText(tbarea);
+        yuanxiao();
+
+
+    }
+
+    private void yuanxiao() {
+        rl_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(tv_yuanxiao.getText().toString().length()<=3)
+                {
+                        zt1=true;
+                        iv_right2.setVisibility(View.VISIBLE);
+                        iv_next2.setVisibility(View.GONE);
+                        zt2=true;
+                        kaosheng_list.setVisibility(View.GONE);
+                        yuanxiao_list.setVisibility(View.GONE);
+
+                        view_kaosheng.setVisibility(View.GONE);
+                        view_yuanxiao.setVisibility(View.GONE);
+                        if(zt3)
+                        {
+                            iv_right3.setVisibility(View.GONE);
+                            iv_next3.setVisibility(View.VISIBLE);
+                            name_list.setVisibility(View.VISIBLE);
+                            view_name.setVisibility(View.VISIBLE);
+                            zt3=false;
+                        }
+                        else
+                        {
+                            iv_right3.setVisibility(View.VISIBLE);
+                            iv_next3.setVisibility(View.GONE);
+                            name_list.setVisibility(View.GONE);
+                            view_name.setVisibility(View.GONE);
+                            zt3=true;
+                        }
+
+
+                }
+                else
+                {
+                    Toast.makeText(ScoreActivity.this, "请选择院校地址", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
 
     }
 
     private void Dianji() {
-        rl_kaosheng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                iv_right2.setVisibility(View.VISIBLE);
-                iv_next2.setVisibility(View.GONE);
-                zt2=true;
-                iv_right3.setVisibility(View.VISIBLE);
-                iv_next3.setVisibility(View.GONE);
-                zt3=true;
-                yuanxiao_list.setVisibility(View.GONE);
-                name_list.setVisibility(View.GONE);
 
-                view_yuanxiao.setVisibility(View.GONE);
-                view_name.setVisibility(View.GONE);
-                if(zt1)
-                {
-                    iv_right1.setVisibility(View.GONE);
-                    iv_next1.setVisibility(View.VISIBLE);
-                    kaosheng_list.setVisibility(View.VISIBLE);
-                    view_kaosheng.setVisibility(View.VISIBLE);
 
-                    zt1=false;
-                }
-                else
-                {
-                    iv_right1.setVisibility(View.VISIBLE);
-                    iv_next1.setVisibility(View.GONE);
-                    kaosheng_list.setVisibility(View.GONE);
-                    view_kaosheng.setVisibility(View.GONE);
-                    zt1=true;
-                }
-            }
-        });
+
+
         rl_yuanxiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iv_right1.setVisibility(View.VISIBLE);
-                iv_next1.setVisibility(View.GONE);
+
                 zt1=true;
                 iv_right3.setVisibility(View.VISIBLE);
                 iv_next3.setVisibility(View.GONE);
@@ -206,46 +231,14 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
                 }
             }
         });
-        rl_name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                iv_right1.setVisibility(View.VISIBLE);
-                iv_next1.setVisibility(View.GONE);
-                zt1=true;
-                iv_right2.setVisibility(View.VISIBLE);
-                iv_next2.setVisibility(View.GONE);
-                zt2=true;
-                kaosheng_list.setVisibility(View.GONE);
-                yuanxiao_list.setVisibility(View.GONE);
-
-                view_kaosheng.setVisibility(View.GONE);
-                view_yuanxiao.setVisibility(View.GONE);
-                if(zt3)
-                {
-                    iv_right3.setVisibility(View.GONE);
-                    iv_next3.setVisibility(View.VISIBLE);
-                    name_list.setVisibility(View.VISIBLE);
-                    view_name.setVisibility(View.VISIBLE);
-                    zt3=false;
-                }
-                else
-                {
-                    iv_right3.setVisibility(View.VISIBLE);
-                    iv_next3.setVisibility(View.GONE);
-                    name_list.setVisibility(View.GONE);
-                    view_name.setVisibility(View.GONE);
-                    zt3=true;
-                }
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-
+        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
 
     }
 
@@ -285,35 +278,17 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
         list.add("新疆");
         list.add("台湾");
         list.add("澳门");
-        address=list.get(0).toString();
-        tv_kaosheng.setText(address);
-        tv_yuanxiao.setText(address);
 
-        //考生所在地
-        adapter = new Spinner_Adapter(list,ScoreActivity.this);
-        kaosheng_list.setAdapter(adapter);
-        kaosheng_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                address = list.get(i).toString();
-                scorePresent.Score2Present(address,school);
-                tv_kaosheng.setText(address);
-
-                kaosheng_list.setVisibility(View.GONE);
-                view_kaosheng.setVisibility(View.GONE);
-                iv_right1.setVisibility(View.VISIBLE);
-                iv_next1.setVisibility(View.GONE);
-                zt1=true;
-            }
-        });
         //院校所在地
         adapter=new Spinner_Adapter(list,ScoreActivity.this);
         yuanxiao_list.setAdapter(adapter);
         yuanxiao_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                tv_yuanxiao.setText(list.get(i).toString());
-                scorePresent.ScorePresent(list.get(i).toString(),tbsubtype);
+
+                s = list.get(i).toString();
+                tv_yuanxiao.setText(s);
+                scorePresent.ScorePresent(s,tbsubtype);
 
                 yuanxiao_list.setVisibility(View.GONE);
                 view_yuanxiao.setVisibility(View.GONE);
@@ -335,6 +310,7 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
     @Override
     public void Score1success(BaseBean<List<ScoreBean1>> listBaseBean) {
 
+
         list3 = new ArrayList<>();
         List<ScoreBean1> data1 = listBaseBean.data;
         if(data1.size()>0&& data1 !=null)
@@ -343,18 +319,19 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
                 String name = data1.get(i).getName();
                 list3.add(name);
             }
-            school=list3.get(0).toString();
-            tv_name.setText(school);
-            scorePresent.Score2Present(address,school);
-            //院校名称
+
+             //院校名称
             adapter=new Spinner_Adapter(list3,ScoreActivity.this);
             name_list.setAdapter(adapter);
             name_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    pb.setVisibility(View.VISIBLE);
+
                     school = list3.get(i).toString();
                     tv_name.setText(school);
-                    scorePresent.Score2Present(address,school);
+                    tv_name.setTextColor(getResources().getColor(R.color.zhu4));
+                    scorePresent.Score2Present(tbarea,school);
 
                     name_list.setVisibility(View.GONE);
                     view_name.setVisibility(View.GONE);
@@ -364,25 +341,36 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
 
                 }
             });
-
+            yuanxiao();
         }
         else
         {
             adapter.notifyDataSetChanged();
+            rl_name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    iv_right3.setVisibility(View.VISIBLE);
+                    iv_next3.setVisibility(View.GONE);
+                    name_list.setVisibility(View.GONE);
+                    view_name.setVisibility(View.GONE);
+                    zt3=true;
+                    Toast.makeText(ScoreActivity.this, "无大学信息", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            Toast.makeText(this, "无大学信息", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     @Override
     public void Score1fail(Throwable t) {
-
+        scorePresent.ScorePresent(s,tbsubtype);
     }
 
     //分数查询
     @Override
     public void Score2success(BaseBean<List<ScoreBean2>> listBaseBean) {
+
         list1 = new ArrayList<>();
         list2 = new ArrayList<>();
         listthree = new ArrayList<>();
@@ -393,7 +381,10 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
         list8 = new ArrayList<>();
         data2 = listBaseBean.data;
      if(data2!=null&&data2.size()>0){
-
+         pb.setVisibility(View.GONE);
+         iv.setVisibility(View.GONE);
+         iv_none.setVisibility(View.GONE);
+         rl.setVisibility(View.VISIBLE);
          for (int i = 0; i < data2.size(); i++) {
              //文理科
              String classify = data2.get(i).getClassify();
@@ -523,11 +514,18 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
          }
      }
 
+     else
+     {
+         pb.setVisibility(View.GONE);
+         iv_none.setVisibility(View.VISIBLE);
+         rl.setVisibility(View.GONE);
+     }
 
     }
 
     @Override
     public void Score2fail(Throwable t) {
+        scorePresent.Score2Present(tbarea,school);
 
     }
 
@@ -535,6 +533,5 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
     protected void onDestroy() {
         super.onDestroy();
         scorePresent.onDestory();
-
     }
 }

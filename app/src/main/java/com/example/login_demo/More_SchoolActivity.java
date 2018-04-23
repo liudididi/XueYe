@@ -126,8 +126,14 @@ public class More_SchoolActivity extends BaseActivity implements WishView {
             String name = list1.get(i).getName();
             String address = list1.get(i).getAddress();
             String father = list1.get(i).getFather();
-            String typeRank = list1.get(i).getTypeRank();
-            list.add(new CanSchoolBean3(url, name, address, father, typeRank));
+            String two = list1.get(i).getTwo();
+            String nine = list1.get(i).getNine();
+            String defense_student = list1.get(i).getDefense_student();
+            String graduate = list1.get(i).getGraduate();
+            String recruit = list1.get(i).getRecruit();
+            String preeminent_plan = list1.get(i).getPreeminent_plan();
+            String com_rank = list1.get(i).getCom_rank();
+            list.add(new CanSchoolBean3(url, name, address, father,two,nine,defense_student,graduate,recruit,preeminent_plan,com_rank));
         }
         MoreSchool_Adapter moreSchool_adapter = new MoreSchool_Adapter(list, More_SchoolActivity.this);
         moreRv.setLayoutManager(new LinearLayoutManager(More_SchoolActivity.this));

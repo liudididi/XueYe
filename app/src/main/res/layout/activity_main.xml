@@ -37,13 +37,13 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="3px"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/ll_top"
-        android:background="#ccc"
-        android:id="@+id/view2"></View>
+        android:background="#ccc"></View>
 
     <include
 

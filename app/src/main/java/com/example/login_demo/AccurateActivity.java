@@ -31,9 +31,6 @@ public class AccurateActivity extends BaseActivity {
     View view_sprint;
     @BindView(R.id.view_reliable)
     View view_reliable;
-
-
-
     private Academy_Fragment academy_fragment;
     private Zhuanye_Fragment zhuanye_fragment;
     public static String fen;
@@ -43,6 +40,8 @@ public class AccurateActivity extends BaseActivity {
     public static String s4;
     public static String s5;
     public static String s6;
+    public static String tbsubtype;
+
     @Override
     public int getId() {
         return R.layout.activity_accurate;
@@ -51,14 +50,15 @@ public class AccurateActivity extends BaseActivity {
     public void InIt() {
         accurateAcademy.setTextColor(Color.BLACK);
         Intent intent = getIntent();
+        //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
         fen = intent.getStringExtra("fen");
         s1 = intent.getStringExtra("s1");
         s2 = intent.getStringExtra("s2");
-        s3 = intent.getStringExtra("s3");
+        //s3 = intent.getStringExtra("s3");
         s4 = intent.getStringExtra("s4");
         s5 = intent.getStringExtra("s5");
-        s6 = intent.getStringExtra("s6");
-
+       // s6 = intent.getStringExtra("s6");
+        tbsubtype = intent.getStringExtra("tbsubtype");
         academy_fragment = new Academy_Fragment();
         zhuanye_fragment = new Zhuanye_Fragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fl, academy_fragment).show(academy_fragment).commit();

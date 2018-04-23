@@ -214,7 +214,7 @@ public class PrimaryActivity extends BaseActivity implements WishView {
                 String address = list1.get(i).getAddress();
                 String father = list1.get(i).getFather();
                 String typeRank = list1.get(i).getTypeRank();
-                list.add(new CanSchoolBean3(url, name, address, father, typeRank));
+                //list.add(new CanSchoolBean3(url, name, address, father, typeRank));
             }
 
             if (biaoshi.equals("冲刺")) {

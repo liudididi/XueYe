@@ -46,7 +46,7 @@ import untils.QuestInterface;
 import untils.SPUtils;
 import view.CXEFCView;
 
-public class XueYeGuiHuaActivity extends BaseActivity {
+public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView{
 
     @BindView(R.id.guihua_iv_back)
     ImageView guihuaIvBack;
@@ -76,6 +76,10 @@ public class XueYeGuiHuaActivity extends BaseActivity {
 
     private String token;
     private String testCode;
+    private CXEFCPresenter cxefcPresenter;
+    private String sourceArea;
+    private String stutype;
+    private String ceeScore;
 
     @Override
     public int getId() {
@@ -91,7 +95,8 @@ public class XueYeGuiHuaActivity extends BaseActivity {
 
         //专业
         initzhuanye();
-
+        cxefcPresenter = new CXEFCPresenter(this);
+        cxefcPresenter.CXEFCPresenter(token);
     }
 
     private void initzhuanye() {
@@ -161,7 +166,20 @@ public class XueYeGuiHuaActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.xlcs_bt:
-                intent(this,Volunteer_ScreenActivity.class);
+                //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
+                if(sourceArea!=null&&stutype!=null&&ceeScore!=null)
+                {
+                    Intent intent=new Intent(XueYeGuiHuaActivity.this,AccurateActivity.class);
+                    intent.putExtra("s2",sourceArea+"");
+                    intent.putExtra("tbsubtype",stutype+"");
+                    intent.putExtra("fen",ceeScore);
+                    intent.putExtra("s1","0");
+                    intent.putExtra("s4","");
+                    intent.putExtra("s5","");
+
+                    startActivity(intent);
+                }
+               // intent(this,AccurateActivity.class);
                 break;
             case R.id.rl_xqcebg:
                 Intent intent1=new Intent(XueYeGuiHuaActivity.this, XQcsActivity.class);
@@ -197,6 +215,22 @@ public class XueYeGuiHuaActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        cxefcPresenter.onDestory();
+    }
+
+    @Override
+    public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+        //考生省份
+        sourceArea = cxefcBeanBaseBean.data.getSourceArea();
+        //文理科
+        stutype = cxefcBeanBaseBean.data.getStutype();
+        //考生分数
+        ceeScore = cxefcBeanBaseBean.data.getCeeScore();
+
+    }
+
+    @Override
+    public void GetEFCResultfail(Throwable t) {
 
     }
 }

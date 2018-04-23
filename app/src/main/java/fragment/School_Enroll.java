@@ -376,8 +376,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 }
             }
 
-
-
         }
 
     }
@@ -420,6 +418,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void LuquXianBeansuccess(List<LuquXianBean> listBaseBean) {
+
         zhexian_ll.removeAllViews();
          int max=0;
          int min=0;
@@ -431,7 +430,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         listfen.add(0);
         listfen.add(0);
         if(listBaseBean!=null&&listBaseBean.size()>0){
-            for (int i = 0; i <5 ; i++) {
+            for (int i = 0; i <listBaseBean.size() ; i++) {
                 if(listBaseBean.get(i).getScore()!=null){
                     String score = listBaseBean.get(i).getScore();
                     if(score.equals("")){
@@ -441,13 +440,16 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 }
             }
         }
-       max= Collections.max(listfen);
+         max= Collections.max(listfen);
         min=Collections.min(listfen);
         if(min<0){
             min=0;
         }
         if(max>700){
             max=700;
+        }
+        if(max==0){
+            max=100;
         }
         zhiMaScoreView.setlistfen(listfen);
         zhiMaScoreView.setMaxScore(max);

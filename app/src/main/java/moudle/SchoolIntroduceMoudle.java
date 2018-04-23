@@ -5,6 +5,7 @@ import java.util.List;
 import base.BaseBean;
 import bean.CampusBean;
 import bean.FingerpostBean;
+import bean.LXBean;
 import bean.SchoolIntroduceBean;
 import bean.ZDXKBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -120,7 +121,31 @@ public class SchoolIntroduceMoudle {
 
         compositeDisposable.add(disposableSubscriber);
     }
+    // 联系方式
+    public void  getUnivPhone (String name, final LianXiBack lianXiBack)
+    {
+        DisposableSubscriber<BaseBean<List<LXBean>>> disposableSubscriber =
+                MyQusetUtils.getInstance().getQuestInterface().getUnivPhone(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean<List<LXBean>>>() {
+                    @Override
+                    public void onNext(BaseBean<List<LXBean>> listBaseBean) {
+                        lianXiBack.LianXisuccess(listBaseBean);
+                    }
 
+                    @Override
+                    public void onError(Throwable t) {
+                        lianXiBack.LianXifail(t);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+         compositeDisposable.add(disposableSubscriber);
+    }
 
 
     //获取重点专业或重点实验室
@@ -146,6 +171,13 @@ public class SchoolIntroduceMoudle {
     {
         void Introducesuccess(BaseBean<List<SchoolIntroduceBean>> listBaseBean);
         void Introducefail(Throwable t);
+    }
+
+    //联系方式的接口
+    public interface LianXiBack
+    {
+        void LianXisuccess(BaseBean<List<LXBean>> listBaseBean);
+        void LianXifail(Throwable t);
     }
     public void  onDestory(){
         if(!compositeDisposable.isDisposed()){

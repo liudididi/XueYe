@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:textSize="50px"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="修改性别"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ccc"
+        />
+    <LinearLayout
+        android:id="@+id/perfect_kemu"
+        android:layout_below="@+id/perfect_heightschool"
+        android:layout_marginTop="50px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/pro_nan"
+            android:layout_width="0px"
+            android:layout_height="116px"
+            android:layout_weight="1"
+            android:background="@drawable/bg_subject3"
+            android:gravity="center"
+            android:padding="2px"
+            android:text="男"
+            android:textSize="37px"
+            />
+
+        <TextView
+            android:id="@+id/pro_nv"
+            android:layout_width="0px"
+            android:layout_height="116px"
+            android:layout_below="@+id/es_tv1"
+            android:layout_toRightOf="@+id/estimate_tvwen"
+            android:layout_weight="1"
+            android:background="@drawable/bg_subject2"
+            android:gravity="center"
+            android:padding="2px"
+            android:text="女"
+            android:textSize="37px" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/pro_queding"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:text="确定"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/zhu2"
+        android:textSize="50px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="50px"
+        />
+
+
+
+</LinearLayout>

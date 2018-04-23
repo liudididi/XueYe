@@ -83,7 +83,7 @@
                 android:id="@+id/tv_xk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="学科范围"
+                android:text="院校类型"
                 android:layout_centerInParent="true"
 
                 android:layout_centerVertical="true"

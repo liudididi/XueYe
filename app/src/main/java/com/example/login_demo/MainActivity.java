@@ -285,12 +285,13 @@ public class MainActivity extends BaseActivity implements LoginView {
     public void loginsuccess(String msg, BaseBean<UserBean> baseBean) {
             Toast(msg);
             SPUtils.put(MyApp.context,"token",baseBean.token);
-            MyUserBean.setUserBean(baseBean.data);
+        UserBean data = baseBean.data;
+        MyUserBean.setUserBean(data);
             if(baseBean.data.getName()!=null){
                 intent(MainActivity.this, HomeActivity.class);
                 finish();
             }else {
-                intent(MainActivity.this, PresonMessageActivity.class);
+                intent(MainActivity.this, perfectMessageActivity.class);
                 finish();
             }
 

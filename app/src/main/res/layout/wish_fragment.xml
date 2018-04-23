@@ -16,43 +16,81 @@
     >
 </com.stx.xhb.xbanner.XBanner>
 
+
      <RelativeLayout
          android:layout_width="match_parent"
          android:layout_height="400px"
          android:orientation="vertical"
          android:visibility="visible"
-         android:gravity="center"
-         >
+          >
+
      <TextView
-         android:id="@+id/wish_day3"
+         android:id="@+id/tv_gk1"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="高考倒计时"
-         android:textSize="65px"
-         android:layout_marginTop="60px"
+         android:layout_centerHorizontal="true"
          android:textColor="#fff"
-         android:visibility="gone"
-         android:layout_marginRight="20px"/>
-     <TextView
-         android:id="@+id/wish_day2"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="高考倒计时"
-         android:textSize="65px"
          android:layout_marginTop="60px"
-         android:textColor="#fff"
-         android:visibility="gone"
-         android:layout_marginRight="20px"/>
+         android:textSize="65px"
+         android:text="高考倒计时"/>
      <TextView
          android:id="@+id/wish_day1"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="高考倒计时"
-         android:textSize="65px"
-         android:visibility="gone"
-         android:layout_marginTop="60px"
-         android:textColor="#fff"
-         android:layout_marginRight="20px"/>
+          android:textSize="65px"
+         android:visibility="visible"
+          android:textColor="#fff"
+
+         android:layout_centerInParent="true"
+           android:layout_marginRight="20px"/>
+         <TextView
+             android:id="@+id/tv_gm1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="50px"
+             android:textColor="#fff"
+
+             android:layout_below="@+id/wish_day1"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="25px"
+             android:visibility="visible"
+             android:text="革命尚未成功，同志仍需努力"/>
+
+
+
+         <TextView
+             android:id="@+id/tv_ym3"
+             android:textColor="#fff"
+
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerHorizontal="true"
+              android:visibility="gone"
+             android:layout_marginTop="60px"
+             android:textSize="65px"
+             android:text="圆梦倒计时"/>
+         <TextView
+             android:id="@+id/wish_day3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="65px"
+             android:textColor="#fff"
+
+             android:visibility="gone"
+              android:layout_centerInParent="true"
+             android:layout_marginRight="20px"/>
+         <TextView
+             android:id="@+id/tv_gx3"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textSize="50px"
+             android:textColor="#fff"
+
+             android:layout_below="@+id/wish_day3"
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="25px"
+             android:visibility="gone"
+             android:text=" 恭喜哟，胜利在向你招手"/>
      </RelativeLayout>
      <LinearLayout
          android:id="@+id/ll_back"

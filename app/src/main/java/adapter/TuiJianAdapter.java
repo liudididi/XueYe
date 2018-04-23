@@ -2,6 +2,8 @@ package adapter;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
 
 import java.util.List;
@@ -45,10 +48,19 @@ public class TuiJianAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int i, View inflate, ViewGroup viewGroup) {
+    public View getView(final int i, View inflate, ViewGroup viewGroup) {
         if(inflate==null){
             inflate = LayoutInflater.from(context).inflate(R.layout.tuijian_item, null);
         }
+        inflate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, MajorDetailActivity.class);
+                intent.putExtra("majorid",list.get(i).getMajorId()+"");
+                intent.putExtra("major",list.get(i).getMajor());
+                context.startActivity(intent);
+            }
+        });
         final CircleProgressView cpv=inflate.findViewById(R.id.cpv);
         TextView tv_zy= inflate.findViewById(R.id.tv_zy);
         TextView tv_tj_zhuanye= inflate.findViewById(R.id.tv_tj_zhuanye);
@@ -95,7 +107,6 @@ public class TuiJianAdapter extends BaseAdapter{
             if(s.length()<2)
             {
                 substring= s.substring(0,1);
-
             }else {
                 substring= s.substring(0,2);
             }

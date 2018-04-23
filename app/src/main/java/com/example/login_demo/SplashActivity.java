@@ -9,7 +9,7 @@ import base.BaseActivity;
 
 public class SplashActivity extends BaseActivity {
 
-    private int time=3;
+    private int time=1;
     private Handler handler;
     private Runnable runnable;
 
@@ -34,7 +34,7 @@ public class SplashActivity extends BaseActivity {
                 }
             }
         };
-        handler.postDelayed(runnable,2000);
+        handler.postDelayed(runnable,1000);
     }
 
 

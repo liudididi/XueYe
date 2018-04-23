@@ -71,11 +71,11 @@ public class WishMoudle {
 
 
     //根据分数推荐的学校
-    public void completcanSchool(String minScore, String maxScore, String cityType, String isAccept, String schoolType, String isMS,String province,String classify, final CanSchoolBack canSchoolBack)
+    public void completcanSchool(String minScore, String maxScore, String cityType, String isAccept, String schoolType,String province,String classify, final CanSchoolBack canSchoolBack)
     {
         DisposableSubscriber<BaseBean<CanSchoolBean>> disposableSubscriber =
                 MyQusetUtils.getInstance().getQuestInterface()
-                        .completecanschool(minScore, maxScore,cityType, isAccept, schoolType,isMS,province,classify)
+                        .completecanschool(minScore, maxScore,cityType, isAccept, schoolType,province,classify)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeWith(new DisposableSubscriber<BaseBean<CanSchoolBean>>() {

@@ -8,7 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-
+    <!-- 打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- bugly -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
@@ -39,7 +40,8 @@
         <activity
             android:name=".GuidanceActivity"
             android:icon="@drawable/logo"
-            android:launchMode="singleTask">
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -119,7 +121,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".CompleteWishActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".WVActivity" />

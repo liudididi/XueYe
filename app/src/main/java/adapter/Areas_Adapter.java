@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import com.example.login_demo.R;
 import com.example.login_demo.SelectSchoolActivity;
+import com.example.login_demo.perfectMessageActivity;
 
 import java.util.List;
 
 import bean.AreaBean;
 import bean.CityBean;
+import untils.SPUtils;
 
 /**
  * Created by 地地 on 2018/1/27.
@@ -44,10 +46,8 @@ public class Areas_Adapter extends RecyclerView.Adapter {
       provieceViewHolder.areaitem_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, SelectSchoolActivity.class);
-
-                intent.putExtra("area",list.get(position).getArea());
-
+                Intent intent=new Intent(context, perfectMessageActivity.class);
+                SPUtils.put(context,"area",list.get(position).getArea());
                 context.startActivity(intent);
 
             }

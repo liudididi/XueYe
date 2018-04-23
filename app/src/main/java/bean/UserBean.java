@@ -10,56 +10,56 @@ public class UserBean {
 
     /**
      * role : null
-     * city : 县
+     * city : null
      * schoolclass : null
-     * province : 北京市
+     * province : null
      * isSpecial : false
      * provincename : null
      * headportrait : null
      * vip : null
-     * examyear : 2018
+     * examyear : null
      * email : null
      * examscore : null
-     * area : 延庆县
+     * area : null
      * areaname : null
      * minesignature : null
      * cityname : null
-     * sex : 男
+     * sex : null
      * exambatch : null
-     * mobile : 15176046561
-     * stutype : 理科
+     * mobile : 15011476366
+     * stutype : null
      * examprovince : null
-     * midschool : 北京市延庆县张山营中学
+     * midschool : null
      * examrank : null
-     * grade : 高三
-     * name : 地地
-     * username : 15176046561
+     * grade : null
+     * name : null
+     * username : 15011476366
      */
 
     private Object role;
-    private String city;
-    private String schoolclass;
-    private String province;
+    private Object city;
+    private Object schoolclass;
+    private Object province;
     private boolean isSpecial;
     private Object provincename;
     private Object headportrait;
     private Object vip;
-    private String examyear;
+    private Object examyear;
     private Object email;
     private Object examscore;
-    private String area;
+    private Object area;
     private Object areaname;
     private Object minesignature;
     private Object cityname;
-    private String sex;
+    private Object sex;
     private Object exambatch;
     private String mobile;
-    private String stutype;
+    private Object stutype;
     private Object examprovince;
-    private String midschool;
+    private Object midschool;
     private Object examrank;
-    private String grade;
-    private String name;
+    private Object grade;
+    private Object name;
     private String username;
 
     public Object getRole() {
@@ -70,27 +70,27 @@ public class UserBean {
         this.role = role;
     }
 
-    public String getCity() {
+    public Object getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(Object city) {
         this.city = city;
     }
 
-    public String getSchoolclass() {
+    public Object getSchoolclass() {
         return schoolclass;
     }
 
-    public void setSchoolclass(String schoolclass) {
+    public void setSchoolclass(Object schoolclass) {
         this.schoolclass = schoolclass;
     }
 
-    public String getProvince() {
+    public Object getProvince() {
         return province;
     }
 
-    public void setProvince(String province) {
+    public void setProvince(Object province) {
         this.province = province;
     }
 
@@ -126,11 +126,11 @@ public class UserBean {
         this.vip = vip;
     }
 
-    public String getExamyear() {
+    public Object getExamyear() {
         return examyear;
     }
 
-    public void setExamyear(String examyear) {
+    public void setExamyear(Object examyear) {
         this.examyear = examyear;
     }
 
@@ -150,11 +150,11 @@ public class UserBean {
         this.examscore = examscore;
     }
 
-    public String getArea() {
+    public Object getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Object area) {
         this.area = area;
     }
 
@@ -182,11 +182,11 @@ public class UserBean {
         this.cityname = cityname;
     }
 
-    public String getSex() {
+    public Object getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Object sex) {
         this.sex = sex;
     }
 
@@ -206,11 +206,11 @@ public class UserBean {
         this.mobile = mobile;
     }
 
-    public String getStutype() {
+    public Object getStutype() {
         return stutype;
     }
 
-    public void setStutype(String stutype) {
+    public void setStutype(Object stutype) {
         this.stutype = stutype;
     }
 
@@ -222,11 +222,11 @@ public class UserBean {
         this.examprovince = examprovince;
     }
 
-    public String getMidschool() {
+    public Object getMidschool() {
         return midschool;
     }
 
-    public void setMidschool(String midschool) {
+    public void setMidschool(Object midschool) {
         this.midschool = midschool;
     }
 
@@ -238,19 +238,19 @@ public class UserBean {
         this.examrank = examrank;
     }
 
-    public String getGrade() {
+    public Object getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(Object grade) {
         this.grade = grade;
     }
 
-    public String getName() {
+    public Object getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Object name) {
         this.name = name;
     }
 

@@ -110,23 +110,28 @@ public class LogInMoudle {
      */
 
     public  void  Register(String mobile,String password,String captcha, final  RequestBack requestBack){
-        DisposableSubscriber<BaseBean> disposableSubscriber = MyQusetUtils.getInstance()
-                .getQuestInterface().register(mobile,password,captcha)
+        DisposableSubscriber<BaseBean<UserBean>> disposableSubscriber = MyQusetUtils.getInstance()
+                .getQuestInterface().register(mobile, password, captcha)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io()).subscribeWith(new DisposableSubscriber<BaseBean>() {
+
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableSubscriber<BaseBean<UserBean>>() {
                     @Override
-                    public void onNext(BaseBean baseBean) {
+                    public void onNext(BaseBean<UserBean> baseBean) {
                         requestBack.Loginsuccess(baseBean);
                     }
+
                     @Override
                     public void onError(Throwable t) {
                         requestBack.Loginfail(t);
                     }
+
                     @Override
                     public void onComplete() {
 
                     }
                 });
+
         compositeDisposable.add(disposableSubscriber);
 
     }

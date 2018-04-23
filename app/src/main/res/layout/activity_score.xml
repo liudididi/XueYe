@@ -36,7 +36,7 @@
         android:background="#ccc"
         android:layout_below="@id/rl_score"></View>
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:background="#fff"
         android:id="@+id/ll_tishi"
         android:layout_width="match_parent"
@@ -110,15 +110,15 @@
         android:layout_height="3px"
         android:background="#F3F3F3"
         android:layout_below="@+id/ll_tishi"
-        ></View>
+        ></View>-->
     <LinearLayout
         android:background="#fff"
         android:id="@+id/score_ll"
         android:layout_width="match_parent"
         android:layout_height="120px"
-        android:layout_below="@id/view_tishi"
+        android:layout_below="@id/view1"
         >
-        <RelativeLayout
+       <!-- <RelativeLayout
             android:id="@+id/rl_kaosheng"
             android:layout_width="0px"
             android:layout_height="match_parent"
@@ -158,7 +158,7 @@
                 android:background="#F3F3F3"                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 ></View>
-        </RelativeLayout>
+        </RelativeLayout>-->
         <RelativeLayout
             android:id="@+id/rl_yuanxiao"
             android:layout_width="0px"
@@ -171,6 +171,9 @@
                 android:layout_height="wrap_content"
                  android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
+                android:text="院校所在地"
+                android:textSize="40px"
+                android:textColor="#2c2c2c"
                 />
             <ImageView
                 android:id="@+id/iv_right2"
@@ -204,14 +207,40 @@
             android:id="@+id/rl_name"
             android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             >
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="院校名称"
+                android:textColor="#2c2c2c"
+                android:layout_centerVertical="true"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="400px"
+                android:text="例：北京大学"
+                android:textColor="#999999"
+                android:textSize="40px"
+                android:maxLines="1"
+                android:layout_marginLeft="5px"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:layout_toRightOf="@+id/tv"
                 android:layout_height="wrap_content"
                  android:layout_centerInParent="true"
                 />
+            <View
+                android:layout_width="400px"
+                android:layout_height="1px"
+                android:layout_marginTop="10px"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="210px"
+                android:background="#2c2c2c"
+                 ></View>
             <ImageView
                 android:id="@+id/iv_right3"
                 android:layout_width="wrap_content"
@@ -237,204 +266,240 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <View
-        android:id="@+id/view9"
-        android:layout_width="match_parent"
-        android:layout_height="3px"
-        android:background="#F3F3F3"
-        android:layout_below="@+id/score_ll"
-        ></View>
-
-
     <LinearLayout
-        android:id="@+id/ll"
+        android:id="@+id/view9"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/score_ll"
         android:orientation="horizontal"
+        android:layout_marginTop="30px"
+        android:layout_marginLeft="50px"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考生所在地："
+            android:textSize="35px"
+            android:textColor="#999999"/>
+        <TextView
+            android:id="@+id/tv_diqu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北京市"
+            android:layout_marginTop="5px"
+            android:textSize="40px"
+            android:textColor="#3986f3"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:visibility="gone"
         android:layout_below="@+id/view9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <View
-            android:layout_width="8px"
-            android:layout_height="50px"
-            android:background="#3986f3"
-            android:layout_marginLeft="50px"
-            android:layout_gravity="center_vertical"
-            ></View>
-        <TextView
-            android:id="@+id/score_science"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="8px"
+                android:layout_height="50px"
+                android:background="#3986f3"
+                android:layout_marginLeft="50px"
+                android:layout_gravity="center_vertical"
+                ></View>
+            <TextView
+                android:id="@+id/score_science"
+                android:layout_width="wrap_content"
+                android:layout_height="100px"
+                android:layout_below="@id/score_ll"
+                android:gravity="center_vertical"
+                android:text="理科"
+                android:layout_marginLeft="20px"
+                android:textSize="50px"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/li"
+            android:layout_width="match_parent"
             android:layout_height="100px"
-            android:layout_below="@id/score_ll"
-            android:gravity="center_vertical"
-            android:text="理科"
-            android:layout_marginLeft="20px"
-            android:textSize="50px"
-            android:textColor="#000"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/li"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:layout_below="@id/ll">
-        <include
-            layout="@layout/public_item"
-            ></include>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view_li"
-        android:layout_width="match_parent"
-        android:layout_height="3px"
-        android:layout_below="@id/li"
-        android:background="#F3F3F3">
-    </View>
-
-    <LinearLayout
-        android:id="@+id/score_ll_science"
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:orientation="horizontal"
-        android:layout_below="@id/view_li"
-        android:background="#fff"
-        >
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_science1"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            android:background="#fff"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_science2"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            android:background="#fff"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_science3"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            android:background="#fff"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_science4"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            android:background="#fff"/>
-    </LinearLayout>
-
-    <View
-        android:layout_width="3px"
-        android:layout_height="500px"
-        android:background="#F3F3F3"
-        android:layout_below="@id/view_li"
-        android:layout_marginLeft="268.5px"
-        ></View>
-
-    <LinearLayout
-        android:id="@+id/ll0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/score_ll_science"
-        >
+            android:layout_below="@id/ll">
+            <include
+                layout="@layout/public_item"
+                ></include>
+        </LinearLayout>
         <View
-            android:layout_width="8px"
-            android:layout_height="50px"
-            android:background="#3986f3"
-            android:layout_marginLeft="50px"
-            android:layout_gravity="center_vertical"
+            android:id="@+id/view_li"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@id/li"
+            android:background="#F3F3F3">
+        </View>
+        <LinearLayout
+            android:id="@+id/score_ll_science"
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:orientation="horizontal"
+            android:layout_below="@id/view_li"
+            android:background="#fff"
+            >
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_science1"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:background="#fff"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_science2"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:background="#fff"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_science3"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:background="#fff"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_science4"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:background="#fff"/>
+        </LinearLayout>
+        <View
+            android:layout_width="3px"
+            android:layout_height="500px"
+            android:background="#F3F3F3"
+            android:layout_below="@id/view_li"
+            android:layout_marginLeft="268.5px"
             ></View>
-        <TextView
-            android:id="@+id/score_arts"
-            android:layout_width="wrap_content"
-            android:layout_height="100px"
+        <LinearLayout
+            android:id="@+id/ll0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_below="@id/score_ll_science"
-            android:text="文科"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="20px"
-            android:textSize="50px"
-            android:textColor="#000"/>
-    </LinearLayout>
+            >
+            <View
+                android:layout_width="8px"
+                android:layout_height="50px"
+                android:background="#3986f3"
+                android:layout_marginLeft="50px"
+                android:layout_gravity="center_vertical"
+                ></View>
+            <TextView
+                android:id="@+id/score_arts"
+                android:layout_width="wrap_content"
+                android:layout_height="100px"
+                android:layout_below="@id/score_ll_science"
+                android:text="文科"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="20px"
+                android:textSize="50px"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/wen"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_below="@id/ll0">
+            <include
+                layout="@layout/public_item"
+                ></include>
+        </LinearLayout>
+        <View
+            android:id="@+id/view_wen"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@id/wen"
+            android:background="#F3F3F3"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500px"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_below="@id/view_wen">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_arts1"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                >
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_arts2"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                >
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_arts3"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                >
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/score_rv_arts4"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="500px"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                >
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+        <View
+            android:layout_width="3px"
+            android:layout_height="500px"
+            android:background="#F3F3F3"
+            android:layout_below="@id/view_wen"
+            android:layout_marginLeft="268.5px"
+            ></View>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bgyl"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/view9"/>
 
-    <LinearLayout
-        android:id="@+id/wen"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:layout_below="@id/ll0">
-        <include
-            layout="@layout/public_item"
-            ></include>
-    </LinearLayout>
-    <View
-        android:id="@+id/view_wen"
-        android:layout_width="match_parent"
-        android:layout_height="3px"
-        android:layout_below="@id/wen"
-        android:background="#F3F3F3"></View>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="500px"
-        android:orientation="horizontal"
-        android:background="#fff"
-        android:layout_below="@id/view_wen">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_arts1"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            >
-        </android.support.v7.widget.RecyclerView>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_arts2"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            >
-        </android.support.v7.widget.RecyclerView>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_arts3"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            >
-        </android.support.v7.widget.RecyclerView>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/score_rv_arts4"
-            android:layout_width="0px"
-            android:layout_weight="1"
-            android:layout_height="500px"
-            android:layout_marginLeft="20px"
-            android:layout_marginRight="20px"
-            >
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
-    <View
-        android:layout_width="3px"
-        android:layout_height="500px"
-        android:background="#F3F3F3"
-        android:layout_below="@id/view_wen"
-        android:layout_marginLeft="268.5px"
-        ></View>
+<ImageView
+    android:id="@+id/iv_none"
+    android:visibility="gone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/none"
+    android:layout_centerInParent="true"/>
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        />
     <ListView
         android:id="@+id/kaosheng_list"
         android:layout_width="match_parent"
-        android:layout_below="@+id/view9"
+        android:layout_below="@+id/score_ll"
         android:layout_height="847px"
         android:background="#fff"
         android:visibility="gone"
@@ -454,7 +519,7 @@
     <ListView
         android:id="@+id/yuanxiao_list"
         android:layout_width="match_parent"
-        android:layout_below="@+id/view9"
+        android:layout_below="@+id/score_ll"
         android:layout_height="847px"
         android:background="#fff"
         android:visibility="gone"
@@ -474,7 +539,7 @@
     <ListView
         android:id="@+id/name_list"
         android:layout_width="match_parent"
-        android:layout_below="@+id/view9"
+        android:layout_below="@+id/score_ll"
         android:layout_height="847px"
         android:background="#fff"
         android:visibility="gone"

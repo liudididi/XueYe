@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             />
         <ImageView
+          android:visibility="gone"
             android:id="@+id/preson_complie"
             android:padding="20px"
             android:scaleType="centerCrop"
@@ -48,6 +49,7 @@
         android:background="#f3f3f3"
         android:layout_height="3px"></View>
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/preson_icon"
         android:layout_below="@+id/my_login"
         android:layout_width="match_parent"
@@ -106,13 +108,12 @@
         <TextView
             android:id="@+id/preson_name"
             android:textColor="#999999"
-
             android:src="@drawable/right_arrow"
             android:layout_centerVertical="true"
             android:layout_marginRight="30px"
             android:layout_width="wrap_content"
             android:layout_height="80px"
-            android:text="点击右上角编辑修改"
+            android:text=""
             android:textSize="50px"
             android:layout_alignParentRight="true"
             />
@@ -136,27 +137,21 @@
             android:layout_height="80px" />
         <TextView
             android:textColor="#999999"
-
             android:id="@+id/preson_six"
             android:src="@drawable/right_arrow"
             android:layout_centerVertical="true"
-            android:layout_marginRight="30px"
-            android:layout_width="wrap_content"
+            android:layout_marginRight="50px"
+            android:layout_width="400px"
+            android:gravity="right"
             android:layout_height="80px"
-            android:text="男"
+            android:text=""
             android:textSize="50px"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="26px"
-        android:background="#F3F3F3"
-        ></View>
-
-
     <RelativeLayout
+        android:visibility="gone"
         android:layout_below="@+id/my_login"
         android:layout_width="match_parent"
         android:layout_height="150px"
@@ -226,13 +221,14 @@
             android:layout_marginRight="30px"
             android:layout_width="wrap_content"
             android:layout_height="80px"
-            android:text="2018"
+            android:text=""
             android:textSize="50px"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>
 
     <RelativeLayout
+
         android:layout_below="@+id/my_login"
         android:layout_width="match_parent"
         android:layout_height="150px"
@@ -248,7 +244,7 @@
         </View>
         <TextView
             android:textColor="#555555"
-            android:text="所属高中"
+            android:text="考生所在地"
             android:textSize="50px"
             android:gravity="center"
             android:layout_marginLeft="30px"
@@ -257,14 +253,13 @@
             android:layout_height="80px" />
         <TextView
             android:textColor="#999999"
-
             android:id="@+id/preson_highschool"
             android:src="@drawable/right_arrow"
             android:layout_centerVertical="true"
             android:layout_marginRight="35px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击右上角编辑修改"
+            android:text=""
             android:textSize="35px"
             android:layout_alignParentRight="true"
             />

@@ -6,6 +6,7 @@ import base.BaseBean;
 import base.Basepresent;
 import bean.CampusBean;
 import bean.FingerpostBean;
+import bean.LXBean;
 import bean.SchoolIntroduceBean;
 import bean.ZDXKBean;
 import moudle.SchoolIntroduceMoudle;
@@ -87,6 +88,22 @@ public class SchoolIntroducePresent extends Basepresent {
             @Override
             public void UnivImportantfail(Throwable t) {
                 schoolIntroduceView.UnivImportantfail(t);
+            }
+        });
+    }
+
+    //联系方式
+    public void LianXIPresent(String name)
+    {
+        schoolIntroduceMoudle.getUnivPhone(name, new SchoolIntroduceMoudle.LianXiBack() {
+            @Override
+            public void LianXisuccess(BaseBean<List<LXBean>> lxBeanBaseBean) {
+                schoolIntroduceView.LianXisuccess(lxBeanBaseBean);
+            }
+
+            @Override
+            public void LianXifail(Throwable t) {
+                schoolIntroduceView.LianXifail(t);
             }
         });
     }

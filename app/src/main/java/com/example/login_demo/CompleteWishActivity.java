@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,82 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-CompleteWishActivity extends BaseActivity {
+public class CompleteWishActivity extends BaseActivity {
     @BindView(R.id.complete_iv_back)
     ImageView completeIvBack;
     @BindView(R.id.ivyi_right)
@@ -132,6 +58,14 @@ CompleteWishActivity extends BaseActivity {
     TextView completeZhuan;
     @BindView(R.id.complete_ben)
     TextView completeBen;
+    @BindView(R.id.rl_city)
+    RelativeLayout rlCity;
+    @BindView(R.id.img_cjwh)
+    ImageView imgCjwh;
+    @BindView(R.id.tv1)
+    TextView tv1;
+    @BindView(R.id.complete_rl4)
+    LinearLayout completeRl4;
     private Boolean lv1msg = false;
     private Boolean lv2msg = false;
     private Boolean lv3msg = false;
@@ -141,10 +75,9 @@ CompleteWishActivity extends BaseActivity {
     private ArrayList listsan;
 
 
-    private int cityType = 1;
-    private String isMS = null;
-    private String schoolType ="";
-    private String benzhuan = null;
+    private int cityType = 0;
+    private String schoolType = "";
+    private String benzhuan = "需要";
 
     @Override
     public int getId() {
@@ -175,8 +108,6 @@ CompleteWishActivity extends BaseActivity {
                 cityType = i + 1;
             }
         });
-
-
         listsan = new ArrayList<>();
         listsan.add("理工类院校");
         listsan.add("综合类院校");
@@ -207,23 +138,27 @@ CompleteWishActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.complete_iv_back, R.id.complete_zhuan, R.id.complete_ben, R.id.complete_school, R.id.complete_major, R.id.complete_rl1, R.id.complete_rl2, R.id.complete_rl3, R.id.complete_rl4, R.id.complete_tvyes})
+    @OnClick({R.id.complete_iv_back, R.id.rl_city,R.id.img_cjwh, R.id.complete_zhuan, R.id.complete_ben, R.id.complete_school, R.id.complete_major, R.id.complete_rl1, R.id.complete_rl2, R.id.complete_rl3, R.id.complete_rl4, R.id.complete_tvyes})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.complete_iv_back:
                 finish();
                 break;
+            case R.id.img_cjwh:
+                rlCity.setVisibility(View.VISIBLE);
+                break;
+            case R.id.rl_city:
+                rlCity.setVisibility(View.GONE);
+                break;
             case R.id.complete_school:
 
-                isMS = "院校";
                 completeSchool.setBackgroundResource(R.drawable.bg_subject3);
                 completeMajor.setBackgroundResource(R.drawable.bg_subject2);
-
                 break;
             case R.id.complete_major:
                 completeSchool.setBackgroundResource(R.drawable.bg_subjectbai);
                 completeMajor.setBackgroundResource(R.drawable.bg_subjectselect);
-                isMS = "专业";
+
                 break;
             case R.id.complete_zhuan:
                 completeBen.setBackgroundResource(R.drawable.bg_subject2);
@@ -302,17 +237,13 @@ CompleteWishActivity extends BaseActivity {
                     ivyiNext.setVisibility(View.GONE);
 
 
-
-
                 }
                 break;
 
             case R.id.complete_rl4:
                 if (lv4msg) {
-
                     lv4msg = false;
                 } else {
-
                     lv4msg = true;
                     lv2msg = false;
                     lv3msg = false;
@@ -320,8 +251,6 @@ CompleteWishActivity extends BaseActivity {
                     rllistyi.setVisibility(View.GONE);
                     ivyiRight.setVisibility(View.VISIBLE);
                     ivyiNext.setVisibility(View.GONE);
-
-
                     rllistsan.setVisibility(View.GONE);
                     ivsanRight.setVisibility(View.VISIBLE);
                     ivsanNext.setVisibility(View.GONE);
@@ -329,10 +258,8 @@ CompleteWishActivity extends BaseActivity {
                 break;
 
             case R.id.complete_tvyes:
-
-                if (cityType != 0 && benzhuan != null && schoolType != null && isMS != null) {
+                if (cityType != 0 && benzhuan != null && schoolType != null) {
                     Intent i = new Intent();
-                    i.putExtra("isMS", isMS);
                     i.putExtra("cityType", cityType + "");
                     i.putExtra("isAccept", benzhuan);
                     i.putExtra("schoolType", schoolType);
@@ -344,6 +271,7 @@ CompleteWishActivity extends BaseActivity {
                 break;
         }
     }
+
 
 
 }

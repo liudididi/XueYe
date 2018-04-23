@@ -46,10 +46,7 @@ public class Zy_Sousuo_Adapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.zy_sousuo_item, null);
         TextView tv_zy=inflate.findViewById(R.id.tv_zy);
-
-            tv_zy.setText(list.get(i).getName());
-
-
+        tv_zy.setText(list.get(i).getName());
         return inflate;
     }
 }

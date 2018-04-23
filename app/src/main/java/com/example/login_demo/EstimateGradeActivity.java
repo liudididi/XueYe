@@ -11,14 +11,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.Complete_Adapter;
 import adapter.Complete_AdapterTwo;
 import base.BaseActivity;
 import butterknife.BindView;
@@ -49,12 +47,15 @@ public class EstimateGradeActivity extends BaseActivity {
     ListView listWeizhi;
     @BindView(R.id.tv_area)
     TextView tvArea;
+    @BindView(R.id.prima_address)
+    TextView primaAddress;
 
-    private List<String> arealist;
-    private ArrayAdapter<String> area_adapter;
+    //private List<String> arealist;
+    //private ArrayAdapter<String> area_adapter;
     private String tbarea;
     private String tbsubtype;
     private String tbmaxfen;
+
 
     @Override
     public int getId() {
@@ -65,14 +66,16 @@ public class EstimateGradeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
+        tbarea = (String) SPUtils.get(MyApp.context, "tbarea", tbarea);
         estimateEdgradefen.setText(tbmaxfen);
+        primaAddress.setText(tbarea);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void InIt() {
         initsum();
-        String tb = (String) SPUtils.get(MyApp.context, "tbarea", tbarea);
+    /*    tb = (String) SPUtils.get(MyApp.context, "tbarea", tbarea);
         tvArea.setText(tb);
         Complete_AdapterTwo completelv1_adapter = new Complete_AdapterTwo(arealist, EstimateGradeActivity.this);
         listWeizhi.setAdapter(completelv1_adapter);
@@ -83,7 +86,7 @@ public class EstimateGradeActivity extends BaseActivity {
                 tvArea.setText(tbarea);
                 listWeizhi.setVisibility(View.GONE);
             }
-        });
+        });*/
 
         /*area_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arealist);
         area_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -108,7 +111,7 @@ public class EstimateGradeActivity extends BaseActivity {
     }
 
     private void initsum() {
-        arealist = new ArrayList<>();
+   /*     arealist = new ArrayList<>();
         arealist.add("北京市");
         arealist.add("天津市");
         arealist.add("河北省");
@@ -141,23 +144,23 @@ public class EstimateGradeActivity extends BaseActivity {
         arealist.add("宁夏");
         arealist.add("新疆");
         arealist.add("台湾");
-        arealist.add("澳门");
+        arealist.add("澳门");*/
         tbarea = "北京市";
         tbsubtype = "文科";
 
     }
 
 
-    @OnClick({R.id.estimate_iv_back,R.id.tv_area, R.id.estimate_tvwen, R.id.estimate_tvli, R.id.estimate_tvben, R.id.estimate_tvzhuan, R.id.estimate_submit})
+    @OnClick({R.id.estimate_iv_back, R.id.tv_area, R.id.estimate_tvwen, R.id.estimate_tvli, R.id.estimate_tvben, R.id.estimate_tvzhuan, R.id.estimate_submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.estimate_iv_back:
                 finish();
                 break;
             case R.id.tv_area:
-                if(listWeizhi.getVisibility()==View.VISIBLE){
+                if (listWeizhi.getVisibility() == View.VISIBLE) {
                     listWeizhi.setVisibility(View.GONE);
-                }else {
+                } else {
                     listWeizhi.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -190,7 +193,7 @@ public class EstimateGradeActivity extends BaseActivity {
                     Toast("分数过高，糊弄自己呢");
                     break;
                 }
-                if(NetUtil.isNetworkAvailable(this)==false){
+                if (NetUtil.isNetworkAvailable(this) == false) {
                     Toast.makeText(this, "当前无网络", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -198,12 +201,13 @@ public class EstimateGradeActivity extends BaseActivity {
                 SPUtils.put(MyApp.context, "tbarea", tbarea);
                 SPUtils.put(MyApp.context, "tbmaxfen", tbmaxfen);
                 SPUtils.put(MyApp.context, "tbsubtype", tbsubtype);
-                Intent intent = new Intent(EstimateGradeActivity.this, PrimaryActivity.class);
+                Intent intent = new Intent(EstimateGradeActivity.this, AdvancedActivity.class);
                 startActivity(intent);
                 finish();
                 break;
         }
     }
+
 
 
 }

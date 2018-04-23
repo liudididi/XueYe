@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -50,6 +52,7 @@ public class PresonMessageActivity extends BaseActivity {
     @BindView(R.id.preson_highschool)
     TextView presonHighschool;
     private ConnectionChangeReceiver myReceiver;
+    private  String sex;
     @Override
     public int getId() {
         return R.layout.activity_preson_message;
@@ -75,10 +78,13 @@ public class PresonMessageActivity extends BaseActivity {
                             UserBean data = baseBean.data;
                             MyUserBean.setUserBean(data);
                             if(data.getName()!=null){
-                                presonName.setText(data.getName());
+                                String name = (String) data.getName();
+                                presonName.setText(name);
                             }
                             if(data.getSex()!=null){
-                                presonSix.setText(data.getSex());
+                              sex = (String) data.getSex();
+
+                                presonSix.setText(sex);
                             }
                             if(data.getSex()!=null){
                                 if(data.getSex().equals("女")){
@@ -90,13 +96,16 @@ public class PresonMessageActivity extends BaseActivity {
                                 Glide.with(PresonMessageActivity.this).load(R.drawable.boy).into(presonIcon);
                             }
                            if(data.getStutype()!=null){
-                               presonType.setText(data.getStutype());
+                               presonType.setText(data.getStutype()+"");
                            }
                            if(data.getExamyear()!=null){
-                               presonNear.setText(data.getExamyear());
+                               presonNear.setText(data.getExamyear()+"");
                            }
-                           if(data.getMidschool()!=null){
-                               presonHighschool.setText(data.getMidschool());
+                           if(data.getArea()!=null){
+                               String province = (String) data.getProvince();
+                               String city = (String) data.getCity();
+                               String area = (String) data.getArea();
+                               presonHighschool.setText(province+city+area);
                            }
                         }else {
                             Toast.makeText(MyApp.context,"token超时，请重新登录",Toast.LENGTH_SHORT);
@@ -113,12 +122,52 @@ public class PresonMessageActivity extends BaseActivity {
                 });
     }
 
-    @OnClick({R.id.preson_iv_back, R.id.preson_complie, R.id.preson_icon})
+    @OnClick({R.id.preson_iv_back, R.id.preson_complie, R.id.preson_icon,R.id.preson_six})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 
             case R.id.preson_iv_back:
                 finish();
+                break;
+
+            case  R.id.preson_six:
+                View viewe = LayoutInflater.from(PresonMessageActivity.this).inflate(R.layout.dialog_sex, null);
+                final AlertDialog dialog = new AlertDialog.Builder(PresonMessageActivity.this)
+                        .setView(viewe).show();
+                final TextView pro_nan = viewe.findViewById(R.id.pro_nan);
+                final TextView pro_nv = viewe.findViewById(R.id.pro_nv);
+                final TextView pro_queding = viewe.findViewById(R.id.pro_queding);
+                if(sex.equals("男")){
+                    pro_nan.setBackgroundResource(R.drawable.bg_subject3);
+                    pro_nv.setBackgroundResource(R.drawable.bg_subject2);
+                }else {
+                    pro_nan.setBackgroundResource(R.drawable.bg_subjectbai);
+                    pro_nv.setBackgroundResource(R.drawable.bg_subjectselect);
+                }
+                pro_nv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pro_nan.setBackgroundResource(R.drawable.bg_subjectbai);
+                        pro_nv.setBackgroundResource(R.drawable.bg_subjectselect);
+                        sex="女";
+                    }
+                });
+                pro_queding.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        presonSix.setText(sex);
+                        dialog.dismiss();
+                    }
+                });
+                pro_nan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pro_nan.setBackgroundResource(R.drawable.bg_subject3);
+                        pro_nv.setBackgroundResource(R.drawable.bg_subject2);
+                        sex="男";
+
+                    }
+                });
                 break;
             case R.id.preson_complie:
                 if(NetUtil.isNetworkAvailable(this)==false){

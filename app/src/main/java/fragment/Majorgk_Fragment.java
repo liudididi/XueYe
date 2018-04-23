@@ -49,11 +49,8 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
 
     @Override
     public void initView() {
-
          initid();
-
         majorgkPresent = new MajorgkPresent(this);
-
         majorgkPresent.getMajorgk(MajorDetailActivity.majorid);
         fmgk_tvdaima.setText(MajorDetailActivity.majorid);
         String substring = MajorDetailActivity.majorid.substring(0, 2);
@@ -75,7 +72,6 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
         fmgk_tvxw = view.findViewById(R.id.fmgk_tvxw);
         fmgk_tvzykc = view.findViewById(R.id.fmgk_tvzykc);
         fmgk_tvpyxq = view.findViewById(R.id.fmgk_tvpyxq);
-
         fmgk_zyjs = view.findViewById(R.id.fmgk_zyjs);
         fmgk_tvpymb = view.findViewById(R.id.fmgk_tvpymb);
         fmgk_zsnl = view.findViewById(R.id.fmgk_zsnl);
@@ -87,7 +83,6 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         majorgkPresent.onDestory();
     }
 
@@ -98,14 +93,11 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
             if(majorgkBean.getTraining_target()!=null){
                 fmgk_tvpymb.setText(majorgkBean.getTraining_target());
             }
-
             if(majorgkBean.getBigType()!=null){
                 fmgk_tvssdl.setText(majorgkBean.getBigType());
-
             }
             if(majorgkBean.getYear_school()!=null){
                 fmgk_ccyear.setText(majorgkBean.getYear_school());
-
             }
             if(majorgkBean.getAward_degree()!=null){
 

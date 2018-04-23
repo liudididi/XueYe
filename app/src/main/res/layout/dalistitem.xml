@@ -2,13 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="94px">
+    android:layout_height="118px">
 <TextView
     android:id="@+id/benda_tv"
     android:textColor="#666666"
     android:textSize="38px"
     android:gravity="center"
-    android:background="#FAFAFA"
+    android:background="#FCFCFC"
     android:layout_width="match_parent"
     android:layout_height="94px"
     />

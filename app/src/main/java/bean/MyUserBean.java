@@ -1,9 +1,11 @@
 package bean;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import com.example.login_demo.MyApp;
+import com.example.login_demo.PresonMessageActivity;
 
 import base.BaseBean;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -53,8 +55,7 @@ public class MyUserBean  {
                                    SPUtils.put(MyApp.context,"school",userBean.getMidschool());
                                }
 
-                           }else {
-                            }
+                           }
                        }
                        @Override
                        public void onError(Throwable t) {

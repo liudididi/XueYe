@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:layout_alignParentBottom="true"
-                android:background="@color/black"></View>
+                android:background="#ccc"></View>
         </RelativeLayout>
 
         <TextView
@@ -52,13 +52,25 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/estimate_title"
             android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
             android:layout_marginTop="20px"
-            android:text="选择高考省份"
+            android:text="考生所在地:"
             android:textColor="#666666"
             android:textSize="40px" />
+        <TextView
+            android:textColor="#666666"
+            android:textSize="40px"
+            android:id="@+id/prima_address"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="20px"
+            android:layout_below="@+id/estimate_title"
+            android:layout_toRightOf="@id/es_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/es_ll2"
             android:layout_width="match_parent"
             android:layout_height="100px"
@@ -241,7 +253,6 @@
             <LinearLayout
                 android:layout_width="300px"
                 android:layout_height="116px"
-
                 android:layout_below="@+id/es_ll"
                 android:background="@drawable/bg_subject3"
                 android:gravity="center">
@@ -282,6 +293,7 @@
         </LinearLayout>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/es_tv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -293,6 +305,7 @@
             android:textColor="#666666"
             android:textSize="40px" />
         <LinearLayout
+            android:visibility="gone"
             android:layout_marginTop="25px"
             android:layout_marginRight="50px"
             android:layout_marginLeft="50px"
@@ -302,8 +315,6 @@
             android:weightSum="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
             <TextView
                 android:id="@+id/estimate_tvben"
                 android:layout_width="0px"

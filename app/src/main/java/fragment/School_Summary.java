@@ -1,7 +1,10 @@
 package fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.login_demo.JJParticularsActivity;
+import com.example.login_demo.ParticularsActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
 
@@ -20,6 +24,7 @@ import base.BaseBean;
 import base.Basefragment;
 import bean.CampusBean;
 import bean.FingerpostBean;
+import bean.LXBean;
 import bean.SchoolIntroduceBean;
 import bean.StudentFromBean;
 import bean.ZDXKBean;
@@ -66,6 +71,9 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
     private String employment;
     private String laboratory;
     private String major;
+    private TextView tv_wangzhi;
+    private TextView tv_youxiang;
+    private TextView tv_phone;
 
     @Override
     public int getLayoutid() {
@@ -159,13 +167,77 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void UnivImportantfail(Throwable t) {
 
             }
+
+            @Override
+            public void LianXisuccess(BaseBean<List<LXBean>> lxBeanBaseBean) {
+                List<LXBean> data = lxBeanBaseBean.data;
+                //网址
+                final String admission_plan =data.get(0).getWebsite();
+                //邮箱
+                String email =data.get(0).getEmail();
+                //电话
+                final String phone = data.get(0).getPhone();
+                if(admission_plan!=null)
+                {
+                    tv_wangzhi.setText(admission_plan);
+                    tv_wangzhi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getContext(), ParticularsActivity.class);
+                            intent.putExtra("particulars_title","官方网址");
+                            intent.putExtra("url",admission_plan);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                if(email!=null)
+                {
+                    tv_youxiang.setText(email);
+                }
+                if(phone!=null)
+                {
+                    tv_phone.setText(phone);
+                    tv_phone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            AlertDialog.Builder ab=new AlertDialog.Builder(getContext()).setMessage("是否拨打"+phone+"?")
+                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            callPhone(phone);
+                                        }
+                                    });
+                            ab.create().show();
+                        }
+                    });
+
+                }
+
+            }
+
+            @Override
+            public void LianXifail(Throwable t) {
+
+            }
         });
         schoolIntroducePresent.SchoolIntroducePresent(SchoolDetailActivity.schoolname);
         schoolIntroducePresent.FingerpostPresent(SchoolDetailActivity.schoolname);
         schoolIntroducePresent.CampusPresent(SchoolDetailActivity.schoolname);
         schoolIntroducePresent.ZDXKPresent("major",SchoolDetailActivity.schoolname);
+        schoolIntroducePresent.LianXIPresent(SchoolDetailActivity.schoolname);
     }
-
+    public void callPhone(String phoneNum) {
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
+    }
     private void onClick() {
         ll_xiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +263,6 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                 SchoolDetailActivity.ff(eatandsleep);
             }
         });
-
         ss_szll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -243,6 +314,10 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         ss_jyqk = view.findViewById(R.id.ss_jyqk);
         rl_zdsys = view.findViewById(R.id.rl_zdsys);
         rl_zdxk = view.findViewById(R.id.rl_zdxk);
+        tv_wangzhi = view.findViewById(R.id.tv_wangzhi);
+        tv_youxiang = view.findViewById(R.id.tv_youxiang);
+        tv_phone = view.findViewById(R.id.tv_phone);
+
     }
 
     @Override
@@ -272,8 +347,7 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
          tvwomen_bfb.setText(studentFromBean.getWoman()+"%");
          tvman_bfb.setText(studentFromBean.getMan()+"%");
          ss_back.setVisibility(View.GONE);
-         System.out.println("1111111111"+studentFromBean.getHn());
-         if(studentFromBean.getWn()==0&&studentFromBean.getWs()==0&&studentFromBean.getHs()==0&&studentFromBean.getHe()==0&&studentFromBean.getHn()==0&&studentFromBean.getEn()==0)
+          if(studentFromBean.getWn()==0&&studentFromBean.getWs()==0&&studentFromBean.getHs()==0&&studentFromBean.getHe()==0&&studentFromBean.getHn()==0&&studentFromBean.getEn()==0)
          {
              ss_back.setVisibility(View.VISIBLE);
          }

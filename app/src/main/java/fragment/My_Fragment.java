@@ -261,10 +261,10 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
             UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
             if(userBeanInstans!=null){
              if(userBeanInstans.getName()!=null){
-                 name = userBeanInstans.getName();
-                 school   = userBeanInstans.getMidschool();
+                 name = (String) userBeanInstans.getName();
+                 school   = (String) userBeanInstans.getProvince()+userBeanInstans.getCity()+userBeanInstans.getArea();
              }else {
-                 school = (String) SPUtils.get(MyApp.context, "school", "学校");
+                 school = (String) SPUtils.get(MyApp.context, "school", "地区");
                  name = (String) SPUtils.get(MyApp.context, "name", "姓名");
              }
 

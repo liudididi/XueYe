@@ -12,10 +12,11 @@ public class Advanced_YX_Bean {
 
 
 
-    private boolean selecked=true;
+    private boolean selecked;
     /**
      * name : 清华大学
      * recommendIndex : 0.7685
+     * yxGai: 0.99,
      * num : 1
      * info : {"name":"清华大学","ranking":"全国2","typeRank":"理工1","address":"北京市","father":"教育部","univType":"大学","two":"211","nine":"985","graduate":"研究生院","recruit":"自主招生","defenseStudent":"国防生","preeminentPlan":"卓越计划"}
      * major : [{"name":"清华大学","major":"英语","majorId":"050201","yxscore":"665","zyscore":"679","yxGai":"0.975","zyGai":"0.905","time":"本科一批"}]
@@ -24,9 +25,29 @@ public class Advanced_YX_Bean {
     private String name;
     private String recommendIndex;
     private String num;
+    private String yxGai;
     private InfoBean info;
     private List<MajorBean> major;
 
+
+    public String getYxGai() {
+        return yxGai;
+    }
+
+    public void setYxGai(String yxGai) {
+        this.yxGai = yxGai;
+    }
+
+    public Advanced_YX_Bean(String yxGai) {
+        this.yxGai = yxGai;
+    }
+
+    @Override
+    public String toString() {
+        return "Advanced_YX_Bean{" +
+                "yxGai='" + yxGai + '\'' +
+                '}';
+    }
 
     public void setSelecked(boolean selecked) {
         this.selecked = selecked;

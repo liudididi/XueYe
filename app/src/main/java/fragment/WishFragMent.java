@@ -60,11 +60,14 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     private WishPresent wishPresent;
 
     private TextView wish_day1;
-    private TextView wish_day2;
-    private TextView wish_day3;
+     private TextView wish_day3;
     private CountdownPresent countdownPresent;
     private ImageView wish_school_none;
     public static String djs=null;
+    private TextView tv_gk1;
+    private TextView tv_gm1;
+    private TextView tv_ym3;
+    private TextView tv_gx3;
 
 
     @Override
@@ -113,11 +116,15 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
 
 
         wish_day1 = view.findViewById(R.id.wish_day1);
-        wish_day2 = view.findViewById(R.id.wish_day2);
         wish_day3 = view.findViewById(R.id.wish_day3);
+
+        tv_gk1 = view.findViewById(R.id.tv_gk1);
+        tv_gm1 = view.findViewById(R.id.tv_gm1);
+        tv_ym3 = view.findViewById(R.id.tv_ym3);
+        tv_gx3 = view.findViewById(R.id.tv_gx3);
+
         list = new ArrayList<>();
         list.add(R.drawable.gkdjs);
-        list.add(R.drawable.zydjs);
         list.add(R.drawable.ymdjs);
 
         ws_xbanner.setData(list,null);
@@ -127,9 +134,6 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
                 ws_xbanner.removeView(view);
                 ImageView imageView = (ImageView) view;
                 imageView.setImageResource(list.get(position));
-
-
-
 
             }
         });
@@ -144,23 +148,20 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
                 if(position==0)
                 {
                     wish_day1.setVisibility(View.VISIBLE);
-                    wish_day2.setVisibility(View.GONE);
-                    wish_day3.setVisibility(View.GONE);
-
+                    tv_gk1.setVisibility(View.VISIBLE);
+                    tv_gm1.setVisibility(View.VISIBLE);
+                     wish_day3.setVisibility(View.GONE);
+                    tv_ym3.setVisibility(View.GONE);
+                    tv_gx3.setVisibility(View.GONE);
                 }
                 else if (position==1)
                 {
+                    tv_gk1.setVisibility(View.GONE);
+                    tv_gm1.setVisibility(View.GONE);
                     wish_day1.setVisibility(View.GONE);
-                    wish_day2.setVisibility(View.VISIBLE);
-                    wish_day3.setVisibility(View.GONE);
-
-                }
-                else
-                {
-                    wish_day1.setVisibility(View.GONE);
-                    wish_day2.setVisibility(View.GONE);
-                    wish_day3.setVisibility(View.VISIBLE);
-
+                     wish_day3.setVisibility(View.VISIBLE);
+                    tv_ym3.setVisibility(View.VISIBLE);
+                    tv_gx3.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -294,9 +295,9 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
         djs = baseBean.data.toString();
-        wish_day1.setText(djs);
-        wish_day2.setText((Integer.parseInt(djs)+2)+"");
-        wish_day3.setText((Integer.parseInt(djs)+85)+"");
+        wish_day1.setText(djs+" 天");
+        //wish_day2.setText((Integer.parseInt(djs)+2)+"");
+        wish_day3.setText((Integer.parseInt(djs)+85)+" 天");
     }
 
     @Override

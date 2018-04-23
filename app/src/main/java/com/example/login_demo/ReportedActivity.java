@@ -24,8 +24,7 @@ public class ReportedActivity extends BaseActivity {
 
     @BindView(R.id.reported_iv_back)
     ImageView reportedIvBack;
-    @BindView(R.id.reported_primary)
-    TextView reportedPrimary;
+
     @BindView(R.id.reported_advanced)
     TextView reportedAdvanced;
     @BindView(R.id.reported_accurate)
@@ -50,27 +49,25 @@ public class ReportedActivity extends BaseActivity {
         token = (String) SPUtils.get(MyApp.context, "token", "");
     }
 
-    @OnClick({R.id.reported_iv_back, R.id.reported_primary, R.id.reported_advanced, R.id.reported_accurate})
+    @OnClick({R.id.reported_iv_back, R.id.reported_advanced, R.id.reported_accurate})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.reported_iv_back:
                 finish();
                 break;
-            //初级志愿表
+          /*  //初级志愿表
             case R.id.reported_primary:
                 if(NetUtil.isNetworkAvailable(this)){
                     intent(this, PrimaryActivity.class);
                 }else {
                     Toast("当前无网络");
                 }
-
-                break;
+                break;*/
             //高级志愿表
             case R.id.reported_advanced:
 
                 if(NetUtil.isNetworkAvailable(this)){
                     intent(this, AdvancedActivity.class);
-
                 }else {
                     Toast("当前无网络");
                 }

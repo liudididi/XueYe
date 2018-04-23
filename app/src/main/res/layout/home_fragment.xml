@@ -48,7 +48,7 @@
                 </LinearLayout>
                 <View
                     android:layout_width="2px"
-                    android:layout_height="110px"
+                    android:layout_height="90px"
                     android:layout_marginTop="20px"
                     android:layout_marginBottom="20px"
                     android:layout_marginLeft="34px"
@@ -67,7 +67,7 @@
                         android:layout_height="80px"
                         android:autoStart="true"
                         android:flipInterval="5000"
-                         android:inAnimation="@anim/anim_marquee_in"
+                          android:inAnimation="@anim/anim_marquee_in"
                         android:outAnimation="@anim/anim_marquee_out">
                     </ViewFlipper>
                 <ViewFlipper
@@ -76,8 +76,7 @@
                     android:layout_height="80px"
                     android:autoStart="true"
                     android:flipInterval="5000"
-                    android:layout_marginBottom="30px"
-                    android:inAnimation="@anim/anim_marquee_in"
+                     android:inAnimation="@anim/anim_marquee_in"
                     android:outAnimation="@anim/anim_marquee_out">
                 </ViewFlipper>
                 </LinearLayout>
@@ -161,14 +160,7 @@
                 </LinearLayout>
                 </LinearLayout>
                 </RelativeLayout>
-                <TextView
-                    android:id="@+id/home_tv_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="你已生成2份志愿表"
-                    android:layout_below="@id/ll"
-                    android:layout_marginTop="30px"
-                    android:layout_centerHorizontal="true"/>
+
                 <LinearLayout
                     android:id="@+id/home_table"
                     android:layout_width="match_parent"
@@ -176,7 +168,7 @@
                     android:orientation="vertical"
                     android:gravity="center"
                     android:layout_margin="30px"
-                    android:layout_below="@id/home_tv_num"
+                    android:layout_below="@id/ll"
                     android:background="@drawable/back_capacity"
                     >
                 <TextView
@@ -293,18 +285,17 @@
         <RelativeLayout
             android:id="@+id/rl_search"
             android:layout_width="match_parent"
-            android:layout_height="30dip"
+            android:layout_height="150px"
             android:orientation="horizontal"
-            android:background="@drawable/search"
+            android:background="#e6e6e6"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="40px"
-            android:layout_marginRight="110px"
+            android:alpha="0.6"
             >
             <ImageView
-                android:layout_width="15dip"
-                android:layout_height="15dip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@mipmap/search"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30px"
                 android:layout_centerVertical="true"
                 android:id="@+id/imageView" />
 
@@ -313,21 +304,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginLeft="45px"
+                android:layout_marginStart="45px"
                 android:layout_toEndOf="@+id/imageView"
                 android:layout_toRightOf="@+id/imageView"
                 android:text="搜索学校、专业"
-                android:textSize="15sp" />
+                android:textColor="#999999"
+                android:textSize="45px" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="145px"
+                android:layout_marginTop="10px"
+                android:layout_marginRight="130px"
+                android:background="#333333"
+                android:layout_below="@+id/tv_search"></View>
         </RelativeLayout>
-        <ImageView
+       <!-- <ImageView
             android:id="@+id/iv_news"
             android:layout_width="70px"
             android:layout_height="70px"
             android:src="@mipmap/inform"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20px"/>
+            android:layout_marginRight="20px"/>-->
     </RelativeLayout>
 
 </RelativeLayout>

@@ -27,6 +27,7 @@ import bean.HelpBean;
 import bean.HotBean;
 import bean.InquireBean;
 import bean.JobInforBean;
+import bean.LXBean;
 import bean.LuquXianBean;
 import bean.MajorBean;
 import bean.MajorSchoolBean;
@@ -448,12 +449,17 @@ public interface QuestInterface {
     //注册接口
     @POST("/app/registerByMobile")
     @FormUrlEncoded
-    Flowable<BaseBean> register(@Field("mobile") String mobile,@Field("password") String password,@Field("captcha") String captcha);
+    Flowable<BaseBean<UserBean>> register(@Field("mobile") String mobile,@Field("password") String password,@Field("captcha") String captcha);
 
 
     //修改手机号验证码
     @GET("/app/mobileUpdateCaptcha")
     Flowable<BaseBean> mobileUpdateCaptcha(@Query("mobile") String mobile);
+
+
+    //联系方式
+    @GET("/app/university/getUnivContact")
+    Flowable<BaseBean<List<LXBean>>> getUnivPhone(@Query("name") String name);
 
 
     //获取省份
@@ -533,7 +539,6 @@ public interface QuestInterface {
                                                       @Query("cityType") String cityType,
                                                       @Query("isAccept") String isAccept,
                                                       @Query("schoolType") String schoolType,
-                                                      @Query("isMS") String isMS,
                                                       @Query("province") String province,
                                                       @Query("classify") String classify
                                                      );

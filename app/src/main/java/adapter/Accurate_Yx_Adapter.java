@@ -36,10 +36,12 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
 
     private Context context;
     private List<Advanced_YX_Bean> list;
-
-    public Accurate_Yx_Adapter(Context context, List<Advanced_YX_Bean> list) {
+    private String biaoshi;
+    public Accurate_Yx_Adapter(Context context, List<Advanced_YX_Bean> list,String biaoshi ) {
         this.context = context;
         this.list = list;
+        this.biaoshi=biaoshi;
+
     }
 
     @Override
@@ -51,57 +53,105 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
+             list.get(position).setSelecked(true);
              final List<Advanced_YX_Bean.MajorBean> major = list.get(position).getMajor();
 
                 //院校概率
-                String yxGai = major.get(0).getYxGai();
+                String yxGai = list.get(position).getYxGai();
                 final String zyGai = major.get(0).getZyGai();
                 String major1 = major.get(0).getMajor();
                 String  substring1 = null;
                 String  substring =null;
-                if(yxGai.length()>=4)
+                if(yxGai!=null)
                 {
-                    substring = yxGai.substring(2, 4);
-                }
-               if(yxGai.length()<4)
-               {
-                   substring = yxGai.substring(2, 3);
-                   if(substring.length()==1)
-                   {
-                       substring+="0";
-                   }
-               }
-                if(zyGai.length()>=4)
-                {
-                    substring1 = zyGai.substring(2, 4);
-                }
-                if(zyGai.length()<4)
-                {
-                     substring1 = zyGai.substring(2, 3);
-                    if(substring1.length()==1)
+                    if(yxGai.length()>=4)
                     {
-                        substring1+="0";
+                        substring = yxGai.substring(2, 4);
+                    }
+                    if(yxGai.length()<4)
+                    {
+                        substring = yxGai.substring(2, 3);
+                        if(substring.length()==1)
+                        {
+                            substring+="0";
+                        }
                     }
                 }
-                //专业概率
-                holder.tv_zhuanye.setText(substring1+"%");
-                //专业名称
+                if(zyGai!=null)
+                {
+                    if(zyGai.length()>=4)
+                    {
+                        substring1 = zyGai.substring(2, 4);
+                    }
+                    if(zyGai.length()<4)
+                    {
+                        substring1 = zyGai.substring(2, 3);
+                        if(substring1.length()==1)
+                        {
+                            substring1+="0";
+                        }
+                    }
+                }
 
+                //专业概率
+                if(substring1!=null)
+                {
+                    if(biaoshi.equals("冲刺"))
+                    {
+                        holder.tv_zhuanye.setText(substring1+"%");
+                     }
+                  else if(biaoshi.equals("稳妥"))
+                    {
+                        holder.tv_zhuanye.setText(substring1+"%");
+                        holder.tv_zhuanye.setTextColor(context.getResources().getColor(R.color.zhu1));
+                    }
+                    else
+                    {
+                        holder.tv_zhuanye.setText(substring1+"%");
+                        holder.tv_zhuanye.setTextColor(context.getResources().getColor(R.color.lue));
+                    }
+
+                }
+                else
+                {
+                    if(biaoshi.equals("冲刺"))
+                    {
+                        holder.tv_zhuanye.setText("0"+"%");
+                    }
+                    else if(biaoshi.equals("稳妥"))
+                    {
+                        holder.tv_zhuanye.setText("0"+"%");
+                        holder.tv_zhuanye.setTextColor(context.getResources().getColor(R.color.zhu1));
+                    }
+                    else
+                    {
+                        holder.tv_zhuanye.setText("0"+"%");
+                        holder.tv_zhuanye.setTextColor(context.getResources().getColor(R.color.lue));
+                    }
+
+
+                }
+                //专业名称
+                if(major1!=null)
+                {
                     holder.tv_zy_name.setText(major1);
 
+                }
+                else
+                {
+                    holder.tv_zy_name.setText("暂无数据");
+                }
 
                 //进度条从0到100
                 final ValueAnimator animator = ValueAnimator.ofFloat(0, Integer.parseInt(substring));
                 animator.setDuration(100);
                 animator.setInterpolator(new LinearInterpolator());
 
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                 animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
                         float current = (float) animation.getAnimatedValue();
                         holder.cpv.setmCurrent((int) current);
-
 
                     }
                 });
@@ -164,7 +214,15 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                         holder.tv_recruit.setVisibility(View.GONE);
                     }
                 }
-            holder.tv_num.setText("("+num+"个推荐专业)");
+                if(num!=null)
+                {
+                    holder.tv_num.setText("("+num+"个推荐专业)");
+                }
+                else
+                {
+                    holder.tv_num.setText("(0个推荐专业)");
+
+                }
                 if(name.length()>=9)
                 {
                     String substring2 = name.substring(0, 9);
@@ -189,7 +247,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                         if(major.size()>1&&major!=null)
                         {
                             holder.rv_zhuanye.setVisibility(View.VISIBLE);
-                            YX_ZhuanYe_Adapter yx_zhuanYe_adapter=new YX_ZhuanYe_Adapter(major,context);
+                            YX_ZhuanYe_Adapter yx_zhuanYe_adapter=new YX_ZhuanYe_Adapter(major,context,biaoshi);
                             holder.rv_zhuanye.setLayoutManager(new LinearLayoutManager(context));
                             holder.rv_zhuanye.setAdapter(yx_zhuanYe_adapter);
                          }
@@ -212,7 +270,8 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 public void onClick(View view) {
                     Intent intent=new Intent(context, TuiJianSchoolActivity.class);
                     intent.putExtra("schoolname",list.get(position).getName());
-
+                    CircleProgressView.mPaintColor= Color.RED;
+                    CircleProgressView.mTextColor= Color.RED;
                     context.startActivity(intent);
                 }
             });
@@ -235,7 +294,6 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
             });
         }
     public int getItemViewType(int position) {
-
         return position;
     }
     @Override

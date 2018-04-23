@@ -98,11 +98,8 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
         xingbie = "男";
         data = getIntent().getStringExtra("data");
         cxefcPresenter = new CXEFCPresenter(this);
-
         arealist = new ArrayList<>();
         initdata();
-
-
     }
 
     private void initdata() {
@@ -246,6 +243,10 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                     final String fenshu = proEdfenshu.getText().toString();
                     if(TextUtils.isEmpty(fenshu)){
                         Toast("分数为空");
+                        return;
+                    }
+                    if(Integer.parseInt(fenshu)>750||Integer.parseInt(fenshu)<0){
+                        Toast("分数不真实，请实际填写");
                         return;
                     }
                     final String name = proEdname.getText().toString();

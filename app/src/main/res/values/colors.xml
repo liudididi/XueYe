@@ -8,6 +8,9 @@
     <color name="white">#ffffff</color>
     <color name="white_pressed">#d0d0d0</color>
     <color name="blue">#00418b</color>
+    <color name="lue">#018917</color>
+    <color name="zhu4">#2c2c2c</color>
+    <color name="zhu2">#3B9EFF</color>
     <color name="transparent">#00000000</color>
     <color name="percent_10_transparent">#1f000000</color>
     <color name="trans_color">#80000000</color>
@@ -175,5 +178,5 @@
     <color name="myeditText">#cdcdcd</color>
 
     <color name="zhu1">#FF6700</color>
-    <color name="zhu2">#3B9EFF</color>
+
 </resources>

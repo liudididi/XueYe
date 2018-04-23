@@ -69,7 +69,10 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     private String type;
     private ConnectionChangeReceiver myReceiver;
     private boolean net = true;
-
+    private String sourceArea;
+    private String stutype;
+    private String ceeScore;
+    private boolean flag=true;
     @Override
     public int getId() {
         return R.layout.activity_efcjie_suo;
@@ -330,9 +333,35 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
                 break;
             case R.id.rl_zntb:
                 if (data != null && net == true) {
-                    Intent intent3 = new Intent(this, Volunteer_ScreenActivity.class);
-                    startActivity(intent3);
-                } else {
+                    CXEFCPresenter cxefcPresenter=new CXEFCPresenter(new CXEFCView() {
+                        @Override
+                        public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+                            //考生省份
+                            sourceArea = cxefcBeanBaseBean.data.getSourceArea();
+                            //文理科
+                            stutype = cxefcBeanBaseBean.data.getStutype();
+                            //考生分数
+                            ceeScore = cxefcBeanBaseBean.data.getCeeScore();
+                            if(sourceArea!=null&&stutype!=null&&ceeScore!=null)
+                            {
+                                Intent intent=new Intent(EFCJieSuoActivity.this,AccurateActivity.class);
+                                intent.putExtra("s2",sourceArea+"");
+                                intent.putExtra("tbsubtype",stutype+"");
+                                intent.putExtra("fen",ceeScore);
+                                intent.putExtra("s1","0");
+                                intent.putExtra("s4","");
+                                intent.putExtra("s5","");
+                                startActivity(intent);
+                            }
+                        }
+                        @Override
+                        public void GetEFCResultfail(Throwable t) {
+                        }
+                    });
+                    cxefcPresenter.CXEFCPresenter(token);
+                }
+                else
+                {
                     Toast("请检查您的网络");
                 }
                 break;

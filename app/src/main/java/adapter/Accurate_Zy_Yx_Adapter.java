@@ -3,6 +3,7 @@ package adapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
+import com.example.login_demo.TuiJianSchoolActivity;
 
 import java.util.List;
 
@@ -156,7 +158,9 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
             holder.rl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(context, SchoolDetailActivity.class);
+                    Intent intent=new Intent(context, TuiJianSchoolActivity.class);
+                    CircleProgressView.mPaintColor= Color.RED;
+                    CircleProgressView.mTextColor= Color.RED;
                     intent.putExtra("schoolname",list.get(position).getName());
                     context.startActivity(intent);
                 }

@@ -55,7 +55,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
 
                     AliPayResult payResult = new AliPayResult((Map<String, String>) msg.obj);
 
-                    System.out.println("支付宝支付返回：" + payResult.toString());
+
 
                     switch (payResult.getResultStatus()) {
                         case "9000":

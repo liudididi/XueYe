@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="30px"
             android:layout_marginRight="70px">
             <TextView
                 android:id="@+id/more_name"
@@ -42,6 +41,12 @@
                 android:lines="1"
                 android:layout_marginLeft="50px"/>
         </LinearLayout>
+        <untils.FlowLayout
+            android:id="@+id/fl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="70px"
+            ></untils.FlowLayout>
         <TextView
             android:id="@+id/more_zh"
             android:layout_width="wrap_content"

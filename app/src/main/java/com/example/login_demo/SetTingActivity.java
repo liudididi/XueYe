@@ -123,7 +123,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         super.onResume();
         UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
         if (userBeanInstans != null) {
-            String sex = userBeanInstans.getSex();
+            String sex = (String) userBeanInstans.getSex();
             if (sex != null) {
                 if (sex.equals("女")) {
                     setting_icon.setImageResource(R.drawable.gril);
@@ -135,19 +135,15 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             } else {
                 setting_icon.setImageResource(R.drawable.boy);
             }
-            String name = userBeanInstans.getName();
+            String name = (String) userBeanInstans.getName();
             if (name != null) {
                 settingname.setText(name);
+               String school   = (String) userBeanInstans.getProvince()+userBeanInstans.getCity()+userBeanInstans.getArea();
+                settingschool.setText(school);
             } else {
                 settingname.setText("");
-            }
-            String midSchool = userBeanInstans.getMidschool();
-            if (midSchool != null) {
-                settingschool.setText(midSchool);
-            } else {
                 settingschool.setText("");
             }
-
         }
     }
 
@@ -315,6 +311,11 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 SPUtils.remove(MyApp.context, "majorindex");
                 SPUtils.remove(MyApp.context, "name");
                 SPUtils.remove(MyApp.context, "school");
+
+
+                SPUtils.remove(MyApp.context, "province");
+                SPUtils.remove(MyApp.context, "city");
+                SPUtils.remove(MyApp.context, "area");
                 MyUserBean.setUserBean(null);
                 finish();
                 break;
@@ -330,7 +331,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             connection.setRequestMethod("GET");
             long sum = 0;
             int code = connection.getResponseCode();
-            System.out.println("code = " + code);
+
             if (code == 200 || code == 206) {
                 int contentLength = connection.getContentLength();
                 System.out.println("contentLength = " + contentLength);

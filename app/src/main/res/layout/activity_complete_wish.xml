@@ -39,18 +39,26 @@
 
 
     <TextView
-        android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:id="@+id/tv5"
         android:textSize="40px"
         android:textColor="#666666"
         android:layout_marginTop="52px"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="意愿城市"
+        android:text="选择意愿城市"
         android:layout_below="@+id/view2"
 
         />
+    <ImageView
+        android:id="@+id/img_cjwh"
+        android:layout_marginTop="26px"
+        android:padding="30px"
+        android:layout_below="@+id/view2"
+        android:layout_toRightOf="@id/tv5"
+        android:src="@drawable/cjwt"
+        android:layout_width="100px"
+        android:layout_height="100px" />
     <RelativeLayout
         android:id="@+id/complete_rl1"
         android:layout_marginRight="50px"
@@ -62,7 +70,7 @@
         android:layout_height="130px">
         <TextView
             android:layout_marginLeft="90px"
-            android:text="一线城市"
+            android:text="全国"
             android:textSize="40px"
             android:id="@+id/complete_tvyi"
             android:gravity="center_vertical"
@@ -88,6 +96,7 @@
             android:visibility="gone"/>
     </RelativeLayout>
     <TextView
+        android:visibility="gone"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:id="@+id/tv3"
@@ -100,6 +109,7 @@
         android:layout_below="@+id/complete_rl1"
         />
     <LinearLayout
+        android:visibility="gone"
         android:layout_marginTop="20px"
         android:layout_below="@+id/tv3"
         android:id="@+id/complete_rl2"
@@ -140,6 +150,7 @@
 
 
     <TextView
+        android:visibility="gone"
         android:layout_marginRight="50px"
         android:layout_marginLeft="50px"
         android:id="@+id/tv4"
@@ -214,7 +225,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/complete_rl3"
-    android:text="是否接受专科"
+    android:text="填报批次"
     />
 
 
@@ -237,7 +248,7 @@
             android:background="@drawable/bg_subject3"
             android:gravity="center"
             android:padding="2px"
-            android:text="是，接受专科"
+            android:text="专科"
             android:textSize="37px"
             />
 
@@ -251,13 +262,14 @@
             android:background="@drawable/bg_subject2"
             android:gravity="center"
             android:padding="2px"
-            android:text="否，不接受专科"
+            android:text="本科"
             android:textSize="37px" />
     </LinearLayout>
 
 
 
     <RelativeLayout
+
         android:id="@+id/rllistyi"
         android:visibility="gone"
         android:background="@drawable/back_squareyi"
@@ -303,6 +315,90 @@
             android:layout_height="wrap_content"
             >
         </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_city"
+        android:background="#cc222222"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:text="一线城市（4个）"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:text="北京市、上海市、广州市、深州市"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:text="新一线城市（15个）"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:text="成都市、杭州市、武汉市、重庆市、南京市、天津市、苏州市、西安市、长沙市、沈阳市、青岛市、郑州市、大连市、东莞市、宁波市"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:text="二线城市（30个）"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:text="厦门市、福州市、无锡市、合肥市、昆明市、哈尔滨市、济南市、佛山市、长春市、温州市、石家庄市、南宁市、常州市、泉州市、南昌市、贵阳市、太原市、烟台市、嘉兴市、南通市、金华市、珠海市、惠州市、徐州市、海口市、乌鲁木齐市、绍兴市、中山市、台州市、兰州市"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:text="省会城市（27个）"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginTop="40px"
+                android:textSize="40px"
+                android:text="石家庄、太原、长春、哈尔滨、南京、杭州、合肥、福州、南昌、济南、郑州、广州、长沙、武汉、海口、成都、贵阳、昆明、西安、兰州、西宁、台北、呼和浩特、南宁、拉萨、银川、乌鲁木齐"
+                 android:layout_marginLeft="40px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50px"></View>
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 

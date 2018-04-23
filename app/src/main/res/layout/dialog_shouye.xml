@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="850px">
+    <LinearLayout
+        android:id="@+id/ll_da"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/adress_title"
+            android:textSize="50px"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:text="信息填写"
+            android:textStyle="bold"
+            />
+        <View
+            android:background="#111"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/pro_startvfenshu"
+            ></View>
+
+
+        <RelativeLayout
+            android:id="@+id/pro_rfenshu"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/adress_title"
+            android:layout_marginTop="50px">
+            <TextView
+                android:id="@+id/pro_startvfenshu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="100px"
+                android:text="高考预估成绩:"
+                android:textSize="44px" />
+            <EditText
+                android:textSize="35px"
+                android:hint="请输入分数"
+                android:inputType="number|numberDecimal"
+                android:textColorHint="@color/white"
+                android:id="@+id/sy_edfenshu"
+                android:layout_width="250px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startvfenshu"
+                android:background="@null"
+                android:maxLines="1" />
+            <TextView
+                android:textSize="37px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/sy_edfenshu"
+                android:text="分"
+                />
+            <View
+                android:background="#111"
+                android:layout_width="290px"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="130px"
+                android:layout_toRightOf="@+id/pro_startvfenshu"
+                 ></View>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/pro_rks"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/pro_rl4"
+            android:layout_marginTop="80px">
+            <TextView
+                android:id="@+id/pro_startvadress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="考生所在地:"
+                android:layout_marginLeft="100px"
+                android:textSize="44px" />
+
+            <TextView
+                android:id="@+id/sy_tvaddress"
+                android:background="@drawable/back_addresshei"
+                android:layout_marginLeft="150px"
+                android:text="点击选择城市"
+                android:textSize="32px"
+                android:layout_toRightOf="@+id/pro_startvadress"
+                android:paddingLeft="30px"
+                android:gravity="center"
+                android:paddingRight="30px"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/pro_rl2"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_below="@+id/pro_rname"
+            android:layout_marginTop="80px">
+
+            <TextView
+                android:id="@+id/pro_startv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="100px"
+                android:text="高考类别:"
+                android:textSize="44px" />
+
+            <LinearLayout
+                android:id="@+id/sy_wen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="200px"
+                android:layout_toRightOf="@+id/pro_startv4"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgsy_wen"
+                    android:layout_width="30px"
+                    android:layout_height="30px"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/hong" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10px"
+                    android:text="文科"
+                    android:textSize="44px" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sy_li"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_toRightOf="@+id/sy_wen"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgsy_li"
+                    android:layout_width="30px"
+                    android:layout_height="30px"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/bai1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10px"
+                    android:text="理科"
+                    android:textSize="44px" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/sy_yes"
+            android:textColor="#fff"
+            android:background="@drawable/bg_profession"
+            android:layout_marginTop="80px"
+            android:layout_gravity="center"
+            android:layout_width="500px"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textSize="50px"
+            android:gravity="center"
+            />
+<TextView
+    android:gravity="center"
+    android:textColor="#f00"
+    android:textSize="40px"
+    android:layout_marginTop="50px"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="注; 考生所在地确定后不可修改，请谨慎填写"
+    />
+    </LinearLayout>
+     <GridView
+         android:layout_marginTop="50px"
+         android:numColumns="4"
+         android:visibility="gone"
+          android:id="@+id/gd_address"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+      </GridView>
+</RelativeLayout>

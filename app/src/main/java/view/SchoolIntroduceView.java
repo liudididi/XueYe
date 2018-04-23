@@ -5,6 +5,7 @@ import java.util.List;
 import base.BaseBean;
 import bean.CampusBean;
 import bean.FingerpostBean;
+import bean.LXBean;
 import bean.SchoolIntroduceBean;
 import bean.ZDXKBean;
 
@@ -27,4 +28,7 @@ public interface SchoolIntroduceView {
     //获取重点专业或重点实验室
     void UnivImportantssuccess(BaseBean<ZDXKBean> zdxkBeanBaseBean);
     void UnivImportantfail(Throwable t);
+    //联系方式
+    void LianXisuccess(BaseBean<List<LXBean>> listBaseBean);
+    void LianXifail(Throwable t);
 }

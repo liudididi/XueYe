@@ -52,6 +52,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import untils.CircleProgressView;
 import untils.QuestInterface;
 import untils.SPUtils;
 import view.CXEFCView;
@@ -118,17 +119,19 @@ public class Zhuanye_Fragment extends Basefragment {
     private TextView tv_tj;
     private RecyclerView rv_zy_zhuanye;
     // s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
-    private String s1=AccurateActivity.s1;
+    private String s1="1";
     private String s2=AccurateActivity.s2;
-    private String s3=AccurateActivity.s3;
+    //private String s3=AccurateActivity.s3;
     private String s4=AccurateActivity.s4;
     private String s5=AccurateActivity.s5;
-    private String s6=AccurateActivity.s6;
+    //private String s6=AccurateActivity.s6;
     private String fen=AccurateActivity.fen;
+    private String tbsubtype=AccurateActivity.tbsubtype;
+
     //院校区域
     private String city="";
     private String cwb="0";
-    private String tbsubtype;
+
     private ProgressBar pb;
     private ProgressBar pb2;
     private ProgressBar pb3;
@@ -151,8 +154,7 @@ public class Zhuanye_Fragment extends Basefragment {
     public void initView() {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         init();
-        tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-        token = (String) SPUtils.get(MyApp.context, "token", "");
+         token = (String) SPUtils.get(MyApp.context, "token", "");
 
         tv_tj.setTextColor(getContext().getResources().getColor(R.color.delete_dialog_text_color));
         initData();
@@ -190,8 +192,9 @@ public class Zhuanye_Fragment extends Basefragment {
                         pb2.setVisibility(View.VISIBLE);
                         //专业名
                         major = list.get(i).toString();
-
-                        zhuanye_yuanxiao(major,s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                        CircleProgressView.mTextColor=Color.RED;
+                        CircleProgressView.mPaintColor=Color.RED;
+                        zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
                     }
                 });
 
@@ -285,6 +288,7 @@ public class Zhuanye_Fragment extends Basefragment {
 
     private void initData() {
         list = new ArrayList<>();
+        list.add("全国");
         list.add("北京市");
         list.add("天津市");
         list.add("河北省");
@@ -321,6 +325,8 @@ public class Zhuanye_Fragment extends Basefragment {
         spinner_adapter = new Spinner_Adapter(list,getContext());
 
         list1 = new ArrayList<>();
+        list1.add("不限");
+
         list1.add("综合类");
         list1.add("理工类");
         list1.add("艺术类");
@@ -339,23 +345,24 @@ public class Zhuanye_Fragment extends Basefragment {
         list2 = new ArrayList<>();
         list2.add("预估分数");
         list2.add("院校区域");
-        list2.add("院校批次");
+        //list2.add("院校批次");
         list2.add("院校层次");
         list2.add("院校类型");
-        list2.add("毕业后方向");
+        //list2.add("毕业后方向");
         spinner_adapter3 = new Spinner3_Adapter(list2,getContext());
 
 
         spinner_adapter4 = new Spinner3_Adapter(list,getContext());
 
-        list3 = new ArrayList<>();
+       /* list3 = new ArrayList<>();
         list3.add("本一");
         list3.add("本二");
         list3.add("本三");
-        list3.add("专科");
+        list3.add("专科");*/
         spinner_adapter5 = new Spinner3_Adapter(list3,getContext());
 
         list4 = new ArrayList<>();
+        list4.add("不限");
         list4.add("211");
         list4.add("985");
         list4.add("研究生院");
@@ -365,11 +372,9 @@ public class Zhuanye_Fragment extends Basefragment {
         spinner_adapter6= new Spinner3_Adapter(list4,getContext());
 
         list5 = new ArrayList<>();
+        list5.add("不限");
         list5.add("综合类");
         list5.add("理工类");
-        list5.add("艺术类");
-        list5.add("体育类");
-        list5.add("军事类");
         list5.add("农林类");
         list5.add("医药类");
         list5.add("师范类");
@@ -380,10 +385,10 @@ public class Zhuanye_Fragment extends Basefragment {
         list5.add("财经类");
         spinner_adapter7 = new Spinner3_Adapter(list5,getContext());
 
-        list6 = new ArrayList<>();
+      /*  list6 = new ArrayList<>();
         list6.add("就业");
         list6.add("考研");
-        list6.add("留学");
+        list6.add("留学");*/
         spinner_adapter8 = new Spinner3_Adapter(list6,getContext());
 
 
@@ -409,7 +414,7 @@ public class Zhuanye_Fragment extends Basefragment {
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                     pb3.setVisibility(View.VISIBLE);
-                                    zhuanye_yuanxiao(listBaseBean.data.get(i).getName(),s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                                    zhuanye_yuanxiao(listBaseBean.data.get(i).getName(),s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
                                 }
                             });
                         }
@@ -511,8 +516,12 @@ public class Zhuanye_Fragment extends Basefragment {
                 lv1_view.setVisibility(View.GONE);
 
                 pb3.setVisibility(View.VISIBLE);
+                if(s.equals("全国"))
+                {
+                    s="";
+                }
                 city=s;
-                zhuanye_yuanxiao(major,s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
             }
         });
         //学科范围
@@ -542,7 +551,6 @@ public class Zhuanye_Fragment extends Basefragment {
                     lv2.setAdapter(spinner_adapter1);
 
                     lv2_view.setVisibility(View.VISIBLE);
-
                 }
                 else
                 {
@@ -568,8 +576,12 @@ public class Zhuanye_Fragment extends Basefragment {
                 lv2_view.setVisibility(View.GONE);
 
                 pb3.setVisibility(View.VISIBLE);
+                if(s.equals("不限"))
+                {
+                    s="";
+                }
                 s5=s;
-                zhuanye_yuanxiao(major,s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
             }
         });
         //高级筛选
@@ -630,13 +642,13 @@ public class Zhuanye_Fragment extends Basefragment {
                     biaoji=4;
                 }
                 //list3
-                if(list2.get(i).toString().equals("院校批次"))
+              /*  if(list2.get(i).toString().equals("院校批次"))
                 {
 
                     ll6.setVisibility(View.VISIBLE);
                     lv_right.setAdapter(spinner_adapter5);
                     biaoji=5;
-                }
+                }*/
                 //list4
                 if(list2.get(i).toString().equals("院校层次"))
                 {
@@ -654,13 +666,13 @@ public class Zhuanye_Fragment extends Basefragment {
                     biaoji=7;
                 }
                 //list6
-                if(list2.get(i).toString().equals("毕业后方向"))
+             /*   if(list2.get(i).toString().equals("毕业后方向"))
                 {
 
                     ll6.setVisibility(View.VISIBLE);
                     lv_right.setAdapter(spinner_adapter8);
                     biaoji=8;
-                }
+                }*/
             }
         });
         lv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -671,28 +683,40 @@ public class Zhuanye_Fragment extends Basefragment {
                 if(biaoji==4)
                 {
                     city = list.get(i).toString();
+                    if(city.equals("全国"))
+                    {
+                        city="";
+                    }
                     System.out.println("选项"+ city);
                 }
-                if(biaoji==5)
+              /*  if(biaoji==5)
                 {
                     s3 = list3.get(i).toString();
                     System.out.println("选项"+ s3);
-                }
+                }*/
                 if(biaoji==6)
                 {
                     s4 = list4.get(i).toString();
+                    if(s4.equals("不限"))
+                    {
+                       s4="";
+                    }
                     System.out.println("选项"+ s4);
                 }
                 if(biaoji==7)
                 {
                     s5 = list5.get(i).toString();
+                    if(s5.equals("不限")){
+                        s5="";
+                    }
+
                     System.out.println("选项"+ s5);
                 }
-                if(biaoji==8)
+            /*    if(biaoji==8)
                 {
                     s6 = list6.get(i).toString();
                     System.out.println("选项"+ s6);
-                }
+                }*/
             }
         });
         tv_queding.setOnClickListener(new View.OnClickListener() {
@@ -705,12 +729,12 @@ public class Zhuanye_Fragment extends Basefragment {
                 iv_next3.setVisibility(View.GONE);
                 flag3=true;
                 fen=ed_fen.getText().toString();
-                System.out.println("选项"+fen+city+s3+s4+s5+ s6);
+                System.out.println("选项"+fen+city+"null"+s4+s5+ "null");
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                 pb3.setVisibility(View.VISIBLE);
                 SPUtils.put(MyApp.context,"tbmaxfen",fen+"");
 
-                zhuanye_yuanxiao(major,s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
             }
         });
         tv_chongzhi.setOnClickListener(new View.OnClickListener() {
@@ -725,14 +749,14 @@ public class Zhuanye_Fragment extends Basefragment {
 
                 city="";
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
-                s3="";
+                ///s3="";
                 s4="";
                 s5="";
-                s6="";
+                //s6="";
                 tv_yx.setText("院校区域");
-                tv_xk.setText("学科范围");
+                tv_xk.setText("院校类型");
                 pb3.setVisibility(View.VISIBLE);
-                zhuanye_yuanxiao(major,s1,s3,s4,s5,city,s6,"",s2,tbsubtype,fen,cwb);
+                zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
                 System.out.println("选项+++"+s1+s2+tbsubtype+fen+cwb);
             }
         });

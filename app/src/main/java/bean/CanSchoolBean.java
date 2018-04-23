@@ -8,69 +8,8 @@ import java.util.List;
 
 public class CanSchoolBean {
 
-    /**
-     * totalCount : 49
-     * pageSize : 5
-     * totalPage : 10
-     * currPage : 1
-     * list : [{
-     * "name":"北京大学",
-     * "ranking":"全国1",
-     * "typeRank":"综合1",
-     * "address":"北京市",
-     * "father":"教育部",
-     * "univType":"大学",
-     * "url":"/images/school/201202161100413470.jpg",
-     * "info":null
-     * }
-     * ,{"name":"清华大学","ranking":"全国2","
-     * typeRank":"理工1",
-     * "address":"北京市","father":"教育部",
-     * "univType":"大学","url":"/images/school/201201090552434112.jpg",
-     * "info":null},{"name":"中国人民大学","ranking":"全国8","typeRank":"综合7",
-     * "address":"北京市","father":"教育部","univType":"大学",
-     * "url":"/images/school/201202020436067980.jpg","info":null
-     * },
-     * {"name":"北京师范大学","ranking":"全国19","typeRank":"师范1","address":"北京市","father":"教育部","univType":"大学","url":"/images/school/201201300512159411.jpg","info":null},{"name":"北京航空航天大学","ranking":"全国23","typeRank":"理工6","address":"北京市","father":"工业和信息化部","univType":"大学","url":"/images/school/201201180153041855.jpg","info":null}]
-     */
 
-    private int totalCount;
-    private int pageSize;
-    private int totalPage;
-    private int currPage;
     private List<ListBean> list;
-
-    public int getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
 
     public List<ListBean> getList() {
         return list;
@@ -82,47 +21,43 @@ public class CanSchoolBean {
 
     public static class ListBean {
         /**
-         * name : 北京大学
-         * ranking : 全国1
-         * typeRank : 综合1
-         * address : 北京市
+         * nine : 985
+         * address : 甘肃省兰州市
          * father : 教育部
+         * typeRank : 综合19
          * univType : 大学
-         * url : /images/school/201202161100413470.jpg
-         * info : null
+         * two : 211
+         * defense_student : 国防生
+         * url : /images/school/201202160247399876.jpg
+         * com_rank : B+
+         * graduate : 研究生院
+         * recruit : 自主招生
+         * name : 兰州大学
+         * ranking : 全国34
+         * preeminent_plan :
          */
 
-        private String name;
-        private String ranking;
-        private String typeRank;
+        private String nine;
         private String address;
         private String father;
+        private String typeRank;
         private String univType;
+        private String two;
+        private String defense_student;
         private String url;
-        private Object info;
+        private String com_rank;
+        private String graduate;
+        private String recruit;
+        private String name;
+        private String ranking;
+        private String preeminent_plan;
 
-        public String getName() {
-            return name;
+        public String getNine() {
+            return nine;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getRanking() {
-            return ranking;
-        }
-
-        public void setRanking(String ranking) {
-            this.ranking = ranking;
-        }
-
-        public String getTypeRank() {
-            return typeRank;
-        }
-
-        public void setTypeRank(String typeRank) {
-            this.typeRank = typeRank;
+        public void setNine(String nine) {
+            this.nine = nine;
         }
 
         public String getAddress() {
@@ -141,12 +76,36 @@ public class CanSchoolBean {
             this.father = father;
         }
 
+        public String getTypeRank() {
+            return typeRank;
+        }
+
+        public void setTypeRank(String typeRank) {
+            this.typeRank = typeRank;
+        }
+
         public String getUnivType() {
             return univType;
         }
 
         public void setUnivType(String univType) {
             this.univType = univType;
+        }
+
+        public String getTwo() {
+            return two;
+        }
+
+        public void setTwo(String two) {
+            this.two = two;
+        }
+
+        public String getDefense_student() {
+            return defense_student;
+        }
+
+        public void setDefense_student(String defense_student) {
+            this.defense_student = defense_student;
         }
 
         public String getUrl() {
@@ -157,12 +116,52 @@ public class CanSchoolBean {
             this.url = url;
         }
 
-        public Object getInfo() {
-            return info;
+        public String getCom_rank() {
+            return com_rank;
         }
 
-        public void setInfo(Object info) {
-            this.info = info;
+        public void setCom_rank(String com_rank) {
+            this.com_rank = com_rank;
+        }
+
+        public String getGraduate() {
+            return graduate;
+        }
+
+        public void setGraduate(String graduate) {
+            this.graduate = graduate;
+        }
+
+        public String getRecruit() {
+            return recruit;
+        }
+
+        public void setRecruit(String recruit) {
+            this.recruit = recruit;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getRanking() {
+            return ranking;
+        }
+
+        public void setRanking(String ranking) {
+            this.ranking = ranking;
+        }
+
+        public String getPreeminent_plan() {
+            return preeminent_plan;
+        }
+
+        public void setPreeminent_plan(String preeminent_plan) {
+            this.preeminent_plan = preeminent_plan;
         }
     }
 }

@@ -83,12 +83,14 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
     private ViewFlipper viewflipper;
     private ViewFlipper viewflipper2;
     private LinearLayout home_enter;
-    private TextView homegrade;
-    private String tbmaxfen;
+     private String tbmaxfen;
     private String tbarea;
     private String tbsubtype;
-    private TextView homearea;
-    private TextView homesubtype;
+
+    public static TextView homearea;
+    public static TextView homesubtype;
+    public static TextView homegrade;
+
     private LinearLayout home_table;
     private TextView home_tv_title;
     private LinearLayout home_ll;
@@ -158,7 +160,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         scrollview = view.findViewById(R.id.scrollview);
         rl_title = view.findViewById(R.id.rl_title);
         tv_search = view.findViewById(R.id.tv_search);
-        iv_news = view.findViewById(R.id.iv_news);
+         //iv_news = view.findViewById(R.id.iv_news);
         //搜索框
         rl_search = view.findViewById(R.id.rl_search);
 
@@ -395,7 +397,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         for (int i = 0; i < list1.size(); i++) {
             View inflate2 = LayoutInflater.from(getContext()).inflate(R.layout.college_item2, null);
             TextView home_tv_title=inflate2.findViewById(R.id.home_tv_title);
-            home_tv_title.setText("● "+ list1.get(i).toString());
+            home_tv_title.setText(list1.get(i).toString());
             viewflipper2.addView(inflate2);
         }
         if(list1.size()==1)
@@ -409,7 +411,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         for (int i = 0; i < list2.size(); i++) {
             View inflate = LayoutInflater.from(getContext()).inflate(R.layout.college_item, null);
             TextView tv_college_count=inflate.findViewById(R.id.tv_college_count);
-            tv_college_count.setText("● "+ list2.get(i).toString());
+            tv_college_count.setText( list2.get(i).toString());
             viewflipper.addView(inflate);
         }
         viewflipper.startFlipping();
@@ -453,12 +455,12 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         if(y<=hight){
             float scale =(float) y /hight;
             float alpha =  (255 * scale);
-            iv_news.setBackground(getResources().getDrawable(R.mipmap.inform));
+            //iv_news.setBackground(getResources().getDrawable(R.mipmap.inform));
             tv_search.setTextColor(Color.GRAY);
             rl_title.setBackgroundColor(Color.argb((int) alpha, 0xfd, 0xfd, 0xfd));
         }else {
             rl_title.setBackgroundColor(Color.WHITE);
-            iv_news.setBackground(getResources().getDrawable(R.mipmap.inform));
+            //iv_news.setBackground(getResources().getDrawable(R.mipmap.inform));
             tv_search.setTextColor(Color.GRAY);
         }
 
