@@ -10,6 +10,6 @@ import bean.ForecastBean;
  */
 
 public interface ForecastView {
-    void Forecastsuccess(BaseBean<List<ForecastBean>> listBaseBean);
+    void Forecastsuccess(BaseBean<ForecastBean> listBaseBean);
     void Forecastfail(Throwable t);
 }

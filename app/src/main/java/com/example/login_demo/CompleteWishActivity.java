@@ -94,6 +94,7 @@ public class CompleteWishActivity extends BaseActivity {
         listyi.add("一线城市");
         listyi.add("二线城市");
         listyi.add("省会城市");
+        listyi.add("不限");
         Complete_Adapter completelv1_adapter = new Complete_Adapter(listyi, this);
         completelv1.setAdapter(completelv1_adapter);
         completelv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,13 +107,13 @@ public class CompleteWishActivity extends BaseActivity {
                 ivyiNext.setVisibility(View.GONE);
                 completeTvyi.setText(str);
                 cityType = i + 1;
+
             }
         });
         listsan = new ArrayList<>();
         listsan.add("理工类院校");
         listsan.add("综合类院校");
         listsan.add("艺体类院校");
-        listsan.add("无所谓");
         Complete_Adapter completelv3_adapter = new Complete_Adapter(listsan, this);
         completelv3.setAdapter(completelv3_adapter);
         completelv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {

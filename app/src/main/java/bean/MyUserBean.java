@@ -52,7 +52,10 @@ public class MyUserBean  {
                                    SPUtils.put(MyApp.context,"name",userBean.getName());
                                }
                                if(userBean.getMidschool()!=null){
-                                   SPUtils.put(MyApp.context,"school",userBean.getMidschool());
+                                   String province = (String) userBean.getProvince();
+                                   String city = (String) userBean.getCity();
+                                   String area = (String) userBean.getArea();
+                                   SPUtils.put(MyApp.context,"school",province+city+area);
                                }
 
                            }
@@ -71,16 +74,11 @@ public class MyUserBean  {
 
     }
 
-
-
     public  static  void   onDestory(){
         if(disposableSubscriber!=null){
             disposableSubscriber.dispose();
         }
 
     }
-
-
-
 
 }

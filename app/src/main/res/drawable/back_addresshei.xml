@@ -11,9 +11,5 @@
     <size
         android:width="300px"
         android:height="60px"></size>
-    <corners
-        android:topLeftRadius="13dp"
-        android:topRightRadius="13dp"
-        android:bottomLeftRadius="13dp"
-        android:bottomRightRadius="13dp"></corners>
+
 </shape>

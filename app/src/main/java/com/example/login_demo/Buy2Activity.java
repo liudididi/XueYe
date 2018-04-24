@@ -22,14 +22,17 @@ import com.example.login_demo.wxapi.WXPayUtils;
 import java.util.Map;
 
 import base.BaseActivity;
+import base.BaseBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fragment.WishFragMent;
+import presenter.CountdownPresent;
 import presenter.PayPresent;
 import untils.SPUtils;
+import view.CountdownView;
 import view.PayView;
 import zfbpay.AliPayResult;
 
@@ -56,11 +59,10 @@ public class Buy2Activity extends BaseActivity implements PayView {
                     AliPayResult payResult = new AliPayResult((Map<String, String>) msg.obj);
 
 
-
                     switch (payResult.getResultStatus()) {
                         case "9000":
                             Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
+                            Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
                             startActivity(intent);
                             finish();
                             break;
@@ -213,11 +215,11 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 break;
             case R.id.tv_goumai2:
                 if(token.length()>4){
-               payPresent.XiaDan(token,"3",pay+"");
-             /* Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                   Intent intent3 = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
-                   startActivity(intent3);
-                   finish();*/
+                payPresent.XiaDan(token,"3",pay+"");
+                /*    Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
+                    startActivity(intent);
+                    finish();*/
                 }else {
                    Toast("用户未登录");
                 }
@@ -258,15 +260,29 @@ public class Buy2Activity extends BaseActivity implements PayView {
     @Override
     protected void onResume() {
         super.onResume();
-        if (BuyEFCActivity.efcdjs != null) {
-            buy2Tvdjs.setText(BuyEFCActivity.efcdjs);
+        if (WishFragMent.djs!= null) {
+            buy2Tvdjs.setText(WishFragMent.djs);
+        }else {
+            CountdownPresent countdownPresent=new CountdownPresent(new CountdownView() {
+                @Override
+                public void Countdownsuccess(BaseBean baseBean) {
+                    WishFragMent.djs = baseBean.data.toString();
+                    buy2Tvdjs.setText(baseBean.data.toString());
+                }
+
+                @Override
+                public void Countdownfail(Throwable t) {
+
+                }
+            });
+            countdownPresent.CountdownPresent();
         }
         token = (String) SPUtils.get(MyApp.context, "token", "");
         int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);
         if(PAYCODE==0){
             SPUtils.put(MyApp.context,"PAYCODE",-1);
             Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
+            Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
             startActivity(intent);
             finish();
         }

@@ -54,19 +54,21 @@ public class MajorStartFragment extends Basefragment {
             }else {
                 titlelist.get(i).setText(list.get(i).getMajor());
             }
-            List<jobStarBean.MajorinfoBean> majorinfo = list.get(i).getMajorinfo();
-            if(majorinfo!=null&&majorinfo.size()>0){
-                    mblist.get(i).setText(majorinfo.get(0).getTraining_target());
-                    xinzilist.get(i).setText("￥"+majorinfo.get(0).getAveragesalary());
+            if(list.get(i).getTrainingTarget()!=null){
+                mblist.get(i).setText(list.get(i).getTrainingTarget());
             }
+            if(list.get(i).getAveragesalary()!=null){
+
+                xinzilist.get(i).setText("￥"+list.get(i).getAveragesalary());
+            }
+
+
             relativeLayouts.get(i).setVisibility(View.VISIBLE);
             final int finalI = i;
                 imageViews.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        List<jobStarBean.MajorinfoBean> majorinfo = list.get(finalI).getMajorinfo();
-
-                        MajorStarActivity.tanchuang(list.get(finalI).getMajor_id(),list.get(finalI).getMajor(),getActivity(), imageViews.get(finalI));
+                        MajorStarActivity.tanchuang(list.get(finalI).getMajorId(),list.get(finalI).getMajor(),getActivity(), imageViews.get(finalI));
 
                     }
                 });

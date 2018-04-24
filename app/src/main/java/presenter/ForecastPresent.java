@@ -24,11 +24,11 @@ public class ForecastPresent extends Basepresent {
         forecastView= (ForecastView) view;
     }
 
-    public void ForecastPresent(String province, String classify , String university)
+    public void ForecastPresent(String province, String classify , String university,String score)
     {
-        forecastMoudle.Forecast(province, classify, university, new ForecastMoudle.ForecastBack() {
+        forecastMoudle.Forecast(province, classify, university,score, new ForecastMoudle.ForecastBack() {
             @Override
-            public void Forecastsuccess(BaseBean<List<ForecastBean>> listBaseBean) {
+            public void Forecastsuccess(BaseBean<ForecastBean> listBaseBean) {
                 forecastView.Forecastsuccess(listBaseBean);
             }
 

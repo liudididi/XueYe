@@ -58,9 +58,8 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     private String tbarea=null;
     private String tbsubtype=null;
     private WishPresent wishPresent;
-
     private TextView wish_day1;
-     private TextView wish_day3;
+    private TextView wish_day3;
     private CountdownPresent countdownPresent;
     private ImageView wish_school_none;
     public static String djs=null;
@@ -84,19 +83,14 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     public void onResume() {
         super.onResume();
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
-
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
         wish_school_none.setVisibility(View.GONE);
-
-
         if(NetUtil.isNetworkAvailable(getActivity())){
             wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","5");
         }else {
             Toast.makeText(getActivity(), "当前无网络", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     @Override
@@ -111,22 +105,16 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
         wish_monthly = view.findViewById(R.id.wish_monthly);
         wish_midterm = view.findViewById(R.id.wish_midterm);
         wish_end = view.findViewById(R.id.wish_end);
-
         wish_school_none = view.findViewById(R.id.wish_school_none);
-
-
         wish_day1 = view.findViewById(R.id.wish_day1);
         wish_day3 = view.findViewById(R.id.wish_day3);
-
         tv_gk1 = view.findViewById(R.id.tv_gk1);
         tv_gm1 = view.findViewById(R.id.tv_gm1);
         tv_ym3 = view.findViewById(R.id.tv_ym3);
         tv_gx3 = view.findViewById(R.id.tv_gx3);
-
         list = new ArrayList<>();
         list.add(R.drawable.gkdjs);
         list.add(R.drawable.ymdjs);
-
         ws_xbanner.setData(list,null);
         ws_xbanner.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
@@ -195,7 +183,6 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
             wishPresent.CanSchoolPresente("北京","文科","0","500","1","5");
         }
         onClick();
-
     }
 
     @Override
@@ -221,8 +208,6 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
                 intent.putExtra("form","月考");
                 intent.putExtra("form_int",0);
                 getContext().startActivity(intent);
-
-
             }
         });
         wish_midterm.setOnClickListener(new View.OnClickListener() {
@@ -246,8 +231,6 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
                 getContext().startActivity(intent);
             }
         });
-
-
     }
 
     //志愿表轮播图
@@ -283,7 +266,6 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
             wish_school_none.setVisibility(View.VISIBLE);
             school_recycle.setVisibility(View.GONE);
         }
-
     }
 
     @Override
@@ -296,7 +278,7 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     public void Countdownsuccess(BaseBean baseBean) {
         djs = baseBean.data.toString();
         wish_day1.setText(djs+" 天");
-        //wish_day2.setText((Integer.parseInt(djs)+2)+"");
+
         wish_day3.setText((Integer.parseInt(djs)+85)+" 天");
     }
 

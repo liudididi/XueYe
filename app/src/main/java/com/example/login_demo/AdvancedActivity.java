@@ -111,11 +111,11 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         if(schoolType !=null&& schoolType !=""){
             String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
             String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
-
             wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept, schoolType,tbarea,tbsubtype);
         }
         else {
-            wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
+            wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "","","","",tbarea,tbsubtype);
+            //wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
         }
 
         advancedSprint.setTextColor(Color.BLACK);
@@ -172,7 +172,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                      wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept,schoolType,tbarea,tbsubtype);
                 }
                 else {
-                    wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
+                    wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "","","","",tbarea,tbsubtype);
+
+                    // wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
                 }
                 break;
 
@@ -191,7 +193,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
                      wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -20)+ "",(Integer.parseInt(tbmaxfen) -6) + "",cityType,isAccept,schoolType,tbarea,tbsubtype);
                 } else {
-                    wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -20)+ "", (Integer.parseInt(tbmaxfen) -6) + "", "1", "30");
+                    wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -20)+ "",(Integer.parseInt(tbmaxfen) -6) + "","","","",tbarea,tbsubtype);
+
+                    //wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -20)+ "", (Integer.parseInt(tbmaxfen) -6) + "", "1", "30");
                 }
 
                 break;
@@ -199,7 +203,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             case R.id.advanced_rl_minimum:
                 biaoshi = "保底";
                 pb.setVisibility(View.VISIBLE);
-
                 advancedSprint.setTextColor(Color.GRAY);
                 advancedReliable.setTextColor(Color.GRAY);
                 advancedMinimum.setTextColor(Color.BLACK);
@@ -212,7 +215,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                      wishPresent.CompleCanSchoolPresente(0+ "",(Integer.parseInt(tbmaxfen)-21) + "",cityType,isAccept,schoolType,tbarea,tbsubtype);
                 }
                 else {
-                    wishPresent.CanSchoolPresente(tbarea, tbsubtype, 0+ "", (Integer.parseInt(tbmaxfen)-21) + "", "1", "30");
+                    wishPresent.CompleCanSchoolPresente(0+ "",(Integer.parseInt(tbmaxfen)-21) + "","","","",tbarea,tbsubtype);
+
+                   // wishPresent.CanSchoolPresente(tbarea, tbsubtype, 0+ "", (Integer.parseInt(tbmaxfen)-21) + "", "1", "30");
                 }
 
                 break;
@@ -261,7 +266,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
 
         if(list1.size()>0&&list1!=null){
             pb.setVisibility(View.GONE);
-
             adTishi.setVisibility(View.GONE);
             advancedRl.setVisibility(View.VISIBLE);
             for (int i = 0; i < list1.size(); i++) {
@@ -368,10 +372,6 @@ public class AdvancedActivity extends BaseActivity implements WishView {
     @Override
     public void CanSchoolfail(Throwable t) {
 
-        if (tbarea != null && tbarea != "" && tbmaxfen != "" && tbmaxfen != null && tbsubtype != null && tbsubtype != "") {
-            wishPresent.CanSchoolPresente(tbarea, tbsubtype, "0", tbmaxfen, "1", "5");
-        } else {
-            wishPresent.CanSchoolPresente(tbarea, tbsubtype, (Integer.parseInt(tbmaxfen) -5)+ "", (Integer.parseInt(tbmaxfen) + 10) + "", "1", "30");
-        }
+
     }
 }

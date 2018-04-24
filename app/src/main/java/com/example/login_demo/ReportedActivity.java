@@ -96,7 +96,7 @@ public class ReportedActivity extends BaseActivity {
                                     reportedAccurate.setEnabled(true);
                                     rePb.setVisibility(View.GONE);
                                     if (stringBaseBean.data.equals("0")) {
-                                        Intent intent = new Intent(ReportedActivity.this, BuyEFCActivity.class);
+                                        Intent intent = new Intent(ReportedActivity.this, Buy2Activity.class);
                                         intent.putExtra("price", "698");
                                         startActivity(intent);
                                     } else {

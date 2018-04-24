@@ -258,12 +258,6 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                 if (i1 >= 2) {
                     Intent intent = new Intent(startfenleiActivity.this, MajorStarActivity.class);
                     intent.putExtra("data", data);
-                    intent.putExtra("result", result);
-                    intent.putExtra("Hld", hld);
-                    intent.putExtra("mbti", mbti);
-                    intent.putExtra("gender", gender);
-                    intent.putExtra("type", type);
-                    intent.putExtra("classify", classify);
                     startActivity(intent);
                     finish();
                 } else {

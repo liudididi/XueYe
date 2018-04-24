@@ -285,7 +285,7 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
             }
             my_login.setEnabled(false);
         }else {
-                 my_icon.setImageResource(R.drawable.boy);
+            my_icon.setImageResource(R.drawable.boy);
             my_login.setText("登录");
             my_login.setVisibility(View.VISIBLE);
             my_login.setEnabled(true);

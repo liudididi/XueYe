@@ -56,6 +56,18 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
     TextView rlRztjxq;
     @BindView(R.id.rl_fzkjxq)
     TextView rlFzkjxq;
+    @BindView(R.id.rl_zygwdyxq)
+    TextView rl_zygwdyxq;
+
+    @BindView(R.id.iv1)
+    ImageView iv1;
+    @BindView(R.id.iv2)
+    ImageView iv2;
+    @BindView(R.id.iv3)
+    ImageView iv3;
+    @BindView(R.id.iv4)
+    ImageView iv4;
+
     private GetJobinfoPresent getJobinfoPresent;
 
     @Override
@@ -94,37 +106,85 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
         if (list != null && list.size() > 0) {
             JobInforBean jobInforBean = list.get(0);
             if (jobInforBean.getJobEducation() != null&&jobInforBean.getJobEducation().length()>2) {
+                jobdTvgqdy.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int lineCount = jobdTvgqdy.getLineCount();
+                        if(lineCount<5)
+                        {
+                            rl_zygwdyxq.setVisibility(View.GONE);
+                            iv1.setVisibility(View.GONE);
+                        }
+                     }
+                });
                 jobdTvgqdy.setText(jobInforBean.getJobEducation());
             }else {
                 jobdTvgqdy.setText("暂无数据");
             }
             if (jobInforBean.getZeroMonery() != null&&jobInforBean.getZeroMonery().length()>2) {
+
                 jobdTvxzzk.setText(jobInforBean.getZeroMonery());
+
             }else {
-                jobdTvgqdy.setText("暂无数据");
+                jobdTvxzzk.setText("暂无数据");
             }
 
             if (jobInforBean.getThreefiveMonery() != null&&jobInforBean.getThreefiveMonery().length()>2) {
+                jobdTvzyjs.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int lineCount = jobdTvzyjs.getLineCount();
+                        if(lineCount<4)
+                        {
+                            rlZyjsxq.setVisibility(View.GONE);
+                            iv2.setVisibility(View.GONE);
+                        }
+                    }
+                });
                 jobdTvzyjs.setText(jobInforBean.getThreefiveMonery());
             }else {
-                jobdTvgqdy.setText("暂无数据");
+                jobdTvzyjs.setText("暂无数据");
             }
 
             if (jobInforBean.getJobRequirement() != null&&jobInforBean.getJobRequirement().length()>2) {
+                jobdTvrztj.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int lineCount = jobdTvrztj.getLineCount();
+                        if(lineCount<4)
+                        {
+                            rlRztjxq.setVisibility(View.GONE);
+                            iv3.setVisibility(View.GONE);
+                        }
+                    }
+                });
                 jobdTvrztj.setText(jobInforBean.getJobRequirement());
             }else {
-                jobdTvgqdy.setText("暂无数据");
+                jobdTvrztj.setText("暂无数据");
             }
 
             if (jobInforBean.getTwoMonery() != null&&jobInforBean.getJobRequirement().length()>2) {
+
+                jobdTvfzkj.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int lineCount = jobdTvfzkj.getLineCount();
+                        if(lineCount<4)
+                        {
+                            rlFzkjxq.setVisibility(View.GONE);
+                            iv4.setVisibility(View.GONE);
+                        }
+                    }
+                });
                 jobdTvfzkj.setText(jobInforBean.getTwoMonery());
             }else {
-                jobdTvgqdy.setText("暂无数据");
+                jobdTvfzkj.setText("暂无数据");
             }
             if (jobInforBean.getJobContent() != null&&jobInforBean.getJobRequirement().length()>2) {
+
                 jobdTvgzlx.setText(jobInforBean.getJobContent());
             }else {
-                jobdTvgqdy.setText("暂无数据");
+                jobdTvgzlx.setText("暂无数据");
             }
 
         }

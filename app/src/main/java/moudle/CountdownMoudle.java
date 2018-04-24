@@ -20,6 +20,7 @@ public class CountdownMoudle {
         DisposableSubscriber<BaseBean> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().Countdown()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean>() {
                     @Override
                     public void onNext(BaseBean baseBean) {

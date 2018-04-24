@@ -48,7 +48,7 @@
                 android:id="@+id/sy_edfenshu"
                 android:layout_width="250px"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="130px"
+                android:layout_marginLeft="120px"
                 android:layout_toRightOf="@+id/pro_startvfenshu"
                 android:background="@null"
                 android:maxLines="1" />
@@ -60,11 +60,11 @@
                 android:text="分"
                 />
             <View
-                android:background="#111"
+                android:background="#F3F3F3"
                 android:layout_width="290px"
                 android:layout_height="2px"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="130px"
+                android:layout_marginLeft="120px"
                 android:layout_toRightOf="@+id/pro_startvfenshu"
                  ></View>
         </RelativeLayout>
@@ -92,9 +92,9 @@
                 android:text="点击选择城市"
                 android:textSize="32px"
                 android:layout_toRightOf="@+id/pro_startvadress"
-                android:paddingLeft="30px"
+                android:paddingLeft="50px"
                 android:gravity="center"
-                android:paddingRight="30px"
+                android:paddingRight="50px"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
         </RelativeLayout>

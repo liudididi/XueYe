@@ -23,7 +23,7 @@ import untils.MyQusetUtils;
 import untils.SPUtils;
 import view.CXEFCView;
 
-public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
+public class EFCJieSuoActivity extends BaseActivity {
 
 
     @BindView(R.id.jiesuo_iv_back)
@@ -62,7 +62,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     ImageView imgZntbbq;
     private String token;
     private String data;
-    private CXEFCPresenter cxefcPresenter;
+
     private String majorresult;
     private String gender;
     private String classify;
@@ -80,7 +80,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
     @Override
     public void InIt() {
-        cxefcPresenter = new CXEFCPresenter(this);
+
         rlZhiyxk.setEnabled(false);
         rlZhuanyxk.setEnabled(false);
         rlZntb.setEnabled(false);
@@ -90,7 +90,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        cxefcPresenter.onDestory();
+
         unregisterReceiver();
     }
 
@@ -322,10 +322,10 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
                 break;
             case R.id.rl_zhuanyxk:
-
                 if (data != null && net == true) {
-                    cxefcPresenter.CXEFCPresenter(token);
-                    rlZhuanyxk.setEnabled(false);
+                    Intent intent2 = new Intent(this, MajorStarActivity.class);
+                    intent2.putExtra("data", data);
+                    startActivity(intent2);
                 } else {
                     Toast("请检查您的网络");
                 }
@@ -368,7 +368,7 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
         }
     }
 
-    @Override
+   /* @Override
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
         rlZhuanyxk.setEnabled(true);
         if (cxefcBeanBaseBean.code == 0) {
@@ -409,9 +409,8 @@ public class EFCJieSuoActivity extends BaseActivity implements CXEFCView {
 
     @Override
     public void GetEFCResultfail(Throwable t) {
-        cxefcPresenter.CXEFCPresenter(token);
-        rlZhuanyxk.setEnabled(true);
-    }
+
+    }*/
 
     public void registerReceiver() {
         IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);

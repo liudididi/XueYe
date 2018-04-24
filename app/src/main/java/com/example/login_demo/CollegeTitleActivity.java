@@ -57,6 +57,8 @@ public class CollegeTitleActivity extends BaseActivity implements CollegeTitleVi
     RelativeLayout rllDa;
     @BindView(R.id.college_progress)
     ProgressBar collegeProgress;
+    @BindView(R.id.view1)
+    View view1;
     private CollegeTitlePresent collegeTitlePresent;
     private ArrayList<RecommendBean> recommendList;
 
@@ -84,6 +86,7 @@ public class CollegeTitleActivity extends BaseActivity implements CollegeTitleVi
         switch (view.getId()) {
             case R.id.college_rl_one:
                 collegeProgress.setVisibility(View.VISIBLE);
+                view1.setVisibility(View.VISIBLE);
                 collegeTvOne.setTextColor(Color.BLACK);
                 collegeTvTwo.setTextColor(Color.GRAY);
                 viewStudentin1.setVisibility(View.VISIBLE);
@@ -96,6 +99,7 @@ public class CollegeTitleActivity extends BaseActivity implements CollegeTitleVi
 
             case R.id.college_rl_two:
                 collegeProgress.setVisibility(View.VISIBLE);
+                view1.setVisibility(View.VISIBLE);
                 collegeTvOne.setTextColor(Color.GRAY);
                 collegeTvTwo.setTextColor(Color.BLACK);
                 viewStudentin1.setVisibility(View.GONE);
@@ -144,6 +148,7 @@ public class CollegeTitleActivity extends BaseActivity implements CollegeTitleVi
         List<NewsBean.ListBean> list = data.getList();
         if(list!=null&&list.size()>0){
             collegeProgress.setVisibility(View.GONE);
+            view1.setVisibility(View.GONE);
             rllDa.setVisibility(View.VISIBLE);
             for (int i = 0; i < list.size(); i++) {
                 recommendList.add(new RecommendBean(BaseApi.ImgApi + list.get(i).getPicture(), list.get(i).getTitle(), list.get(i).getNewsId(), list.get(i).getDate(), list.get(i).getGeneral()));

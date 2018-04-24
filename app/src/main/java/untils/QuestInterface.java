@@ -191,10 +191,14 @@ public interface QuestInterface {
  @GET("/app/result/getUserResultPng")
  Flowable<BaseBean<List<GradePolyBean>>> getUserResultPng(@Query("testType") int testType, @Query("course") String course, @Header("token") String token );
 
+    // 获取批次、录取概率、预测分
+    @GET("/app/universitytimescore/getscoreCompareMobil")
+    Flowable<BaseBean<ForecastBean>> forecast(@Query("province") String province, @Query("classify") String classify, @Query("university") String university,@Query("score") String score);
 
- //获取预估对比分数
- @GET("/app/universitytimescore/getscoreCompareMobil")
- Flowable<BaseBean<List<ForecastBean>>> forecast(@Query("province") String province, @Query("classify") String classify, @Query("university") String university);
+
+
+
+
  //学校info
  @GET("/app/scientificteach/teach")
  Flowable<BaseBean<List<TeachBean>>> schoolteach(@Query("name") String name);
@@ -275,8 +279,8 @@ public interface QuestInterface {
 
 
     //提交专业
-    @POST("/app/efc/StarMajorSDNew")
-    Flowable<BaseBean<List<jobStarBean>>> tjzhuany(@Query("hld")String hld,@Query("mbti")String mbti,@Query("gender")String gender,@Query("type")String type,@Query("classify")String classify,@Query("jobs")String jobs,@Query("major")String major);
+    @POST("/app/wishfilling/updateFavourMajors")
+    Flowable<BaseBean<List<jobStarBean>>> tjzhuany(@Query("major")String major,@Header("token") String token );
 
     //高级志愿表筛选
     @POST("/app/efc/getUnivs")
@@ -302,8 +306,8 @@ public interface QuestInterface {
     Flowable<BaseBean<List<XGcsBean>>> getmbti(@Query("testCode") String testCode);
 
     //获取星空测评结合专业
-    @POST("/app/efc/jobsStarMajorNew")
-    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Query("hld") String hld, @Query("mbti") String mbti, @Query("gender") String gender,  @Query("type") String type,@Query("classify") String classify,@Query("jobs") String job);
+    @GET("/app/efc/majorStars")
+    Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Header("token") String token);
 
 
     //微信支付

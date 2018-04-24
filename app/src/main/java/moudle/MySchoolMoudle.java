@@ -46,6 +46,7 @@ public class MySchoolMoudle   {
                 .getQuestInterface().getmajorCollection(1, token)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<MajorBean>>>() {
                     @Override
                     public void onNext(BaseBean<List<MajorBean>> listBaseBean) {

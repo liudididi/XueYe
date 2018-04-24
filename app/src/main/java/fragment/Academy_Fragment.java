@@ -740,14 +740,13 @@ public class Academy_Fragment extends Basefragment{
                             rv_yx.setVisibility(View.GONE);
 
                             if (biaoshi.equals("冲刺")) {
-                                if(data.size()==0)
+                                if( data==null||data.size()==0)
                                 {
                                     cc_tvnum.setText(0+"所");
                                 }
                                 else
                                 {
                                     cc_tvnum.setText(data.size()+"所");
-
                                 }
                                 cc_tvnum.setVisibility(View.VISIBLE);
                                 bd_tvnum.setVisibility(View.GONE);
@@ -758,7 +757,7 @@ public class Academy_Fragment extends Basefragment{
                                 iv_wt.setVisibility(View.GONE);
                                 iv_bd.setVisibility(View.GONE);
                             } else if (biaoshi.equals("稳妥")) {
-                                if(data.size()==0)
+                                if(data==null||data.size()==0)
                                 {
                                     wt_tvnum.setText(0+"所");
                                 }
@@ -775,7 +774,7 @@ public class Academy_Fragment extends Basefragment{
                                 iv_wt.setVisibility(View.VISIBLE);
                                 iv_bd.setVisibility(View.GONE);
                             } else  {
-                                if(data.size()==0 )
+                                if(data==null||data.size()==0 )
                                 {
                                     bd_tvnum.setText(0+"所");
                                 }

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context="com.example.login_demo.JobDetailsActivity">
     <RelativeLayout
         android:id="@+id/rl_jobdtitle"
@@ -28,9 +29,9 @@
             android:layout_height="wrap_content"
             />
         <View
-            android:background="#333"
+            android:background="#ccc"
             android:layout_width="match_parent"
-            android:layout_height="1px"
+            android:layout_height="3px"
             android:layout_alignParentBottom="true"
             ></View>
     </RelativeLayout>
@@ -125,6 +126,7 @@
                 android:textColor="#3B9EFF"
                 />
             <ImageView
+                android:id="@+id/iv1"
                 android:layout_toRightOf="@+id/rl_zygwdyxq"
                 android:layout_marginLeft="20px"
                 android:layout_centerVertical="true"
@@ -276,13 +278,10 @@
               android:textColor="#3B9EFF"
               />
           <ImageView
-
+              android:id="@+id/iv2"
               android:layout_toRightOf="@+id/rl_zyjsxq"
               android:layout_marginLeft="20px"
-
-
               android:layout_centerVertical="true"
-
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:src="@drawable/nextlan"
@@ -358,6 +357,7 @@
                 android:textColor="#3B9EFF"
                 />
             <ImageView
+                android:id="@+id/iv3"
                 android:layout_toRightOf="@+id/rl_rztjxq"
                 android:layout_marginLeft="20px"
                 android:layout_centerVertical="true"
@@ -431,11 +431,10 @@
                 android:textColor="#3B9EFF"
                 />
             <ImageView
+                android:id="@+id/iv4"
                 android:layout_toRightOf="@+id/rl_fzkjxq"
                 android:layout_marginLeft="20px"
-
                 android:layout_centerVertical="true"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/nextlan"

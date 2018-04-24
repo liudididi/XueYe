@@ -55,14 +55,19 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
         ghitem_xinzi.setText(split[5]);
         TextView ghitem_gailv= convertView.findViewById(R.id.ghitem_gailv);
         String zyGai=split[2];
-        if(zyGai.length()>=4)
+         if(zyGai.length()>=4)
         {
             zyGai = zyGai.substring(2, 4);
         }
-        if(zyGai.equals("00"))
+        else if(zyGai.equals("00"))
         {
             zyGai="100";
         }
+        else
+        {
+            zyGai = zyGai.substring(2)+"0";
+        }
+
         ghitem_gailv.setText(zyGai+"%");
          return convertView;
     }

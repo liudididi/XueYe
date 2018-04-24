@@ -1,7 +1,5 @@
 package bean;
 
-import java.util.List;
-
 /**
  * Created by 地地 on 2018/3/12.
  * 邮箱：461211527@qq.com.
@@ -11,19 +9,33 @@ public class jobStarBean {
 
 
     /**
-     * major : 小学教育
-     * g : 0.7720000010728836
-     * majorinfo : [{"training_target":"适应新世纪我国社会发展需要，培养基础扎实、知识结构合理，具有现代教育思想和技能，具有一定理论素养、创新精神和实践能力，既能胜任中学综合文科\u201c人文与社会\u201d课程教学需要，又能适应历史、中文、政治分科教学需要，德、智、体、美全面发展的高级应用人才。","year":3,"averagesalary":"5314"}]
-     * gai : 0.4571428596973419
-     * major_id : 040107
+     * major : 机械设计制造及其自动化
+     * majorId : 080202
+     * gai : 0.429
+     * averagesalary : 7815
+     * trainingTarget : 机械设计制造及其自动化专业培养具备机械设计制造基础知识与应用能力，能在工业主产第一线从事机械制造领域内的设计制造、科技开发、应用研究、运行管理和经营销售等方面工作的高级工程技术人才。
+     * ranking : 第 55 名 (工学)
+     * rank : 所有专业1110个，工学类共170个本科专业，在“工学”中就业排名第55
+     * needAddress : 深圳
+     * proAddress : 专业需求量最多的地区是“深圳”，占26%
+     * needMajor : 机械/设备/重工
+     * proJob : 专业需求量最多的行业是“机械/设备/重工”，占25%
+     * directionEmployment : 学本专业学生毕业后可在工业生产第一线（各种机械厂，比如三一重工、徐州重工，还有一些汽车制造厂）从事机械制造领域内的设计制造、科技开发、应用研究、运行管理和经营销售等方面工作，发动机设计、机械设计、模具设计、设备维护、生产管理、销售等。该专业适合升学考研。
      */
 
     private String major;
-    private double g;
+    private String majorId;
     private double gai;
-    private String major_id;
-    public  boolean xh;
-    private List<MajorinfoBean> majorinfo;
+    private String averagesalary;
+    private String trainingTarget;
+    private String ranking;
+    private String rank;
+    private String needAddress;
+    private String proAddress;
+    private String needMajor;
+    private String proJob;
+    private String directionEmployment;
+    public   boolean  xh;
 
     public String getMajor() {
         return major;
@@ -33,12 +45,12 @@ public class jobStarBean {
         this.major = major;
     }
 
-    public double getG() {
-        return g;
+    public String getMajorId() {
+        return majorId;
     }
 
-    public void setG(double g) {
-        this.g = g;
+    public void setMajorId(String majorId) {
+        this.majorId = majorId;
     }
 
     public double getGai() {
@@ -49,55 +61,75 @@ public class jobStarBean {
         this.gai = gai;
     }
 
-    public String getMajor_id() {
-        return major_id;
+    public String getAveragesalary() {
+        return averagesalary;
     }
 
-    public void setMajor_id(String major_id) {
-        this.major_id = major_id;
+    public void setAveragesalary(String averagesalary) {
+        this.averagesalary = averagesalary;
     }
 
-    public List<MajorinfoBean> getMajorinfo() {
-        return majorinfo;
+    public String getTrainingTarget() {
+        return trainingTarget;
     }
 
-    public void setMajorinfo(List<MajorinfoBean> majorinfo) {
-        this.majorinfo = majorinfo;
+    public void setTrainingTarget(String trainingTarget) {
+        this.trainingTarget = trainingTarget;
     }
 
-    public static class MajorinfoBean {
-        /**
-         * training_target : 适应新世纪我国社会发展需要，培养基础扎实、知识结构合理，具有现代教育思想和技能，具有一定理论素养、创新精神和实践能力，既能胜任中学综合文科“人文与社会”课程教学需要，又能适应历史、中文、政治分科教学需要，德、智、体、美全面发展的高级应用人才。
-         * year : 3
-         * averagesalary : 5314
-         */
+    public String getRanking() {
+        return ranking;
+    }
 
-        private String training_target;
-        private int year;
-        private String averagesalary;
+    public void setRanking(String ranking) {
+        this.ranking = ranking;
+    }
 
-        public String getTraining_target() {
-            return training_target;
-        }
+    public String getRank() {
+        return rank;
+    }
 
-        public void setTraining_target(String training_target) {
-            this.training_target = training_target;
-        }
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 
-        public int getYear() {
-            return year;
-        }
+    public String getNeedAddress() {
+        return needAddress;
+    }
 
-        public void setYear(int year) {
-            this.year = year;
-        }
+    public void setNeedAddress(String needAddress) {
+        this.needAddress = needAddress;
+    }
 
-        public String getAveragesalary() {
-            return averagesalary;
-        }
+    public String getProAddress() {
+        return proAddress;
+    }
 
-        public void setAveragesalary(String averagesalary) {
-            this.averagesalary = averagesalary;
-        }
+    public void setProAddress(String proAddress) {
+        this.proAddress = proAddress;
+    }
+
+    public String getNeedMajor() {
+        return needMajor;
+    }
+
+    public void setNeedMajor(String needMajor) {
+        this.needMajor = needMajor;
+    }
+
+    public String getProJob() {
+        return proJob;
+    }
+
+    public void setProJob(String proJob) {
+        this.proJob = proJob;
+    }
+
+    public String getDirectionEmployment() {
+        return directionEmployment;
+    }
+
+    public void setDirectionEmployment(String directionEmployment) {
+        this.directionEmployment = directionEmployment;
     }
 }

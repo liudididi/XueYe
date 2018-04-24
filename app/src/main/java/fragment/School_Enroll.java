@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.login_demo.MyApp;
 import com.example.login_demo.NumActivity;
+import com.example.login_demo.OneTableActivity;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ import untils.ZhiMaScoreView;
 import view.ForecastView;
 import view.NumView;
 import view.SchoolEnrollView;
+
+import static com.example.login_demo.OneTableActivity.s;
 
 /**
  * Created by 地地 on 2018/2/5.
@@ -176,7 +179,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         column_two.setData(Integer.parseInt(tbmaxfen), 750);
         column_two.mPaint.setColor(getResources().getColor(R.color.zhu2)); //改变柱状图的颜色
         forecastPresent = new ForecastPresent(this);
-        forecastPresent.ForecastPresent(tbarea,tbsubtype,schoolname);
+        forecastPresent.ForecastPresent(tbarea,tbsubtype,schoolname,tbmaxfen);
         tv_tvarea.setText(tbarea);
         se_tvtype.setText(tbsubtype);
         se_tvmaxfen.setText(tbmaxfen);
@@ -352,7 +355,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void GetlvBeansuccess(List<GailvBean> listBaseBean) {
-        if(listBaseBean!=null&&listBaseBean.size()>0){
+       /* if(listBaseBean!=null&&listBaseBean.size()>0){
             String time = listBaseBean.get(0).getTime();
             school_enroll_tvtime.setText(time+"录取率");
             String scoreAvg = listBaseBean.get(0).getScoreAvg();
@@ -376,7 +379,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 }
             }
 
-        }
+        }*/
 
     }
 
@@ -489,19 +492,30 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     }
 
     @Override
-    public void Forecastsuccess(BaseBean<List<ForecastBean>> listBaseBean) {
-        List<ForecastBean> data = listBaseBean.data;
+    public void Forecastsuccess(BaseBean<ForecastBean> listBaseBean) {
+        ForecastBean data = listBaseBean.data;
 
-        if(data!=null&&data.size()>0)
+        if(data !=null)
         {
-            String scoreAvg = data.get(0).getScoreAvg();
+            int fscore = data.getFscore();
             Histogram column_one =  view.findViewById(R.id.column_one);
-            if(scoreAvg!=null)
-            {
-                column_one.setData( Integer.parseInt(scoreAvg), 750);
-                column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
-            }
+            column_one.setData( fscore, 750);
+            column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
+            String s = data.getLqgai() * 100 + "";
 
+            if(s.length()>4)
+            {
+                s =  s.substring(0,3);
+            }
+            school_enroll_tv.setText( s +"%");
+            if(data.getTIME()!=null)
+            {
+                school_enroll_tvtime.setText(data.getTIME()+"录取率");
+            }
+            else
+            {
+                school_enroll_tvtime.setText("暂无数据");
+            }
         }
 
     }

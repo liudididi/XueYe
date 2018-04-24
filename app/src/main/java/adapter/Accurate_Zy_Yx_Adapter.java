@@ -53,7 +53,7 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
           final List<Advanced_YX_Bean.MajorBean> major = list.get(position).getMajor();
 
                 //院校概率
-                String yxGai = major.get(0).getYxGai();
+                String yxGai = list.get(position).getYxGai();
                 final String zyGai = major.get(0).getZyGai();
                 String major1 = major.get(0).getMajor();
                 String  substring1 = null;
@@ -70,18 +70,26 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
                        substring+="0";
                    }
                }
-                if(zyGai.length()>=4)
-                {
-                    substring1 = zyGai.substring(2, 4);
-                }
-                if(zyGai.length()<4)
-                {
-                     substring1 = zyGai.substring(2, 3);
-                    if(substring1.length()==1)
-                    {
-                        substring1+="0";
-                    }
-                }
+               if(zyGai!=null)
+               {
+                   if(zyGai.length()>=4)
+                   {
+                       substring1 = zyGai.substring(2, 4);
+                   }
+                   if(zyGai.length()<4)
+                   {
+                       substring1 = zyGai.substring(2, 3);
+                       if(substring1.length()==1)
+                       {
+                           substring1+="0";
+                       }
+                   }
+               }
+               else
+               {
+                   substring1="0";
+               }
+
                 //专业概率
                 holder.tv_zhuanye.setText(substring1+"%");
                 //专业名称

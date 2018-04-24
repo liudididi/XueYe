@@ -165,16 +165,9 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
     private List<TextView> xzlist;
     private int a;
     private String majorresult;
-    private  String jobresult="";
     private String token;
     private  String data;
-    private String mbti;
-    private String hld;
-    private String gender;
-    private String type;
-    private String classify;
     public  static  int   ztdata;
-
     private static int heightPixels;
     private presenter.favourMajorpresent favourMajorpresent;
 
@@ -192,11 +185,6 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
         majorresult = getIntent().getStringExtra("result");
         data =  getIntent().getStringExtra("data");
         ztdata=Integer.parseInt(data);
-        hld = getIntent().getStringExtra("Hld");
-        mbti = getIntent().getStringExtra("mbti");
-        gender = getIntent().getStringExtra("gender");
-        type = getIntent().getStringExtra("type");
-        classify = getIntent().getStringExtra("classify");
         if(Integer.parseInt(data)>=3){
             rlyindao.setVisibility(View.GONE);
             majorstarbyes.setVisibility(View.VISIBLE);
@@ -269,8 +257,8 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         QuestInterface questInterface = retrofit.create(QuestInterface.class);
-
-        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil(hld, mbti, gender,type,classify,majorresult);
+        token = (String) SPUtils.get(this, "token", "");
+        Call<BaseBean<List<jobStarBean>>> baseBeanCall = questInterface.jobsStarMajorMobil(token);
         baseBeanCall.enqueue(new Callback<BaseBean<List<jobStarBean>>>() {
             @Override
             public void onResponse(Call<BaseBean<List<jobStarBean>>> call, Response<BaseBean<List<jobStarBean>>> response) {
@@ -362,7 +350,6 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                     intent(MajorStarActivity.this,ComlitEFCActivity.class);
                     finish();
                 }else {
-
                     View viewe = LayoutInflater.from(MajorStarActivity.this).inflate(R.layout.tankuang_zyts, null);
                     final AlertDialog dialog = new AlertDialog.Builder(MajorStarActivity.this)
                             .setView(viewe).show();
@@ -375,96 +362,27 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                                 String  xhjob="";
                                 for (int i = 0; i < answerllist.size(); i++) {
                                     if(i==answerllist.size()-1){
-                                        String xinzi="";
-                                        List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                                        if(majorinfo.size()>0&&majorinfo!=null){
-                                            xinzi=majorinfo.get(0).getAveragesalary();
-                                        }else {
-                                            xinzi="暂无数据";
-                                        }
-                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id();
+                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajorId();
                                     }else {
-                                        String xinzi="";
-                                        List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                                        if(majorinfo.size()>0&&majorinfo!=null){
-                                            xinzi=majorinfo.get(0).getAveragesalary();
-                                        }else {
-                                            xinzi="暂无数据";
-                                        }
-                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajor_id()+",";
+
+                                        xhjob+=answerllist.get(i).getMajor()+":"+answerllist.get(i).getMajorId()+",";
                                     }
                                 }
-                                MyQusetUtils.getInstance().getQuestInterface().updateFavourMajors(xhjob,token)
+                                MyQusetUtils.getInstance().getQuestInterface().tjzhuany(xhjob,token)
                                         .subscribeOn(Schedulers.io())
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribeWith(new DisposableSubscriber<BaseBean>() {
                                             @Override
                                             public void onNext(BaseBean baseBean) {
                                                 if(baseBean.code==0){
-                                                    for (int i = 0; i < answerllist.size(); i++) {
-                                                        if(i==answerllist.size()-1){
-                                                            jobresult+=answerllist.get(i).getMajor();
-                                                        }else {
-                                                            jobresult+=answerllist.get(i).getMajor()+",";
-                                                        }
-                                                    }
-                                                    MyQusetUtils.getInstance().getQuestInterface().tjzhuany(hld,mbti,ProfessionStarActivity.gender,ProfessionStarActivity.type,ProfessionStarActivity.wenli,majorresult,jobresult)
-                                                            .subscribeOn(Schedulers.io())
-                                                            .observeOn(AndroidSchedulers.mainThread())
-                                                            .subscribeWith(new DisposableSubscriber<BaseBean<List<jobStarBean>>>() {
-                                                                @Override
-                                                                public void onNext(BaseBean<List<jobStarBean>> listBaseBean) {
-                                                                    if(listBaseBean.code==0){
-                                                                        String areuslt="";
-                                                                        List<jobStarBean> data = listBaseBean.data;
-                                                                        for (int i = 0; i < data.size(); i++) {
-                                                                            if(i==data.size()-1){
-                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id();
-                                                                            }else {
-                                                                                areuslt+=data.get(i).getMajor()+":"+data.get(i).getG()+":"+data.get(i).getGai()+":"+data.get(i).getMajor_id()+",";
-                                                                            }
-                                                                        }
-                                                                        MyQusetUtils.getInstance().getQuestInterface().bczy(areuslt,token)
-                                                                                .subscribeOn(Schedulers.io())
-                                                                                .observeOn(AndroidSchedulers.mainThread())
-                                                                                .subscribeWith(new DisposableSubscriber<BaseBean>() {
-                                                                                    @Override
-                                                                                    public void onNext(BaseBean baseBean) {
-                                                                                        if(baseBean.code==0){
-                                                                                            intent(MajorStarActivity.this,ComlitEFCActivity.class);
-                                                                                            finish();
-                                                                                        }
-                                                                                    }
-                                                                                    @Override
-                                                                                    public void onError(Throwable t) {
-                                                                                        Toast("网络较差，请稍后重试");
-                                                                                    }
-
-                                                                                    @Override
-                                                                                    public void onComplete() {
-
-                                                                                    }
-                                                                                });
-
-                                                                    }
-                                                                }
-
-                                                                @Override
-                                                                public void onError(Throwable t) {
-                                                                    Toast("网络较差，请稍后重试");
-                                                                }
-
-                                                                @Override
-                                                                public void onComplete() {
-
-                                                                }
-                                                            });
+                                                    intent(MajorStarActivity.this,ComlitEFCActivity.class);
+                                                    finish();
                                                 }
                                             }
 
                                             @Override
                                             public void onError(Throwable t) {
-
+                                              Toast("网络较差，请稍后重试");
                                             }
 
                                             @Override
@@ -567,10 +485,11 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                             for (int i = 0; i < answerllist.size(); i++) {
                                 titlelist.get(i).setText(answerllist.get(i).getMajor());
                                 rllist.get(i).setVisibility(View.VISIBLE);
-                                List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                                if (majorinfo != null && majorinfo.size() > 0) {
-                                    xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
-                                }
+
+                               if(answerllist.get(i).getAveragesalary()!=null){
+                                   xzlist.get(i).setText("￥" + answerllist.get(i).getAveragesalary());
+                               }
+
                             }
                         }
                     }
@@ -588,7 +507,7 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
             ywlist.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                tanchuang(answerllist.get(finalI).getMajor_id(), titlelist.get(finalI).getText().toString(), MajorStarActivity.this, ywlist.get(finalI));
+                tanchuang(answerllist.get(finalI).getMajorId(), titlelist.get(finalI).getText().toString(), MajorStarActivity.this, ywlist.get(finalI));
                 }
             });
         }
@@ -705,10 +624,11 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
             for (int i = 0; i < answerllist.size(); i++) {
                 titlelist.get(i).setText(answerllist.get(i).getMajor());
                 rllist.get(i).setVisibility(View.VISIBLE);
-                List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                if (majorinfo != null && majorinfo.size() > 0) {
-                    xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
+                if(answerllist.get(i).getAveragesalary()!=null){
+                    xzlist.get(i).setText("￥" +answerllist.get(i).getAveragesalary());
                 }
+
+
             }
             ObjectAnimator icon_anim = ObjectAnimator.ofFloat(imageViewFront, "rotationY", 0.0F, 180.0F);
             icon_anim.setRepeatCount(1);
@@ -744,31 +664,21 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                 String[] split1 = str.split(":");
                 jobStarBean jobStarBean=new jobStarBean();
                 jobStarBean.setMajor(split1[0]);
-                jobStarBean.setMajor_id(split1[1]);
-                List<bean.jobStarBean.MajorinfoBean> lists=new ArrayList<>();
-                bean.jobStarBean.MajorinfoBean majorinfoBean=new jobStarBean.MajorinfoBean();
-                majorinfoBean.setAveragesalary(split1[2]);
-                lists.add(majorinfoBean);
-                jobStarBean.setMajorinfo(lists);
+                jobStarBean.setMajorId(split1[1]);
+                jobStarBean.setAveragesalary(split1[2]);
                 answerllist.add(jobStarBean);
             }
-
             if (answerllist.size() != 0) {
                 scnum.setText(answerllist.size()+"");
                 for (int i = 0; i < answerllist.size(); i++) {
                     titlelist.get(i).setText(answerllist.get(i).getMajor());
                     rllist.get(i).setVisibility(View.VISIBLE);
-                    List<jobStarBean.MajorinfoBean> majorinfo = answerllist.get(i).getMajorinfo();
-                    if (majorinfo != null && majorinfo.size() > 0) {
-                        xzlist.get(i).setText("￥" + majorinfo.get(0).getAveragesalary());
+                    if (answerllist.get(i).getAveragesalary() != null) {
+                        xzlist.get(i).setText("￥" + answerllist.get(i).getAveragesalary());
                     }
                 }
             }
-
-
         }
-
-
     }
 
     @Override

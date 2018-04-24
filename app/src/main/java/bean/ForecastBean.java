@@ -6,97 +6,38 @@ package bean;
 
 public class ForecastBean {
 
+
     /**
-     * university : null
-     * province : null
-     * classify : null
-     * year : 2015
-     * time : 本科一批
-     * scoreAvg : 624
-     * scoreProvince : null
-     * scoreDiffient : null
-     * scores : null
+     * TIME : 本科一批
+     * lqgai : 0.83
+     * fscore : 660
      */
 
-    private Object university;
-    private Object province;
-    private Object classify;
-    private String year;
-    private String time;
-    private String scoreAvg;
-    private Object scoreProvince;
-    private Object scoreDiffient;
-    private Object scores;
+    private String TIME;
+    private double lqgai;
+    private int fscore;
 
-    public Object getUniversity() {
-        return university;
+    public String getTIME() {
+        return TIME;
     }
 
-    public void setUniversity(Object university) {
-        this.university = university;
+    public void setTIME(String TIME) {
+        this.TIME = TIME;
     }
 
-    public Object getProvince() {
-        return province;
+    public double getLqgai() {
+        return lqgai;
     }
 
-    public void setProvince(Object province) {
-        this.province = province;
+    public void setLqgai(double lqgai) {
+        this.lqgai = lqgai;
     }
 
-    public Object getClassify() {
-        return classify;
+    public int getFscore() {
+        return fscore;
     }
 
-    public void setClassify(Object classify) {
-        this.classify = classify;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getScoreAvg() {
-        return scoreAvg;
-    }
-
-    public void setScoreAvg(String scoreAvg) {
-        this.scoreAvg = scoreAvg;
-    }
-
-    public Object getScoreProvince() {
-        return scoreProvince;
-    }
-
-    public void setScoreProvince(Object scoreProvince) {
-        this.scoreProvince = scoreProvince;
-    }
-
-    public Object getScoreDiffient() {
-        return scoreDiffient;
-    }
-
-    public void setScoreDiffient(Object scoreDiffient) {
-        this.scoreDiffient = scoreDiffient;
-    }
-
-    public Object getScores() {
-        return scores;
-    }
-
-    public void setScores(Object scores) {
-        this.scores = scores;
+    public void setFscore(int fscore) {
+        this.fscore = fscore;
     }
 }

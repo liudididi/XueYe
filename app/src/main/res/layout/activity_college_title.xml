@@ -156,6 +156,14 @@
         </RelativeLayout>
     </ScrollView>
 
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/college_rl"
+        android:clickable="true"
+        android:visibility="gone"
+        ></View>
     <ProgressBar
         android:id="@+id/college_progress"
         android:layout_width="wrap_content"
