@@ -308,7 +308,7 @@
                 android:layout_marginStart="45px"
                 android:layout_toEndOf="@+id/imageView"
                 android:layout_toRightOf="@+id/imageView"
-                android:text="搜索学校、专业"
+                android:text="搜索院校、专业、职业"
                 android:textColor="#999999"
                 android:textSize="45px" />
             <View

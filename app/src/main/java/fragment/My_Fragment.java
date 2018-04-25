@@ -255,19 +255,12 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
-
             MyUserBean.checkLogin();
-             my_login.setVisibility(View.INVISIBLE);
+            my_login.setVisibility(View.INVISIBLE);
             UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
             if(userBeanInstans!=null){
-             if(userBeanInstans.getName()!=null){
-                 name = (String) userBeanInstans.getName();
-                 school   = (String) userBeanInstans.getProvince()+userBeanInstans.getCity()+userBeanInstans.getArea();
-             }else {
                  school = (String) SPUtils.get(MyApp.context, "school", "地区");
                  name = (String) SPUtils.get(MyApp.context, "name", "姓名");
-             }
-
                 myfragment_name.setVisibility(View.VISIBLE);
                 myfragment_school.setVisibility(View.VISIBLE);
                 myfragment_name.setText(name);

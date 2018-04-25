@@ -120,6 +120,8 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
                 jobdTvgqdy.setText(jobInforBean.getJobEducation());
             }else {
                 jobdTvgqdy.setText("暂无数据");
+                rl_zygwdyxq.setVisibility(View.GONE);
+                iv1.setVisibility(View.GONE);
             }
             if (jobInforBean.getZeroMonery() != null&&jobInforBean.getZeroMonery().length()>2) {
 
@@ -144,6 +146,8 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
                 jobdTvzyjs.setText(jobInforBean.getThreefiveMonery());
             }else {
                 jobdTvzyjs.setText("暂无数据");
+                rlZyjsxq.setVisibility(View.GONE);
+                iv2.setVisibility(View.GONE);
             }
 
             if (jobInforBean.getJobRequirement() != null&&jobInforBean.getJobRequirement().length()>2) {
@@ -161,6 +165,8 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
                 jobdTvrztj.setText(jobInforBean.getJobRequirement());
             }else {
                 jobdTvrztj.setText("暂无数据");
+                rlRztjxq.setVisibility(View.GONE);
+                iv3.setVisibility(View.GONE);
             }
 
             if (jobInforBean.getTwoMonery() != null&&jobInforBean.getJobRequirement().length()>2) {
@@ -179,6 +185,8 @@ public class JobDetailsActivity extends BaseActivity implements GetJobinfoView {
                 jobdTvfzkj.setText(jobInforBean.getTwoMonery());
             }else {
                 jobdTvfzkj.setText("暂无数据");
+                rlFzkjxq.setVisibility(View.GONE);
+                iv4.setVisibility(View.GONE);
             }
             if (jobInforBean.getJobContent() != null&&jobInforBean.getJobRequirement().length()>2) {
 

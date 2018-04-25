@@ -25,6 +25,8 @@ public class MoreMajorActivity extends BaseActivity implements SelectMajorView, 
 
     @BindView(R.id.mschool_iv_back)
     ImageView mschoolIvBack;
+    @BindView(R.id.marjor_search)
+    ImageView marjor_search;
     @BindView(R.id.mmajor_tvben)
     RelativeLayout mmajorTvben;
     @BindView(R.id.mmajor_tvzhuan)
@@ -139,11 +141,14 @@ public class MoreMajorActivity extends BaseActivity implements SelectMajorView, 
     }
 
 
-    @OnClick({R.id.mschool_iv_back, R.id.mmajor_tvben, R.id.mmajor_tvzhuan})
+    @OnClick({R.id.mschool_iv_back, R.id.mmajor_tvben, R.id.mmajor_tvzhuan,R.id.marjor_search})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.mschool_iv_back:
                 finish();
+                break;
+            case R.id.marjor_search:
+                intent(MoreMajorActivity.this,SearchParticularsActivity.class);
                 break;
             case R.id.mmajor_tvben:
                 mmajorVben.setVisibility(View.VISIBLE);

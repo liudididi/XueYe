@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,11 +27,13 @@ import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
+import presenter.perfectMessagePresent;
 import untils.MyQusetUtils;
 import untils.NetUtil;
 import untils.SPUtils;
+import view.perfectMessageView;
 
-public class PresonMessageActivity extends BaseActivity {
+public class PresonMessageActivity extends BaseActivity implements perfectMessageView {
 
 
     @BindView(R.id.preson_iv_back)
@@ -42,7 +45,7 @@ public class PresonMessageActivity extends BaseActivity {
     @BindView(R.id.preson_picon)
     CustomShapeImageView presonIcon;
     @BindView(R.id.preson_name)
-    TextView presonName;
+    EditText presonName;
     @BindView(R.id.preson_six)
     TextView presonSix;
     @BindView(R.id.preson_type)
@@ -53,6 +56,15 @@ public class PresonMessageActivity extends BaseActivity {
     TextView presonHighschool;
     private ConnectionChangeReceiver myReceiver;
     private  String sex;
+    private String area;
+    private String city;
+    private String province;
+    private String grade;
+    private String years;
+
+    private presenter.perfectMessagePresent perfectMessagePresent;
+    private String token;
+
     @Override
     public int getId() {
         return R.layout.activity_preson_message;
@@ -61,12 +73,13 @@ public class PresonMessageActivity extends BaseActivity {
     @Override
     public void InIt() {
         registerReceiver();
+        perfectMessagePresent=new perfectMessagePresent(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        String token = (String) SPUtils.get(MyApp.context, "token", "");
+        token = (String) SPUtils.get(MyApp.context, "token", "");
               MyQusetUtils.getInstance()
                 .getQuestInterface().getUserinfo(token)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -83,7 +96,6 @@ public class PresonMessageActivity extends BaseActivity {
                             }
                             if(data.getSex()!=null){
                               sex = (String) data.getSex();
-
                                 presonSix.setText(sex);
                             }
                             if(data.getSex()!=null){
@@ -99,13 +111,15 @@ public class PresonMessageActivity extends BaseActivity {
                                presonType.setText(data.getStutype()+"");
                            }
                            if(data.getExamyear()!=null){
-                               presonNear.setText(data.getExamyear()+"");
+                               years= (String) data.getExamyear();
+                               presonNear.setText(years);
                            }
                            if(data.getArea()!=null){
-                               String province = (String) data.getProvince();
-                               String city = (String) data.getCity();
-                               String area = (String) data.getArea();
-                               presonHighschool.setText(province+city+area);
+                               province = (String) data.getProvince();
+                               city = (String) data.getCity();
+                               area = (String) data.getArea();
+                               grade = (String) data.getGrade();
+                               presonHighschool.setText(province + city + area);
                            }
                         }else {
                             Toast.makeText(MyApp.context,"token超时，请重新登录",Toast.LENGTH_SHORT);
@@ -125,11 +139,10 @@ public class PresonMessageActivity extends BaseActivity {
     @OnClick({R.id.preson_iv_back, R.id.preson_complie, R.id.preson_icon,R.id.preson_six})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-
             case R.id.preson_iv_back:
-                finish();
-                break;
 
+                perfectMessagePresent.modifyUserinfoMoble(province, city, area, null, grade, presonName.getText().toString(), sex, years, null, false, token);
+                break;
             case  R.id.preson_six:
                 View viewe = LayoutInflater.from(PresonMessageActivity.this).inflate(R.layout.dialog_sex, null);
                 final AlertDialog dialog = new AlertDialog.Builder(PresonMessageActivity.this)
@@ -216,5 +229,17 @@ public class PresonMessageActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver();
+    }
+
+    @Override
+    public void UserinfoSuccess(String msg) {
+        SPUtils.put(MyApp.context, "name", presonName.getText().toString());
+        finish();
+    }
+
+    @Override
+    public void UserinfoFail(String msg) {
+           Toast("当前无网络");
+              finish();
     }
 }

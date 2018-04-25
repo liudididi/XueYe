@@ -28,6 +28,8 @@ public class MoreJorbActivity extends BaseActivity implements MorJobView, JobdaA
     @BindView(R.id.mschool_iv_back)
     ImageView mschoolIvBack;
 
+    @BindView(R.id.job_search)
+    ImageView job_search;
 
     @BindView(R.id.morjob_pb)
     ProgressBar mojob_pb;
@@ -49,6 +51,13 @@ public class MoreJorbActivity extends BaseActivity implements MorJobView, JobdaA
     public void InIt() {
         moreJobPresent = new MoreJobPresent(this);
         moreJobPresent.selectAllJob();
+
+        job_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent(MoreJorbActivity.this,SearchParticularsActivity.class);
+            }
+        });
 
     }
 

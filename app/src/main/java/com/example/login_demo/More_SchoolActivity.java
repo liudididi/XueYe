@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,6 +40,8 @@ public class More_SchoolActivity extends BaseActivity implements WishView {
     TextView moreScore;
     @BindView(R.id.more_rv)
     RecyclerView moreRv;
+    @BindView(R.id.pb)
+    ProgressBar pb;
     private String tbmaxfen;
     private String tbarea;
     private String tbsubtype;
@@ -81,12 +84,14 @@ public class More_SchoolActivity extends BaseActivity implements WishView {
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "");
         if(tbarea!=null&&tbarea!=""&&tbmaxfen!=""&&tbmaxfen!=null&&tbsubtype!=null&&tbsubtype!=""){
-            wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","10");
-        }else {
+            //wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","10");
+            wishPresent.CompleCanSchoolPresente( "0",tbmaxfen,"","", "",tbarea,tbsubtype);
+
+        }/*else {
             wishPresent.CanSchoolPresente("北京","文科","0","500","1","10");
 
-        }
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_item, null);
+        }*/
+      /*  View view = LayoutInflater.from(this).inflate(R.layout.dialog_item, null);
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setView(view).show();
         ImageView dialog_iv=view.findViewById(R.id.dialog_iv);
@@ -103,7 +108,7 @@ public class More_SchoolActivity extends BaseActivity implements WishView {
                 dialog.dismiss();
                 intent(More_SchoolActivity.this,ReportedActivity.class);
             }
-        });
+        });*/
     }
 
 
@@ -121,33 +126,40 @@ public class More_SchoolActivity extends BaseActivity implements WishView {
     public void CanSchoolsuccess(BaseBean<CanSchoolBean> canSchoolBeanBaseBean) {
         ArrayList<CanSchoolBean3> list = new ArrayList<>();
         List<CanSchoolBean.ListBean> list1 = canSchoolBeanBaseBean.data.getList();
-        for (int i = 0; i < list1.size(); i++) {
-            String url = list1.get(i).getUrl();
-            String name = list1.get(i).getName();
-            String address = list1.get(i).getAddress();
-            String father = list1.get(i).getFather();
-            String two = list1.get(i).getTwo();
-            String nine = list1.get(i).getNine();
-            String defense_student = list1.get(i).getDefense_student();
-            String graduate = list1.get(i).getGraduate();
-            String recruit = list1.get(i).getRecruit();
-            String preeminent_plan = list1.get(i).getPreeminent_plan();
-            String com_rank = list1.get(i).getCom_rank();
-            list.add(new CanSchoolBean3(url, name, address, father,two,nine,defense_student,graduate,recruit,preeminent_plan,com_rank));
+        if(list1!=null&&list1.size()>0)
+        {
+            pb.setVisibility(View.GONE);
+            for (int i = 0; i < list1.size(); i++) {
+                String url = list1.get(i).getUrl();
+                String name = list1.get(i).getName();
+                String address = list1.get(i).getAddress();
+                String father = list1.get(i).getFather();
+                String two = list1.get(i).getTwo();
+                String nine = list1.get(i).getNine();
+                String defense_student = list1.get(i).getDefense_student();
+                String graduate = list1.get(i).getGraduate();
+                String recruit = list1.get(i).getRecruit();
+                String preeminent_plan = list1.get(i).getPreeminent_plan();
+                String com_rank = list1.get(i).getCom_rank();
+                list.add(new CanSchoolBean3(url, name, address, father,two,nine,defense_student,graduate,recruit,preeminent_plan,com_rank));
+            }
+            MoreSchool_Adapter moreSchool_adapter = new MoreSchool_Adapter(list, More_SchoolActivity.this);
+            moreRv.setLayoutManager(new LinearLayoutManager(More_SchoolActivity.this));
+            moreRv.setAdapter(moreSchool_adapter);
         }
-        MoreSchool_Adapter moreSchool_adapter = new MoreSchool_Adapter(list, More_SchoolActivity.this);
-        moreRv.setLayoutManager(new LinearLayoutManager(More_SchoolActivity.this));
-        moreRv.setAdapter(moreSchool_adapter);
+
     }
 
     @Override
     public void CanSchoolfail(Throwable t) {
         if(tbarea!=null&&tbarea!=""&&tbmaxfen!=""&&tbmaxfen!=null&&tbsubtype!=null&&tbsubtype!=""){
-            wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","10");
-        }else {
+            wishPresent.CompleCanSchoolPresente( "0",tbmaxfen,"","", "",tbarea,tbsubtype);
+
+            //wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","10");
+        }/*else {
             wishPresent.CanSchoolPresente("北京","文科","0","500","1","10");
 
-        }
+        }*/
     }
     @OnClick({R.id.more_iv_back })
     public void onViewClicked(View view) {

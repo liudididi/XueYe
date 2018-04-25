@@ -105,7 +105,8 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="80px" />
-        <TextView
+        <EditText
+            android:background="@null"
             android:id="@+id/preson_name"
             android:textColor="#999999"
             android:src="@drawable/right_arrow"
@@ -124,7 +125,12 @@
         android:layout_height="150px"
         android:background="#fff"
         >
-
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:background="#F3F3F3"
+            android:layout_height="3px">
+        </View>
 
         <TextView
             android:textColor="#555555"
@@ -260,7 +266,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="35px"
+            android:textSize="50px"
             android:layout_alignParentRight="true"
             />
     </RelativeLayout>

@@ -665,7 +665,7 @@
             android:layout_marginTop="100px"
             android:layout_below="@+id/se_r2"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="385px"
+            android:layout_marginRight="380px"
             android:background="@drawable/bg_subject2"
             android:visibility="gone"
             >

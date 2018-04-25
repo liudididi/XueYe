@@ -75,7 +75,7 @@ if(majorgkBean.getSalaryScale()!=null&&majorgkBean.getSalaryScale().size()>0){
             if(majorgkBean.getAverageSalary()!=null&&majorgkBean.getAverageSalary().size()>0){
                 ZhiMaScoreViewXinzi zhiMaScoreView=new ZhiMaScoreViewXinzi(getActivity());
                 List<Integer> listfen=new ArrayList<>();
-                for (int i = 0; i <majorgkBean.getAverageSalary().size() ; i++) {
+                for (int i = 0; i <5 ; i++) {
                     listfen.add(majorgkBean.getAverageSalary().get(i).getAveragesalary());
                 }
                 Integer max = Collections.max(listfen);
