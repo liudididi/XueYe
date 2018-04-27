@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <untils.CircleProgressView
+   <!-- <untils.CircleProgressView
         android:id="@+id/cpv"
         android:layout_width="150px"
         android:layout_height="150px"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="66px"/>
+        android:layout_marginLeft="66px"/>-->
 
     <LinearLayout
         android:id="@+id/ll_tuijiana"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/cpv"
-        android:layout_marginLeft="26px"
+        android:layout_marginLeft="50px"
         android:layout_marginRight="100px"
         android:layout_centerVertical="true"
         android:orientation="vertical">
@@ -26,41 +27,43 @@
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/tv_zy"
-                android:layout_width="wrap_content"
+                android:layout_width="600px"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="财务管理"
                 android:textSize="54px"
                 />
 
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_tj_zhuanye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32px"
+                    android:textColor="#F29600"
+                    android:gravity="center"
+                    android:text="重点专业"
+                    android:padding="8px"
+                    android:background="@drawable/back_chengse"
+                     />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_zd_zhuanye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="32px"
+                    android:textColor="#F29600"
+                    android:padding="8px"
+
+                    android:layout_marginLeft="14px"
+                    android:gravity="center"
+                    android:background="@drawable/back_chengse"
+                    android:text="重点专业"/>
+
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10px">
-            <TextView
-                android:visibility="visible"
-                android:id="@+id/tv_tj_zhuanye"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="32px"
-                android:textColor="#F29600"
-                android:gravity="center"
-                 android:background="@drawable/back_chengse"
-                android:text="推荐专业"/>
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/tv_zd_zhuanye"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="32px"
-                android:textColor="#F29600"
-                android:layout_marginLeft="14px"
-                android:gravity="center"
-                android:background="@drawable/back_chengse"
-                android:text="重点专业"/>
-        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/ll_tuijian"
             android:orientation="horizontal"
@@ -68,27 +71,42 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10px">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="专业类别:  "
-                android:textSize="32px"
-                android:textColor="#999999"/>
-            <TextView
                 android:id="@+id/tv_zy_liebei"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="暂无数据"
-                android:textSize="32px"
+                android:textSize="40px"
                 android:textColor="#999999"/>
+            <TextView
+                android:id="@+id/tv_zy_jihua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无数据"
+                android:textSize="40px"
+                android:layout_marginLeft="50px"
+                android:textColor="#999999"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10px"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_year_fen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="暂无数据"
-                android:layout_marginLeft="40px"
-                android:textSize="32px"
+                android:textSize="40px"
                 android:textColor="#999999"/>
-
+            <TextView
+                android:id="@+id/tv_year_pici"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无数据"
+                android:layout_marginLeft="50px"
+                android:textSize="40px"
+                android:textColor="#999999"/>
         </LinearLayout>
     </LinearLayout>
     <ImageView

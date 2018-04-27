@@ -6,14 +6,14 @@
 
 
     <stroke
-        android:color="#26C6DA"
+        android:color="#3987F3"
         android:width="1dp"></stroke>
     <solid
-        android:color="#EEEEEE"
+        android:color="#fff"
         ></solid>
     <size
-        android:width="80dp"
-        android:height="25dp"></size>
+        android:width="280px"
+        android:height="85px"></size>
     <corners
         android:topLeftRadius="2dp"
         android:topRightRadius="2dp"

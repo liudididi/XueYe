@@ -100,9 +100,11 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                             }
                             if(data.getSex()!=null){
                                 if(data.getSex().equals("女")){
-                                    Glide.with(PresonMessageActivity.this).load(R.drawable.gril).into(presonIcon);
+
+                                    presonIcon.setImageResource(R.drawable.gril);
                                 }else {
-                                    Glide.with(PresonMessageActivity.this).load(R.drawable.boy).into(presonIcon);
+                                     presonIcon.setImageResource(R.drawable.boy);
+
                                 }
                             }else {
                                 Glide.with(PresonMessageActivity.this).load(R.drawable.boy).into(presonIcon);

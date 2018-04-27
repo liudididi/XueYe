@@ -171,7 +171,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                 startActivity(intent);
                 break;
             case R.id.tv_ktefc:
-                Intent intent1 = new Intent(TuiJianSchoolActivity.this, BuyEFCActivity.class);
+                Intent intent1 = new Intent(TuiJianSchoolActivity.this, Buy2Activity.class);
                 intent1.putExtra("price", "698");
                 startActivity(intent1);
                 break;
@@ -192,7 +192,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                 tuijianZh.setText("暂无数据");
             }
             if(schoolurl==null){
-                Glide.with(this).load(BaseApi.ImgApi+tuiJianBean.getCollegeBadge()).into(tuijianIv);
+                Glide.with(MyApp.context).load(BaseApi.ImgApi+tuiJianBean.getCollegeBadge()).into(tuijianIv);
             }
             List<String> list = new ArrayList<>();
             if (tjly) {

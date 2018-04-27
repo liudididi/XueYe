@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:scrollbars="none"
+    android:background="#fff"
     >
 <RelativeLayout
     android:layout_width="match_parent"
@@ -11,6 +12,7 @@
    >
 
     <ImageView
+        android:id="@+id/iv_back"
         android:layout_width="match_parent"
         android:layout_height="500px"
         android:layout_alignParentLeft="true"
@@ -23,197 +25,296 @@
         android:id="@+id/my_setting"
         android:scaleType="centerCrop"
         android:src="@drawable/setting"
-        android:layout_marginLeft="30px"
+         android:layout_marginRight="30px"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="30px"
         android:layout_width="100px"
         android:layout_height="100px" />
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:src="@drawable/kapian"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="250px"
+         android:layout_centerHorizontal="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="130px"
+        android:layout_below="@+id/iv_back"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="距离高考还有"
+            android:textColor="#fff"
+            android:textSize="50px"
+            />
+        <TextView
+            android:id="@+id/tv_day1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50px"
+            android:background="@drawable/back_day"
+            android:textColor="#F25643"
+            android:gravity="center"
+            android:layout_marginLeft="20px"/>
+        <TextView
+            android:id="@+id/tv_day2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50px"
+            android:background="@drawable/back_day"
+            android:textColor="#F25643"
+            android:gravity="center"
+            android:layout_marginLeft="10px"/>
+        <TextView
+            android:id="@+id/tv_day3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#F25643"
+            android:textSize="50px"
+            android:gravity="center"
+             android:layout_marginLeft="10px"
+            android:background="@drawable/back_day"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="天"
+            android:layout_marginLeft="20px"
+            android:textColor="#fff"
+            android:textSize="50px"/>
+    </LinearLayout>
+
+    <com.meg7.widget.CustomShapeImageView
+        android:id="@+id/my_icon"
+        android:layout_marginTop="300px"
+        android:layout_width="180px"
+        android:layout_height="180px"
+        android:layout_marginLeft="100px"
+        android:src="@drawable/moren"
+        />
+    <TextView
+        android:id="@+id/tv_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="立即登录，体验更多功能"
+        android:textSize="40px"
+        android:layout_marginTop="310px"
+        android:layout_marginLeft="40px"
+        android:layout_toRightOf="@+id/my_icon"
+        android:textColor="#999999"/>
+    <TextView
+        android:visibility="invisible"
+        android:textSize="50px"
+        android:layout_toRightOf="@+id/my_icon"
+         android:layout_width="wrap_content"
+        android:id="@+id/myfragment_name"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="335px"
+        android:layout_marginLeft="40px"
+        android:textColor="#333333"
+         />
+    <ImageView
+        android:id="@+id/iv_qm"
+        android:visibility="gone"
+        android:layout_width="50px"
+        android:layout_height="40px"
+        android:src="@drawable/compile"
+        android:layout_marginLeft="10px"
+        android:layout_marginTop="345px"
+        android:layout_toRightOf="@+id/myfragment_name"/>
+    <TextView
+        android:visibility="invisible"
+        android:textSize="33px"
+         android:layout_marginLeft="40px"
+        android:layout_toRightOf="@+id/my_icon"
+        android:layout_width="wrap_content"
+        android:id="@+id/myfragment_school"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:textColor="#3986F3"
+        android:layout_below="@+id/myfragment_name"
+        />
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/my_login"
+        android:layout_toRightOf="@+id/my_icon"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:gravity="center"
+        android:textColor="#3987F3"
+        android:layout_below="@+id/tv_tv"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="30px"
+         android:background="@drawable/back_login"/>
+
     <RelativeLayout
         android:id="@+id/re_xiao"
         android:background="@color/white"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="400px"
+         android:layout_below="@id/iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <TextView
-            android:visibility="invisible"
-            android:textSize="50px"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:id="@+id/myfragment_name"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80px"
-            android:text="李志文"
-            />
-        <TextView
-            android:visibility="invisible"
-            android:textSize="33px"
-            android:text="李志文"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:id="@+id/myfragment_school"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/myfragment_name"
-            />
-        <TextView
-            android:visibility="visible"
-            android:id="@+id/my_login"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登录"
-            android:gravity="center"
-            android:textColor="#26C6DA"
-            android:layout_marginTop="90px"
-            android:background="@drawable/back_login"/>
 
         <RelativeLayout
             android:id="@+id/my_school"
             android:layout_width="match_parent"
-            android:layout_height="150px"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/myfragment_school"
-            android:layout_marginTop="10dp"
             android:gravity="center">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="3px"
-                android:background="#F3F3F3"></View>
-
             <ImageView
-                android:layout_width="100px"
-                android:layout_height="100px"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
+                android:id="@+id/iv1"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                 android:layout_centerVertical="true"
                 android:src="@drawable/myschool" />
 
             <TextView
                 android:id="@+id/tv_myschool"
+                android:layout_marginLeft="32px"
+                android:layout_toRightOf="@+id/iv1"
                 android:layout_width="wrap_content"
-                android:layout_height="80px"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
+                android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="我收藏的大学"
-                android:textColor="@color/black"
-                android:textSize="50px" />
+                android:textColor="#666666"
+                android:textSize="46px" />
 
             <ImageView
                 android:layout_width="45px"
                 android:layout_height="45px"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="40px"
-                android:layout_marginTop="75px"
-                android:src="@drawable/right_arrow" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/huise" />
         </RelativeLayout>
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/my_school"
+            android:background="#F3F3F3"></View>
         <RelativeLayout
             android:id="@+id/my_major"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_school"
+             android:layout_below="@+id/view1"
             android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_height="150px"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
             >
 
             <ImageView
                 android:src="@drawable/my_major"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
+                 android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_centerVertical="true"
                 android:id="@+id/imageView2" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="80px"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
-                android:gravity="center"
+                  android:gravity="center"
                 android:text="我收藏的专业"
-                android:textColor="@color/black"
-                android:textSize="50px" />
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView2"
+                android:layout_marginLeft="30px"
+                android:textColor="#666666"
+                android:textSize="46px" />
             <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
-                android:layout_marginRight="40px"
+                android:src="@drawable/huise"
+                 android:layout_marginRight="40px"
                 android:layout_width="45px"
                 android:layout_height="45px"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 />
         </RelativeLayout>
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="20px"
+            android:layout_below="@+id/my_major"
+            android:background="#F3F3F3"></View>
         <RelativeLayout
             android:id="@+id/my_washtable"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_major"
+             android:layout_below="@+id/view2"
             android:layout_width="match_parent"
-            android:layout_height="150px"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
             >
-            <View
-                android:layout_marginLeft="150px"
-                android:layout_width="match_parent"
-                android:background="#F3F3F3"
-                android:layout_height="3px">
-            </View>
+
             <ImageView
+                android:id="@+id/iv3"
                 android:src="@drawable/mywish"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
+                android:layout_centerVertical="true"
+                 android:layout_width="80px"
+                android:layout_height="80px"
                 />
+
             <TextView
-                android:textColor="@color/black"
-                android:text="我的志愿表"
-                android:textSize="50px"
-                android:gravity="center"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
                 android:layout_width="wrap_content"
-                android:layout_height="80px" />
+                android:layout_height="wrap_content"
+                 android:text="我的志愿表"
+                android:textColor="#666666"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:layout_toRightOf="@+id/iv3"
+                android:textSize="46px" />
             <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
+                android:src="@drawable/huise"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="40px"
                 android:layout_width="45px"
                 android:layout_height="45px"
                 android:layout_alignParentRight="true"
                 />
         </RelativeLayout>
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/my_washtable"
+            android:background="#F3F3F3"></View>
         <RelativeLayout
             android:id="@+id/my_character"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_washtable"
+             android:layout_below="@+id/view3"
             android:layout_width="match_parent"
-            android:layout_height="150px"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
             >
-            <View
-                android:layout_marginLeft="150px"
-                android:layout_width="match_parent"
-                android:background="#F3F3F3"
-                android:layout_height="3px">
-            </View>
+
             <ImageView
+                android:id="@+id/iv4"
                 android:src="@drawable/character"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
+                android:layout_width="80px"
+                android:layout_centerVertical="true"
+                android:layout_height="80px"
                 />
             <TextView
-                android:textColor="@color/black"
+                android:textColor="#666666"
                 android:text="我的性格测试"
-                android:textSize="50px"
-                android:gravity="center"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
+                android:textSize="46px"
+                android:layout_toRightOf="@+id/iv4"
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
-                android:layout_height="80px" />
+                android:layout_height="wrap_content" />
             <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
+                android:src="@drawable/huise"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="40px"
                 android:layout_width="45px"
                 android:layout_height="45px"
@@ -222,158 +323,160 @@
         </RelativeLayout>
 
 
-
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="20px"
+            android:layout_below="@+id/my_gradetable"
+            android:background="#F3F3F3"></View>
         <RelativeLayout
             android:id="@+id/my_help"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_gradetable"
+            android:layout_below="@+id/view4"
             android:layout_width="match_parent"
-            android:layout_height="150px"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
             >
-            <View
-                android:layout_marginLeft="150px"
-                android:layout_width="match_parent"
-                android:background="#F3F3F3"
-                android:layout_height="3px">
-            </View>
+
             <ImageView
+                android:id="@+id/iv5"
                 android:src="@drawable/help"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_centerVertical="true"
                 />
             <TextView
-                android:textColor="@color/black"
+                android:textColor="#666666"
                 android:text="帮助"
-                android:textSize="50px"
-                android:gravity="center"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
-                android:layout_width="wrap_content"
-                android:layout_height="80px" />
+                android:textSize="46px"
+                android:layout_toRightOf="@+id/iv5"
+                android:layout_centerVertical="true"
+                 android:layout_marginLeft="30px"
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
-                android:layout_marginRight="40px"
+                android:src="@drawable/huise"
+                 android:layout_marginRight="40px"
                 android:layout_width="45px"
                 android:layout_height="45px"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 />
         </RelativeLayout>
-
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/my_help"
+            android:background="#F3F3F3"></View>
         <RelativeLayout
             android:id="@+id/my_addserve"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_help"
+             android:layout_below="@+id/view5"
             android:layout_width="match_parent"
-            android:layout_height="150px"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
             >
-            <View
-                android:layout_marginLeft="150px"
-                android:layout_width="match_parent"
-                android:background="#F3F3F3"
-                android:layout_height="3px">
-            </View>
-            <ImageView
-                android:src="@drawable/addserve"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
-                />
-            <TextView
-                android:textColor="@color/black"
-                android:text="购买增值服务"
-                android:textSize="50px"
-                android:gravity="center"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
-                android:layout_width="wrap_content"
-                android:layout_height="80px" />
-            <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
-                android:layout_marginRight="40px"
-                android:layout_width="45px"
-                android:layout_height="45px"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/my_suggest"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_addserve"
-            android:layout_width="match_parent"
-            android:layout_height="150px"
-            >
-            <View
-                android:layout_marginLeft="150px"
-                android:layout_width="match_parent"
-                android:background="#F3F3F3"
-                android:layout_height="3px">
-            </View>
-            <ImageView
-                android:src="@drawable/suggest"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
-                />
-            <TextView
-                android:textColor="@color/black"
-                android:text="建议"
-                android:textSize="50px"
-                android:gravity="center"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
-                android:layout_width="wrap_content"
-                android:layout_height="80px" />
-            <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
-                android:layout_marginRight="40px"
-                android:layout_width="45px"
-                android:layout_height="45px"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/my_gradetable"
-            android:layout_marginTop="20px"
-            android:layout_below="@+id/my_character"
-            android:layout_width="match_parent"
-            android:layout_height="150px"
-            >
-            <View
-                android:layout_marginLeft="150px"
-                android:layout_width="match_parent"
-                android:background="#F3F3F3"
-                android:layout_height="3px">
-            </View>
-            <ImageView
-                android:src="@drawable/gradetable"
-                android:layout_marginLeft="30px"
-                android:layout_marginTop="50px"
-                android:layout_width="100px"
-                android:layout_height="100px"
-                />
-            <TextView
-                android:textColor="@color/black"
-                android:text="我的成绩表"
-                android:textSize="50px"
-                android:gravity="center"
-                android:layout_marginLeft="150px"
-                android:layout_marginTop="60px"
-                android:layout_width="wrap_content"
-                android:layout_height="80px" />
 
             <ImageView
-                android:src="@drawable/right_arrow"
-                android:layout_marginTop="75px"
-                android:layout_marginRight="40px"
+                android:id="@+id/iv7"
+                android:layout_centerVertical="true"
+                 android:src="@drawable/addserve"
+                 android:layout_width="80px"
+                android:layout_height="80px"
+                />
+            <TextView
+                android:textColor="#666666"
+                android:text="购买增值服务"
+                android:textSize="46px"
+                android:layout_toRightOf="@+id/iv7"
+                android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/huise"
+                 android:layout_marginRight="40px"
                 android:layout_width="45px"
                 android:layout_height="45px"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/my_addserve"
+            android:background="#F3F3F3"></View>
+        <RelativeLayout
+            android:id="@+id/my_suggest"
+            android:layout_marginLeft="70px"
+            android:layout_below="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="140px"
+            >
+
+            <ImageView
+                android:id="@+id/iv8"
+                android:src="@drawable/suggest"
+                  android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_centerVertical="true"
+                />
+            <TextView
+                android:layout_toRightOf="@+id/iv8"
+                android:textColor="#666666"
+                android:text="建议"
+                android:textSize="46px"
+                android:layout_centerVertical="true"
+                 android:layout_marginLeft="30px"
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/huise"
+                android:layout_centerVertical="true"
+                 android:layout_marginRight="40px"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_below="@+id/my_character"
+            android:background="#F3F3F3"></View>
+        <RelativeLayout
+            android:id="@+id/my_gradetable"
+            android:layout_below="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="140px"
+            android:layout_marginLeft="70px"
+            >
+
+            <ImageView
+                android:id="@+id/iv6"
+                android:src="@drawable/gradetable"
+                android:layout_centerVertical="true"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                />
+            <TextView
+                android:textColor="#666666"
+                android:text="我的成绩表"
+                android:textSize="46px"
+                 android:layout_marginLeft="30px"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv6"
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:src="@drawable/huise"
+                 android:layout_marginRight="40px"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 />
         </RelativeLayout>
@@ -386,31 +489,18 @@
             android:layout_height="wrap_content"
           ></View>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-           android:layout_marginLeft="150px"
-            android:layout_alignTop="@+id/my_major"
-            android:background="#F3F3F3"></View>
+
 
     </RelativeLayout>
-    <ImageView
+   <!-- <ImageView
         android:background="@drawable/back_yuan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="240px"
         android:layout_width="240px"
         android:layout_height="240px"
         android:layout_marginLeft="200px"
-        />
-    <com.meg7.widget.CustomShapeImageView
-        android:id="@+id/my_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="260px"
-        android:layout_width="200px"
-        android:layout_height="200px"
-        android:layout_marginLeft="200px"
-        android:src="@drawable/boy"
-        />
+        />-->
+
 
 </RelativeLayout>
 </ScrollView>

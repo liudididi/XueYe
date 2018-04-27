@@ -26,7 +26,10 @@
             android:textSize="50px"
             android:id="@+id/md_tvtitle"
             android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
+            android:layout_width="800px"
+            android:gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_height="wrap_content"
             />
         <View

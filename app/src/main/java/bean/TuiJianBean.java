@@ -9,15 +9,16 @@ import java.util.List;
 
 public class TuiJianBean {
 
+
     /**
      * name : 北京大学
      * collegeBadge : /images/school/201202161100413470.jpg
-     * year : 2016
-     * time : 本科二批
-     * minScore : 596
-     * recommend : ["本科二批","一线城市"]
-     * vipRecommend : ["含适合兴趣专业","含适合性格专业","含所选专业类别","录取概率为36.199997%，建议谨慎填报"]
-     * efcRecommendMajorEntity : [{"major":"医学实验技术","majorId":101002,"gai":0.362,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"医学技术类","year":2016,"time":"本科二批","score":596},{"major":"口腔医学技术","majorId":100301,"gai":0.338,"efcFlag":"推荐专业","importantFlag":null,"featureFlag":null,"majorType":"口腔医学类","year":2016,"time":"本科二批","score":599},{"major":"口腔医学技术","majorId":101006,"gai":0.338,"efcFlag":"推荐专业","importantFlag":null,"featureFlag":null,"majorType":"医学技术类","year":2016,"time":"本科二批","score":599},{"major":"医学检验技术","majorId":101001,"gai":0.122,"efcFlag":"推荐专业","importantFlag":null,"featureFlag":null,"majorType":"医学技术类","year":2016,"time":"本科二批","score":626},{"major":"预防医学","majorId":100401,"gai":0.001,"efcFlag":null,"importantFlag":"重点专业","featureFlag":null,"majorType":"公共卫生与预防医学类","year":2014,"time":"本科一批","score":654},{"major":"药学","majorId":100701,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"药学类","year":2014,"time":"本科一批","score":659},{"major":"临床医学","majorId":100201,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"临床医学类","year":2014,"time":"本科一批","score":663},{"major":"预防医学(本硕连读)(七年制)","majorId":100401,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"公共卫生与预防医学类","year":2016,"time":"本科一批","score":665},{"major":"基础医学","majorId":100101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"基础医学类","year":2014,"time":"本科一批","score":666},{"major":"临床医学(五年制)","majorId":100201,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"临床医学类","year":2016,"time":"本科一批","score":668},{"major":"口腔医学(五年制)","majorId":100301,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"口腔医学类","year":2016,"time":"本科一批","score":668},{"major":"药学(本硕连读)(六年制)","majorId":100701,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"药学类","year":2016,"time":"本科一批","score":668},{"major":"考古学","majorId":60103,"gai":0.001,"efcFlag":null,"importantFlag":"重点专业","featureFlag":null,"majorType":"历史学类","year":2014,"time":"本科一批","score":671},{"major":"基础医学(本博连读)(八年制)","majorId":100101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"基础医学类","year":2016,"time":"本科一批","score":671},{"major":"口腔医学","majorId":100301,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"口腔医学类","year":2016,"time":"本科一批","score":673},{"major":"环境科学与工程类","majorId":82501,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"环境科学与工程类","year":2014,"time":"本科一批","score":674},{"major":"环境科学与工程类","majorId":82503,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"环境科学与工程类","year":2014,"time":"本科一批","score":674},{"major":"国际政治","majorId":30202,"gai":0.001,"efcFlag":null,"importantFlag":"重点专业","featureFlag":null,"majorType":"政治学类","year":2014,"time":"本科一批","score":676},{"major":"英语","majorId":50201,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"外国语言文学类","year":2016,"time":"本科一批","score":676},{"major":"临床医学(本博连读)(八年制)","majorId":100201,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"临床医学类","year":2016,"time":"本科一批","score":676},{"major":"地球物理学类","majorId":70801,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"地球物理学类","year":2016,"time":"本科一批","score":678},{"major":"环境科学","majorId":82503,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"环境科学与工程类","year":2016,"time":"本科一批","score":678},{"major":"城乡规划","majorId":82802,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"建筑类","year":2016,"time":"本科一批","score":678},{"major":"新闻传播学类","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":678},{"major":"电子信息类(电子、微电子、计算机、智能科学、通信工","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":678},{"major":"天文学","majorId":70401,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"天文学类","year":2014,"time":"本科一批","score":679},{"major":"地质学类","majorId":70901,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"地质学类","year":2014,"time":"本科一批","score":679},{"major":"心理学","majorId":71101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"心理学类","year":2016,"time":"本科一批","score":679},{"major":"法学","majorId":30101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":"特色专业","majorType":"法学类","year":2016,"time":"本科一批","score":680},{"major":"工科试验班类","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":680},{"major":"电子信息类","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2014,"time":"本科一批","score":681},{"major":"生物科学","majorId":71001,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"生物科学类","year":2016,"time":"本科一批","score":682},{"major":"信息管理与信息系统","majorId":120102,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"管理科学与工程类","year":2014,"time":"本科一批","score":682},{"major":"中国语言文学类","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":684},{"major":"经济学类","majorId":20101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"经济学类","year":2016,"time":"本科一批","score":685},{"major":"化学类","majorId":70301,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"化学类","year":2016,"time":"本科一批","score":685},{"major":"理科试验班类(元培学院)","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":685},{"major":"工商管理类","majorId":120201,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"工商管理类","year":2016,"time":"本科一批","score":687},{"major":"物理学类","majorId":70201,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"物理学类","year":2016,"time":"本科一批","score":689},{"major":"理科试验班类","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2014,"time":"本科一批","score":691},{"major":"哲学类","majorId":10101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"哲学类","year":2016,"time":"本科一批","score":693},{"major":"数学类","majorId":null,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":693},{"major":"理论与应用力学","majorId":80101,"gai":0.001,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"力学类","year":2013,"time":"本科一批","score":694}]
+     * year : 2017
+     * time : 本科一批
+     * minScore : 660
+     * recommend : ["本科一批","一线城市"]
+     * vipRecommend : ["含适合兴趣专业","含适合性格专业","录取概率为0.0%，建议谨慎填报"]
+     * efcRecommendMajorEntity : [{"major":"人文科学试验班(艺术史论、戏剧影视文学、文化产业管理)","majorId":null,"gai":null,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":null,"time":null,"score":null,"planType":"非定向","classification":"文史","number":"3","planYear":"2017"},{"major":"文科试验班类(元培学院)","majorId":null,"gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":685,"planType":"非定向","classification":"文史","number":"5","planYear":"2017"},{"major":"中国语言文学类","majorId":null,"gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":676,"planType":"非定向","classification":"文史","number":"5","planYear":"2017"},{"major":"公共管理类","majorId":null,"gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":678,"planType":"非定向","classification":"文史","number":"3","planYear":"2017"},{"major":"历史学类","majorId":"060101","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"历史学类","year":2016,"time":"本科一批","score":684,"planType":"非定向","classification":"文史","number":"5","planYear":"2017"},{"major":"哲学类","majorId":"010101","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"哲学类","year":2016,"time":"本科一批","score":675,"planType":"非定向","classification":"文史","number":"5","planYear":"2017"},{"major":"工商管理类","majorId":"120201","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"工商管理类","year":2016,"time":"本科一批","score":685,"planType":"非定向","classification":"文史","number":"4","planYear":"2017"},{"major":"新闻传播学类","majorId":null,"gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":null,"year":2016,"time":"本科一批","score":675,"planType":"非定向","classification":"文史","number":"3","planYear":"2017"},{"major":"经济学类","majorId":"020101","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"经济学类","year":2016,"time":"本科一批","score":678,"planType":"非定向","classification":"文史","number":"4","planYear":"2017"},{"major":"信息管理与信息系统","majorId":"120102","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"管理科学与工程类","year":2016,"time":"本科一批","score":674,"planType":"非定向","classification":"文史","number":"3","planYear":"2017"},{"major":"法学","majorId":"030101","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":"特色专业","majorType":"法学类","year":2016,"time":"本科一批","score":682,"planType":"非定向","classification":"文史","number":"4","planYear":"2017"},{"major":"考古学","majorId":"060103","gai":0,"efcFlag":null,"importantFlag":"重点专业","featureFlag":null,"majorType":"历史学类","year":2014,"time":"本科一批","score":664,"planType":"非定向","classification":"文史","number":"5","planYear":"2017"},{"major":"社会学","majorId":"030301","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"社会学类","year":2016,"time":"本科一批","score":676,"planType":"非定向","classification":"文史","number":"4","planYear":"2017"},{"major":"英语","majorId":"050201","gai":0,"efcFlag":null,"importantFlag":null,"featureFlag":null,"majorType":"外国语言文学类","year":2016,"time":"本科一批","score":675,"planType":"非定向","classification":"文史","number":"3","planYear":"2017"},{"major":"国际政治","majorId":"030202","gai":0,"efcFlag":null,"importantFlag":"重点专业","featureFlag":null,"majorType":"政治学类","year":2016,"time":"本科一批","score":675,"planType":"非定向","classification":"文史","number":"4","planYear":"2017"}]
      * efcState : 1
      * countDown : null
      */
@@ -115,28 +116,36 @@ public class TuiJianBean {
 
     public static class EfcRecommendMajorEntityBean {
         /**
-         * major : 医学实验技术
-         * majorId : 101002
-         * gai : 0.362
+         * major : 人文科学试验班(艺术史论、戏剧影视文学、文化产业管理)
+         * majorId : null
+         * gai : null
          * efcFlag : null
          * importantFlag : null
          * featureFlag : null
-         * majorType : 医学技术类
-         * year : 2016
-         * time : 本科二批
-         * score : 596
+         * majorType : null
+         * year : null
+         * time : null
+         * score : null
+         * planType : 非定向
+         * classification : 文史
+         * number : 3
+         * planYear : 2017
          */
 
         private String major;
-        private int majorId;
-        private double gai;
-        private Object efcFlag;
+        private String majorId;
+        private Object gai;
+        private String efcFlag;
         private String importantFlag;
         private String featureFlag;
         private String majorType;
-        private int year;
+        private String year;
         private String time;
-        private int score;
+        private String score;
+        private String planType;
+        private String classification;
+        private String number;
+        private String planYear;
 
         public String getMajor() {
             return major;
@@ -146,19 +155,19 @@ public class TuiJianBean {
             this.major = major;
         }
 
-        public int getMajorId() {
+        public String getMajorId() {
             return majorId;
         }
 
-        public void setMajorId(int majorId) {
+        public void setMajorId(String majorId) {
             this.majorId = majorId;
         }
 
-        public double getGai() {
+        public Object getGai() {
             return gai;
         }
 
-        public void setGai(double gai) {
+        public void setGai(Object gai) {
             this.gai = gai;
         }
 
@@ -166,7 +175,7 @@ public class TuiJianBean {
             return efcFlag;
         }
 
-        public void setEfcFlag(Object efcFlag) {
+        public void setEfcFlag(String efcFlag) {
             this.efcFlag = efcFlag;
         }
 
@@ -194,11 +203,11 @@ public class TuiJianBean {
             this.majorType = majorType;
         }
 
-        public int getYear() {
+        public String getYear() {
             return year;
         }
 
-        public void setYear(int year) {
+        public void setYear(String year) {
             this.year = year;
         }
 
@@ -210,12 +219,44 @@ public class TuiJianBean {
             this.time = time;
         }
 
-        public int getScore() {
+        public String getScore() {
             return score;
         }
 
-        public void setScore(int score) {
+        public void setScore(String score) {
             this.score = score;
+        }
+
+        public String getPlanType() {
+            return planType;
+        }
+
+        public void setPlanType(String planType) {
+            this.planType = planType;
+        }
+
+        public String getClassification() {
+            return classification;
+        }
+
+        public void setClassification(String classification) {
+            this.classification = classification;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+
+        public String getPlanYear() {
+            return planYear;
+        }
+
+        public void setPlanYear(String planYear) {
+            this.planYear = planYear;
         }
     }
 }

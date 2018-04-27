@@ -311,16 +311,20 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String token = (String) SPUtils.get(MyApp.context, "token", "");
+        final String token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
-            MyQusetUtils.getInstance()
+                     MyQusetUtils.getInstance()
                     .getQuestInterface().checkToken(token)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
+                    .retry(2)
                     .subscribeWith(new DisposableSubscriber<BaseBean>() {
                         @Override
                         public void onNext(BaseBean baseBean) {
-                            if(baseBean.code!=0){
+                            if(baseBean.code==0){
+                                SPUtils.put(MyApp.context,"token",baseBean.token);
+                            }
+                            else {
                                 SPUtils.remove(MyApp.context, "token");
                                 SPUtils.remove(MyApp.context, "tbmaxfen");
                                 SPUtils.remove(MyApp.context, "tbarea");
@@ -334,6 +338,8 @@ public class HomeActivity extends BaseActivity {
                                 MyUserBean.setUserBean(null);
                                 Toast("用户信息失效，请重新登录");
                             }
+
+
                         }
 
                         @Override

@@ -144,6 +144,7 @@ public class Zhuanye_Fragment extends Basefragment {
     private View lv1_view;
     private View lv2_view;
     private View lv3_view;
+    private String id;
 
     @Override
     public int getLayoutid() {
@@ -165,6 +166,9 @@ public class Zhuanye_Fragment extends Basefragment {
     private void zhuanye() {
 
         final ArrayList<String> list=new ArrayList<>();
+        //TODO 为后期做铺垫  专业id
+        final ArrayList<String> listid=new ArrayList<>();
+
         cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
             @Override
             public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
@@ -175,7 +179,9 @@ public class Zhuanye_Fragment extends Basefragment {
                     String[] split1 = s.split(":");
                     //专业名
                     String name = split1[0];
-                    list.add(name);
+                    String id = split1[3];
+                     list.add(name);
+                    listid.add(id);
                 }
 
                 pb.setVisibility(View.GONE);
@@ -192,6 +198,7 @@ public class Zhuanye_Fragment extends Basefragment {
                         pb2.setVisibility(View.VISIBLE);
                         //专业名
                         major = list.get(i).toString();
+                        id = listid.get(i).toString();
                         CircleProgressView.mTextColor=Color.RED;
                         CircleProgressView.mPaintColor=Color.RED;
                         zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
@@ -215,25 +222,24 @@ public class Zhuanye_Fragment extends Basefragment {
         if(zy_name==null)
         {
             Toast.makeText(getContext(), "请选择专业", Toast.LENGTH_SHORT).show();
-
         }
 
-        HashMap<String,String> map=new HashMap<>();
+       /* HashMap<String,String> map=new HashMap<>();
         map.put(zy_name,"0.7");
 
             Gson gson=new Gson();
             String route= gson.toJson(map);
-        System.out.println("类型++"+route);
+        System.out.println("类型++"+route);*/
         Retrofit retrofit=new Retrofit.Builder()
                     .baseUrl(BaseApi.Api)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             QuestInterface questInterface = retrofit.create(QuestInterface.class);
-            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
+            //RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
             //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
             Call<BaseBean<List<Advanced_YX_Bean>>> call = questInterface.shaixuan(s1,s3,s4,
                     s5, city, s6, "", s2, tbsubtype,fen,
-                    cwb, body);
+                    cwb, zy_name+":0.7:null",token);
         call.enqueue(new Callback<BaseBean<List<Advanced_YX_Bean>>>() {
                 @Override
                 public void onResponse(Call<BaseBean<List<Advanced_YX_Bean>>> call, Response<BaseBean<List<Advanced_YX_Bean>>> response) {

@@ -22,9 +22,6 @@ import untils.SPUtils;
 public class MyUserBean  {
     private static UserBean userBean=null;
     private static DisposableSubscriber<BaseBean<UserBean>> disposableSubscriber;
-
-
-
     public  static void setUserBean(UserBean nuserBean) {
         userBean = nuserBean;
     }

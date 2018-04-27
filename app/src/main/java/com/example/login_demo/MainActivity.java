@@ -287,6 +287,11 @@ public class MainActivity extends BaseActivity implements LoginView {
             SPUtils.put(MyApp.context,"token",baseBean.token);
         UserBean data = baseBean.data;
         MyUserBean.setUserBean(data);
+        String province = (String) data.getProvince();
+        String city = (String) data.getCity();
+        String area = (String) data.getArea();
+        SPUtils.put(MyApp.context, "school", province+city+area);
+        SPUtils.put(MyApp.context, "name", data.getName());
             if(baseBean.data.getName()!=null){
                 intent(MainActivity.this, HomeActivity.class);
                 finish();

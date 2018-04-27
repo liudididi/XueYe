@@ -649,11 +649,11 @@ public class Academy_Fragment extends Basefragment{
 
     //cwb 冲稳保  city 院校区域  s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
     private void qingqiu(final String s1, final String s3, final String s4, final String s5, final String city, final String s6, String tuition, final String s2, final String tbsubtype, final String fen, final String cwb) {
-         final HashMap<String,String> map=new HashMap<>();
+         //final HashMap<String,String> map=new HashMap<>();
         cxefcPresenter= new CXEFCPresenter(new CXEFCView() {
             @Override
             public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
-                String majorGai = cxefcBeanBaseBean.data.getMajorGai();
+              /*  String majorGai = cxefcBeanBaseBean.data.getMajorGai();
                 for (int i = 0; i < 20; i++) {
                     String[] split = majorGai.split(",");
                     String s = split[i];
@@ -666,17 +666,17 @@ public class Academy_Fragment extends Basefragment{
                      map.put(name,substring+"");
                 }
                 Gson gson=new Gson();
-                String route= gson.toJson(map);
+                String route= gson.toJson(map);*/
                  Retrofit retrofit=new Retrofit.Builder()
                         .baseUrl(BaseApi.Api)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 QuestInterface questInterface = retrofit.create(QuestInterface.class);
-                RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
+               // RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                 Call<BaseBean<List<Advanced_YX_Bean>>> call = questInterface.shaixuan(s1,s3,s4,
                         s5, city, s6, "", s2, tbsubtype,fen,
-                        cwb, body);
+                        cwb, "",token);
 
                 call.enqueue(new Callback<BaseBean<List<Advanced_YX_Bean>>>() {
                     @Override

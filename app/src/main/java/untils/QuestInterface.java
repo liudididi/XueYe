@@ -283,7 +283,7 @@ public interface QuestInterface {
     Flowable<BaseBean<List<jobStarBean>>> tjzhuany(@Query("major")String major,@Header("token") String token );
 
     //高级志愿表筛选
-    @POST("/app/efc/getUnivs")
+    @POST("/app/efc/getEfcCollege")
     Call<BaseBean<List<Advanced_YX_Bean>>> shaixuan(@Query("priority") String priority,
                                                     @Query("time") String time,
                                                     @Query("tags") String tags,
@@ -295,7 +295,8 @@ public interface QuestInterface {
                                                     @Query("t_classify") String t_classify,
                                                     @Query("t_score") String t_score,
                                                     @Query("cwb") String cwb,
-                                                    @Body RequestBody requestBody);
+                                                    @Query("major_gai") String major_gai,
+                                                    @Query("token") String token);
 
     //搜索专业
     @GET("/app/search/major")
@@ -594,9 +595,13 @@ public interface QuestInterface {
 
 
 
+
+
+
+
     //验证token超时
-    @POST("/app/checkToken")
-    Flowable<BaseBean > checkToken(@Header("token") String token);
+    @POST("/app/refreshToken")
+    Flowable<BaseBean> checkToken(@Header("token") String token);
 
     @POST("/app/updateMobileVerifyOld")
     Flowable<BaseBean> updateMobileVerifyOld(@Query("mobile")String mobile,@Query("captcha")String captcha,@Header("token") String token);

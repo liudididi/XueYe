@@ -28,17 +28,20 @@ import com.example.login_demo.SetTingActivity;
 import com.example.login_demo.SuggestActivity;
 import com.meg7.widget.CustomShapeImageView;
 
+import base.BaseBean;
 import base.Basefragment;
 import bean.MyUserBean;
 import bean.UserBean;
+import presenter.CountdownPresent;
 import untils.NetUtil;
 import untils.SPUtils;
+import view.CountdownView;
 
 /**
  * Created by 祝文 on 2018/1/19.
  */
 
-public class My_Fragment extends Basefragment implements View.OnClickListener {
+public class My_Fragment extends Basefragment implements View.OnClickListener, CountdownView{
 
     private TextView my_login;
     private CustomShapeImageView my_icon;
@@ -54,6 +57,12 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
     private TextView myfragment_school;
     private String school;
     private String name;
+    private TextView tv_tv;
+    private ImageView iv_qm;
+    private CountdownPresent countdownPresent;
+    private TextView tv_day1;
+    private TextView tv_day2;
+    private TextView tv_day3;
 
     @Override
     public int getLayoutid() {
@@ -64,6 +73,8 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
     public void initView() {
         init();
         initOnClick();
+        countdownPresent = new CountdownPresent(this);
+        countdownPresent.CountdownPresent();
     }
 
  /*   @Override
@@ -91,6 +102,11 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
 
     private void init() {
         my_login = view.findViewById(R.id.my_login);
+        tv_tv = view.findViewById(R.id.tv_tv);
+        iv_qm = view.findViewById(R.id.iv_qm);
+        tv_day1 = view.findViewById(R.id.tv_day1);
+        tv_day2 = view.findViewById(R.id.tv_day2);
+        tv_day3 = view.findViewById(R.id.tv_day3);
         my_icon = view.findViewById(R.id.my_icon);
         my_school = view.findViewById(R.id.my_school);
         //我的专业
@@ -99,27 +115,18 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
         my_character = view.findViewById(R.id.my_character);
         //我的成绩表
         my_gradetable = view.findViewById(R.id.my_gradetable);
-
         //我的志愿表
         my_washtable = view.findViewById(R.id.my_washtable);
         myfragment_name = view.findViewById(R.id.myfragment_name);
         myfragment_school = view.findViewById(R.id.myfragment_school);
-
-
-
         //我的帮助
         my_help = view.findViewById(R.id.my_help);
-
         //购买增值
         my_addserve = view.findViewById(R.id.my_addserve);
         //建议
         my_suggest = view.findViewById(R.id.my_suggest);
-
         my_setting = view.findViewById(R.id.my_setting);
-
-
         my_view = view.findViewById(R.id.my_view);
-
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int heightPixels = dm.heightPixels;
         ViewGroup.LayoutParams layoutParams =  my_view.getLayoutParams();
@@ -255,14 +262,18 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
+
             MyUserBean.checkLogin();
-            my_login.setVisibility(View.INVISIBLE);
+             my_login.setVisibility(View.INVISIBLE);
+             tv_tv.setVisibility(View.GONE);
             UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
             if(userBeanInstans!=null){
+
                  school = (String) SPUtils.get(MyApp.context, "school", "地区");
                  name = (String) SPUtils.get(MyApp.context, "name", "姓名");
                 myfragment_name.setVisibility(View.VISIBLE);
                 myfragment_school.setVisibility(View.VISIBLE);
+                iv_qm.setVisibility(View.VISIBLE);
                 myfragment_name.setText(name);
                 myfragment_school.setText(school);
                 if(userBeanInstans.getSex()!=null){
@@ -278,12 +289,57 @@ public class My_Fragment extends Basefragment implements View.OnClickListener {
             }
             my_login.setEnabled(false);
         }else {
-            my_icon.setImageResource(R.drawable.boy);
+            my_icon.setImageResource(R.drawable.moren);
             my_login.setText("登录");
+            tv_tv.setVisibility(View.VISIBLE);
+            iv_qm.setVisibility(View.GONE);
+
             my_login.setVisibility(View.VISIBLE);
             my_login.setEnabled(true);
             myfragment_name.setVisibility(View.INVISIBLE);
             myfragment_school.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public void Countdownsuccess(BaseBean baseBean) {
+
+        String s = baseBean.data.toString();
+
+        if(s!=null&&s.length()==3)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            String substring2 = s.substring(2);
+            tv_day1.setText(substring);
+            tv_day2.setText(substring1);
+            tv_day3.setText(substring2);
+        }
+        if(s!=null&&s.length()==2)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            tv_day1.setText("0");
+            tv_day2.setText(substring);
+            tv_day3.setText(substring1);
+        }
+        else
+        {
+            tv_day1.setText("0");
+            tv_day2.setText("0");
+            tv_day3.setText(s);
+
+        }
+    }
+
+    @Override
+    public void Countdownfail(Throwable t) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        countdownPresent.onDestory();
     }
 }

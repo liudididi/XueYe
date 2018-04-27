@@ -18,7 +18,8 @@ import untils.MyQusetUtils;
 public class MajorgkMoudle {
     private CompositeDisposable compositeDisposable=new CompositeDisposable();
     public void  getMajorgk(String marjorid, final MajorgkBack majorgkBack){
-        DisposableSubscriber<BaseBean<MajorgkBean>> disposableSubscriber = MyQusetUtils.getInstance()
+        DisposableSubscriber<BaseBean<MajorgkBean>> disposableSubscriber =
+                MyQusetUtils.getInstance()
                 .getQuestInterface().getmajorgk(marjorid)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
