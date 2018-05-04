@@ -70,6 +70,7 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
                        substring+="0";
                    }
                }
+               /*
                if(zyGai!=null)
                {
                    if(zyGai.length()>=4)
@@ -90,10 +91,19 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
                    substring1="0";
                }
 
-                //专业概率
-                holder.tv_zhuanye.setText(substring1+"%");
+               //专业概率
+                holder.tv_zhuanye.setText(substring1+"%");*/
                 //专业名称
-                holder.tv_zy_name.setText(major1);
+                if (major1!=null)
+                {
+                    holder.tv_zy_name.setText(major1);
+
+                }
+                else
+                {
+                    holder.tv_zy_name.setText("暂无数据");
+
+                }
                 //进度条从0到100
                 final ValueAnimator animator = ValueAnimator.ofFloat(0, Integer.parseInt(substring));
                 animator.setDuration(100);
@@ -193,7 +203,7 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
         private final TextView tv_name;
         private final TextView tv_num;
         private final TextView tv_paiming;
-        private final TextView tv_zhuanye;
+        //private final TextView tv_zhuanye;
         private final TextView tv_zy_name;
         private final TextView tv_nine;
         private final TextView tv_two;
@@ -211,7 +221,7 @@ public class Accurate_Zy_Yx_Adapter extends RecyclerView.Adapter<Accurate_Zy_Yx_
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_num = itemView.findViewById(R.id.tv_num);
             tv_paiming = itemView.findViewById(R.id.tv_paiming);
-            tv_zhuanye = itemView.findViewById(R.id.tv_zhuanye);
+            //tv_zhuanye = itemView.findViewById(R.id.tv_zhuanye);
             tv_zy_name = itemView.findViewById(R.id.tv_zy_name);
 
             tv_nine = itemView.findViewById(R.id.tv_nine);

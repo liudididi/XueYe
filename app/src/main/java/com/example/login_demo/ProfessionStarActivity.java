@@ -93,7 +93,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
 
     @Override
     public void InIt() {
-        leixing = "本科";
+        leixing= (String) SPUtils.get(MyApp.context,"EFCFX","本科");
         km = "文科";
         xingbie = "男";
         data = getIntent().getStringExtra("data");
@@ -295,8 +295,6 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                                        });
                                       TextView zyxk_tishi=    viewe.findViewById(R.id.zyxk_tishi);
                                        zyxk_tishi.setText(minlineBean.getYear()+"年本科省控线是"+minlineBean.getScore()+"分，经过分析建议推荐你选择专科院校");
-
-
                                    }
                                 }
                             }
@@ -322,6 +320,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     }
 
     private void tijiao(String fenshu, String name, String address) {
+
         //保存职业筛选条件
         MyQusetUtils.getInstance().getQuestInterface()
                 .updateStuInfo(fenshu,name,km, leixing, xingbie,address, token)

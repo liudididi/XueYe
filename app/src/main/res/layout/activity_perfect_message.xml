@@ -66,13 +66,14 @@
         <EditText
             android:layout_marginRight="40px"
             android:id="@+id/pf_edname"
-            android:layout_width="wrap_content"
+            android:layout_width="500px"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@null"
             android:hint="请输入"
             android:textSize="40px"
             android:layout_marginTop="50px"
+            android:gravity="right"
             />
 <View
     android:layout_alignParentBottom="true"

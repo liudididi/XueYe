@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="EFC学业规划报告"
+            android:text="升学设计报告"
             android:textColor="#2c2c2c"
             android:textSize="50px" />
 

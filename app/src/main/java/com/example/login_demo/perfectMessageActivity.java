@@ -286,7 +286,7 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
             SPUtils.put(MyApp.context, "name", name);
             SPUtils.put(MyApp.context, "school", pfTvhightschool.getText().toString());
             SPUtils.put(MyApp.context, "tbarea", province);
-            intent(this, PresonMessageActivity.class);
+            intent(this, HomeActivity.class);
             finish();
     }
 

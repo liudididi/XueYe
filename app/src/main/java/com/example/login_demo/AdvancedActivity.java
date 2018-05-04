@@ -104,11 +104,11 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-        schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
+        schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "默认");
 
         advanced_fen.setText(tbarea + tbsubtype + tbmaxfen + "分");
         biaoshi="冲刺";
-        if(schoolType !=null&& schoolType !=""){
+        if(schoolType !=null&& schoolType !="默认"){
             String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
             String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
             wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept, schoolType,tbarea,tbsubtype);
@@ -166,7 +166,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 view_reliable.setVisibility(View.GONE);
                 view_minimum.setVisibility(View.GONE);
 
-                if(schoolType !=null&& schoolType !=""){
+                if(schoolType !=null&& schoolType !="默认"){
                     String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
                      wishPresent.CompleCanSchoolPresente((Integer.parseInt(tbmaxfen) -5)+ "",(Integer.parseInt(tbmaxfen) + 10) + "",cityType,isAccept,schoolType,tbarea,tbsubtype);
@@ -209,7 +209,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 view_sprint.setVisibility(View.GONE);
                 view_reliable.setVisibility(View.GONE);
                 view_minimum.setVisibility(View.VISIBLE);
-                if(schoolType !=null&& schoolType !=""){
+                if(schoolType !=null&& schoolType !="默认"){
                     String cityType = (String) SPUtils.get(MyApp.context, "cityType", "");
                     String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
                      wishPresent.CompleCanSchoolPresente(0+ "",(Integer.parseInt(tbmaxfen)-21) + "",cityType,isAccept,schoolType,tbarea,tbsubtype);

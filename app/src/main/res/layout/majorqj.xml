@@ -55,10 +55,6 @@
             android:layout_below="@+id/qj_tv"
             ></View>
 
-
-
-
-
 <TextView
     android:text="null"
     android:id="@+id/qj_tvqj"
@@ -168,6 +164,147 @@
         android:id="@+id/qj_v3"
         android:layout_below="@+id/qj_r2"
         ></View>
+
+        <RelativeLayout
+            android:id="@+id/qj_r4"
+            android:layout_below="@+id/qj_v3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_marginLeft="50px"
+                android:layout_marginTop="50px"
+                android:background="#3B9EFF"
+                android:id="@+id/fmgk_v5"
+                android:layout_width="10px"
+                android:layout_height="60px">
+            </View>
+            <TextView
+                android:id="@+id/fmgk_tv6"
+                android:layout_toRightOf="@+id/fmgk_v5"
+                android:textSize="55px"
+                android:textColor="@color/black"
+                android:layout_marginLeft="25px"
+                android:layout_marginTop="50px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="行业分布"
+                />
+
+            <TextView
+                android:id="@+id/qj_tv5"
+                android:layout_toRightOf="@+id/fmgk_tv6"
+                android:textSize="50px"
+                android:layout_marginLeft="35px"
+                android:layout_marginTop="55px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INDUSTRY DISTRIBUTION"
+                />
+
+            <View
+                android:layout_below="@+id/qj_tv5"
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#ccc"
+                android:layout_marginTop="50px"
+                ></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bt"
+            android:layout_width="match_parent"
+            android:layout_height="500px">
+            <untils.ArcView
+                android:id="@+id/myPiechat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_shang"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="#5e9cf3"
+
+                android:layout_width="60px"
+                android:layout_height="50px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:id="@+id/tv_one"
+                />
+            <TextView
+                android:background="#73aeff"
+                android:layout_marginLeft="30px"
+                android:layout_width="60px"
+                android:layout_height="50px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:id="@+id/tv_two"
+                />
+
+            <TextView
+                android:background="#aec9ff"
+                android:layout_marginLeft="30px"
+                android:layout_width="60px"
+                android:layout_height="50px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:id="@+id/tv_three"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_xia"
+            android:layout_marginTop="20px"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="#c3ddff"
+
+                android:layout_width="60px"
+                android:layout_height="50px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:id="@+id/tv_four"
+                />
+            <TextView
+                android:background="#ddebff"
+                android:layout_marginLeft="30px"
+                android:layout_width="60px"
+                android:layout_height="50px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:id="@+id/tv_five"
+                />
+
+            <TextView
+                android:background="#ebf4ff"
+                android:layout_marginLeft="30px"
+                android:layout_width="60px"
+                android:layout_height="50px" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:id="@+id/tv_six"
+                />
+        </LinearLayout>
     <RelativeLayout
         android:id="@+id/qj_r3"
         android:layout_below="@+id/qj_v3"

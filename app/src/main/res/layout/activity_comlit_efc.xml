@@ -21,7 +21,7 @@
             android:src="@mipmap/left"
             android:layout_centerVertical="true"/>
         <TextView
-            android:text="学业摆渡人"
+            android:text="升学设计系统"
             android:textColor="#2c2c2c"
             android:textSize="50px"
             android:layout_centerInParent="true"
@@ -36,7 +36,7 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-     android:text="恭喜完成EFC所有测评！"
+     android:text="恭喜完成系统所有测评！"
     />
 
     <ImageView
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="50px"
-                android:text="已生成EFC学业规划报告"
+                android:text="已生成升学设计报告"
                 />
             <TextView
                 android:layout_marginTop="10px"
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="35px"
-                android:text="点击下方按钮可查学业规划报告"
+                android:text="点击下方按钮可查升学设计报告"
                 />
         </LinearLayout>
 
@@ -196,7 +196,7 @@
        android:layout_width="862px"
        android:layout_height="100px"
        android:textColor="#fff"
-       android:text="我的EFC学业规划报告"
+       android:text="我的升学设计报告"
        android:layout_marginBottom="50px"
        android:layout_alignParentBottom="true"
        />

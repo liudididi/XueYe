@@ -75,7 +75,7 @@ public class CompleteWishActivity extends BaseActivity {
     private ArrayList listsan;
 
 
-    private int cityType = 0;
+    private int cityType = 4;
     private String schoolType = "";
     private String benzhuan = "需要";
 
@@ -114,6 +114,7 @@ public class CompleteWishActivity extends BaseActivity {
         listsan.add("理工类院校");
         listsan.add("综合类院校");
         listsan.add("艺体类院校");
+        listsan.add("不限");
         Complete_Adapter completelv3_adapter = new Complete_Adapter(listsan, this);
         completelv3.setAdapter(completelv3_adapter);
         completelv3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -190,8 +191,6 @@ public class CompleteWishActivity extends BaseActivity {
                     rllistsan.setVisibility(View.GONE);
                     ivsanRight.setVisibility(View.VISIBLE);
                     ivsanNext.setVisibility(View.GONE);
-
-
                 }
                 break;
 
@@ -259,9 +258,14 @@ public class CompleteWishActivity extends BaseActivity {
                 break;
 
             case R.id.complete_tvyes:
-                if (cityType != 0 && benzhuan != null && schoolType != null) {
+                if ( benzhuan != null && schoolType != null) {
                     Intent i = new Intent();
-                    i.putExtra("cityType", cityType + "");
+                    if(cityType==4){
+                        i.putExtra("cityType","");
+                    }else {
+                        i.putExtra("cityType", cityType + "");
+                    }
+
                     i.putExtra("isAccept", benzhuan);
                     i.putExtra("schoolType", schoolType);
                     setResult(4, i);

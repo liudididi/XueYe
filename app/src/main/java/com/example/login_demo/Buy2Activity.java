@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +50,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
     private PayPresent payPresent;
 
     private int pay = 2;
+    private  boolean zk=false;
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
     private Handler mHandler = new Handler() {
@@ -57,8 +60,6 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 case SDK_PAY_FLAG:
 
                     AliPayResult payResult = new AliPayResult((Map<String, String>) msg.obj);
-
-
                     switch (payResult.getResultStatus()) {
                         case "9000":
                             Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
@@ -105,6 +106,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
         }
     };
     private String token;
+    private int heightPixels;
 
     @Override
     public int getId() {
@@ -114,7 +116,8 @@ public class Buy2Activity extends BaseActivity implements PayView {
     @Override
     public void InIt() {
         payPresent = new PayPresent(this);
-
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        heightPixels = dm.heightPixels;
 
     }
 
@@ -155,9 +158,22 @@ public class Buy2Activity extends BaseActivity implements PayView {
         TextView diangdan_money = dialogView.findViewById(R.id.diangdan_money);
         TextView tv_bianhao = dialogView.findViewById(R.id.tv_bianhao);
         TextView tv_mingcheng = dialogView.findViewById(R.id.tv_mingcheng);
-        tv_mingcheng.setText("EFC学业规划");
+        if(zk)
+        {
+            tv_mingcheng.setText("升学设计系统--专科版");
+        }
+        else
+        {
+            tv_mingcheng.setText("升学设计系统--本科版");
+        }
+
         tv_bianhao.setText(outTradeNo);
-        diangdan_money.setText("698");
+        if(zk){
+            diangdan_money.setText("598");
+        }else {
+            diangdan_money.setText("598");
+        }
+
         iv_chahao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,7 +231,46 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 break;
             case R.id.tv_goumai2:
                 if(token.length()>4){
-                payPresent.XiaDan(token,"3",pay+"");
+                    zk=false;
+                    View viewe = LayoutInflater.from(Buy2Activity.this).inflate(R.layout.dilog_gmbb, null);
+                    final AlertDialog dialog = new AlertDialog.Builder(Buy2Activity.this)
+                            .setView(viewe).show();
+
+                    //为获取屏幕宽、高
+                    WindowManager.LayoutParams p = dialog.getWindow().getAttributes();  //获取对话框当前的参数值
+                    p.height = (int) (heightPixels * 0.4);   //高度设置为屏幕的0.3//宽度设置为屏幕的0.5
+                    dialog.getWindow().setAttributes(p);
+                  final ImageView img_bk= viewe.findViewById(R.id.img_bk);
+                  final ImageView img_zk= viewe.findViewById(R.id.img_zk);
+                  final TextView tv_gm= viewe.findViewById(R.id.tv_gm);
+                    img_bk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            img_bk.setImageResource(R.drawable.back_circleblcak);
+                            img_zk.setImageResource(R.drawable.back_circlebai);
+                            zk=false;
+                        }
+                    });
+                    tv_gm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            if(zk){
+                                payPresent.XiaDan(token,"4",pay+"");
+                            }else {
+                                payPresent.XiaDan(token,"3",pay+"");
+                            }
+                        }
+                    });
+                    img_zk.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            img_bk.setImageResource(R.drawable.back_circlebai);
+                            img_zk.setImageResource(R.drawable.back_circleblcak);
+                            zk=true;
+                        }
+                    });
+
                 /*    Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
                     startActivity(intent);

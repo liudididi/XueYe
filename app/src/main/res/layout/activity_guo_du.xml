@@ -21,7 +21,7 @@
             android:src="@mipmap/left"
             android:layout_centerVertical="true"/>
         <TextView
-            android:text="摆渡迷茫人"
+            android:text="升学设计系统"
             android:textColor="#2c2c2c"
             android:textSize="50px"
             android:layout_centerInParent="true"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="50px"
-        android:text="恭喜完成EFC职业星空测试"
+        android:text="恭喜完成系统职业星空测试"
         android:textColor="#333333"/>
     <TextView
         android:layout_below="@+id/tv1"

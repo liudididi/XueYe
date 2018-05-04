@@ -51,7 +51,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@color/white"
-    android:text="经摆渡人EFC系统全面分析，已生成\n喜欢的专业"
+    android:text="经升学设计系统全面分析，已生成\n喜欢的专业"
     android:textSize="40px"
     />
 

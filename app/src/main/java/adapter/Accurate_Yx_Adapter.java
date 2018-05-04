@@ -58,9 +58,9 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
 
                 //院校概率
                 String yxGai = list.get(position).getYxGai();
-                final String zyGai = major.get(0).getZyGai();
+                //final String zyGai = major.get(0).getZyGai();
                 String major1 = major.get(0).getMajor();
-                String  substring1 = null;
+                //String  substring1 = null;
                 String  substring =null;
                 if(yxGai!=null)
                 {
@@ -77,6 +77,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                         }
                     }
                 }
+                /*
                 if(zyGai!=null)
                 {
                     if(zyGai.length()>=4)
@@ -93,7 +94,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                     }
                 }
 
-                //专业概率
+               //专业概率
                 if(substring1!=null)
                 {
                     if(biaoshi.equals("冲刺"))
@@ -130,7 +131,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                     }
 
 
-                }
+                }*/
                 //专业名称
                 if(major1!=null)
                 {
@@ -306,7 +307,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
         private final TextView tv_name;
         private final TextView tv_num;
         private final TextView tv_paiming;
-        private final TextView tv_zhuanye;
+        //private final TextView tv_zhuanye;
         private final TextView tv_zy_name;
         private final TextView tv_nine;
         private final TextView tv_two;
@@ -329,7 +330,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
             tv_name = itemView.findViewById(R.id.tv_name);
             tv_num = itemView.findViewById(R.id.tv_num);
             tv_paiming = itemView.findViewById(R.id.tv_paiming);
-            tv_zhuanye = itemView.findViewById(R.id.tv_zhuanye);
+            //tv_zhuanye = itemView.findViewById(R.id.tv_zhuanye);
             tv_zy_name = itemView.findViewById(R.id.tv_zy_name);
 
             tv_nine = itemView.findViewById(R.id.tv_nine);

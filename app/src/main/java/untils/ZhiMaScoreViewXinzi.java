@@ -41,7 +41,7 @@ public class ZhiMaScoreViewXinzi extends View {
     private int monthCount  = 6;
     private int selectMonth = 6;//选中的月份
 
-    private String[] monthText = new String[]{"1年", "2年","3年", "4年","5年"};
+    private String[] monthText = new String[]{"应届生", "1年","2年", "3年","4年","5年"};
 
     private  List<Integer> listfen;
 

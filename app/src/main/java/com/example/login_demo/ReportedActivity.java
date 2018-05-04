@@ -24,7 +24,6 @@ public class ReportedActivity extends BaseActivity {
 
     @BindView(R.id.reported_iv_back)
     ImageView reportedIvBack;
-
     @BindView(R.id.reported_advanced)
     TextView reportedAdvanced;
     @BindView(R.id.reported_accurate)
@@ -95,6 +94,11 @@ public class ReportedActivity extends BaseActivity {
                                 reportedAccurate.setEnabled(true);
                                 rePb.setVisibility(View.GONE);
                                 if (stringBaseBean.code == 0) {
+                                    if(stringBaseBean.data.equals("0")){
+                                        SPUtils.put(MyApp.context,"EFCFX","本科");
+                                    }else {
+                                        SPUtils.put(MyApp.context,"EFCFX","专科");
+                                    }
                                     rePb.setVisibility(View.GONE);
                                     Intent intent = new Intent(ReportedActivity.this, EFCJieSuoActivity.class);
                                     startActivity(intent);

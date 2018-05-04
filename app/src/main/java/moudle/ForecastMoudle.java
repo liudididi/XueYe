@@ -19,7 +19,8 @@ public class ForecastMoudle {
     //获取预估对比分数
     public void Forecast(String province, String classify , String university ,String score, final ForecastBack forecastBack)
     {
-        DisposableSubscriber<BaseBean<ForecastBean>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface()
+        DisposableSubscriber<BaseBean<ForecastBean>> disposableSubscriber =
+                MyQusetUtils.getInstance().getQuestInterface()
                 .forecast(province, classify, university,score)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

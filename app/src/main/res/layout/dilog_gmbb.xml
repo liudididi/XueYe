@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:background="#3B9EFF"
+        android:gravity="center"
+        android:textColor="@color/white"
+         android:text="购买类型"
+        android:textSize="60px"
+        android:layout_width="match_parent"
+        android:layout_height="150px" />
+    <TextView
+        android:layout_marginTop="50px"
+        android:layout_gravity="center_horizontal"
+         android:text="请根据考生的高考预估分，酌情选择进行购买:"
+        android:textSize="50px"
+        android:textColor="#333333"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_marginTop="30px"
+         android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_height="100px">
+        <ImageView
+            android:id="@+id/img_bk"
+            android:padding="10px"
+            android:layout_centerVertical="true"
+         android:layout_width="60px"
+        android:src="@drawable/back_circleblcak"
+        android:layout_height="60px" />
+        <TextView
+            android:layout_marginLeft="20px"
+            android:layout_centerVertical="true"
+            android:textSize="50px"
+            android:layout_toRightOf="@+id/img_bk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本科版本"
+            android:textColor="#333333"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="38px"
+            android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@+id/img_zk"
+            android:padding="10px"
+             android:layout_width="60px"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/back_circlebai"
+            android:layout_height="60px" />
+        <TextView
+            android:layout_marginLeft="20px"
+             android:textSize="50px"
+             android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="专科版本"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:textColor="#f29600"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:text="请根据实际情况选择本科、专科，一旦付款，恕不退换。"
+        android:textSize="33px"
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="50px"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_gm"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/back_capacitoranger"
+        android:text="确认购买"
+        android:textSize="45px"
+        android:textColor="@color/white"
+        android:layout_width="562px"
+        android:layout_height="104px" />
+</LinearLayout>

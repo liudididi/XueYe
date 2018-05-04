@@ -132,7 +132,7 @@
             android:background="#fff"
             android:layout_marginTop="180px"
             >
-            <TextView
+          <!--  <TextView
                 android:id="@+id/tv_zhuanye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                 android:textSize="40px"
                 android:textColor="#FF3B3B"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="190px"/>
+                android:layout_marginLeft="190px"/>-->
             <TextView
                 android:id="@+id/tv_zy_name"
                 android:layout_width="490px"
@@ -151,8 +151,7 @@
                 android:textSize="40px"
                 android:textColor="#666666"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/tv_zhuanye"
-                android:layout_marginLeft="10px"/>
+                 android:layout_marginLeft="190px"/>
 
 
         </RelativeLayout>

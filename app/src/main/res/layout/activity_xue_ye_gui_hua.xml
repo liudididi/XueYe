@@ -21,7 +21,7 @@
             android:src="@mipmap/left"
             android:layout_centerVertical="true"/>
         <TextView
-            android:text="EFC学业规划报告"
+            android:text="升学设计系统"
             android:textColor="#2c2c2c"
             android:textSize="50px"
             android:layout_centerInParent="true"

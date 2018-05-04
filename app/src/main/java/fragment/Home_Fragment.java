@@ -311,11 +311,13 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
     @Override
     public void Sudokusuccess(BaseBean<List<SlideshowBean>> listBaseBean) {
         sudokuList = new ArrayList<>();
+         if(listBaseBean.data!=null&&listBaseBean.data.size()>0){
+             for (int i = 0; i < listBaseBean.data.size(); i++) {
+                 sudokuList.add(new SlideshowChildBean(listBaseBean.data.get(i).getName(), listBaseBean.data.get(i).getExtimg().toString(), listBaseBean.data.get(i).getUrl()));
 
-        for (int i = 0; i < listBaseBean.data.size(); i++) {
-            sudokuList.add(new SlideshowChildBean(listBaseBean.data.get(i).getName(), listBaseBean.data.get(i).getExtimg().toString(), listBaseBean.data.get(i).getUrl()));
+             }
+         }
 
-          }
 
         viewpager.setAdapter(new SudokuPagerAdapter(sudokuList,getContext()));
 

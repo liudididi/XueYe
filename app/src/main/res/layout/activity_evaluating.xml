@@ -51,7 +51,7 @@
             android:id="@+id/evaluating_tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="恭喜完成EFC心理学测试！"
+            android:text="恭喜完成升学设计系统心理学测试！"
             android:textSize="46px"
             android:textColor="#ff6700"
             android:layout_marginTop="46px"

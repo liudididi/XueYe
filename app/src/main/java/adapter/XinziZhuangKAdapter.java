@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,10 +20,10 @@ import bean.MajorgkBean;
  */
 
 public class XinziZhuangKAdapter extends BaseAdapter {
-    private List<MajorgkBean.SalaryScaleBean> list;
+    private List<MajorgkBean.MajorJobMenNumListBean> list;
     private Context context;
 
-    public XinziZhuangKAdapter(List<MajorgkBean.SalaryScaleBean> list, Context context) {
+    public XinziZhuangKAdapter(List<MajorgkBean.MajorJobMenNumListBean> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -49,11 +50,20 @@ public class XinziZhuangKAdapter extends BaseAdapter {
         }
         TextView xzzk_xinzi= convertView.findViewById(R.id.xzzk_xinzi);
         TextView xzzk_bfb= convertView.findViewById(R.id.xzzk_bfb);
+        TextView tv_num= convertView.findViewById(R.id.tv_num);
+        int i = position + 1;
+        if(i<=3){
+            tv_num.setTextColor(Color.WHITE);
+            tv_num.setBackgroundResource(R.drawable.back_circleorging);
+        }else {
+            tv_num.setBackgroundResource(R.drawable.back_circlebai);
+        }
+        tv_num.setText(i+"");
         ProgressBar xzzk_pb= convertView.findViewById(R.id.xzzk_pb);
-        double v = list.get(position).getPercentage() * 100;
+        double v = list.get(position).getProportion() * 100;
         xzzk_bfb.setText((int) v+"%");
         xzzk_pb.setProgress((int) v);
-        xzzk_xinzi.setText(list.get(position).getSalaryParagraph()+"");
+        xzzk_xinzi.setText(list.get(position).getArea()+"");
         return convertView;
     }
 }

@@ -106,6 +106,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     private ArrayList<String>   list=new ArrayList<>();;
     private List<Integer> listfen;
+    private int type=0;
 
     @Override
     public int getLayoutid() {
@@ -122,8 +123,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                     @Override
                     public void onNext(BaseBean<List<LuquXianBean>> listBaseBean) {
                         if(listBaseBean.code==0){
-                            int max=700;
-                            int min=0;
+
                             zhexian_ll.removeAllViews();
                             ZhiMaScoreView2 zhiMaScoreView = new ZhiMaScoreView2(getActivity());
                             listfen =new ArrayList<>();
@@ -132,8 +132,13 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                             listfen.add(0);
                             listfen.add(0);
                             listfen.add(0);
+
                             if(listBaseBean.data!=null&&listBaseBean.data.size()>0){
-                                for (int i = 0; i <5 ; i++) {
+                                int size = listBaseBean.data.size();
+                                if(size>=5){
+                                    size=5;
+                                }
+                                for (int i = 0; i <size ; i++) {
                                     if(listBaseBean.data.get(i).getScore()!=null){
                                         String score = listBaseBean.data.get(i).getScore();
                                         if(score.equals("")){
@@ -295,16 +300,18 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
             }
         });
+
         rl_tszy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 schoolEnrollPresent.TZmajor(schoolname,1);
-
+                type=1;
+                 schoolEnrollPresent.TZmajor(schoolname,type);
                 if(flag)
                 {
                     iv_lq_right.setVisibility(View.GONE);
                     iv_lq_xia.setVisibility(View.VISIBLE);
                     lv_tszy.setVisibility(View.VISIBLE);
+
                     flag=false;
                 }
                else
@@ -321,8 +328,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         rl_zdzy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                schoolEnrollPresent.TZmajor(schoolname,0);
-
+                type=0;
+                schoolEnrollPresent.TZmajor(schoolname, type);
                 if(flag1)
                 {
                     iv_zdzy_right.setVisibility(View.GONE);
@@ -455,11 +462,14 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 if(majorinfo!=null&&majorinfo.size()>0)
                 {
                     ZYTJRecycleAdapter zytjRecycleAdapter=new ZYTJRecycleAdapter(majorinfo,getContext());
-                    lv_tszy.setLayoutManager(new LinearLayoutManager(getContext()));
-                    lv_tszy.setAdapter(zytjRecycleAdapter);
-
-                    rv_zdzy.setLayoutManager(new LinearLayoutManager(getContext()));
-                    rv_zdzy.setAdapter(zytjRecycleAdapter);
+                    if(type==1){
+                        lv_tszy.setLayoutManager(new LinearLayoutManager(getContext()));
+                        lv_tszy.setAdapter(zytjRecycleAdapter);
+                    }
+                    if(type==0){
+                        rv_zdzy.setLayoutManager(new LinearLayoutManager(getContext()));
+                        rv_zdzy.setAdapter(zytjRecycleAdapter);
+                    }
                 }
                 else
                 {
@@ -489,7 +499,11 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         listfen.add(0);
         listfen.add(0);
         if(listBaseBean!=null&&listBaseBean.size()>0){
-            for (int i = 0; i <listBaseBean.size() ; i++) {
+            int size = listBaseBean.size();
+            if(size>=5){
+                size=5;
+            }
+            for (int i = 0; i <size ; i++) {
                 if(listBaseBean.get(i).getScore()!=null){
                     String score = listBaseBean.get(i).getScore();
                     if(score.equals("")){
