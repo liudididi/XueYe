@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="为了EFC精准志愿推荐更加精准，确认提交后不可更改，请谨慎填写"
+        android:text="为了升学设计系统精准志愿推荐更加精准，确认提交后不可更改，请谨慎填写"
         android:layout_marginTop="150px"
         />
 

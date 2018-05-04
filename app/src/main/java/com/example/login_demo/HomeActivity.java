@@ -69,7 +69,7 @@ public class HomeActivity extends BaseActivity {
     public void InIt() {
         //初始化Fragment
         inItFragment();
-        checkLogin();
+
         DisplayMetrics dm = getResources().getDisplayMetrics();
         heightPixels = dm.heightPixels;
         layoutParams = (CoordinatorLayout.LayoutParams) bottomBar.getLayoutParams();
@@ -240,10 +240,11 @@ public class HomeActivity extends BaseActivity {
         wish_FragMent = new WishFragMent();
         home_fragment = new Home_Fragment();
     }
-    public     void checkLogin(){
+    public   void checkLogin(){
         String token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
-            DisposableSubscriber<BaseBean<UserBean>> disposableSubscriber = MyQusetUtils.getInstance()
+            DisposableSubscriber<BaseBean<UserBean>> disposableSubscriber =
+                    MyQusetUtils.getInstance()
                     .getQuestInterface().getUserinfo(token)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
@@ -323,6 +324,7 @@ public class HomeActivity extends BaseActivity {
                         public void onNext(BaseBean baseBean) {
                             if(baseBean.code==0){
                                 SPUtils.put(MyApp.context,"token",baseBean.token);
+                                checkLogin();
                             }
                             else {
                                 SPUtils.remove(MyApp.context, "token");
@@ -363,5 +365,8 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+         moveTaskToBack(true);
+    }
 }

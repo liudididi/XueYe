@@ -17,6 +17,7 @@ import base.BaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import untils.SPUtils;
 
 public class CompleteWishActivity extends BaseActivity {
     @BindView(R.id.complete_iv_back)
@@ -89,7 +90,50 @@ public class CompleteWishActivity extends BaseActivity {
         initlist();
     }
 
+
+
     private void initlist() {
+        schoolType = (String) SPUtils.get(MyApp.context, "schoolType", "");
+
+        if(schoolType !=null&& schoolType !="默认"){
+            String cityTypea = (String) SPUtils.get(MyApp.context, "cityType", "");
+            String isAccept = (String) SPUtils.get(MyApp.context, "isAccept", "");
+
+            if(schoolType.equals("")){
+                completeTvsan.setText("不限");
+
+            }else {
+                completeTvsan.setText(schoolType);
+
+            }
+
+            if(cityTypea.equals("4")){
+                completeTvyi.setText("不限");
+                cityType=4;
+            }else  if(cityTypea.equals("1")){
+                completeTvyi.setText("一线城市");
+                cityType=1;
+            }
+            else  if(cityTypea.equals("2")){
+                completeTvyi.setText("二线城市");
+                cityType=2;
+            }
+            else  if(cityTypea.equals("3")){
+                completeTvyi.setText("省会城市");
+                cityType=3;
+            }
+
+            if(isAccept.equals("需要")){
+                completeBen.setBackgroundResource(R.drawable.bg_subject2);
+                completeZhuan.setBackgroundResource(R.drawable.bg_subject3);
+                benzhuan = "需要";
+            }else {
+                completeZhuan.setBackgroundResource(R.drawable.bg_subjectbai);
+                completeBen.setBackgroundResource(R.drawable.bg_subjectselect);
+                benzhuan = "不需要";
+            }
+         }
+
         listyi = new ArrayList<>();
         listyi.add("一线城市");
         listyi.add("二线城市");

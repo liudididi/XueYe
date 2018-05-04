@@ -140,12 +140,19 @@ if(majorgkBean.getMajorJobMenNumList()!=null&&majorgkBean.getMajorJobMenNumList(
             if(majorgkBean.getAverageSalary()!=null&&majorgkBean.getAverageSalary().size()>0){
                 ZhiMaScoreViewXinzi zhiMaScoreView=new ZhiMaScoreViewXinzi(getActivity());
                 List<Integer> listfen=new ArrayList<>();
-                for (int i = 0; i <6; i++) {
-                    listfen.add(majorgkBean.getAverageSalary().get(i).getAveragesalary());
+                listfen.add(0);
+                listfen.add(0);
+                listfen.add(0);
+                listfen.add(0);
+                listfen.add(0);
+                listfen.add(0);
+                for (int i = 0; i <majorgkBean.getAverageSalary().size(); i++) {
+                    listfen.set(i,majorgkBean.getAverageSalary().get(i).getAveragesalary());
                 }
                 Integer max = Collections.max(listfen);
                 if(max==0){
                     listfen.clear();
+                    listfen.add(0);
                     listfen.add(0);
                     listfen.add(0);
                     listfen.add(0);
