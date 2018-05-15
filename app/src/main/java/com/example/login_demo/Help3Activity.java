@@ -1,6 +1,5 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +10,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.HelpBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.HelpPresenter;
 import view.HelpView;

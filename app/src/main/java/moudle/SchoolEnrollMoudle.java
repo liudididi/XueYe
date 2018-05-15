@@ -3,6 +3,7 @@ package moudle;
 import java.util.List;
 
 import base.BaseBean;
+import bean.ForecastBean;
 import bean.GailvBean;
 import bean.LuquXianBean;
 import bean.SchoolEnrollBean;
@@ -45,15 +46,15 @@ public class SchoolEnrollMoudle {
     }
 
 //概率
-public  void  getscoreCompareMobil(String province, String classify, String  schoolname, final GailvBeanBack gailvBeanBack){
+public  void  getscoreCompareMobil(String province, String classify, String  schoolname,String scouse, final GailvBeanBack gailvBeanBack){
 
-    DisposableSubscriber<BaseBean<List<GailvBean>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface()
-            .getscoreCompareMobil(province, classify, schoolname)
+    DisposableSubscriber<BaseBean<ForecastBean>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface()
+            .getscoreCompareMobil(province, classify, schoolname,scouse)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(new DisposableSubscriber<BaseBean<List<GailvBean>>>() {
+            .subscribeWith(new DisposableSubscriber<BaseBean<ForecastBean>>() {
                 @Override
-                public void onNext(BaseBean<List<GailvBean>> listBaseBean) {
+                public void onNext(BaseBean<ForecastBean> listBaseBean) {
                        gailvBeanBack.SchoolEnrollsuccess(listBaseBean);
                 }
 
@@ -155,7 +156,7 @@ public  void  getskx(String province, String university, String classify, String
 
     public interface GailvBeanBack
     {
-        void SchoolEnrollsuccess(BaseBean<List<GailvBean>> listBaseBean);
+        void SchoolEnrollsuccess(BaseBean<ForecastBean> listBaseBean);
         void SchoolEnrollfail(Throwable t);
     }
 

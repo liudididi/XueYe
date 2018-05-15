@@ -286,9 +286,11 @@
                  android:layout_marginTop="30px"
                  android:layout_marginLeft="40px"
                     android:scaleType="fitXY"
-                 android:layout_marginRight="40px"
+                    android:adjustViewBounds="true"
+
+                    android:layout_marginRight="40px"
                  android:layout_width="match_parent"
-                 android:layout_height="wrap_content">
+                 android:layout_height="match_parent">
                 </ImageView>
                 <LinearLayout
                     android:layout_width="match_parent"

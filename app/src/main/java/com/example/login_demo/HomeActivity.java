@@ -1,8 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -13,7 +11,6 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -27,14 +24,13 @@ import com.roughike.bottombar.OnTabSelectListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.Gv_addressAdapter;
 import adapter.Gv_addresssyAdapter;
 import base.BaseActivity;
 import base.BaseBean;
 import bean.MyUserBean;
 import bean.UserBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 import fragment.Home_Fragment;
 import fragment.My_Fragment;
 import fragment.WishFragMent;
@@ -72,6 +68,7 @@ public class HomeActivity extends BaseActivity {
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         heightPixels = dm.heightPixels;
+        SPUtils.put(MyApp.context,"FBL",heightPixels);
         layoutParams = (CoordinatorLayout.LayoutParams) bottomBar.getLayoutParams();
         layoutParams.width = dm.widthPixels;
         layoutParams.height = heightPixels / 12;
@@ -84,10 +81,11 @@ public class HomeActivity extends BaseActivity {
             final AlertDialog dialog = new AlertDialog.Builder(HomeActivity.this)
                     .setView(viewe).show();
 
+
   //为获取屏幕宽、高
-            android.view.WindowManager.LayoutParams p = dialog.getWindow().getAttributes();  //获取对话框当前的参数值
+           /* android.view.WindowManager.LayoutParams p = dialog.getWindow().getAttributes();  //获取对话框当前的参数值
             p.height = (int) (heightPixels * 0.5);   //高度设置为屏幕的0.3//宽度设置为屏幕的0.5
-            dialog.getWindow().setAttributes(p);
+            dialog.getWindow().setAttributes(p);*/
             dialog.setCancelable(false);
 
             final TextView sy_tvaddress= viewe.findViewById(R.id.sy_tvaddress);
@@ -189,6 +187,8 @@ public class HomeActivity extends BaseActivity {
 
 
     }
+
+
 
     private void initdata() {
        arealist=new ArrayList<>();
@@ -310,8 +310,15 @@ public class HomeActivity extends BaseActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+        JPushInterface.onResume(this);
         final String token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
                      MyQusetUtils.getInstance()

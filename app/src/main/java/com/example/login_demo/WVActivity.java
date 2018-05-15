@@ -1,12 +1,10 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.webkit.WebView;
 
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class WVActivity extends BaseActivity {
 

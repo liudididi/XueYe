@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class FlowLayoutzy extends ViewGroup {
 
     private LayoutInflater mInflater;
     private boolean isColorful;
+    private boolean is1080=false;
 
     public FlowLayoutzy(Context context) {
         this(context, null);
@@ -36,6 +38,12 @@ public class FlowLayoutzy extends ViewGroup {
     public FlowLayoutzy(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mInflater = LayoutInflater.from(getContext());
+
+        Integer fbl = (Integer) SPUtils.get(MyApp.context, "FBL", 0);
+
+        if(fbl<=1280){
+            is1080=true;
+        }
     }
 
     @Override
@@ -101,7 +109,13 @@ public class FlowLayoutzy extends ViewGroup {
                         : width + getPaddingLeft() + getPaddingRight(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height
                         + getPaddingTop() + getPaddingBottom());
-        setPadding(dp2px(20), dp2px(10), dp2px(20), dp2px(10));
+        if(is1080){
+            setPadding(dp2px(0), dp2px(6), dp2px(2), dp2px(3));
+
+        }else {
+            setPadding(dp2px(0), dp2px(6), dp2px(5), dp2px(7));
+        }
+
     }
 
     // 储存所有的View
@@ -218,6 +232,14 @@ public class FlowLayoutzy extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.zy_textview, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(strings[i]);
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -247,6 +269,14 @@ public class FlowLayoutzy extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.zy_textview, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(list.get(i));
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -268,6 +298,7 @@ public class FlowLayoutzy extends ViewGroup {
     public void addTag(String text) {
         final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_textview, this,
                 false);
+
         tv.setText(text);
         tv.setOnClickListener(new OnClickListener() {
             @Override

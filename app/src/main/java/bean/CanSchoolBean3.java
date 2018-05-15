@@ -17,6 +17,18 @@ public class CanSchoolBean3 {
     private String recruit;
     private String preeminent_plan;
     private String com_rank;
+    private String time;
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+
+
 
     @Override
     public String toString() {
@@ -123,7 +135,7 @@ public class CanSchoolBean3 {
         return com_rank;
     }
 
-    public CanSchoolBean3(String imgurl, String name, String address, String father, String two, String nine, String defense_student, String graduate, String recruit, String preeminent_plan, String com_rank) {
+    public CanSchoolBean3(String imgurl, String name, String address, String father, String two, String nine, String defense_student, String graduate, String recruit, String preeminent_plan, String com_rank,String time) {
         this.imgurl = imgurl;
         this.name = name;
         this.address = address;
@@ -135,5 +147,6 @@ public class CanSchoolBean3 {
         this.recruit = recruit;
         this.preeminent_plan = preeminent_plan;
         this.com_rank = com_rank;
+        this.time = time;
     }
 }

@@ -13,7 +13,6 @@ import com.example.login_demo.SelectAreasActivity;
 import java.util.List;
 
 import bean.CityBean;
-import bean.ProviceBean;
 
 /**
  * Created by 地地 on 2018/1/27.

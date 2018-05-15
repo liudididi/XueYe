@@ -1,6 +1,5 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import bean.CityBean;
 import bean.ProviceBean;
 import bean.SelectSchoolBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.SelectSchoolPrsent;
 import view.SelectSchoolView;

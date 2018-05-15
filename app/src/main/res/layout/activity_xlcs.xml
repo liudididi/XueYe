@@ -43,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/efccssm"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
                 android:layout_marginBottom="20px"
                 />
         </RelativeLayout>

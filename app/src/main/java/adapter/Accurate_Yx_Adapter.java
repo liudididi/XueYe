@@ -12,19 +12,16 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
-import com.example.login_demo.SchoolDetailActivity;
 import com.example.login_demo.TuiJianSchoolActivity;
 
 import java.util.List;
 
-import base.BaseApi;
 import bean.Advanced_YX_Bean;
 import untils.CircleProgressView;
 
@@ -59,7 +56,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 //院校概率
                 String yxGai = list.get(position).getYxGai();
                 //final String zyGai = major.get(0).getZyGai();
-                String major1 = major.get(0).getMajor();
+                String major1 = (String) major.get(0).getMajor();
                 //String  substring1 = null;
                 String  substring =null;
                 if(yxGai!=null)
@@ -271,6 +268,8 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 public void onClick(View view) {
                     Intent intent=new Intent(context, TuiJianSchoolActivity.class);
                     intent.putExtra("schoolname",list.get(position).getName());
+                    intent.putExtra("pici",list.get(position).getTime());
+                    intent.putExtra("EFC",true);
                     CircleProgressView.mPaintColor= Color.RED;
                     CircleProgressView.mTextColor= Color.RED;
                     context.startActivity(intent);
@@ -282,13 +281,15 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                     Intent intent=new Intent(context, MajorDetailActivity.class);
                     if(major.get(0).getMajorId()!=null)
                     {
-                        intent.putExtra("majorid",major.get(0).getMajorId());
+                       String majorId = (String) major.get(0).getMajorId();
+                        intent.putExtra("majorid",majorId);
                     }
                     else
                     {
                         return;
                     }
-                    intent.putExtra("major",major.get(0).getMajor());
+                    String major2 = (String) major.get(0).getMajor();
+                    intent.putExtra("major",major2);
                     context.startActivity(intent);
 
                 }

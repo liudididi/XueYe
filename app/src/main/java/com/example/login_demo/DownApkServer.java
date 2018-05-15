@@ -1,12 +1,8 @@
 package com.example.login_demo;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.DownloadManager;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,18 +14,10 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.FileProvider;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.File;
-
-import retrofit2.http.Query;
-import untils.PermissionUtils;
-
-import static com.example.login_demo.MyApp.context;
 
 /**
  * Created by 地地 on 2018/2/7.
@@ -75,7 +63,7 @@ public class DownApkServer extends Service {
         /**设置下载文件的类型*/
         request.setMimeType("application/vnd.android.package-archive");
         /**设置下载存放的文件夹和文件名字*/
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "baiduren.apk");
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "login_demo.apk");
         /**设置下载时或者下载完成时，通知栏是否显示*/
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setTitle("学业摆渡人");

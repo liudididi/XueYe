@@ -2,6 +2,9 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.More_SchoolActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
-import com.meg7.widget.CustomShapeImageView;
 
 import java.util.List;
 
 import base.BaseApi;
-import base.BaseBean;
-import bean.CanSchoolBean;
 import bean.CanSchoolBean2;
 import untils.NetUtil;
-import view.WishView;
 
 /**
  * Created by 地地 on 2018/1/21.
@@ -76,10 +76,19 @@ public class Wash_School_adapter  extends RecyclerView.Adapter{
                 break;
             case 1:
                 final School_viewHoder school_viewHoder= (School_viewHoder) holder;
-                Glide.with(context).load(BaseApi.ImgApi+list.get(position).getImgurl()).into(school_viewHoder.item_school_icon);
                 school_viewHoder.item_school_name.setText(list.get(position).getName());
                 school_viewHoder.item_school_address.setText(list.get(position).getAddress()+"  "+list.get(position).getTypeRank());
 
+              //  Glide.with(context).load(BaseApi.ImgApi+list.get(position).getImgurl()).into(school_viewHoder.item_school_icon);
+                Glide.with(context).load(BaseApi.ImgApi+list.get(position).getImgurl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(school_viewHoder.item_school_icon) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        school_viewHoder.item_school_icon  .setImageDrawable(circularBitmapDrawable);
+                    }
+                });
 
                 school_viewHoder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -120,7 +129,7 @@ public class Wash_School_adapter  extends RecyclerView.Adapter{
 
     class  School_viewHoder extends  RecyclerView.ViewHolder {
 
-        CustomShapeImageView item_school_icon;
+       ImageView item_school_icon;
          TextView item_school_name;
           TextView item_school_address;
           View view;

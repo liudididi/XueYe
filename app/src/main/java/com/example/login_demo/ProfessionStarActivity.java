@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +20,16 @@ import adapter.Gv_addressAdapter;
 import base.BaseActivity;
 import base.BaseBean;
 import bean.CXEFCBean;
+import bean.CityBean;
 import bean.MinlineBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.CXEFCPresenter;
 import untils.MyQusetUtils;
+import untils.NetUtil;
 import untils.SPUtils;
 import view.CXEFCView;
 
@@ -48,6 +49,8 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     public static String wenli = "1";
     @BindView(R.id.gv_address)
     GridView gvAddress;
+    @BindView(R.id.gv_addresstwo)
+    GridView gvAddressTwo;
     @BindView(R.id.pro_edfenshu)
     EditText proEdfenshu;
     @BindView(R.id.pro_edname)
@@ -85,6 +88,8 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     private String data;
     private CXEFCPresenter cxefcPresenter;
     private List<String> arealist;
+    private  String area;
+    private String city=null;
 
     @Override
     public int getId() {
@@ -93,7 +98,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
 
     @Override
     public void InIt() {
-        leixing= (String) SPUtils.get(MyApp.context,"EFCFX","本科");
+        leixing="本科";
         km = "文科";
         xingbie = "男";
         data = getIntent().getStringExtra("data");
@@ -140,12 +145,70 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
         gv_addressAdapter.setAddressBack(new Gv_addressAdapter.AddressBack() {
             @Override
             public void setaddress(String s) {
-                proTvaddress.setText(s);
-                rlLi.setVisibility(View.INVISIBLE);
-                rlWai.setVisibility(View.VISIBLE);
+                area=s;
+                if(s.equals("北京市")||s.equals("重庆市")||s.equals("天津市")||s.equals("香港")||s.equals("台湾")||s.equals("澳门")){
+                    proTvaddress.setText(area);
+                    rlLi.setVisibility(View.INVISIBLE);
+                    rlWai.setVisibility(View.VISIBLE);
+                    return;
+                }
+                if(NetUtil.isNetworkAvailable(ProfessionStarActivity.this)==false){
+                    Toast.makeText(ProfessionStarActivity.this, "检查您的网络", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                MyQusetUtils.getInstance().getQuestInterface().getcitybyname(s)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableSubscriber<BaseBean<List<CityBean>>>() {
+                            @Override
+                            public void onNext(BaseBean<List<CityBean>> listBaseBean) {
+
+                                if(listBaseBean.code==0){
+                                    List<CityBean> data = listBaseBean.data;
+                                    if(data.size()>0&&data!=null){
+                                        gvAddress.setVisibility(View.INVISIBLE);
+                                        gvAddressTwo.setVisibility(View.VISIBLE);
+                                        List<String> addresstwo=new ArrayList<>();
+                                        for (int i = 0; i < data.size(); i++) {
+                                            addresstwo.add(data.get(i).getCity());
+                                        }
+                                        Gv_addressAdapter gv_addressAdapter = new Gv_addressAdapter(addresstwo, ProfessionStarActivity.this);
+                                        gv_addressAdapter.setAddressBack(new Gv_addressAdapter.AddressBack() {
+                                            @Override
+                                            public void setaddress(String s) {
+                                                city=s;
+                                                proTvaddress.setText(area+city);
+                                                rlLi.setVisibility(View.INVISIBLE);
+                                                rlWai.setVisibility(View.VISIBLE);
+                                            }
+                                        });
+                                        gvAddressTwo.setAdapter(gv_addressAdapter);
+                                    }
+
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onError(Throwable t) {
+
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+
+
+
             }
         });
         gvAddress.setAdapter(gv_addressAdapter);
+
+
+
     }
 
     @Override
@@ -192,6 +255,8 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
             case R.id.pro_tvaddress:
                 rlLi.setVisibility(View.VISIBLE);
                 rlWai.setVisibility(View.INVISIBLE);
+                gvAddress.setVisibility(View.VISIBLE);
+                gvAddressTwo.setVisibility(View.INVISIBLE);
                 break;
             case R.id.ll_wen:
                 imgWen.setImageResource(R.drawable.hong);
@@ -260,7 +325,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                         return;
                     }
 
-                    MyQusetUtils.getInstance().getQuestInterface().getMinline(address,km)
+                    MyQusetUtils.getInstance().getQuestInterface().getMinline(area,km)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .retry(2).subscribeWith(new DisposableSubscriber<BaseBean<List<MinlineBean>>>() {
@@ -323,7 +388,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
 
         //保存职业筛选条件
         MyQusetUtils.getInstance().getQuestInterface()
-                .updateStuInfo(fenshu,name,km, leixing, xingbie,address, token)
+                .updateStuInfo(fenshu,name,km, leixing, xingbie,address, city,token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .retry(2)
@@ -355,8 +420,13 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
         if (cxefcBeanBaseBean.data != null) {
             proEdname.setText(cxefcBeanBaseBean.data.getName());
+           if(cxefcBeanBaseBean.data.getCity()!=null){
+               proTvaddress.setText(cxefcBeanBaseBean.data.getSourceArea()+cxefcBeanBaseBean.data.getCity());
+           }else {
 
-            proTvaddress.setText(cxefcBeanBaseBean.data.getSourceArea());
+               proTvaddress.setText(cxefcBeanBaseBean.data.getSourceArea());
+           }
+
 
             proEdfenshu.setText(cxefcBeanBaseBean.data.getCeeScore());
 

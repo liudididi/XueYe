@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseApi;

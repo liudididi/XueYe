@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,7 +15,6 @@ import base.BaseBean;
 import bean.CXEFCBean;
 import bean.EsaySdsBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.panpf.swsv.CircularLayout;
 import me.panpf.swsv.SpiderWebScoreView;

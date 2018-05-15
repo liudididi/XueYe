@@ -1,7 +1,9 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -16,7 +18,6 @@ import adapter.SimpleExpandableListViewAdapter;
 import base.BaseActivity;
 import bean.SelectMajorBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.SelectMajorPresent;
 import view.SelectMajorView;
@@ -93,6 +94,12 @@ public class MoreMajorActivity extends BaseActivity implements SelectMajorView, 
                 BendaAdapter bendaAdapter = new BendaAdapter(list, this);
                 bendaAdapter.setSetbendaBack(this);
                 bendaList.setAdapter(bendaAdapter);
+                Animation animation = (Animation) AnimationUtils.loadAnimation(
+                         MoreMajorActivity.this, R.anim.rotate);
+                      LayoutAnimationController lac = new LayoutAnimationController(animation);
+                       lac.setDelay(0.2f);  //设置动画间隔时间
+                      lac.setOrder(LayoutAnimationController.ORDER_NORMAL); //设置列表的显示顺序
+                bendaList.setLayoutAnimation(lac);
                 BenXiaoAdapter benXiaoAdapter = new BenXiaoAdapter(list.get(0).getChild(), this);
                 benxiaoList.setAdapter(benXiaoAdapter);
 
@@ -113,6 +120,12 @@ public class MoreMajorActivity extends BaseActivity implements SelectMajorView, 
                     }
                 });
                 zhuandaList.setAdapter(bendaAdapter);
+                Animation animation = (Animation) AnimationUtils.loadAnimation(
+                        MoreMajorActivity.this, R.anim.rotate);
+                LayoutAnimationController lac = new LayoutAnimationController(animation);
+                lac.setDelay(0.2f);  //设置动画间隔时间
+                lac.setOrder(LayoutAnimationController.ORDER_NORMAL); //设置列表的显示顺序
+                zhuandaList.setLayoutAnimation(lac);
                 BenXiaoAdapter benXiaoAdapter = new BenXiaoAdapter(list.get(0).getChild(), this);
                 zhuanxiaoList.setAdapter(benXiaoAdapter);
 

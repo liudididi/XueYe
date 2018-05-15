@@ -2,6 +2,9 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
-import com.meg7.widget.CustomShapeImageView;
 
 import java.util.List;
 
@@ -47,13 +50,23 @@ public class MySchoolRecycle extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
+        final MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getName());
         mySchoolViewHolder.schoolitem_typerank.setText(list.get(position).getVlaue2());
         mySchoolViewHolder.schoolitem_address.setText(list.get(position).getValue1());
         String url = list.get(position).getValue3();
         if(url!=null){
-            Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
+          //  Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
+
+            Glide.with(context).load(BaseApi.ImgApi + url).asBitmap().centerCrop().into(new BitmapImageViewTarget(mySchoolViewHolder.schoolitem_url) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    mySchoolViewHolder.schoolitem_url.setImageDrawable(circularBitmapDrawable);
+                }
+            });
         }
 
         mySchoolViewHolder.view.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +88,7 @@ public class MySchoolRecycle extends RecyclerView.Adapter {
         private TextView    schoolitem_name;
         private TextView    schoolitem_address;
         private TextView    schoolitem_typerank;
-        private CustomShapeImageView schoolitem_url;
+        private ImageView schoolitem_url;
         private  View view;
         public MySchoolViewHolder(View itemView) {
             super(itemView);

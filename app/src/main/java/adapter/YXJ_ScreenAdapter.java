@@ -11,8 +11,6 @@ import com.example.login_demo.R;
 
 import java.util.ArrayList;
 
-import bean.BiaoshiBean;
-
 /**
  * Created by 祝文 on 2018/3/10.
  */

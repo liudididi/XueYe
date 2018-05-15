@@ -11,8 +11,6 @@ import com.example.login_demo.R;
 
 import java.util.ArrayList;
 
-import bean.StudyBean2;
-
 /**
  * Created by 祝文 on 2018/2/1.
  */

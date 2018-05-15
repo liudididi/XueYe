@@ -14,7 +14,7 @@
             android:layout_height="14px"
             android:background="#F3F3F3"
              ></View>
-        <com.meg7.widget.CustomShapeImageView
+        <ImageView
             android:id="@+id/schoolitem_url"
             android:layout_width="150px"
             android:layout_height="150px"

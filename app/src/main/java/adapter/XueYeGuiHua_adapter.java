@@ -10,8 +10,6 @@ import com.example.login_demo.R;
 
 import java.util.List;
 
-import bean.jobStarBean;
-
 /**
  * Created by 地地 on 2018/3/15.
  * 邮箱：461211527@qq.com.
@@ -20,14 +18,10 @@ import bean.jobStarBean;
 public class XueYeGuiHua_adapter extends BaseAdapter {
     private List<String>  list;
     private Context context;
-
     public XueYeGuiHua_adapter(List<String> list, Context context) {
         this.list = list;
         this.context = context;
     }
-
-
-
     @Override
     public int getCount() {
         return list.size();
@@ -67,7 +61,6 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
         {
             zyGai = zyGai.substring(2)+"0";
         }
-
         ghitem_gailv.setText(zyGai+"%");
          return convertView;
     }

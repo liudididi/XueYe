@@ -351,8 +351,8 @@ public class ZhiMaScoreView3 extends View {
         textPaint.setTextSize(dipToPx(12));
         textPaint.setColor(textNormalColor);
 
-        canvas.drawText(String.valueOf(maxScore), viewWith * 0.1f - dipToPx(10), viewHeight * 0.15f + textSize * 0.25f, textPaint);
-        canvas.drawText(String.valueOf(minScore), viewWith * 0.1f - dipToPx(10), viewHeight * 0.4f + textSize * 0.25f, textPaint);
+        canvas.drawText("", viewWith * 0.1f - dipToPx(10), viewHeight * 0.15f + textSize * 0.25f, textPaint);
+       canvas.drawText("", viewWith * 0.1f - dipToPx(10), viewHeight * 0.4f + textSize * 0.25f, textPaint);
 
         textPaint.setColor(0xff7c7c7c);
 

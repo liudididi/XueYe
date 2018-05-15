@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.login_demo.R;
-import com.example.login_demo.SelectSchoolActivity;
 import com.example.login_demo.perfectMessageActivity;
 
 import java.util.List;
 
 import bean.AreaBean;
-import bean.CityBean;
 import untils.SPUtils;
 
 /**

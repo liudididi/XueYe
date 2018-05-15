@@ -1,9 +1,7 @@
 package com.example.login_demo;
 
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,14 +13,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.meg7.widget.CustomShapeImageView;
-import com.weavey.loading.lib.LoadingLayout;
 
 import base.BaseActivity;
 import base.BaseBean;
 import bean.MyUserBean;
 import bean.UserBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

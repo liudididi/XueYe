@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -23,7 +22,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.CollerMajorBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fragment.Majorgk_Fragment;
 import fragment.Majorqj_Fragment;

@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +13,6 @@ import base.BaseActivity;
 import bean.MyUserBean;
 import bean.UserBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.ChangePhonePresent;
 import untils.SPUtils;

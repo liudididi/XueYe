@@ -1,10 +1,15 @@
 package fragment;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.login_demo.JJParticularsActivity;
+import com.example.login_demo.MyApp;
 import com.example.login_demo.ParticularsActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
@@ -74,7 +80,7 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
     private TextView tv_wangzhi;
     private TextView tv_youxiang;
     private TextView tv_phone;
-
+    final public static int REQUEST_CODE_ASK_CALL_PHONE=123;
     @Override
     public int getLayoutid() {
         return R.layout.school_summary;
@@ -87,8 +93,16 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         if(SchoolDetailActivity.bhsd!=null){
             ss_bsd.setText(SchoolDetailActivity.bhsd);
         }
+        else
+        {
+            ss_bsd.setText("暂无信息");
+        }
         if(SchoolDetailActivity.shsd!=null){
             ss_tvshd.setText(SchoolDetailActivity.shsd);
+        }
+        else
+        {
+            ss_tvshd.setText("暂无信息");
         }
 
         school_summaryPresent = new School_SummaryPresent(this);
@@ -98,18 +112,26 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             @Override
             public void Introducesuccess(BaseBean<List<SchoolIntroduceBean>> listBaseBean) {
                 List<SchoolIntroduceBean> data = listBaseBean.data;
-                if(data.get(0).getHistory().equals(""))
+                if(data.size()>0&&data!=null)
                 {
-                    ss_tvjs.setVisibility(View.VISIBLE);
-                    ss_tvjs.setText("暂无数据");
+                    if(data.get(0).getHistory().equals(""))
+                    {
+                        ss_tvjs.setVisibility(View.VISIBLE);
+                        ss_tvjs.setText("暂无数据");
 
+                    }
+                    else
+                    {
+                        history = data.get(0).getHistory();
+                        ss_tvjs.setVisibility(View.VISIBLE);
+                        ss_tvjs.setText(history);
+                    }
                 }
                 else
                 {
-                    history = data.get(0).getHistory();
-                    ss_tvjs.setVisibility(View.VISIBLE);
-                    ss_tvjs.setText(history);
+                    ss_tvjs.setText("暂无数据");
                 }
+
             }
 
             @Override
@@ -171,52 +193,62 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             @Override
             public void LianXisuccess(BaseBean<List<LXBean>> lxBeanBaseBean) {
                 List<LXBean> data = lxBeanBaseBean.data;
-                //网址
-                final String admission_plan =data.get(0).getWebsite();
-                //邮箱
-                String email =data.get(0).getEmail();
-                //电话
-                final String phone = data.get(0).getPhone();
-                if(admission_plan!=null)
+                if(data.size()>0&&data!=null)
                 {
-                    tv_wangzhi.setText(admission_plan);
-                    tv_wangzhi.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(getContext(), ParticularsActivity.class);
-                            intent.putExtra("particulars_title","官方网址");
-                            intent.putExtra("url",admission_plan);
-                            startActivity(intent);
-                        }
-                    });
+                    //网址
+                    final String admission_plan =data.get(0).getWebsite();
+                    //邮箱
+                    String email =data.get(0).getEmail();
+                    //电话
+                    final String phone = data.get(0).getPhone();
+                    if(admission_plan!=null)
+                    {
+                        tv_wangzhi.setText(admission_plan);
+                        tv_wangzhi.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getContext(), ParticularsActivity.class);
+                                intent.putExtra("particulars_title","官方网址");
+                                intent.putExtra("url",admission_plan);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                    if(email!=null)
+                    {
+                        tv_youxiang.setText(email);
+                    }
+                    if(phone!=null)
+                    {
+                        tv_phone.setText(phone);
+                        tv_phone.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                AlertDialog.Builder ab=new AlertDialog.Builder(getContext()).setMessage("是否拨打"+phone+"?")
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            }
+                                        }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                callPhone(phone);
+                                            }
+                                        });
+                                ab.create().show();
+                            }
+                        });
+
+                    }
                 }
-                if(email!=null)
+
+                else
                 {
-                    tv_youxiang.setText(email);
-                }
-                if(phone!=null)
-                {
-                    tv_phone.setText(phone);
-                    tv_phone.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            AlertDialog.Builder ab=new AlertDialog.Builder(getContext()).setMessage("是否拨打"+phone+"?")
-                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                        }
-                                    }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            callPhone(phone);
-                                        }
-                                    });
-                            ab.create().show();
-                        }
-                    });
-
+                    tv_wangzhi.setText("                               暂无数据");
+                    tv_youxiang.setText("暂无数据");
+                    tv_phone.setText("暂无数据");
                 }
 
             }
@@ -233,11 +265,42 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         schoolIntroducePresent.LianXIPresent(SchoolDetailActivity.schoolname);
     }
     public void callPhone(String phoneNum) {
-        Intent intent = new Intent(Intent.ACTION_CALL);
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            int checkCallPhonePermission = ContextCompat.checkSelfPermission(getContext(),
+                    Manifest.permission.CALL_PHONE);
+            if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(), new String[] {
+                        Manifest.permission.CALL_PHONE
+                }, REQUEST_CODE_ASK_CALL_PHONE);
+                return;
+            } else {
+                 Intent intent = new Intent(Intent.ACTION_CALL);
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);
         startActivity(intent);
+            }
+        } else {
+            Intent intent = new Intent(Intent.ACTION_CALL);
+        Uri data = Uri.parse("tel:" + phoneNum);
+        intent.setData(data);
+        startActivity(intent);
+        }
     }
+
+    //动态权限申请后处理
+    @Override public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults){
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_CALL_PHONE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted callDirectly(mobile);
+                }else {
+                    // Permission Denied Toast.makeText(MainActivity.this,"CALL_PHONE Denied", Toast.LENGTH_SHORT) .show();
+                }break;
+            default:super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        } }
+
+
     private void onClick() {
         ll_xiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -317,15 +380,13 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         tv_wangzhi = view.findViewById(R.id.tv_wangzhi);
         tv_youxiang = view.findViewById(R.id.tv_youxiang);
         tv_phone = view.findViewById(R.id.tv_phone);
-
     }
-
     @Override
     public void Studentfromsuccess(List<StudentFromBean> listBaseBean) {
      if(listBaseBean.size()>0&&listBaseBean!=null){
          StudentFromBean studentFromBean = listBaseBean.get(0);
-         PieChatView pieChatView=new PieChatView(getContext());
-         pieChatView.setPadding(80,50,80,50);
+         PieChatView pieChatView=new PieChatView(MyApp.context);
+         pieChatView.setPadding(120,60,100,60);
          kindsMap.put("华北", studentFromBean.getHn());
          kindsMap.put("东北", studentFromBean.getEn());
          kindsMap.put("华东", studentFromBean.getHe());
@@ -344,8 +405,23 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
          pieChatView.setMinAngle(50);
          pieChatView.startDraw();
          ss_rlbin.addView(pieChatView);
-         tvwomen_bfb.setText(studentFromBean.getWoman()+"%");
-         tvman_bfb.setText(studentFromBean.getMan()+"%");
+         if(studentFromBean.getWoman()!=0)
+         {
+             tvwomen_bfb.setText(studentFromBean.getWoman()+"%");
+         }
+         else
+         {
+             tvwomen_bfb.setText(0+"%");
+         }
+        if(studentFromBean.getMan()!=0)
+        {
+            tvman_bfb.setText(studentFromBean.getMan()+"%");
+        }
+        else
+        {
+            tvman_bfb.setText(0+"%");
+        }
+
          ss_back.setVisibility(View.GONE);
           if(studentFromBean.getWn()==0&&studentFromBean.getWs()==0&&studentFromBean.getHs()==0&&studentFromBean.getHe()==0&&studentFromBean.getHn()==0&&studentFromBean.getEn()==0)
          {
@@ -363,9 +439,6 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
     public void StudentfromFail(String msg) {
 
     }
-
-
-
     @Override
     public void onDestroy() {
         super.onDestroy();

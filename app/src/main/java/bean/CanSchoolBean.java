@@ -22,19 +22,20 @@ public class CanSchoolBean {
     public static class ListBean {
         /**
          * nine : 985
-         * address : 甘肃省兰州市
+         * address : 广东省广州市
          * father : 教育部
-         * typeRank : 综合19
+         * typeRank : 理工10
          * univType : 大学
          * two : 211
          * defense_student : 国防生
-         * url : /images/school/201202160247399876.jpg
-         * com_rank : B+
+         * url : /images/school/201202170134108906.jpg
+         * com_rank : A-
          * graduate : 研究生院
          * recruit : 自主招生
-         * name : 兰州大学
-         * ranking : 全国34
-         * preeminent_plan :
+         * name : 华南理工大学
+         * ranking : 全国27
+         * preeminent_plan : 卓越计划
+         * time : 本科一批
          */
 
         private String nine;
@@ -51,6 +52,7 @@ public class CanSchoolBean {
         private String name;
         private String ranking;
         private String preeminent_plan;
+        private String time;
 
         public String getNine() {
             return nine;
@@ -162,6 +164,14 @@ public class CanSchoolBean {
 
         public void setPreeminent_plan(String preeminent_plan) {
             this.preeminent_plan = preeminent_plan;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
         }
     }
 }

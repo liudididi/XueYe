@@ -12,7 +12,6 @@ import com.example.login_demo.R;
 import java.util.List;
 
 import bean.MoreJobBean;
-import bean.SelectMajorBean;
 import untils.ListViewForScrollView;
 
 /**

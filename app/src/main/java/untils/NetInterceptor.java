@@ -1,8 +1,5 @@
 package untils;
 
-import android.os.Build;
-import android.util.Log;
-
 
 import com.example.login_demo.MyApp;
 

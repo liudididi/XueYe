@@ -1,18 +1,11 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 import adapter.Citys_Adapter;
 import base.BaseActivity;
@@ -21,11 +14,8 @@ import bean.CityBean;
 import bean.ProviceBean;
 import bean.SelectSchoolBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.RequestBody;
 import presenter.SelectSchoolPrsent;
-import untils.JSONUtils;
 import untils.SPUtils;
 import view.SelectSchoolView;
 

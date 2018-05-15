@@ -3,7 +3,6 @@ package com.example.login_demo;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
@@ -28,7 +27,6 @@ import base.BaseBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fragment.WishFragMent;
 import presenter.CountdownPresent;
@@ -158,21 +156,22 @@ public class Buy2Activity extends BaseActivity implements PayView {
         TextView diangdan_money = dialogView.findViewById(R.id.diangdan_money);
         TextView tv_bianhao = dialogView.findViewById(R.id.tv_bianhao);
         TextView tv_mingcheng = dialogView.findViewById(R.id.tv_mingcheng);
-        if(zk)
+     /*   if(zk)
         {
             tv_mingcheng.setText("升学设计系统--专科版");
         }
         else
         {
             tv_mingcheng.setText("升学设计系统--本科版");
-        }
-
+        }*/
+        tv_mingcheng.setText("升学设计系统");
         tv_bianhao.setText(outTradeNo);
-        if(zk){
-            diangdan_money.setText("598");
+    /*    if(zk){
+            diangdan_money.setText("698");
         }else {
-            diangdan_money.setText("598");
-        }
+            diangdan_money.setText("698");
+        }*/
+        diangdan_money.setText("698");
 
         iv_chahao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,15 +230,17 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 break;
             case R.id.tv_goumai2:
                 if(token.length()>4){
+                    payPresent.XiaDan(token,"4",pay+"");
+                  /*
                     zk=false;
-                    View viewe = LayoutInflater.from(Buy2Activity.this).inflate(R.layout.dilog_gmbb, null);
+                  View viewe = LayoutInflater.from(Buy2Activity.this).inflate(R.layout.dilog_gmbb, null);
                     final AlertDialog dialog = new AlertDialog.Builder(Buy2Activity.this)
                             .setView(viewe).show();
 
-                    //为获取屏幕宽、高
+                   *//* //为获取屏幕宽、高
                     WindowManager.LayoutParams p = dialog.getWindow().getAttributes();  //获取对话框当前的参数值
                     p.height = (int) (heightPixels * 0.4);   //高度设置为屏幕的0.3//宽度设置为屏幕的0.5
-                    dialog.getWindow().setAttributes(p);
+                    dialog.getWindow().setAttributes(p);*//*
                   final ImageView img_bk= viewe.findViewById(R.id.img_bk);
                   final ImageView img_zk= viewe.findViewById(R.id.img_zk);
                   final TextView tv_gm= viewe.findViewById(R.id.tv_gm);
@@ -269,7 +270,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
                             img_zk.setImageResource(R.drawable.back_circleblcak);
                             zk=true;
                         }
-                    });
+                    });*/
 
                 /*    Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);

@@ -2,19 +2,22 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.R;
-import com.example.login_demo.SchoolDetailActivity;
 import com.example.login_demo.TuiJianSchoolActivity;
-import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +48,20 @@ public class MoreSchool_Adapter extends RecyclerView.Adapter<MoreSchool_Adapter.
         return myViewHolder;
     }
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
-        Glide.with(context).load(BaseApi.ImgApi+list.get(position).getImgurl()).into(holder.moreschool_iv);
+       // Glide.with(context).load(BaseApi.ImgApi+list.get(position).getImgurl()).into(holder.moreschool_iv);
+
+        Glide.with(context).load(BaseApi.ImgApi + list.get(position).getImgurl()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.moreschool_iv) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                holder.moreschool_iv.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+
         holder.more_name.setText(list.get(position).getName());
         holder.more_address.setText(list.get(position).getAddress());
 
@@ -109,6 +123,7 @@ public class MoreSchool_Adapter extends RecyclerView.Adapter<MoreSchool_Adapter.
                 CircleProgressView.mPaintColor= Color.RED;
                 CircleProgressView.mTextColor=Color.RED;
                 intent.putExtra("schoolname",list.get(position).getName());
+                intent.putExtra("pici",list.get(position).getTime());
                 intent.putExtra("schoolurl",BaseApi.ImgApi+list.get(position).getImgurl());
                  context.startActivity(intent);
 
@@ -124,7 +139,7 @@ public class MoreSchool_Adapter extends RecyclerView.Adapter<MoreSchool_Adapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private final CustomShapeImageView moreschool_iv;
+        private final ImageView moreschool_iv;
         private final TextView more_name;
         private final TextView more_address;
         private final TextView more_zh;

@@ -1,18 +1,14 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.UnsupportedEncodingException;
-
 import base.BaseActivity;
 import base.BaseBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.SuggestPresent;
 import view.SuggestView;

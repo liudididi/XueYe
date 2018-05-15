@@ -6,19 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.login_demo.MajorDetailActivity;
-import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
-import com.example.login_demo.perfectMessageActivity;
 
 import java.util.List;
 
 import bean.SearchBean;
-import bean.SelectSchoolBean;
-import untils.SPUtils;
 
 /**
  * Created by 地地 on 2018/1/27.

@@ -51,8 +51,8 @@ public class MyQusetUtils {
           }
           Retrofit.Builder builder = new Retrofit.Builder()
                   .baseUrl(BaseApi.Api).client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+                  .addConverterFactory(GsonConverterFactory.create())
+                  .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
           QuestInterface questInterface=builder.build().create(QuestInterface.class);
           myQusetUtils=new MyQusetUtils(questInterface);
       }

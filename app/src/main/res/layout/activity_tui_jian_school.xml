@@ -57,7 +57,7 @@
                 android:layout_height="200px">
 
 
-                <com.meg7.widget.CustomShapeImageView
+                <ImageView
                     android:id="@+id/tuijian_iv"
                     android:layout_width="146px"
                     android:layout_height="146px"
@@ -82,7 +82,7 @@
                             android:id="@+id/tuijian_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="北京工业大学"/>
+                         />
 
                     </LinearLayout>
                     <TextView
@@ -209,19 +209,21 @@
     android:gravity="center"
     android:textColor="#666"
     android:textSize="32px"
-    android:text="因考生意愿和主观因素，EFC无法进行精准推测,需开通EFC精准志愿辅助系统。"
+    android:text="因考生意愿和主观因素，升学设计系统无法进行精准推测,需开通升学设计系统精准志愿辅助系统。"
     />
        <TextView
            android:id="@+id/tv_ktefc"
            android:textSize="38px"
            android:layout_gravity="center_horizontal"
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="138px"
-           android:layout_marginTop="18px"
+           android:layout_marginTop="30px"
            android:textColor="#fff"
            android:gravity="center"
+           android:layout_marginLeft="94px"
+           android:layout_marginRight="94px"
            android:background="@drawable/bg_profession"
-           android:text="开通EFC精准志愿辅助系统"
+           android:text="开通升学设计系统精准志愿辅助系统"
            />
                 <View
                     android:layout_width="match_parent"
@@ -245,7 +247,7 @@
               android:textSize="50px"
               android:textColor="#333333"
               android:gravity="center"
-              android:text="您EFC学业测评没有完成，无法为您进行精准推测"
+              android:text="您升学设计系统测评没有完成，无法为您进行精准推测"
               android:layout_width="match_parent"
               android:layout_height="wrap_content" />
 <ImageView
@@ -263,7 +265,7 @@
     android:layout_gravity="center"
     android:layout_width="500px"
     android:layout_height="104px"
-    android:text="继续EFC学业精准测评"
+    android:text="继续升学设计系统精准测评"
     />
 
                 <View
@@ -343,7 +345,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="50px"
-                            android:text="已生成EFC学业规划报告"
+                            android:text="已生成升学设计系统规划报告"
                             />
                         <TextView
                             android:layout_marginTop="10px"

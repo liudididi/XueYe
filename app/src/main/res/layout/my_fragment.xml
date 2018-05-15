@@ -93,9 +93,9 @@
             android:textSize="50px"/>
     </LinearLayout>
 
-    <com.meg7.widget.CustomShapeImageView
+    <ImageView
         android:id="@+id/my_icon"
-        android:layout_marginTop="300px"
+        android:layout_marginTop="315px"
         android:layout_width="180px"
         android:layout_height="180px"
         android:layout_marginLeft="100px"
@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:text="立即登录，体验更多功能"
         android:textSize="40px"
-        android:layout_marginTop="310px"
+        android:layout_marginTop="330px"
         android:layout_marginLeft="40px"
         android:layout_toRightOf="@+id/my_icon"
         android:textColor="#999999"/>
@@ -118,7 +118,7 @@
          android:layout_width="wrap_content"
         android:id="@+id/myfragment_name"
         android:layout_height="wrap_content"
-        android:layout_marginTop="335px"
+        android:layout_marginTop="350px"
         android:layout_marginLeft="40px"
         android:textColor="#333333"
          />
@@ -129,7 +129,7 @@
         android:layout_height="40px"
         android:src="@drawable/compile"
         android:layout_marginLeft="10px"
-        android:layout_marginTop="345px"
+        android:layout_marginTop="360px"
         android:layout_toRightOf="@+id/myfragment_name"/>
     <TextView
         android:visibility="invisible"

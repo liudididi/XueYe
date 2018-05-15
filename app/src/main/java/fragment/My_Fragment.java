@@ -2,7 +2,9 @@ package fragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.AddServeActivity;
 import com.example.login_demo.CharacterActivity;
 import com.example.login_demo.GradePolyLineActivity;
@@ -26,8 +29,8 @@ import com.example.login_demo.R;
 import com.example.login_demo.ReportedActivity;
 import com.example.login_demo.SetTingActivity;
 import com.example.login_demo.SuggestActivity;
-import com.meg7.widget.CustomShapeImageView;
 
+import base.BaseApi;
 import base.BaseBean;
 import base.Basefragment;
 import bean.MyUserBean;
@@ -44,7 +47,7 @@ import view.CountdownView;
 public class My_Fragment extends Basefragment implements View.OnClickListener, CountdownView{
 
     private TextView my_login;
-    private CustomShapeImageView my_icon;
+    private  ImageView my_icon;
     private RelativeLayout my_school,my_major,my_washtable,my_character,my_gradetable
                             ,my_help,my_addserve,my_suggest;
 
@@ -268,7 +271,6 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
              tv_tv.setVisibility(View.GONE);
             UserBean userBeanInstans = MyUserBean.getUserBeanInstans();
             if(userBeanInstans!=null){
-
                  school = (String) SPUtils.get(MyApp.context, "school", "地区");
                  name = (String) SPUtils.get(MyApp.context, "name", "姓名");
                 myfragment_name.setVisibility(View.VISIBLE);
@@ -278,18 +280,60 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
                 myfragment_school.setText(school);
                 if(userBeanInstans.getSex()!=null){
                     if(userBeanInstans.getSex().equals("女")){
-                        Glide.with(getActivity()).load(R.drawable.gril).into(my_icon);
+                       // Glide.with(getActivity()).load(R.drawable.gril).into(my_icon);
+                       // my_icon.setImageResource(R.drawable.gril);
+                        Glide.with(MyApp.context).load(R.drawable.gril).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                my_icon .setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
+
+
+
                     }else {
-                        Glide.with(getActivity()).load(R.drawable.boy).into(my_icon);
+                      //  Glide.with(getActivity()).load(R.drawable.boy).into(my_icon);
+                        Glide.with(MyApp.context).load(R.drawable.boy).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                my_icon .setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
                     }
                 }
                 else {
-                    Glide.with(getActivity()).load(R.drawable.boy).into(my_icon);
+                    /*Glide.with(getActivity()).load(R.drawable.boy).into(my_icon);*/
+                   // my_icon.setImageResource(R.drawable.boy);
+
+                    Glide.with(MyApp.context).load(R.drawable.boy).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            my_icon .setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
                 }
             }
             my_login.setEnabled(false);
         }else {
-            my_icon.setImageResource(R.drawable.moren);
+           // my_icon.setImageResource(R.drawable.moren);
+            Glide.with(MyApp.context).load(R.drawable.moren).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    my_icon .setImageDrawable(circularBitmapDrawable);
+                }
+            });
             my_login.setText("登录");
             tv_tv.setVisibility(View.VISIBLE);
             iv_qm.setVisibility(View.GONE);

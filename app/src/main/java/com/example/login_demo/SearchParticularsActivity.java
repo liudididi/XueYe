@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -23,7 +22,6 @@ import base.BaseActivity;
 import bean.HotBean;
 import bean.SearchBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.SearchPresent;
 import untils.FlowLayout;

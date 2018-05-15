@@ -2,13 +2,17 @@ package untils;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
@@ -21,14 +25,11 @@ import java.util.Random;
  */
 
 public class FlowLayout extends ViewGroup {
-
-
-
      private   List<TextView> listtext=new ArrayList<>();
     private   List<TextView> listxb=new ArrayList<>();
-
     private LayoutInflater mInflater;
     private boolean isColorful;
+    private  boolean is1080=false;
 
     public FlowLayout(Context context) {
         this(context, null);
@@ -41,6 +42,13 @@ public class FlowLayout extends ViewGroup {
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mInflater = LayoutInflater.from(getContext());
+
+
+        Integer fbl = (Integer) SPUtils.get(MyApp.context, "FBL", 1920);
+
+        if(fbl<=1280){
+            is1080=true;
+        }
     }
 
     @Override
@@ -106,7 +114,13 @@ public class FlowLayout extends ViewGroup {
                         : width + getPaddingLeft() + getPaddingRight(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height
                         + getPaddingTop() + getPaddingBottom());
-        setPadding(dp2px(0), dp2px(6), dp2px(5), dp2px(7));
+        if(is1080){
+            setPadding(dp2px(0), dp2px(6), dp2px(2), dp2px(3));
+
+        }else {
+            setPadding(dp2px(0), dp2px(6), dp2px(5), dp2px(7));
+        }
+
     }
 
     // 储存所有的View
@@ -223,6 +237,14 @@ public class FlowLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_textview, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(strings[i]);
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -232,9 +254,6 @@ public class FlowLayout extends ViewGroup {
 
                 }
             });
-
-
-
             if(isColorful){
                 Random random = new Random();
                 int ranColor = 0xff000000 | random.nextInt(0x00ffffff);
@@ -255,6 +274,14 @@ public class FlowLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_textview, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(list.get(i));
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -274,6 +301,14 @@ public class FlowLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_schooltext, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(list.get(i));
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -293,6 +328,14 @@ public class FlowLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_tuijian, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(15,0,15,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(list.get(i));
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -314,6 +357,14 @@ public class FlowLayout extends ViewGroup {
             final TextView tv = (TextView) mInflater.inflate(R.layout.zhuanye_textview, this,
                     false);
               listtext.add(tv);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(10,0,10,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 50;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
 
              tv.setText(list.get(i).toString());
             final int finalI = i;
@@ -338,6 +389,14 @@ public class FlowLayout extends ViewGroup {
         for (int i = 0; i < count; i++) {
             final TextView tv = (TextView) mInflater.inflate(R.layout.zyschool_textview, this,
                     false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
             tv.setText(list.get(i));
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -359,7 +418,11 @@ public class FlowLayout extends ViewGroup {
     public void addTag(String text) {
         final TextView tv = (TextView) mInflater.inflate(R.layout.flowlayout_textview, this,
                 false);
+
+
+
         tv.setText(text);
+
         tv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -416,7 +479,6 @@ public class FlowLayout extends ViewGroup {
     public  void  setbianli(int post){
        if(listtext!=null&&listtext.size()>0){
            for (int i = 0; i < listtext.size(); i++) {
-
                if(post==i){
                    listtext.get(i).setTextColor(Color.WHITE);
                    listtext.get(i).setBackgroundResource(R.drawable.back_zhuanye_lan);

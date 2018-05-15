@@ -2,24 +2,28 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
-import com.meg7.widget.CustomShapeImageView;
+import com.example.login_demo.TuiJianSchoolActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseApi;
 import bean.CheckSchoolBean;
-import bean.SchoolBean;
 import untils.FlowLayout;
 import untils.NetUtil;
 
@@ -61,7 +65,14 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
         holder.setIsRecyclable(false);
         final MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getName());
-        mySchoolViewHolder.schoolitem_typerank.setText(list.get(position).getRanking());
+        if(list.get(position).getRanking()!=null)
+        {
+            mySchoolViewHolder.schoolitem_typerank.setText(list.get(position).getRanking());
+        }
+        else
+        {
+            mySchoolViewHolder.schoolitem_typerank.setText("暂无数据");
+        }
         mySchoolViewHolder.schoolitem_address.setText(list.get(position).getAddress());
         final String url = list.get(position).getUrl();
         String two = list.get(position).getTwo();
@@ -94,7 +105,17 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
             mySchoolViewHolder.majoritem_flow.setZyListData(fujialist);
         }
         if(url!=null){
-            Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
+           // Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
+            Glide.with(context).load(BaseApi.ImgApi+url).asBitmap().centerCrop().into(new BitmapImageViewTarget(mySchoolViewHolder.schoolitem_url) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    mySchoolViewHolder.schoolitem_url .setImageDrawable(circularBitmapDrawable);
+                }
+            });
+
         }
          mySchoolViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +140,7 @@ public class MoreSchoolRecycle extends RecyclerView.Adapter {
         private TextView    schoolitem_name;
         private TextView    schoolitem_address;
         private TextView    schoolitem_typerank;
-        private CustomShapeImageView schoolitem_url;
+        private ImageView schoolitem_url;
         private FlowLayout majoritem_flow;
         private  View view;
         public MySchoolViewHolder(View itemView) {

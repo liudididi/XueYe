@@ -3,18 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:gravity="center_vertical">
+    >
+
 
     <ImageView
         android:id="@+id/recommend_iv"
         android:layout_width="250px"
         android:layout_height="250px"
-        android:layout_margin="54px"
-        android:scaleType="centerCrop"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="40px"
+         android:scaleType="fitXY"
+        android:adjustViewBounds="true"
     />
     <RelativeLayout
         android:layout_marginRight="50px"
         android:layout_width="match_parent"
+        android:layout_marginTop="40px"
+
         android:layout_height="260px">
         <TextView
             android:id="@+id/recommend_tv_title"

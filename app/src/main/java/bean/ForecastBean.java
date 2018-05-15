@@ -5,24 +5,21 @@ package bean;
  */
 
 public class ForecastBean {
-
-
     /**
-     * TIME : 本科一批
-     * lqgai : 0.83
-     * fscore : 660
+     * time : 本科一批
+     * lqgai : 0
+     * fscore : 652
      */
-
-    private String TIME;
+    private String time;
     private double lqgai;
     private int fscore;
 
-    public String getTIME() {
-        return TIME;
+    public String getTime() {
+        return time;
     }
 
-    public void setTIME(String TIME) {
-        this.TIME = TIME;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public double getLqgai() {

@@ -1,11 +1,9 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +13,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.CXEFCBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.EsayMbtiLSPresenter;
 import untils.SPUtils;

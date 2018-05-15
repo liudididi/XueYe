@@ -2,12 +2,13 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="850px">
+    android:layout_height="wrap_content">
+
     <LinearLayout
         android:id="@+id/ll_da"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/adress_title"
             android:textSize="50px"
@@ -178,14 +179,18 @@
             android:gravity="center"
             />
 <TextView
+    android:layout_gravity="center_horizontal"
     android:gravity="center"
     android:textColor="#f00"
     android:textSize="40px"
     android:layout_marginTop="50px"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="注; 考生所在地确定后不可修改，请谨慎填写"
     />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60px"></View>
     </LinearLayout>
      <GridView
          android:layout_marginTop="50px"
@@ -193,6 +198,6 @@
          android:visibility="gone"
           android:id="@+id/gd_address"
           android:layout_width="match_parent"
-          android:layout_height="match_parent">
+          android:layout_height="wrap_content">
       </GridView>
 </RelativeLayout>

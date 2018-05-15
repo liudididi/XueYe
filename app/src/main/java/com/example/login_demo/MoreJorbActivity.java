@@ -1,8 +1,9 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ExpandableListView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -13,11 +14,9 @@ import java.util.List;
 
 import adapter.JobXiaoAdapter;
 import adapter.JobdaAdapter;
-import adapter.MoreJobExpandableListViewAdapter;
 import base.BaseActivity;
 import bean.MoreJobBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.MoreJobPresent;
 import view.MorJobView;
@@ -81,6 +80,12 @@ public class MoreJorbActivity extends BaseActivity implements MorJobView, JobdaA
        JobdaAdapter jobdaAdapter=new JobdaAdapter(list,this);
        jobdaAdapter.setSetjobdaBack(this);
        jobdaList.setAdapter(jobdaAdapter);
+       Animation animation = (Animation) AnimationUtils.loadAnimation(
+               MoreJorbActivity.this, R.anim.rotate);
+       LayoutAnimationController lac = new LayoutAnimationController(animation);
+       lac.setDelay(0.2f);  //设置动画间隔时间
+       lac.setOrder(LayoutAnimationController.ORDER_NORMAL); //设置列表的显示顺序
+       jobdaList.setLayoutAnimation(lac);
        JobXiaoAdapter jobXiaoAdapter=new JobXiaoAdapter(list.get(0).getJobListTwo(),this);
        jobxiaoList.setAdapter(jobXiaoAdapter);
 

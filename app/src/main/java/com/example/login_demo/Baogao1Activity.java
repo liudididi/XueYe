@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.EsayBaoGaoBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import presenter.EsayBaoGaoPresenter;
 import view.EsayBaoGaoView;
 

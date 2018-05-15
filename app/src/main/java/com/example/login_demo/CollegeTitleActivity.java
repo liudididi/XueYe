@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -25,7 +24,6 @@ import bean.NewsBean;
 import bean.RecommendBean;
 import bean.SlideshowBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.CollegeTitlePresent;
 import view.CollegeTitleView;

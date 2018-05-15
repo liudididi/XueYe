@@ -8,8 +8,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.login_demo.BuyActivity;
-import com.example.login_demo.CeShiShuoMingActivity;
 import com.example.login_demo.MyApp;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -31,7 +29,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.pay_result);
-        api = WXAPIFactory.createWXAPI(this, "wx1152aee306087394");
+        api = WXAPIFactory.createWXAPI(this, "wx1152aee30.6087394");
         api.handleIntent(getIntent(), this);
     }
 
@@ -44,9 +42,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
-
         Toast.makeText(getApplicationContext(), "成功", Toast.LENGTH_LONG).show();
-
     }
   //支付结果
     @Override
@@ -68,12 +64,10 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     // builder.setMessage("支付失败，请清理微信缓存或重新安装.");
                     break;
                 case -2://用户取消了支付
-
                     Toast.makeText(getApplicationContext(), "支付已取消.", Toast.LENGTH_SHORT).show();
                     //builder.setMessage("支付已取消.");
                     break;
             }
-
             //  builder.show();
         }
         finish();

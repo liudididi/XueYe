@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,40 +8,21 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import adapter.XueYeGuiHua_adapter;
 import base.BaseActivity;
-import base.BaseApi;
 import base.BaseBean;
 import bean.CXEFCBean;
 import bean.EFCBean;
-import bean.jobStarBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
 import presenter.CXEFCPresenter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import untils.ListViewForScrollView;
 import untils.MyQusetUtils;
-import untils.NetInterceptor;
-import untils.QuestInterface;
 import untils.SPUtils;
 import view.CXEFCView;
 

@@ -1,8 +1,5 @@
 package fragment;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,19 +13,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.login_demo.AccurateActivity;
 import com.example.login_demo.MyApp;
-import com.example.login_demo.ProvinceActivity;
 import com.example.login_demo.R;
-import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,18 +30,12 @@ import base.BaseBean;
 import base.Basefragment;
 import bean.Advanced_YX_Bean;
 import bean.CXEFCBean;
-import butterknife.BindView;
-import moudle.CXEFCMoudle;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import presenter.CXEFCPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.Query;
 import untils.CircleProgressView;
 import untils.QuestInterface;
 import untils.SPUtils;
@@ -147,6 +131,7 @@ public class Academy_Fragment extends Basefragment{
     private ImageView iv_wt;
     private ImageView iv_bd;
     private String biaoshi;
+    private View view_gl;
 
 
     @Override
@@ -592,6 +577,7 @@ public class Academy_Fragment extends Basefragment{
             @Override
             public void onClick(View view) {
                 biaoshi="冲刺";
+                view_gl.setVisibility(View.VISIBLE);
 
                 tv_cc.setTextColor(Color.BLACK);
                 tv_wt.setTextColor(Color.GRAY);
@@ -610,6 +596,7 @@ public class Academy_Fragment extends Basefragment{
             @Override
             public void onClick(View view) {
                 biaoshi="稳妥";
+                view_gl.setVisibility(View.VISIBLE);
 
                 tv_cc.setTextColor(Color.GRAY);
                 tv_wt.setTextColor(Color.BLACK);
@@ -629,6 +616,7 @@ public class Academy_Fragment extends Basefragment{
             @Override
             public void onClick(View view) {
                 biaoshi="保底";
+                view_gl.setVisibility(View.VISIBLE);
 
                 tv_cc.setTextColor(Color.GRAY);
                 tv_wt.setTextColor(Color.GRAY);
@@ -689,6 +677,7 @@ public class Academy_Fragment extends Basefragment{
                         {
                             iv.setVisibility(View.GONE);
                             rv_yx.setVisibility(View.VISIBLE);
+                            view_gl.setVisibility(View.GONE);
                             if (biaoshi.equals("冲刺")) {
 
                                 cc_tvnum.setText(data.size()+"所");
@@ -738,6 +727,7 @@ public class Academy_Fragment extends Basefragment{
                         {
                             iv.setVisibility(View.VISIBLE);
                             rv_yx.setVisibility(View.GONE);
+                            view_gl.setVisibility(View.GONE);
 
                             if (biaoshi.equals("冲刺")) {
                                 if( data==null||data.size()==0)
@@ -860,6 +850,8 @@ public class Academy_Fragment extends Basefragment{
         iv_cc = view.findViewById(R.id.iv_cc);
         iv_wt = view.findViewById(R.id.iv_wt);
         iv_bd = view.findViewById(R.id.iv_bd);
+
+        view_gl = view.findViewById(R.id.view_gl);
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;

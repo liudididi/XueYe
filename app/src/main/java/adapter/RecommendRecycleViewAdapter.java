@@ -50,7 +50,7 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter<RecommendR
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, ParticularsActivity.class);
-                intent.putExtra("url", "http://39.106.32.50/#/entrancenews?newsId="+list.get(position).newsId);
+                intent.putExtra("url", "https://www.bdrvip.com/#/entrancenews?newsId="+list.get(position).newsId);
                 intent.putExtra("particulars_title", list.get(position).tv_title);
 
                 context.startActivity(intent);

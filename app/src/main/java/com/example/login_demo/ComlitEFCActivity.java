@@ -1,8 +1,6 @@
 package com.example.login_demo;
 
-import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.view.View;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 import base.BaseActivity;
 import base.BaseBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

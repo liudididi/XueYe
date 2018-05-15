@@ -21,7 +21,7 @@ public class ForecastMoudle {
     {
         DisposableSubscriber<BaseBean<ForecastBean>> disposableSubscriber =
                 MyQusetUtils.getInstance().getQuestInterface()
-                .forecast(province, classify, university,score)
+                .getscoreCompareMobil(province, classify, university,score)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<ForecastBean>>() {

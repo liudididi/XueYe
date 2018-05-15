@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.graphics.Color;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.text.Spannable;
@@ -25,7 +24,6 @@ import java.util.List;
 
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.perfectMessagePresent;
 import untils.SPUtils;

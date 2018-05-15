@@ -1,26 +1,13 @@
 package fragment;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.login_demo.R;
-import com.example.login_demo.SchoolBrouesDetailsActivity;
 import com.example.login_demo.SchoolDetailActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import adapter.School_Brochures_Adapter;
 import base.BaseBean;
 import base.Basefragment;
 import bean.SchoolBrochuresBean;

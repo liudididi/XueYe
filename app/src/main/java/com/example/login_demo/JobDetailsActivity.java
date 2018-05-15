@@ -1,6 +1,5 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -11,7 +10,6 @@ import java.util.List;
 import base.BaseActivity;
 import bean.JobInforBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.GetJobinfoPresent;
 import view.GetJobinfoView;

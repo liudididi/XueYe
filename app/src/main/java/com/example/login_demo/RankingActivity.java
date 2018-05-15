@@ -1,25 +1,19 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import adapter.RanKingSchool_Adapter;
 import base.BaseActivity;
 import base.BaseBean;
 import bean.RanKingSchoolBean;
-import bean.RanKingSchoolBean2;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.RanKingPresent;
 import view.RankingView;

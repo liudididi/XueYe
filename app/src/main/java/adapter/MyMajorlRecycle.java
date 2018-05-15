@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.login_demo.MajorDetailActivity;
@@ -14,7 +13,6 @@ import com.example.login_demo.R;
 import java.util.List;
 
 import bean.MajorBean;
-import bean.SchoolBean;
 
 /**
  * Created by 地地 on 2018/1/26.

@@ -21,10 +21,8 @@ import android.widget.Toast;
 import com.example.login_demo.AccurateActivity;
 import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -38,14 +36,8 @@ import base.BaseBean;
 import base.Basefragment;
 import bean.Advanced_YX_Bean;
 import bean.CXEFCBean;
-import bean.HotBean;
-import bean.SearchBean;
 import bean.SerchZYBean;
-import bean.jobStarBean;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import presenter.CXEFCPresenter;
-import presenter.SearchPresent;
 import presenter.SerchZYPresent;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,7 +48,6 @@ import untils.CircleProgressView;
 import untils.QuestInterface;
 import untils.SPUtils;
 import view.CXEFCView;
-import view.SearchView;
 import view.SerchZYView;
 
 /**

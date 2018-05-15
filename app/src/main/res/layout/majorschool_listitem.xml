@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="270px">
 
-        <com.meg7.widget.CustomShapeImageView
+        <ImageView
             android:layout_marginLeft="30px"
             android:id="@+id/schoolitem_url"
             android:layout_centerVertical="true"

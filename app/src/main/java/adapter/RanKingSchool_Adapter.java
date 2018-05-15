@@ -2,23 +2,26 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
-import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseApi;
 import bean.RanKingSchoolBean;
-import bean.RanKingSchoolBean2;
 import untils.FlowLayout;
 
 /**
@@ -48,7 +51,7 @@ public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Ad
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         holder.setIsRecyclable(false);
         //211
@@ -57,7 +60,7 @@ public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Ad
         String nine = list.get(position).getNine();
         //国防生
         String defense_student = list.get(position).getDefense_student();
-        System.out.println("数据++++"+defense_student);
+
         //研究生院
         String graduate = list.get(position).getGraduate();
         //自主招生
@@ -101,7 +104,17 @@ public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Ad
         }
 
         if(url!=null){
-            Glide.with(context).load(BaseApi.ImgApi+url).into(holder.schoolitem_url);
+        //    Glide.with(context).load(BaseApi.ImgApi+url).into(holder.schoolitem_url);
+
+            Glide.with(context).load(BaseApi.ImgApi + url).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.schoolitem_url) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    holder.schoolitem_url.setImageDrawable(circularBitmapDrawable);
+                }
+            });
         }
         holder.schoolitem_name.setText(name);
         holder.schoolitem_address.setText(address);
@@ -125,7 +138,7 @@ public class RanKingSchool_Adapter extends RecyclerView.Adapter<RanKingSchool_Ad
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private final CustomShapeImageView schoolitem_url;
+        private final ImageView schoolitem_url;
         private final TextView schoolitem_name;
         private final TextView schoolitem_address;
         private final TextView schoolitem_typerank;

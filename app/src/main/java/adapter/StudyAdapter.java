@@ -14,7 +14,6 @@ import com.example.login_demo.R;
 import java.util.ArrayList;
 
 import base.BaseApi;
-import bean.StudyBean;
 import bean.StudyBean2;
 
 /**

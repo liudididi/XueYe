@@ -16,7 +16,6 @@ import com.example.login_demo.R;
 import java.util.List;
 
 import base.BaseApi;
-import bean.StudentsinBean;
 import bean.StudentsinNewsBean;
 
 /**

@@ -53,7 +53,7 @@ public class Help2Activity extends BaseActivity implements HelpView{
     @Override
     public void Helpsuccess(BaseBean<List<HelpBean>> listBaseBean) {
         List<HelpBean> data = listBaseBean.data;
-        if(data.size()>1&&data!=null)
+        if(data.size()>0&&data!=null)
         {
             basics_rv.setLayoutManager(new LinearLayoutManager(Help2Activity.this));
             Help2Adapter help2Adapter = new Help2Adapter(data, Help2Activity.this, title);

@@ -245,7 +245,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/pro_rl3"
             android:layout_width="match_parent"
             android:layout_height="60px"
@@ -400,6 +399,7 @@
                 android:textSize="44px" />
 
             <TextView
+                android:maxLines="1"
                 android:id="@+id/pro_tvaddress"
                 android:background="@drawable/back_address"
                 android:layout_marginLeft="80px"
@@ -410,8 +410,10 @@
                 android:paddingLeft="30px"
                 android:gravity="center"
                 android:paddingRight="30px"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_width="300px"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                />
 
 
         </RelativeLayout>
@@ -454,12 +456,22 @@
 
 
             <GridView
-                android:id="@+id/gv_address"
+            android:id="@+id/gv_address"
+            android:numColumns="4"
+            android:layout_marginTop="46px"
+            android:layout_below="@+id/pro_staraddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </GridView>
+
+            <GridView
+                android:visibility="invisible"
+                android:id="@+id/gv_addresstwo"
                 android:numColumns="4"
                 android:layout_marginTop="46px"
                 android:layout_below="@+id/pro_staraddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
             </GridView>
         </RelativeLayout>
 

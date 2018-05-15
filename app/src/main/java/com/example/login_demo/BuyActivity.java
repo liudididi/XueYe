@@ -3,7 +3,6 @@ package com.example.login_demo;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
@@ -27,7 +26,6 @@ import base.BaseBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fragment.WishFragMent;
 import presenter.CountdownPresent;
@@ -48,8 +46,10 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
     TextView buyTvdjs;
     @BindView(R.id.buy_iv_back)
     ImageView buyIvBack;
-    @BindView(R.id.iv_xlce)
-    ImageView ivXlce;
+    @BindView(R.id.iv_xlce1)
+    ImageView ivXlce1;
+    @BindView(R.id.iv_xlce2)
+    ImageView ivXlce2;
     @BindView(R.id.but_title)
     TextView butTitle;
     @BindView(R.id.buy_pb)
@@ -139,12 +139,14 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
         });
         if (MentalityActivity.xlcp.equals("MBTI")) {
             bh = "1";
-            ivXlce.setImageResource(R.drawable.goumai);
+            ivXlce1.setImageResource(R.drawable.mbti1);
+            ivXlce2.setImageResource(R.drawable.mbti2);
             title = "MBTI特质测试";
 
         } else {
             bh = "2";
-            ivXlce.setImageResource(R.drawable.huolande);
+            ivXlce1.setImageResource(R.drawable.huolande1);
+            ivXlce2.setImageResource(R.drawable.huolande2);
             title = "霍兰德兴趣特质测试";
         }
         butTitle.setText(title);
@@ -162,11 +164,11 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
                 if (token.length() > 4) {
                     buyPb.setVisibility(View.VISIBLE);
                     tvGoumai.setEnabled(false);
-                    //payPresent.XiaDan(token, bh, pay + "");
-                   Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    payPresent.XiaDan(token, bh, pay + "");
+              /*     Toast.makeText(BuyActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BuyActivity.this, CeShiShuoMingActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();*/
                     break;
                 } else {
                     Toast("用户未登录");

@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +21,6 @@ import base.BaseBean;
 import bean.NumBean;
 import bean.ZYNumBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.NumPresenter;
 import untils.FlowLayout;

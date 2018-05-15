@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 
 import base.BaseBean;
+import bean.ForecastBean;
 import bean.GailvBean;
 import bean.LuquXianBean;
 import bean.SchoolEnrollBean;
@@ -16,7 +17,7 @@ public interface SchoolEnrollView {
     void SchoolEnrollsuccess(BaseBean<List<SchoolEnrollBean>> listBaseBean);
     void SchoolEnrollfail(Throwable t);
 
-    void GetlvBeansuccess(List<GailvBean> listBaseBean);
+    void GetlvBeansuccess(ForecastBean listBaseBean);
     void GetlvBeanfail(String msg);
 
     void TZmajorsuccess(BaseBean<List<ZYTJBean>> listBaseBean);

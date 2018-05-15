@@ -4,6 +4,7 @@ import java.util.List;
 
 import base.BaseBean;
 import base.Basepresent;
+import bean.ForecastBean;
 import bean.GailvBean;
 import bean.LuquXianBean;
 import bean.SchoolEnrollBean;
@@ -41,10 +42,10 @@ public class SchoolEnrollPresent extends Basepresent {
         });
     }
 
-    public  void  getscoreCompareMobil(String province, String classify, String  schoolname){
-        schoolEnrollMoudle.getscoreCompareMobil(province, classify, schoolname, new SchoolEnrollMoudle.GailvBeanBack() {
+    public  void  getscoreCompareMobil(String province, String classify, String  schoolname,String scouse){
+        schoolEnrollMoudle.getscoreCompareMobil(province, classify, schoolname,scouse, new SchoolEnrollMoudle.GailvBeanBack() {
             @Override
-            public void SchoolEnrollsuccess(BaseBean<List<GailvBean>> listBaseBean) {
+            public void SchoolEnrollsuccess(BaseBean<ForecastBean> listBaseBean) {
                 if(listBaseBean.code==0){
                     schoolEnrollView.GetlvBeansuccess(listBaseBean.data );
                 }else {

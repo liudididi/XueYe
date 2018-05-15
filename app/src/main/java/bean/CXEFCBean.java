@@ -6,66 +6,68 @@ package bean;
 
 public class CXEFCBean {
 
-
     /**
-     * wishId : 627
-     * userId : 297
+     * wishId : 777
+     * userId : 322
+     * name : 刘地
      * wishType : 精准
-     * stutype : 理科
-     * sourceArea : 北京市
-     * ceeScore : 555
+     * stutype : 文科
+     * sourceArea : 北京
+     * ceeScore : 600
      * proRank : null
      * credit : null
-     * wishCity : null
+     * wishCity :
      * first : null
-     * budget : null
+     * budget :
      * poorFlag : null
-     * collegeClass : null
-     * batch : null
+     * collegeClass :
+     * batch :
      * collegetype : 本科
      * gender : 男
-     * creattime : 2018-04-15 10:34:14
+     * creattime : 2018-04-24 15:15:10
      * outTradeNo : null
-     * collegeArrangement : null
-     * graduationDirection : null
-     * cwb : null
+     * collegeArrangement :
+     * graduationDirection :
+     * cwb : 2
      * outTradeNum : null
      * efcWilling : null
-     * favourMajor : 建筑设备工程技术:540401,市政工程技术:540601
-     * majorGai : 工业分析技术:0.8031:0.9599999934434891:570207,建筑设备工程技术:0.7654:0.8700000047683716:540401,市政工程技术:0.7654:0.8700000047683716:540601,建筑电气工程技术:0.736:0.8:540403,城市燃气工程技术:0.736:0.8:540602,绿色食品生产与检验:0.7191:0.7599999904632568:510114,政府采购管理:0.715:0.75:630104,国际金融:0.708:0.7333333641290665:630202,证券与期货:0.708:0.7333333641290665:630203,铁道交通运营管理:0.6843:0.6769230961799622:600108,工商企业管理:0.6843:0.6769230961799622:630601,人力资源管理:0.6843:0.6769230961799622:690202,税务:0.6625:0.625:630102,工程造价:0.5722:0.41:540502,物业管理:0.5722:0.41:540703,卫生监督:0.5722:0.41:620603,保险:0.5722:0.41:630205,信用管理:0.5722:0.41:630207,会计:0.5722:0.41:630302,会计信息管理:0.5722:0.41:630304
-     * testCode : INFP:E9:S9:T6:J8:I12:N17:F18:P14,ECI:A10:C12:E13:I10:S9:R8
-     * sdsCode : ECI:A10:C12:E13:I10:S9:R8
-     * mbtiCode : INFP:E9:S9:T6:J8:I12:N17:F18:P14
-     * job : 水电运行与管理,建筑设备智能化,城市燃气与环境
-     * process : 3
+     * favourMajor : 土地资源管理:120404,房地产开发与管理:120104,贸易经济:020402,新闻学:050301
+     * majorGai : 贸易经济:0.7:0.7:020402,新闻学:0.64:0.64:050301,国际经济与贸易:0.6:0.6:020401,传播学:0.6:0.6:050304,编辑出版学:0.535:0.535:050305,数字出版:0.535:0.535:050307,秘书学:0.535:0.535:050107,会展经济与管理:0.535:0.535:120903,房地产开发与管理:0.48:0.48:120104,土地资源管理:0.48:0.48:120404,保险学:0.468:0.468:020303,交通工程:0.432:0.432:081802,物流管理:0.432:0.432:120601,商务英语:0.406:0.406:050262,核物理:0.406:0.406:070203,爱沙尼亚语:0.406:0.406:050255,拉脱维亚语:0.406:0.406:050252,艺术与科技:0.406:0.406:130509,立陶宛语:0.406:0.406:050253,翻译:0.406:0.406:050261
+     * testCode : ENFJ:E12:F12:I9:J12:N16:P10:S10:T12,CRI:A12:C13:E11:I12:R12:S11
+     * sdsCode : CRI:A12:C13:E11:I12:R12:S11
+     * mbtiCode : ENFJ:E12:F12:I9:J12:N16:P10:S10:T12
+     * job : 经济贸易,机械设计与制造,材料工程,新闻工作者
+     * process : 4
      * standby1 : null
      * standby2 : null
      * standby3 : null
      * standby4 : null
-     * name : 地地
+     * city : null
+     * tel : null
      */
 
     private int wishId;
     private String userId;
+    private String name;
     private String wishType;
     private String stutype;
     private String sourceArea;
     private String ceeScore;
     private Object proRank;
     private Object credit;
-    private Object wishCity;
+    private String wishCity;
     private Object first;
-    private Object budget;
+    private String budget;
     private Object poorFlag;
-    private Object collegeClass;
-    private Object batch;
+    private String collegeClass;
+    private String batch;
     private String collegetype;
     private String gender;
     private String creattime;
     private Object outTradeNo;
-    private Object collegeArrangement;
-    private Object graduationDirection;
-    private Object cwb;
+    private String collegeArrangement;
+    private String graduationDirection;
+    private String cwb;
     private Object outTradeNum;
     private Object efcWilling;
     private String favourMajor;
@@ -79,7 +81,8 @@ public class CXEFCBean {
     private Object standby2;
     private Object standby3;
     private Object standby4;
-    private String name;
+    private Object city;
+    private Object tel;
 
     public int getWishId() {
         return wishId;
@@ -95,6 +98,14 @@ public class CXEFCBean {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getWishType() {
@@ -145,11 +156,11 @@ public class CXEFCBean {
         this.credit = credit;
     }
 
-    public Object getWishCity() {
+    public String getWishCity() {
         return wishCity;
     }
 
-    public void setWishCity(Object wishCity) {
+    public void setWishCity(String wishCity) {
         this.wishCity = wishCity;
     }
 
@@ -161,11 +172,11 @@ public class CXEFCBean {
         this.first = first;
     }
 
-    public Object getBudget() {
+    public String getBudget() {
         return budget;
     }
 
-    public void setBudget(Object budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 
@@ -177,19 +188,19 @@ public class CXEFCBean {
         this.poorFlag = poorFlag;
     }
 
-    public Object getCollegeClass() {
+    public String getCollegeClass() {
         return collegeClass;
     }
 
-    public void setCollegeClass(Object collegeClass) {
+    public void setCollegeClass(String collegeClass) {
         this.collegeClass = collegeClass;
     }
 
-    public Object getBatch() {
+    public String getBatch() {
         return batch;
     }
 
-    public void setBatch(Object batch) {
+    public void setBatch(String batch) {
         this.batch = batch;
     }
 
@@ -225,27 +236,27 @@ public class CXEFCBean {
         this.outTradeNo = outTradeNo;
     }
 
-    public Object getCollegeArrangement() {
+    public String getCollegeArrangement() {
         return collegeArrangement;
     }
 
-    public void setCollegeArrangement(Object collegeArrangement) {
+    public void setCollegeArrangement(String collegeArrangement) {
         this.collegeArrangement = collegeArrangement;
     }
 
-    public Object getGraduationDirection() {
+    public String getGraduationDirection() {
         return graduationDirection;
     }
 
-    public void setGraduationDirection(Object graduationDirection) {
+    public void setGraduationDirection(String graduationDirection) {
         this.graduationDirection = graduationDirection;
     }
 
-    public Object getCwb() {
+    public String getCwb() {
         return cwb;
     }
 
-    public void setCwb(Object cwb) {
+    public void setCwb(String cwb) {
         this.cwb = cwb;
     }
 
@@ -353,11 +364,19 @@ public class CXEFCBean {
         this.standby4 = standby4;
     }
 
-    public String getName() {
-        return name;
+    public Object getCity() {
+        return city;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCity(Object city) {
+        this.city = city;
+    }
+
+    public Object getTel() {
+        return tel;
+    }
+
+    public void setTel(Object tel) {
+        this.tel = tel;
     }
 }

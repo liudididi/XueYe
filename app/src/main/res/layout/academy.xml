@@ -63,7 +63,7 @@
                 android:id="@+id/tv_xk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="学科范围"
+                android:text="院校类型"
                 android:layout_centerInParent="true"
 
                 android:layout_centerVertical="true"
@@ -489,4 +489,13 @@
         android:visibility="gone"
         android:clickable="true"
         android:layout_below="@+id/lv3"></View>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_gl"
+        android:visibility="visible"
+        android:clickable="true"
+        android:layout_below="@+id/primary_tv1"
+        ></View>
 </RelativeLayout>

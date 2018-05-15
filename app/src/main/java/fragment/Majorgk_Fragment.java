@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
-import com.google.gson.annotations.Until;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,6 @@ import adapter.ZhuanYgk_zhishiAdapter;
 import base.Basefragment;
 import bean.MajorgkBean;
 import presenter.MajorgkPresent;
-import untils.FlowLayout;
 import untils.FlowLayoutzy;
 import untils.ListViewForScrollView;
 import view.MajorgkView;

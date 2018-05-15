@@ -1,9 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +13,6 @@ import java.util.ArrayList;
 
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import untils.PermissionUtils;
 import untils.SPUtils;
 

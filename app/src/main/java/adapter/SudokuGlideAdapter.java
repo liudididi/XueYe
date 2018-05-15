@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -16,8 +15,8 @@ import com.example.login_demo.MentalityActivity;
 import com.example.login_demo.MoreJorbActivity;
 import com.example.login_demo.MoreMajorActivity;
 import com.example.login_demo.MoreSchoolActivity;
+import com.example.login_demo.MyApp;
 import com.example.login_demo.OneTableActivity;
-import com.example.login_demo.ParticularsActivity;
 import com.example.login_demo.ProvinceActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.RankingActivity;
@@ -26,10 +25,12 @@ import com.example.login_demo.StudentsinActivity;
 import com.example.login_demo.StudyActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import base.BaseApi;
 import bean.SlideshowChildBean;
 import untils.NetUtil;
+import untils.SPUtils;
 
 /**
  * Created by 祝文 on 2018/1/21.
@@ -38,10 +39,27 @@ import untils.NetUtil;
 public class SudokuGlideAdapter extends BaseAdapter {
     private ArrayList<SlideshowChildBean> list;
     private Context context;
+    private boolean is1080;
+    private   List<Integer> images;
 
     public SudokuGlideAdapter(ArrayList<SlideshowChildBean> list, Context context) {
         this.list=list;
         this.context = context;
+        Integer fbl = (Integer) SPUtils.get(MyApp.context, "FBL", 1920);
+
+        if(fbl<=1280){
+            is1080=true;
+        }
+
+        images=new ArrayList<>();
+        images.add(R.drawable.yxk);
+        images.add(R.drawable.zyk);
+        images.add(R.drawable.skx);
+        images.add(R.drawable.fsx);
+        images.add(R.drawable.xlcp);
+        images.add(R.drawable.dxpm);
+        images.add(R.drawable.zyku);
+        images.add(R.drawable.yfyb);
     }
 
     @Override
@@ -63,6 +81,7 @@ public class SudokuGlideAdapter extends BaseAdapter {
         return i;
     }
 
+
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
 
@@ -70,6 +89,7 @@ public class SudokuGlideAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.sodoku_gride_item,null);
         }
         ImageView sodoku_item_iv=view.findViewById(R.id.sodoku_item_iv);
+
         sodoku_item_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,9 +149,13 @@ public class SudokuGlideAdapter extends BaseAdapter {
 
             }
         });
-        Glide.with(context).load(BaseApi.ImgApi+list.get(i).getExtimg())
-                .priority( Priority.HIGH )
-                .into(sodoku_item_iv);
+        if(is1080){
+            sodoku_item_iv.setImageResource(images.get(i));
+        }else {
+            Glide.with(context).load(BaseApi.ImgApi+list.get(i).getExtimg())
+                    .priority( Priority.HIGH )
+                    .into(sodoku_item_iv);
+        }
         return view;
     }
 }

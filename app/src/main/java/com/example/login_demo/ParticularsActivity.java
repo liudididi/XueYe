@@ -1,6 +1,8 @@
 package com.example.login_demo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -11,9 +13,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ParticularsActivity extends BaseActivity {
@@ -27,7 +30,7 @@ public class ParticularsActivity extends BaseActivity {
     ImageView particularsIvBack;
     @BindView(R.id.particular_tv)
     TextView particularTv;
-
+    private ArrayList<String> listimg;
     @Override
     public int getId() {
         return R.layout.activity_particulars;
@@ -59,7 +62,7 @@ public class ParticularsActivity extends BaseActivity {
         webSettings.setJavaScriptEnabled(true);
         // 让JavaScript可以自动打开windows
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-
+        webView.addJavascriptInterface(new JavascriptInterface(this), "imagelistner");
 
         // 设置缓存路径
 //        webSettings.setAppCachePath("");
@@ -98,11 +101,66 @@ public class ParticularsActivity extends BaseActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;// 返回false
             }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                addImageListner();          //当页面加载完成，就调用我们的addImageListener()函数
+            }
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
+
         });
+
+
+
+    }
+    private void addImageListner() {
+
+        //遍历页面中所有img的节点，因为节点里面的图片的url即objs[i].src，保存所有图片的src.
+        //为每个图片设置点击事件，objs[i].onclick
+        webView.loadUrl("javascript:(function(){" +
+                "var objs = document.getElementsByTagName(\"img\"); " +
+                "for(var i=0;i<objs.length;i++)  " +
+                "{" +
+                "window.imagelistner.readImageUrl(objs[i].src);  "  +
+                " objs[i].onclick=function()  " +
+                " {  "+
+                " window.imagelistner.openImage(this.src);  " +
+                "  }  " +
+                "}" +
+                "})()");
+
+        webView.loadUrl("javascript:(function(){"
+                + "var objs = document.getElementsByTagName('img'); "
+                + "for(var i=0;i<objs.length;i++) {"
+                + // //webview图片自适应，android4.4之前都有用，4.4之后google优化后，无法支持，需要自己手动缩放
+                " objs[i].style.width = '100%';objs[i].style.height = 'auto';"
+                + "}"
+                + "})()"
+        );
     }
 
+    class JavascriptInterface {
+        private Context context;
+        public JavascriptInterface(Context context) {
+            this.context = context;
+        }
+        @android.webkit.JavascriptInterface
+        public void readImageUrl(String img) {     //把所有图片的url保存在ArrayList<String>中
+            listimg.add(img);
 
-
+        }
+        @android.webkit.JavascriptInterface  //对于targetSdkVersion>=17的，要加这个声明
+        public void openImage(String clickimg)//点击图片所调用到的函数
+        {
+          Intent intent=new Intent(context,HomeActivity.class);
+          startActivity(intent);
+        }
+    }
 
     @OnClick({R.id.particulars_iv_back })
     public void onViewClicked(View view) {

@@ -346,6 +346,14 @@
             </RelativeLayout>
         </ScrollView>
 
+
+    <View
+        android:id="@+id/view_gl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:layout_below="@+id/primary_tv1"
+        android:visibility="gone"></View>
         <ProgressBar
             android:id="@+id/pb"
             android:layout_width="wrap_content"

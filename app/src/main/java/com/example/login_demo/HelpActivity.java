@@ -1,12 +1,10 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import java.util.List;
 
@@ -15,7 +13,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.HelpBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.HelpPresenter;
 import view.HelpView;
@@ -58,8 +55,11 @@ public class HelpActivity extends BaseActivity implements HelpView{
     @Override
     public void Helpsuccess(BaseBean<List<HelpBean>> listBaseBean) {
         List<HelpBean> data = listBaseBean.data;
-        help_rv.setLayoutManager(new LinearLayoutManager(HelpActivity.this));
-        help_rv.setAdapter(new HelpAdapter(data,HelpActivity.this));
+        if(data.size()>0&&data!=null){
+            help_rv.setLayoutManager(new LinearLayoutManager(HelpActivity.this));
+            help_rv.setAdapter(new HelpAdapter(data,HelpActivity.this));
+        }
+
     }
 
     @Override

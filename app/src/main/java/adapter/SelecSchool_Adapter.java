@@ -13,7 +13,6 @@ import com.example.login_demo.perfectMessageActivity;
 
 import java.util.List;
 
-import bean.AreaBean;
 import bean.SelectSchoolBean;
 import untils.SPUtils;
 

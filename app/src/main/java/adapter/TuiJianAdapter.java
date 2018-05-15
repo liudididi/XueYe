@@ -1,13 +1,10 @@
 package adapter;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,9 +15,6 @@ import com.example.login_demo.R;
 import java.util.List;
 
 import bean.TuiJianBean;
-import untils.CircleProgressView;
-
-import static com.example.login_demo.OneTableActivity.s;
 
 /**
  * Created by 祝文 on 2018/4/3.

@@ -1,21 +1,16 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.example.login_demo.MoreSchoolActivity;
-import com.example.login_demo.ParticularsActivity;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
 
-import bean.SlideshowBean;
 import bean.SlideshowChildBean;
 
 /**

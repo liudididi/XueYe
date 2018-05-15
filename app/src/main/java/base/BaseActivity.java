@@ -2,10 +2,8 @@ package base;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,13 +13,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.login_demo.ConnectionChangeReceiver;
 import com.example.login_demo.R;
 import com.weavey.loading.lib.LoadingLayout;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import butterknife.ButterKnife;
-import untils.NetUtil;
 
 /**
  * Created by 地地 on 2017/11/12.

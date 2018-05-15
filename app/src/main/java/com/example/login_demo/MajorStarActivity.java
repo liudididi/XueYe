@@ -3,10 +3,6 @@ package com.example.login_demo;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
@@ -16,18 +12,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import adapter.GridjobinfoAdapter;
@@ -35,19 +26,14 @@ import adapter.MarjorViewpageradpter;
 import base.BaseActivity;
 import base.BaseApi;
 import base.BaseBean;
-import bean.CXEFCBean;
 import bean.MajorstatXQBean;
 import bean.jobStarBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import fragment.MajorStartFragment;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import presenter.CXEFCPresenter;
 import presenter.favourMajorpresent;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,7 +46,6 @@ import untils.NetInterceptor;
 import untils.QuestInterface;
 import untils.Rotatable;
 import untils.SPUtils;
-import view.CXEFCView;
 import view.favourMajorView;
 
 public class MajorStarActivity extends BaseActivity implements  favourMajorView {

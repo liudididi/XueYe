@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,7 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.meg7.widget.CustomShapeImageView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,11 +35,11 @@ import java.net.URL;
 import java.util.List;
 
 import base.BaseActivity;
+import base.BaseApi;
 import bean.MyUserBean;
 import bean.UserBean;
 import bean.VisionBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.VerSionPresent;
 import untils.NetUtil;
@@ -65,7 +68,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
     @BindView(R.id.setting_school)
     TextView settingschool;
     @BindView(R.id.setting_icon)
-    CustomShapeImageView setting_icon;
+     ImageView setting_icon;
     @BindView(R.id.img_hong)
     ImageView imgHong;
     @BindView(R.id.setting_verinfo)
@@ -83,7 +86,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
     private VisionBean visionBean;
     private VerSionPresent verSionPresent;
     private ProgressDialog pd6;
-
+    PackageInfo Common = null;
     @Override
     public int getId() {
         return R.layout.activity_set_ting;
@@ -95,6 +98,12 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
         verSionPresent = new VerSionPresent(this);
         verSionPresent.versioninfo("Android");
 
+        try {
+            Common = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+            settingVerinfo.setText("当前版本" + Common.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -126,14 +135,38 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             String sex = (String) userBeanInstans.getSex();
             if (sex != null) {
                 if (sex.equals("女")) {
-                    setting_icon.setImageResource(R.drawable.gril);
 
+                    Glide.with(context).load(R.drawable.gril ).asBitmap().centerCrop().into(new BitmapImageViewTarget(setting_icon) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            setting_icon .setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
                 } else {
-                    setting_icon.setImageResource(R.drawable.boy);
+                    Glide.with(context).load(R.drawable.boy ).asBitmap().centerCrop().into(new BitmapImageViewTarget(setting_icon) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            setting_icon .setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
 
                 }
             } else {
-                setting_icon.setImageResource(R.drawable.boy);
+                Glide.with(context).load(R.drawable.boy ).asBitmap().centerCrop().into(new BitmapImageViewTarget(setting_icon) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        setting_icon .setImageDrawable(circularBitmapDrawable);
+                    }
+                });
             }
             String name = (String) userBeanInstans.getName();
             if (name != null) {
@@ -177,105 +210,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 break;
             //版本介绍
             case R.id.setting_verson:
-                if (visionBean == null) {
-                    return;
-                }
-                PermissionUtils permissionUtils = new PermissionUtils(this);
-                boolean b = permissionUtils.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                if (b) {
-                    String str = "发现新版本：" + visionBean.getVersionName() +
-                            " Code:" + visionBean.getVersionCode() + " ,是否更新？";
-                    Dialog dialog = new android.app.AlertDialog.Builder(this).setTitle("软件更新").setMessage(str)
-                            // 设置内容
-                            .setPositiveButton("更新",// 设置确定按钮
-                                    new DialogInterface.OnClickListener() {
 
-
-                                        @Override
-                                        public void onClick(DialogInterface dialog,
-                                                            int which) {
-                                            settingVerson.setEnabled(false);
-                                            imgHong.setVisibility(View.INVISIBLE);
-                                            Toast.makeText(context, "开始下载", Toast.LENGTH_SHORT).show();
-                                            final NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                            /*    NotificationChannel channel = new NotificationChannel("123", "摆渡人", NotificationManager.IMPORTANCE_HIGH);
-                                                *//**设置下载地址*//*
-                                                manager.createNotificationChannel(channel);
-                                                Intent intent = new Intent(SetTingActivity.this, SetTingActivity.class);
-                                                PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
-                                                Notification build = new NotificationCompat.Builder(SetTingActivity.this)
-                                                        .setTicker("正在下载") //通知首次出现在通知栏，带上升动画效果的
-                                                        .setOngoing(true)//设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐) 或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
-                                                        .setSmallIcon(android.R.drawable.stat_notify_chat)//设置通知小ICON
-                                                        .setContentTitle("下载中")//设置通知栏标题
-                                                        .setContentText("正在下载请稍等")//设置通知栏显示内容
-                                                        .setChannelId("123")
-                                                        .setContentIntent(contentIntent)
-                                                        .setAutoCancel(true)
-                                                        .build();
-                                                manager.notify(123, build);*/
-                                                final Thread thread = new Thread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        downfile();
-                                                    }
-                                                });
-                                                thread.start();
-                                                pd6 = new ProgressDialog(SetTingActivity.this);
-                                                pd6.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);// 设置水平进度条
-                                                pd6.setCancelable(true);// 设置是否可以通过点击Back键取消
-                                                pd6.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条// 设置提示的title的图标，默认是没有的
-                                                pd6.setTitle("版本更新");
-                                                pd6.setMax(100);
-                                                pd6.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
-                                                        new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                thread.interrupt();
-                                                            }
-                                                        });
-                                                pd6.show();
-                                            /*    new Thread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        int i = 0;
-                                                        while (i < 100) {
-                                                            try {
-                                                                Thread.sleep(200);
-                                                                // 更新进度条的进度,可以在子线程中更新进度条进度
-                                                                pd6.incrementProgressBy(1);
-                                                                // dialog.incrementSecondaryProgressBy(10)//二级进度条更新方式
-                                                                i++;
-                                                            } catch (Exception e) {
-                                                            }
-                                                        }
-                                                        // 在进度条走完时删除Dialog
-                                                        pd6.dismiss();
-                                                    }
-                                                }).start();*/
-
-                                            } else {
-                                                Intent intent = new Intent(SetTingActivity.this, DownApkServer.class);
-                                                intent.putExtra("downUrl", visionBean.getDownloadPath());
-                                                startService(intent);
-                                            }
-                                        }
-                                    })
-                            .setNegativeButton("暂不更新",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog,
-                                                            int whichButton) {
-                                            // 点击"取消"按钮之后退出程序
-
-                                        }
-                                    }).create();// 创建
-                    // 显示对话框
-                    dialog.show();
-
-                } else {
-                    permissionUtils.requestPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, 10);
-                }
                 break;
             //用户协议
             case R.id.setting_useragreen:
@@ -331,10 +266,8 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             connection.setRequestMethod("GET");
             long sum = 0;
             int code = connection.getResponseCode();
-
             if (code == 200 || code == 206) {
                 int contentLength = connection.getContentLength();
-                System.out.println("contentLength = " + contentLength);
                 contentLength += sum;
                 InputStream is = connection.getInputStream();
                 /*
@@ -353,11 +286,8 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                     fos.write(buffer, 0, length);
                     sum += length;
                     float percent = sum * 100.0f / contentLength;
-
                     int p = (int) percent;
-
                     pd6.setProgress(p);
-
                     /*
                     * 实现进度条
                     * */
@@ -381,7 +311,6 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                         System.out.printf("\t%d B/s", speed);
                     }*/
                 }
-
                 install();
                 pd6.dismiss();
 
@@ -426,11 +355,104 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             try {
                 Common = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
                 int verCode = Common.versionCode;
-
                 if (verCode < visionBean.getVersionCode()) {
-                    settingVerinfo.setText("发现新版本");
-                    imgHong.setVisibility(View.VISIBLE);
-                    settingVerson.setEnabled(true);
+                    if (visionBean == null) {
+                        return;
+                    }
+                    PermissionUtils permissionUtils = new PermissionUtils(this);
+                    boolean b = permissionUtils.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    if (b) {
+                        String str = "发现新版本：" + visionBean.getVersionName() +
+                                " Code:" + visionBean.getVersionCode() + " ,是否更新？";
+                        Dialog dialog = new android.app.AlertDialog.Builder(this).setTitle("软件更新").setMessage(str)
+                                // 设置内容
+                                .setPositiveButton("更新",// 设置确定按钮
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog,
+                                                                int which) {
+                                                settingVerson.setEnabled(false);
+                                                imgHong.setVisibility(View.INVISIBLE);
+                                                Toast.makeText(context, "开始下载", Toast.LENGTH_SHORT).show();
+                                                //final NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                            /*    NotificationChannel channel = new NotificationChannel("123", "摆渡人", NotificationManager.IMPORTANCE_HIGH);
+                                                *//**设置下载地址*//*
+                                                manager.createNotificationChannel(channel);
+                                                Intent intent = new Intent(SetTingActivity.this, SetTingActivity.class);
+                                                PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                                                Notification build = new NotificationCompat.Builder(SetTingActivity.this)
+                                                        .setTicker("正在下载") //通知首次出现在通知栏，带上升动画效果的
+                                                        .setOngoing(true)//设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐) 或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
+                                                        .setSmallIcon(android.R.drawable.stat_notify_chat)//设置通知小ICON
+                                                        .setContentTitle("下载中")//设置通知栏标题
+                                                        .setContentText("正在下载请稍等")//设置通知栏显示内容
+                                                        .setChannelId("123")
+                                                        .setContentIntent(contentIntent)
+                                                        .setAutoCancel(true)
+                                                        .build();
+                                                manager.notify(123, build);*/
+                                                final Thread thread = new Thread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        downfile();
+                                                    }
+                                                });
+
+                                                pd6 = new ProgressDialog(SetTingActivity.this);
+                                                pd6.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);// 设置水平进度条
+                                                pd6.setCancelable(true);// 设置是否可以通过点击Back键取消
+                                                pd6.setCanceledOnTouchOutside(false);// 设置在点击Dialog外是否取消Dialog进度条// 设置提示的title的图标，默认是没有的
+                                                pd6.setTitle("版本更新");
+                                                pd6.setMax(100);
+                                                pd6.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                thread.interrupt();
+                                                            }
+                                                        });
+                                                pd6.show();
+                                                thread.start();
+                                            /*    new Thread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        int i = 0;
+                                                        while (i < 100) {
+                                                            try {
+                                                                Thread.sleep(200);
+                                                                // 更新进度条的进度,可以在子线程中更新进度条进度
+                                                                pd6.incrementProgressBy(1);
+                                                                // dialog.incrementSecondaryProgressBy(10)//二级进度条更新方式
+                                                                i++;
+                                                            } catch (Exception e) {
+                                                            }
+                                                        }
+                                                        // 在进度条走完时删除Dialog
+                                                        pd6.dismiss();
+                                                    }
+                                                }).start();*/
+
+                                           } else {
+                                                Intent intent = new Intent(SetTingActivity.this, DownApkServer.class);
+                                                intent.putExtra("downUrl", visionBean.getDownloadPath());
+                                                startService(intent);
+                                            }
+                                            }
+                                        })
+                                .setNegativeButton("暂不更新",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog,
+                                                                int whichButton) {
+                                                // 点击"取消"按钮之后退出程序
+
+                                            }
+                                        }).create();// 创建
+                        // 显示对话框
+                        dialog.show();
+                    } else {
+                        permissionUtils.requestPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, 10);
+                    }
                 } else {
                     settingVerinfo.setText("当前版本" + visionBean.getVersionName());
                     imgHong.setVisibility(View.INVISIBLE);

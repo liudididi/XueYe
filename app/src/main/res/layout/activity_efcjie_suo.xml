@@ -45,136 +45,138 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="50px"
+            android:layout_marginBottom="20px"
             android:layout_marginRight="50px"
             android:layout_marginLeft="50px"
             >
             <RelativeLayout
                 android:id="@+id/rl_xlcs"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
                 android:layout_height="500px">
                 <ImageView
                     android:id="@+id/img_xlcs"
                     android:src="@drawable/xlcs"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
+                    android:scaleType="fitXY"
+                     android:adjustViewBounds="true"
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
                 <ImageView
-                    android:layout_marginRight="20px"
                     android:layout_alignParentRight="true"
                     android:id="@+id/img_xlcsbq"
                     android:src="@drawable/biaowwc"
                     android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="180px"
-                    android:layout_height="180px"
+                    android:padding="7px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_zhiyxk"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="20px"
                 android:layout_height="500px">
                 <ImageView
                     android:id="@+id/img_zhiyxkjs"
-                    android:layout_marginTop="20px"
+                    android:adjustViewBounds="true"
+
                     android:src="@drawable/zyxk"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
+                    android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
                 <ImageView
                     android:id="@+id/img_zhiyxkwjs"
-                    android:layout_marginTop="20px"
+                    android:adjustViewBounds="true"
+
                     android:src="@drawable/zyxkwjs"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
+                    android:scaleType="fitXY"
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
                 <ImageView
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="20px"
                     android:layout_alignParentRight="true"
                     android:id="@+id/img_zhiyxkbq"
                     android:src="@drawable/biaowwc"
                     android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="180px"
-                    android:layout_height="180px"
+                    android:padding="7px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_zhuanyxk"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="20px"
                 android:layout_height="500px">
                 <ImageView
                     android:id="@+id/img_zhuanyxkjs"
-                    android:layout_marginTop="20px"
                     android:src="@drawable/zhuanyxk"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                     android:layout_width="match_parent"
                     android:layout_height="500px"
+                    android:adjustViewBounds="true"
+
                     />
                 <ImageView
                     android:id="@+id/img_zhuanyxkwjs"
-                    android:layout_marginTop="20px"
-                    android:src="@drawable/zhuanyxkwjs"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
+                     android:src="@drawable/zhuanyxkwjs"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+
                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
                 <ImageView
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="20px"
-                    android:layout_alignParentRight="true"
+                     android:layout_alignParentRight="true"
                     android:id="@+id/img_zhuanyxkbq"
                     android:src="@drawable/biaowwc"
                     android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="180px"
-                    android:layout_height="180px"
+                    android:padding="7px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_zntb"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="20px"
                 android:layout_height="500px">
                 <ImageView
                     android:id="@+id/img_zntbjs"
-                    android:layout_marginTop="20px"
-                    android:layout_marginBottom="20px"
+                    android:adjustViewBounds="true"
+
                     android:src="@drawable/zntbjs"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="match_parent"
+                    android:scaleType="fitXY"
+                     android:layout_width="match_parent"
                     android:layout_height="500px"
                     />
                 <ImageView
                     android:id="@+id/img_zntbwjs"
-                    android:layout_marginTop="20px"
-                    android:layout_marginBottom="20px"
-                    android:src="@drawable/zntbwjs"
-                    android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="match_parent"
+                     android:src="@drawable/zntbwjs"
+                    android:scaleType="fitXY"
+                     android:layout_width="match_parent"
                     android:layout_height="500px"
+                    android:adjustViewBounds="true"
                     />
                 <ImageView
-                    android:layout_marginTop="10px"
-                    android:layout_marginRight="20px"
                     android:layout_alignParentRight="true"
                     android:id="@+id/img_zntbbq"
                     android:src="@drawable/biaowwc"
                     android:scaleType="centerCrop"
-                    android:padding="20px"
-                    android:layout_width="180px"
-                    android:layout_height="180px"
+                    android:padding="7px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     />
             </RelativeLayout>
 <View

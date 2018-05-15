@@ -6,7 +6,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.login_demo.EFCJieSuoActivity;
 import com.example.login_demo.MajorStarActivity;
 import com.example.login_demo.R;
 

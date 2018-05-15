@@ -1,13 +1,10 @@
 package com.example.login_demo;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
@@ -18,7 +15,6 @@ import base.BaseActivity;
 import bean.MajorBean;
 import bean.SchoolBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.MySchoolPresent;
 import view.MySchoolView;

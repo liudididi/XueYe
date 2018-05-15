@@ -1,6 +1,5 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.GetBackPresent;
 import untils.SPUtils;

@@ -1,6 +1,5 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -15,7 +14,6 @@ import adapter.Spinner_Adapter;
 import base.BaseActivity;
 import bean.GradePolyBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.GradePolyLinePresent;
 import untils.SPUtils;

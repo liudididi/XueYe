@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,11 +11,9 @@ import java.util.List;
 
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.panpf.swsv.CircularLayout;
 import me.panpf.swsv.SpiderWebScoreView;
-import presenter.XGcsPresenter;
 import untils.ZhiMaScoreViewXQ;
 
 public class XQcsActivity extends BaseActivity {

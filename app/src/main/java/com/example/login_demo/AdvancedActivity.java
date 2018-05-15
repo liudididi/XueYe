@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -21,7 +20,6 @@ import bean.CanSchoolBean;
 import bean.CanSchoolBean3;
 import bean.SlideshowBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.WishPresent;
 import untils.SPUtils;
@@ -52,6 +50,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
     View view_reliable;
     @BindView(R.id.view_minimum)
     View view_minimum;
+
+    @BindView(R.id.view_gl)
+    View view_gl;
 
     @BindView(R.id.advanced_rl)
     RecyclerView advancedRl;
@@ -97,6 +98,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
 
     @Override
     public void InIt() {
+
+        view_gl.setVisibility(View.VISIBLE);
+
         wishPresent = new WishPresent(this);
         advancedRl.setLayoutManager(new LinearLayoutManager(AdvancedActivity.this));
         advancedRl.setNestedScrollingEnabled(false);
@@ -159,6 +163,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             case R.id.advanced_rl_sprint:
                 biaoshi = "冲刺";
                 pb.setVisibility(View.VISIBLE);
+                view_gl.setVisibility(View.VISIBLE);
                 advancedSprint.setTextColor(Color.BLACK);
                 advancedReliable.setTextColor(Color.GRAY);
                 advancedMinimum.setTextColor(Color.GRAY);
@@ -181,6 +186,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             case R.id.advanced_rl_reliable:
                 biaoshi = "稳妥";
                 pb.setVisibility(View.VISIBLE);
+                view_gl.setVisibility(View.VISIBLE);
 
                 advancedSprint.setTextColor(Color.GRAY);
                 advancedReliable.setTextColor(Color.BLACK);
@@ -203,6 +209,8 @@ public class AdvancedActivity extends BaseActivity implements WishView {
             case R.id.advanced_rl_minimum:
                 biaoshi = "保底";
                 pb.setVisibility(View.VISIBLE);
+                view_gl.setVisibility(View.VISIBLE);
+
                 advancedSprint.setTextColor(Color.GRAY);
                 advancedReliable.setTextColor(Color.GRAY);
                 advancedMinimum.setTextColor(Color.BLACK);
@@ -239,7 +247,9 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 4) {
             pb.setVisibility(View.VISIBLE);
-             biaoshi="冲刺";
+
+
+            biaoshi="冲刺";
             String cityType=data.getStringExtra("cityType");
             String isAccept=data.getStringExtra("isAccept");
             String schoolType=data.getStringExtra("schoolType");
@@ -267,6 +277,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
         if(list1.size()>0&&list1!=null){
             pb.setVisibility(View.GONE);
             adTishi.setVisibility(View.GONE);
+            view_gl.setVisibility(View.GONE);
             advancedRl.setVisibility(View.VISIBLE);
             for (int i = 0; i < list1.size(); i++) {
                 String url = list1.get(i).getUrl();
@@ -280,8 +291,8 @@ public class AdvancedActivity extends BaseActivity implements WishView {
                 String recruit = list1.get(i).getRecruit();
                 String preeminent_plan = list1.get(i).getPreeminent_plan();
                 String com_rank = list1.get(i).getCom_rank();
-
-                list.add(new CanSchoolBean3(url, name, address, father,two,nine,defense_student,graduate,recruit,preeminent_plan,com_rank));
+                String time = list1.get(i).getTime();
+                list.add(new CanSchoolBean3(url, name, address, father,two,nine,defense_student,graduate,recruit,preeminent_plan,com_rank,time));
             }
             if (biaoshi.equals("冲刺")) {
 
@@ -321,6 +332,7 @@ public class AdvancedActivity extends BaseActivity implements WishView {
 
         }else {
             pb.setVisibility(View.GONE);
+            view_gl.setVisibility(View.GONE);
 
             adTishi.setVisibility(View.VISIBLE);
             advancedRl.setVisibility(View.GONE);

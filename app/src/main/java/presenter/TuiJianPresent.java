@@ -23,8 +23,8 @@ public class TuiJianPresent  extends Basepresent {
         tuiJianView= (TuiJianView) view;
     }
 
-    public  void  GetTuijian(String college, String province, String t_classify, String t_score, String token){
-        tuiJianMoudle.getTuiJian(college, province, t_classify, t_score, token, new TuiJianMoudle.TuiJianBack() {
+    public  void  GetTuijian(String college,String time, String province, String t_classify, String t_score, String token){
+        tuiJianMoudle.getTuiJian(college,time, province, t_classify, t_score, token, new TuiJianMoudle.TuiJianBack() {
             @Override
             public void TuiJiansuccess(BaseBean<TuiJianBean> listBaseBean) {
                 if(listBaseBean.code==0){

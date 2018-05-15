@@ -1,11 +1,9 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import java.util.List;
 
@@ -14,7 +12,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.HelpBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.HelpPresenter;
 import view.HelpView;

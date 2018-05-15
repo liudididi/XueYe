@@ -1,8 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,7 +11,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.InquireBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.GradePresent;
 import untils.SPUtils;

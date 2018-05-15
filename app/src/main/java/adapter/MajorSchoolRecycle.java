@@ -2,21 +2,24 @@ package adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
-import com.meg7.widget.CustomShapeImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseApi;
-import bean.CheckSchoolBean;
 import bean.MajorSchoolBean;
 import fragment.Majorschool_Fragment;
 import untils.FlowLayout;
@@ -57,7 +60,7 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         Majorschool_Fragment.marjorschool_tvnum.setText(list.size()+"所");
         holder.setIsRecyclable(false);
-        MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
+        final MySchoolViewHolder mySchoolViewHolder= (MySchoolViewHolder) holder;
         mySchoolViewHolder.schoolitem_name.setText(list.get(position).getMajor_school());
         String url = list.get(position).getUrl();
         String two = list.get(position).getTwo();
@@ -87,8 +90,19 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
             fujialist.add(defense_student);
         }
       if(url!=null){
-            Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
-      }
+            //Glide.with(context).load(BaseApi.ImgApi+url).into(mySchoolViewHolder.schoolitem_url);
+          Glide.with(context).load(BaseApi.ImgApi + url).asBitmap().centerCrop().into(new BitmapImageViewTarget(mySchoolViewHolder.schoolitem_url) {
+              @Override
+              protected void setResource(Bitmap resource) {
+                  RoundedBitmapDrawable circularBitmapDrawable =
+                          RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                  circularBitmapDrawable.setCircular(true);
+                  mySchoolViewHolder.schoolitem_url.setImageDrawable(circularBitmapDrawable);
+              }
+          });
+
+
+                  }
 
        if(fujialist.size()>0&&fujialist!=null){
              mySchoolViewHolder.majoritem_flow.setZyListData(fujialist);
@@ -122,7 +136,7 @@ public class MajorSchoolRecycle extends RecyclerView.Adapter {
 
         private TextView    schoolitem_typerank;
 
-        private CustomShapeImageView schoolitem_url;
+        private ImageView schoolitem_url;
         private FlowLayout majoritem_flow;
         private  View view;
 

@@ -3,7 +3,6 @@ package com.example.login_demo;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
-import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,13 +13,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.alipay.sdk.widget.a;
 import com.google.gson.Gson;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,9 +29,7 @@ import bean.AnswerBean;
 import bean.TijiaoBean;
 import butterknife.BindView;
 import butterknife.OnClick;
-import moudle.EFCJGBacCunMoudle;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import presenter.AnswerPresent;
 import presenter.EFCJGBaoCunPresenter;
 import retrofit2.Call;
@@ -50,8 +43,6 @@ import untils.Question;
 import untils.SPUtils;
 import view.AnswerView;
 import view.EFCJGBaoCunView;
-
-import static com.alipay.sdk.widget.a.a;
 
 public class AnswerActivity extends BaseActivity implements GestureDetector.OnGestureListener, EFCJGBaoCunView{
 

@@ -115,11 +115,14 @@ public interface QuestInterface {
     @GET(" /app/wishfilling/yfJudge")
     Flowable<BaseBean> yfJudge(@Query("wishType") String wishType,@Header("token") String token);
 
-
     //推荐学校
-
-    @POST("app/efc/getRecommendCollege")
-    Flowable<BaseBean<TuiJianBean>> getRecommendCollege(@Query("college") String college,@Query("t_stuprovince") String t_stuprovince,@Query("t_classify") String t_classify,@Query("t_score") String t_score,@Header("token") String token);
+    @GET("/app/efc/getRecommendCollege")
+    Flowable<BaseBean<TuiJianBean>> getRecommendCollege(@Query("college") String college,
+                                                        @Query("time") String time,
+                                                        @Query("t_stuprovince") String t_stuprovince,
+                                                        @Query("t_classify") String t_classify,
+                                                        @Query("t_score") String t_score,
+                                                        @Header("token") String token);
 
     //获取院校专业录取分数
     @GET("/app/universityinfo/UniversityinfoScores")
@@ -193,8 +196,11 @@ public interface QuestInterface {
 
     // 获取批次、录取概率、预测分
     @GET("/app/universitytimescore/getscoreCompareMobil")
-    Flowable<BaseBean<ForecastBean>> forecast(@Query("province") String province, @Query("classify") String classify, @Query("university") String university,@Query("score") String score);
+    Flowable<BaseBean<ForecastBean>> getscoreCompareMobil(@Query("province") String province, @Query("classify") String classify, @Query("university") String university,@Query("score") String score);
 
+    //一本录取率
+  //  @GET("/app/universitytimescore/getscoreCompareMobil")
+    //Flowable<BaseBean<List<GailvBean>>> getscoreCompareMobil(@Query("province") String province,@Query("classify") String classify,@Query("university") String university);
 
 
 
@@ -221,9 +227,7 @@ public interface QuestInterface {
     //查询专业是否收藏
     @GET("/app/major/getMajorThreeById")
     Flowable<BaseBean<List<CollerMajorBean>>> getiscollet(@Query("majorId") String majorid, @Header("token") String token);
-   //一本录取率
-    @GET("/app/universitytimescore/getscoreCompareMobil")
-    Flowable<BaseBean<List<GailvBean>>> getscoreCompareMobil(@Query("province") String province,@Query("classify") String classify,@Query("university") String university);
+
     //大学录取专业招生计划
     @GET("/app/enrolmentinfo/num")
     Flowable<BaseBean<List<SchoolEnrollBean>>> schoolenroll(@Query("name") String name, @Query("province") String province, @Query("type") String type);
@@ -490,7 +494,9 @@ public interface QuestInterface {
     //获取城市
     @GET("/app/cities/cityMobil")
     Flowable<BaseBean<List<CityBean>>> getcitys(@Query("provinceid") String provinceid);
-
+    //获取城市byname
+    @GET("/app/cities/getcitybyname")
+    Flowable<BaseBean<List<CityBean>>> getcitybyname(@Query("province") String province);
 
     //喜欢的职业
     @GET("/app/efc/favourMajor")
@@ -529,7 +535,7 @@ public interface QuestInterface {
 
     //保存职业筛选条件
     @POST("/app/wishfilling/updateStuInfo")
-    Flowable<BaseBean> updateStuInfo(@Query("ceeScore") String ceeScore,@Query("name") String name,@Query("stuType") String stuType,@Query("collegeType") String collegeType,@Query("gender") String gender,@Query("sourceArea") String sourceArea,@Query("token") String token);
+    Flowable<BaseBean> updateStuInfo(@Query("ceeScore") String ceeScore,@Query("name") String name,@Query("stuType") String stuType,@Query("collegeType") String collegeType,@Query("gender") String gender,@Query("sourceArea") String sourceArea,@Query("city") String city,@Query("token") String token);
 
 
     //能上的学校

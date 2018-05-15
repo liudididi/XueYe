@@ -8,14 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.login_demo.MyApp;
 import com.example.login_demo.NumActivity;
-import com.example.login_demo.OneTableActivity;
 import com.example.login_demo.R;
+import com.example.login_demo.SchoolDetailActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,14 +45,11 @@ import presenter.SchoolEnrollPresent;
 import untils.Histogram;
 import untils.MyQusetUtils;
 import untils.SPUtils;
-import untils.ZhiMaScoreView;
 import untils.ZhiMaScoreView2;
 import untils.ZhiMaScoreView3;
 import view.ForecastView;
 import view.NumView;
 import view.SchoolEnrollView;
-
-import static com.example.login_demo.OneTableActivity.s;
 
 /**
  * Created by 地地 on 2018/2/5.
@@ -107,12 +105,12 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private ArrayList<String>   list=new ArrayList<>();;
     private List<Integer> listfen;
     private int type=0;
-
-    @Override
+     @Override
     public int getLayoutid() {
         return R.layout.school_enroll;
-    }
 
+
+    }
     private  void initskx(String province, String university, String classify, String time, final String line, final int lmax, final int lmin){
         MyQusetUtils.getInstance().getQuestInterface()
                 .getlqx(province, university, classify,time,"省控线")
@@ -125,7 +123,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                         if(listBaseBean.code==0){
 
                             zhexian_ll.removeAllViews();
-                            ZhiMaScoreView2 zhiMaScoreView = new ZhiMaScoreView2(getActivity());
+                            ZhiMaScoreView2 zhiMaScoreView = new ZhiMaScoreView2(MyApp.context);
                             listfen =new ArrayList<>();
                             listfen.add(0);
                             listfen.add(0);
@@ -143,6 +141,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                                         String score = listBaseBean.data.get(i).getScore();
                                         if(score.equals("")){
                                             score="0";
+                                        }else if(score.equals("-")){
+                                            score="0";
                                         }
                                         listfen.set(4-i,Integer.parseInt(score));
                                     }
@@ -153,6 +153,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                             zhiMaScoreView.setMaxScore(lmax);
                             zhiMaScoreView.setMinScore(lmin);
                             zhexian_ll.addView(zhiMaScoreView);
+
+                            SchoolDetailActivity.view_gl.setVisibility(View.GONE);
+                            SchoolDetailActivity.pb.setVisibility(View.GONE);
                         }
                     }
 
@@ -180,7 +183,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
         schoolEnrollPresent = new SchoolEnrollPresent(this);
         schoolEnrollPresent.SchoolEnrollPresent(schoolname,tbarea,tbsubtype);
-        schoolEnrollPresent.getscoreCompareMobil(tbarea,tbsubtype, schoolname);
+        //schoolEnrollPresent.getscoreCompareMobil(tbarea,tbsubtype, schoolname,tbmaxfen);
         MyQusetUtils.getInstance().getQuestInterface()
                 .univCompare(schoolname)
                 .subscribeOn(Schedulers.io())
@@ -195,7 +198,17 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                                         list.add(data.get(i).getTime());
                                     }
                                 }
-                                tv_pici.setText(list.get(0));
+
+                                if(list.size()>0&&list.get(0)!=null)
+                                {
+                                    tv_pici.setText(list.get(0));
+                                }
+                                else
+                                {
+                                    tv_pici.setText("暂无数据");
+
+                                }
+
                                 schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
 
                                 final Spinner_Adapter2 spinner_adapter=new Spinner_Adapter2(list,getContext());
@@ -203,7 +216,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                                     @Override
                                     public void onClick(View view) {
 
-                                        if(msg==true)
+                                        if(msg==true&&list.size()>0)
                                         {
                                             school_lv1.setVisibility(View.VISIBLE);
                                             school_lv1.setAdapter(spinner_adapter);
@@ -355,16 +368,26 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 {
                     Intent intent=new Intent(getContext(),NumActivity.class);
                     //学校名称
-                    String name = data.get(0).getName();
-                    List<NumBean.MajorsBean> major = data.get(0).getMajors();
-                    String major1 = major.get(0).getMajor();
-                    intent.putExtra("schoolname",name);
-                    intent.putExtra("major",major1);
-                    intent.putExtra("xiabiao",0);
-                    getActivity().startActivity(intent);
+                    if(data!=null&&data.size()>0)
+                    {
+                        String name = data.get(0).getName();
+                        List<NumBean.MajorsBean> major = data.get(0).getMajors();
+                        String major1 = major.get(0).getMajor();
+                        intent.putExtra("schoolname",name);
+                        intent.putExtra("major",major1);
+                        intent.putExtra("xiabiao",0);
+                        getActivity().startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext(), "无数据", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
+
+
     }
 
     private void init() {
@@ -401,12 +424,14 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         iv_xia = view.findViewById(R.id.iv_xia);
         tv_xq = view.findViewById(R.id.tv_xq);
         ll_xiangqing=view.findViewById(R.id.ll_xiangqing);
+
+
     }
 
     //大学录取的专业招生计划
     @Override
     public void SchoolEnrollsuccess(BaseBean<List<SchoolEnrollBean>> listBaseBean) {
-        List<SchoolEnrollBean> data = listBaseBean.data;
+         List<SchoolEnrollBean> data = listBaseBean.data;
         SchoolEnrollAdapter schoolEnrollAdapter=new SchoolEnrollAdapter(data,getContext());
         se_rv.setLayoutManager(new LinearLayoutManager(getContext()));
         se_rv.setAdapter(schoolEnrollAdapter);
@@ -418,8 +443,13 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     }
 
     @Override
+    public void GetlvBeansuccess(ForecastBean listBaseBean) {
+
+    }
+
+/*    @Override
     public void GetlvBeansuccess(List<GailvBean> listBaseBean) {
-       /* if(listBaseBean!=null&&listBaseBean.size()>0){
+       *//* if(listBaseBean!=null&&listBaseBean.size()>0){
             String time = listBaseBean.get(0).getTime();
             school_enroll_tvtime.setText(time+"录取率");
             String scoreAvg = listBaseBean.get(0).getScoreAvg();
@@ -443,9 +473,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 }
             }
 
-        }*/
+        }*//*
 
-    }
+    }*/
 
     @Override
     public void GetlvBeanfail(String msg) {
@@ -454,6 +484,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void TZmajorsuccess(BaseBean<List<ZYTJBean>> listBaseBean) {
+
         List<ZYTJBean> data = listBaseBean.data;
         if(data.size()>0&&data!=null)
         {
@@ -488,6 +519,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void LuquXianBeansuccess(List<LuquXianBean> listBaseBean) {
+
         int max=0;
         int min=0;
         zhexian_l2.removeAllViews();
@@ -515,6 +547,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         }
         max= Collections.max(listfen);
         min=Collections.min(listfen);
+        min-=100;
         if(min<0){
             min=0;
         }
@@ -536,7 +569,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         zhexian_ll.removeAllViews();
         int max=0;
         int min=0;
-        zhiMaScoreView = new ZhiMaScoreView3(getActivity());
+        zhiMaScoreView = new ZhiMaScoreView3(MyApp.context);
         List<Integer> listfen=new ArrayList<>();
         listfen.add(0);
         listfen.add(0);
@@ -553,7 +586,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         zhiMaScoreView.setMaxScore(max);
         zhiMaScoreView.setMinScore(min);
         TextView textView=new TextView(getActivity());
-        textView.setText("你咱们");
+
         zhexian_ll.addView(textView);
         zhexian_ll.addView(zhiMaScoreView);
 
@@ -569,13 +602,14 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void Forecastsuccess(BaseBean<ForecastBean> listBaseBean) {
+
         ForecastBean data = listBaseBean.data;
 
         if(data !=null)
         {
-            int fscore = data.getFscore();
+           int fscore = data.getFscore();
             Histogram column_one =  view.findViewById(R.id.column_one);
-            column_one.setData( fscore, 750);
+            column_one.setData(fscore, 750);
             column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
             String s = data.getLqgai() * 100 + "";
 
@@ -584,9 +618,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 s =  s.substring(0,3);
             }
             school_enroll_tv.setText( s +"%");
-            if(data.getTIME()!=null)
+            if(data.getTime()!=null)
             {
-                school_enroll_tvtime.setText(data.getTIME()+"录取率");
+                school_enroll_tvtime.setText(data.getTime()+"录取率");
             }
             else
             {
@@ -603,6 +637,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void Numsuccess(BaseBean<List<NumBean>> listBaseBean) {
+
 
         data = listBaseBean.data;
         if(data.size()>0&& data !=null)

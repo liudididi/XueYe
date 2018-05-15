@@ -8,6 +8,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.login_demo.MajorDetailActivity;
+import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
 
 import java.util.ArrayList;
@@ -89,9 +90,18 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
                 //就业前景
                 qj_tvqj.setText(majorgkBean.getEmployment_prospects());
             }
+            else
+            {
+                qj_tvqj.setText("数据整理中");
+            }
             if(majorgkBean.getJobSituation()!=null){
                 qj_pro_address.setText(majorgkBean.getJobSituation().getPro_address());
                 qj_rank.setText(majorgkBean.getJobSituation().getRank());
+            }
+            else
+            {
+                qj_pro_address.setText("数据整理中");
+
             }
             if(majorgkBean.getMajorJobproList()!=null&&majorgkBean.getMajorJobproList().size()>0){
                 rl_bt.setVisibility(View.VISIBLE);
@@ -105,7 +115,11 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
                         t.text =majorgkBean.getMajorJobproList().get(i).getJobname(); ;
                         times.add(t);
                 }
-                for (int i = 0; i < textViewList.size(); i++) {
+                int size = times.size();
+                if(size>6){
+                    size=6;
+                }
+                for (int i = 0; i < size; i++) {
                     textViewList.get(i).setText(times.get(i).text);
                 }
                 ArcView.ArcViewAdapter<Times> arcViewAdapter = myPieChat.new ArcViewAdapter<Times>() {
@@ -138,7 +152,7 @@ if(majorgkBean.getMajorJobMenNumList()!=null&&majorgkBean.getMajorJobMenNumList(
     qj_sv.smoothScrollTo(0,0);
             }
             if(majorgkBean.getAverageSalary()!=null&&majorgkBean.getAverageSalary().size()>0){
-                ZhiMaScoreViewXinzi zhiMaScoreView=new ZhiMaScoreViewXinzi(getActivity());
+                ZhiMaScoreViewXinzi zhiMaScoreView=new ZhiMaScoreViewXinzi(MyApp.context);
                 List<Integer> listfen=new ArrayList<>();
                 listfen.add(0);
                 listfen.add(0);

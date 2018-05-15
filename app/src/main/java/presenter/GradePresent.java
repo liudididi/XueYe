@@ -1,13 +1,9 @@
 package presenter;
 
-import com.example.login_demo.MyApp;
-
 import base.BaseBean;
 import base.Basepresent;
-import bean.CanSchoolBean;
 import bean.InquireBean;
 import moudle.GradeMoudle;
-import untils.SPUtils;
 import view.GradeView;
 
 /**

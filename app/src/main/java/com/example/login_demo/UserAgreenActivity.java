@@ -2,7 +2,6 @@ package com.example.login_demo;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,7 +16,6 @@ import base.BaseActivity;
 import base.BaseBean;
 import bean.HelpBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import presenter.HelpPresenter;
 import untils.NetCheck;
 import view.HelpView;

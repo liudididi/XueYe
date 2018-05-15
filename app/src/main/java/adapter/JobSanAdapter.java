@@ -8,13 +8,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.login_demo.JobDetailsActivity;
-import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
 
 import java.util.List;
 
 import bean.MoreJobBean;
-import bean.SelectMajorBean;
 
 /**
  * Created by 地地 on 2018/3/23.

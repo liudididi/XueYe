@@ -1,12 +1,6 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-
 import base.BaseActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ChangQuessonActivity extends BaseActivity {
 

@@ -1,20 +1,23 @@
 package com.example.login_demo;
 
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.meg7.widget.CustomShapeImageView;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.weavey.loading.lib.LoadingLayout;
 
 import java.util.ArrayList;
@@ -25,7 +28,6 @@ import base.BaseApi;
 import base.BaseBean;
 import bean.CollerSchoolBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fragment.School_Brochures;
 import fragment.School_Enroll;
@@ -62,7 +64,7 @@ public class SchoolDetailActivity extends BaseActivity {
     ImageView shoolidIvdoor;
 
     @BindView(R.id.schoold_icon)
-    CustomShapeImageView schoolicon;
+    ImageView schoolicon;
     @BindView(R.id.lodiing)
     LoadingLayout lodiing;
     @BindView(R.id.schoold_rl)
@@ -84,20 +86,23 @@ public class SchoolDetailActivity extends BaseActivity {
     public static String bhsd = null;
     private School_Enroll school_enroll;
     private School_Brochures school_brochures;
-
     private ConnectionChangeReceiver myReceiver;
     private static RelativeLayout rl_wenben;
     private static TextView tv_wenben;
+    public static View view_gl;
+    public static ProgressBar pb;
 
     @Override
     public int getId() {
         return R.layout.activity_school_detail;
     }
-
     @Override
     public void InIt() {
         rl_wenben = findViewById(R.id.rl_wenben);
         tv_wenben = findViewById(R.id.tv_wenben);
+        view_gl = findViewById(R.id.view_gl);
+        pb = findViewById(R.id.pb);
+
         rl_wenben.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,11 +118,8 @@ public class SchoolDetailActivity extends BaseActivity {
         info();
         switchFragment(school_enroll).commitAllowingStateLoss();
     }
-
     private void info() {
-
     }
-
     public static void ff(String s) {
         rl_wenben.setVisibility(View.VISIBLE);
         if (s != null) {
@@ -126,7 +128,6 @@ public class SchoolDetailActivity extends BaseActivity {
             tv_wenben.setText("暂无数据");
         }
     }
-
     private FragmentTransaction switchFragment(Fragment targetFragment) {
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction();
@@ -144,15 +145,11 @@ public class SchoolDetailActivity extends BaseActivity {
         currentFragment = targetFragment;
         return transaction;
     }
-
     private void initfragment() {
         school_summary = new School_Summary();
         school_enroll = new School_Enroll();
-
         school_brochures = new School_Brochures();
     }
-
-
     @OnClick({R.id.schoold_iv_back, R.id.schoold_lq, R.id.schoold_jj, R.id.schoold_zsjz, R.id.schoold_collect})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -281,7 +278,17 @@ public class SchoolDetailActivity extends BaseActivity {
 
                                 String url = data.get(0).getUrl();
                                 if (url != null) {
-                                    Glide.with(SchoolDetailActivity.this).load(BaseApi.ImgApi + url).into(schoolicon);
+                                   // Glide.with(SchoolDetailActivity.this).load(BaseApi.ImgApi + url).into(schoolicon);
+                                    Glide.with(SchoolDetailActivity.this).load(BaseApi.ImgApi + url).asBitmap().centerCrop().into(new BitmapImageViewTarget(schoolicon) {
+                                        @Override
+                                        protected void setResource(Bitmap resource) {
+                                            RoundedBitmapDrawable circularBitmapDrawable =
+                                                    RoundedBitmapDrawableFactory.create(SchoolDetailActivity.this.getResources(), resource);
+                                            circularBitmapDrawable.setCircular(true);
+                                            schoolicon.setImageDrawable(circularBitmapDrawable);
+                                        }
+                                    });
+
                                 }
                                 String preeminentPlan = data.get(0).getPreeminentPlan();
                                 if (preeminentPlan != null && preeminentPlan.length() > 1) {

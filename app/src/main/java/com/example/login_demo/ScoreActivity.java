@@ -1,17 +1,14 @@
 package com.example.login_demo;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +25,6 @@ import base.BaseBean;
 import bean.ScoreBean1;
 import bean.ScoreBean2;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.ScorePresent;
 import untils.SPUtils;

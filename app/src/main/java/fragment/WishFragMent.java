@@ -14,8 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
 import com.example.login_demo.ExamMessageActivity;
 import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
@@ -26,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.Wash_School_adapter;
-import base.BaseApi;
 import base.BaseBean;
 import base.Basefragment;
 import bean.CanSchoolBean;
@@ -45,8 +42,6 @@ import view.WishView;
  */
 
 public class WishFragMent extends Basefragment implements WishView, CountdownView{
-
-
     private RecyclerView school_recycle;
     private XBanner ws_xbanner;
     private ArrayList<Integer> list;
@@ -58,7 +53,7 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     private String tbarea=null;
     private String tbsubtype=null;
     private WishPresent wishPresent;
-
+    private  String area;
     private TextView wish_day1;
      private TextView wish_day3;
     private CountdownPresent countdownPresent;
@@ -84,16 +79,12 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     public void onResume() {
         super.onResume();
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
-
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
         wish_school_none.setVisibility(View.GONE);
-
-
         if(NetUtil.isNetworkAvailable(getActivity())){
           //  wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","5");
             wishPresent.CompleCanSchoolPresente( "0",(Integer.parseInt(tbmaxfen)-21) + "","","", "",tbarea,tbsubtype);
-
         }else {
             Toast.makeText(getActivity(), "当前无网络", Toast.LENGTH_SHORT).show();
         }

@@ -37,10 +37,11 @@
             ></View>
     </RelativeLayout>
     <ScrollView
+        android:id="@+id/sv"
         android:layout_above="@+id/re_buydi"
         android:layout_below="@+id/rl_buytitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+          android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -54,18 +55,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="150px">
             </TextView>-->
-            <ImageView
+          <!--  <ImageView
                 android:id="@+id/iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/efc_1"
-                 android:scaleType="centerCrop"
-                />
+                android:scaleType="fitXY"
+                  />-->
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/efc2"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/iv"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/efc1"/>
         </RelativeLayout>
     </ScrollView>
     <RelativeLayout
         android:id="@+id/re_buydi"
-        android:layout_alignParentBottom="true"
+         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="184px"
         android:background="#fff">
@@ -96,7 +111,7 @@
                     android:id="@+id/tv_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="598"
+                    android:text="698"
                     android:textColor="#FF6700"
                     android:textSize="60px"
                     android:layout_marginLeft="10px"

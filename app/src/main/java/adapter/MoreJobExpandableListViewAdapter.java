@@ -2,9 +2,7 @@ package adapter;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Build;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -16,9 +14,7 @@ import com.example.login_demo.R;
 
 import java.util.List;
 
-import bean.MajorBean;
 import bean.MoreJobBean;
-import bean.SelectMajorBean;
 
 /**
  * Created by 地地 on 2018/1/30.

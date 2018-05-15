@@ -22,7 +22,7 @@
             android:src="@mipmap/left"
             android:layout_centerVertical="true"/>
         <TextView
-            android:text="EFC志愿填报系统"
+            android:text="志愿填报系统"
             android:textColor="#2c2c2c"
             android:textSize="50px"
             android:layout_centerInParent="true"

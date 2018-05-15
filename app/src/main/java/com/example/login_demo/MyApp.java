@@ -12,7 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import io.reactivex.annotations.Beta;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by 地地 on 2018/1/19.
@@ -40,8 +40,11 @@ public class MyApp extends Application {
 
 
 
-
-
+  //极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+        String registrationID = JPushInterface.getRegistrationID(this);
+        System.out.println("registrationID=="+registrationID);
 
         LoadingLayout.getConfig()
                 .setErrorText("出错啦~请稍后重试！")

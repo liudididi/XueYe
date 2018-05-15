@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -15,7 +14,6 @@ import java.util.ArrayList;
 import adapter.Complete_Adapter;
 import base.BaseActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import untils.SPUtils;
 

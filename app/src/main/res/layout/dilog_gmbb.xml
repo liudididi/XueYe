@@ -92,4 +92,7 @@
         android:textColor="@color/white"
         android:layout_width="562px"
         android:layout_height="104px" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50px"></View>
 </LinearLayout>

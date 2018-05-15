@@ -1,9 +1,7 @@
 package com.example.login_demo;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -22,7 +20,6 @@ import bean.CanSchoolBean;
 import bean.CanSchoolBean3;
 import bean.SlideshowBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.WishPresent;
 import untils.SPUtils;

@@ -9,7 +9,7 @@
         android:color="#fff"
         android:width="2px"></stroke>
     <size
-        android:width="300px"
+        android:width="200px"
         android:height="60px"></size>
     <corners
         android:topLeftRadius="13dp"

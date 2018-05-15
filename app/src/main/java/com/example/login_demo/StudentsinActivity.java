@@ -1,7 +1,6 @@
 package com.example.login_demo;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,16 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.Spinner_Adapter;
 import adapter.StudentsinAdapter;
 import adapter.StudentsinNewsAdapter;
 import base.BaseActivity;
@@ -26,7 +22,6 @@ import base.BaseBean;
 import bean.StudentsinBean;
 import bean.StudentsinNewsBean;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.StudentsinPresent;
 import view.StudentsinView;

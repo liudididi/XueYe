@@ -1,31 +1,21 @@
 package com.example.login_demo;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import base.BaseActivity;
 import base.BaseBean;
 import bean.CXEFCBean;
-import bean.EsayBaoGaoBean;
 import butterknife.BindView;
 import butterknife.OnClick;
-import presenter.EsayBaoGaoPresenter;
 import presenter.EsayMbtiLSPresenter;
 import untils.SPUtils;
-import view.EsayBaoGaoView;
 import view.EsayMbtiLSView;
 
 public class MBI_CSActivity extends BaseActivity implements EsayMbtiLSView {
