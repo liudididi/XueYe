@@ -82,7 +82,7 @@
         android:id="@+id/re_buydi"
          android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="184px"
+        android:layout_height="154px"
         android:background="#fff">
         <View
             android:layout_width="match_parent"
@@ -90,6 +90,7 @@
             android:background="#ccc"
             ></View>
         <LinearLayout
+            android:visibility="gone"
             android:orientation="vertical"
             android:layout_width="500px"
             android:layout_marginLeft="66px"
@@ -144,16 +145,17 @@
 
         </LinearLayout>
         <TextView
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_centerHorizontal="true"
             android:id="@+id/tv_goumai2"
-            android:layout_width="368px"
+            android:layout_width="match_parent"
             android:layout_height="118px"
-            android:layout_alignParentRight="true"
-            android:text="立即开通VIP"
+            android:text="开启升学设计系统"
             android:textSize="50px"
             android:textColor="#ffffff"
             android:gravity="center"
             android:layout_centerVertical="true"
-            android:layout_marginRight="66px"
             android:background="@drawable/bg_profession"
             />
     </RelativeLayout>

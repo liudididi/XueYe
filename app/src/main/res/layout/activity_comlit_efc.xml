@@ -185,10 +185,6 @@
 
     </LinearLayout>
 
-
-
-
-
    <Button
        android:layout_centerHorizontal="true"
        android:background="@drawable/back_capacityhui"

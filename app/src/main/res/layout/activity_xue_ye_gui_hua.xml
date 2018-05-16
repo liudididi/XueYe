@@ -142,6 +142,44 @@
                         android:layout_alignParentBottom="true"
                         ></View>
                 </RelativeLayout>
+                <RelativeLayout
+                    android:background="#fff"
+                    android:id="@+id/rl_zytjbg"
+                    android:layout_width="match_parent"
+                    android:layout_height="130px">
+                    <ImageView
+                        android:layout_marginLeft="50px"
+                        android:padding="20px"
+                        android:layout_centerVertical="true"
+                        android:layout_width="90px"
+                        android:layout_height="90px"
+                        android:src="@drawable/zytjbg"
+                        />
+                    <ImageView
+                        android:padding="25px"
+                        android:scaleType="centerCrop"
+                        android:layout_marginRight="50px"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="50px"
+                        android:layout_centerVertical="true"
+                        android:layout_width="70px"
+                        android:layout_height="70px"
+                        android:src="@drawable/next"
+                        />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="180px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="专业推荐报告"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#ccc"
+                        android:layout_alignParentBottom="true"
+                        ></View>
+                </RelativeLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -163,14 +201,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="50px"/>
-                    <View
+                    <ImageView
                         android:id="@+id/zw"
                         android:visibility="visible"
+                        android:src="@drawable/mohubg"
                         android:layout_width="match_parent"
-                        android:layout_height="1500px"
-                        android:layout_marginLeft="50px"
-                        android:layout_marginRight="50px"
-                        android:layout_marginTop="30px"></View>
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        android:layout_marginTop="30px">
+
+                    </ImageView>
                     <untils.ListViewForScrollView
                         android:visibility="gone"
                         android:background="#fff"
@@ -181,6 +222,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     </untils.ListViewForScrollView>
+<LinearLayout
+    android:id="@+id/ll_zytj"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+   <TextView
+       android:layout_gravity="center_horizontal"
+       android:textSize="60px"
+       android:text="--- 专业推荐列表 ---"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content" />
+<View
+    android:layout_marginTop="10px"
+    android:layout_width="match_parent"
+    android:layout_height="2px"
+    android:background="#ccc"
+    ></View>
+
+    <untils.ListViewForScrollView
+        android:visibility="gone"
+        android:background="#fff"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="30px"
+        android:id="@+id/zytj_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </untils.ListViewForScrollView>
+
+</LinearLayout>
 
                     <ImageView
                         android:layout_marginTop="40px"
@@ -206,7 +277,37 @@
         android:layout_width="match_parent"
         android:layout_height="184px"
         android:background="#fff">
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/xlcp_jingzhun"
+            android:layout_marginLeft="50px"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_profession"
+            android:paddingLeft="50px"
+            android:paddingRight="50px"
+            android:gravity="center"
+            android:layout_width="480px"
+            android:layout_height="100px"
+            android:text="开通精准版升学设计"
+            />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/xlcp_putong"
+            android:layout_marginRight="50px"
+            android:layout_gravity="center_vertical|right"
+            android:textColor="@color/white"
+            android:background="@drawable/back_guanzhu"
+            android:paddingLeft="50px"
+            android:paddingRight="50px"
+            android:gravity="center"
+            android:layout_width="480px"
+            android:layout_height="100px"
+            android:text="开启普通版升学设计"
+            />
         <Button
+            android:visibility="gone"
             android:id="@+id/xlcs_bt"
             android:textColor="#fff"
             android:layout_centerHorizontal="true"

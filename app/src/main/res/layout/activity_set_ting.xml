@@ -23,10 +23,10 @@
             android:layout_height="120px"
             >
             <ImageView
-                android:padding="20px"
+
                 android:id="@+id/setting_iv_back"
-                android:layout_width="150px"
-                android:layout_height="90px"
+                android:layout_width="90px"
+                android:layout_height="50px"
                 android:layout_gravity="center"
                 android:src="@drawable/while_arrow"
                 android:layout_centerVertical="true"/>

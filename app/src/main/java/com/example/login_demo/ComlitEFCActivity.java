@@ -86,8 +86,6 @@ public class ComlitEFCActivity extends BaseActivity {
 
                     }
                 });
-
-
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -107,7 +105,6 @@ public class ComlitEFCActivity extends BaseActivity {
                     }
                 }
                 if (time > 0) {
-
                     handler.postDelayed(this, 1000);
                 }else {
                     butChakan.setEnabled(true);
@@ -118,10 +115,7 @@ public class ComlitEFCActivity extends BaseActivity {
                 }
             }
         };
-
         butChakan.setEnabled(false);
-
-
     }
     public String formatLongToTimeStr(Long l) {
         int hour = 0;

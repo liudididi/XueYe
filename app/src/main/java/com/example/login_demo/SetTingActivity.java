@@ -221,7 +221,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 }
                 Intent intent = new Intent(this, ParticularsActivity.class);
                 intent.putExtra("particulars_title","用户协议");
-                intent.putExtra("url","http://m.bdrvip.com/#/agreement");
+                intent.putExtra("url","https://m.bdrvip.com/#/agreement");
                 startActivity(intent);
                 break;
             //退出登录

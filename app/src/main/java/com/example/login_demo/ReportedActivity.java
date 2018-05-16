@@ -97,10 +97,12 @@ public class ReportedActivity extends BaseActivity {
                                     }else {
                                         SPUtils.put(MyApp.context,"EFCFX","专科");
                                     }
+                                    SPUtils.put(MyApp.context,"VIP",true);
                                     rePb.setVisibility(View.GONE);
                                     Intent intent = new Intent(ReportedActivity.this, EFCJieSuoActivity.class);
                                     startActivity(intent);
                                 }else {
+                                    SPUtils.put(MyApp.context,"VIP",false);
                                     Intent intent = new Intent(ReportedActivity.this, Buy2Activity.class);
                                     intent.putExtra("price", "698");
                                     startActivity(intent);

@@ -56,7 +56,20 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                 //院校概率
                 String yxGai = list.get(position).getYxGai();
                 //final String zyGai = major.get(0).getZyGai();
-                String major1 = (String) major.get(0).getMajor();
+        if(major!=null&&major.size()>0){
+            String major1 = (String) major.get(0).getMajor();
+            if(major1!=null)
+            {
+                holder.tv_zy_name.setText(major1);
+
+            }
+            else
+            {
+                holder.tv_zy_name.setText("暂无数据");
+            }
+
+        }
+
                 //String  substring1 = null;
                 String  substring =null;
                 if(yxGai!=null)
@@ -130,15 +143,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
 
                 }*/
                 //专业名称
-                if(major1!=null)
-                {
-                    holder.tv_zy_name.setText(major1);
 
-                }
-                else
-                {
-                    holder.tv_zy_name.setText("暂无数据");
-                }
 
                 //进度条从0到100
                 final ValueAnimator animator = ValueAnimator.ofFloat(0, Integer.parseInt(substring));

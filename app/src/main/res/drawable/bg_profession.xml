@@ -8,9 +8,9 @@
         android:color="#f29600"
         ></solid>
     <size
-        android:width="705px"
+        android:width="205px"
         android:height="112px"></size>
     <corners
-        android:radius="28px"
+        android:radius="15px"
         ></corners>
 </shape>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<ImageView
+    android:id="@+id/img_next"
+    android:padding="30px"
+    android:src="@drawable/next"
+    android:layout_width="100px"
+    android:layout_height="100px" />
+    <TextView
+        android:layout_marginLeft="50px"
+        android:id="@+id/tv_major"
+        android:textSize="40px"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/img_next"
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
+        android:text="40px"
+        />
+
+    <TextView
+        android:gravity="center"
+        android:layout_marginRight="50px"
+        android:layout_toLeftOf="@+id/rb_start"
+        android:textSize="40px"
+        android:layout_width="wrap_content"
+        android:layout_height="100px"
+        android:text="推荐指数:"
+        />
+    <RatingBar
+        android:layout_marginRight="50px"
+        android:layout_marginTop="25px"
+        android:progressDrawable="@drawable/start"
+        android:id="@+id/rb_start"
+        android:layout_alignParentRight="true"
+    android:layout_width="wrap_content"
+    android:layout_height="55px"
+    android:numStars="5"
+    android:stepSize="0.5"
+    />
+    <untils.ListViewForScrollView
+        android:visibility="gone"
+        android:id="@+id/list_two"
+        android:layout_below="@+id/img_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></untils.ListViewForScrollView>
+</RelativeLayout>

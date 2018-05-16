@@ -50,7 +50,6 @@ import view.favourMajorView;
 
 public class MajorStarActivity extends BaseActivity implements  favourMajorView {
 
-
     @BindView(R.id.majorstar_iv_back)
     ImageView majorstarIvBack;
     @BindView(R.id.major_vp)
@@ -331,9 +330,15 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
             @Override
             public void onClick(View v) {
                 int da = Integer.parseInt(data);
+                final boolean vip = (boolean) SPUtils.get(MyApp.context, "VIP", false);
                 if(da==3||da>3){
-                    intent(MajorStarActivity.this,ComlitEFCActivity.class);
-                    finish();
+                    if(vip){
+                        djs();
+                    }else {
+                        intent(MajorStarActivity.this,DuiBiActivity.class);
+                        finish();
+                    }
+
                 }else {
                     View viewe = LayoutInflater.from(MajorStarActivity.this).inflate(R.layout.tankuang_zyts, null);
                     final AlertDialog dialog = new AlertDialog.Builder(MajorStarActivity.this)
@@ -360,8 +365,8 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                                             @Override
                                             public void onNext(BaseBean baseBean) {
                                                 if(baseBean.code==0){
-                                                    intent(MajorStarActivity.this,ComlitEFCActivity.class);
-                                                    finish();
+                                                        intent(MajorStarActivity.this,DuiBiActivity.class);
+                                                        finish();
                                                 }
                                             }
 
@@ -393,6 +398,41 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
             }
         });
 
+
+    }
+
+    private void djs() {
+        MyQusetUtils.getInstance().getQuestInterface().gettime(token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                    @Override
+                    public void onNext(BaseBean<String> stringBaseBean) {
+                        if(stringBaseBean.code==0){
+                            String data = stringBaseBean.data;
+                            int i = Integer.parseInt(data);
+                            if(i>0){
+                                intent(MajorStarActivity.this, ComlitEFCActivity.class);
+                                finish();
+                            }else {
+                                intent(MajorStarActivity.this, XueYeGuiHuaActivity.class);
+                                finish();
+                            }
+                        }else {
+                            Toast(stringBaseBean.msg);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 
@@ -612,8 +652,6 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                 if(answerllist.get(i).getAveragesalary()!=null){
                     xzlist.get(i).setText("￥" +answerllist.get(i).getAveragesalary());
                 }
-
-
             }
             ObjectAnimator icon_anim = ObjectAnimator.ofFloat(imageViewFront, "rotationY", 0.0F, 180.0F);
             icon_anim.setRepeatCount(1);

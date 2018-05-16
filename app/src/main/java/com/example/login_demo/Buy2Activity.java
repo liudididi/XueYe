@@ -48,7 +48,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
     private PayPresent payPresent;
 
     private int pay = 2;
-    private  boolean zk=false;
+
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
     private Handler mHandler = new Handler() {
@@ -230,7 +230,9 @@ public class Buy2Activity extends BaseActivity implements PayView {
                 break;
             case R.id.tv_goumai2:
                 if(token.length()>4){
-                    payPresent.XiaDan(token,"4",pay+"");
+                    Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
+                    startActivity(intent);
+                    //payPresent.XiaDan(token,"4",pay+"");
                   /*
                     zk=false;
                   View viewe = LayoutInflater.from(Buy2Activity.this).inflate(R.layout.dilog_gmbb, null);

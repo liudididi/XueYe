@@ -42,7 +42,7 @@ XlcsActivity extends BaseActivity {
 
     @Override
     public void InIt() {
-        String data = getIntent().getStringExtra("data");
+        final String data = getIntent().getStringExtra("data");
         int i = Integer.parseInt(data);
         if (i >= 3) {
             reBuydi2.setVisibility(View.VISIBLE);
@@ -64,11 +64,18 @@ XlcsActivity extends BaseActivity {
                             xlcsB2.setEnabled(true);
                             xlcsB2.setBackground(getResources().getDrawable(R.drawable.back_capacity));
                         } else {
-                            xlcsBt1.setEnabled(false);
-                            xlcsBt1.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
-                            xlcsB2.setEnabled(false);
-                            xlcsB2.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
-                            Toast(baseBean.msg);
+                            if(data.equals("0")){
+                                xlcsBt1.setEnabled(true);
+                                xlcsBt1.setBackground(getResources().getDrawable(R.drawable.back_capacity));
+                                xlcsB2.setEnabled(true);
+                                xlcsB2.setBackground(getResources().getDrawable(R.drawable.back_capacity));
+                            }else {
+                                xlcsBt1.setEnabled(false);
+                                xlcsBt1.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
+                                xlcsB2.setEnabled(false);
+                                xlcsB2.setBackground(getResources().getDrawable(R.drawable.back_capacityhui));
+                                Toast(baseBean.msg);
+                            }
                         }
                     }
 
