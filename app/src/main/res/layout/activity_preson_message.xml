@@ -84,6 +84,7 @@
         ></View>
 
     <RelativeLayout
+        android:id="@+id/rl_name"
         android:layout_below="@+id/my_login"
         android:layout_width="match_parent"
         android:layout_height="150px"
@@ -111,7 +112,6 @@
             android:textColor="#999999"
             android:gravity="right"
             android:maxLines="1"
-            android:src="@drawable/right_arrow"
             android:layout_centerVertical="true"
             android:layout_marginRight="30px"
             android:layout_width="500px"
@@ -122,6 +122,7 @@
             />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/rl_sex"
         android:layout_below="@+id/my_login"
         android:layout_width="match_parent"
         android:layout_height="150px"
@@ -202,9 +203,7 @@
         android:layout_width="match_parent"
         android:layout_height="150px"
         android:background="#fff"
-
         >
-
         <View
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

@@ -47,7 +47,7 @@ public class MyUserBean  {
                                    String province = (String) userBean.getProvince();
                                    String city = (String) userBean.getCity();
                                    String area = (String) userBean.getArea();
-                                   SPUtils.put(MyApp.context,"school",province+city+area);
+                                   SPUtils.put(MyApp.context,"school",province+city);
                                }
 
                            }

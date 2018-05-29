@@ -23,9 +23,9 @@ public class ReportedActivity extends BaseActivity {
     @BindView(R.id.reported_iv_back)
     ImageView reportedIvBack;
     @BindView(R.id.reported_advanced)
-    TextView reportedAdvanced;
+    ImageView reportedAdvanced;
     @BindView(R.id.reported_accurate)
-    TextView reportedAccurate;
+    ImageView reportedAccurate;
     @BindView(R.id.re_pb)
     ProgressBar rePb;
     private String token;
@@ -104,7 +104,7 @@ public class ReportedActivity extends BaseActivity {
                                 }else {
                                     SPUtils.put(MyApp.context,"VIP",false);
                                     Intent intent = new Intent(ReportedActivity.this, Buy2Activity.class);
-                                    intent.putExtra("price", "698");
+                                    intent.putExtra("price", "598");
                                     startActivity(intent);
                                 }
                             }

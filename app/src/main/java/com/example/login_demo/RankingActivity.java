@@ -98,6 +98,6 @@ public class RankingActivity extends BaseActivity implements RankingView{
 
     @Override
     public void RanKingfail(Throwable t) {
-
+        ranKingPresent.RanKingPresent(page,10);
     }
 }

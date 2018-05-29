@@ -2,18 +2,21 @@ package com.example.login_demo;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -41,15 +44,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.CXEFCPresenter;
+import presenter.CountdownPresent;
 import presenter.PayPresent;
 import untils.ListViewForScrollView;
+import untils.ListViewScrollView;
+import untils.MyListView;
 import untils.MyQusetUtils;
 import untils.SPUtils;
 import view.CXEFCView;
+import view.CountdownView;
 import view.PayView;
 import zfbpay.AliPayResult;
 
-public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
+public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, CountdownView {
 
     @BindView(R.id.guihua_iv_back)
     ImageView guihuaIvBack;
@@ -73,7 +80,9 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
     @BindView(R.id.pb)
     ProgressBar pb;
     @BindView(R.id.zw)
-    ImageView zw;
+    RelativeLayout zw;
+    @BindView(R.id.zhanwei)
+    View zhanwei;
     @BindView(R.id.xlcs_bt)
     Button xlcs_bt;
     @BindView(R.id.xlcp_jingzhun)
@@ -86,6 +95,14 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
     RelativeLayout rlZytjbg;
     @BindView(R.id.zytj_list)
     ListViewForScrollView zytjList;
+    @BindView(R.id.tv_day1)
+    TextView tv_day1;
+    @BindView(R.id.tv_day2)
+    TextView tv_day2;
+    @BindView(R.id.tv_day3)
+    TextView tv_day3;
+    @BindView(R.id.rl)
+    RelativeLayout rl;
     private boolean yiwen = false;
 
     private String token;
@@ -103,15 +120,12 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
             switch (msg.what) {
 
                 case SDK_PAY_FLAG:
-
                     AliPayResult payResult = new AliPayResult((Map<String, String>) msg.obj);
                     switch (payResult.getResultStatus()) {
                         case "9000":
                             SPUtils.put(MyApp.context, "VIP", true);
                             Toast.makeText(XueYeGuiHuaActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(XueYeGuiHuaActivity.this, ComlitEFCActivity.class);
-                            startActivity(intent);
-                            finish();
+                            isretry();
                             break;
                         case "8000":
                             Toast.makeText(XueYeGuiHuaActivity.this, "正在处理中", Toast.LENGTH_SHORT).show();
@@ -142,19 +156,50 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
         }
     };
     private PayPresent payPresent;
+    private boolean vip;
+    private CountdownPresent countdownPresent;
 
     @Override
     public int getId() {
         return R.layout.activity_xue_ye_gui_hua;
     }
+    private void isretry() {
+        String str="是否重新测试？";
+        Dialog dialog = new android.app.AlertDialog.Builder(this).setTitle("支付成功").setMessage(str)
+                // 设置内容
+                .setPositiveButton("重新测试",// 设置确定按钮
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
 
+                                Intent intent = new Intent(XueYeGuiHuaActivity.this, AnswerActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        }).setNegativeButton("不需要",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+
+                                Intent intent = new Intent(XueYeGuiHuaActivity.this, ComlitEFCActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).create();// 创建
+        dialog.show();
+    }
     @Override
     public void InIt() {
+        countdownPresent = new CountdownPresent(this);
+        countdownPresent.CountdownPresent();
         xyghList.setVisibility(View.GONE);
         pb.setVisibility(View.VISIBLE);
         zw.setVisibility(View.VISIBLE);
         token = (String) SPUtils.get(MyApp.context, "token", "");
-        final boolean vip = getIntent().getBooleanExtra("VIP", false);
+        vip = getIntent().getBooleanExtra("VIP", false);
+        initzhuanye();
         if (vip) {
             pb.setVisibility(View.GONE);
             zw.setVisibility(View.VISIBLE);
@@ -210,13 +255,13 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
                 }
             });
         } else {
-            llZytj.setVisibility(View.VISIBLE);
-            initzhuanye();
-            xlcs_bt.setVisibility(View.VISIBLE);
             zw.setVisibility(View.GONE);
+            zhanwei.setVisibility(View.VISIBLE);
+            llZytj.setVisibility(View.VISIBLE);
+            xlcs_bt.setVisibility(View.VISIBLE);
             xlcpJingzhun.setVisibility(View.GONE);
             xlcpJingzhun.setVisibility(View.GONE);
-
+            rl.setVisibility(View.GONE);
         }
         //专业
         cxefcPresenter = new CXEFCPresenter(this);
@@ -231,9 +276,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
             SPUtils.put(MyApp.context, "PAYCODE", -1);
             SPUtils.put(MyApp.context, "VIP", true);
             Toast.makeText(XueYeGuiHuaActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(XueYeGuiHuaActivity.this, ComlitEFCActivity.class);
-            startActivity(intent);
-            finish();
+            isretry();
         }
     }
 
@@ -245,21 +288,27 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
                     @Override
                     public void onNext(BaseBean<EFCBean> efcBeanBaseBean) {
                         testCode = efcBeanBaseBean.data.getTest_code();
-                        if (efcBeanBaseBean.data.getMajorGai() != null && efcBeanBaseBean.data.getMajorGai().size() > 0) {
-                            List<String> majorGai = efcBeanBaseBean.data.getMajorGai();
-                            zw.setVisibility(View.GONE);
-                            pb.setVisibility(View.GONE);
-                            xyghList.setVisibility(View.VISIBLE);
-                            XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(majorGai, XueYeGuiHuaActivity.this);
-                            xyghList.setAdapter(xueYeGuiHua_adapter);
-                            sv.smoothScrollTo(0, 0);
-                        }
-                        final List<EFCBean.MajortwoBean> majortwo = efcBeanBaseBean.data.getMajortwo();
-                        if (majortwo != null && majortwo.size() > 0) {
-                            ZytjBigAdapter zytjBigAdapter = new ZytjBigAdapter(majortwo, XueYeGuiHuaActivity.this);
-                            zytjList.setAdapter(zytjBigAdapter);
+                   if(vip==false){
+                       if (efcBeanBaseBean.data.getMajorGai() != null && efcBeanBaseBean.data.getMajorGai().size() > 0) {
+                           List<String> majorGai = efcBeanBaseBean.data.getMajorGai();
+                           zhanwei.setVisibility(View.GONE);
+                           pb.setVisibility(View.GONE);
+                           xyghList.setVisibility(View.VISIBLE);
+                           XueYeGuiHua_adapter xueYeGuiHua_adapter = new XueYeGuiHua_adapter(majorGai, XueYeGuiHuaActivity.this);
+                           xyghList.setAdapter(xueYeGuiHua_adapter);
+                           sv.smoothScrollTo(0, 0);
+                       }
+                       final List<EFCBean.MajortwoBean> majortwo = efcBeanBaseBean.data.getMajortwo();
 
-                        }
+                       if (majortwo != null && majortwo.size() > 0) {
+                           ZytjBigAdapter zytjBigAdapter = new ZytjBigAdapter(majortwo, XueYeGuiHuaActivity.this);
+                           zytjList.setAdapter(zytjBigAdapter);
+                       }else {
+                           llZytj.setVisibility(View.GONE);
+                       }
+
+                   }
+
                     }
 
                     @Override
@@ -349,7 +398,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
         }else {
             diangdan_money.setText("698");
         }*/
-        diangdan_money.setText("698");
+        diangdan_money.setText("598");
 
         iv_chahao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -439,8 +488,13 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
                 break;
             case R.id.xlcp_jingzhun:
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
+                 String type = (String) SPUtils.get(MyApp.context, "kemuefc", "本科");
                 if (token.length() > 4) {
-                    payPresent.XiaDan(token, "4", pay + "");
+                    if(type.equals("本科")){
+                        payPresent.XiaDan(token, "3", pay + "");
+                    }else {
+                        payPresent.XiaDan(token, "4", pay + "");
+                    }
                 } else {
                     Toast("token失效，请重新登录");
                 }
@@ -480,6 +534,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
     protected void onDestroy() {
         super.onDestroy();
         cxefcPresenter.onDestory();
+        countdownPresent.onDestory();
     }
 
     @Override
@@ -488,8 +543,13 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
         sourceArea = cxefcBeanBaseBean.data.getSourceArea();
         //文理科
         stutype = cxefcBeanBaseBean.data.getStutype();
+        SPUtils.put(MyApp.context,"tbsubtypeefc",stutype);
+        SPUtils.put(MyApp.context,"kemuefc",cxefcBeanBaseBean.data.getCollegetype());
+
         //考生分数
         ceeScore = cxefcBeanBaseBean.data.getCeeScore();
+
+        SPUtils.put(MyApp.context,"tbmaxfenefc",ceeScore);
 
     }
 
@@ -499,5 +559,39 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView {
     }
 
 
+    @Override
+    public void Countdownsuccess(BaseBean baseBean) {
 
+        String s = baseBean.data.toString();
+
+        if(s!=null&&s.length()==3)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            String substring2 = s.substring(2);
+            tv_day1.setText(substring);
+            tv_day2.setText(substring1);
+            tv_day3.setText(substring2);
+        }
+        if(s!=null&&s.length()==2)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            tv_day1.setText("0");
+            tv_day2.setText(substring);
+            tv_day3.setText(substring1);
+        }
+        else
+        {
+            tv_day1.setText("0");
+            tv_day2.setText("0");
+            tv_day3.setText(s);
+
+        }
+    }
+
+    @Override
+    public void Countdownfail(Throwable t) {
+
+    }
 }

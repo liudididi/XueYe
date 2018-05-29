@@ -1,5 +1,6 @@
 package base;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -37,11 +38,11 @@ public abstract  class BaseActivity extends AutoLayoutActivity{
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setTheme(R.style.HaveBackGround);
         super.onCreate(savedInstanceState);
         //禁止横屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 // 状态栏颜色
         initztl("#3B9EFF");
         setContentView(getId());
@@ -60,12 +61,18 @@ public abstract  class BaseActivity extends AutoLayoutActivity{
      * 设置状态栏
      * @param color
      */
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public  void initztl(String color){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.parseColor(color));
+
+        try {
+            if (Build.VERSION.SDK_INT >= 21) {
+                Window window = this.getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.parseColor(color));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
     /**

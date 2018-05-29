@@ -3,6 +3,7 @@ package com.example.login_demo;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
@@ -154,7 +155,7 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
     public  static  int   ztdata;
     private static int heightPixels;
     private presenter.favourMajorpresent favourMajorpresent;
-
+    private  boolean   jz=false;
 
     @Override
     public int getId() {
@@ -251,6 +252,7 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                     @Override
                     public void run() {
                         if (body.code == 0) {
+                            jz=true;
                             List<jobStarBean> data = body.data;
                             if (data != null && data.size()>= 20) {
                                 majorTvtishi.setVisibility(View.GONE);
@@ -329,13 +331,19 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
         majorstarbyes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(jz==false){
+                    Toast("网络较慢，稍后重试");
+                    return;
+                }
                 int da = Integer.parseInt(data);
                 final boolean vip = (boolean) SPUtils.get(MyApp.context, "VIP", false);
                 if(da==3||da>3){
                     if(vip){
                         djs();
                     }else {
-                        intent(MajorStarActivity.this,DuiBiActivity.class);
+                        Intent intent = new Intent(MajorStarActivity.this, XueYeGuiHuaActivity.class);
+                        intent.putExtra("VIP",true);
+                        startActivity(intent);
                         finish();
                     }
 
@@ -365,8 +373,14 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
                                             @Override
                                             public void onNext(BaseBean baseBean) {
                                                 if(baseBean.code==0){
-                                                        intent(MajorStarActivity.this,DuiBiActivity.class);
+                                                    if(vip){
+                                                        djs();
+                                                    }else {
+                                                        Intent intent = new Intent(MajorStarActivity.this, XueYeGuiHuaActivity.class);
+                                                        intent.putExtra("VIP",true);
+                                                        startActivity(intent);
                                                         finish();
+                                                    }
                                                 }
                                             }
 

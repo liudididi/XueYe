@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
 import com.example.login_demo.SelectAreasActivity;
+import com.example.login_demo.perfectMessageActivity;
 
 import java.util.List;
 
 import bean.CityBean;
+import untils.SPUtils;
 
 /**
  * Created by 地地 on 2018/1/27.
@@ -43,10 +46,11 @@ public class Citys_Adapter extends RecyclerView.Adapter {
       provieceViewHolder.cityitem_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, SelectAreasActivity.class);
-                intent.putExtra("city",list.get(position).getCity());
-                intent.putExtra("cityid",list.get(position).getCityid());
+
+                SPUtils.put(MyApp.context,"city",list.get(position).getCity());
+                Intent intent=new Intent(context, perfectMessageActivity.class);
                 context.startActivity(intent);
+
             }
         });
     }

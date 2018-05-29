@@ -95,9 +95,8 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
     @Override
     public void InIt() {
         token = (String) SPUtils.get(MyApp.context, "token", "");
-        verSionPresent = new VerSionPresent(this);
-        verSionPresent.versioninfo("Android");
-
+       // verSionPresent = new VerSionPresent(this);
+       // verSionPresent.versioninfo("Android");
         try {
             Common = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
             settingVerinfo.setText("当前版本" + Common.versionName);
@@ -171,7 +170,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
             String name = (String) userBeanInstans.getName();
             if (name != null) {
                 settingname.setText(name);
-               String school   = (String) userBeanInstans.getProvince()+userBeanInstans.getCity()+userBeanInstans.getArea();
+               String school   = (String) userBeanInstans.getProvince()+userBeanInstans.getCity();
                 settingschool.setText(school);
             } else {
                 settingname.setText("");
@@ -246,11 +245,12 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
                 SPUtils.remove(MyApp.context, "majorindex");
                 SPUtils.remove(MyApp.context, "name");
                 SPUtils.remove(MyApp.context, "school");
-
-
                 SPUtils.remove(MyApp.context, "province");
                 SPUtils.remove(MyApp.context, "city");
                 SPUtils.remove(MyApp.context, "area");
+                SPUtils.remove(MyApp.context, "tbsubtypeefc");
+                SPUtils.remove(MyApp.context, "tbmaxfenefc");
+                SPUtils.remove(MyApp.context, "kemuefc");
                 MyUserBean.setUserBean(null);
                 finish();
                 break;
@@ -479,7 +479,7 @@ public class SetTingActivity extends BaseActivity implements VerSionView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        verSionPresent.onDestory();
+
     }
 
 

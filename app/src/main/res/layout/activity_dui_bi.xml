@@ -50,7 +50,7 @@
                 android:layout_marginTop="50px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="以下为 精准版 与 普通版 的升学设计系统特权对比图"
+                android:text="以下为 升级版 与 普通版 的升学设计系统特权对比图"
                 />
             <LinearLayout
                 android:orientation="horizontal"
@@ -72,13 +72,7 @@
                     android:text="表示享受该功能"
                     />
             </LinearLayout>
-            <ImageView
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/duibi"
-                />
+
         </LinearLayout>
     </ScrollView>
     <RelativeLayout
@@ -86,9 +80,73 @@
         android:id="@+id/re_duibidi"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="154px"
+        android:layout_height="wrap_content"
         android:background="#fff">
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="20px"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥598"
+            android:textColor="#f29600"
+            android:textSize="50px"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50px"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="距离高考还有"
+                    android:textSize="30px"
+                    />
+                <TextView
+                    android:id="@+id/tv_day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40px"
+                    android:background="@drawable/back_day2"
+                    android:textColor="#F25643"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"/>
+                <TextView
+                    android:id="@+id/tv_day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40px"
+                    android:background="@drawable/back_day2"
+                    android:textColor="#F25643"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"/>
+                <TextView
+                    android:id="@+id/tv_day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#F25643"
+                    android:textSize="40px"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"
+                    android:background="@drawable/back_day2"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天"
+                    android:layout_marginLeft="10px"
+                    android:textSize="30px"/>
+            </LinearLayout>
+
+        </RelativeLayout>
      <TextView
+         android:layout_below="@+id/rl"
          android:layout_centerVertical="true"
          android:id="@+id/tv_jingzhun"
          android:layout_marginLeft="50px"
@@ -97,15 +155,19 @@
          android:background="@drawable/bg_profession"
        android:paddingLeft="50px"
        android:paddingRight="50px"
+         android:layout_marginBottom="20px"
       android:gravity="center"
-        android:layout_width="480px"
+        android:layout_width="430px"
        android:layout_height="100px"
-     android:text="开通精准版升学设计"
+     android:text="开通升级版"
      />
         <TextView
+            android:layout_below="@+id/rl"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:id="@+id/tv_putong"
+            android:layout_marginBottom="20px"
+
             android:layout_marginRight="50px"
             android:layout_gravity="center_vertical|right"
             android:textColor="@color/white"
@@ -113,9 +175,9 @@
             android:paddingLeft="50px"
             android:paddingRight="50px"
             android:gravity="center"
-            android:layout_width="480px"
+            android:layout_width="430px"
             android:layout_height="100px"
-            android:text="开启普通版升学设计"
+            android:text="体验免费版"
             />
     </RelativeLayout>
     

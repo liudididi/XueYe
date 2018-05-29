@@ -24,19 +24,24 @@ import java.util.Map;
 
 import base.BaseActivity;
 import base.BaseBean;
+import bean.RenSumBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import butterknife.BindView;
 import butterknife.OnClick;
 import fragment.WishFragMent;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.CountdownPresent;
 import presenter.PayPresent;
+import untils.MyQusetUtils;
 import untils.SPUtils;
 import view.CountdownView;
 import view.PayView;
 import zfbpay.AliPayResult;
 
-public class Buy2Activity extends BaseActivity implements PayView {
+public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
 
 
     @BindView(R.id.buy2_iv_back)
@@ -45,6 +50,14 @@ public class Buy2Activity extends BaseActivity implements PayView {
     TextView tvGoumai2;
     @BindView(R.id.buy2_tvdjs)
     TextView buy2Tvdjs;
+    @BindView(R.id.tv_day1)
+    TextView tv_day1;
+    @BindView(R.id.tv_day2)
+    TextView tv_day2;
+    @BindView(R.id.tv_day3)
+    TextView tv_day3;
+    @BindView(R.id.tv_ren)
+    TextView tv_ren;
     private PayPresent payPresent;
 
     private int pay = 2;
@@ -105,6 +118,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
     };
     private String token;
     private int heightPixels;
+    private CountdownPresent countdownPresent;
 
     @Override
     public int getId() {
@@ -116,6 +130,9 @@ public class Buy2Activity extends BaseActivity implements PayView {
         payPresent = new PayPresent(this);
         DisplayMetrics dm = getResources().getDisplayMetrics();
         heightPixels = dm.heightPixels;
+        countdownPresent = new CountdownPresent(this);
+        countdownPresent.CountdownPresent();
+
 
     }
 
@@ -123,6 +140,7 @@ public class Buy2Activity extends BaseActivity implements PayView {
     protected void onDestroy() {
         super.onDestroy();
         payPresent.onDestory();
+        countdownPresent.onDestory();
     }
 
     public void tanchuang(Context context, final String outTradeNo) {
@@ -344,6 +362,30 @@ public class Buy2Activity extends BaseActivity implements PayView {
             startActivity(intent);
             finish();
         }
+
+
+        MyQusetUtils.getInstance()
+                .getQuestInterface()
+                .getServicenum()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSubscriber<RenSumBean>() {
+                    @Override
+                    public void onNext(RenSumBean renSumBean) {
+                        int data = renSumBean.getData();
+                        tv_ren.setText(data+"");
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
     @Override
     public void WXPaysuccess(WeiXinBean weiXinBean) {
@@ -365,5 +407,39 @@ public class Buy2Activity extends BaseActivity implements PayView {
         Toast(s);
     }
 
+
+    @Override
+    public void Countdownsuccess(BaseBean baseBean) {
+        String s = baseBean.data.toString();
+        if(s!=null&&s.length()==3)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            String substring2 = s.substring(2);
+            tv_day1.setText(substring);
+            tv_day2.setText(substring1);
+            tv_day3.setText(substring2);
+        }
+        if(s!=null&&s.length()==2)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            tv_day1.setText("0");
+            tv_day2.setText(substring);
+            tv_day3.setText(substring1);
+        }
+        else
+        {
+            tv_day1.setText("0");
+            tv_day2.setText("0");
+            tv_day3.setText(s);
+
+        }
+    }
+
+    @Override
+    public void Countdownfail(Throwable t) {
+
+    }
 
 }

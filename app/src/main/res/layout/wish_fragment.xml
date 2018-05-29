@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="400px"
     android:id="@+id/ws_xbanner"
-    app:AutoPlayTime="2000"
+    app:AutoPlayTime="3000"
     >
 </com.stx.xhb.xbanner.XBanner>
 
@@ -188,12 +188,13 @@
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:layout_below="@+id/view2"
-         android:src="@mipmap/fill_out"
-         android:scaleType="centerCrop"
-         android:layout_marginBottom="40px"
+         android:src="@drawable/sheng"
+         android:scaleType="fitXY"
+         android:adjustViewBounds="true"
+          android:layout_marginBottom="40px"
          />
-
      <LinearLayout
+         android:visibility="gone"
          android:id="@+id/ll3"
          android:layout_width="match_parent"
          android:orientation="horizontal"

@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/recommend_iv"
-        android:layout_width="250px"
+        android:layout_width="270px"
         android:layout_height="250px"
         android:layout_marginLeft="30px"
-        android:layout_marginRight="50px"
+        android:layout_marginRight="30px"
         android:layout_marginTop="40px"
          android:scaleType="fitXY"
         android:adjustViewBounds="true"

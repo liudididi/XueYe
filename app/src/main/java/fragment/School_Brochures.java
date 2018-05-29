@@ -51,16 +51,14 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
         List<SchoolBrochuresBean> data = listBaseBean.data;
         if(data.size()>0&&data!=null)
         {
-
-                //招生简章
-                final String  admissionRules = data.get(0).getAdmissionRules();
-
-                //自主招生
-                 final String independent = data.get(0).getIndependent();
-                 //b报送招生
-                final String baosongstr = data.get(0).getBaosongstr();
-                //特长生招生
-                final String specialtystr = data.get(0).getSpecialtystr();
+            //招生简章
+            final String  admissionRules = data.get(0).getAdmissionRules();
+            //自主招生
+             final String independent = data.get(0).getIndependent();
+             //b报送招生
+            final String baosongstr = data.get(0).getBaosongstr();
+            //特长生招生
+            final String specialtystr = data.get(0).getSpecialtystr();
 
             rl_zsjz.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,8 +84,34 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
                     SchoolDetailActivity.ff(specialtystr);
                 }
             });
+        }
+        else
+        {
 
-
+            rl_zsjz.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff("数据整理中");
+                }
+            });
+            rl_zzzs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff("数据整理中");
+                }
+            });
+            rl_bsszs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff("数据整理中");
+                }
+            });
+            rl_tcszs.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SchoolDetailActivity.ff("数据整理中");
+                }
+            });
         }
 
 

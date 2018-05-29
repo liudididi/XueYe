@@ -1,12 +1,21 @@
 package fragment;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -18,12 +27,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.example.login_demo.AccurateActivity;
+import com.example.login_demo.AnswerActivity;
+import com.example.login_demo.ComlitEFCActivity;
 import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
+import com.example.login_demo.wxapi.WXPayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 import adapter.Accurate_Zy_Yx_Adapter;
@@ -37,8 +51,14 @@ import base.Basefragment;
 import bean.Advanced_YX_Bean;
 import bean.CXEFCBean;
 import bean.SerchZYBean;
+import bean.ShijianBean;
+import bean.WeiXinBean;
+import bean.XDingdanBean;
 import presenter.CXEFCPresenter;
+import presenter.CountdownPresent;
+import presenter.PayPresent;
 import presenter.SerchZYPresent;
+import presenter.ShijianPresent;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,14 +67,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import untils.CircleProgressView;
 import untils.QuestInterface;
 import untils.SPUtils;
+import untils.ShijianUtils;
 import view.CXEFCView;
+import view.CountdownView;
+import view.PayView;
 import view.SerchZYView;
+import view.ShijianView;
+import zfbpay.AliPayResult;
 
 /**
  * Created by 祝文 on 2018/3/8.
  */
 
-public class Zhuanye_Fragment extends Basefragment {
+public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayView {
     private boolean flag1=true;
     private boolean flag2=true;
     private boolean flag3=true;
@@ -136,7 +161,73 @@ public class Zhuanye_Fragment extends Basefragment {
     private View lv2_view;
     private View lv3_view;
     private String id;
+    private boolean vip;
+    private String shijian;
+    private boolean dateOneBigger;
 
+    private TextView tv_day1;
+    private TextView tv_day2;
+    private TextView tv_day3;
+    private RelativeLayout rl_shengji;
+    private CountdownPresent countdownPresent;
+    private ImageView iv_zy_mohu;
+    private TextView tv_tishi;
+    private PayPresent payPresent;
+    private int pay = 2;
+    private static final int SDK_PAY_FLAG = 1;
+    private static final int SDK_AUTH_FLAG = 2;
+    private Handler mHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+
+                case SDK_PAY_FLAG:
+
+                    AliPayResult payResult = new AliPayResult((Map<String, String>) msg.obj);
+                    switch (payResult.getResultStatus()) {
+                        case "9000":
+                            SPUtils.put(MyApp.context,"VIP",true);
+                            isretry();
+                            Toast.makeText(getContext(), "支付成功", Toast.LENGTH_SHORT).show();
+
+                            break;
+                        case "8000":
+                            Toast.makeText(getContext(), "正在处理中", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "4000":
+                            Toast.makeText(getContext(), "订单支付失败", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "5000":
+                            Toast.makeText(getContext(), "重复请求", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "6001":
+                            Toast.makeText(getContext(), "已取消支付", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "6002":
+                            Toast.makeText(getContext(), "网络连接出错", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "6004":
+                            Toast.makeText(getContext(), "正在处理中", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            Toast.makeText(getContext(), "支付失败", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+
+                    break;
+
+            }
+//            返回码	含义
+//            9000	订单支付成功
+//            8000	正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+//            4000	订单支付失败
+//            5000	重复请求
+//            6001	用户中途取消
+//            6002	网络连接出错
+//            6004	支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+//            其它	其它支付错误
+
+        }
+    };
     @Override
     public int getLayoutid() {
         return R.layout.zhuanye;
@@ -144,14 +235,65 @@ public class Zhuanye_Fragment extends Basefragment {
 
     @Override
     public void initView() {
+
+        countdownPresent = new CountdownPresent(this);
+        countdownPresent.CountdownPresent();
+
+        payPresent = new PayPresent(this);
+
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         init();
-         token = (String) SPUtils.get(MyApp.context, "token", "");
+        ShijianPresent shijianPresent=new ShijianPresent(new ShijianView() {
+            @Override
+            public void Shijiansuccess( ShijianBean shijianBean) {
+                String data1 = shijianBean.getData();
+                String[] split = data1.split(" ");
+                shijian = split[0];
+                dateOneBigger = ShijianUtils.isDateOneBigger(shijian, "2018-06-20");
+            }
 
+            @Override
+            public void Shijianfail(Throwable t) {
+
+            }
+        });
+        shijianPresent.ShijianPresent();
+         token = (String) SPUtils.get(MyApp.context, "token", "");
+        vip = (boolean) SPUtils.get(MyApp.context, "VIP", false);
         tv_tj.setTextColor(getContext().getResources().getColor(R.color.delete_dialog_text_color));
         initData();
         initOnClick();
         zhuanye();
+
+        if(vip){
+            rl_shengji.setVisibility(View.GONE);
+            iv_zy_mohu.setVisibility(View.GONE);
+            tv_tishi.setVisibility(View.GONE);
+            et_zy.setEnabled(true);
+        }
+        else
+        {
+            rl_shengji.setVisibility(View.VISIBLE);
+            iv_zy_mohu.setVisibility(View.VISIBLE);
+            tv_tishi.setVisibility(View.VISIBLE);
+            et_zy.setEnabled(false);
+            rl_shengji.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String token = (String) SPUtils.get(MyApp.context, "token", "");
+                    String type = (String) SPUtils.get(MyApp.context, "kemuefc", "本科");
+                    if (token.length() > 4) {
+                        if(type.equals("本科")){
+                            payPresent.XiaDan(token, "3", pay + "");
+                        }else {
+                            payPresent.XiaDan(token, "4", pay + "");
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "token失效，请重新登录", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private void zhuanye() {
@@ -207,6 +349,33 @@ public class Zhuanye_Fragment extends Basefragment {
 
     }
 
+    private void isretry() {
+        String str="是否重新测试？";
+        Dialog dialog = new android.app.AlertDialog.Builder( getActivity()).setTitle("支付成功").setMessage(str)
+                // 设置内容
+                .setPositiveButton("重新测试",// 设置确定按钮
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                                Intent intent = new Intent( getActivity(), AnswerActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+
+                            }
+                        }).setNegativeButton("不需要",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+
+                                Intent intent = new Intent( getActivity(), ComlitEFCActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            }
+                        }).create();// 创建
+        dialog.show();
+    }
     private void zhuanye_yuanxiao(final String zy_name, String s1, String s3, String s4, String s5, String city, String s6, String tuition, String s2, String tbsubtype, String fen, String cwb) {
         //cwb 冲稳保  city 院校区域  s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
 
@@ -609,6 +778,16 @@ public class Zhuanye_Fragment extends Basefragment {
                     lv_left.setAdapter(spinner_adapter3);
                     lv3_view.setVisibility(View.VISIBLE);
 
+                    if(vip==false)
+                    {
+                        ed_fen.setEnabled(false);
+                        Toast.makeText(getContext(), "开通VIP才能修改分数", Toast.LENGTH_SHORT).show();
+                    }
+                    if(vip==true&&dateOneBigger==true)
+                    {
+                        ed_fen.setEnabled(false);
+                        Toast.makeText(getContext(), "分数不能修改", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else
                 {
@@ -806,6 +985,12 @@ public class Zhuanye_Fragment extends Basefragment {
         lv1_view = view.findViewById(R.id.lv1_view);
         lv2_view = view.findViewById(R.id.lv2_view);
         lv3_view = view.findViewById(R.id.lv3_view);
+        tv_day1 = view.findViewById(R.id.tv_day1);
+        tv_day2 = view.findViewById(R.id.tv_day2);
+        tv_day3 = view.findViewById(R.id.tv_day3);
+        rl_shengji = view.findViewById(R.id.rl_shengji);
+        iv_zy_mohu = view.findViewById(R.id.iv_zy_mohu);
+        tv_tishi = view.findViewById(R.id.tv_tishi);
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;
@@ -830,5 +1015,188 @@ public class Zhuanye_Fragment extends Basefragment {
     public void onDestroy() {
         super.onDestroy();
         cxefcPresenter.onDestory();
+        countdownPresent.onDestory();
+    }
+
+    @Override
+    public void Countdownsuccess(BaseBean baseBean) {
+        String s = baseBean.data.toString();
+
+        if(s!=null&&s.length()==3)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            String substring2 = s.substring(2);
+            tv_day1.setText(substring);
+            tv_day2.setText(substring1);
+            tv_day3.setText(substring2);
+        }
+        if(s!=null&&s.length()==2)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            tv_day1.setText("0");
+            tv_day2.setText(substring);
+            tv_day3.setText(substring1);
+        }
+        else
+        {
+            tv_day1.setText("0");
+            tv_day2.setText("0");
+            tv_day3.setText(s);
+
+        }
+    }
+
+    @Override
+    public void Countdownfail(Throwable t) {
+
+    }
+
+    @Override
+    public void XDsuccess(XDingdanBean xDingdanBean) {
+        if (xDingdanBean != null) {
+            String outTradeNo = xDingdanBean.getOutTradeNo();
+            tanchuang(getContext(), outTradeNo);
+        }
+    }
+
+    @Override
+    public void ZFBPaysuccess(final String orderinfo) {
+        //  final  String orderInfo="alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2016091100482610&biz_content=%7B%22body%22%3A%22%E6%B5%8B%E8%AF%95%22%2C%22out_trade_no%22%3A%222018031016260614933445%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22pay%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%220.01%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F6ya7kc.natappfree.cc%2Falipay%2Fpay&sign=NqORNz%2BNXCciqd8oFc1G3DYfUznjZYkfOiMU8RKs09FWq5o%2Fp2Pmg64M3HoRAHNOLabdkVyRlEVakRBorzPXI%2B1KBF7bkzX5Z9Dfy1w7bz6%2BiFX0BRptzk6u2fpn0M965BHxsj3y8q4%2FJ%2BhdhL%2B0%2BQd0Yp8qfFtxv9M9jN7ixRgLJ%2BfeQ1HIkM9O7cwxfYFo6tgTfgMSzjVM8heLKfZ3KUQkHIEDaaeOt%2FhOwhSbWZFHKvIdrz2v8orsqEJAIaKAM%2BpSlxmEUnw7TPCihEU8TghG8MIzhecas17GlmzjfBJQgOWxypP46VonUKdehcezechrhEsF3J%2BVyY6LFUVmMw%3D%3D&sign_type=RSA2&timestamp=2018-03-10+16%3A26%3A16&version=1.0&sign=NqORNz%2BNXCciqd8oFc1G3DYfUznjZYkfOiMU8RKs09FWq5o%2Fp2Pmg64M3HoRAHNOLabdkVyRlEVakRBorzPXI%2B1KBF7bkzX5Z9Dfy1w7bz6%2BiFX0BRptzk6u2fpn0M965BHxsj3y8q4%2FJ%2BhdhL%2B0%2BQd0Yp8qfFtxv9M9jN7ixRgLJ%2BfeQ1HIkM9O7cwxfYFo6tgTfgMSzjVM8heLKfZ3KUQkHIEDaaeOt%2FhOwhSbWZFHKvIdrz2v8orsqEJAIaKAM%2BpSlxmEUnw7TPCihEU8TghG8MIzhecas17GlmzjfBJQgOWxypP46VonUKdehcezechrhEsF3J%2BVyY6LFUVmMw%3D%3D";
+        if (orderinfo != null) {
+            Runnable payRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    PayTask alipay = new PayTask(getActivity());
+                    Map<String, String> result = alipay.payV2(orderinfo, true);
+                    Message msg = new Message();
+                    msg.what = SDK_PAY_FLAG;
+                    msg.obj = result;
+                    mHandler.sendMessage(msg);
+                }
+            };
+            // 必须异步调用
+            Thread payThread = new Thread(payRunnable);
+            payThread.start();
+        }
+    }
+
+    @Override
+    public void WXPaysuccess(WeiXinBean weiXinBean) {
+        if (weiXinBean != null) {
+            WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
+            builder.setAppId(weiXinBean.getAppid())
+                    .setPartnerId(weiXinBean.getPartnerid())
+                    .setPrepayId(weiXinBean.getPrepayid())
+                    .setPackageValue(weiXinBean.getPackageX())
+                    .setNonceStr(weiXinBean.getNoncestr())
+                    .setTimeStamp(weiXinBean.getTimestamp())
+                    .setSign(weiXinBean.getSign())
+                    .build().toWXPayNotSign(getActivity(), weiXinBean.getAppid());
+        }
+    }
+
+    @Override
+    public void XDFail(String s) {
+        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void tanchuang(Context context, final String outTradeNo) {
+        pay = 2;
+        final Dialog dialog = new Dialog(context, R.style.Theme_Light_Dialog);
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.dingdan_layout, null);
+        //获得dialog的window窗口
+        Window window = dialog.getWindow();
+        //设置dialog在屏幕底部
+        window.setGravity(Gravity.BOTTOM);
+        //设置dialog弹出时的动画效果，从屏幕底部向上弹出
+        window.setWindowAnimations(R.style.dialogStyle);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        //获得window窗口的属性
+        WindowManager.LayoutParams lp = window.getAttributes();
+        //设置窗口宽度为充满全屏
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        //设置窗口高度为包裹内容
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //将设置好的属性set回去
+        window.setAttributes(lp);
+        //将自定义布局加载到dialog上
+        dialog.setContentView(dialogView);
+        dialog.show();
+        ImageView iv_chahao = dialogView.findViewById(R.id.iv_chahao);
+        RelativeLayout rl5 = dialogView.findViewById(R.id.rl5);
+        RelativeLayout rl6 = dialogView.findViewById(R.id.rl6);
+        final ImageView iv_weixin_dui = dialogView.findViewById(R.id.iv_weixin_dui);
+        final ImageView iv_zhifubao_dui = dialogView.findViewById(R.id.iv_zhifubao_dui);
+        TextView tv_queren = dialogView.findViewById(R.id.tv_queren);
+        TextView diangdan_money = dialogView.findViewById(R.id.diangdan_money);
+        TextView tv_bianhao = dialogView.findViewById(R.id.tv_bianhao);
+        TextView tv_mingcheng = dialogView.findViewById(R.id.tv_mingcheng);
+     /*   if(zk)
+        {
+            tv_mingcheng.setText("升学设计系统--专科版");
+        }
+        else
+        {
+            tv_mingcheng.setText("升学设计系统--本科版");
+        }*/
+        tv_mingcheng.setText("升学设计系统");
+        tv_bianhao.setText(outTradeNo);
+    /*    if(zk){
+            diangdan_money.setText("698");
+        }else {
+            diangdan_money.setText("698");
+        }*/
+        diangdan_money.setText("598");
+
+        iv_chahao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        rl5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iv_weixin_dui.setVisibility(View.VISIBLE);
+                iv_zhifubao_dui.setVisibility(View.GONE);
+                pay = 2;
+            }
+        });
+        rl6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iv_weixin_dui.setVisibility(View.GONE);
+                iv_zhifubao_dui.setVisibility(View.VISIBLE);
+                pay = 1;
+            }
+        });
+        tv_queren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pay == 1) {
+                    payPresent.ZFBpay(outTradeNo);
+                } else {
+                    payPresent.WXpay(outTradeNo);
+                }
+
+ /*     {
+                "msg": "success",
+                    "code": 0,
+                    "data": {
+                "appId": "wx6a6810597dadc392",
+                        "nonceStr": "1345008214",
+                        "package": "Sign=WXPay",
+                        "partnerId": "1496598622",
+                        "prepayId": "wx20180303134458805252",
+                        "sign": "28F70F7923B17D091C4EEBA72155B648",
+                        "timeStamp": "1520055901"
+            }
+            }*/
+                dialog.cancel();
+            }
+        });
     }
 }

@@ -1,5 +1,6 @@
 package com.example.login_demo;
 
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,7 +20,7 @@ import butterknife.OnClick;
 import presenter.MySchoolPresent;
 import view.MySchoolView;
 
-public class MaJorActivity extends BaseActivity implements  MySchoolView {
+public class MaJorActivity extends BaseActivity implements  MySchoolView  , XRecyclerView.LoadingListener{
     @BindView(R.id.major_iv_back)
     ImageView majorIvBack;
     @BindView(R.id.major_xrecycle)
@@ -44,7 +45,9 @@ public class MaJorActivity extends BaseActivity implements  MySchoolView {
         mySchoolPresent = new MySchoolPresent(this);
         majorXrecycle.setVisibility(View.GONE);
         majorXrecycle.setLayoutManager(new LinearLayoutManager(this));
-
+        majorXrecycle.setRefreshProgressStyle(18);
+        majorXrecycle.setLoadingListener(this);
+        majorXrecycle.setLoadingMoreEnabled(false);
     }
 
     @Override
@@ -91,5 +94,24 @@ public class MaJorActivity extends BaseActivity implements  MySchoolView {
     @Override
     public void getMajorfail(String msg) {
         mySchoolPresent.getmajorCollection(token);
+    }
+
+    @Override
+    public void onRefresh() {
+
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mySchoolPresent.getmajorCollection(token);
+                majorXrecycle .refreshComplete();
+            }
+        }, 1000);
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 }

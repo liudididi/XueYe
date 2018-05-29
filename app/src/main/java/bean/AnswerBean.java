@@ -6,25 +6,24 @@ package bean;
 
 public class AnswerBean {
 
+
     /**
-     * id : 249
-     * peType : MBTI_E
+     * id : 589
+     * peType : MBTI
      * peId : 0.1
      * peTitle :
-     * peBody : 注意事项：
-     1．请在心态平和及时间充足的情况下才开始答题。
-     2．每道题目均有两个答案：A和B。请仔细阅读题目，按照与你性格相符的程度选择相应选项。
-     3．请注意，题目的答案无对错之分，你不需要考虑哪个答案“应该”更好，而且不要在任何问题上思考太久，而是应该凭你心里的第一反应做出选择。
-     4．如果你觉得在不同的情境里，两个答案或许都能反映你的倾向，请选择一个对于你的行为方式来说最自然、最顺畅和最从容的答案。
-     温馨提示：本测试共69题，预计花费您15分钟。
+     * peBody : 第二部分
 
-     * answerA :
+     * answerUnm : 1
+     * answerA : 继续
      * answerB :
-     * answerC : null
-     * answerD : null
-     * answerE : null
-     * answerF : null
-     * remarks : null
+     * answerC :
+     * answerD :
+     * answerE :
+     * answerF :
+     * remarks :
+     * ttype : MBTI
+     * torder : 1
      */
 
     private int id;
@@ -32,13 +31,16 @@ public class AnswerBean {
     private String peId;
     private String peTitle;
     private String peBody;
+    private int answerUnm;
     private String answerA;
     private String answerB;
-    private Object answerC;
-    private Object answerD;
-    private Object answerE;
-    private Object answerF;
-    private Object remarks;
+    private String answerC;
+    private String answerD;
+    private String answerE;
+    private String answerF;
+    private String remarks;
+    private String ttype;
+    private int torder;
 
     public int getId() {
         return id;
@@ -80,6 +82,14 @@ public class AnswerBean {
         this.peBody = peBody;
     }
 
+    public int getAnswerUnm() {
+        return answerUnm;
+    }
+
+    public void setAnswerUnm(int answerUnm) {
+        this.answerUnm = answerUnm;
+    }
+
     public String getAnswerA() {
         return answerA;
     }
@@ -96,43 +106,59 @@ public class AnswerBean {
         this.answerB = answerB;
     }
 
-    public Object getAnswerC() {
+    public String getAnswerC() {
         return answerC;
     }
 
-    public void setAnswerC(Object answerC) {
+    public void setAnswerC(String answerC) {
         this.answerC = answerC;
     }
 
-    public Object getAnswerD() {
+    public String getAnswerD() {
         return answerD;
     }
 
-    public void setAnswerD(Object answerD) {
+    public void setAnswerD(String answerD) {
         this.answerD = answerD;
     }
 
-    public Object getAnswerE() {
+    public String getAnswerE() {
         return answerE;
     }
 
-    public void setAnswerE(Object answerE) {
+    public void setAnswerE(String answerE) {
         this.answerE = answerE;
     }
 
-    public Object getAnswerF() {
+    public String getAnswerF() {
         return answerF;
     }
 
-    public void setAnswerF(Object answerF) {
+    public void setAnswerF(String answerF) {
         this.answerF = answerF;
     }
 
-    public Object getRemarks() {
+    public String getRemarks() {
         return remarks;
     }
 
-    public void setRemarks(Object remarks) {
+    public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getTtype() {
+        return ttype;
+    }
+
+    public void setTtype(String ttype) {
+        this.ttype = ttype;
+    }
+
+    public int getTorder() {
+        return torder;
+    }
+
+    public void setTorder(int torder) {
+        this.torder = torder;
     }
 }

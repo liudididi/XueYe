@@ -53,10 +53,8 @@ public class SudokuPagerAdapter extends PagerAdapter {
         View view = View.inflate(context, R.layout.sudoku_glide, null);
         GridView gridview=view.findViewById(R.id.gridview);
         if(position==0){
-
             SudokuGlideAdapter sudokuGlideAdapter= new SudokuGlideAdapter(list,context);
             gridview.setAdapter(sudokuGlideAdapter);
-
         }
         if(position==1){
             ArrayList<SlideshowChildBean> list1=new ArrayList<>();

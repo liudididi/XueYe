@@ -179,7 +179,7 @@
             android:textSize="35px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:text="该过程预计需要12小时，请您耐心等待"
+             android:text="该过程预计需要18小时，请您耐心等待"
             android:layout_marginTop="20px"
             />
 

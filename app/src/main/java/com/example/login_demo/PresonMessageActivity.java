@@ -50,6 +50,8 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
     TextView presonNear;
     @BindView(R.id.preson_highschool)
     TextView presonHighschool;
+    @BindView(R.id.rl_sex)
+    RelativeLayout rl_sex;
     private ConnectionChangeReceiver myReceiver;
     private  String sex;
     private String area;
@@ -89,6 +91,7 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                             if(data.getName()!=null){
                                 String name = (String) data.getName();
                                 presonName.setText(name);
+                                presonName.setSelection(presonName.getText().length());
                             }
                             if(data.getSex()!=null){
                               sex = (String) data.getSex();
@@ -96,7 +99,6 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                             }
                             if(data.getSex()!=null){
                                 if(data.getSex().equals("女")){
-
                                     presonIcon.setImageResource(R.drawable.gril);
                                 }else {
                                      presonIcon.setImageResource(R.drawable.boy);
@@ -112,12 +114,11 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                                years= (String) data.getExamyear();
                                presonNear.setText(years);
                            }
-                           if(data.getArea()!=null){
+                           if(data.getProvince()!=null){
                                province = (String) data.getProvince();
                                city = (String) data.getCity();
-                               area = (String) data.getArea();
                                grade = (String) data.getGrade();
-                               presonHighschool.setText(province + city + area);
+                               presonHighschool.setText(province + city);
                            }
                         }else {
                             Toast.makeText(MyApp.context,"token超时，请重新登录",Toast.LENGTH_SHORT);
@@ -134,14 +135,14 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                 });
     }
 
-    @OnClick({R.id.preson_iv_back, R.id.preson_complie, R.id.preson_icon,R.id.preson_six})
+    @OnClick({R.id.preson_iv_back, R.id.preson_complie, R.id.preson_icon,R.id.rl_sex})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.preson_iv_back:
 
-                perfectMessagePresent.modifyUserinfoMoble(province, city, area, null, grade, presonName.getText().toString(), sex, years, null, false, token);
+                perfectMessagePresent.modifyUserinfoMoble(province, city, area, null, grade, presonName.getText().toString(), presonSix.getText().toString(), years, null, false, token);
                 break;
-            case  R.id.preson_six:
+            case  R.id.rl_sex:
                 View viewe = LayoutInflater.from(PresonMessageActivity.this).inflate(R.layout.dialog_sex, null);
                 final AlertDialog dialog = new AlertDialog.Builder(PresonMessageActivity.this)
                         .setView(viewe).show();
@@ -151,9 +152,11 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                 if(sex.equals("男")){
                     pro_nan.setBackgroundResource(R.drawable.bg_subject3);
                     pro_nv.setBackgroundResource(R.drawable.bg_subject2);
+
                 }else {
                     pro_nan.setBackgroundResource(R.drawable.bg_subjectbai);
                     pro_nv.setBackgroundResource(R.drawable.bg_subjectselect);
+
                 }
                 pro_nv.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -161,12 +164,14 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                         pro_nan.setBackgroundResource(R.drawable.bg_subjectbai);
                         pro_nv.setBackgroundResource(R.drawable.bg_subjectselect);
                         sex="女";
+
                     }
                 });
                 pro_queding.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         presonSix.setText(sex);
+                        SPUtils.put(MyApp.context,"sex",sex);
                         dialog.dismiss();
                     }
                 });
@@ -176,6 +181,7 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                         pro_nan.setBackgroundResource(R.drawable.bg_subject3);
                         pro_nv.setBackgroundResource(R.drawable.bg_subject2);
                         sex="男";
+
 
                     }
                 });

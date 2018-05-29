@@ -5,6 +5,13 @@ package untils;
 import com.example.login_demo.MyApp;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.Proxy;
+import java.net.ProxySelector;
+import java.net.SocketAddress;
+import java.net.URI;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -47,7 +54,17 @@ public class MyQusetUtils {
                       .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                       .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
                       .retryOnConnectionFailure(false)
-                      .cache(cache).build();
+                      .cache(cache).proxySelector(new ProxySelector() {
+                  @Override
+                  public List<Proxy> select(URI uri) {
+                      return Collections.singletonList(Proxy.NO_PROXY);
+                  }
+
+                  @Override
+                  public void connectFailed(URI uri, SocketAddress sa, IOException ioe) {
+
+                  }
+              }).build();
           }
           Retrofit.Builder builder = new Retrofit.Builder()
                   .baseUrl(BaseApi.Api).client(okHttpClient)

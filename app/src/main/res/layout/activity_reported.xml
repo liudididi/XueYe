@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.login_demo.ReportedActivity">
 
-
     <RelativeLayout
         android:id="@+id/rl_reported"
         android:layout_width="match_parent"
@@ -33,112 +32,41 @@
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000"
+        android:layout_height="3px"
+        android:background="#F3F3F3"
         android:layout_below="@id/rl_reported"></View>
 
-  <!--  <TextView
-        android:id="@+id/reported_primary"
-        android:layout_width="match_parent"
-        android:layout_height="450px"
-        android:text="您已生成初级志愿表"
-        android:layout_below="@id/view1"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textSize="60px"
-        android:textColor="@color/white"
-        android:background="@drawable/chuji"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="50px"/>
-    <TextView
-        android:id="@+id/reported_chu"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:text="可根据生源地+学分智能生成 初级志愿表"
-        android:layout_below="@id/view1"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textSize="40px"
-        android:textColor="@color/white"
 
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="395px"/>-->
-    <TextView
-        android:textSize="60px"
-        android:textColor="@color/white"
+    <ImageView
+
         android:id="@+id/reported_advanced"
         android:layout_width="match_parent"
-        android:layout_height="450px"
-        android:text="分数模拟填报"
-        android:layout_below="@id/view1"
+        android:layout_height="wrap_content"
+         android:layout_below="@id/view1"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         android:background="@drawable/chuji"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
         android:layout_marginTop="50px"/>
-    <TextView
-        android:textSize="40px"
-        android:textColor="@color/white"
-        android:id="@+id/reported_gao"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:text="根据生源地+分数+意愿城市等信息智能生成"
-        android:layout_below="@id/view1"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="395px"/>
 
-    <TextView
+
+    <ImageView
         android:id="@+id/reported_accurate"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         android:layout_width="match_parent"
-        android:layout_height="450px"
-        android:text="精准志愿填报"
-        android:textSize="60px"
-        android:textColor="@color/white"
+        android:layout_height="wrap_content"
         android:layout_below="@id/reported_advanced"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:background="@drawable/gaoji"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
         android:layout_marginTop="50px"/>
-    <TextView
-        android:textSize="40px"
-        android:id="@+id/reported_jing"
-        android:layout_width="match_parent"
-        android:layout_height="100px"
-        android:text="根据个人职业特质+兴趣等智能生成"
-        android:textColor="@color/white"
-        android:layout_below="@id/reported_advanced"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="395px"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="320px"
-        android:background="#ccc"
-        android:alpha="0.3"
-        android:layout_height="150px">
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
-        android:layout_marginTop="820px"
-        android:background="#ccc"
-        android:alpha="0.3"
-        android:layout_height="150px">
-    </RelativeLayout>
     <ProgressBar
         android:visibility="gone"
         android:id="@+id/re_pb"

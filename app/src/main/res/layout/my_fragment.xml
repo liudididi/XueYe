@@ -447,6 +447,7 @@
             android:layout_below="@+id/my_character"
             android:background="#F3F3F3"></View>
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/my_gradetable"
             android:layout_below="@+id/view7"
             android:layout_width="match_parent"

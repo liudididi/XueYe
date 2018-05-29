@@ -18,7 +18,7 @@
              app:pointSelect="@color/red"
             android:layout_width="match_parent"
             android:layout_height="500px"
-            app:AutoPlayTime="2000">
+            app:AutoPlayTime="3000">
             </com.stx.xhb.xbanner.XBanner>
             <View
                 android:id="@+id/view5"

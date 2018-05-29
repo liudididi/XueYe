@@ -55,9 +55,9 @@
                 android:id="@+id/rl_tjschool"
                 android:layout_width="match_parent"
                 android:layout_height="200px">
-
-
                 <ImageView
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
                     android:id="@+id/tuijian_iv"
                     android:layout_width="146px"
                     android:layout_height="146px"
@@ -196,21 +196,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <ImageView
-                    android:src="@drawable/yangli"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="820px" />
-<TextView
-    android:layout_marginTop="30px"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="94px"
-    android:layout_marginRight="94px"
-    android:gravity="center"
-    android:textColor="#666"
-    android:textSize="32px"
-    android:text="因考生意愿和主观因素，升学设计系统无法进行精准推测,需开通升学设计系统精准志愿辅助系统。"
-    />
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/yangli"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        android:layout_marginLeft="50px"
+                        android:layout_marginRight="50px"
+                        android:layout_width="match_parent"
+                        android:layout_height="820px" />
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textColor="@color/zhu2"
+                        android:textSize="45px"
+                        android:layout_marginLeft="70px"
+                        android:layout_marginRight="70px"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="因考生意愿和主观因素，无法进行精准推测，需开通升级版升学设计系统"
+                        />
+                </RelativeLayout>
+
+
        <TextView
            android:id="@+id/tv_ktefc"
            android:textSize="38px"
@@ -443,7 +453,7 @@
                         android:textSize="35px"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="该过程预计需要12小时，请您耐心等待"
+                        android:text="该过程预计需要18小时，请您耐心等待"
                         android:layout_marginTop="20px"
                         />
 

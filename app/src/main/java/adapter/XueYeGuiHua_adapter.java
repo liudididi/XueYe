@@ -24,7 +24,11 @@ public class XueYeGuiHua_adapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return  8;
+        if(list.size()<8){
+            return list.size();
+        }else {
+            return  8;
+        }
     }
 
     @Override

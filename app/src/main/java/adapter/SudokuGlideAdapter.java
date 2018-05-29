@@ -46,7 +46,11 @@ public class SudokuGlideAdapter extends BaseAdapter {
         this.list=list;
         this.context = context;
         Integer fbl = (Integer) SPUtils.get(MyApp.context, "FBL", 1920);
-
+        for (int i = 0; i <list.size() ; i++) {
+            if(list.get(i).getName().equals("心理测评")){
+                list.remove(i);
+            }
+        }
         if(fbl<=1280){
             is1080=true;
         }

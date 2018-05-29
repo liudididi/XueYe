@@ -179,8 +179,13 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         init();
         schoolname = getActivity().getIntent().getStringExtra("schoolname");
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
-        tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-        tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
+        if(SchoolDetailActivity.isefc){
+             tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtypeefc", "文科");
+            tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfenefc", "500");
+        }else {
+            tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
+            tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
+        }
         schoolEnrollPresent = new SchoolEnrollPresent(this);
         schoolEnrollPresent.SchoolEnrollPresent(schoolname,tbarea,tbsubtype);
         //schoolEnrollPresent.getscoreCompareMobil(tbarea,tbsubtype, schoolname,tbmaxfen);
@@ -539,6 +544,9 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 if(listBaseBean.get(i).getScore()!=null){
                     String score = listBaseBean.get(i).getScore();
                     if(score.equals("")){
+                        score="0";
+                    }
+                    if(score.equals("-")){
                         score="0";
                     }
                     listfen.set(4-i,Integer.parseInt(score));

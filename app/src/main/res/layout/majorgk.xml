@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
+    android:id="@+id/srv"
     android:scrollbars="none"
     android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
@@ -545,7 +546,7 @@
             android:layout_height="wrap_content"
             android:textColor="#777777"
             android:id="@+id/fmgk_tvzsnl"
-            android:text="暂无数据"
+            android:text="数据整理中"
             ></TextView>
     <untils.ListViewForScrollView
         android:divider="@null"
@@ -607,7 +608,7 @@
             ></View>
     </RelativeLayout>
 
-    <untils.FlowLayoutzy
+    <untils.FlowLayout
         android:id="@+id/fmgk_flow"
         android:layout_marginLeft="25px"
         android:layout_marginRight="50px"

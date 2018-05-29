@@ -141,7 +141,6 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-
         homegrade.setText(tbmaxfen);
         homearea.setText(tbarea);
         homesubtype.setText(tbsubtype);
@@ -288,9 +287,6 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
                 }else  if(position==1){
                     Intent intent= new Intent(getContext(), MoreMajorActivity.class);
                     getContext().startActivity(intent);
-                }else {
-                    Intent intent= new Intent(getContext(), MentalityActivity.class);
-                    getContext().startActivity(intent);
                 }
 
             }
@@ -308,7 +304,6 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
          if(listBaseBean.data!=null&&listBaseBean.data.size()>0){
              for (int i = 0; i < listBaseBean.data.size(); i++) {
                  sudokuList.add(new SlideshowChildBean(listBaseBean.data.get(i).getName(), listBaseBean.data.get(i).getExtimg().toString(), listBaseBean.data.get(i).getUrl()));
-
              }
          }
 

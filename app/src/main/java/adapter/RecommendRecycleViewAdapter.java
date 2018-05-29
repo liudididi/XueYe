@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.example.login_demo.ParticularsActivity;
 import com.example.login_demo.R;
 
@@ -34,14 +35,13 @@ public class RecommendRecycleViewAdapter extends RecyclerView.Adapter<RecommendR
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recommend_item, null);
-
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
-        Glide.with(context).load(list.get(position).img).transform(new GlideCircleTransform(context)).into(holder.recommend_iv);
+        Glide.with(context).load(list.get(position).img).transform(new CenterCrop(context),new GlideCircleTransform(context,5)).into(holder.recommend_iv);
         holder.recommend_tv_title.setText(list.get(position).tv_title);
         holder.recommend_time.setText(list.get(position).time);
         holder.recommend_count.setText(list.get(position).count);

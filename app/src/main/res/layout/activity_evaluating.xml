@@ -83,13 +83,15 @@
             android:layout_centerHorizontal="true"/>
         <TextView
             android:id="@+id/evaluating_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="职业星空"
             android:textSize="40px"
             android:textColor="#ffffff"
             android:background="@drawable/bg_profession"
             android:gravity="center"
+            android:layout_marginRight="70px"
+            android:layout_marginLeft="70px"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="30px"
              android:layout_centerHorizontal="true"/>

@@ -1,39 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200px">
 <View
     android:id="@+id/majoritem_view"
     android:layout_width="match_parent"
-    android:layout_height="30px"
+    android:layout_height="15px"
     android:background="#F5F5F5"
     ></View>
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="185px"
+        android:gravity="center_vertical"
+         android:layout_below="@+id/majoritem_view">
+
     <TextView
-        android:layout_marginTop="20px"
-        android:id="@+id/majoritem_tv_big"
+         android:id="@+id/majoritem_tv_big"
         android:layout_marginLeft="50px"
-        android:layout_below="@+id/majoritem_view"
-        android:layout_width="wrap_content"
+          android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="50px"
-        android:textColor="@color/black"
+        android:textColor="#333333"
         android:text="野生动物与自然保护区管理"
         />
     <TextView
-        android:textColor="@color/black"
+        android:textColor="#999999"
         android:id="@+id/majoritem_tv_small"
         android:layout_marginLeft="50px"
+        android:layout_marginTop="10px"
         android:layout_below="@+id/majoritem_tv_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="35px"
         android:text="野生动物与自然保护区管理"
         />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30px"
-        android:layout_below="@+id/majoritem_tv_small"
-        ></View>
 
-
+    </RelativeLayout>
 </RelativeLayout>

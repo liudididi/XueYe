@@ -76,7 +76,7 @@ public class SchoolDetailActivity extends BaseActivity {
     @BindView(R.id.school_flow)
     FlowLayout schoolFlow;
 
-
+    public  static  boolean isefc;
     private School_Summary school_summary;
     private Fragment currentFragment;
     private String token;
@@ -98,6 +98,7 @@ public class SchoolDetailActivity extends BaseActivity {
     }
     @Override
     public void InIt() {
+        isefc=getIntent().getBooleanExtra("EFC",false);
         rl_wenben = findViewById(R.id.rl_wenben);
         tv_wenben = findViewById(R.id.tv_wenben);
         view_gl = findViewById(R.id.view_gl);

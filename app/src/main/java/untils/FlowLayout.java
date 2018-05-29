@@ -264,6 +264,32 @@ public class FlowLayout extends ViewGroup {
         }
     }
 
+    public void setListDatazy(List<String> list) {
+
+        int count = list.size();
+        for (int i = 0; i < count; i++) {
+            final TextView tv = (TextView) mInflater.inflate(R.layout.zy_textview, this,
+                    false);
+            if(is1080){
+                tv.setTextSize(10);
+                tv.setPadding(2,0,2,0);
+                LayoutParams layoutParams = tv.getLayoutParams();
+                layoutParams.height = 30;
+                layoutParams.width=LayoutParams.WRAP_CONTENT;
+                tv.setLayoutParams(layoutParams);
+            }
+            tv.setText(list.get(i));
+            tv.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onTagClickListener != null)
+                        onTagClickListener.TagClick(tv.getText().toString());
+                }
+            });
+
+            this.addView(tv);
+        }
+    }
 
     /**
      * 设置数据

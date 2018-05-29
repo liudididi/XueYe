@@ -99,9 +99,16 @@ XlcsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.lsbg_bt:
-                intent(XlcsActivity.this, ComlitEFCActivity.class);
-                finish();
-
+                 boolean vip = (boolean) SPUtils.get(MyApp.context, "VIP", false);
+                if(vip==true){
+                    intent(XlcsActivity.this, ComlitEFCActivity.class);
+                    finish();
+                }else {
+                    Intent intent=new Intent(XlcsActivity.this, XueYeGuiHuaActivity.class);
+                    intent.putExtra("VIP",true);
+                    startActivity(intent);
+                    finish();
+                }
                 break;
             case R.id.xlcs_bt1:
                 Intent intent = new Intent(XlcsActivity.this, AnswerActivity.class);

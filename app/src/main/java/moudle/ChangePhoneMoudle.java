@@ -14,7 +14,6 @@ import untils.MyQusetUtils;
 
 public class ChangePhoneMoudle {
     private CompositeDisposable compositeDisposable=new CompositeDisposable();
-
     public  void  mobileUpdateCaptcha(String mobile, final ChangePhoneCaptChaBack changePhoneCaptChaBack) {
         DisposableSubscriber<BaseBean> disposableSubscriber =
                 MyQusetUtils.getInstance()
@@ -42,8 +41,10 @@ public class ChangePhoneMoudle {
 
 
     public  void  updateMobileVerifyOld(String mobile,String captcha,String token, final OldphoneCaptChaBack oldphoneCaptChaBack) {
-        DisposableSubscriber<BaseBean> disposableSubscriber = MyQusetUtils.getInstance()
-                .getQuestInterface().updateMobileVerifyOld(mobile,captcha,token)
+        DisposableSubscriber<BaseBean> disposableSubscriber =
+                MyQusetUtils.getInstance()
+                .getQuestInterface()
+                        .updateMobileVerifyOld(mobile,captcha,token)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribeWith(new DisposableSubscriber<BaseBean>() {

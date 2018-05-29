@@ -51,6 +51,7 @@ public class ComlitEFCActivity extends BaseActivity {
         MyQusetUtils.getInstance().getQuestInterface().gettime(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
                     @Override
                     public void onNext(BaseBean<String> stringBaseBean) {
@@ -148,8 +149,6 @@ public class ComlitEFCActivity extends BaseActivity {
                 break;
         }
     }
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

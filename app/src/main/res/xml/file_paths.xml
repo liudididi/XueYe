@@ -3,6 +3,8 @@
 
     <paths>
         <!--<external-files-path name="name" path="path" />-->
-        <external-path name="file_paths" path="Download"/>
+
+        <external-path name="external" path="Download" />
+
     </paths>
 </resources>

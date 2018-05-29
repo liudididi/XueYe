@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/r"
         android:layout_width="match_parent"
-        android:layout_height="300px"
+        android:layout_height="wrap_content"
        >
         <RelativeLayout
             android:id="@+id/rl"
@@ -130,8 +130,9 @@
             android:layout_width="match_parent"
             android:layout_height="110px"
             android:background="#fff"
-            android:layout_marginTop="180px"
-            >
+            android:visibility="visible"
+            android:layout_below="@+id/rl"
+             >
           <!--  <TextView
                 android:id="@+id/tv_zhuanye"
                 android:layout_width="wrap_content"

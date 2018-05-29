@@ -69,10 +69,11 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
     private String XX=null;
     private HashMap<String, String> map;
 
-    private static String type="MBTI";
+    private static String type="MBTI_E";
     private EFCJGBaoCunPresenter efcjgBaoCunPresenter;
     private String token;
-
+    private String pd;
+    private String SDSpd;
     @Override
     public int getId() {
         return R.layout.activity_answer;
@@ -141,42 +142,58 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                 {
                     if(type.equals("SDS_E"))
                     {
+
                         for (int i = 0; i < data.size(); i++) {
+
                             Question q = new Question();
                             AnswerBean answerBean = data.get(i);
-                            String peBody = answerBean.getPeBody();
-                            String peId = answerBean.getPeId();
-                            q.setPeId(peId);
-                            q.setQuestion(peBody);
-                            List<Question.Answer> mA = new ArrayList<>();
-                            Question.Answer a1 = new Question.Answer();
-                            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
-                            Question.Answer a2 = new Question.Answer();
-                            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
-                            mA.add(a1);
-                            mA.add(a2);
-                            q.setAnswer(mA);
-                            questions.add(q);
+                            if(answerBean.getPeTitle().equals("t"))
+                            {
+
+                                String peBody = answerBean.getPeBody();
+                                String peId = answerBean.getPeId();
+                                int answerUnm = answerBean.getAnswerUnm();
+                                q.setAnswerUnm(answerUnm);
+                                q.setPeId(peId);
+                                q.setQuestion(peBody);
+                                List<Question.Answer> mA = new ArrayList<>();
+                                Question.Answer a1 = new Question.Answer();
+                                a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+                                Question.Answer a2 = new Question.Answer();
+                                a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+                                mA.add(a1);
+                                mA.add(a2);
+                                q.setAnswer(mA);
+                                questions.add(q);
+                            }
+
                         }
                     }
                     if(type.equals("MBTI_E"))
                     {
                         for (int i = 1; i < data.size(); i++) {
+
                             Question q = new Question();
                             AnswerBean answerBean = data.get(i);
-                            String peBody = answerBean.getPeBody();
-                            String peId = answerBean.getPeId();
-                            q.setPeId(peId);
-                            q.setQuestion(peBody);
-                            List<Question.Answer> mA = new ArrayList<>();
-                            Question.Answer a1 = new Question.Answer();
-                            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
-                            Question.Answer a2 = new Question.Answer();
-                            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
-                            mA.add(a1);
-                            mA.add(a2);
-                            q.setAnswer(mA);
-                            questions.add(q);
+                            if(answerBean.getPeTitle().equals("t"))
+                            {
+                                String peBody = answerBean.getPeBody();
+                                String peId = answerBean.getPeId();
+                                int answerUnm = answerBean.getAnswerUnm();
+                                q.setAnswerUnm(answerUnm);
+                                q.setPeId(peId);
+                                q.setQuestion(peBody);
+                                List<Question.Answer> mA = new ArrayList<>();
+                                Question.Answer a1 = new Question.Answer();
+                                a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+                                Question.Answer a2 = new Question.Answer();
+                                a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+                                mA.add(a1);
+                                mA.add(a2);
+                                q.setAnswer(mA);
+                                questions.add(q);
+                            }
+
                         }
                     }
 
@@ -189,8 +206,13 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                             {
                                 String peBody = answerBean.getPeBody();
                                 String peId = answerBean.getPeId();
-                                 q.setQuestion(peBody);
+                                int answerUnm = answerBean.getAnswerUnm();
+                                int torder = answerBean.getTorder();
+                                q.setTorder(torder);
+                                q.setQuestion(peBody);
                                 q.setPeId(peId);
+                                q.setAnswerUnm(answerUnm);
+
                                 List<Question.Answer> mA = new ArrayList<>();
                                 Question.Answer a1 = new Question.Answer();
                                 a1.setAnswerMessage("A:"+answerBean.getAnswerA());
@@ -201,35 +223,52 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                                 q.setAnswer(mA);
                                 questions.add(q);
                             }
+                            else
+                            {
 
+                                ShiTi(answerBean,q,questions);
+
+                            }
                         }
                     }
                     if(type.equals("SDS"))
                     {
-                        for (int i = 1; i < data.size(); i++) {
+                        for (int i = 0; i < data.size(); i++) {
                             Question q = new Question();
                             AnswerBean answerBean = data.get(i);
+                            if(answerBean.getPeTitle().equals("t")) {
                                 String peBody = answerBean.getPeBody();
                                 String peId = answerBean.getPeId();
+                                int answerUnm = answerBean.getAnswerUnm();
+                                int torder = answerBean.getTorder();
+                                q.setTorder(torder);
                                 q.setQuestion(peBody);
                                 q.setPeId(peId);
+                                q.setAnswerUnm(answerUnm);
                                 List<Question.Answer> mA = new ArrayList<>();
                                 Question.Answer a1 = new Question.Answer();
-                                a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+                                a1.setAnswerMessage("A:" + answerBean.getAnswerA());
                                 Question.Answer a2 = new Question.Answer();
-                                a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+                                a2.setAnswerMessage("B:" + answerBean.getAnswerB());
                                 mA.add(a1);
                                 mA.add(a2);
                                 q.setAnswer(mA);
                                 questions.add(q);
+                            }
+                            else
+                            {
+                                ShiTi(answerBean,q,questions);
+                            }
                         }
                     }
-
                     mQuestion.addAll(questions);
                     //3.为ViewFilpper添加子控件。
                     for (int i = 0; i < mQuestion.size(); i++) {
                         Question question = mQuestion.get(i);
-                        viewFlipper.addView(addQuestionView(question));
+                        if(question!=null)
+                        {
+                            viewFlipper.addView(addQuestionView(question));
+                        }
                     }
                     //4.初始化Animation数组
                     animations[0] = AnimationUtils.loadAnimation(AnswerActivity.this, R.anim.left_in);
@@ -240,10 +279,106 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             }
             @Override
             public void Answerfail(Throwable t) {
+                answerPresent.AnswerPresent(type);
 
             }
         });
         answerPresent.AnswerPresent(type);
+    }
+
+    private void ShiTi(AnswerBean answerBean,Question q, List<Question> questions) {
+        String peBody = answerBean.getPeBody();
+        String peId = answerBean.getPeId();
+        int answerUnm = answerBean.getAnswerUnm();
+        int torder = answerBean.getTorder();
+        q.setTorder(torder);
+        q.setQuestion(peBody);
+        q.setPeId(peId);
+        q.setAnswerUnm(answerUnm);
+        List<Question.Answer> mA = new ArrayList<>();
+        if(answerUnm==1)
+        {
+            Question.Answer a1 = new Question.Answer();
+            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+            mA.add(a1);
+        }
+        if(answerUnm==2)
+        {
+            Question.Answer a1 = new Question.Answer();
+            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+            mA.add(a1);
+            Question.Answer a2 = new Question.Answer();
+            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+            mA.add(a2);
+        }
+        if(answerUnm==3)
+        {
+            Question.Answer a1 = new Question.Answer();
+            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+            mA.add(a1);
+            Question.Answer a2 = new Question.Answer();
+            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+            mA.add(a2);
+            Question.Answer a3 = new Question.Answer();
+            a3.setAnswerMessage("C:"+answerBean.getAnswerC());
+            mA.add(a3);
+        }
+        if(answerUnm==4)
+        {
+            Question.Answer a1 = new Question.Answer();
+            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+            mA.add(a1);
+            Question.Answer a2 = new Question.Answer();
+            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+            mA.add(a2);
+            Question.Answer a3 = new Question.Answer();
+            a3.setAnswerMessage("C:"+answerBean.getAnswerC());
+            mA.add(a3);
+            Question.Answer a4 = new Question.Answer();
+            a4.setAnswerMessage("D:"+answerBean.getAnswerD());
+            mA.add(a4);
+        }
+        if(answerUnm==5)
+        {
+            Question.Answer a1 = new Question.Answer();
+            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+            mA.add(a1);
+            Question.Answer a2 = new Question.Answer();
+            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+            mA.add(a2);
+            Question.Answer a3 = new Question.Answer();
+            a3.setAnswerMessage("C:"+answerBean.getAnswerC());
+            mA.add(a3);
+            Question.Answer a4 = new Question.Answer();
+            a4.setAnswerMessage("D:"+answerBean.getAnswerD());
+            mA.add(a4);
+            Question.Answer a5 = new Question.Answer();
+            a5.setAnswerMessage("E:"+answerBean.getAnswerE());
+            mA.add(a5);
+        }
+        if(answerUnm==6)
+        {
+            Question.Answer a1 = new Question.Answer();
+            a1.setAnswerMessage("A:"+answerBean.getAnswerA());
+            mA.add(a1);
+            Question.Answer a2 = new Question.Answer();
+            a2.setAnswerMessage("B:"+answerBean.getAnswerB());
+            mA.add(a2);
+            Question.Answer a3 = new Question.Answer();
+            a3.setAnswerMessage("C:"+answerBean.getAnswerC());
+            mA.add(a3);
+            Question.Answer a4 = new Question.Answer();
+            a4.setAnswerMessage("D:"+answerBean.getAnswerD());
+            mA.add(a4);
+            Question.Answer a5 = new Question.Answer();
+            a5.setAnswerMessage("E:"+answerBean.getAnswerE());
+            mA.add(a5);
+            Question.Answer a6 = new Question.Answer();
+            a6.setAnswerMessage("F:"+answerBean.getAnswerF());
+            mA.add(a6);
+        }
+        q.setAnswer(mA);
+        questions.add(q);
     }
 
     private View addQuestionView(final Question question) {
@@ -253,39 +388,87 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         final TextView tv_dq= view.findViewById(R.id.tv_dq);
         TextView tv_zong = view.findViewById(R.id.tv_zong);
         ProgressBar progressBar = view.findViewById(R.id.progressBar);
-
         bt = view.findViewById(R.id.tv_shang);
         adapter = new ChineseMedicineReportAdapter(this, question);
-        listview.setAdapter(adapter);
-        tes.setText(question.getQuestion());
+        if(adapter!=null)
+        {
+            listview.setAdapter(adapter);
+            tes.setText(question.getQuestion());
+        }
         if(type.equals("SDS_E"))
         {
             tv_dq.setText(question.getPeId()+"/");
-            tv_zong.setText(data.size()+"");
-            progressBar.setMax(data.size());
-            progressBar.setProgress(Integer.parseInt(question.getPeId()));
-        }
+            tv_zong.setText(90+"");
+            progressBar.setMax(90);
+            if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
+            {
+                progressBar.setProgress(Integer.parseInt(question.getPeId()));
+            }
+         }
         if(type.equals("MBTI_E"))
         {
-            tv_dq.setText(question.getPeId()+"/");
-            tv_zong.setText(data.size()-1+"");
-            progressBar.setMax(data.size()-1);
-            progressBar.setProgress(Integer.parseInt(question.getPeId()));
+             tv_dq.setText(question.getPeId()+"/");
+            tv_zong.setText(93+"");
+            progressBar.setMax(93);
+
+            if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
+            {
+                progressBar.setProgress(Integer.parseInt(question.getPeId()));
+            }
+
         }
         if(type.equals("MBTI"))
         {
-            tv_dq.setText(question.getPeId()+"/");
-            tv_zong.setText(data.size()-4+"");
-            progressBar.setMax(data.size()-4);
-            progressBar.setProgress(Integer.parseInt(question.getPeId()));
+            tv_zong.setText(183+"");
+            progressBar.setMax(183);
+            tv_dq.setText(question.getTorder()+"/");
+            progressBar.setProgress(question.getTorder());
+           /* if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
+            {
+                tv_dq.setText(question.getPeId()+"/");
+                String peId = question.getPeId();
+                 pd=peId;
+                progressBar.setProgress(Integer.parseInt(pd));
+            }
+            else
+            {
+                if(pd!=null)
+                {
+                     progressBar.setProgress(Integer.parseInt(pd));
+                }
+                tv_dq.setText(question.getPeId()+"/");
+            }
+*/
+
+
         }
         if(type.equals("SDS"))
         {
-            tv_dq.setText(question.getPeId()+"/");
-            tv_zong.setText(data.size()-1+"");
-            progressBar.setMax(data.size()-1);
-            progressBar.setProgress(Integer.parseInt(question.getPeId()));
+            tv_zong.setText(183+"");
+            progressBar.setMax(183);
+            tv_dq.setText(question.getTorder()+"/");
+            progressBar.setProgress(question.getTorder());
+            //progressBar.setProgress(Integer.parseInt(question.getPeId()));
+
+         /*   if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
+            {
+                tv_dq.setText(question.getPeId()+"/");
+                String peId = question.getPeId();
+                SDSpd=peId;
+                progressBar.setProgress(Integer.parseInt(SDSpd));
+            }
+            else
+            {
+                if(SDSpd!=null)
+                {
+                    progressBar.setProgress(Integer.parseInt(SDSpd));
+                }
+                tv_dq.setText(question.getPeId()+"/");
+            }*/
         }
+
+        if(adapter!=null)
+        {
         adapter.setItemOnClick(new ChineseMedicineReportAdapter.ItemOnClick() {
             @Override
             public void SX(View view, final int position) {
@@ -296,48 +479,49 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     public void onClick(View view) {
                         if(Dianji.isNotFastClick())
                         {
-                            //选项
-                            //Toast.makeText(AnswerActivity.this, position + "", Toast.LENGTH_SHORT).show();
-                            if(position==0)
-                            {
-                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
-                                XX="A";
+                            int answerUnm = question.getAnswerUnm();
+                            String peId = question.getPeId();
+                            if(answerUnm==2&&peId.indexOf(".")==-1)
+                                {
+                                    //选项
+                                    //Toast.makeText(AnswerActivity.this, position + "", Toast.LENGTH_SHORT).show();
+                                    if(position==0)
+                                    {
+                                        // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                        XX="A";
+                                    }
+                                    if(position==1)
+                                    {
+                                        XX="B";
+                                        //Toast.makeText(AnswerActivity.this,   "B", Toast.LENGTH_SHORT).show();
+                                    }
+                                    map.put(question.getPeId()+"",XX);
+
                             }
-                            if(position==1)
-                            {
-                                XX="B";
-                                //Toast.makeText(AnswerActivity.this,   "B", Toast.LENGTH_SHORT).show();
-                            }
-                            map.put(question.getPeId()+"",XX);
                             if (viewFlipper.getDisplayedChild() == mQuestion.size() - 1) {
                                 //Toast.makeText(AnswerActivity.this, "最后一个题", Toast.LENGTH_SHORT).show();
                                 //得到MBTI测试得到的结果
-
                                 if(type.equals("MBTI"))
                                 {
                                     jiexi(tv_answer);
-
                                     return;
                                 }
                                 //得到SDS测试得到的结果
                                 if(type.equals("SDS"))
                                 {
                                     jiexi(tv_answer);
-
                                     return;
                                 }
                                 //得到MBTI_E测试得到的结果
                                 if(type.equals("MBTI_E"))
                                 {
                                     jiexi(tv_answer);
-
                                     return;
                                 }
                                 //得到MBTI_E测试得到的结果
                                 if(type.equals("SDS_E"))
                                 {
                                     jiexi(tv_answer);
-
                                     return;
                                 }
 
@@ -355,7 +539,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             }
         });
 
-
+        }
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -445,9 +629,8 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     SharedPreferences.Editor edit = mbti.edit();
                     edit.putString("mb",mbtiString);
                     edit.commit();
-
-                    type="SDS";
                     intent(AnswerActivity.this,AnswerActivity.class);
+                    type="SDS";
                     finish();
                     return;
                 }

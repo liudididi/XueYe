@@ -265,7 +265,6 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
         super.onResume();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         if(token.length()>4){
-
             MyUserBean.checkLogin();
              my_login.setVisibility(View.INVISIBLE);
              tv_tv.setVisibility(View.GONE);
@@ -273,45 +272,24 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
             if(userBeanInstans!=null){
                  school = (String) SPUtils.get(MyApp.context, "school", "地区");
                  name = (String) SPUtils.get(MyApp.context, "name", "姓名");
+               String  sex = (String) SPUtils.get(MyApp.context, "sex", "男");
                 myfragment_name.setVisibility(View.VISIBLE);
                 myfragment_school.setVisibility(View.VISIBLE);
                 iv_qm.setVisibility(View.VISIBLE);
                 myfragment_name.setText(name);
                 myfragment_school.setText(school);
-                if(userBeanInstans.getSex()!=null){
-                    if(userBeanInstans.getSex().equals("女")){
-                       // Glide.with(getActivity()).load(R.drawable.gril).into(my_icon);
-                       // my_icon.setImageResource(R.drawable.gril);
-                        Glide.with(MyApp.context).load(R.drawable.gril).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
-                            @Override
-                            protected void setResource(Bitmap resource) {
-                                RoundedBitmapDrawable circularBitmapDrawable =
-                                        RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
-                                circularBitmapDrawable.setCircular(true);
-                                my_icon .setImageDrawable(circularBitmapDrawable);
-                            }
-                        });
-
-
-
-                    }else {
-                      //  Glide.with(getActivity()).load(R.drawable.boy).into(my_icon);
-                        Glide.with(MyApp.context).load(R.drawable.boy).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
-                            @Override
-                            protected void setResource(Bitmap resource) {
-                                RoundedBitmapDrawable circularBitmapDrawable =
-                                        RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
-                                circularBitmapDrawable.setCircular(true);
-                                my_icon .setImageDrawable(circularBitmapDrawable);
-                            }
-                        });
-                    }
-                }
-                else {
-                    /*Glide.with(getActivity()).load(R.drawable.boy).into(my_icon);*/
-                   // my_icon.setImageResource(R.drawable.boy);
-
+                if(sex.equals("男")){
                     Glide.with(MyApp.context).load(R.drawable.boy).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(MyApp.context.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            my_icon .setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
+                }else {
+                    Glide.with(MyApp.context).load(R.drawable.gril).asBitmap().centerCrop().into(new BitmapImageViewTarget(my_icon) {
                         @Override
                         protected void setResource(Bitmap resource) {
                             RoundedBitmapDrawable circularBitmapDrawable =

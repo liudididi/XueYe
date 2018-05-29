@@ -3,7 +3,9 @@ package com.example.login_demo;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -36,6 +38,7 @@ public class ParticularsActivity extends BaseActivity {
         return R.layout.activity_particulars;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void InIt() {
         Intent intent = getIntent();
@@ -77,6 +80,10 @@ public class ParticularsActivity extends BaseActivity {
         webSettings.setDisplayZoomControls(true);
         // 设置默认字体大小
         webSettings.setDefaultFontSize(12);
+        webSettings.setBlockNetworkImage(false);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
 
         //webView.loadUrl("http://39.106.32.50/#/entrancenews?newsId=2");
 

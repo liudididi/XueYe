@@ -35,14 +35,10 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     ImageView perfectIvBack;
     @BindView(R.id.pf_edname)
     EditText pfEdname;
-
-
     @BindView(R.id.pf_spart)
     Spinner pfSpart;
-
     @BindView(R.id.pf_tvsubmit)
     TextView pfTvsubmit;
-
     @BindView(R.id.pf_tvhightschool)
     TextView pfTvhightschool;
     @BindView(R.id.pro_wen)
@@ -87,20 +83,13 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     @Override
     protected void onResume() {
         super.onResume();
-
         province = (String) SPUtils.get(MyApp.context, "province", "");
         city = (String) SPUtils.get(MyApp.context, "city", "");
-        area = (String) SPUtils.get(MyApp.context, "area", "");
-        if (area != null && area.length() > 2) {
-            pfTvhightschool.setText(province + city + area);
+
+        if (province != null && province.length() >= 2) {
+            pfTvhightschool.setText(province + city);
         }
 
-
-
-        SpannableStringBuilder builder = new SpannableStringBuilder(tvTihsi.getText().toString());
-        ForegroundColorSpan redSpan = new ForegroundColorSpan(Color.parseColor("#f29600"));
-        builder.setSpan(redSpan, 12, 19, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tvTihsi.setText(builder);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -108,23 +97,17 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     public void InIt() {
         initnum();
         artlist = new ArrayList<>();
-
         artlist.add("否");
         artlist.add("是");
-
-
         //下拉框
         art_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, artlist);
         art_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pfSpart.setAdapter(art_adapter);
         pfSpart.setDropDownVerticalOffset(80);
-
-
-
-
-
-
-
+        SpannableStringBuilder builder = new SpannableStringBuilder(tvTihsi.getText().toString());
+        ForegroundColorSpan redSpan = new ForegroundColorSpan(Color.parseColor("#f29600"));
+        builder.setSpan(redSpan, 12, 19, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tvTihsi.setText(builder);
        /* grade_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, gradelist);
         grade_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pfSpgrade.setAdapter(grade_adapter);
@@ -257,7 +240,7 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
                     Toast("请填写名字");
                     return;
                 }
-                if (TextUtils.isEmpty(area)) {
+                if (TextUtils.isEmpty(province)) {
                     Toast("请选择地区");
                     return;
                 }
@@ -265,7 +248,7 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
                     Toast("请选择高考年份");
                     return;
                 }
-                perfectMessagePresent.modifyUserinfoMoble(province, city, area, null, grade, name, six, years, null, isSpecial, token);
+                perfectMessagePresent.modifyUserinfoMoble(province, city, "", null, grade, name, six, years, null, isSpecial, token);
                 break;
         }
     }
@@ -275,7 +258,7 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
         super.onDestroy();
         SPUtils.remove(MyApp.context, "province");
         SPUtils.remove(MyApp.context, "city");
-        SPUtils.remove(MyApp.context, "area");
+
     }
 
     @Override
@@ -297,10 +280,9 @@ public class perfectMessageActivity extends BaseActivity implements perfectMessa
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-
+         Toast("请完善信息,谢谢");
             return false;
         }
-
         return super.onKeyDown(keyCode, event);
     }
 }

@@ -113,7 +113,7 @@
             android:layout_marginLeft="50px"
             android:layout_marginRight="50px"
             android:layout_marginTop="52px"
-            android:text="选择考选科目"
+            android:text="选择考试科目"
             android:textColor="#666666"
             android:textSize="40px" />
 
@@ -164,7 +164,7 @@
             android:layout_below="@+id/ll_wenli"
             android:layout_marginTop="20px"
             android:gravity="center"
-            android:text="因录取政策调整，需注意分数波动分险"
+            android:text="因录取政策调整，需注意分数波动风险"
             android:textColor="#999999"
             android:textSize="29px" />
 
@@ -277,7 +277,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="110px"
                     android:background="@null"
-                    android:hint="输入高考预全省排名"
+                    android:hint="输入预估全省排名"
                     android:inputType="number"
                     android:textColor="#999999"
                     android:textSize="37px" />

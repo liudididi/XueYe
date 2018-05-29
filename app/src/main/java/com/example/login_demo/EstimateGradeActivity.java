@@ -12,8 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import base.BaseActivity;
+import base.BaseBean;
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
+import untils.MyQusetUtils;
 import untils.NetUtil;
 import untils.SPUtils;
 
@@ -47,7 +52,8 @@ public class EstimateGradeActivity extends BaseActivity {
     private String tbarea;
     private String tbsubtype;
     private String tbmaxfen;
-
+    private String token;
+   private  String spm="";
 
     @Override
     public int getId() {
@@ -58,6 +64,7 @@ public class EstimateGradeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
+        token = (String) SPUtils.get(MyApp.context, "token", "");
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", tbarea);
         estimateEdgradefen.setText(tbmaxfen);
         primaAddress.setText(tbarea);
@@ -190,12 +197,46 @@ public class EstimateGradeActivity extends BaseActivity {
                     return;
                 }
                 tbmaxfen = edfen;
+                spm= estimateEdgradepaiming.getText().toString();
+                System.out.println("spm==="+spm);
                 SPUtils.put(MyApp.context, "tbarea", tbarea);
                 SPUtils.put(MyApp.context, "tbmaxfen", tbmaxfen);
                 SPUtils.put(MyApp.context, "tbsubtype", tbsubtype);
-                Intent intent = new Intent(EstimateGradeActivity.this, AdvancedActivity.class);
-                startActivity(intent);
-                finish();
+
+           if(token.length()>4)
+           {
+               MyQusetUtils.getInstance()
+                       .getQuestInterface()
+                       .saveGaokaoInfo(tbarea,tbmaxfen,spm,"",tbsubtype,"",token)
+                       .subscribeOn(Schedulers.io())
+                       .observeOn(AndroidSchedulers.mainThread())
+                       .subscribeWith(new DisposableSubscriber<BaseBean>() {
+                           @Override
+                           public void onNext(BaseBean baseBean) {
+                               if(baseBean.code==0){
+                                   Intent intent = new Intent(EstimateGradeActivity.this, AdvancedActivity.class);
+                                   startActivity(intent);
+                                   finish();
+                               }
+                           }
+
+                           @Override
+                           public void onError(Throwable t) {
+
+                           }
+
+                           @Override
+                           public void onComplete() {
+
+                           }
+                       });
+
+           }else {
+               Intent intent = new Intent(EstimateGradeActivity.this, AdvancedActivity.class);
+               startActivity(intent);
+               finish();
+           }
+
                 break;
         }
     }

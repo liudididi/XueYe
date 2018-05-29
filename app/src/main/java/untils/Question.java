@@ -11,6 +11,24 @@ public class Question {
     List<Answer> mAnswer;
     int num;
     String peId;
+    int answerUnm;
+    int torder;
+
+    public void setTorder(int torder) {
+        this.torder = torder;
+    }
+
+    public int getTorder() {
+        return torder;
+    }
+
+    public int getAnswerUnm() {
+        return answerUnm;
+    }
+
+    public void setAnswerUnm(int answerUnm) {
+        this.answerUnm = answerUnm;
+    }
 
     public void setPeId(String peid) {
         this.peId = peid;

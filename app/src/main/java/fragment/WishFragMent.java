@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.login_demo.Buy2Activity;
+import com.example.login_demo.EFCJieSuoActivity;
 import com.example.login_demo.ExamMessageActivity;
 import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
@@ -29,8 +31,12 @@ import base.Basefragment;
 import bean.CanSchoolBean;
 import bean.CanSchoolBean2;
 import bean.SlideshowBean;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.CountdownPresent;
 import presenter.WishPresent;
+import untils.MyQusetUtils;
 import untils.NetUtil;
 import untils.SPUtils;
 import view.CountdownView;
@@ -54,6 +60,7 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     private String tbsubtype=null;
     private WishPresent wishPresent;
     private  String area;
+    private  String token;
     private TextView wish_day1;
      private TextView wish_day3;
     private CountdownPresent countdownPresent;
@@ -63,6 +70,7 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
     private TextView tv_gm1;
     private TextView tv_ym3;
     private TextView tv_gx3;
+    private ImageView iv;
 
 
     @Override
@@ -81,6 +89,7 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
         tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
+        token = (String) SPUtils.get(MyApp.context, "token", "");
         wish_school_none.setVisibility(View.GONE);
         if(NetUtil.isNetworkAvailable(getActivity())){
           //  wishPresent.CanSchoolPresente(tbarea,tbsubtype,"0",tbmaxfen,"1","5");
@@ -115,11 +124,58 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
         tv_gm1 = view.findViewById(R.id.tv_gm1);
         tv_ym3 = view.findViewById(R.id.tv_ym3);
         tv_gx3 = view.findViewById(R.id.tv_gx3);
+        iv = view.findViewById(R.id.iv);
 
         list = new ArrayList<>();
         list.add(R.drawable.gkdjs);
         list.add(R.drawable.ymdjs);
 
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iv.setEnabled(false);
+                if (token.length() < 4) {
+                    Toast.makeText(getActivity(), "用户未登录", Toast.LENGTH_SHORT).show();
+
+                    return;
+                }
+                if(NetUtil.isNetworkAvailable(getActivity())==false){
+                    Toast.makeText(getActivity(), "当期无网络", Toast.LENGTH_SHORT).show();
+
+                    return;
+                }
+                MyQusetUtils.getInstance().getQuestInterface().jzjudge(token)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .retry(2)
+                        .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                            @Override
+                            public void onNext(BaseBean<String> stringBaseBean) {
+                                iv.setEnabled(true);
+                                if (stringBaseBean.code == 0) {
+                                    SPUtils.put(MyApp.context,"VIP",true);
+                                }else {
+                                    SPUtils.put(MyApp.context,"VIP",false);
+                                }
+
+                                getContext().startActivity(new Intent(getContext(), Buy2Activity.class));
+                            }
+
+                            @Override
+                            public void onError(Throwable t) {
+                                iv.setEnabled(true);
+                                Toast.makeText(getActivity(), "网络较差,请重试~", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+
+
+            }
+        });
         ws_xbanner.setData(list,null);
         ws_xbanner.setmAdapter(new XBanner.XBannerAdapter() {
             @Override

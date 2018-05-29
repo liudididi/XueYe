@@ -215,10 +215,38 @@
         android:layout_marginTop="30px"
         android:background="#ffff"
         android:scrollbars="none"
-        android:visibility="gone"
+        android:layout_above="@+id/rl_shengji"
+        android:visibility="visible"
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px">
     </ListView>
+    <ImageView
+        android:id="@+id/iv_zy_mohu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ll_sousuo"
+        android:layout_marginTop="30px"
+        android:src="@drawable/zy_mohu"
+        android:scrollbars="none"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:adjustViewBounds="true"
+        android:layout_above="@+id/rl_shengji"
+        android:visibility="visible"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px">
+    </ImageView>
+    <TextView
+        android:id="@+id/tv_tishi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#3986F3"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+       android:textSize="50px"
+        android:text="系统及专家已为您推荐20个专业，点击下方开通升级版，即可进行查看！"/>
     <ProgressBar
         android:id="@+id/pb2"
         android:layout_width="wrap_content"
@@ -234,6 +262,8 @@
         android:layout_marginTop="30px"
         android:scrollbars="none"
         android:visibility="gone"
+        android:layout_above="@+id/rl_shengji"
+
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px">
     </android.support.v7.widget.RecyclerView>
@@ -244,11 +274,92 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px"
-        android:visibility="visible"
+        android:layout_above="@+id/rl_shengji"
+
+        android:visibility="gone"
         android:scrollbars="none"
         android:layout_below="@id/ll_sousuo"
         >
     </ListView>
+    <RelativeLayout
+        android:id="@+id/rl_shengji"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+          android:layout_marginRight="50px"
+         android:layout_marginBottom="20px"
+        android:layout_marginLeft="50px">
+        <RelativeLayout
+            android:id="@+id/rl_daojishi"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="20px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥598"
+                android:textColor="#f29600"
+                android:textSize="50px"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="距离高考还有"
+                    android:textSize="30px"
+                    />
+                <TextView
+                    android:id="@+id/tv_day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40px"
+                    android:background="@drawable/back_day2"
+                    android:textColor="#F25643"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"/>
+                <TextView
+                    android:id="@+id/tv_day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40px"
+                    android:background="@drawable/back_day2"
+                    android:textColor="#F25643"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"/>
+                <TextView
+                    android:id="@+id/tv_day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#F25643"
+                    android:textSize="40px"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"
+                    android:background="@drawable/back_day2"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天"
+                    android:layout_marginLeft="10px"
+                    android:textSize="30px"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:text="开通升级版"
+            android:gravity="center"
+            android:textSize="50px"
+            android:layout_below="@+id/rl_daojishi"
+            android:textColor="#fff"
+            android:background="@drawable/bg_profession"
+            />
+    </RelativeLayout>
     <ProgressBar
         android:id="@+id/pb3"
         android:layout_width="wrap_content"

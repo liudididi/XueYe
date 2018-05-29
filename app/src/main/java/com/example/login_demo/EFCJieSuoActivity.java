@@ -139,7 +139,6 @@ public class EFCJieSuoActivity extends BaseActivity {
                             imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
-
                             MyQusetUtils.getInstance().getQuestInterface().gettime(token)
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
@@ -149,7 +148,6 @@ public class EFCJieSuoActivity extends BaseActivity {
                                             if (stringBaseBean.code == 0) {
                                                 String data = stringBaseBean.data;
                                                 int i = Integer.parseInt(data);
-
                                                 if (i < 0) {
                                                     imgZntbwjs.setVisibility(View.GONE);
                                                     rlZntb.setEnabled(true);
@@ -173,14 +171,46 @@ public class EFCJieSuoActivity extends BaseActivity {
                         if (data.equals("4")) {
                             imgZhiyxkwjs.setVisibility(View.GONE);
                             imgZhuanyxkwjs.setVisibility(View.GONE);
-                            imgZntbwjs.setVisibility(View.GONE);
                             imgXlcsbq.setImageResource(R.drawable.biaoywc);
                             imgZhiyxkbq.setImageResource(R.drawable.biaoywc);
                             imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
-                            imgZntbbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
-                            rlZntb.setEnabled(true);
+
+
+                Boolean vip= (Boolean) SPUtils.get(MyApp.context,"VIP",false);
+                if(vip){
+                    MyQusetUtils.getInstance().getQuestInterface().gettime(token)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                                @Override
+                                public void onNext(BaseBean<String> stringBaseBean) {
+                                    if (stringBaseBean.code == 0) {
+                                        String data = stringBaseBean.data;
+                                        int i = Integer.parseInt(data);
+                                        if (i < 0) {
+                                            imgZntbwjs.setVisibility(View.GONE);
+                                            rlZntb.setEnabled(true);
+                                            imgZntbbq.setImageResource(R.drawable.biaoywc);
+                                        }
+                                    }
+                                }
+                                @Override
+                                public void onError(Throwable t) {
+
+                                }
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+                }else {
+                    imgZntbwjs.setVisibility(View.GONE);
+                    rlZntb.setEnabled(true);
+                    imgZntbbq.setImageResource(R.drawable.biaoywc);
+                }
+
                         }
                     }
 
@@ -336,10 +366,15 @@ public class EFCJieSuoActivity extends BaseActivity {
                         public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
                             //考生省份
                             sourceArea = cxefcBeanBaseBean.data.getSourceArea();
+                            SPUtils.put(MyApp.context,"kemuefc",cxefcBeanBaseBean.data.getCollegetype());
                             //文理科
                             stutype = cxefcBeanBaseBean.data.getStutype();
+                            SPUtils.put(MyApp.context,"tbsubtypeefc",stutype);
+
                             //考生分数
                             ceeScore = cxefcBeanBaseBean.data.getCeeScore();
+                            SPUtils.put(MyApp.context,"tbmaxfenefc",ceeScore);
+
                             if(sourceArea!=null&&stutype!=null&&ceeScore!=null)
                             {
                                 Intent intent=new Intent(EFCJieSuoActivity.this,AccurateActivity.class);

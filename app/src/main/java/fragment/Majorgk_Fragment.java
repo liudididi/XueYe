@@ -1,6 +1,7 @@
 package fragment;
 
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.login_demo.MajorDetailActivity;
@@ -13,6 +14,7 @@ import adapter.ZhuanYgk_zhishiAdapter;
 import base.Basefragment;
 import bean.MajorgkBean;
 import presenter.MajorgkPresent;
+import untils.FlowLayout;
 import untils.FlowLayoutzy;
 import untils.ListViewForScrollView;
 import view.MajorgkView;
@@ -23,8 +25,6 @@ import view.MajorgkView;
  */
 
 public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
-
-
     private MajorgkPresent majorgkPresent;
     private TextView fmgk_tvdaima;
     private TextView fmgk_tvcckemu;
@@ -37,8 +37,9 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
     private TextView fmgk_tvpymb;
     private ListViewForScrollView fmgk_zsnl;
     private TextView fmgk_snxz;
-    private FlowLayoutzy fmgk_flow;
+    private FlowLayout fmgk_flow;
     private TextView fmgk_tvzsnl;
+    private ScrollView srv;
 
     @Override
     public int getLayoutid() {
@@ -58,11 +59,9 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
         }else {
             fmgk_tvcckemu.setText("专科");
         }
-
     }
 
     private void initid() {
-
         fmgk_tvdaima = view.findViewById(R.id.fmgk_tvdaima);
         fmgk_tvcckemu = view.findViewById(R.id.fmgk_tvcckemu);
         fmgk_tvssdl = view.findViewById(R.id.fmgk_tvssdl);
@@ -76,6 +75,7 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
         fmgk_snxz = view.findViewById(R.id.fmgk_snxz);
         fmgk_flow = view.findViewById(R.id.fmgk_flow);
         fmgk_tvzsnl = view.findViewById(R.id.fmgk_tvzsnl);
+        srv = view.findViewById(R.id.srv);
     }
 
     @Override
@@ -124,6 +124,7 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
              List<MajorgkBean.AbilityBean> ability = majorgkBean.getAbility();
              ZhuanYgk_zhishiAdapter zhuanYgk_zhishiAdapter=new ZhuanYgk_zhishiAdapter(ability,getActivity());
              fmgk_zsnl.setAdapter(zhuanYgk_zhishiAdapter);
+
          }
          if(majorgkBean.getJob()!=null&&majorgkBean.getJob().size()>0){
              List<String> list=new ArrayList<>();
@@ -131,10 +132,9 @@ public class Majorgk_Fragment  extends Basefragment implements MajorgkView{
              for (int i = 0; i < job.size(); i++) {
                  list.add(job.get(i).getJobname());
              }
-             fmgk_flow.setListData(list);
+             fmgk_flow.setListDatazy(list);
+             srv.smoothScrollTo(0,0);
          }
-
-
         }
 
     }

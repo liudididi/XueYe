@@ -44,9 +44,9 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     @BindView(R.id.ll_nv)
     LinearLayout llNv;
     public String classify;
-    public static String type = "1";
+    public static String type = "0";
     public static String gender = "1";
-    public static String wenli = "1";
+    public static String wenli = "wen";
     @BindView(R.id.gv_address)
     GridView gvAddress;
     @BindView(R.id.gv_addresstwo)
@@ -102,11 +102,11 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
         km = "文科";
         xingbie = "男";
         data = getIntent().getStringExtra("data");
+
         cxefcPresenter = new CXEFCPresenter(this);
         arealist = new ArrayList<>();
         initdata();
     }
-
     private void initdata() {
         arealist.add("北京市");
         arealist.add("天津市");
@@ -146,8 +146,9 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
             @Override
             public void setaddress(String s) {
                 area=s;
-                if(s.equals("北京市")||s.equals("重庆市")||s.equals("天津市")||s.equals("香港")||s.equals("台湾")||s.equals("澳门")){
+               if(s.equals("北京市")||s.equals("重庆市")||s.equals("天津市")||s.equals("香港")||s.equals("台湾")||s.equals("澳门")){
                     proTvaddress.setText(area);
+                    city="";
                     rlLi.setVisibility(View.INVISIBLE);
                     rlWai.setVisibility(View.VISIBLE);
                     return;
@@ -206,9 +207,6 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
             }
         });
         gvAddress.setAdapter(gv_addressAdapter);
-
-
-
     }
 
     @Override
@@ -336,7 +334,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                                 if(listBaseBean.data!=null&&listBaseBean.data.size()>0){
                                     MinlineBean minlineBean = listBaseBean.data.get(0);
                                    if(Integer.parseInt(minlineBean.getScore())<Integer.parseInt(fenshu)){
-                                       tijiao(fenshu, name, address);
+                                       tijiao(fenshu, name, area);
                                    }else {
                                        View viewe = LayoutInflater.from(ProfessionStarActivity.this).inflate(R.layout.dilog_zyxk, null);
                                        final AlertDialog dialog = new AlertDialog.Builder(ProfessionStarActivity.this)
@@ -361,6 +359,9 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                                       TextView zyxk_tishi=    viewe.findViewById(R.id.zyxk_tishi);
                                        zyxk_tishi.setText(minlineBean.getYear()+"年本科省控线是"+minlineBean.getScore()+"分，经过分析建议推荐你选择专科院校");
                                    }
+                                }else {
+
+                                    tijiao(fenshu, name, address);
                                 }
                             }
                         }
@@ -384,7 +385,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
         }
     }
 
-    private void tijiao(String fenshu, String name, String address) {
+    private void tijiao(final String fenshu, String name, String address) {
 
         //保存职业筛选条件
         MyQusetUtils.getInstance().getQuestInterface()
@@ -395,13 +396,22 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                 .subscribeWith(new DisposableSubscriber<BaseBean>() {
                     @Override
                     public void onNext(BaseBean baseBean) {
-                        Intent intent = new Intent(ProfessionStarActivity.this, startfenleiActivity.class);
-                        intent.putExtra("data", data);
-                        intent.putExtra("classify", wenli);
-                        intent.putExtra("type", type);
-                        intent.putExtra("gender", gender);
-                        startActivity(intent);
-                        finish();
+
+                        if(baseBean.code==0){
+                            SPUtils.put(MyApp.context,"tbarea",area);
+                            SPUtils.put(MyApp.context,"tbsubtypeefc",km);
+                            SPUtils.put(MyApp.context,"tbmaxfenefc",fenshu);
+                            SPUtils.put(MyApp.context,"kemuefc",leixing);
+                            SPUtils.put(MyApp.context,"school",area+city);
+                             Intent intent = new Intent(ProfessionStarActivity.this, startfenleiActivity.class);
+                            intent.putExtra("data", data);
+                            intent.putExtra("classify", wenli);
+                            intent.putExtra("type", type);
+                            intent.putExtra("gender", gender);
+                            startActivity(intent);
+                            finish();
+                        }
+
                     }
 
                     @Override
@@ -429,7 +439,8 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
 
 
             proEdfenshu.setText(cxefcBeanBaseBean.data.getCeeScore());
-
+            SPUtils.put(MyApp.context,"kemuefc",cxefcBeanBaseBean.data.getCollegetype());
+            SPUtils.put(MyApp.context,"tbmaxfenefc",cxefcBeanBaseBean.data.getCeeScore());
             String agender = cxefcBeanBaseBean.data.getGender();
             if (agender.equals("男")) {
                 xingbie = "男";
@@ -446,6 +457,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
 
 
             String stutype = cxefcBeanBaseBean.data.getStutype();
+            SPUtils.put(MyApp.context,"tbsubtypeefc",stutype);
             if (stutype.equals("文科")) {
                 imgWen.setImageResource(R.drawable.hong);
                 imgLi.setImageResource(R.drawable.bai);

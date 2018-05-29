@@ -42,6 +42,7 @@ import bean.OneTableXQBean;
 import bean.ProviceBean;
 import bean.ProvinceBean;
 import bean.RanKingSchoolBean;
+import bean.RenSumBean;
 import bean.SchoolBean;
 import bean.SchoolBrochuresBean;
 import bean.SchoolEnrollBean;
@@ -52,6 +53,7 @@ import bean.SearchBean;
 import bean.SelectMajorBean;
 import bean.SelectSchoolBean;
 import bean.SerchZYBean;
+import bean.ShijianBean;
 import bean.SlideshowBean;
 import bean.StartFl;
 import bean.StudentFromBean;
@@ -175,7 +177,15 @@ public interface QuestInterface {
     @POST("/app/psychologicalevaluation/commit")
     Call<BaseBean<TijiaoBean>> tijiao(@Query("pe_type") String pe_type, @Body RequestBody requestBody);
 
-
+    //保存高考信息
+    @POST("/app/userinfo/saveGaokaoInfo")
+    Flowable<BaseBean> saveGaokaoInfo(@Query("examProvince") String examProvince,
+                                  @Query("examScore") String examScore,
+                                  @Query("examRank") String examRank,
+                                  @Query("examYear") String examYear,
+                                  @Query("stuType") String stuType,
+                                  @Query("examBatch") String examBatch,
+                                  @Header("token") String token);
 
     //星空专业详情
     @GET("/app/efc/jobStarInfo")
@@ -314,7 +324,9 @@ public interface QuestInterface {
     @GET("/app/efc/majorStars")
     Call<BaseBean<List<jobStarBean>>> jobsStarMajorMobil(@Header("token") String token);
 
-
+    //系统时间
+    @GET("/app/countdown/getsystemtime")
+    Flowable<ShijianBean> getsystemtime();
     //微信支付
     @POST("/weixinMobile/appdopay")
     Flowable<BaseBean<WeiXinBean>> WXpay(@Query("outTradeNo")String outTradeNo,@Query("payType")String payType);
@@ -592,7 +604,9 @@ public interface QuestInterface {
     @FormUrlEncoded
     Flowable<BaseBean> suggest(@Field("proposal") String proposal,@Field("contactInformation") String contactInformation );
 
-
+    //返回服务人数
+    @GET("/app/countdown/getServicenum")
+    Flowable<RenSumBean> getServicenum();
     //获取用户信息
     @POST("/app/userinfo/getUserinfo")
     Flowable<BaseBean<UserBean>> getUserinfo(@Header("token") String token);

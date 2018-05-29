@@ -1,49 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 <ImageView
     android:id="@+id/img_next"
-    android:padding="30px"
-    android:src="@drawable/next"
-    android:layout_width="100px"
-    android:layout_height="100px" />
+    android:padding="60px"
+    android:visibility="visible"
+    android:src="@drawable/right_arrow"
+    android:layout_width="150px"
+    android:layout_height="150px" />
+
     <TextView
-        android:layout_marginLeft="50px"
         android:id="@+id/tv_major"
-        android:textSize="40px"
+        android:textSize="45px"
         android:gravity="center"
-        android:layout_toRightOf="@+id/img_next"
-        android:layout_width="wrap_content"
-        android:layout_height="100px"
-        android:text="40px"
+        android:layout_marginLeft="110px"
+         android:layout_width="wrap_content"
+        android:layout_height="150px"
+
+        android:text=""
         />
 
     <TextView
         android:gravity="center"
-        android:layout_marginRight="50px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="300px"
         android:layout_toLeftOf="@+id/rb_start"
         android:textSize="40px"
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
-        android:layout_height="100px"
+        android:layout_height="150px"
         android:text="推荐指数:"
         />
     <RatingBar
+        android:visibility="gone"
+        style="@style/roomRatingBar"
         android:layout_marginRight="50px"
         android:layout_marginTop="25px"
-        android:progressDrawable="@drawable/start"
-        android:id="@+id/rb_start"
+        android:progressDrawable="@drawable/startx"
+         android:id="@+id/rb_start"
         android:layout_alignParentRight="true"
     android:layout_width="wrap_content"
-    android:layout_height="55px"
+    android:layout_height="100px"
     android:numStars="5"
-    android:stepSize="0.5"
     />
-    <untils.ListViewForScrollView
-        android:visibility="gone"
+    <LinearLayout
+        android:layout_marginTop="47px"
+            android:layout_marginRight="20px"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:layout_width="260px"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_one"
+            android:src="@drawable/start"
+            android:layout_width="50px"
+            android:layout_height="50px" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_two"
+            android:src="@drawable/start"
+            android:layout_width="50px"
+            android:layout_height="50px" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_three"
+            android:src="@drawable/start"
+            android:layout_width="50px"
+            android:layout_height="50px" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_four"
+            android:src="@drawable/start"
+            android:layout_width="50px"
+            android:layout_height="50px" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_five"
+            android:src="@drawable/start"
+            android:layout_width="50px"
+            android:layout_height="50px" />
+
+    </LinearLayout>
+    <untils.MyListView
+        android:scrollingCache="false"
+        android:animationCache="false"
+        android:scrollbars="none"
         android:id="@+id/list_two"
         android:layout_below="@+id/img_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ></untils.ListViewForScrollView>
+        ></untils.MyListView>
 </RelativeLayout>

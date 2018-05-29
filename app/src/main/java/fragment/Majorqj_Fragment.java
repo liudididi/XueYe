@@ -86,9 +86,9 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
     public void MajorgkSusccess(MajorgkBean majorgkBean) {
 
         if(majorgkBean!=null){
-            if(majorgkBean.getEmployment_prospects()!=null){
+            if(majorgkBean.getDirection_employment()!=null){
                 //就业前景
-                qj_tvqj.setText(majorgkBean.getEmployment_prospects());
+                qj_tvqj.setText(majorgkBean.getDirection_employment());
             }
             else
             {

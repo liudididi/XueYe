@@ -46,7 +46,7 @@ public class UserBean {
     private Object vip;
     private Object examyear;
     private Object email;
-    private Object examscore;
+    private Integer examscore;
     private Object area;
     private Object areaname;
     private Object minesignature;
@@ -142,11 +142,11 @@ public class UserBean {
         this.email = email;
     }
 
-    public Object getExamscore() {
+    public Integer getExamscore() {
         return examscore;
     }
 
-    public void setExamscore(Object examscore) {
+    public void setExamscore(Integer examscore) {
         this.examscore = examscore;
     }
 

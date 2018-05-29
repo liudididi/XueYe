@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.login_demo.MyApp;
 import com.example.login_demo.R;
 import com.example.login_demo.SelectCitysActivity;
+import com.example.login_demo.perfectMessageActivity;
 
 import java.util.List;
 
 import bean.ProviceBean;
+import untils.SPUtils;
 
 /**
  * Created by 地地 on 2018/1/27.
@@ -43,10 +46,17 @@ public class Provice_Adapter extends RecyclerView.Adapter {
       provieceViewHolder.proviceitem_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, SelectCitysActivity.class);
-                intent.putExtra("provinceid",list.get(position).getProvinceid());
-                intent.putExtra("province",list.get(position).getProvince());
-                context.startActivity(intent);
+                if(list.get(position).getProvince().equals("香港")||list.get(position).getProvince().equals("澳门")||list.get(position).getProvince().equals("台湾省")){
+                    SPUtils.put(MyApp.context,"province",list.get(position).getProvince());
+                    Intent intent=new Intent(context, perfectMessageActivity.class);
+                    context.startActivity(intent);
+                }else {
+                    Intent intent=new Intent(context, SelectCitysActivity.class);
+                    intent.putExtra("provinceid",list.get(position).getProvinceid());
+                    intent.putExtra("province",list.get(position).getProvince());
+                    context.startActivity(intent);
+                }
+
             }
         });
     }

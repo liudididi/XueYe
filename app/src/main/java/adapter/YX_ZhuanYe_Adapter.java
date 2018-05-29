@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
@@ -22,8 +23,6 @@ import bean.Advanced_YX_Bean;
  */
 
 public class YX_ZhuanYe_Adapter extends RecyclerView.Adapter<YX_ZhuanYe_Adapter.MyViewHolder> {
-
-
     private List<Advanced_YX_Bean.MajorBean> list;
     private Context context;
     private String biaoshi;
@@ -76,18 +75,24 @@ public class YX_ZhuanYe_Adapter extends RecyclerView.Adapter<YX_ZhuanYe_Adapter.
 
         //专业名称
         String major = (String) list.get(position + 1).getMajor();
+
         holder.tv_yx_zy_name.setText(major);
         holder.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, MajorDetailActivity.class);
                 String majorId = (String) list.get(position + 1).getMajorId();
-                intent.putExtra("majorid",majorId);
-                String major1 = (String) list.get(position + 1).getMajor();
-                intent.putExtra("major",major1);
-                context.startActivity(intent);
-
-
+               if(majorId!=null)
+                {
+                    intent.putExtra("majorid",majorId);
+                    String major1 = (String) list.get(position + 1).getMajor();
+                    intent.putExtra("major",major1);
+                    context.startActivity(intent);
+                }
+                else 
+                {
+                    Toast.makeText(context, "数据整理中", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

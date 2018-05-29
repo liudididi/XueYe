@@ -171,6 +171,20 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                     //重点实验室
                     laboratory = data.get(0).getLaboratory();
                 }
+                else
+                {
+                    //师资力量
+                    teacherpower = "数据整理中";
+                    //在校生信息
+                    inschoolstu = "数据整理中";
+                    //食宿情况
+                    eatandsleep = "数据整理中";
+                    //就业情况
+                    employment = "数据整理中";
+                    //重点实验室
+                    laboratory = "数据整理中";
+                }
+
             }
 
             @Override
@@ -181,7 +195,16 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             @Override
             public void UnivImportantssuccess(BaseBean<ZDXKBean> zdxkBeanBaseBean) {
                 //重点学科
-                major = zdxkBeanBaseBean.data.getMajor();
+                if(zdxkBeanBaseBean.data!=null)
+                {
+                    major = zdxkBeanBaseBean.data.getMajor();
+                }
+                else
+                {
+                    major ="数据整理中";
+                }
+
+
 
             }
 
@@ -201,7 +224,7 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                     String email =data.get(0).getEmail();
                     //电话
                     final String phone = data.get(0).getPhone();
-                    if(admission_plan!=null)
+                    if(!admission_plan.equals(""))
                     {
                         tv_wangzhi.setText(admission_plan);
                         tv_wangzhi.setOnClickListener(new View.OnClickListener() {
@@ -214,11 +237,21 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                             }
                         });
                     }
-                    if(email!=null)
+                  else
+                    {
+                        tv_wangzhi.setText("                               暂无数据");
+
+                    }
+                    if(!email.equals(""))
                     {
                         tv_youxiang.setText(email);
                     }
-                    if(phone!=null)
+                    else
+                    {
+                        tv_youxiang.setText("暂无数据");
+
+                    }
+                    if(!phone.equals(""))
                     {
                         tv_phone.setText(phone);
                         tv_phone.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +273,11 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                                 ab.create().show();
                             }
                         });
+
+                    }
+                    else
+                    {
+                        tv_phone.setText("暂无数据");
 
                     }
                 }
@@ -314,6 +352,8 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                 SchoolDetailActivity.ff(feescale);
             }
         });
+
+
         ss_jjzz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -323,37 +363,88 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         ss_stys.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(eatandsleep);
+                if(!eatandsleep.equals(""))
+                {
+                    SchoolDetailActivity.ff(eatandsleep);
+                }
+                else
+                {
+                    SchoolDetailActivity.ff("数据整理中");
+
+                }
             }
         });
         ss_szll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(teacherpower);
+                if(!teacherpower.equals(""))
+                {
+                    SchoolDetailActivity.ff(teacherpower);
+                 }
+                else
+                {
+                    SchoolDetailActivity.ff("数据整理中");
+                 }
+
             }
         });
         ss_zxsxx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(inschoolstu);
+                if(!inschoolstu.equals(""))
+                {
+                    SchoolDetailActivity.ff(inschoolstu);
+                }
+                else
+                {
+                    SchoolDetailActivity.ff("数据整理中");
+
+                }
+
             }
         });
         ss_jyqk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(employment);
+                if(!employment.equals(""))
+                {
+                    SchoolDetailActivity.ff(employment);
+
+                }
+                else
+                {
+                    SchoolDetailActivity.ff("数据整理中");
+
+                }
+
             }
         });
         rl_zdsys.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(laboratory);
+                if(!laboratory.equals(""))
+                {
+                    SchoolDetailActivity.ff(laboratory);
+                }
+                else
+                {
+                    SchoolDetailActivity.ff("数据整理中");
+
+                }
+
             }
         });
         rl_zdxk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(major);
+                if(!major.equals(""))
+                {
+                    SchoolDetailActivity.ff(major);
+                }
+                else
+                {
+                    SchoolDetailActivity.ff("数据整理中");
+                }
             }
         });
 

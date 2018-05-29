@@ -20,7 +20,8 @@ public class TuiJianMoudle {
     public void  getTuiJian(String college,String time ,String province, String t_classify, String t_score, String token, final TuiJianBack tuiJianBack){
 
         DisposableSubscriber<BaseBean<TuiJianBean>> disposableSubscriber =
-                MyQusetUtils.getInstance().getQuestInterface().getRecommendCollege(college,time, province, t_classify, t_score, token)
+                MyQusetUtils.getInstance().getQuestInterface().
+                        getRecommendCollege(college,time, province, t_classify, t_score, token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<TuiJianBean>>() {

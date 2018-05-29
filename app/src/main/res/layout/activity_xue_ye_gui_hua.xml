@@ -95,7 +95,7 @@
                         android:layout_marginLeft="180px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="EFC兴趣测试报告"
+                        android:text="兴趣测试报告"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                         android:layout_marginLeft="180px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="EFC性格测试报告"
+                        android:text="性格测试报告"
                         />
                     <View
                         android:layout_width="match_parent"
@@ -186,70 +186,109 @@
                     android:layout_height="wrap_content"
                     >
                     <ImageView
-                        android:layout_marginRight="50px"
-                        android:layout_marginLeft="50px"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="fitXY"
                         android:adjustViewBounds="true"
                         android:src="@drawable/zybg"
                         />
-                    <ProgressBar
-                        android:id="@+id/pb"
-                        android:visibility="visible"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <TextView
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="50px"/>
-                    <ImageView
-                        android:id="@+id/zw"
-                        android:visibility="visible"
-                        android:src="@drawable/mohubg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitXY"
-                        android:adjustViewBounds="true"
-                        android:layout_marginTop="30px">
+                        android:textSize="50px"
+                        android:layout_marginTop="30px"
+                        android:text="--- 升学设计推荐 ---"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-                    </ImageView>
+                    <RelativeLayout
+                        android:id="@+id/zw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:id="@+id/img_mohu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+
+                                android:visibility="visible"
+                                android:src="@drawable/mohubg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:scaleType="fitXY"
+                                android:adjustViewBounds="true"
+                                android:layout_marginTop="30px">
+                            </ImageView>
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:textColor="@color/zhu2"
+                                android:textSize="45px"
+                                android:layout_marginLeft="70px"
+                                android:layout_marginRight="70px"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="查看系统及专家为您推荐的专业，点击下方升级版升学设计进行开通!"
+                                />
+                        </RelativeLayout>
+
+
+                        <ImageView
+                            android:layout_below="@+id/img_mohu"
+                            android:scaleType="fitXY"
+                            android:adjustViewBounds="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/duibi"
+                            />
+
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:id="@+id/zhanwei"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="1000px"
+                        ></View>
                     <untils.ListViewForScrollView
                         android:visibility="gone"
                         android:background="#fff"
-                        android:layout_marginLeft="50px"
-                        android:layout_marginRight="50px"
+
                         android:layout_marginTop="30px"
                         android:id="@+id/xygh_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     </untils.ListViewForScrollView>
 <LinearLayout
+    android:visibility="gone"
+    android:layout_marginTop="30px"
     android:id="@+id/ll_zytj"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
    <TextView
        android:layout_gravity="center_horizontal"
-       android:textSize="60px"
+       android:textSize="50px"
        android:text="--- 专业推荐列表 ---"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" />
-<View
-    android:layout_marginTop="10px"
-    android:layout_width="match_parent"
-    android:layout_height="2px"
-    android:background="#ccc"
-    ></View>
+
+
 
     <untils.ListViewForScrollView
-        android:visibility="gone"
+        android:scrollingCache="false"
+        android:animationCache="false"
+        android:scrollbars="vertical"
         android:background="#fff"
-        android:layout_marginLeft="50px"
-        android:layout_marginRight="50px"
+
         android:layout_marginTop="30px"
         android:id="@+id/zytj_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </untils.ListViewForScrollView>
+
 
 </LinearLayout>
 
@@ -259,8 +298,7 @@
                         android:layout_height="500px"
                         android:src="@drawable/qadtx"
                         android:scaleType="centerCrop"
-                        android:layout_marginRight="50px"
-                        android:layout_marginLeft="50px"
+
                         />
                     <View
                         android:layout_width="match_parent"
@@ -275,11 +313,76 @@
         android:id="@+id/re_guihuadi"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="184px"
+        android:layout_height="wrap_content"
         android:background="#fff">
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="20px"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="50px"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥598"
+                android:textColor="#f29600"
+                android:textSize="50px"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50px"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="距离高考还有"
+                    android:textSize="30px"
+                    />
+                <TextView
+                    android:id="@+id/tv_day1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40px"
+                    android:background="@drawable/back_day2"
+                    android:textColor="#F25643"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"/>
+                <TextView
+                    android:id="@+id/tv_day2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40px"
+                    android:background="@drawable/back_day2"
+                    android:textColor="#F25643"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"/>
+                <TextView
+                    android:id="@+id/tv_day3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#F25643"
+                    android:textSize="40px"
+                    android:gravity="center"
+                    android:layout_marginLeft="10px"
+                    android:background="@drawable/back_day2"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天"
+                    android:layout_marginLeft="10px"
+                    android:textSize="30px"/>
+            </LinearLayout>
+
+        </RelativeLayout>
         <TextView
             android:layout_centerVertical="true"
             android:id="@+id/xlcp_jingzhun"
+            android:layout_below="@+id/rl"
+            android:layout_marginBottom="20px"
             android:layout_marginLeft="50px"
             android:layout_gravity="center_vertical"
             android:textColor="@color/white"
@@ -287,14 +390,17 @@
             android:paddingLeft="50px"
             android:paddingRight="50px"
             android:gravity="center"
-            android:layout_width="480px"
+            android:layout_width="430px"
             android:layout_height="100px"
-            android:text="开通精准版升学设计"
+            android:text="开通升级版"
             />
         <TextView
             android:layout_centerVertical="true"
+            android:layout_below="@+id/rl"
             android:layout_alignParentRight="true"
             android:id="@+id/xlcp_putong"
+            android:layout_marginBottom="20px"
+
             android:layout_marginRight="50px"
             android:layout_gravity="center_vertical|right"
             android:textColor="@color/white"
@@ -302,9 +408,9 @@
             android:paddingLeft="50px"
             android:paddingRight="50px"
             android:gravity="center"
-            android:layout_width="480px"
+            android:layout_width="430px"
             android:layout_height="100px"
-            android:text="开启普通版升学设计"
+            android:text="开启普通版"
             />
         <Button
             android:visibility="gone"
@@ -312,11 +418,18 @@
             android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:background="@drawable/back_capacity"
-            android:text="开启EFC精准志愿填报"
+            android:text="开启精准志愿填报"
             android:layout_centerVertical="true"
             android:layout_width="985px"
             android:layout_height="100px"
             android:gravity="center"
             />
     </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/pb"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_centerInParent="true"
+        android:layout_marginTop="50px"/>
 </RelativeLayout>

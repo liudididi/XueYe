@@ -140,6 +140,7 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
         min = widthtPixels / 27;
         max = (int) (min * 1.5);
         data = getIntent().getStringExtra("data");
+
         i1 = Integer.parseInt(data);
         inittvlist();
         //动画

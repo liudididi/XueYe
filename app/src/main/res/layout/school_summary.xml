@@ -570,7 +570,7 @@
 
         <TextView
             android:id="@+id/ss_tvshd"
-            android:layout_width="200px"
+            android:layout_width="wrap_content"
             android:layout_height="60px"
             android:layout_centerVertical="true"
             android:layout_marginLeft="26dp"
@@ -608,7 +608,7 @@
 
         <TextView
             android:id="@+id/ss_bsd"
-            android:layout_width="200px"
+            android:layout_width="wrap_content"
             android:layout_height="60px"
             android:layout_marginRight="50px"
             android:layout_centerVertical="true"
@@ -701,7 +701,7 @@
              android:gravity="bottom"
              android:layout_centerVertical="true"
              android:textSize="50px"
-
+            android:text="0%"
              android:layout_toLeftOf="@+id/ss_tvvs"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content" />
@@ -713,6 +713,7 @@
             android:gravity="bottom"
             android:layout_centerVertical="true"
             android:textSize="50px"
+            android:text="0%"
 
             android:layout_toRightOf="@+id/ss_tvvs"
             android:layout_width="wrap_content"

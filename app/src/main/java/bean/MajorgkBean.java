@@ -9,7 +9,6 @@ import java.util.List;
 
 public class MajorgkBean  {
 
-
     /**
      * direction_employment : 该专业毕业生可在国家机关、文教事业、新闻媒体、公司企业等部门从事行政、宣传、管理、教学、科研工作；亦可在工商、外贸、金融、保险、证券、旅游、房地产等企事业单位从事企业营销管理、客户资源管理、网络营销管理、营销策划、营销诊断、市场调查和咨询等工作；该专业适合公务员岗位及升学考研。
      * year_school : 四年
@@ -29,7 +28,7 @@ public class MajorgkBean  {
      * id : 5608
      * award_degree : 哲学学士
      * ability : [{"id":null,"majorId":null,"abilityId":1,"graduatesAbility":"比较系统地掌握马克思主义哲学、中国哲学和西方哲学的理论和历史"},{"id":null,"majorId":null,"abilityId":2,"graduatesAbility":"具有一定的社会科学、人文科学。自然科学、思维科学的相关知识"},{"id":null,"majorId":null,"abilityId":3,"graduatesAbility":"掌握哲学学科的基本研究方法、治学方法和相应的社会调查能力"},{"id":null,"majorId":null,"abilityId":4,"graduatesAbility":"了解国内外哲学界最重要的理论前沿和发展动态"},{"id":null,"majorId":null,"abilityId":5,"graduatesAbility":"了解国内外最重大的实践问题和发展动态"},{"id":null,"majorId":null,"abilityId":6,"graduatesAbility":"具有分析和解决社会现实问题的初步能力。"}]
-     * job : [{"id":29860,"majorId":"010101","jobname":"教育产品开发、教师等"},{"id":32807,"majorId":"010101","jobname":"课程开发专员"},{"id":32808,"majorId":"010101","jobname":"期刊文字编辑"},{"id":35630,"majorId":"010101","jobname":"高校辅导员"},{"id":38690,"majorId":"010101","jobname":"图书编辑"}]
+     * job : [{"id":17594,"majorId":"010101","jobname":"教育产品开发、教师等"},{"id":20541,"majorId":"010101","jobname":"课程开发专员"},{"id":20542,"majorId":"010101","jobname":"期刊文字编辑"},{"id":23364,"majorId":"010101","jobname":"高校辅导员"},{"id":26424,"majorId":"010101","jobname":"图书编辑"}]
      * averagesalary : 5989
      */
 
@@ -522,7 +521,7 @@ public class MajorgkBean  {
 
     public static class JobBean {
         /**
-         * id : 29860
+         * id : 17594
          * majorId : 010101
          * jobname : 教育产品开发、教师等
          */

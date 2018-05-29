@@ -52,7 +52,7 @@
                 android:id="@+id/college_xbanner"
                 android:layout_width="match_parent"
                 android:layout_height="500px"
-                app:AutoPlayTime="2000"
+                app:AutoPlayTime="3000"
                 android:visibility="visible"
                 >
 

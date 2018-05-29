@@ -280,6 +280,7 @@ public class MainActivity extends BaseActivity implements LoginView {
             Toast(msg);
             SPUtils.put(MyApp.context,"token",baseBean.token);
         UserBean data = baseBean.data;
+
         MyUserBean.setUserBean(data);
         if(data.getName()!=null){
             String province = (String) data.getProvince();
@@ -288,10 +289,25 @@ public class MainActivity extends BaseActivity implements LoginView {
             SPUtils.put(MyApp.context, "name", data.getName());
             SPUtils.put(MyApp.context, "school", province+city+area);
         }
-            if(baseBean.data.getName()!=null){
+  if(baseBean.data.getName()!=null){
+      if(data.getExamprovince()!=null){
+          SPUtils.put(MyApp.context, "tbarea", data.getExamprovince());
+      }
+
+      if(data.getStutype()!=null){
+          SPUtils.put(MyApp.context, "tbsubtype", data.getStutype());
+      }
+      Integer examscore =   data.getExamscore();
+      if(examscore!=null){
+          SPUtils.put(MyApp.context, "tbmaxfen", examscore+"");
+      }
+      if(data.getSex()!=null){
+          SPUtils.put(MyApp.context,"sex",data.getSex());
+      }
+
                 intent(MainActivity.this, HomeActivity.class);
                 finish();
-            }else {
+     }else {
                 intent(MainActivity.this, perfectMessageActivity.class);
                 finish();
             }

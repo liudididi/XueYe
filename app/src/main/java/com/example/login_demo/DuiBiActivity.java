@@ -1,9 +1,12 @@
 package com.example.login_demo;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,17 +30,23 @@ import com.example.login_demo.wxapi.WXPayUtils;
 import java.util.Map;
 
 import base.BaseActivity;
+import base.BaseBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import presenter.CountdownPresent;
 import presenter.PayPresent;
 import untils.SPUtils;
+import view.CountdownView;
 import view.PayView;
 import zfbpay.AliPayResult;
 
-public class DuiBiActivity extends BaseActivity implements PayView {
+import static com.example.login_demo.MyApp.context;
+
+public class
+DuiBiActivity extends BaseActivity implements PayView, CountdownView {
 
 
     @BindView(R.id.duibi_iv_back)
@@ -48,6 +57,14 @@ public class DuiBiActivity extends BaseActivity implements PayView {
     TextView tvPutong;
     @BindView(R.id.tv_hang)
     TextView tvHang;
+    @BindView(R.id.tv_day1)
+    TextView tv_day1;
+    @BindView(R.id.tv_day2)
+    TextView tv_day2;
+    @BindView(R.id.tv_day3)
+    TextView tv_day3;
+
+
     private PayPresent payPresent;
 
     private int pay = 2;
@@ -64,10 +81,9 @@ public class DuiBiActivity extends BaseActivity implements PayView {
                     switch (payResult.getResultStatus()) {
                         case "9000":
                             SPUtils.put(MyApp.context,"VIP",true);
+                            isretry();
                             Toast.makeText(DuiBiActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(DuiBiActivity.this, ComlitEFCActivity.class);
-                            startActivity(intent);
-                            finish();
+
                             break;
                         case "8000":
                             Toast.makeText(DuiBiActivity.this, "正在处理中", Toast.LENGTH_SHORT).show();
@@ -107,6 +123,35 @@ public class DuiBiActivity extends BaseActivity implements PayView {
 
         }
     };
+    private CountdownPresent countdownPresent;
+
+    private void isretry() {
+        String str="是否重新测试？";
+        Dialog dialog = new android.app.AlertDialog.Builder(this).setTitle("支付成功").setMessage(str)
+                // 设置内容
+                .setPositiveButton("重新测试",// 设置确定按钮
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                                Intent intent = new Intent(DuiBiActivity.this, AnswerActivity.class);
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        }).setNegativeButton("不需要",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+
+                                Intent intent = new Intent(DuiBiActivity.this, ComlitEFCActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).create();// 创建
+        dialog.show();
+    }
 
     @Override
     public int getId() {
@@ -123,6 +168,9 @@ public class DuiBiActivity extends BaseActivity implements PayView {
         span.setSpan(new ForegroundColorSpan(Color.BLACK), 10, 14, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tvHang.setText(span);
+
+        countdownPresent = new CountdownPresent(this);
+        countdownPresent.CountdownPresent();
     }
 
     @OnClick({R.id.duibi_iv_back, R.id.tv_jingzhun, R.id.tv_putong})
@@ -134,7 +182,7 @@ public class DuiBiActivity extends BaseActivity implements PayView {
             case R.id.tv_jingzhun:
                 String token = (String) SPUtils.get(MyApp.context, "token", "");
                 if (token.length() > 4) {
-                    payPresent.XiaDan(token, "4", pay + "");
+                     payPresent.XiaDan(token, "4", pay + "");
                 } else {
                     Toast("token失效，请重新登录");
                 }
@@ -156,9 +204,7 @@ public class DuiBiActivity extends BaseActivity implements PayView {
             SPUtils.put(MyApp.context,"PAYCODE",-1);
             SPUtils.put(MyApp.context,"VIP",true);
             Toast.makeText(DuiBiActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DuiBiActivity.this, ComlitEFCActivity.class);
-            startActivity(intent);
-            finish();
+            isretry();
         }
     }
 
@@ -216,7 +262,7 @@ public class DuiBiActivity extends BaseActivity implements PayView {
         }else {
             diangdan_money.setText("698");
         }*/
-        diangdan_money.setText("698");
+        diangdan_money.setText("598");
 
         iv_chahao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -309,4 +355,46 @@ public class DuiBiActivity extends BaseActivity implements PayView {
     }
 
 
+    @Override
+    public void Countdownsuccess(BaseBean baseBean) {
+
+        String s = baseBean.data.toString();
+
+        if(s!=null&&s.length()==3)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            String substring2 = s.substring(2);
+            tv_day1.setText(substring);
+            tv_day2.setText(substring1);
+            tv_day3.setText(substring2);
+        }
+        if(s!=null&&s.length()==2)
+        {
+            String substring = s.substring(0,1);
+            String substring1 = s.substring(1);
+            tv_day1.setText("0");
+            tv_day2.setText(substring);
+            tv_day3.setText(substring1);
+        }
+        else
+        {
+            tv_day1.setText("0");
+            tv_day2.setText("0");
+            tv_day3.setText(s);
+
+        }
+    }
+
+    @Override
+    public void Countdownfail(Throwable t) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        countdownPresent.onDestory();
+    }
 }

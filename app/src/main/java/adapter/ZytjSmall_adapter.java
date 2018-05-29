@@ -1,11 +1,14 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
 
 import java.util.List;
@@ -40,12 +43,24 @@ public class ZytjSmall_adapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView==null){
-            convertView=View.inflate(context, R.layout.xygh_item,null);
+            convertView=View.inflate(context, R.layout.xygh_item_small,null);
         }
         TextView ghitem_title= convertView.findViewById(R.id.ghitem_title);
-
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(list.get(position).getMajorId()!=null){
+                    Intent intent=new Intent(context, MajorDetailActivity.class);
+                    intent.putExtra("majorid",list.get(position).getMajorId());
+                    intent.putExtra("major",list.get(position).getMajor());
+                    context.startActivity(intent);
+                }else {
+                    Toast.makeText(context, "数据整理中", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         ghitem_title.setText(list.get(position).getMajor());
 
         TextView ghitem_gailv= convertView.findViewById(R.id.ghitem_gailv);
