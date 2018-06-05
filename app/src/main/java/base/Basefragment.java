@@ -43,8 +43,4 @@ public abstract  class Basefragment extends Fragment {
     }
     public  abstract int getLayoutid();
     public  abstract void  initView();
-
-
-
-
 }

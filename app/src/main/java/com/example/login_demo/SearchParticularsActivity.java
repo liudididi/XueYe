@@ -180,9 +180,6 @@ public class SearchParticularsActivity extends BaseActivity implements SearchVie
                         Intent intent = new Intent(SearchParticularsActivity.this, JobDetailsActivity.class);
                         intent.putExtra("jobname", text);
                         startActivity(intent);
-
-
-
             }
         });
        /* HotAdapter school = new HotAdapter(this, schoollist);

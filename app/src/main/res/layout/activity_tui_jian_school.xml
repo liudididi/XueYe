@@ -167,6 +167,7 @@
                     android:layout_height="60px">
                 </View>
                 <TextView
+                    android:id="@+id/tv_zyjh"
                     android:layout_toRightOf="@+id/fmgk_v4"
                     android:textSize="55px"
                     android:textColor="@color/black"
@@ -216,7 +217,7 @@
                         android:layout_marginRight="70px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="因考生意愿和主观因素，无法进行精准推测，需开通升级版升学设计系统"
+                        android:text="因考生意愿和主观因素，无法进行精准推测，需开通精准版升学设计系统"
                         />
                 </RelativeLayout>
 
@@ -233,7 +234,7 @@
            android:layout_marginLeft="94px"
            android:layout_marginRight="94px"
            android:background="@drawable/bg_profession"
-           android:text="开通升学设计系统精准志愿辅助系统"
+           android:text="开通精准版升学设计系统"
            />
                 <View
                     android:layout_width="match_parent"

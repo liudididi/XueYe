@@ -116,7 +116,7 @@
         android:id="@+id/re_buydi"
          android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="154px"
+        android:layout_height="220px"
         android:background="#fff">
         <View
             android:layout_width="match_parent"
@@ -180,16 +180,23 @@
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200px">
+            android:layout_height="220px">
+            <LinearLayout
+                android:layout_marginTop="20px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="30px"
+                android:layout_alignParentRight="true">
             <TextView
                 android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="距离高考仅剩"
+                android:text="距高考仅剩"
                 android:textColor="#999999"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20px"
-                android:textSize="44px"/>
+                android:textSize="40px"/>
             <TextView
                 android:id="@+id/tv_day1"
                 android:layout_toRightOf="@+id/tv"
@@ -224,7 +231,6 @@
                 android:gravity="center"
                 android:layout_marginLeft="10px"/>
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="天"
@@ -233,13 +239,40 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10px"
                 android:textSize="44px"/>
+            </LinearLayout>
             <TextView
-                android:layout_marginRight="20px"
-                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥598"
+                android:layout_marginTop="20px"
+
+                android:textColor="#FF6700"
+                android:textSize="60px"
+                android:layout_marginLeft="30px"
+                />
+            <TextView
                 android:id="@+id/tv_goumai2"
-                android:layout_width="500px"
+                android:layout_width="450px"
                 android:layout_height="110px"
-                android:text="开启免费体验"
+                android:text="开通精准版"
+                android:gravity="center"
+                android:textSize="50px"
+                android:layout_marginLeft="30px"
+                android:layout_marginBottom="10px"
+                android:layout_below="@+id/rl_daojishi"
+                android:textColor="#fff"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_profession"
+                />
+            <TextView
+                android:layout_marginRight="30px"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tv_goumai1"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10px"
+                android:layout_width="450px"
+                android:layout_height="110px"
+                android:text="体验免费版"
                 android:textSize="50px"
                 android:textColor="#ffffff"
                 android:gravity="center"

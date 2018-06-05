@@ -190,12 +190,11 @@
 
             <RelativeLayout
                android:id="@+id/rla"
+                android:visibility="visible"
                 android:layout_marginLeft="45px"
                 android:layout_below="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
             </RelativeLayout>
 
 

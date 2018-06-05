@@ -1,12 +1,19 @@
 package com.example.login_demo;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.io.File;
 
 import base.BaseActivity;
 import base.BaseBean;
@@ -17,6 +24,8 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 import untils.MyQusetUtils;
 import untils.SPUtils;
+
+import static com.example.login_demo.MyApp.context;
 
 public class
 XlcsActivity extends BaseActivity {
@@ -111,20 +120,42 @@ XlcsActivity extends BaseActivity {
                 }
                 break;
             case R.id.xlcs_bt1:
-                Intent intent = new Intent(XlcsActivity.this, AnswerActivity.class);
-                intent.putExtra("ceshi", "MBTI");
-                startActivity(intent);
-                finish();
+
+                tishikuang();
+
                 break;
             case R.id.xlcs_b2:
-                Intent inten2 = new Intent(XlcsActivity.this, AnswerActivity.class);
-                inten2.putExtra("ceshi", "MBTI");
-                startActivity(inten2);
-                finish();
+                tishikuang();
                 break;
         }
     }
 
+    private void tishikuang() {
+        Dialog dialog = new android.app.AlertDialog.Builder(this).setTitle("温馨提示").setMessage("测试次数有限，请认准答题")
+                // 设置内容
+                .setPositiveButton("确定",// 设置确定按钮
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Intent inten2 = new Intent(XlcsActivity.this, AnswerActivity.class);
+                                inten2.putExtra("ceshi", "MBTI");
+                                startActivity(inten2);
+                                finish();
+
+                            }
+                        })
+                .setNegativeButton("取消",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int whichButton) {
+                                // 点击"取消"按钮之后退出程序
+                                dialog.dismiss();
+                            }
+                        }).create();// 创建
+        // 显示对话框
+        dialog.show();
+    }
 
 
 }

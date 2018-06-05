@@ -112,10 +112,22 @@
         android:background="@null"
         android:theme="@style/MyEditText" />
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="3px"
             android:layout_below="@+id/ed_phone_captcha"
             android:background="#F3F3F3"></View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/view"
+        android:textColor="#3986f3"
+        android:textSize="34px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="10px"
+        android:layout_height="wrap_content"
+        android:text="注册后手机号码为身份识别ID,以便后期使用时,调取测评报告与院校推荐结果。"/>
     <TextView
         android:id="@+id/tv_Countdown"
         android:layout_width="270px"
@@ -135,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="120px"
         android:layout_below="@+id/ed_mobile"
-        android:layout_marginTop="300px"
+        android:layout_marginTop="350px"
         android:layout_marginRight="30px"
         android:layout_marginLeft="30px"
         android:background="@drawable/back_guanzhu"

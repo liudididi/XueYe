@@ -107,7 +107,7 @@
                 android:id="@+id/tv_gj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="高级筛选"
+                android:text="分数筛选"
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 />
@@ -390,20 +390,21 @@
         android:background="#cc222222"
         android:visibility="gone"
         android:clickable="true"
-
         android:layout_below="@+id/lv2"></View>
     <RelativeLayout
         android:id="@+id/lv3"
         android:layout_width="match_parent"
-        android:layout_height="832px"
+        android:layout_height="400px"
         android:layout_marginTop="125px"
         android:background="#fff"
         android:visibility="gone"
+        android:clickable="true"
        >
         <LinearLayout
             android:id="@+id/ll4"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="632px"
+            android:layout_height="200px"
             android:orientation="horizontal">
             <LinearLayout
                 android:id="@+id/ll5"
@@ -415,6 +416,7 @@
                 android:layout_height="match_parent"
                  android:scrollbars="none"
                 android:listSelector="#ccc"
+                android:visibility="gone"
                 >
             </ListView>
             </LinearLayout>
@@ -432,29 +434,40 @@
                 android:id="@+id/lv_right"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:listSelector="#ccc"
-                android:layout_marginTop="105px"
+
                  >
             </ListView>
         </LinearLayout>
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/rl"
-            android:layout_width="match_parent"
-            android:layout_height="105px"
-            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="200px"
+              android:layout_centerHorizontal="true"
             >
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="280px"
+                 android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="预估分数"
+                android:textSize="40px"
+                android:layout_marginRight="200px"
+                android:textColor="#3986F3"
+                android:layout_centerVertical="true"
+                />
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                >
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv"
+                android:layout_centerVertical="true"
+                 >
                 <EditText
                     android:id="@+id/ed_fen"
-                    android:layout_width="200px"
-                    android:layout_height="70px"
+                    android:layout_width="280px"
+                    android:layout_height="80px"
                     android:gravity="center"
                     android:background="@drawable/bg_subject2"
                     />
@@ -468,6 +481,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2px"
                 android:background="#ccc"
+                android:visibility="gone"
                 android:layout_alignParentBottom="true"></View>
         </RelativeLayout>
         <View
@@ -485,20 +499,20 @@
              >
             <TextView
                 android:id="@+id/tv_chongzhi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="重置"
-                android:textSize="34px"
+                android:layout_width="280px"
+                android:layout_height="80px"
+                android:text="取消"
+                android:textSize="40px"
                 android:textColor="#999999"
                 android:background="@drawable/back_chongzhi"
                 android:gravity="center"
-                android:layout_marginRight="100px"/>
+                android:layout_marginRight="150px"/>
             <TextView
                 android:id="@+id/tv_queding"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="280px"
+                android:layout_height="80px"
                 android:text="确定"
-                android:textSize="34px"
+                android:textSize="40px"
                 android:textColor="#3B9EFF"
                 android:background="@drawable/back_queding"
                 android:gravity="center"/>
@@ -520,7 +534,6 @@
         android:id="@+id/view_gl"
         android:visibility="visible"
         android:clickable="true"
-        android:layout_below="@+id/primary_tv1"
         ></View>
     <RelativeLayout
         android:id="@+id/rl_shengji"
@@ -595,7 +608,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100px"
-            android:text="开通升级版"
+            android:text="开通精准版"
             android:gravity="center"
             android:textSize="50px"
             android:layout_below="@+id/rl_daojishi"

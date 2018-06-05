@@ -43,6 +43,7 @@ import presenter.ForecastPresent;
 import presenter.NumPresenter;
 import presenter.SchoolEnrollPresent;
 import untils.Histogram;
+import untils.MyListView;
 import untils.MyQusetUtils;
 import untils.SPUtils;
 import untils.ZhiMaScoreView2;
@@ -68,8 +69,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private ImageView iv_next;
     private boolean msg=true;
     private boolean msg2=true;
-    private ListView school_lv1;
-    private ListView school_lv2;
+    private MyListView school_lv1;
+    private MyListView school_lv2;
     private TextView tv_skx;
     private ImageView iv_right2;
     private ImageView iv_next2;

@@ -24,6 +24,7 @@ import java.util.Map;
 
 import base.BaseActivity;
 import base.BaseBean;
+import bean.CXEFCBean;
 import bean.RenSumBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
@@ -33,10 +34,13 @@ import fragment.WishFragMent;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
+import presenter.CXEFCPresenter;
 import presenter.CountdownPresent;
 import presenter.PayPresent;
+import untils.Dianji2;
 import untils.MyQusetUtils;
 import untils.SPUtils;
+import view.CXEFCView;
 import view.CountdownView;
 import view.PayView;
 import zfbpay.AliPayResult;
@@ -61,6 +65,7 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
     private PayPresent payPresent;
 
     private int pay = 2;
+    private  boolean zk=false;
 
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
@@ -74,7 +79,13 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
                     switch (payResult.getResultStatus()) {
                         case "9000":
                             Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
+                            SPUtils.put(MyApp.context, "VIP", true);
+                            if(zk){
+                                SPUtils.put(MyApp.context,"kemuefc","专科");
+                            }else {
+                                SPUtils.put(MyApp.context,"kemuefc","本科");
+                            }
+                            Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
                             startActivity(intent);
                             finish();
                             break;
@@ -132,8 +143,6 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
         heightPixels = dm.heightPixels;
         countdownPresent = new CountdownPresent(this);
         countdownPresent.CountdownPresent();
-
-
     }
 
     @Override
@@ -189,7 +198,7 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
         }else {
             diangdan_money.setText("698");
         }*/
-        diangdan_money.setText("698");
+        diangdan_money.setText("598");
 
         iv_chahao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,7 +225,8 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
         tv_queren.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pay == 1) {
+
+               if (pay == 1) {
                     payPresent.ZFBpay(outTradeNo);
                 } else {
                     payPresent.WXpay(outTradeNo);
@@ -240,66 +250,109 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
         });
     }
 
-    @OnClick({R.id.buy2_iv_back, R.id.tv_goumai2})
+    @OnClick({R.id.buy2_iv_back, R.id.tv_goumai2,R.id.tv_goumai1})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.buy2_iv_back:
                 finish();
                 break;
+            case R.id.tv_goumai1:
+                Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
+                startActivity(intent);
+                break;
             case R.id.tv_goumai2:
+                if(Dianji2.isNotFastClick()){
                 if(token.length()>4){
-                    Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
-                    startActivity(intent);
-                    //payPresent.XiaDan(token,"4",pay+"");
-                  /*
-                    zk=false;
-                  View viewe = LayoutInflater.from(Buy2Activity.this).inflate(R.layout.dilog_gmbb, null);
-                    final AlertDialog dialog = new AlertDialog.Builder(Buy2Activity.this)
-                            .setView(viewe).show();
+                    MyQusetUtils.getInstance().getQuestInterface().hqjd(token)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                                @Override
+                                public void onNext(BaseBean<String> stringBaseBean) {
+                                     if(stringBaseBean.code==0){
+                                         String data = stringBaseBean.data;
+                                         final int i = Integer.parseInt(data);
+                                         if(i>1){
+                                             //不弹框
+                                             CXEFCPresenter cxefcPresenter=new CXEFCPresenter(new CXEFCView() {
+                                                 @Override
+                                                 public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
+                                                     //考生省份
+                                                     SPUtils.put(MyApp.context,"kemuefc",cxefcBeanBaseBean.data.getCollegetype());
+                                                    if(cxefcBeanBaseBean.data.getCollegetype().equals("本科")){
+                                                        payPresent.XiaDan(token,"3",pay+"");
+                                                    }else {
+                                                        payPresent.XiaDan(token,"4",pay+"");
+                                                    }
+                                                 }
+                                                 @Override
+                                                 public void GetEFCResultfail(Throwable t) {
+                                                 }
+                                             });
+                                             cxefcPresenter.CXEFCPresenter(token);
+                                         }else {
+                                             //弹框
 
-                   *//* //为获取屏幕宽、高
-                    WindowManager.LayoutParams p = dialog.getWindow().getAttributes();  //获取对话框当前的参数值
-                    p.height = (int) (heightPixels * 0.4);   //高度设置为屏幕的0.3//宽度设置为屏幕的0.5
-                    dialog.getWindow().setAttributes(p);*//*
-                  final ImageView img_bk= viewe.findViewById(R.id.img_bk);
-                  final ImageView img_zk= viewe.findViewById(R.id.img_zk);
-                  final TextView tv_gm= viewe.findViewById(R.id.tv_gm);
-                    img_bk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            img_bk.setImageResource(R.drawable.back_circleblcak);
-                            img_zk.setImageResource(R.drawable.back_circlebai);
-                            zk=false;
-                        }
-                    });
-                    tv_gm.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            if(zk){
-                                payPresent.XiaDan(token,"4",pay+"");
-                            }else {
-                                payPresent.XiaDan(token,"3",pay+"");
-                            }
-                        }
-                    });
-                    img_zk.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            img_bk.setImageResource(R.drawable.back_circlebai);
-                            img_zk.setImageResource(R.drawable.back_circleblcak);
-                            zk=true;
-                        }
-                    });*/
+                                             zk=false;
+                                             View viewe = LayoutInflater.from(Buy2Activity.this).inflate(R.layout.dilog_gmbb, null);
+                                             final AlertDialog dialog = new AlertDialog.Builder(Buy2Activity.this)
+                                                     .setView(viewe).show();
+                                             //为获取屏幕宽、高
+                                             WindowManager.LayoutParams p = dialog.getWindow().getAttributes();  //获取对话框当前的参数值
+                                             p.height = (int) (heightPixels * 0.4);   //高度设置为屏幕的0.3//宽度设置为屏幕的0.5
+                                             dialog.getWindow().setAttributes(p);
+                                             final ImageView img_bk= viewe.findViewById(R.id.img_bk);
+                                             final ImageView img_zk= viewe.findViewById(R.id.img_zk);
+                                             final TextView tv_gm= viewe.findViewById(R.id.tv_gm);
+                                             img_bk.setOnClickListener(new View.OnClickListener() {
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     img_bk.setImageResource(R.drawable.back_circleblcak);
+                                                     img_zk.setImageResource(R.drawable.back_circlebai);
+                                                     zk=false;
+                                                 }
+                                             });
+                                             tv_gm.setOnClickListener(new View.OnClickListener() {
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     dialog.dismiss();
+                                                  if(zk){
+                                                         payPresent.XiaDan(token,"4",pay+"");
+                                                     }else {
+                                                         payPresent.XiaDan(token,"3",pay+"");
+                                                     }
+                                                 }
+                                             });
+                                             img_zk.setOnClickListener(new View.OnClickListener() {
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     img_bk.setImageResource(R.drawable.back_circlebai);
+                                                     img_zk.setImageResource(R.drawable.back_circleblcak);
+                                                     zk=true;
+                                                 }
+                                             });
+                                         }
+                                     }
+                                }
 
-                /*    Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
-                    startActivity(intent);
-                    finish();*/
+                                @Override
+                                public void onError(Throwable t) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
+
                 }else {
                    Toast("用户未登录");
                 }
+                }
                 break;
+
         }
     }
     @Override
@@ -357,13 +410,17 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
         int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);
         if(PAYCODE==0){
             SPUtils.put(MyApp.context,"PAYCODE",-1);
+            SPUtils.put(MyApp.context, "VIP", true);
+            if(zk){
+                SPUtils.put(MyApp.context,"kemuefc","专科");
+            }else {
+                SPUtils.put(MyApp.context,"kemuefc","本科");
+            }
             Toast.makeText(Buy2Activity.this, "支付成功", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Buy2Activity.this, BuyEFCActivity.class);
+            Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
             startActivity(intent);
             finish();
         }
-
-
         MyQusetUtils.getInstance()
                 .getQuestInterface()
                 .getServicenum()

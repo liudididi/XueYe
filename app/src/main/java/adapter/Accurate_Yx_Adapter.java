@@ -1,3 +1,5 @@
+
+
 package adapter;
 
 import android.animation.ValueAnimator;
@@ -6,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +47,6 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
         this.biaoshi=biaoshi;
         vip = (boolean) SPUtils.get(MyApp.context, "VIP", false);
      }
-
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.accurate_yx_item, null);
@@ -213,23 +215,8 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
                         holder.tv_recruit.setVisibility(View.GONE);
                     }
                 }
-                if(num!=null)
-                {
-                    holder.tv_num.setText("("+num+"个推荐专业)");
-                }
-                else
-                {
-                    holder.tv_num.setText("(0个推荐专业)");
-                }
-                if(name.length()>=9)
-                {
-                    String substring2 = name.substring(0, 9);
-                    holder.tv_name.setText(substring2);
-                }
-                else
-                {
-                    holder.tv_name.setText(name);
-                }
+
+
              holder.ll_zhankai.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -293,10 +280,48 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
             if(vip)
             {
                 holder.rl_zy.setVisibility(View.VISIBLE);
+                holder.cpv.setVisibility(View.VISIBLE);
+                holder.iv_vip.setVisibility(View.GONE);
+                RelativeLayout.LayoutParams Params =  (RelativeLayout.LayoutParams)holder.tv_name.getLayoutParams();
+                Params.width =620;
+                holder.tv_name.setLayoutParams(Params);
+                if(name.length()>=9)
+                {
+                    String substring2 = name.substring(0, 8);
+                    holder.tv_name.setText(substring2+"..");
+                }
+                else
+                {
+                    holder.tv_name.setText(name);
+                }
+                if(num!=null)
+                {
+                    holder.tv_num.setText("("+num+"个推荐专业)");
+                }
+                else
+                {
+                    holder.tv_num.setText("(0个推荐专业)");
+                }
+
             }
             else
             {
                 holder.rl_zy.setVisibility(View.GONE);
+                holder.cpv.setVisibility(View.GONE);
+                holder.iv_vip.setVisibility(View.VISIBLE);
+                holder.tv_num.setText("(VIP查看推荐专业)");
+                RelativeLayout.LayoutParams Params =  (RelativeLayout.LayoutParams)holder.tv_name.getLayoutParams();
+                Params.width =450;
+                holder.tv_name.setLayoutParams(Params);
+                if(name.length()>6)
+                {
+                    String substring2 = name.substring(0, 6);
+                    holder.tv_name.setText(substring2+"..");
+                }
+                else
+                {
+                    holder.tv_name.setText(name);
+                }
             }
         }
     public int getItemViewType(int position) {
@@ -338,6 +363,8 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
         private final RecyclerView rv_zhuanye;
         private final RelativeLayout rl;
         private final RelativeLayout rl_zy;
+        private final ImageView iv_vip;
+
         public MyViewHolder(View itemView) {
             super(itemView);
             cpv = itemView.findViewById(R.id.cpv);
@@ -358,6 +385,7 @@ public class Accurate_Yx_Adapter extends RecyclerView.Adapter<Accurate_Yx_Adapte
             rv_zhuanye = itemView.findViewById(R.id.lv_zhuanye);
             rl = itemView.findViewById(R.id.rl);
             rl_zy = itemView.findViewById(R.id.rl_zy);
+            iv_vip = itemView.findViewById(R.id.iv_vip);
         }
     }
 }

@@ -46,6 +46,7 @@ import io.reactivex.subscribers.DisposableSubscriber;
 import presenter.CXEFCPresenter;
 import presenter.CountdownPresent;
 import presenter.PayPresent;
+import untils.Dianji2;
 import untils.ListViewForScrollView;
 import untils.ListViewScrollView;
 import untils.MyListView;
@@ -176,6 +177,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
                                 Intent intent = new Intent(XueYeGuiHuaActivity.this, AnswerActivity.class);
                                 startActivity(intent);
                                 finish();
+                                dialog.dismiss();
 
                             }
                         }).setNegativeButton("不需要",
@@ -186,8 +188,10 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
                                 Intent intent = new Intent(XueYeGuiHuaActivity.this, ComlitEFCActivity.class);
                                 startActivity(intent);
                                 finish();
+                                dialog.dismiss();
                             }
                         }).create();// 创建
+        dialog.setCancelable(false);
         dialog.show();
     }
     @Override
@@ -490,10 +494,12 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                  String type = (String) SPUtils.get(MyApp.context, "kemuefc", "本科");
                 if (token.length() > 4) {
-                    if(type.equals("本科")){
-                        payPresent.XiaDan(token, "3", pay + "");
-                    }else {
-                        payPresent.XiaDan(token, "4", pay + "");
+                    if(Dianji2.isNotFastClick()){
+                        if(type.equals("本科")){
+                            payPresent.XiaDan(token, "3", pay + "");
+                        }else {
+                            payPresent.XiaDan(token, "4", pay + "");
+                        }
                     }
                 } else {
                     Toast("token失效，请重新登录");

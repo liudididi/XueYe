@@ -129,19 +129,15 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
         list = new ArrayList<>();
         list.add(R.drawable.gkdjs);
         list.add(R.drawable.ymdjs);
-
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iv.setEnabled(false);
                 if (token.length() < 4) {
                     Toast.makeText(getActivity(), "用户未登录", Toast.LENGTH_SHORT).show();
-
                     return;
                 }
                 if(NetUtil.isNetworkAvailable(getActivity())==false){
                     Toast.makeText(getActivity(), "当期无网络", Toast.LENGTH_SHORT).show();
-
                     return;
                 }
                 MyQusetUtils.getInstance().getQuestInterface().jzjudge(token)
@@ -153,12 +149,18 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
                             public void onNext(BaseBean<String> stringBaseBean) {
                                 iv.setEnabled(true);
                                 if (stringBaseBean.code == 0) {
+                                    final String data = stringBaseBean.data;
+                                    if(data.equals("0")){
+                                        SPUtils.put(MyApp.context,"kemuefc","本科");
+                                    }else {
+                                        SPUtils.put(MyApp.context,"kemuefc","专科");
+                                    }
                                     SPUtils.put(MyApp.context,"VIP",true);
+                                    getContext().startActivity(new Intent(getContext(), EFCJieSuoActivity.class));
                                 }else {
                                     SPUtils.put(MyApp.context,"VIP",false);
+                                    getContext().startActivity(new Intent(getContext(), Buy2Activity.class));
                                 }
-
-                                getContext().startActivity(new Intent(getContext(), Buy2Activity.class));
                             }
 
                             @Override
@@ -166,14 +168,11 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
                                 iv.setEnabled(true);
                                 Toast.makeText(getActivity(), "网络较差,请重试~", Toast.LENGTH_SHORT).show();
                             }
-
                             @Override
                             public void onComplete() {
 
                             }
                         });
-
-
             }
         });
         ws_xbanner.setData(list,null);

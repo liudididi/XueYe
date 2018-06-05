@@ -19,8 +19,6 @@ import untils.SPUtils;
 import view.EsayMbtiLSView;
 
 public class CeShiShuoMingActivity extends BaseActivity implements EsayMbtiLSView{
-
-
     @BindView(R.id.xlcs_iv_back)
     ImageView xlcsIvBack;
     @BindView(R.id.ceshi_title)

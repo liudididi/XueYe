@@ -12,10 +12,10 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.login_demo"
-        versionName "1.9.3"
+        versionName "1.9.4"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 12
+        versionCode 13
         resConfigs "zh"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

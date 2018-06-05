@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.login_demo.JobDetailsActivity;
 import com.example.login_demo.MajorDetailActivity;
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
+import com.example.login_demo.SearchParticularsActivity;
 
 import java.util.List;
 
@@ -24,7 +26,6 @@ public class Search_Adapter extends RecyclerView.Adapter {
 
     private Context context;
     private List<SearchBean> list;
-
     public Search_Adapter(Context context, List<SearchBean> list) {
         this.context = context;
         this.list = list;
@@ -42,7 +43,6 @@ public class Search_Adapter extends RecyclerView.Adapter {
         ProvieceViewHolder provieceViewHolder=new ProvieceViewHolder(view);
         return provieceViewHolder;
     }
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
       ProvieceViewHolder  provieceViewHolder= (ProvieceViewHolder) holder;
@@ -54,17 +54,16 @@ public class Search_Adapter extends RecyclerView.Adapter {
                Intent intent=new Intent(context, SchoolDetailActivity.class);
                intent.putExtra("schoolname",list.get(position).getName());
                context.startActivity(intent);
-           }else {
-
+           }else if(list.get(position).getType()==1){
                Intent intent=new Intent(context, MajorDetailActivity.class);
                intent.putExtra("majorid",list.get(position).getId());
                intent.putExtra("major",list.get(position).getName());
                context.startActivity(intent);
-
+           }else if(list.get(position).getType()==2){
+               Intent intent = new Intent(context, JobDetailsActivity.class);
+               intent.putExtra("jobname", list.get(position).getName());
+               context.startActivity(intent);
            }
-
-
-
             }
         });
     }

@@ -93,8 +93,10 @@ public class ReportedActivity extends BaseActivity {
                                 rePb.setVisibility(View.GONE);
                                 if (stringBaseBean.code == 0) {
                                     if(stringBaseBean.data.equals("0")){
+                                        SPUtils.put(MyApp.context,"kemuefc","本科");
                                         SPUtils.put(MyApp.context,"EFCFX","本科");
                                     }else {
+                                        SPUtils.put(MyApp.context,"kemuefc","专科");
                                         SPUtils.put(MyApp.context,"EFCFX","专科");
                                     }
                                     SPUtils.put(MyApp.context,"VIP",true);

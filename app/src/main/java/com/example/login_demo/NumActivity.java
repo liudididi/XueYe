@@ -243,62 +243,73 @@ public class NumActivity extends BaseActivity implements NumView {
     @Override
     public void Numsuccess(BaseBean<List<NumBean>> listBaseBean) {
         pb.setVisibility(View.GONE);
-        List<NumBean.MajorsBean> major = listBaseBean.data.get(0).getMajors();
-        if (major.size() > 0 && major != null) {
-            rla.removeAllViews();
-            fl = new FlowLayout(this);
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < major.size(); i++) {
-                //专业名称
-                String major1 = major.get(i).getMajor();
-                if (major1.length() > 30) {
-                    String substring = major1.substring(0, 30);
-                    major1 = substring;
+
+        if(listBaseBean.data.size()>0&&listBaseBean.data!=null)
+        {
+            rla.setVisibility(View.VISIBLE);
+            List<NumBean.MajorsBean> major = listBaseBean.data.get(0).getMajors();
+            if (major.size() > 0 && major != null) {
+                rla.removeAllViews();
+                fl = new FlowLayout(this);
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < major.size(); i++) {
+                    //专业名称
+                    String major1 = major.get(i).getMajor();
+                    if (major1.length() > 30) {
+                        String substring = major1.substring(0, 30);
+                        major1 = substring;
+                    }
+                    list.add(major1);
                 }
-                list.add(major1);
+
+                fl.setListZY(list);
+                fl.setbianli(xiabiao);
+                fl.setOnClick(new FlowLayout.OnClick() {
+                    @Override
+                    public void TagClick(String text, int postion) {
+                        fl.setbianli(postion);
+                        zyname = text;
+                        numPresenter.ZYNumPresenter(schoolname, km, address, zyname);
+                        tv_zy_name.setText(zyname);
+                    }
+                });
+                rla.addView(fl);
+
+                //隶属部
+                String father = listBaseBean.data.get(0).getFather();
+                String name = listBaseBean.data.get(0).getName();
+                String time = listBaseBean.data.get(0).getTime();
+                String stuProvince = listBaseBean.data.get(0).getAddress();
+                tvAddress.setText(stuProvince);
+                tvLishu.setText(father);
+                tvName.setText(name);
+                tvYear.setText(time);
+
+                for (int i = 0; i < list.size(); i++) {
+
+                    if(xiabiao==i)
+                    {
+                        String s = list.get(xiabiao).toString();
+                        zyname=s;
+                        tv_zy_name.setText(zyname);
+                        numPresenter.ZYNumPresenter(schoolname, km, address, zyname);
+                        return;
+                    }
+                    else
+                    {
+                        String s = list.get(0).toString();
+                        zyname=s;
+                        tv_zy_name.setText(zyname);
+                    }
+
+                }
             }
+        }
 
-            fl.setListZY(list);
-            fl.setbianli(xiabiao);
-            fl.setOnClick(new FlowLayout.OnClick() {
-                @Override
-                public void TagClick(String text, int postion) {
-                    fl.setbianli(postion);
-                    zyname = text;
-                    numPresenter.ZYNumPresenter(schoolname, km, address, zyname);
-                    tv_zy_name.setText(zyname);
-                }
-            });
-            rla.addView(fl);
-
-            //隶属部
-            String father = listBaseBean.data.get(0).getFather();
-            String name = listBaseBean.data.get(0).getName();
-            String time = listBaseBean.data.get(0).getTime();
-            String stuProvince = listBaseBean.data.get(0).getAddress();
-            tvAddress.setText(stuProvince);
-            tvLishu.setText(father);
-            tvName.setText(name);
-            tvYear.setText(time);
-
-            for (int i = 0; i < list.size(); i++) {
-
-                if(xiabiao==i)
-                {
-                     String s = list.get(xiabiao).toString();
-                    zyname=s;
-                    tv_zy_name.setText(zyname);
-                    numPresenter.ZYNumPresenter(schoolname, km, address, zyname);
-                    return;
-                }
-                else
-                {
-                    String s = list.get(0).toString();
-                    zyname=s;
-                    tv_zy_name.setText(zyname);
-                }
-
-            }
+        else
+        {
+            rla.setVisibility(View.GONE);
+            tv_zy_name.setText("暂无数据");
         }
     }
 

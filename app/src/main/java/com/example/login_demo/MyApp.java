@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import cn.jpush.android.api.JPushInterface;
+import untils.Myexception;
 
 /**
  * Created by 地地 on 2018/1/19.
@@ -59,6 +60,9 @@ public class MyApp extends Application {
                 .setReloadButtonTextSize(14)
                 .setReloadButtonTextColor(R.color.activity_invitation_detail_reply_user)
                 .setReloadButtonWidthAndHeight(150,40);
+
+           //捕获异常
+           // Myexception.getinstants().init(this);
 
     }
 

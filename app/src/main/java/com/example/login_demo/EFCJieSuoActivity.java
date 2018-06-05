@@ -176,8 +176,6 @@ public class EFCJieSuoActivity extends BaseActivity {
                             imgZhuanyxkbq.setImageResource(R.drawable.biaoywc);
                             rlZhiyxk.setEnabled(true);
                             rlZhuanyxk.setEnabled(true);
-
-
                 Boolean vip= (Boolean) SPUtils.get(MyApp.context,"VIP",false);
                 if(vip){
                     MyQusetUtils.getInstance().getQuestInterface().gettime(token)

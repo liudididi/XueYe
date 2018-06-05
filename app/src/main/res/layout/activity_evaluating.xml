@@ -84,7 +84,7 @@
         <TextView
             android:id="@+id/evaluating_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="130px"
             android:text="职业星空"
             android:textSize="40px"
             android:textColor="#ffffff"

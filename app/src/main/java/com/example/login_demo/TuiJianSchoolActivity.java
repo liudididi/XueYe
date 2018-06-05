@@ -1,10 +1,12 @@
 package com.example.login_demo;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -38,10 +40,12 @@ import bean.TuiJianBean;
 import bean.WeiXinBean;
 import bean.XDingdanBean;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import presenter.CXEFCPresenter;
 import presenter.PayPresent;
 import presenter.TuiJianPresent;
+import untils.Dianji2;
 import untils.FlowLayout;
 import untils.ListViewForScrollView;
 import untils.SPUtils;
@@ -50,16 +54,13 @@ import view.PayView;
 import view.TuiJianView;
 import zfbpay.AliPayResult;
 
-import static com.example.login_demo.MyApp.context;
-
 public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
 
 
     @BindView(R.id.tuijian_iv)
-   ImageView tuijianIv;
+    ImageView tuijianIv;
     @BindView(R.id.tuijian_name)
     TextView tuijianName;
-
     @BindView(R.id.tuijian_zh)
     TextView tuijianZh;
     @BindView(R.id.tuijian_iv_back)
@@ -88,6 +89,8 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     ListViewForScrollView listZy;
     @BindView(R.id.ll_one)
     LinearLayout llOne;
+    @BindView(R.id.tv_zyjh)
+    TextView tvZyjh;
     private String schoolname;
     private TuiJianPresent tuiJianPresent;
     private Handler handler;
@@ -147,24 +150,26 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
             }
         }
     };
+
     @Override
     public int getId() {
         return R.layout.activity_tui_jian_school;
     }
+
     @Override
     public void InIt() {
         schoolname = getIntent().getStringExtra("schoolname");
         pici = getIntent().getStringExtra("pici");
         tuijianName.setText(schoolname);
         schoolurl = getIntent().getStringExtra("schoolurl");
-        if(schoolurl !=null){
+        if (schoolurl != null) {
             Glide.with(this).load(schoolurl).asBitmap().centerCrop().into(new BitmapImageViewTarget(tuijianIv) {
                 @Override
                 protected void setResource(Bitmap resource) {
                     RoundedBitmapDrawable circularBitmapDrawable =
                             RoundedBitmapDrawableFactory.create(TuiJianSchoolActivity.this.getResources(), resource);
                     circularBitmapDrawable.setCircular(true);
-                    tuijianIv .setImageDrawable(circularBitmapDrawable);
+                    tuijianIv.setImageDrawable(circularBitmapDrawable);
                 }
             });
         }
@@ -191,11 +196,12 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                     handler.postDelayed(this, 1000);
                 } else {
                     handler.removeCallbacks(this);
-                    tuiJianPresent.GetTuijian(schoolname, pici,tbarea, tbsubtype, tbmaxfen, token);
+                    tuiJianPresent.GetTuijian(schoolname, pici, tbarea, tbsubtype, tbmaxfen, token);
                 }
             }
         };
     }
+
     public String formatLongToTimeStr(Long l) {
         int hour = 0;
         int minute = 0;
@@ -219,30 +225,31 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     protected void onResume() {
         efc = getIntent().getBooleanExtra("EFC", false);
         token = (String) SPUtils.get(MyApp.context, "token", "");
-        if(efc){
-            CXEFCPresenter cxefcPresenter=new CXEFCPresenter(new CXEFCView() {
+        if (efc) {
+            CXEFCPresenter cxefcPresenter = new CXEFCPresenter(new CXEFCView() {
                 @Override
                 public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
-                    if(cxefcBeanBaseBean.code==0){
-                        tbmaxfen=cxefcBeanBaseBean.data.getCeeScore();
-                        tbsubtype=cxefcBeanBaseBean.data.getStutype();
-                        tbarea=cxefcBeanBaseBean.data.getSourceArea();
-                        tuiJianPresent.GetTuijian(schoolname, pici,tbarea, tbsubtype, tbmaxfen, token);
-                    }else {
-                      Toast("网络较差，请稍后重试");
+                    if (cxefcBeanBaseBean.code == 0) {
+                        tbmaxfen = cxefcBeanBaseBean.data.getCeeScore();
+                        tbsubtype = cxefcBeanBaseBean.data.getStutype();
+                        tbarea = cxefcBeanBaseBean.data.getSourceArea();
+                        tuiJianPresent.GetTuijian(schoolname, pici, tbarea, tbsubtype, tbmaxfen, token);
+                    } else {
+                        Toast("网络较差，请稍后重试");
                     }
                 }
+
                 @Override
                 public void GetEFCResultfail(Throwable t) {
                     Toast("网络较差，请稍后重试");
                 }
             });
             cxefcPresenter.CXEFCPresenter(token);
-        }else {
+        } else {
             tbmaxfen = (String) SPUtils.get(MyApp.context, "tbmaxfen", "500");
             tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
             tbsubtype = (String) SPUtils.get(MyApp.context, "tbsubtype", "文科");
-            tuiJianPresent.GetTuijian(schoolname, pici,tbarea, tbsubtype, tbmaxfen, token);
+            tuiJianPresent.GetTuijian(schoolname, pici, tbarea, tbsubtype, tbmaxfen, token);
 
         }
         int PAYCODE = (int) SPUtils.get(MyApp.context, "PAYCODE", -1);
@@ -256,8 +263,8 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     }
 
     private void isretry() {
-        String str="是否重新测试？";
-        Dialog dialog = new android.app.AlertDialog.Builder(this).setTitle("支付成功").setMessage(str)
+        String str = "是否重新测试？";
+        Dialog dialog = new AlertDialog.Builder(this).setTitle("支付成功").setMessage(str)
                 // 设置内容
                 .setPositiveButton("重新测试",// 设置确定按钮
                         new DialogInterface.OnClickListener() {
@@ -268,6 +275,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                                 Intent intent = new Intent(TuiJianSchoolActivity.this, AnswerActivity.class);
                                 startActivity(intent);
                                 finish();
+                                dialog.dismiss();
 
                             }
                         }).setNegativeButton("不需要",
@@ -278,8 +286,10 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                                 Intent intent = new Intent(TuiJianSchoolActivity.this, ComlitEFCActivity.class);
                                 startActivity(intent);
                                 finish();
+                                dialog.dismiss();
                             }
                         }).create();// 创建
+        dialog.setCancelable(false);
         dialog.show();
     }
 
@@ -288,6 +298,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
         super.onDestroy();
         tuiJianPresent.onDestory();
     }
+
     @OnClick({R.id.tuijian_iv_back, R.id.rl_tjschool, R.id.tv_ktefc, R.id.tv_jixu})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -301,7 +312,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                 startActivity(intent);
                 break;
             case R.id.tv_ktefc:
-                if(efc){
+                if (efc) {
                     payPresent = new PayPresent(new PayView() {
                         @Override
                         public void XDsuccess(XDingdanBean xDingdanBean) {
@@ -353,15 +364,18 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                     });
                     String type = (String) SPUtils.get(MyApp.context, "kemuefc", "本科");
                     if (token.length() > 4) {
-                        if(type.equals("本科")){
-                            payPresent.XiaDan(token, "3", pay + "");
-                        }else {
-                            payPresent.XiaDan(token, "4", pay + "");
+                        if (Dianji2.isNotFastClick()) {
+
+                            if (type.equals("本科")) {
+                                payPresent.XiaDan(token, "3", pay + "");
+                            } else {
+                                payPresent.XiaDan(token, "4", pay + "");
+                            }
                         }
                     } else {
                         Toast("token失效，请重新登录");
                     }
-                }else {
+                } else {
                     Intent intent1 = new Intent(TuiJianSchoolActivity.this, Buy2Activity.class);
                     intent1.putExtra("price", "598");
                     startActivity(intent1);
@@ -475,13 +489,13 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     @Override
     public void TuijianSuccess(TuiJianBean tuiJianBean) {
         if (tuiJianBean != null) {
-            if(tuiJianBean.getYear()!=null){
+            if (tuiJianBean.getYear() != null) {
                 tuijianZh.setText(tuiJianBean.getYear() + "年" + tuiJianBean.getTime() + "最低分" + tuiJianBean.getMinScore());
-            }else {
+            } else {
                 tuijianZh.setText("暂无数据");
             }
-            if(schoolurl==null){
-                Glide.with(MyApp.context).load(BaseApi.ImgApi+tuiJianBean.getCollegeBadge()).into(tuijianIv);
+            if (schoolurl == null) {
+                Glide.with(MyApp.context).load(BaseApi.ImgApi + tuiJianBean.getCollegeBadge()).into(tuijianIv);
             }
             List<String> list = new ArrayList<>();
             if (tjly) {
@@ -494,7 +508,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                     list.addAll(vipRecommend);
                 }
 
-                if(list.size()==0) {
+                if (list.size() == 0) {
                     list.add("暂无数据");
                 }
                 flTjly.settuijianListData(list);
@@ -503,14 +517,15 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
             }
             String efcState = tuiJianBean.getEfcState();
             if (efcState.equals("0")) {
+                tvZyjh.setText("专业计划");
                 llLing.setVisibility(View.VISIBLE);
                 llSan.setVisibility(View.GONE);
                 llTwo.setVisibility(View.GONE);
                 llOne.setVisibility(View.GONE);
             } else if (efcState.equals("1")) {
                 List<TuiJianBean.EfcRecommendMajorEntityBean> efcRecommendMajorEntity = tuiJianBean.getEfcRecommendMajorEntity();
-                if(efcRecommendMajorEntity.size()>0&&efcRecommendMajorEntity!=null){
-                    TuiJianAdapter  tuiJianAdapter=new TuiJianAdapter(efcRecommendMajorEntity,this);
+                if (efcRecommendMajorEntity.size() > 0 && efcRecommendMajorEntity != null) {
+                    TuiJianAdapter tuiJianAdapter = new TuiJianAdapter(efcRecommendMajorEntity, this);
                     listZy.setAdapter(tuiJianAdapter);
                 }
                 llOne.setVisibility(View.VISIBLE);
@@ -539,8 +554,6 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
     public void TuijianFail(String msg) {
 
     }
-
-
 
 
 

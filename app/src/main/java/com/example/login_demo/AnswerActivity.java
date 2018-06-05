@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.gson.Gson;
@@ -26,9 +27,13 @@ import base.BaseActivity;
 import base.BaseApi;
 import base.BaseBean;
 import bean.AnswerBean;
+import bean.RenSumBean;
 import bean.TijiaoBean;
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import okhttp3.RequestBody;
 import presenter.AnswerPresent;
 import presenter.EFCJGBaoCunPresenter;
@@ -38,6 +43,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import untils.Dianji;
+import untils.MyQusetUtils;
 import untils.QuestInterface;
 import untils.Question;
 import untils.SPUtils;
@@ -69,7 +75,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
     private String XX=null;
     private HashMap<String, String> map;
 
-    private static String type="MBTI_E";
+    private  String type="SDS+MBTI";
     private EFCJGBaoCunPresenter efcjgBaoCunPresenter;
     private String token;
     private String pd;
@@ -82,21 +88,20 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
     @Override
     public void InIt() {
         token = (String) SPUtils.get(MyApp.context, "token", "");
-
-        String ceshi = getIntent().getStringExtra("ceshi");
+      /*  String ceshi = getIntent().getStringExtra("ceshi");
          if(ceshi!=null){
              type=ceshi;
-         }
+         }*/
         //1.构建手势检测器
         mGestureDetector = new GestureDetector(this, this);
-        if(type.equals("MBTI"))
+     /*   if(type.equals("MBTI"))
         {
             tv_leixing.setText("MBTI特质测试");
         }
         if(type.equals("SDS"))
         {
             tv_leixing.setText("霍兰德兴趣特质测试");
-        }
+        }*/
         efcjgBaoCunPresenter = new EFCJGBaoCunPresenter(this);
         //2准备数据
         initData();
@@ -140,7 +145,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                 data = listBaseBean.data;
                 if(data !=null&& data.size()>0)
                 {
-                    if(type.equals("SDS_E"))
+                   /* if(type.equals("SDS_E"))
                     {
 
                         for (int i = 0; i < data.size(); i++) {
@@ -225,9 +230,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                             }
                             else
                             {
-
                                 ShiTi(answerBean,q,questions);
-
                             }
                         }
                     }
@@ -260,6 +263,34 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                                 ShiTi(answerBean,q,questions);
                             }
                         }
+                    }*/
+
+                    for (int i = 0; i < data.size(); i++) {
+                        Question q = new Question();
+                        AnswerBean answerBean = data.get(i);
+                        if(answerBean.getPeTitle().equals("t")) {
+                            String peBody = answerBean.getPeBody();
+                            String peId = answerBean.getPeId();
+                            int answerUnm = answerBean.getAnswerUnm();
+                            int torder = answerBean.getTorder();
+                            q.setTorder(torder);
+                            q.setQuestion(peBody);
+                            q.setPeId(peId);
+                            q.setAnswerUnm(answerUnm);
+                            List<Question.Answer> mA = new ArrayList<>();
+                            Question.Answer a1 = new Question.Answer();
+                            a1.setAnswerMessage("A:" + answerBean.getAnswerA());
+                            Question.Answer a2 = new Question.Answer();
+                            a2.setAnswerMessage("B:" + answerBean.getAnswerB());
+                            mA.add(a1);
+                            mA.add(a2);
+                            q.setAnswer(mA);
+                            questions.add(q);
+                        }
+                        else
+                        {
+                            ShiTi(answerBean,q,questions);
+                        }
                     }
                     mQuestion.addAll(questions);
                     //3.为ViewFilpper添加子控件。
@@ -280,7 +311,6 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             @Override
             public void Answerfail(Throwable t) {
                 answerPresent.AnswerPresent(type);
-
             }
         });
         answerPresent.AnswerPresent(type);
@@ -395,7 +425,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             listview.setAdapter(adapter);
             tes.setText(question.getQuestion());
         }
-        if(type.equals("SDS_E"))
+     /*   if(type.equals("SDS_E"))
         {
             tv_dq.setText(question.getPeId()+"/");
             tv_zong.setText(90+"");
@@ -423,7 +453,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             progressBar.setMax(183);
             tv_dq.setText(question.getTorder()+"/");
             progressBar.setProgress(question.getTorder());
-           /* if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
+           *//* if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
             {
                 tv_dq.setText(question.getPeId()+"/");
                 String peId = question.getPeId();
@@ -438,7 +468,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                 }
                 tv_dq.setText(question.getPeId()+"/");
             }
-*/
+*//*
 
 
         }
@@ -450,7 +480,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             progressBar.setProgress(question.getTorder());
             //progressBar.setProgress(Integer.parseInt(question.getPeId()));
 
-         /*   if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
+         *//*   if(question.getAnswerUnm()==2&&question.getPeId().indexOf(".")==-1)
             {
                 tv_dq.setText(question.getPeId()+"/");
                 String peId = question.getPeId();
@@ -464,7 +494,14 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     progressBar.setProgress(Integer.parseInt(SDSpd));
                 }
                 tv_dq.setText(question.getPeId()+"/");
-            }*/
+            }*//*
+        }*/
+        if(type.equals("SDS+MBTI"))
+        {
+            tv_zong.setText(183+"");
+            progressBar.setMax(183);
+            tv_dq.setText(question.getTorder()+"/");
+            progressBar.setProgress(question.getTorder());
         }
 
         if(adapter!=null)
@@ -472,16 +509,15 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         adapter.setItemOnClick(new ChineseMedicineReportAdapter.ItemOnClick() {
             @Override
             public void SX(View view, final int position) {
-
                 final TextView tv_answer=view.findViewById(R.id.tv_answer);
                 tv_answer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if(Dianji.isNotFastClick())
                         {
-                            int answerUnm = question.getAnswerUnm();
+                           /*  int answerUnm = question.getAnswerUnm();
                             String peId = question.getPeId();
-                            if(answerUnm==2&&peId.indexOf(".")==-1)
+                           if(answerUnm==2&&peId.indexOf(".")==-1)
                                 {
                                     //选项
                                     //Toast.makeText(AnswerActivity.this, position + "", Toast.LENGTH_SHORT).show();
@@ -497,11 +533,42 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                                     }
                                     map.put(question.getPeId()+"",XX);
 
+                            }*/
+                            if(position==0)
+                            {
+                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                XX="A";
                             }
+                            if(position==1)
+                            {
+                                XX="B";
+                                //Toast.makeText(AnswerActivity.this,   "B", Toast.LENGTH_SHORT).show();
+                            }
+                            if(position==2)
+                            {
+                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                XX="C";
+                            }
+                            if(position==3)
+                            {
+                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                XX="D";
+                            }
+                            if(position==4)
+                            {
+                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                XX="E";
+                            }
+                            if(position==5)
+                            {
+                                // Toast.makeText(AnswerActivity.this,   "A", Toast.LENGTH_SHORT).show();
+                                XX="F";
+                            }
+                            map.put(question.getTorder()+"",XX);
                             if (viewFlipper.getDisplayedChild() == mQuestion.size() - 1) {
                                 //Toast.makeText(AnswerActivity.this, "最后一个题", Toast.LENGTH_SHORT).show();
                                 //得到MBTI测试得到的结果
-                                if(type.equals("MBTI"))
+                             /*   if(type.equals("MBTI"))
                                 {
                                     jiexi(tv_answer);
                                     return;
@@ -523,7 +590,12 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                                 {
                                     jiexi(tv_answer);
                                     return;
-                                }
+                                }*/
+                             if(type.equals("SDS+MBTI"))
+                             {
+                                 jiexi(tv_answer);
+
+                             }
 
                             } else {
                                 viewFlipper.setInAnimation(animations[0]);
@@ -545,7 +617,7 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
             public void onClick(View view) {
                 if (viewFlipper.getDisplayedChild() == 0) {
                     viewFlipper.stopFlipping();
-                   // Toast.makeText(AnswerActivity.this, "第一个题", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(AnswerActivity.this, "已经是第一题", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 viewFlipper.setInAnimation(animations[2]);
@@ -561,19 +633,44 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
         viewFlipper.stopFlipping();
         Gson gson=new Gson();
         String route= gson.toJson(map);
-        Retrofit retrofit=new Retrofit.Builder()
+        System.out.println("答案+++"+route.toString());
+      MyQusetUtils.getInstance().getQuestInterface().tijiao(type, route.toString(),token)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribeWith(new DisposableSubscriber<TijiaoBean>() {
+                  @Override
+                  public void onNext(TijiaoBean tijiaoBeanBaseBean) {
+                      tv_answer.setEnabled(true);
+                      startActivity(new Intent(AnswerActivity.this,EvaluatingActivity.class));
+                      finish();
+                  }
+                  @Override
+                  public void onError(Throwable t) {
+                   }
+                  @Override
+                  public void onComplete() {
+
+                  }
+              });
+
+
+       /* Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl(BaseApi.Api)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         QuestInterface questInterface = retrofit.create(QuestInterface.class);
-        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
-        Call<BaseBean<TijiaoBean>> tijiao = questInterface.tijiao(type, body);
+       // RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),route);
+        Call<BaseBean<TijiaoBean>> tijiao = questInterface.tijiao(type, route,token);
         tijiao.enqueue(new Callback<BaseBean<TijiaoBean>>() {
             @Override
             public void onResponse(Call<BaseBean<TijiaoBean>> call, Response<BaseBean<TijiaoBean>> response) {
                 tv_answer.setEnabled(true);
-                TijiaoBean shuju = response.body().data;
-                if(type.equals("MBTI_E"))
+                //TijiaoBean shuju = response.body().data;
+                 startActivity(new Intent(AnswerActivity.this,EvaluatingActivity.class));
+                    finish();
+                    return;
+
+               *//* if(type.equals("MBTI_E"))
                 {
                     String resultStr = shuju.getResultStr();
                     TijiaoBean.ResultBean result = shuju.getResult();
@@ -586,8 +683,6 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     int f = result.getF();
                     int p = result.getP();
                     String mbtiString = resultStr+":"+"E"+e+":"+"S"+s+":"+"T"+t+":"+"J"+j+":"+"I"+i+":"+"N"+n+":"+"F"+f+":"+"P"+p;
-
-
                     efcjgBaoCunPresenter.EFCJGBaoCunPresenter("MBTI_E",mbtiString,token);
                     Intent intent=new Intent(AnswerActivity.this,MBI_CSActivity.class);
                     startActivity(intent);
@@ -651,12 +746,13 @@ public class AnswerActivity extends BaseActivity implements GestureDetector.OnGe
                     startActivity(new Intent(AnswerActivity.this,EvaluatingActivity.class));
                     finish();
                     return;
-                }
+                }*//*
             }
             @Override
             public void onFailure(Call<BaseBean<TijiaoBean>> call, Throwable t) {
+
              }
-        });
+        });*/
      }
     @Override
     public boolean onTouchEvent(MotionEvent event) {

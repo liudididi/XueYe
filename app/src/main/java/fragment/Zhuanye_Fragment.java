@@ -65,6 +65,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import untils.CircleProgressView;
+import untils.Dianji2;
 import untils.QuestInterface;
 import untils.SPUtils;
 import untils.ShijianUtils;
@@ -228,6 +229,8 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
 
         }
     };
+    private TextView tv_gj;
+
     @Override
     public int getLayoutid() {
         return R.layout.zhuanye;
@@ -283,10 +286,12 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                     String token = (String) SPUtils.get(MyApp.context, "token", "");
                     String type = (String) SPUtils.get(MyApp.context, "kemuefc", "本科");
                     if (token.length() > 4) {
-                        if(type.equals("本科")){
-                            payPresent.XiaDan(token, "3", pay + "");
-                        }else {
-                            payPresent.XiaDan(token, "4", pay + "");
+                        if(Dianji2.isNotFastClick()){
+                            if(type.equals("本科")){
+                                payPresent.XiaDan(token, "3", pay + "");
+                            }else {
+                                payPresent.XiaDan(token, "4", pay + "");
+                            }
                         }
                     } else {
                         Toast.makeText(getContext(), "token失效，请重新登录", Toast.LENGTH_SHORT).show();
@@ -362,6 +367,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                                 Intent intent = new Intent( getActivity(), AnswerActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
+                                dialog.dismiss();
 
                             }
                         }).setNegativeButton("不需要",
@@ -372,8 +378,10 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                                 Intent intent = new Intent( getActivity(), ComlitEFCActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
+                                dialog.dismiss();
                             }
                         }).create();// 创建
+        dialog.setCancelable(false);
         dialog.show();
     }
     private void zhuanye_yuanxiao(final String zy_name, String s1, String s3, String s4, String s5, String city, String s6, String tuition, String s2, String tbsubtype, String fen, String cwb) {
@@ -495,7 +503,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
 
         list1.add("综合类");
         list1.add("理工类");
-        list1.add("艺术类");
+      /*  list1.add("艺术类");
         list1.add("体育类");
         list1.add("军事类");
         list1.add("农林类");
@@ -505,16 +513,16 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         list1.add("林业类");
         list1.add("民族类");
         list1.add("语言类");
-        list1.add("财经类");
+        list1.add("财经类");*/
         spinner_adapter1 = new Spinner_Adapter(list1,getContext());
 
         list2 = new ArrayList<>();
-        list2.add("预估分数");
+      /*  list2.add("预估分数");
         list2.add("院校区域");
         //list2.add("院校批次");
         list2.add("院校层次");
         list2.add("院校类型");
-        //list2.add("毕业后方向");
+        //list2.add("毕业后方向");*/
         spinner_adapter3 = new Spinner3_Adapter(list2,getContext());
 
 
@@ -528,27 +536,27 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         spinner_adapter5 = new Spinner3_Adapter(list3,getContext());
 
         list4 = new ArrayList<>();
-        list4.add("不限");
+       /* list4.add("不限");
         list4.add("211");
         list4.add("985");
         list4.add("研究生院");
         list4.add("自主招生");
         list4.add("国防生");
-        list4.add("卓越计划");
+        list4.add("卓越计划");*/
         spinner_adapter6= new Spinner3_Adapter(list4,getContext());
 
         list5 = new ArrayList<>();
         list5.add("不限");
         list5.add("综合类");
         list5.add("理工类");
-        list5.add("农林类");
+      /*  list5.add("农林类");
         list5.add("医药类");
         list5.add("师范类");
         list5.add("政法类");
         list5.add("林业类");
         list5.add("民族类");
         list5.add("语言类");
-        list5.add("财经类");
+        list5.add("财经类");*/
         spinner_adapter7 = new Spinner3_Adapter(list5,getContext());
 
       /*  list6 = new ArrayList<>();
@@ -801,7 +809,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                 }
             }
         });
-        lv_left.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      /*  lv_left.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -818,13 +826,13 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                     biaoji=4;
                 }
                 //list3
-              /*  if(list2.get(i).toString().equals("院校批次"))
+              *//*  if(list2.get(i).toString().equals("院校批次"))
                 {
 
                     ll6.setVisibility(View.VISIBLE);
                     lv_right.setAdapter(spinner_adapter5);
                     biaoji=5;
-                }*/
+                }*//*
                 //list4
                 if(list2.get(i).toString().equals("院校层次"))
                 {
@@ -842,13 +850,13 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                     biaoji=7;
                 }
                 //list6
-             /*   if(list2.get(i).toString().equals("毕业后方向"))
+             *//*   if(list2.get(i).toString().equals("毕业后方向"))
                 {
 
                     ll6.setVisibility(View.VISIBLE);
                     lv_right.setAdapter(spinner_adapter8);
                     biaoji=8;
-                }*/
+                }*//*
             }
         });
         lv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -865,11 +873,11 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                     }
                     System.out.println("选项"+ city);
                 }
-              /*  if(biaoji==5)
+              *//*  if(biaoji==5)
                 {
                     s3 = list3.get(i).toString();
                     System.out.println("选项"+ s3);
-                }*/
+                }*//*
                 if(biaoji==6)
                 {
                     s4 = list4.get(i).toString();
@@ -888,13 +896,13 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
 
                     System.out.println("选项"+ s5);
                 }
-            /*    if(biaoji==8)
+            *//*    if(biaoji==8)
                 {
                     s6 = list6.get(i).toString();
                     System.out.println("选项"+ s6);
-                }*/
+                }*//*
             }
-        });
+        });*/
         tv_queding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -905,6 +913,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                 iv_next3.setVisibility(View.GONE);
                 flag3=true;
                 fen=ed_fen.getText().toString();
+                tv_gj.setText(fen+"分");
                 System.out.println("选项"+fen+city+"null"+s4+s5+ "null");
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                 pb3.setVisibility(View.VISIBLE);
@@ -923,7 +932,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                 iv_next3.setVisibility(View.GONE);
                 flag3=true;
 
-                city="";
+               /* city="";
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                 ///s3="";
                 s4="";
@@ -933,11 +942,40 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                 tv_xk.setText("院校类型");
                 pb3.setVisibility(View.VISIBLE);
                 zhuanye_yuanxiao(major,s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
-                System.out.println("选项+++"+s1+s2+tbsubtype+fen+cwb);
+                System.out.println("选项+++"+s1+s2+tbsubtype+fen+cwb);*/
             }
         });
 
-
+        lv1_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv1.setVisibility(View.GONE);
+                lv1_view.setVisibility(View.GONE);
+                iv_right1.setVisibility(View.VISIBLE);
+                iv_next1.setVisibility(View.GONE);
+                flag1=true;
+            }
+        });
+        lv2_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv2.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.GONE);
+                iv_right2.setVisibility(View.VISIBLE);
+                iv_next2.setVisibility(View.GONE);
+                flag2=true;
+            }
+        });
+        lv3_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv3.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.GONE);
+                iv_right3.setVisibility(View.VISIBLE);
+                iv_next3.setVisibility(View.GONE);
+                flag3=true;
+            }
+        });
     }
     private void init() {
         tv_yx = view.findViewById(R.id.tv_yx);
@@ -991,8 +1029,8 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         rl_shengji = view.findViewById(R.id.rl_shengji);
         iv_zy_mohu = view.findViewById(R.id.iv_zy_mohu);
         tv_tishi = view.findViewById(R.id.tv_tishi);
-
-        DisplayMetrics dm = getResources().getDisplayMetrics();
+        tv_gj = view.findViewById(R.id.tv_gj);
+       /* DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;
 
         RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) rl.getLayoutParams();
@@ -1008,7 +1046,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         LinearLayout.LayoutParams params2= (LinearLayout.LayoutParams) ll5.getLayoutParams();
 //获取当前控件的布局对象
         params2.width=width/3;
-        ll5.setLayoutParams(params2);
+        ll5.setLayoutParams(params2);*/
     }
 
     @Override

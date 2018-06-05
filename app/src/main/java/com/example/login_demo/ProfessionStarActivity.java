@@ -102,8 +102,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
         km = "文科";
         xingbie = "男";
         data = getIntent().getStringExtra("data");
-
-        cxefcPresenter = new CXEFCPresenter(this);
+         cxefcPresenter = new CXEFCPresenter(this);
         arealist = new ArrayList<>();
         initdata();
     }
@@ -163,7 +162,6 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                         .subscribeWith(new DisposableSubscriber<BaseBean<List<CityBean>>>() {
                             @Override
                             public void onNext(BaseBean<List<CityBean>> listBaseBean) {
-
                                 if(listBaseBean.code==0){
                                     List<CityBean> data = listBaseBean.data;
                                     if(data.size()>0&&data!=null){
@@ -232,6 +230,22 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
             llNv.setEnabled(true);
             llWen.setEnabled(true);
             llLi.setEnabled(true);
+          String s = (String) SPUtils.get(MyApp.context, "kemuefc", "默认");
+          if(s.equals("本科")){
+              imgBen.setImageResource(R.drawable.hong);
+              imgZhuan.setImageResource(R.drawable.bai);
+              type = "0";
+              leixing = "本科";
+              llZhuan.setEnabled(false);
+              llBen.setEnabled(false);
+          }else if(s.equals("专科")){
+              imgZhuan.setImageResource(R.drawable.hong);
+              imgBen.setImageResource(R.drawable.bai);
+              type = "1";
+              llZhuan.setEnabled(false);
+              llBen.setEnabled(false);
+              leixing = "专科";
+          }
             proEdname.setEnabled(true);
             proTvaddress.setEnabled(true);
             proEdfenshu.setEnabled(true);
@@ -336,28 +350,35 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                                    if(Integer.parseInt(minlineBean.getScore())<Integer.parseInt(fenshu)){
                                        tijiao(fenshu, name, area);
                                    }else {
-                                       View viewe = LayoutInflater.from(ProfessionStarActivity.this).inflate(R.layout.dilog_zyxk, null);
-                                       final AlertDialog dialog = new AlertDialog.Builder(ProfessionStarActivity.this)
-                                               .setView(viewe).show();
-                                   TextView zyxk_zhuan=    viewe.findViewById(R.id.zyxk_zhuan);
-                                       zyxk_zhuan.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               leixing = "专科";
-                                               tijiao(fenshu, name, address);
-                                               dialog.dismiss();
-                                           }
-                                       });
-                                   TextView zyxk_ben=    viewe.findViewById(R.id.zyxk_ben);
-                                       zyxk_ben.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               tijiao(fenshu, name, address);
-                                               dialog.dismiss();
-                                           }
-                                       });
-                                      TextView zyxk_tishi=    viewe.findViewById(R.id.zyxk_tishi);
-                                       zyxk_tishi.setText(minlineBean.getYear()+"年本科省控线是"+minlineBean.getScore()+"分，经过分析建议推荐你选择专科院校");
+
+                                       if(type.equals("0")){
+
+                                           View viewe = LayoutInflater.from(ProfessionStarActivity.this).inflate(R.layout.dilog_zyxk, null);
+                                           final AlertDialog dialog = new AlertDialog.Builder(ProfessionStarActivity.this)
+                                                   .setView(viewe).show();
+                                           TextView zyxk_zhuan=    viewe.findViewById(R.id.zyxk_zhuan);
+                                           zyxk_zhuan.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+                                                   leixing = "专科";
+                                                   tijiao(fenshu, name, address);
+                                                   dialog.dismiss();
+                                               }
+                                           });
+                                           TextView zyxk_ben=    viewe.findViewById(R.id.zyxk_ben);
+                                           zyxk_ben.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+                                                   tijiao(fenshu, name, address);
+                                                   dialog.dismiss();
+                                               }
+                                           });
+                                           TextView zyxk_tishi=    viewe.findViewById(R.id.zyxk_tishi);
+                                           zyxk_tishi.setText(minlineBean.getYear()+"年本科省控线是"+minlineBean.getScore()+"分，经过分析建议推荐你选择专科院校");
+
+                                       }else {
+                                           tijiao(fenshu, name, area);
+                                       }
                                    }
                                 }else {
 
@@ -403,7 +424,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                             SPUtils.put(MyApp.context,"tbmaxfenefc",fenshu);
                             SPUtils.put(MyApp.context,"kemuefc",leixing);
                             SPUtils.put(MyApp.context,"school",area+city);
-                             Intent intent = new Intent(ProfessionStarActivity.this, startfenleiActivity.class);
+                            Intent intent = new Intent(ProfessionStarActivity.this, startfenleiActivity.class);
                             intent.putExtra("data", data);
                             intent.putExtra("classify", wenli);
                             intent.putExtra("type", type);
@@ -433,11 +454,8 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
            if(cxefcBeanBaseBean.data.getCity()!=null){
                proTvaddress.setText(cxefcBeanBaseBean.data.getSourceArea()+cxefcBeanBaseBean.data.getCity());
            }else {
-
                proTvaddress.setText(cxefcBeanBaseBean.data.getSourceArea());
            }
-
-
             proEdfenshu.setText(cxefcBeanBaseBean.data.getCeeScore());
             SPUtils.put(MyApp.context,"kemuefc",cxefcBeanBaseBean.data.getCollegetype());
             SPUtils.put(MyApp.context,"tbmaxfenefc",cxefcBeanBaseBean.data.getCeeScore());
@@ -454,8 +472,6 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                 xingbie = "女";
                 gender = "0";
             }
-
-
             String stutype = cxefcBeanBaseBean.data.getStutype();
             SPUtils.put(MyApp.context,"tbsubtypeefc",stutype);
             if (stutype.equals("文科")) {
@@ -482,9 +498,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                 imgBen.setImageResource(R.drawable.bai);
                 type = "1";
             }
-
         }
-
     }
 
     @Override

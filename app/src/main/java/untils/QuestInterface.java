@@ -174,8 +174,10 @@ public interface QuestInterface {
 
 
     //提交心理测试答案
-    @POST("/app/psychologicalevaluation/commit")
-    Call<BaseBean<TijiaoBean>> tijiao(@Query("pe_type") String pe_type, @Body RequestBody requestBody);
+    @POST("/app/psychologicalevaluation/commitAnswer")
+    @Headers("Content-Type:application/x-www-form-urlencoded;charset=utf-8")
+    @FormUrlEncoded
+    Flowable<TijiaoBean> tijiao(@Field("wishType") String wishType,@Field("answer") String answer, @Header("token") String token);
 
     //保存高考信息
     @POST("/app/userinfo/saveGaokaoInfo")

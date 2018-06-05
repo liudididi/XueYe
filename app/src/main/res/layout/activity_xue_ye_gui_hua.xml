@@ -228,11 +228,9 @@
                                 android:layout_marginRight="70px"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="查看系统及专家为您推荐的专业，点击下方升级版升学设计进行开通!"
+                                android:text="查看系统及专家为您推荐的专业，点击下方精准版升学设计进行开通!"
                                 />
                         </RelativeLayout>
-
-
                         <ImageView
                             android:layout_below="@+id/img_mohu"
                             android:scaleType="fitXY"
@@ -241,9 +239,6 @@
                             android:layout_height="wrap_content"
                             android:src="@drawable/duibi"
                             />
-
-
-
                     </RelativeLayout>
 
                     <View
@@ -392,7 +387,7 @@
             android:gravity="center"
             android:layout_width="430px"
             android:layout_height="100px"
-            android:text="开通升级版"
+            android:text="开通精准版"
             />
         <TextView
             android:layout_centerVertical="true"
@@ -410,7 +405,7 @@
             android:gravity="center"
             android:layout_width="430px"
             android:layout_height="100px"
-            android:text="开启普通版"
+            android:text="体验免费版"
             />
         <Button
             android:visibility="gone"

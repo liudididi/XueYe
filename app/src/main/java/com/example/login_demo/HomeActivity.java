@@ -100,7 +100,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
         bottomBar.setLayoutParams(layoutParams);
 
         Boolean frist = (Boolean) SPUtils.get(MyApp.context, "frist", false);
-        System.out.println("frist==="+frist);
+
         if(frist==false){
             View viewe = LayoutInflater.from(HomeActivity.this).inflate(R.layout.dialog_shouye, null);
             final AlertDialog dialog = new AlertDialog.Builder(HomeActivity.this)
@@ -467,7 +467,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
             try {
                 Common = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
                 int verCode = Common.versionCode;
-                System.out.println("verCode==="+verCode);
+
                 if (verCode < visionBean.getVersionCode()) {
                     if (visionBean == null) {
                         return;
@@ -487,6 +487,10 @@ public class HomeActivity extends BaseActivity implements VerSionView {
                                                 Toast.makeText(context, "开始下载", Toast.LENGTH_SHORT).show();
                                                 //final NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "摆渡人.apk");
+                                                    if (file.exists()) {
+                                                        file.delete();
+                                                    }
                                                     final Thread thread = new Thread(new Runnable() {
                                                         @Override
                                                         public void run() {

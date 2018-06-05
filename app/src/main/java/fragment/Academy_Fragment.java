@@ -65,6 +65,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import untils.CircleProgressView;
+import untils.Dianji2;
 import untils.MyQusetUtils;
 import untils.QuestInterface;
 import untils.SPUtils;
@@ -279,11 +280,14 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
             rl_shengji.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String token = (String) SPUtils.get(MyApp.context, "token", "");
-                    if (token.length() > 4) {
-                        payPresent.XiaDan(token, "4", pay + "");
-                    } else {
-                        Toast.makeText(getContext(), "token失效，请重新登录", Toast.LENGTH_SHORT).show();
+
+                    if (Dianji2.isNotFastClick()) {
+                        String token = (String) SPUtils.get(MyApp.context, "token", "");
+                        if (token.length() > 4) {
+                            payPresent.XiaDan(token, "4", pay + "");
+                        } else {
+                            Toast.makeText(getContext(), "token失效，请重新登录", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
@@ -315,6 +319,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                                 Intent intent = new Intent( getActivity(), AnswerActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
+                                dialog.dismiss();
 
                             }
                         }).setNegativeButton("不需要",
@@ -325,8 +330,10 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                                 Intent intent = new Intent( getActivity(), ComlitEFCActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
+                                dialog.dismiss();
                             }
-                        }).create();// 创建
+                        }).create();
+        dialog.setCancelable(false);// 创建
         dialog.show();
     }
     private void initData() {
@@ -371,22 +378,23 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         list1.add("不限");
         list1.add("综合类");
         list1.add("理工类");
-        list1.add("农林类");
+       /* list1.add("农林类");
         list1.add("医药类");
         list1.add("师范类");
         list1.add("政法类");
         list1.add("林业类");
         list1.add("民族类");
         list1.add("语言类");
-        list1.add("财经类");
+        list1.add("财经类");*/
         spinner_adapter1 = new Spinner_Adapter(list1,getContext());
 
         list2 = new ArrayList<>();
+
+       /* list2.add("院校区域");
         list2.add("预估分数");
-        list2.add("院校区域");
         //list2.add("院校批次");
         list2.add("院校层次");
-        list2.add("院校类型");
+        list2.add("院校类型");*/
        // list2.add("毕业后方向");
         spinner_adapter3 = new Spinner3_Adapter(list2,getContext());
 
@@ -394,34 +402,34 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         spinner_adapter4 = new Spinner3_Adapter(list,getContext());
 
         list3 = new ArrayList<>();
-        list3.add("本科一批");
+      /*  list3.add("本科一批");
         list3.add("本科二批");
         list3.add("本科三批");
-        list3.add("专科");
+        list3.add("专科");*/
         spinner_adapter5 = new Spinner3_Adapter(list3,getContext());
 
         list4 = new ArrayList<>();
-        list4.add("不限");
+       /* list4.add("不限");
         list4.add("211");
         list4.add("985");
         list4.add("研究生院");
         list4.add("自主招生");
         list4.add("国防生");
-        list4.add("卓越计划");
+        list4.add("卓越计划");*/
         spinner_adapter6= new Spinner3_Adapter(list4,getContext());
 
         list5 = new ArrayList<>();
         list5.add("不限");
         list5.add("综合类");
         list5.add("理工类");
-        list5.add("农林类");
+      /*  list5.add("农林类");
         list5.add("医药类");
         list5.add("师范类");
         list5.add("政法类");
         list5.add("林业类");
         list5.add("民族类");
         list5.add("语言类");
-        list5.add("财经类");
+        list5.add("财经类");*/
         spinner_adapter7 = new Spinner3_Adapter(list5,getContext());
 
         list6 = new ArrayList<>();
@@ -619,7 +627,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                 }
             }
         });
-        lv_left.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* lv_left.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(list2.get(i).toString().equals("预估分数"))
@@ -635,13 +643,13 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                     biaoji=4;
                 }
                 //list3
-                /*if(list2.get(i).toString().equals("院校批次"))
+                *//*if(list2.get(i).toString().equals("院校批次"))
                 {
 
                     ll6.setVisibility(View.VISIBLE);
                     lv_right.setAdapter(spinner_adapter5);
                     biaoji=5;
-                }*/
+                }*//*
                 //list4
                 if(list2.get(i).toString().equals("院校层次"))
                 {
@@ -659,16 +667,16 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                     biaoji=7;
                 }
                 //list6
-             /*   if(list2.get(i).toString().equals("毕业后方向"))
+             *//*   if(list2.get(i).toString().equals("毕业后方向"))
                 {
 
                     ll6.setVisibility(View.VISIBLE);
                     lv_right.setAdapter(spinner_adapter8);
                     biaoji=8;
-                }*/
+                }*//*
             }
-        });
-        lv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        });*/
+       /* lv_right.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -682,11 +690,11 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
 
                     System.out.println("选项"+ city);
                 }
-               /* if(biaoji==5)
+               *//* if(biaoji==5)
                 {
                     s3 = list3.get(i).toString();
                     System.out.println("选项"+ s3);
-                }*/
+                }*//*
                 if(biaoji==6)
                 {
                     s4 = list4.get(i).toString();
@@ -706,25 +714,24 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                     }
                     System.out.println("选项"+ s5);
                 }
-                /*if(biaoji==8)
+                *//*if(biaoji==8)
                 {
                     s6 = list6.get(i).toString();
                     System.out.println("选项"+ s6);
-                }*/
+                }*//*
             }
-        });
+        });*/
         tv_queding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 lv3_view.setVisibility(View.GONE);
-
                 lv3.setVisibility(View.GONE);
                 iv_right3.setVisibility(View.VISIBLE);
                 iv_next3.setVisibility(View.GONE);
                 flag3=true;
                 fen=ed_fen.getText().toString();
-                System.out.println("选项"+fen+city+""+s4+s5+ "");
-                //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
+                tv_gj.setText(fen+"分");
+                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                 pb.setVisibility(View.VISIBLE);
                 SPUtils.put(MyApp.context,"tbmaxfen",fen+"");
                 qingqiu(s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
@@ -739,7 +746,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                 iv_right3.setVisibility(View.VISIBLE);
                 iv_next3.setVisibility(View.GONE);
                 flag3=true;
-                city="";
+               /* city="";
                 //s1优先级   s2考生所在地 s3普通批次  s4院校层级 s5院校类型  s6毕业后的方向
                 //s3="";
                 s4="";
@@ -749,7 +756,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                 tv_xk.setText("院校类型");
                 pb.setVisibility(View.VISIBLE);
                 qingqiu(s1,"",s4,s5,city,"","",s2,tbsubtype,fen,cwb);
-                System.out.println("选项+++"+s1+s2+tbsubtype+fen+cwb);
+                System.out.println("选项+++"+s1+s2+tbsubtype+fen+cwb);*/
              }
         });
 
@@ -812,6 +819,37 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
 
             }
         });
+
+        lv1_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv1.setVisibility(View.GONE);
+                lv1_view.setVisibility(View.GONE);
+                iv_right1.setVisibility(View.VISIBLE);
+                iv_next1.setVisibility(View.GONE);
+                flag1=true;
+            }
+        });
+        lv2_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv2.setVisibility(View.GONE);
+                lv2_view.setVisibility(View.GONE);
+                iv_right2.setVisibility(View.VISIBLE);
+                iv_next2.setVisibility(View.GONE);
+                flag2=true;
+            }
+        });
+        lv3_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                lv3.setVisibility(View.GONE);
+                lv3_view.setVisibility(View.GONE);
+                iv_right3.setVisibility(View.VISIBLE);
+                iv_next3.setVisibility(View.GONE);
+                flag3=true;
+            }
+        });
     }
 
 
@@ -866,8 +904,8 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                                 iv_cc.setVisibility(View.VISIBLE);
                                 iv_wt.setVisibility(View.GONE);
                                 iv_bd.setVisibility(View.GONE);
-                                CircleProgressView.mPaintColor=getResources().getColor(R.color.hot_comment_title);
-                                CircleProgressView.mTextColor=getResources().getColor(R.color.hot_comment_title);
+                                CircleProgressView.mPaintColor=MyApp.context.getResources().getColor(R.color.hot_comment_title);
+                                CircleProgressView.mTextColor=MyApp.context.getResources().getColor(R.color.hot_comment_title);
                                 if(vip)
                                 {
                                     iv_mohu.setVisibility(View.GONE);
@@ -885,8 +923,8 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                                 iv_cc.setVisibility(View.GONE);
                                 iv_wt.setVisibility(View.VISIBLE);
                                 iv_bd.setVisibility(View.GONE);
-                                CircleProgressView.mPaintColor=getResources().getColor(R.color.zhu1);
-                                CircleProgressView.mTextColor=getResources().getColor(R.color.zhu1);
+                                CircleProgressView.mPaintColor=MyApp.context.getResources().getColor(R.color.zhu1);
+                                CircleProgressView.mTextColor=MyApp.context.getResources().getColor(R.color.zhu1);
 
                                 if(vip)
                                 {
@@ -905,8 +943,8 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                                 iv_cc.setVisibility(View.GONE);
                                 iv_wt.setVisibility(View.GONE);
                                 iv_bd.setVisibility(View.VISIBLE);
-                                CircleProgressView.mPaintColor=getResources().getColor(R.color.lue);
-                                CircleProgressView.mTextColor=getResources().getColor(R.color.lue);
+                                CircleProgressView.mPaintColor=MyApp.context.getResources().getColor(R.color.lue);
+                                CircleProgressView.mTextColor=MyApp.context.getResources().getColor(R.color.lue);
                                 if(vip)
                                 {
                                     iv_mohu.setVisibility(View.GONE);
@@ -1057,7 +1095,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         tv_day2 = view.findViewById(R.id.tv_day2);
         tv_day3 = view.findViewById(R.id.tv_day3);
         rl_shengji = view.findViewById(R.id.rl_shengji);
-        DisplayMetrics dm = getResources().getDisplayMetrics();
+      /*  DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;
 
         RelativeLayout.LayoutParams params= (RelativeLayout.LayoutParams) rl.getLayoutParams();
@@ -1069,11 +1107,10 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
 //获取当前控件的布局对象
         params1.width=(width/3)*2;
         ll6.setLayoutParams(params1);
-
         LinearLayout.LayoutParams params2= (LinearLayout.LayoutParams) ll5.getLayoutParams();
 //获取当前控件的布局对象
         params2.width=width/3;
-        ll5.setLayoutParams(params2);
+        ll5.setLayoutParams(params2);*/
     }
 
     @Override
@@ -1082,8 +1119,6 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         cxefcPresenter.onDestory();
         countdownPresent.onDestory();
     }
-
-
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
 
