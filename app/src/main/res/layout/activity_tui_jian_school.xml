@@ -207,24 +207,14 @@
                         android:layout_marginLeft="50px"
                         android:layout_marginRight="50px"
                         android:layout_width="match_parent"
-                        android:layout_height="820px" />
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:gravity="center"
-                        android:textColor="@color/zhu2"
-                        android:textSize="45px"
-                        android:layout_marginLeft="70px"
-                        android:layout_marginRight="70px"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="因考生意愿和主观因素，无法进行精准推测，需开通精准版升学设计系统"
-                        />
+                        android:layout_height="900px" />
+
                 </RelativeLayout>
 
 
        <TextView
            android:id="@+id/tv_ktefc"
-           android:textSize="38px"
+           android:textSize="50px"
            android:layout_gravity="center_horizontal"
            android:layout_width="match_parent"
            android:layout_height="138px"

@@ -41,6 +41,7 @@ public class SelectCitysActivity extends BaseActivity  implements SelectSchoolVi
         selectSchoolPrsent = new SelectSchoolPrsent(this);
         String province = getIntent().getStringExtra("province");
         SPUtils.put(MyApp.context,"province",province);
+        SPUtils.remove(MyApp.context,"city");
         cityTvtitle.setText(province);
         String provinceid = getIntent().getStringExtra("provinceid");
         selectSchoolPrsent.getcitys( provinceid);

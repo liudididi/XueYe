@@ -232,6 +232,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
 
         }
     };
+    private TextView tv_juli;
 
     @Override
     public int getLayoutid() {
@@ -1095,6 +1096,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         tv_day2 = view.findViewById(R.id.tv_day2);
         tv_day3 = view.findViewById(R.id.tv_day3);
         rl_shengji = view.findViewById(R.id.rl_shengji);
+        tv_juli = view.findViewById(R.id.tv_juli);
       /*  DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;
 
@@ -1122,21 +1124,42 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
 
-        String s = baseBean.data.toString();
+        String type = baseBean.type.toString();
+        if(type.equals("1"))
+        {
+            String s = baseBean.data.toString();
+            tv_juli.setText("距高考还有");
+            DaoJiShi(s);
+        }
+        else if(type.equals("3"))
+        {
+            String s = baseBean.data3.toString();
+            tv_juli.setText("距报考还有");
+            DaoJiShi(s);
+        }
+        else if(type.equals("4"))
+        {
+            String s = baseBean.data4.toString();
+            tv_juli.setText("距报考结束还有");
+            DaoJiShi(s);
+        }
+    }
 
+    private void DaoJiShi(String s) {
         if(s!=null&&s.length()==3)
         {
             String substring = s.substring(0,1);
-            String substring1 = s.substring(1);
-            String substring2 = s.substring(2);
+            String substring1 = s.substring(1,2);
+            String substring2 = s.substring(2,3);
             tv_day1.setText(substring);
             tv_day2.setText(substring1);
             tv_day3.setText(substring2);
+
         }
-        if(s!=null&&s.length()==2)
+        else if(s!=null&&s.length()==2)
         {
             String substring = s.substring(0,1);
-            String substring1 = s.substring(1);
+            String substring1 = s.substring(1,2);
             tv_day1.setText("0");
             tv_day2.setText(substring);
             tv_day3.setText(substring1);

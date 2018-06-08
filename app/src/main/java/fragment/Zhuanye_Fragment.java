@@ -172,8 +172,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
     private RelativeLayout rl_shengji;
     private CountdownPresent countdownPresent;
     private ImageView iv_zy_mohu;
-    private TextView tv_tishi;
-    private PayPresent payPresent;
+     private PayPresent payPresent;
     private int pay = 2;
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
@@ -230,6 +229,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         }
     };
     private TextView tv_gj;
+    private TextView tv;
 
     @Override
     public int getLayoutid() {
@@ -271,15 +271,15 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         if(vip){
             rl_shengji.setVisibility(View.GONE);
             iv_zy_mohu.setVisibility(View.GONE);
-            tv_tishi.setVisibility(View.GONE);
-            et_zy.setEnabled(true);
+             et_zy.setEnabled(true);
         }
         else
         {
             rl_shengji.setVisibility(View.VISIBLE);
             iv_zy_mohu.setVisibility(View.VISIBLE);
-            tv_tishi.setVisibility(View.VISIBLE);
-            et_zy.setEnabled(false);
+
+
+             et_zy.setEnabled(false);
             rl_shengji.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -1028,8 +1028,9 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
         tv_day3 = view.findViewById(R.id.tv_day3);
         rl_shengji = view.findViewById(R.id.rl_shengji);
         iv_zy_mohu = view.findViewById(R.id.iv_zy_mohu);
-        tv_tishi = view.findViewById(R.id.tv_tishi);
-        tv_gj = view.findViewById(R.id.tv_gj);
+         tv_gj = view.findViewById(R.id.tv_gj);
+        tv = view.findViewById(R.id.tv);
+
        /* DisplayMetrics dm = getResources().getDisplayMetrics();
         int width = dm.widthPixels;
 
@@ -1058,21 +1059,47 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
 
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
-        String s = baseBean.data.toString();
+        String type = baseBean.type.toString();
+        if(type.equals("1"))
+        {
+            String s = baseBean.data.toString();
+            tv.setText("距高考还有");
+            DaoJiShi(s);
 
+        }
+        else if(type.equals("3"))
+        {
+            String s = baseBean.data3.toString();
+            tv.setText("距报考还有");
+            DaoJiShi(s);
+        }
+        else if(type.equals("4"))
+        {
+            String s = baseBean.data4.toString();
+            tv.setText("距报考结束还有");
+            DaoJiShi(s);
+        }
+    }
+
+    @Override
+    public void Countdownfail(Throwable t) {
+
+    }
+    private void DaoJiShi(String s) {
         if(s!=null&&s.length()==3)
         {
             String substring = s.substring(0,1);
-            String substring1 = s.substring(1);
-            String substring2 = s.substring(2);
+            String substring1 = s.substring(1,2);
+            String substring2 = s.substring(2,3);
             tv_day1.setText(substring);
             tv_day2.setText(substring1);
             tv_day3.setText(substring2);
+
         }
-        if(s!=null&&s.length()==2)
+        else if(s!=null&&s.length()==2)
         {
             String substring = s.substring(0,1);
-            String substring1 = s.substring(1);
+            String substring1 = s.substring(1,2);
             tv_day1.setText("0");
             tv_day2.setText(substring);
             tv_day3.setText(substring1);
@@ -1084,11 +1111,6 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
             tv_day3.setText(s);
 
         }
-    }
-
-    @Override
-    public void Countdownfail(Throwable t) {
-
     }
 
     @Override

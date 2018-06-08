@@ -38,8 +38,6 @@ public class SelectAreasActivity extends BaseActivity  implements SelectSchoolVi
     @Override
     public void InIt() {
         selectSchoolPrsent = new SelectSchoolPrsent(this);
-        city = getIntent().getStringExtra("city");
-        SPUtils.put(MyApp.context,"city",city);
         areaTvtitle.setText(city);
         String cityid = getIntent().getStringExtra("cityid");
         selectSchoolPrsent.getareas(cityid);

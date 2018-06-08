@@ -44,8 +44,8 @@ public class MyApp extends Application {
   //极光推送
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
-        String registrationID = JPushInterface.getRegistrationID(this);
-        System.out.println("registrationID=="+registrationID);
+        /*String registrationID = JPushInterface.getRegistrationID(this);
+        System.out.println("registrationID=="+registrationID);*/
 
         LoadingLayout.getConfig()
                 .setErrorText("出错啦~请稍后重试！")

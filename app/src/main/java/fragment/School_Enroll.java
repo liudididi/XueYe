@@ -13,9 +13,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.login_demo.Buy2Activity;
+import com.example.login_demo.EFCJieSuoActivity;
 import com.example.login_demo.MyApp;
 import com.example.login_demo.NumActivity;
 import com.example.login_demo.R;
+import com.example.login_demo.ReportedActivity;
 import com.example.login_demo.SchoolDetailActivity;
 
 import java.util.ArrayList;
@@ -106,7 +109,10 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private ArrayList<String>   list=new ArrayList<>();;
     private List<Integer> listfen;
     private int type=0;
-     @Override
+    private String token;
+    private ImageView school_enroll_iv;
+
+    @Override
     public int getLayoutid() {
         return R.layout.school_enroll;
 
@@ -178,6 +184,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     @Override
     public void initView() {
         init();
+        token = (String) SPUtils.get(MyApp.context, "token", "");
         schoolname = getActivity().getIntent().getStringExtra("schoolname");
         tbarea = (String) SPUtils.get(MyApp.context, "tbarea", "北京市");
         if(SchoolDetailActivity.isefc){
@@ -394,6 +401,41 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         });
 
 
+        if(token.length()>4)
+        {
+            MyQusetUtils.getInstance().getQuestInterface().jzjudge(token)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .retry(2)
+                    .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                        @Override
+                        public void onNext(BaseBean<String> stringBaseBean) {
+                            if(stringBaseBean.code==0)
+                            {
+                                school_enroll_iv.setVisibility(View.INVISIBLE);
+                                school_enroll_tv.setVisibility(View.VISIBLE);
+                            }
+                            else
+                            {
+                                school_enroll_iv.setVisibility(View.VISIBLE);
+                                school_enroll_tv.setVisibility(View.INVISIBLE);
+                            }
+                        }
+                        @Override
+                        public void onError(Throwable t) {
+
+                        }
+                        @Override
+                        public void onComplete() {
+                        }
+                    });
+        }
+        else
+        {
+            school_enroll_iv.setVisibility(View.VISIBLE);
+            school_enroll_tv.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     private void init() {
@@ -430,7 +472,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         iv_xia = view.findViewById(R.id.iv_xia);
         tv_xq = view.findViewById(R.id.tv_xq);
         ll_xiangqing=view.findViewById(R.id.ll_xiangqing);
-
+        school_enroll_iv = view.findViewById(R.id.school_enroll_iv);
 
     }
 
@@ -611,9 +653,7 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
 
     @Override
     public void Forecastsuccess(BaseBean<ForecastBean> listBaseBean) {
-
         ForecastBean data = listBaseBean.data;
-
         if(data !=null)
         {
            int fscore = data.getFscore();
@@ -621,7 +661,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
             column_one.setData(fscore, 750);
             column_one.mPaint.setColor(getResources().getColor(R.color.zhu1)); //改变柱状图的颜色
             String s = data.getLqgai() * 100 + "";
-
             if(s.length()>4)
             {
                 s =  s.substring(0,3);
@@ -636,18 +675,12 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                 school_enroll_tvtime.setText("暂无数据");
             }
         }
-
     }
-
     @Override
     public void Forecastfail(Throwable t) {
-
     }
-
     @Override
     public void Numsuccess(BaseBean<List<NumBean>> listBaseBean) {
-
-
         data = listBaseBean.data;
         if(data.size()>0&& data !=null)
         {

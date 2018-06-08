@@ -25,6 +25,7 @@ public class SlideshowMoudle {
                 MyQusetUtils.getInstance().getQuestInterface().Slideshow(board_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<SlideshowBean>>>() {
                     @Override
                     public void onNext(BaseBean<List<SlideshowBean>> listBaseBean) {
@@ -51,6 +52,7 @@ public class SlideshowMoudle {
                 MyQusetUtils.getInstance().getQuestInterface().Slideshow(board_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                        .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<SlideshowBean>>>() {
                     @Override
                     public void onNext(BaseBean<List<SlideshowBean>> listBaseBean) {
@@ -78,6 +80,7 @@ public class SlideshowMoudle {
                 .getQuestInterface().News(category, province, page, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<NewsBean>>() {
                     @Override
                     public void onNext(BaseBean<NewsBean> listBaseBean) {
@@ -104,6 +107,7 @@ public class SlideshowMoudle {
                 .getQuestInterface().News(category, province, page, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<NewsBean>>() {
                     @Override
                     public void onNext(BaseBean<NewsBean> listBaseBean) {
@@ -130,6 +134,7 @@ public class SlideshowMoudle {
         DisposableSubscriber<BaseBean<TitleBean>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().TitleNews(page, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribeWith(new DisposableSubscriber<BaseBean<TitleBean>>() {
                     @Override
                     public void onNext(BaseBean<TitleBean> titleBeanBaseBean) {

@@ -44,6 +44,7 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
     private List<TextView> textViewList;
     private LinearLayout ll_shang;
     private LinearLayout ll_xia;
+    private LinearLayout ll_zhong;
 
 
     @Override
@@ -71,6 +72,7 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
       TextView  tv_five= view.findViewById(R.id.tv_five);
       TextView  tv_four= view.findViewById(R.id.tv_four);
       TextView  tv_six= view.findViewById(R.id.tv_six);
+        ll_zhong = view.findViewById(R.id.ll_zhong);
         textViewList = new ArrayList<>();
         textViewList.add(tv_one);
         textViewList.add(tv_two);
@@ -108,6 +110,7 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
                 qj_r4.setVisibility(View.VISIBLE);
                 ll_shang.setVisibility(View.VISIBLE);
                 ll_xia.setVisibility(View.VISIBLE);
+                ll_zhong.setVisibility(View.VISIBLE);
                 List<Times> times = new ArrayList<>();
                 for (int i = 0; i < majorgkBean.getMajorJobproList().size(); i++) {
                         Times t = new Times();
@@ -142,6 +145,7 @@ public class Majorqj_Fragment  extends Basefragment implements MajorgkView {
                 qj_r4.setVisibility(View.GONE);
                 ll_shang.setVisibility(View.GONE);
                 ll_xia.setVisibility(View.GONE);
+                ll_zhong.setVisibility(View.GONE);
             }
 
 if(majorgkBean.getMajorJobMenNumList()!=null&&majorgkBean.getMajorJobMenNumList().size()>0){

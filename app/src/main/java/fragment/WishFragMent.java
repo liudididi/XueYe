@@ -347,9 +347,9 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
         djs = baseBean.data.toString();
         wish_day1.setText(djs+" 天");
         //wish_day2.setText((Integer.parseInt(djs)+2)+"");
-        wish_day3.setText((Integer.parseInt(djs)+85)+" 天");
+        //wish_day3.setText((Integer.parseInt(djs)+85)+" 天");
+        wish_day3.setText(baseBean.data2+" 天");
     }
-
     @Override
     public void Countdownfail(Throwable t) {
 

@@ -236,16 +236,7 @@
         android:layout_marginLeft="50px"
         android:layout_marginRight="50px">
     </ImageView>
-    <TextView
-        android:id="@+id/tv_tishi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/zhu2"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:layout_margin="50px"
-        android:textSize="45px"
-        android:text="系统及专家已为您推荐20个专业，点击下方开通精准版，即可进行查看！"/>
+
     <ProgressBar
         android:id="@+id/pb2"
         android:layout_width="wrap_content"
@@ -307,6 +298,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true">
                 <TextView
+                    android:id="@+id/tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="距离高考还有"
@@ -351,7 +343,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100px"
-            android:text="开通精准版"
+            android:text="开通精准版升学设计系统"
             android:gravity="center"
             android:textSize="50px"
             android:layout_below="@+id/rl_daojishi"

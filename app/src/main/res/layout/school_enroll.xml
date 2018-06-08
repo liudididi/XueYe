@@ -19,12 +19,22 @@
             android:layout_height="match_parent"
             >
 
+            <ImageView
+                android:id="@+id/school_enroll_iv"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:textSize="70px"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:background="@drawable/vip_gl"
+                android:layout_centerInParent="true"
+                />
             <TextView
                 android:id="@+id/school_enroll_tv"
                 android:layout_width="320px"
                 android:layout_height="320px"
-                android:text="0%"
-                android:textSize="70px"
+                 android:textSize="70px"
+                android:visibility="invisible"
                 android:gravity="center"
                 android:background="@drawable/bg"
                 android:layout_centerInParent="true"

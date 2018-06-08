@@ -1,5 +1,6 @@
 package fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -29,7 +30,12 @@ import com.example.login_demo.ReportedActivity;
 import com.example.login_demo.SearchParticularsActivity;
 import com.stx.xhb.xbanner.XBanner;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import adapter.HotTopRecyCleViewAdapter;
@@ -112,8 +118,31 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
         inin();
         //加点
         initPunctuate();
+
+
     }
 
+
+    public static String getIP(Context context){
+
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();)
+                {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && (inetAddress instanceof Inet4Address))
+                    {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        }
+        catch (SocketException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
     private void initPunctuate() {
 
         for (int i = 0; i <2 ; i++) {
@@ -295,6 +324,8 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
 
     @Override
     public void Slideshowfail(Throwable t) {
+
+        slideshowPresenter.SlideshowPresenter(2);
      }
 
     //首页九宫格模块
@@ -315,7 +346,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
 
     @Override
     public void Sudokufail(Throwable t) {
-
+        slideshowPresenter.SudokuPresenter(3);
     }
 
     //热门专题数据
@@ -361,6 +392,8 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
 
     @Override
     public void Recommendfail(Throwable t) {
+        slideshowPresenter.RecommenPresenter("精选推荐","全国","1","6");
+        Toast.makeText(MyApp.context, "当前网络较差", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -412,6 +445,7 @@ public class Home_Fragment extends Basefragment implements SlideshowView, Observ
 
     @Override
     public void Collegefail(Throwable t) {
+        slideshowPresenter.CollegePresenter("1","4");
 
     }
 

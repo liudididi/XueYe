@@ -101,7 +101,7 @@ public class NetInterceptor {
                         .newBuilder()
                         .build();
               request = request.newBuilder()
-                      .addHeader("Connection","close")
+                     .addHeader("Connection","close")
                       .get().url(httpUrl).build();
             }
             return  chain.proceed(request);

@@ -84,6 +84,7 @@ public class MajorDetailActivity extends BaseActivity {
         majorid = getIntent().getStringExtra("majorid");
         mdTvtitle.setText(major);
         initfragment();
+        //1a0018970af4ee86294
         switchFragment(majorgk_fragment).commitAllowingStateLoss();
         token = (String) SPUtils.get(MyApp.context, "token", "");
         iscollect();

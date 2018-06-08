@@ -6,9 +6,9 @@ package base;
  */
 
 public class BaseApi {
-    // public  static  String Api="http://192.168.1.30:8098/";
+      public  static  String Api="http://192.168.1.30:8098/";
      //线上Api
-    public  static  String Api="https://app.bdrvip.com/";
-      public  static  String ImgApi="https://files.bdrvip.com/";
+     // public  static  String Api="https://app.bdrvip.com/";
+     public  static  String ImgApi="https://files.bdrvip.com/";
      //server.bdrvip.com/swagger-ui.html
 }

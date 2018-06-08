@@ -10,4 +10,8 @@ public class BaseBean<Data> {
     public String token;
     public  int code;
     public Data data;
+    public String data2;
+    public String data3;
+    public String data4;
+    public String type;
 }

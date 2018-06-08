@@ -48,6 +48,7 @@ public class Provice_Adapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 if(list.get(position).getProvince().equals("香港")||list.get(position).getProvince().equals("澳门")||list.get(position).getProvince().equals("台湾省")){
                     SPUtils.put(MyApp.context,"province",list.get(position).getProvince());
+                    SPUtils.remove(MyApp.context,"city");
                     Intent intent=new Intent(context, perfectMessageActivity.class);
                     context.startActivity(intent);
                 }else {

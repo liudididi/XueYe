@@ -563,10 +563,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true">
                 <TextView
+                    android:id="@+id/tv_juli"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="距离高考还有"
-                    android:textSize="30px"
+                     android:textSize="30px"
                     />
                 <TextView
                     android:id="@+id/tv_day1"
@@ -608,7 +608,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="100px"
-            android:text="开通精准版"
+            android:text="开通精准版升学设计系统"
             android:gravity="center"
             android:textSize="50px"
             android:layout_below="@+id/rl_daojishi"
