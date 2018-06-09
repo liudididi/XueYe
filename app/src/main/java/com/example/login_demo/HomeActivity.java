@@ -186,13 +186,8 @@ public class HomeActivity extends BaseActivity implements VerSionView {
             gd_address.setAdapter(gv_addressAdapter);
 
         }else {
-
             verSionPresent = new VerSionPresent(this);
             verSionPresent.versioninfo("Android");
-
-
-
-
         }
 
 
@@ -284,6 +279,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
                         @Override
                         public void onNext(BaseBean<UserBean> baseBean) {
                             if (baseBean.code == 0) {
+                                if(baseBean.data!=null){
                                 MyUserBean.setUserBean(baseBean.data);
                                 UserBean data = baseBean.data;
                                 if (data.getName() != null) {
@@ -309,6 +305,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
                                     Intent intent=new Intent(HomeActivity.this,perfectMessageActivity.class);
                                     startActivity(intent);
                                 }
+                            }
                             }
                         }
 

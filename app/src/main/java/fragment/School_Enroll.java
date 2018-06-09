@@ -212,18 +212,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                                     }
                                 }
 
-                                if(list.size()>0&&list.get(0)!=null)
-                                {
-                                    tv_pici.setText(list.get(0));
-                                }
-                                else
-                                {
-                                    tv_pici.setText("暂无数据");
-
-                                }
-
-                                schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
-
                                 final Spinner_Adapter2 spinner_adapter=new Spinner_Adapter2(list,getContext());
                                 tv_pici.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -669,11 +657,16 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
             if(data.getTime()!=null)
             {
                 school_enroll_tvtime.setText(data.getTime()+"录取率");
+                tv_pici.setText(data.getTime());
             }
             else
             {
                 school_enroll_tvtime.setText("暂无数据");
             }
+
+
+            schoolEnrollPresent.getluquxian(tbarea, schoolname,tbsubtype,tv_pici.getText().toString(),tv_skx.getText().toString());
+
         }
     }
     @Override

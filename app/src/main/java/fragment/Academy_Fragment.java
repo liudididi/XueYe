@@ -316,7 +316,6 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-
                                 Intent intent = new Intent( getActivity(), AnswerActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
@@ -374,7 +373,6 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         list.add("台湾");
         list.add("澳门");
         spinner_adapter = new Spinner_Adapter(list,getContext());
-
         list1 = new ArrayList<>();
         list1.add("不限");
         list1.add("综合类");
@@ -1141,6 +1139,12 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
         {
             String s = baseBean.data4.toString();
             tv_juli.setText("距报考结束还有");
+            DaoJiShi(s);
+        }
+        else
+        {
+            String s = baseBean.data2.toString();
+            tv_juli.setText("距圆梦还有");
             DaoJiShi(s);
         }
     }

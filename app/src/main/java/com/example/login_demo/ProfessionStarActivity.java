@@ -44,9 +44,9 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     @BindView(R.id.ll_nv)
     LinearLayout llNv;
     public String classify;
-    public static String type = "0";
-    public static String gender = "1";
-    public static String wenli = "wen";
+    public  String type = "0";
+    public String gender = "1";
+    public  String wenli = "wen";
     @BindView(R.id.gv_address)
     GridView gvAddress;
     @BindView(R.id.gv_addresstwo)
@@ -361,6 +361,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
                                                @Override
                                                public void onClick(View v) {
                                                    leixing = "专科";
+                                                   type = "1";
                                                    tijiao(fenshu, name, address);
                                                    dialog.dismiss();
                                                }

@@ -19,7 +19,6 @@ public abstract  class Basefragment extends Fragment {
 
     public View view;
    // 缓存Fragment view
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

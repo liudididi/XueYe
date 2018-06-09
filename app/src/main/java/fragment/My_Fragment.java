@@ -328,14 +328,12 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
 
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
-
         String type = baseBean.type.toString();
         if(type.equals("1"))
         {
             String s = baseBean.data.toString();
             tv.setText("距高考还有");
             DaoJiShi(s);
-
         }
         else if(type.equals("3"))
         {
@@ -347,6 +345,12 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
         {
             String s = baseBean.data4.toString();
             tv.setText("距报考结束还有");
+            DaoJiShi(s);
+        }
+        else
+        {
+            String s = baseBean.data2.toString();
+            tv.setText("距圆梦还有");
             DaoJiShi(s);
         }
 

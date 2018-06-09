@@ -454,7 +454,7 @@
 
              >
             <TextView
-                android:id="@+id/tv"
+                android:id="@+id/tv_yg"
                 android:layout_width="280px"
                 android:gravity="right"
                 android:layout_height="wrap_content"
@@ -466,7 +466,7 @@
                 android:layout_centerVertical="true"
                 />
             <LinearLayout
-                android:layout_toRightOf="@+id/tv"
+                android:layout_toRightOf="@+id/tv_yg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"

@@ -590,7 +590,12 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
             tv.setText("距报考结束还有");
             DaoJiShi(s);
         }
-
+        else
+        {
+            String s = baseBean.data2.toString();
+            tv.setText("距圆梦还有");
+            DaoJiShi(s);
+        }
 
     }
 

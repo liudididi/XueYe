@@ -474,7 +474,6 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
 
     @Override
     public void Countdownsuccess(BaseBean baseBean) {
-
         String type = baseBean.type.toString();
         if(type.equals("1"))
         {
@@ -493,6 +492,12 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
         {
             String s = baseBean.data4.toString();
             tv.setText("距报考结束还有");
+            DaoJiShi(s);
+        }
+        else
+        {
+            String s = baseBean.data2.toString();
+            tv.setText("距圆梦还有");
             DaoJiShi(s);
         }
 
