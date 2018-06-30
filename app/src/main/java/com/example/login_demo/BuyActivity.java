@@ -171,7 +171,7 @@ public class BuyActivity extends BaseActivity implements CountdownView, PayView 
                     finish();*/
                     break;
                 } else {
-                    Toast("用户未登录");
+                    Toast("请前往“我的”进行登录");
                 }
 
         }

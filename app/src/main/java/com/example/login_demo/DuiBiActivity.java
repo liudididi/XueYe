@@ -184,7 +184,7 @@ DuiBiActivity extends BaseActivity implements PayView, CountdownView {
                 if (token.length() > 4) {
                      payPresent.XiaDan(token, "4", pay + "");
                 } else {
-                    Toast("token失效，请重新登录");
+                    Toast("token失效，请前往“我的”进行登录");
                 }
                 break;
             case R.id.tv_putong:

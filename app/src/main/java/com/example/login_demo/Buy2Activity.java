@@ -263,7 +263,7 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
                     Intent intent = new Intent(Buy2Activity.this, EFCJieSuoActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast("用户未登录");
+                    Toast("请前往“我的”进行登录");
                 }
 
                 break;
@@ -355,7 +355,7 @@ public class Buy2Activity extends BaseActivity implements PayView,CountdownView{
 
 
                 }else {
-                   Toast("用户未登录");
+                   Toast("请前往“我的”进行登录");
                 }
                 }
                 break;

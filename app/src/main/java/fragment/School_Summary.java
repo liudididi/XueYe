@@ -81,6 +81,9 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
     private TextView tv_youxiang;
     private TextView tv_phone;
     final public static int REQUEST_CODE_ASK_CALL_PHONE=123;
+    private RelativeLayout rl_wenben;
+    private TextView tv_wenben;
+
     @Override
     public int getLayoutid() {
         return R.layout.school_summary;
@@ -221,9 +224,12 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                     //网址
                     final String admission_plan =data.get(0).getWebsite();
                     //邮箱
+
+
                     String email =data.get(0).getEmail();
                     //电话
                     final String phone = data.get(0).getPhone();
+                    if(admission_plan!=null){
                     if(!admission_plan.equals(""))
                     {
                         tv_wangzhi.setText(admission_plan);
@@ -242,7 +248,13 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                         tv_wangzhi.setText("                               暂无数据");
 
                     }
-                    if(!email.equals(""))
+                    }
+                    else
+                    {
+                        tv_wangzhi.setText("                               暂无数据");
+
+                    }
+                    if(!email.equals("")&&email!=null)
                     {
                         tv_youxiang.setText(email);
                     }
@@ -335,7 +347,7 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
                 }else {
                     // Permission Denied Toast.makeText(MainActivity.this,"CALL_PHONE Denied", Toast.LENGTH_SHORT) .show();
                 }break;
-            default:super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+              default:super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         } }
 
 
@@ -343,13 +355,17 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         ll_xiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               SchoolDetailActivity.ff(history);
+
+                ff(history);
+
             }
         });
         ss_sfbz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(feescale);
+                ff(feescale);
+
+
             }
         });
 
@@ -357,7 +373,7 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         ss_jjzz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SchoolDetailActivity.ff(award);
+                 ff(award);
             }
         });
         ss_stys.setOnClickListener(new View.OnClickListener() {
@@ -365,11 +381,11 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void onClick(View view) {
                 if(!eatandsleep.equals(""))
                 {
-                    SchoolDetailActivity.ff(eatandsleep);
+                    ff(eatandsleep);
                 }
                 else
                 {
-                    SchoolDetailActivity.ff("数据整理中");
+                   ff("数据整理中");
 
                 }
             }
@@ -379,11 +395,11 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void onClick(View view) {
                 if(!teacherpower.equals(""))
                 {
-                    SchoolDetailActivity.ff(teacherpower);
+                    ff(teacherpower);
                  }
                 else
                 {
-                    SchoolDetailActivity.ff("数据整理中");
+                    ff("数据整理中");
                  }
 
             }
@@ -393,11 +409,11 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void onClick(View view) {
                 if(!inschoolstu.equals(""))
                 {
-                    SchoolDetailActivity.ff(inschoolstu);
+                    ff(inschoolstu);
                 }
                 else
                 {
-                    SchoolDetailActivity.ff("数据整理中");
+                   ff("数据整理中");
 
                 }
 
@@ -406,14 +422,14 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         ss_jyqk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!employment.equals(""))
+                if(!employment.equals("")&&employment!=null)
                 {
-                    SchoolDetailActivity.ff(employment);
+                    ff(employment);
 
                 }
                 else
                 {
-                    SchoolDetailActivity.ff("数据整理中");
+                   ff("数据整理中");
 
                 }
 
@@ -424,11 +440,11 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void onClick(View view) {
                 if(!laboratory.equals(""))
                 {
-                    SchoolDetailActivity.ff(laboratory);
+                  ff(laboratory);
                 }
                 else
                 {
-                    SchoolDetailActivity.ff("数据整理中");
+                  ff("数据整理中");
 
                 }
 
@@ -439,15 +455,24 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
             public void onClick(View view) {
                 if(!major.equals(""))
                 {
-                    SchoolDetailActivity.ff(major);
+                   ff(major);
                 }
                 else
                 {
-                    SchoolDetailActivity.ff("数据整理中");
+                   ff("数据整理中");
                 }
             }
         });
 
+    }
+
+    private void ff(String str) {
+        rl_wenben.setVisibility(View.VISIBLE);
+        if (str != null) {
+            tv_wenben.setText(str);
+        } else {
+            tv_wenben.setText("暂无数据");
+        }
     }
 
     private void initid() {
@@ -471,6 +496,11 @@ public class School_Summary  extends Basefragment implements School_SummaryView 
         tv_wangzhi = view.findViewById(R.id.tv_wangzhi);
         tv_youxiang = view.findViewById(R.id.tv_youxiang);
         tv_phone = view.findViewById(R.id.tv_phone);
+          if(getActivity()!=null){
+              rl_wenben = getActivity().findViewById(R.id.rl_wenben);
+              tv_wenben = getActivity().findViewById(R.id.tv_wenben);
+          }
+
     }
     @Override
     public void Studentfromsuccess(List<StudentFromBean> listBaseBean) {

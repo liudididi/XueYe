@@ -325,7 +325,7 @@
             android:layout_height="100px"
             android:layout_below="@id/ll">
             <include
-                layout="@layout/public_item"
+                layout="@layout/public_item_fenshuxian"
                 ></include>
         </LinearLayout>
         <View
@@ -414,7 +414,7 @@
             android:layout_height="100px"
             android:layout_below="@id/ll0">
             <include
-                layout="@layout/public_item"
+                layout="@layout/public_item_fenshuxian"
                 ></include>
         </LinearLayout>
         <View
@@ -480,6 +480,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/bgyl"
         android:scaleType="fitXY"
+
         android:adjustViewBounds="true"
         android:layout_below="@+id/view9"/>
 

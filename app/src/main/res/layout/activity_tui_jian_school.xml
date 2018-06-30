@@ -175,7 +175,7 @@
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="各专业招生计划"
+                    android:text="推荐专业与相关信息"
                     />
                 <View
                     android:layout_width="match_parent"

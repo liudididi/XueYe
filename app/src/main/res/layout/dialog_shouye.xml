@@ -44,8 +44,7 @@
             <EditText
                 android:textSize="35px"
                 android:hint="请输入分数"
-                android:inputType="number|numberDecimal"
-                android:textColorHint="@color/white"
+                 android:textColorHint="@color/white"
                 android:id="@+id/sy_edfenshu"
                 android:layout_width="250px"
                 android:layout_height="wrap_content"

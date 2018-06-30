@@ -61,7 +61,6 @@ import view.SchoolEnrollView;
  */
 
 public class School_Enroll  extends Basefragment implements SchoolEnrollView, ForecastView, NumView{
-
     private RecyclerView se_rv;
     private SchoolEnrollPresent schoolEnrollPresent;
     private String tbmaxfen;
@@ -111,6 +110,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
     private int type=0;
     private String token;
     private ImageView school_enroll_iv;
+    private View view_gl;
+    private ProgressBar pb;
 
     @Override
     public int getLayoutid() {
@@ -151,7 +152,22 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                                         }else if(score.equals("-")){
                                             score="0";
                                         }
-                                        listfen.set(4-i,Integer.parseInt(score));
+                                        if (listBaseBean.data.get(i).getYear().equals("2014")) {
+                                            listfen.set(0, Integer.parseInt( score));
+                                        }
+                                        if (listBaseBean.data.get(i).getYear().equals("2015")) {
+                                            listfen.set(1, Integer.parseInt(score));
+                                        }
+                                        if (listBaseBean.data.get(i).getYear().equals("2016")) {
+                                            listfen.set(2, Integer.parseInt(score));
+                                        }
+                                        if (listBaseBean.data.get(i).getYear().equals("2017")) {
+                                            listfen.set(3, Integer.parseInt(score));
+                                        }
+                                        if (listBaseBean.data.get(i).getYear().equals("2018")) {
+                                            listfen.set(4, Integer.parseInt(score));
+                                        }
+
                                     }
                                 }
                             }
@@ -161,8 +177,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                             zhiMaScoreView.setMinScore(lmin);
                             zhexian_ll.addView(zhiMaScoreView);
 
-                            SchoolDetailActivity.view_gl.setVisibility(View.GONE);
-                            SchoolDetailActivity.pb.setVisibility(View.GONE);
+                           view_gl.setVisibility(View.GONE);
+                           pb.setVisibility(View.GONE);
                         }
                     }
 
@@ -462,6 +478,8 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         ll_xiangqing=view.findViewById(R.id.ll_xiangqing);
         school_enroll_iv = view.findViewById(R.id.school_enroll_iv);
 
+        view_gl = getActivity().findViewById(R.id.view_gl);
+        pb = getActivity().findViewById(R.id.pb);
     }
 
     //大学录取的专业招生计划
@@ -580,7 +598,21 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
                     if(score.equals("-")){
                         score="0";
                     }
-                    listfen.set(4-i,Integer.parseInt(score));
+                    if (listBaseBean.get(i).getYear().equals("2014")) {
+                        listfen.set(0, Integer.parseInt( score));
+                    }
+                    if (listBaseBean .get(i).getYear().equals("2015")) {
+                        listfen.set(1, Integer.parseInt(score));
+                    }
+                    if (listBaseBean .get(i).getYear().equals("2016")) {
+                        listfen.set(2, Integer.parseInt(score));
+                    }
+                    if (listBaseBean .get(i).getYear().equals("2017")) {
+                        listfen.set(3, Integer.parseInt(score));
+                    }
+                    if (listBaseBean .get(i).getYear().equals("2018")) {
+                        listfen.set(4, Integer.parseInt(score));
+                    }
                 }
             }
         }
@@ -625,7 +657,6 @@ public class School_Enroll  extends Basefragment implements SchoolEnrollView, Fo
         zhiMaScoreView.setMaxScore(max);
         zhiMaScoreView.setMinScore(min);
         TextView textView=new TextView(getActivity());
-
         zhexian_ll.addView(textView);
         zhexian_ll.addView(zhiMaScoreView);
 

@@ -88,7 +88,7 @@ public class ExamMessageActivity extends BaseActivity {
         if(token.length()<4){
             new AlertDialog.Builder(ExamMessageActivity.this)
                     .setTitle("提示")
-                    .setMessage("该功能需要登录后才能使用")
+                    .setMessage("请前往“我的”进行登录后才能使用")
                     .setPositiveButton("登录", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

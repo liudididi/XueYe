@@ -515,6 +515,8 @@ public class ScoreActivity extends BaseActivity implements ScoreView{
          pb.setVisibility(View.GONE);
          iv_none.setVisibility(View.VISIBLE);
          rl.setVisibility(View.GONE);
+         iv.setVisibility(View.GONE);
+
      }
 
     }

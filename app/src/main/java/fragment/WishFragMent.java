@@ -133,7 +133,7 @@ public class WishFragMent extends Basefragment implements WishView, CountdownVie
             @Override
             public void onClick(View view) {
                 if (token.length() < 4) {
-                    Toast.makeText(getActivity(), "用户未登录", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "请前往“我的”进行登录", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(NetUtil.isNetworkAvailable(getActivity())==false){

@@ -247,7 +247,7 @@ public class My_Fragment extends Basefragment implements View.OnClickListener, C
        if(token.length()<4){
            new AlertDialog.Builder(getActivity())
                    .setTitle("提示")
-                   .setMessage("该功能需要登录后才能使用")
+                   .setMessage("请前往“我的”进行登录后才能使用")
                    .setPositiveButton("登录", new DialogInterface.OnClickListener() {
                        @Override
                        public void onClick(DialogInterface dialog, int which) {

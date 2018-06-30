@@ -121,7 +121,7 @@ public class PresonMessageActivity extends BaseActivity implements perfectMessag
                                presonHighschool.setText(province + city);
                            }
                         }else {
-                            Toast.makeText(MyApp.context,"token超时，请重新登录",Toast.LENGTH_SHORT);
+                            Toast.makeText(MyApp.context,"token超时，请前往“我的”进行登录",Toast.LENGTH_SHORT);
                         }
                     }
                     @Override

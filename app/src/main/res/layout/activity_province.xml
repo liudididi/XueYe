@@ -35,13 +35,21 @@
         android:layout_height="1px"
         android:background="#ccc"
         android:layout_below="@id/rl_province"></View>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="150px"
         android:background="#fff"
         android:gravity="center"
-        android:layout_below="@id/view1">
+       >
     <RelativeLayout
         android:layout_width="320px"
         android:layout_height="100px"
@@ -136,7 +144,7 @@
             android:id="@+id/province_rv_science1"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:background="#fff"/>
@@ -145,7 +153,7 @@
             android:id="@+id/province_rv_science2"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:background="#fff"/>
@@ -153,7 +161,7 @@
             android:id="@+id/province_rv_science3"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:background="#fff"/>
@@ -161,7 +169,7 @@
             android:id="@+id/province_rv_science4"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             android:background="#fff"/>
@@ -223,7 +231,7 @@
             android:id="@+id/province_rv_arts1"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             >
@@ -233,7 +241,7 @@
             android:id="@+id/province_rv_arts2"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             >
@@ -242,7 +250,7 @@
             android:id="@+id/province_rv_arts3"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             >
@@ -251,7 +259,7 @@
             android:id="@+id/province_rv_arts4"
             android:layout_width="0px"
             android:layout_weight="1"
-            android:layout_height="500px"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:layout_marginRight="20px"
             >
@@ -283,4 +291,6 @@
         android:visibility="gone"
         >
     </View>
+    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

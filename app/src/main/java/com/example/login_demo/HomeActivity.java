@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -114,6 +115,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
 
             final TextView sy_tvaddress= viewe.findViewById(R.id.sy_tvaddress);
             final EditText sy_edfenshu= viewe.findViewById(R.id.sy_edfenshu);
+            sy_edfenshu.setInputType( InputType.TYPE_CLASS_NUMBER);
             final TextView sy_yes= viewe.findViewById(R.id.sy_yes);
             final LinearLayout sy_wen= viewe.findViewById(R.id.sy_wen);
             final LinearLayout sy_li= viewe.findViewById(R.id.sy_li);
@@ -390,7 +392,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
                                 SPUtils.remove(MyApp.context, "tbmaxfenefc");
                                 SPUtils.remove(MyApp.context, "kemuefc");
                                 MyUserBean.setUserBean(null);
-                                Toast("用户信息失效，请重新登录");
+                                Toast("用户信息失效，请前往“我的”进行登录");
                             }
 
 
@@ -484,7 +486,7 @@ public class HomeActivity extends BaseActivity implements VerSionView {
                                                 Toast.makeText(context, "开始下载", Toast.LENGTH_SHORT).show();
                                                 //final NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "摆渡人.apk");
+                                                    File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "学业摆渡人.apk");
                                                     if (file.exists()) {
                                                         file.delete();
                                                     }

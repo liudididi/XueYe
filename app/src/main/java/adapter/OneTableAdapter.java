@@ -43,7 +43,7 @@ public class OneTableAdapter extends RecyclerView.Adapter<OneTableAdapter.MyView
         holder.onetable_tv_years.setText(list.get(position).getYear()+"年");
         //地址
         holder.onetable_tv_address.setText(list.get(position).getProvince());
-        holder.onetable_tv_type.setText(list.get(position).getYear()+list.get(position).getProvince()+"高考一分一段表("+ OneTableActivity.s+")");
+        holder.onetable_tv_type.setText(list.get(position).getTitle());
         holder.onetable_tv_years2.setText(list.get(position).getTime());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +52,7 @@ public class OneTableAdapter extends RecyclerView.Adapter<OneTableAdapter.MyView
                 intent.putExtra("type",OneTableActivity.s);
                 intent.putExtra("province",list.get(position).getProvince());
                 intent.putExtra("year",list.get(position).getYear()+"");
+                intent.putExtra("title",list.get(position).getTitle());
                 context.startActivity(intent);
             }
         });

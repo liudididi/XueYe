@@ -153,7 +153,7 @@ public class MajorDetailActivity extends BaseActivity {
         if (token.length() > 4) {
             collecta("1", majorid, token);
         } else {
-            Toast("登录后才能收藏哦~");
+            Toast("请前往“我的”进行登录后才能收藏哦~");
         }
     }
 
@@ -168,9 +168,9 @@ public class MajorDetailActivity extends BaseActivity {
                     public void onNext(BaseBean baseBean) {
                         Toast.makeText(MyApp.context, baseBean.msg, Toast.LENGTH_SHORT).show();
                         if (baseBean.msg.equals("收藏成功")) {
-                            Glide.with(MajorDetailActivity.this).load(R.drawable.collect_yes).into(imgCollect);
+                            Glide.with(MyApp.context).load(R.drawable.collect_yes).into(imgCollect);
                         } else {
-                            Glide.with(MajorDetailActivity.this).load(R.drawable.collect_none).into(imgCollect);
+                            Glide.with(MyApp.context).load(R.drawable.collect_none).into(imgCollect);
                         }
                     }
 
@@ -196,6 +196,7 @@ public class MajorDetailActivity extends BaseActivity {
             disposableSubscriber2.dispose();
         }
         unregisterReceiver();
+        svZy=null;
     }
 
     public void iscollect() {
@@ -205,7 +206,6 @@ public class MajorDetailActivity extends BaseActivity {
                 .subscribeOn(Schedulers.io()).subscribeWith(new DisposableSubscriber<BaseBean<List<CollerMajorBean>>>() {
                     @Override
                     public void onNext(BaseBean<List<CollerMajorBean>> listBaseBean) {
-
                         if (listBaseBean.code == 0) {
                             List<CollerMajorBean> data = listBaseBean.data;
                             if (data != null && data.size() > 0) {
@@ -218,7 +218,6 @@ public class MajorDetailActivity extends BaseActivity {
                                     imgCollect.setImageResource(R.drawable.collect_none);
                                 }
                             }
-
                         }
                     }
 

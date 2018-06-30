@@ -448,6 +448,7 @@ public class startfenleiActivity extends BaseActivity implements StartFView, CXE
                 if(stutype.equals("文科")){
                     classify="wen";
                 }else {
+
                     classify="li";
                 }
                 String collegetype = cxefcBeanBaseBean.data.getCollegetype();

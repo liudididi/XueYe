@@ -20,7 +20,8 @@ public class ProvinceMoudle {
     //省控线查询
     public void Province(String province ,final ProvinceBack provinceBack)
     {
-        DisposableSubscriber<BaseBean<List<ProvinceBean>>> disposableSubscriber = MyQusetUtils.getInstance().getQuestInterface().province(province)
+        DisposableSubscriber<BaseBean<List<ProvinceBean>>> disposableSubscriber = MyQusetUtils
+                .getInstance().getQuestInterface().province(province)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<BaseBean<List<ProvinceBean>>>() {

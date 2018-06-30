@@ -66,7 +66,11 @@ public class Majorschool_Fragment extends Basefragment implements MajorSchoolVie
     }
 
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        marjorschool_tvnum=null;
+    }
 
     @Override
     public void MarjorSchoolSuccess(final List<MajorSchoolBean> list) {

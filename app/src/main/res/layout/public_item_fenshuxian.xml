@@ -21,13 +21,6 @@
         android:layout_width="270px"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="2018"
-        />
-    <TextView
-
-        android:layout_width="270px"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         android:text="2017"
         />
     <TextView
@@ -36,6 +29,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="2016"
+        />
+    <TextView
+
+        android:layout_width="270px"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="2015"
         />
 
 </LinearLayout>

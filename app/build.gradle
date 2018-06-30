@@ -12,10 +12,10 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.login_demo"
-        versionName "1.9.8"
+        versionName "1.9.9.3"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 17
+        versionCode 21
         resConfigs "zh"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -76,4 +76,9 @@ dependencies {
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //蜘蛛网
     implementation 'me.panpf:spider-web-score-view:1.0.1'
+
+    //leakcanary
+     // debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+     //releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+     // testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }

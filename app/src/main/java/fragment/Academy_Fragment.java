@@ -287,7 +287,7 @@ public class Academy_Fragment extends Basefragment implements CountdownView, Pay
                         if (token.length() > 4) {
                             payPresent.XiaDan(token, "4", pay + "");
                         } else {
-                            Toast.makeText(getContext(), "token失效，请重新登录", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "token失效，请前往“我的”进行登录", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

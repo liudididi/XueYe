@@ -73,7 +73,7 @@ public class ReportedActivity extends BaseActivity {
             //精选志愿表
             case R.id.reported_accurate:
                 if (token.length() < 4) {
-                    Toast("用户未登录");
+                    Toast("请前往“我的”进行登录");
                     return;
                 }
                 if(NetUtil.isNetworkAvailable(this)==false){

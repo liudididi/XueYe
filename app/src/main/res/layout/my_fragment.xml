@@ -290,6 +290,7 @@
             android:layout_below="@+id/my_washtable"
             android:background="#F3F3F3"></View>
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/my_character"
              android:layout_below="@+id/view3"
             android:layout_width="match_parent"

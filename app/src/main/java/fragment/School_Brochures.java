@@ -2,6 +2,7 @@ package fragment;
 
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.login_demo.R;
 import com.example.login_demo.SchoolDetailActivity;
@@ -25,7 +26,8 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
     private RelativeLayout rl_zzzs;
     private RelativeLayout rl_bsszs;
     private RelativeLayout rl_tcszs;
-
+    private RelativeLayout rl_wenben;
+    private TextView tv_wenben;
 
     @Override
     public int getLayoutid() {
@@ -39,7 +41,10 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
         rl_zzzs = view.findViewById(R.id.rl_zzzs);
         rl_bsszs = view.findViewById(R.id.rl_bsszs);
         rl_tcszs = view.findViewById(R.id.rl_tcszs);
-
+        if(getActivity()!=null){
+            rl_wenben = getActivity().findViewById(R.id.rl_wenben);
+            tv_wenben = getActivity().findViewById(R.id.tv_wenben);
+        }
         SchoolBrochuresPresent schoolBrochuresPresent=new SchoolBrochuresPresent(this);
         schoolBrochuresPresent.SchoolBrochuresPresent(SchoolDetailActivity.schoolname);
 
@@ -63,25 +68,27 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
             rl_zsjz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff(admissionRules);
+                  ff(admissionRules);
+
+                    ff(admissionRules);
                 }
             });
             rl_zzzs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff(independent);
+                    ff(independent);
                 }
             });
             rl_bsszs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff(baosongstr);
+                  ff(baosongstr);
                 }
             });
             rl_tcszs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff(specialtystr);
+                    ff(specialtystr);
                 }
             });
         }
@@ -91,29 +98,40 @@ public class School_Brochures extends Basefragment implements SchoolBrochuresVie
             rl_zsjz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff("数据整理中");
+                    ff("数据整理中");
                 }
             });
             rl_zzzs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff("数据整理中");
+                    ff("数据整理中");
                 }
             });
             rl_bsszs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff("数据整理中");
+                   ff("数据整理中");
                 }
             });
             rl_tcszs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    SchoolDetailActivity.ff("数据整理中");
+                   ff("数据整理中");
                 }
             });
         }
 
+
+    }
+
+    private void ff(String str) {
+
+        rl_wenben.setVisibility(View.VISIBLE);
+        if (str != null) {
+            tv_wenben.setText(str);
+        } else {
+            tv_wenben.setText("暂无数据");
+        }
 
     }
 

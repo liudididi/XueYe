@@ -217,10 +217,12 @@ public class EFCJieSuoActivity extends BaseActivity {
 
                         MyQusetUtils.getInstance().getQuestInterface().hqjd(token)
                                 .subscribeOn(Schedulers.io())
+                                .retry(2)
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
                                     @Override
                                     public void onNext(BaseBean<String> integerBaseBean) {
+                                        if(integerBaseBean.code==0){
                                         data = integerBaseBean.data;
                                         jiesuoPb.setVisibility(View.GONE);
                                         if (data.equals("0")) {
@@ -293,6 +295,7 @@ public class EFCJieSuoActivity extends BaseActivity {
                                             rlZntb.setEnabled(true);
                                             rlXlcs.setEnabled(true);
                                             imgZntbbq.setImageResource(R.drawable.biaoywc);
+                                        }
                                         }
 
                                     }

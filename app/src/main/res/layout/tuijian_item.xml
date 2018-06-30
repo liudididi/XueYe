@@ -27,7 +27,7 @@
             android:gravity="center_vertical">
             <TextView
                 android:id="@+id/tv_zy"
-                android:layout_width="600px"
+                android:layout_width="800px"
                 android:layout_height="wrap_content"
                 android:textColor="#333333"
                 android:maxLines="1"
@@ -36,31 +36,7 @@
                 android:textSize="54px"
                 />
 
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/tv_tj_zhuanye"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="32px"
-                    android:textColor="#F29600"
-                    android:gravity="center"
-                    android:text="重点专业"
-                    android:padding="8px"
-                    android:background="@drawable/back_chengse"
-                     />
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/tv_zd_zhuanye"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="32px"
-                    android:textColor="#F29600"
-                    android:padding="8px"
 
-                    android:layout_marginLeft="14px"
-                    android:gravity="center"
-                    android:background="@drawable/back_chengse"
-                    android:text="重点专业"/>
 
         </LinearLayout>
 
@@ -69,15 +45,34 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10px">
+            android:layout_marginTop="15px">
             <TextView
-                android:id="@+id/tv_zy_liebei"
+                android:visibility="invisible"
+                android:id="@+id/tv_tj_zhuanye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="暂无数据"
-                android:textSize="40px"
-                android:textColor="#999999"/>
+                android:textSize="32px"
+                android:textColor="#F29600"
+                android:gravity="center"
+                android:text="重点专业"
+                android:padding="8px"
+                android:layout_marginRight="14px"
+                android:background="@drawable/back_chengse"
+                />
             <TextView
+                android:visibility="invisible"
+                android:id="@+id/tv_zd_zhuanye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32px"
+                android:textColor="#F29600"
+                android:padding="8px"
+                android:gravity="center"
+                android:background="@drawable/back_chengse"
+                android:text="重点专业"/>
+
+            <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_zy_jihua"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,22 +85,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="10px"
+            android:layout_marginTop="15px"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_zy_liebei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据整理中"
+                android:textSize="35px"
+                android:textColor="#999999"/>
             <TextView
                 android:id="@+id/tv_year_fen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="暂无数据"
-                android:textSize="40px"
+                android:text="数据整理中"
+                android:textSize="35px"
+                android:layout_marginLeft="40px"
                 android:textColor="#999999"/>
             <TextView
                 android:id="@+id/tv_year_pici"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="暂无数据"
-                android:layout_marginLeft="50px"
-                android:textSize="40px"
+                android:text="数据整理中"
+                android:layout_marginLeft="40px"
+                android:textSize="35px"
                 android:textColor="#999999"/>
         </LinearLayout>
     </LinearLayout>

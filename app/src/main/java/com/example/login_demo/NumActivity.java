@@ -334,19 +334,19 @@ public class NumActivity extends BaseActivity implements NumView {
         listfen.add(0);
         if (data.size() > 0 && data != null) {
             for (int i = 0; i < data.size(); i++) {
-                if (data.get(i).getYear().equals("2013")) {
+                if (data.get(i).getYear().equals("2014")) {
                     listfen.set(0, Integer.parseInt(data.get(i).getScore()));
                 }
-                if (data.get(i).getYear().equals("2014")) {
+                if (data.get(i).getYear().equals("2015")) {
                     listfen.set(1, Integer.parseInt(data.get(i).getScore()));
                 }
-                if (data.get(i).getYear().equals("2015")) {
+                if (data.get(i).getYear().equals("2016")) {
                     listfen.set(2, Integer.parseInt(data.get(i).getScore()));
                 }
-                if (data.get(i).getYear().equals("2016")) {
+                if (data.get(i).getYear().equals("2017")) {
                     listfen.set(3, Integer.parseInt(data.get(i).getScore()));
                 }
-                if (data.get(i).getYear().equals("2017")) {
+                if (data.get(i).getYear().equals("2018")) {
                     listfen.set(4, Integer.parseInt(data.get(i).getScore()));
                 }
             }

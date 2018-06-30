@@ -24,6 +24,15 @@ public class ProvinceAdapter2 extends RecyclerView.Adapter<ProvinceAdapter2.MyVi
         this.context = context;
     }
 
+
+    public void load5(ArrayList<String> newlist)
+    {
+        if(list!=null){
+            list.clear();
+            list=newlist;
+            notifyDataSetChanged();
+        }
+    }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.provinceitem1, null);

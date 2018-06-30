@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
+//import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.weavey.loading.lib.LoadingLayout;
 import com.zhy.autolayout.config.AutoLayoutConifg;
@@ -63,6 +64,9 @@ public class MyApp extends Application {
 
            //捕获异常
            // Myexception.getinstants().init(this);
+
+        //内存检测
+        //LeakCanary.install(this);
 
     }
 

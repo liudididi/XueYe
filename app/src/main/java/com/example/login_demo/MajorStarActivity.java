@@ -458,6 +458,7 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
         if(favourMajorpresent!=null){
             favourMajorpresent.onDestory();
         }
+        scnum=null;
     }
 
     @Override
@@ -722,4 +723,6 @@ public class MajorStarActivity extends BaseActivity implements  favourMajorView 
     public void favourMajorfail(String msg) {
               Toast(msg);
     }
+
+
 }

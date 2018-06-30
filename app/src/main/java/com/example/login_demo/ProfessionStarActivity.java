@@ -102,9 +102,115 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
         km = "文科";
         xingbie = "男";
         data = getIntent().getStringExtra("data");
-         cxefcPresenter = new CXEFCPresenter(this);
+        cxefcPresenter = new CXEFCPresenter(this);
         arealist = new ArrayList<>();
         initdata();
+        token = (String) SPUtils.get(MyApp.context, "token", "");
+        if(data!=null){
+            int i2 = Integer.parseInt(data);
+            if (i2 >= 2) {
+                llZhuan.setEnabled(false);
+                llBen.setEnabled(false);
+                llNan.setEnabled(false);
+                llNv.setEnabled(false);
+                llWen.setEnabled(false);
+                llLi.setEnabled(false);
+                cxefcPresenter.CXEFCPresenter(token);
+                proEdname.setEnabled(false);
+                proTvaddress.setEnabled(false);
+                proEdfenshu.setEnabled(false);
+            } else {
+                llZhuan.setEnabled(true);
+                llBen.setEnabled(true);
+                llNan.setEnabled(true);
+                llNv.setEnabled(true);
+                llWen.setEnabled(true);
+                llLi.setEnabled(true);
+                String s = (String) SPUtils.get(MyApp.context, "kemuefc", "默认");
+                if(s.equals("本科")){
+                    imgBen.setImageResource(R.drawable.hong);
+                    imgZhuan.setImageResource(R.drawable.bai);
+                    type = "0";
+                    leixing = "本科";
+                    llZhuan.setEnabled(false);
+                    llBen.setEnabled(false);
+                }else if(s.equals("专科")){
+                    imgZhuan.setImageResource(R.drawable.hong);
+                    imgBen.setImageResource(R.drawable.bai);
+                    type = "1";
+                    llZhuan.setEnabled(false);
+                    llBen.setEnabled(false);
+                    leixing = "专科";
+                }
+                proEdname.setEnabled(true);
+                proTvaddress.setEnabled(true);
+                proEdfenshu.setEnabled(true);
+            }
+
+        }else {
+            MyQusetUtils.getInstance().getQuestInterface().hqjd(token)
+                    .subscribeOn(Schedulers.io())
+                    .retry(2)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeWith(new DisposableSubscriber<BaseBean<String>>() {
+                        @Override
+                        public void onNext(BaseBean<String> stringBaseBean) {
+                            if(stringBaseBean.code==0){
+                                data = stringBaseBean.data;
+                                int i2 = Integer.parseInt(data);
+                                if (i2 >= 2) {
+                                    llZhuan.setEnabled(false);
+                                    llBen.setEnabled(false);
+                                    llNan.setEnabled(false);
+                                    llNv.setEnabled(false);
+                                    llWen.setEnabled(false);
+                                    llLi.setEnabled(false);
+                                    cxefcPresenter.CXEFCPresenter(token);
+                                    proEdname.setEnabled(false);
+                                    proTvaddress.setEnabled(false);
+                                    proEdfenshu.setEnabled(false);
+                                } else {
+                                    llZhuan.setEnabled(true);
+                                    llBen.setEnabled(true);
+                                    llNan.setEnabled(true);
+                                    llNv.setEnabled(true);
+                                    llWen.setEnabled(true);
+                                    llLi.setEnabled(true);
+                                    String s = (String) SPUtils.get(MyApp.context, "kemuefc", "默认");
+                                    if(s.equals("本科")){
+                                        imgBen.setImageResource(R.drawable.hong);
+                                        imgZhuan.setImageResource(R.drawable.bai);
+                                        type = "0";
+                                        leixing = "本科";
+                                        llZhuan.setEnabled(false);
+                                        llBen.setEnabled(false);
+                                    }else if(s.equals("专科")){
+                                        imgZhuan.setImageResource(R.drawable.hong);
+                                        imgBen.setImageResource(R.drawable.bai);
+                                        type = "1";
+                                        llZhuan.setEnabled(false);
+                                        llBen.setEnabled(false);
+                                        leixing = "专科";
+                                    }
+                                    proEdname.setEnabled(true);
+                                    proTvaddress.setEnabled(true);
+                                    proEdfenshu.setEnabled(true);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable t) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+
     }
     private void initdata() {
         arealist.add("北京市");
@@ -210,46 +316,7 @@ public class ProfessionStarActivity extends BaseActivity implements CXEFCView {
     @Override
     protected void onResume() {
         super.onResume();
-        token = (String) SPUtils.get(MyApp.context, "token", "");
-        int i2 = Integer.parseInt(data);
-        if (i2 >= 2) {
-            llZhuan.setEnabled(false);
-            llBen.setEnabled(false);
-            llNan.setEnabled(false);
-            llNv.setEnabled(false);
-            llWen.setEnabled(false);
-            llLi.setEnabled(false);
-            cxefcPresenter.CXEFCPresenter(token);
-            proEdname.setEnabled(false);
-            proTvaddress.setEnabled(false);
-            proEdfenshu.setEnabled(false);
-        } else {
-            llZhuan.setEnabled(true);
-            llBen.setEnabled(true);
-            llNan.setEnabled(true);
-            llNv.setEnabled(true);
-            llWen.setEnabled(true);
-            llLi.setEnabled(true);
-          String s = (String) SPUtils.get(MyApp.context, "kemuefc", "默认");
-          if(s.equals("本科")){
-              imgBen.setImageResource(R.drawable.hong);
-              imgZhuan.setImageResource(R.drawable.bai);
-              type = "0";
-              leixing = "本科";
-              llZhuan.setEnabled(false);
-              llBen.setEnabled(false);
-          }else if(s.equals("专科")){
-              imgZhuan.setImageResource(R.drawable.hong);
-              imgBen.setImageResource(R.drawable.bai);
-              type = "1";
-              llZhuan.setEnabled(false);
-              llBen.setEnabled(false);
-              leixing = "专科";
-          }
-            proEdname.setEnabled(true);
-            proTvaddress.setEnabled(true);
-            proEdfenshu.setEnabled(true);
-        }
+
     }
 
     @Override

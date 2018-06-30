@@ -293,6 +293,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
                 .subscribeWith(new DisposableSubscriber<BaseBean<EFCBean>>() {
                     @Override
                     public void onNext(BaseBean<EFCBean> efcBeanBaseBean) {
+                        if(efcBeanBaseBean.code==0){
                         testCode = efcBeanBaseBean.data.getTest_code();
                    if(vip==false){
                        if (efcBeanBaseBean.data.getMajorGai() != null && efcBeanBaseBean.data.getMajorGai().size() > 0) {
@@ -314,6 +315,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
                        }
 
                    }
+          }
 
                     }
 
@@ -504,7 +506,7 @@ public class XueYeGuiHuaActivity extends BaseActivity implements CXEFCView, Coun
                         }
                     }
                 } else {
-                    Toast("token失效，请重新登录");
+                    Toast("token失效，请前往“我的”进行登录");
                 }
                 // intent(this,AccurateActivity.class);
                 break;

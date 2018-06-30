@@ -14,7 +14,7 @@
             android:layout_height="200px"
             android:orientation="vertical"
             android:layout_centerVertical="true"
-            android:layout_margin="50px"
+            android:layout_margin="30px"
             android:gravity="center"
             android:background="@drawable/back_circle3"
             >
@@ -45,13 +45,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000"
-                android:textSize="40px"/>
+                android:textSize="38px"/>
             <TextView
                 android:id="@+id/onetable_tv_years2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="35px"
-                android:layout_marginTop="20px"/>
+                android:textSize="33px"
+                android:layout_marginTop="30px"/>
         </LinearLayout>
 
         <ImageView

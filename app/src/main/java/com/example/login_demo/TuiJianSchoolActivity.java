@@ -373,7 +373,7 @@ public class TuiJianSchoolActivity extends BaseActivity implements TuiJianView {
                             }
                         }
                     } else {
-                        Toast("token失效，请重新登录");
+                        Toast("token失效，请前往“我的”进行登录");
                     }
                 } else {
                     Intent intent1 = new Intent(TuiJianSchoolActivity.this, Buy2Activity.class);

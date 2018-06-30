@@ -77,6 +77,8 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
     private boolean flag1=true;
     private boolean flag2=true;
     private boolean flag3=true;
+    private ProvinceAdapter2 provinceAdapter5;
+
     @Override
     public int getId() {
         return R.layout.activity_province;
@@ -253,17 +255,17 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
                     //2017
                     List<ProvinceBean.ScoresBean> scores = data.get(i).getScores();
                     for (int i1 = 0; i1 < scores.size(); i1++) {
-                        if(scores.get(i1).getYear().equals("2017"))
+                        if(scores.get(i1).getYear().equals("2018"))
                         {
                             list2.add(scores.get(i1).getScore());
                             flag1=false;
                         }
-                        if(scores.get(i1).getYear().equals("2016"))
+                        if(scores.get(i1).getYear().equals("2017"))
                         {
                             list3.add(scores.get(i1).getScore());
                             flag2=false;
                         }
-                        if(scores.get(i1).getYear().equals("2015"))
+                        if(scores.get(i1).getYear().equals("2016"))
                         {
                             list4.add(scores.get(i1).getScore());
                             flag3=false;
@@ -294,17 +296,17 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
                     //2017
                     List<ProvinceBean.ScoresBean> scores = data.get(i).getScores();
                     for (int i1 = 0; i1 < scores.size(); i1++) {
-                        if(scores.get(i1).getYear().equals("2017"))
+                        if(scores.get(i1).getYear().equals("2018"))
                         {
                             list6.add(scores.get(i1).getScore());
                             flag1=false;
                         }
-                        if(scores.get(i1).getYear().equals("2016"))
+                        if(scores.get(i1).getYear().equals("2017"))
                         {
                             list7.add(scores.get(i1).getScore());
                             flag2=false;
                         }
-                        if(scores.get(i1).getYear().equals("2015"))
+                        if(scores.get(i1).getYear().equals("2016"))
                         {
                             list8.add(scores.get(i1).getScore());
                             flag3=false;
@@ -323,6 +325,7 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
                         list8.add("---");
                     }
                 }
+
             }
 
             //理科
@@ -342,7 +345,7 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
 
 
             //文科
-            ProvinceAdapter2 provinceAdapter5=new ProvinceAdapter2(list5,ProvinceActivity.this);
+            provinceAdapter5 = new ProvinceAdapter2(list5,ProvinceActivity.this);
             province_rv_arts1.setLayoutManager(new LinearLayoutManager(ProvinceActivity.this));
             province_rv_arts1.setAdapter(provinceAdapter5);
             ProvinceAdapter2 provinceAdapter6=new ProvinceAdapter2(list6,ProvinceActivity.this);
@@ -358,6 +361,7 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
        else
         {
             provinceAdapter1.load(list1);
+            provinceAdapter5.load5(list1);
             Toast.makeText(this, "无数据", Toast.LENGTH_SHORT).show();
         }
 
@@ -365,6 +369,6 @@ public class ProvinceActivity extends BaseActivity implements ProvinceView{
 
     @Override
     public void Provincefail(Throwable t) {
-
+        provincePresent.ProvincePresent(s);
     }
 }

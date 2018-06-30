@@ -146,7 +146,6 @@ public class Wash_School_adapter  extends RecyclerView.Adapter{
 
         public School_viewHoder1(View itemView) {
             super(itemView);
-
         }
     }
 }

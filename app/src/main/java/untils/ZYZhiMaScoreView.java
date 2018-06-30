@@ -41,7 +41,7 @@ public class ZYZhiMaScoreView extends View {
     private int monthCount  = 6;
     private int selectMonth = 6;//选中的月份
 
-    private String[] monthText = new String[]{"2013年","2014年","2015年", "2016年","2017年"};
+    private String[] monthText = new String[]{"2014年","2015年","2016年", "2017年","2018年"};
 
     private  List<Integer> listfen;
 
@@ -448,8 +448,6 @@ public class ZYZhiMaScoreView extends View {
         canvas.drawPath(mPath, dottedPaint);
 
     }
-
-
 
 
     public void setMaxScore(int maxScore)

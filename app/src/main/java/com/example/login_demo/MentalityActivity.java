@@ -60,7 +60,7 @@ public class MentalityActivity extends BaseActivity implements YfenQView {
                 if(token.length()>4){
                     yfenQPresent.yfJudge("MBTI_E",token);
                 }else {
-                    Toast("请先登录");
+                    Toast("请前往“我的”进行登录");
                 }
                 break;
             case R.id.rl2:
@@ -68,7 +68,7 @@ public class MentalityActivity extends BaseActivity implements YfenQView {
                 if(token.length()>4){
                     yfenQPresent.yfJudge("SDS_E",token);
                 }else {
-                    Toast("请先登录");
+                    Toast("请前往“我的”进行登录");
                 }
                 break;
         }

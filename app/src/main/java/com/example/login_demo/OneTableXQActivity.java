@@ -53,6 +53,7 @@ public class OneTableXQActivity extends BaseActivity implements OnTableXQView {
     private String type;
     private String province;
     private String year;
+    private String title;
 
     @Override
     public int getId() {
@@ -70,7 +71,7 @@ public class OneTableXQActivity extends BaseActivity implements OnTableXQView {
         type = intent.getStringExtra("type");
         province = intent.getStringExtra("province");
         year = intent.getStringExtra("year");
-
+        title = intent.getStringExtra("title");
         onTableXQPresent = new OnTableXQPresent(this);
         onTableXQPresent.OneTableXQPresent(type, province, year);
         mainLinerLayout = this.findViewById(R.id.MyTable);
@@ -104,7 +105,7 @@ public class OneTableXQActivity extends BaseActivity implements OnTableXQView {
             scroll.setVisibility(View.VISIBLE);
             for (int i = 0; i < data.size(); i++) {
                 OneTableXQBean oneTableXQBean = data.get(i);
-                tvTitle.setText(oneTableXQBean.getTitle());
+                tvTitle.setText(title);
                 tvYear.setText(oneTableXQBean.getTime());
                 relativeLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.table, null);
                 MyTableTextView txt = relativeLayout.findViewById(R.id.list_1_1);

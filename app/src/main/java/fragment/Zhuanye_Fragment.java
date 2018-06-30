@@ -294,7 +294,7 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
                             }
                         }
                     } else {
-                        Toast.makeText(getContext(), "token失效，请重新登录", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "token失效，请前往“我的”进行登录", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -311,8 +311,9 @@ public class Zhuanye_Fragment extends Basefragment implements CountdownView,PayV
             @Override
             public void GetEFCResultsuccess(BaseBean<CXEFCBean> cxefcBeanBaseBean) {
                 String majorGai = cxefcBeanBaseBean.data.getMajorGai();
-                for (int i = 0; i < 20; i++) {
-                    String[] split = majorGai.split(",");
+                String[] split = majorGai.split(",");
+                for (int i = 0; i <split.length; i++) {
+
                     String s = split[i];
                     String[] split1 = s.split(":");
                     //专业名

@@ -75,6 +75,8 @@ public class TuiJianAdapter extends BaseAdapter{
         TextView tv_year_fen= inflate.findViewById(R.id.tv_year_fen);
         TextView tv_zy_jihua= inflate.findViewById(R.id.tv_zy_jihua);
         TextView tv_year_pici= inflate.findViewById(R.id.tv_year_pici);
+
+
         //重点专业
         String importantFlag =list.get(i).getImportantFlag();
         if(importantFlag!=null)
@@ -82,6 +84,7 @@ public class TuiJianAdapter extends BaseAdapter{
             tv_zd_zhuanye.setText(importantFlag);
             tv_zd_zhuanye.setVisibility(View.VISIBLE);
         }
+
         //推荐专业
         String featureFlag =list.get(i).getFeatureFlag();
         if(featureFlag!=null)
@@ -89,6 +92,11 @@ public class TuiJianAdapter extends BaseAdapter{
             tv_tj_zhuanye.setText(featureFlag);
             tv_tj_zhuanye.setVisibility(View.VISIBLE);
         }
+        else
+        {
+            tv_tj_zhuanye.setVisibility(View.GONE);
+        }
+
         if(importantFlag!=null&&featureFlag!=null)
         {
             tv_zd_zhuanye.setText(importantFlag);
@@ -98,14 +106,17 @@ public class TuiJianAdapter extends BaseAdapter{
         }
 
 
-        String majorType = list.get(i).getClassification();
+
+
+
+        String majorType = list.get(i).getMajorType();
         if(majorType!=null)
         {
             tv_zy_liebei.setText(majorType);
         }
         else
         {
-            tv_zy_liebei.setText("暂无数据");
+            tv_zy_liebei.setText("数据整理中");
         }
 
         String year = list.get(i).getYear();
@@ -116,7 +127,7 @@ public class TuiJianAdapter extends BaseAdapter{
         }
         else
         {
-            tv_year_fen.setText( "暂无录取信息" );
+            tv_year_fen.setText( "数据整理中" );
         }
 
         tv_zy.setText(list.get(i).getMajor());
@@ -126,7 +137,7 @@ public class TuiJianAdapter extends BaseAdapter{
             tv_year_pici.setText(time);
         }else
         {
-            tv_year_pici.setText("");
+            tv_year_pici.setText("数据整理中");
         }
 
         String planYear = list.get(i).getPlanYear();

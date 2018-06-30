@@ -87,10 +87,9 @@ public class SchoolDetailActivity extends BaseActivity {
     private School_Enroll school_enroll;
     private School_Brochures school_brochures;
     private ConnectionChangeReceiver myReceiver;
-    private static RelativeLayout rl_wenben;
-    private static TextView tv_wenben;
-    public static View view_gl;
-    public static ProgressBar pb;
+    private   RelativeLayout rl_wenben;
+
+
 
     @Override
     public int getId() {
@@ -100,9 +99,6 @@ public class SchoolDetailActivity extends BaseActivity {
     public void InIt() {
         isefc=getIntent().getBooleanExtra("EFC",false);
         rl_wenben = findViewById(R.id.rl_wenben);
-        tv_wenben = findViewById(R.id.tv_wenben);
-        view_gl = findViewById(R.id.view_gl);
-        pb = findViewById(R.id.pb);
 
         rl_wenben.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,14 +117,7 @@ public class SchoolDetailActivity extends BaseActivity {
     }
     private void info() {
     }
-    public static void ff(String s) {
-        rl_wenben.setVisibility(View.VISIBLE);
-        if (s != null) {
-            tv_wenben.setText(s);
-        } else {
-            tv_wenben.setText("暂无数据");
-        }
-    }
+
     private FragmentTransaction switchFragment(Fragment targetFragment) {
         FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction();
@@ -151,6 +140,8 @@ public class SchoolDetailActivity extends BaseActivity {
         school_enroll = new School_Enroll();
         school_brochures = new School_Brochures();
     }
+
+
     @OnClick({R.id.schoold_iv_back, R.id.schoold_lq, R.id.schoold_jj, R.id.schoold_zsjz, R.id.schoold_collect})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -212,7 +203,7 @@ public class SchoolDetailActivity extends BaseActivity {
 
     public void collect() {
         if (token == null || token.length() < 4) {
-            Toast("用户未登录");
+            Toast("请前往“我的”进行登录");
             return;
         }
         MyQusetUtils.getInstance()
@@ -256,9 +247,9 @@ public class SchoolDetailActivity extends BaseActivity {
                                  List<String> strlist=new ArrayList<>();
                                 String collectionTime = data.get(0).getCollectionTime();
                                 if (collectionTime != null && collectionTime.length() > 2) {
-                                    Glide.with(SchoolDetailActivity.this).load(R.drawable.collect_yes).into(schooldCollect);
+                                    Glide.with(MyApp.context).load(R.drawable.collect_yes).into(schooldCollect);
                                 } else {
-                                    Glide.with(SchoolDetailActivity.this).load(R.drawable.collect_none).into(schooldCollect);
+                                    Glide.with(MyApp.context).load(R.drawable.collect_none).into(schooldCollect);
                                 }
                                 String two = data.get(0).getTwo();
                                 if (two != null && two.length() > 1) {
